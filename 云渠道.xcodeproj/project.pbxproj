@@ -781,10 +781,11 @@
 				DEVELOPMENT_TEAM = 73DTNFMD65;
 				GCC_PREFIX_HEADER = "/Users/wjq/Desktop/云渠道app客户端/云渠道/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -797,10 +798,11 @@
 				DEVELOPMENT_TEAM = 73DTNFMD65;
 				GCC_PREFIX_HEADER = "/Users/wjq/Desktop/云渠道app客户端/云渠道/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
