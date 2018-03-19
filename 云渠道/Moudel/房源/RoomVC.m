@@ -29,7 +29,7 @@
 
 -(void)initDateSouce
 {
-   
+    NSLog(@"123123");
 }
 
 -(void)initUI
@@ -84,7 +84,7 @@
                 break;
             case 1:
             {
-            
+                NSLog(@"");
             }
 
             default:
