@@ -6,4 +6,5 @@ target '云渠道' do
   pod 'IQKeyboardManager', '~> 5.0.8'
   pod 'SDCycleScrollView', '~> 1.75'
   pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'Baidu-Maps-iOS-SDK', '~> 3.0.0'
 end

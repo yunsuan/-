@@ -27,6 +27,7 @@
 //#import "InfoCenter.h"
 //#import "InfoCenterArchiver.h"
 #import "MJRefresh.h"
+#import <BaiduMapAPI_Map/BMKMapView.h>
 
 //#import "WJQTools.h"
 #import "UIImageView+WebCache.h"
