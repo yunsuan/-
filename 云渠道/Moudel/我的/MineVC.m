@@ -61,7 +61,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 7*SIZE;
+    return 20*SIZE;
 }
 
 
