@@ -33,7 +33,7 @@
 
 -(void)InitDataSouce
 {
-    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家",@"退出登录"]];
+    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家"]];
 }
 
 
@@ -41,11 +41,11 @@
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 2;
+    if (section == 1) {
+        return 3;
     }
     else
-        return 3;
+        return 2;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -93,10 +93,7 @@
         if (indexPath.row == 0) {
             
         }
-        else if(indexPath.row ==1)
-        {
-            
-        }else{
+        else{
             [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
                 
             } WithDefaultBlack:^{
