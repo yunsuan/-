@@ -53,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C07BFBF2060AC26007F31EC /* 云渠道.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "云渠道.entitlements"; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 		1069FFC3205795BD00E11F52 /* 云渠道 */ = {
 			isa = PBXGroup;
 			children = (
+				0C07BFBF2060AC26007F31EC /* 云渠道.entitlements */,
 				106900032057974200E11F52 /* 第三方SDK */,
 				1069FFFB2057974100E11F52 /* 自定义SDK */,
 				1069FFF62057974100E11F52 /* BaseClass */,
@@ -474,6 +476,11 @@
 					1069FFC0205795BD00E11F52 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					1069FFD8205795BE00E11F52 = {
 						CreatedOnToolsVersion = 9.2;
@@ -777,13 +784,14 @@
 			baseConfigurationReference = B040976ECCBAE7E833CAD51A /* Pods-云渠道.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "云渠道/云渠道.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.---";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yskj.yunqudao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -794,13 +802,14 @@
 			baseConfigurationReference = B4E233417D126BDD0E0282A9 /* Pods-云渠道.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "云渠道/云渠道.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.---";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yskj.yunqudao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

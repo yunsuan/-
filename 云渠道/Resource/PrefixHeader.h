@@ -49,7 +49,7 @@
 #ifndef deviceVersion
 #define deviceVersion [[[UIDevice currentDevice] systemVersion] floatValue]
 #endif
-#define sIZE [UIScreen mainScreen].bounds.size.width/320
+#define sIZE [UIScreen mainScreen].bounds.size.width/360
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define SCREEN_Width [UIScreen mainScreen].bounds.size.width
 #define SCREEN_Height [UIScreen mainScreen].bounds.size.height
@@ -60,6 +60,8 @@
 #define cycleScrollViewHeight 170 * SIZE
 #define FROMFORLEFT  20 * SIZE
 #define PLINEHEIGHT    0.5*SIZE
+
+#define JpushAppKey @"2dd909361c253b51e0cd05a9"
 
 
 // 判断是否是iPhone X

@@ -7,4 +7,5 @@ target '云渠道' do
   pod 'SDCycleScrollView', '~> 1.75'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'Baidu-Maps-iOS-SDK', '~> 3.0.0'
+  pod 'JPush'
 end
