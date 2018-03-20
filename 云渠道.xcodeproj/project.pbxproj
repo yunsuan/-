@@ -86,10 +86,10 @@
 		1069FFD2205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFD3205795BE00E11F52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1069FFD9205795BE00E11F52 /* 云渠道Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "云渠道Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1069FFDD205795BE00E11F52 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
+		1069FFDD205795BE00E11F52 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ___Tests.m; sourceTree = "<group>"; };
 		1069FFDF205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFE4205795BE00E11F52 /* 云渠道UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "云渠道UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1069FFE8205795BE00E11F52 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___UITests.m"; sourceTree = "<group>"; };
+		1069FFE8205795BE00E11F52 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ___UITests.m; sourceTree = "<group>"; };
 		1069FFEA205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFF72057974100E11F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1069FFF82057974100E11F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -569,6 +569,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-云渠道/Pods-云渠道-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/UMCShare/UMShare/UMSocialSDKPlugin/UMSocialSDKPromptResources.bundle",
+				"${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
