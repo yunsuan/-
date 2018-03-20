@@ -16,6 +16,9 @@
 		102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9782057A1DD00E1859C /* CustomerVC.m */; };
 		102DF97C2057A20100E1859C /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF97B2057A20100E1859C /* LoginVC.m */; };
 		102DF97F2057A21300E1859C /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF97E2057A21300E1859C /* MineVC.m */; };
+		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
+		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
+		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -74,6 +77,12 @@
 		102DF97B2057A20100E1859C /* LoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		102DF97D2057A21300E1859C /* MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineVC.h; sourceTree = "<group>"; };
 		102DF97E2057A21300E1859C /* MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
+		105E18892060E1F50031558D /* CompanyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
+		105E188A2060E1F50031558D /* CompanyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
+		105E188C2060E21C0031558D /* PeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
+		105E188D2060E21C0031558D /* PeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeopleCell.m; sourceTree = "<group>"; };
+		105E18962060EE710031558D /* TagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagView.h; sourceTree = "<group>"; };
+		105E18972060EE710031558D /* TagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagView.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -165,6 +174,7 @@
 		102DF96A2057A0A200E1859C /* 房源 */ = {
 			isa = PBXGroup;
 			children = (
+				105E18882060E1970031558D /* view */,
 				102DF9742057A1AE00E1859C /* RoomVC.h */,
 				102DF9752057A1AE00E1859C /* RoomVC.m */,
 			);
@@ -198,6 +208,26 @@
 				102DF97E2057A21300E1859C /* MineVC.m */,
 			);
 			path = "我的";
+			sourceTree = "<group>";
+		};
+		105E18882060E1970031558D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				105E18892060E1F50031558D /* CompanyCell.h */,
+				105E188A2060E1F50031558D /* CompanyCell.m */,
+				105E188C2060E21C0031558D /* PeopleCell.h */,
+				105E188D2060E21C0031558D /* PeopleCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		105E18952060EAD70031558D /* 自定义标签 */ = {
+			isa = PBXGroup;
+			children = (
+				105E18962060EE710031558D /* TagView.h */,
+				105E18972060EE710031558D /* TagView.m */,
+			);
+			path = "自定义标签";
 			sourceTree = "<group>";
 		};
 		106900012057974200E11F52 /* UserModel */ = {
@@ -340,6 +370,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				105E18952060EAD70031558D /* 自定义标签 */,
 				1069FFFC2057974100E11F52 /* RootTabBar */,
 			);
 			path = "自定义SDK";
@@ -617,6 +648,7 @@
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
+				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
@@ -624,6 +656,7 @@
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
+				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
@@ -632,6 +665,7 @@
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
+				105E18982060EE710031558D /* TagView.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
@@ -737,7 +771,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -786,7 +820,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
