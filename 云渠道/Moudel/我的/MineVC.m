@@ -63,6 +63,16 @@
 //{
 //    return 20*SIZE;
 //}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (!section) {
+        
+        return 1 *SIZE;
+    }
+    return 7 *SIZE;
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 10*SIZE)];
