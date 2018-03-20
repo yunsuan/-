@@ -68,7 +68,7 @@
     
     if (!section) {
         
-        return 1 *SIZE;
+        return 2 *SIZE;
     }
     return 7 *SIZE;
 }

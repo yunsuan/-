@@ -27,10 +27,12 @@
 #import "MJRefresh.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
 
+#import <Masonry.h>
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 #import "UserModel.h"
 #import "UserModelArchiver.h"
+#import "BaseRequest.h"
 
 
 #define HTTPHEADNUMBER @"http://101.205.19.65:10000"

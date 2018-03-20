@@ -8,6 +8,7 @@ target '云渠道' do
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'Baidu-Maps-iOS-SDK', '~> 3.0.0'
   pod 'JPush'
+  pod 'Masonry'
   # U-Share SDK UI模块（分享面板，建议添加）
   pod 'UMCShare/UI'
   # 集成微信(精简版0.2M)
