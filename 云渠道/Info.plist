@@ -17,7 +17,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>1</string>
+=======
+	<string>3</string>
+>>>>>>> 3a733b5fff0c0d5bea053c20bfde1e08ab04f6e9
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wechat</string>
