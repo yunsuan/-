@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C07BFC22060D835007F31EC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFC12060D835007F31EC /* UserModel.m */; };
+		0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFC42060D88C007F31EC /* UserModelArchiver.m */; };
+		0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCA2060D94C007F31EC /* BaseRequest.m */; };
 		102DF9702057A12B00E1859C /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF96F2057A12B00E1859C /* MessageVC.m */; };
 		102DF9732057A14300E1859C /* WorkingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9722057A14300E1859C /* WorkingVC.m */; };
 		102DF9762057A1AE00E1859C /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9752057A1AE00E1859C /* RoomVC.m */; };
@@ -27,7 +30,6 @@
 		1069FFD4205795BE00E11F52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFD3205795BE00E11F52 /* main.m */; };
 		1069FFDE205795BE00E11F52 /* ___Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFDD205795BE00E11F52 /* ___Tests.m */; };
 		1069FFE9205795BE00E11F52 /* ___UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFE8205795BE00E11F52 /* ___UITests.m */; };
-		10B2CAA02057D8C300E814AC /* BaseNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CA9F2057D8C300E814AC /* BaseNetRequest.m */; };
 		10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAA3205A0D0900E814AC /* RegisterVC.m */; };
 		10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAA6205A0D1300E814AC /* FindPassWordVC.m */; };
 		10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAB205A1DFA00E814AC /* WorkingCell.m */; };
@@ -54,6 +56,12 @@
 
 /* Begin PBXFileReference section */
 		0C07BFBF2060AC26007F31EC /* 云渠道.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "云渠道.entitlements"; sourceTree = "<group>"; };
+		0C07BFC02060D835007F31EC /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		0C07BFC12060D835007F31EC /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		0C07BFC32060D88C007F31EC /* UserModelArchiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModelArchiver.h; sourceTree = "<group>"; };
+		0C07BFC42060D88C007F31EC /* UserModelArchiver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModelArchiver.m; sourceTree = "<group>"; };
+		0C07BFC92060D94C007F31EC /* BaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
+		0C07BFCA2060D94C007F31EC /* BaseRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRequest.m; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -86,17 +94,15 @@
 		1069FFD2205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFD3205795BE00E11F52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1069FFD9205795BE00E11F52 /* 云渠道Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "云渠道Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1069FFDD205795BE00E11F52 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ___Tests.m; sourceTree = "<group>"; };
+		1069FFDD205795BE00E11F52 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
 		1069FFDF205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFE4205795BE00E11F52 /* 云渠道UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "云渠道UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1069FFE8205795BE00E11F52 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ___UITests.m; sourceTree = "<group>"; };
+		1069FFE8205795BE00E11F52 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___UITests.m"; sourceTree = "<group>"; };
 		1069FFEA205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFF72057974100E11F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1069FFF82057974100E11F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		1069FFFD2057974100E11F52 /* CYLTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarControllerConfig.h; sourceTree = "<group>"; };
 		1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarControllerConfig.m; sourceTree = "<group>"; };
-		10B2CA9E2057D8C300E814AC /* BaseNetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNetRequest.h; sourceTree = "<group>"; };
-		10B2CA9F2057D8C300E814AC /* BaseNetRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNetRequest.m; sourceTree = "<group>"; };
 		10B2CAA3205A0D0900E814AC /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		10B2CAA4205A0D0900E814AC /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		10B2CAA6205A0D1300E814AC /* FindPassWordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassWordVC.m; sourceTree = "<group>"; };
@@ -197,6 +203,10 @@
 		106900012057974200E11F52 /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
+				0C07BFC02060D835007F31EC /* UserModel.h */,
+				0C07BFC12060D835007F31EC /* UserModel.m */,
+				0C07BFC32060D88C007F31EC /* UserModelArchiver.h */,
+				0C07BFC42060D88C007F31EC /* UserModelArchiver.m */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -301,8 +311,6 @@
 			children = (
 				1069FFF72057974100E11F52 /* BaseViewController.m */,
 				1069FFF82057974100E11F52 /* BaseViewController.h */,
-				10B2CA9E2057D8C300E814AC /* BaseNetRequest.h */,
-				10B2CA9F2057D8C300E814AC /* BaseNetRequest.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -323,6 +331,8 @@
 		1069FFFA2057974100E11F52 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				0C07BFC92060D94C007F31EC /* BaseRequest.h */,
+				0C07BFCA2060D94C007F31EC /* BaseRequest.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -603,8 +613,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
+				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
@@ -612,10 +624,10 @@
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
-				10B2CAA02057D8C300E814AC /* BaseNetRequest.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
+				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,

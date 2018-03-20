@@ -24,26 +24,16 @@
 #import <Foundation/Foundation.h>
 #endif
 
-//#import "InfoCenter.h"
-//#import "InfoCenterArchiver.h"
 #import "MJRefresh.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
 
-//#import "WJQTools.h"
 #import "UIImageView+WebCache.h"
-//#import "SVProgressHUD.h"
-//#import "NetConfitModel.h"
 #import "MBProgressHUD.h"
-//#import "MBSJModel.h"
-////#import "NetConfig.h"
-//#import "BaseNetRequest.h"
-////#import "ThirdConfig.h"
-//#import "Wbtn.h"
-//#define HQFWQDZ @"http://www.ccsoft.com.cn/serverurl.asp?code=YS12330"
-//#import "MyConfigTool.h"
+#import "UserModel.h"
+#import "UserModelArchiver.h"
+
 
 #define HTTPHEADNUMBER @"http://101.205.19.65:10000"
-//#define HTTPHEADNUMBER @"http://pinjinbao.bingfor.com/"
 #define HTTPHEAD @"http://182.92.161.212/pigadoption"
 #define kBaseUrl @"http://101.205.19.65:10000/TelService.ashx"
 #ifndef deviceVersion
