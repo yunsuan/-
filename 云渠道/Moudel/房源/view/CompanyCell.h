@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TagView.h"
 
 @interface CompanyCell : UITableViewCell
 @property (nonatomic , strong) UILabel *titlelab;
 @property (nonatomic , strong) UIImageView *imageview;
 @property (nonatomic , strong) UILabel *contentlab;
 @property (nonatomic , strong) UILabel *statulab;
+@property (nonatomic , strong) TagView *tagview;
 
 -(void)SetTitle:(NSString *)title
           image:(NSString *)imagename
