@@ -48,4 +48,10 @@
     _contentlab.text = content;
 }
 
+-(void)settagviewWithdata:(NSArray *)data
+{
+    _tagview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 88*SIZE, 200*SIZE, 16.7*SIZE) DataSouce:data type:@"1"];
+    [self.contentView addSubview:_tagview];
+}
+
 @end

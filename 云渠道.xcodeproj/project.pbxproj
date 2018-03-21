@@ -43,6 +43,7 @@
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
 		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
+		105E189B20622C870031558D /* singleviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E189A20622C870031558D /* singleviewCell.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -154,6 +155,8 @@
 		105E188D2060E21C0031558D /* PeopleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeopleCell.m; sourceTree = "<group>"; };
 		105E18962060EE710031558D /* TagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagView.h; sourceTree = "<group>"; };
 		105E18972060EE710031558D /* TagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagView.m; sourceTree = "<group>"; };
+		105E189920622C870031558D /* singleviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = singleviewCell.h; sourceTree = "<group>"; };
+		105E189A20622C870031558D /* singleviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = singleviewCell.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -511,6 +514,8 @@
 			children = (
 				105E18962060EE710031558D /* TagView.h */,
 				105E18972060EE710031558D /* TagView.m */,
+				105E189920622C870031558D /* singleviewCell.h */,
+				105E189A20622C870031558D /* singleviewCell.m */,
 			);
 			path = "自定义标签";
 			sourceTree = "<group>";
@@ -937,6 +942,7 @@
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
+				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0C07C09320610B4D007F31EC /* MMNormalCell.m in Sources */,
 				0C07C08D20610B4D007F31EC /* MMAlternativeItem.m in Sources */,
 				0C07C09020610B4D007F31EC /* MMCombineCell.m in Sources */,

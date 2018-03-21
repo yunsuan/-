@@ -11,7 +11,9 @@
 #import "PeopleCell.h"
 
 @interface RoomVC ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    NSArray *_arr;
+}
 @property (nonatomic , strong) UITableView *MainTableView;
 @property (nonatomic , strong) UIView *headerView;
 
@@ -33,7 +35,7 @@
 
 -(void)initDateSouce
 {
-    
+    _arr = @[@[@"学区房",@"投资房"],@[@"简单的",@"送礼物",@"欧美风"],@[@"简单的",@"送礼物",@"欧美风"]];
 }
 
 -(void)initUI
@@ -89,6 +91,7 @@
         }
         //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
         [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
+        [cell settagviewWithdata:_arr[indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
