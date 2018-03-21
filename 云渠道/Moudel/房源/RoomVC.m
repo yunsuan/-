@@ -10,10 +10,12 @@
 #import "CompanyCell.h"
 #import "PeopleCell.h"
 
+
 @interface RoomVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_arr;
 }
+
 @property (nonatomic , strong) UITableView *MainTableView;
 @property (nonatomic , strong) UIView *headerView;
 
@@ -41,6 +43,7 @@
 -(void)initUI
 {
     [self.view addSubview:self.headerView];
+    
     [self.view addSubview:self.MainTableView];
 }
 
@@ -48,6 +51,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 #pragma mark  ---  delegate   ---
@@ -128,7 +132,7 @@
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
-        [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     return _MainTableView;
 }

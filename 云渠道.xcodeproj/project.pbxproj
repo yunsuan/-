@@ -12,31 +12,11 @@
 		0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCA2060D94C007F31EC /* BaseRequest.m */; };
 		0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCF2060E7EE007F31EC /* CustomerTableCell.m */; };
 		0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */; };
-		0C07C08820610B4D007F31EC /* MMSelectedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C04F20610B4D007F31EC /* MMSelectedPath.m */; };
-		0C07C08920610B4D007F31EC /* MMSingleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C05220610B4D007F31EC /* MMSingleItem.m */; };
-		0C07C08A20610B4D007F31EC /* MMItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C05520610B4D007F31EC /* MMItem.m */; };
-		0C07C08B20610B4D007F31EC /* MMCombinationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C05820610B4D007F31EC /* MMCombinationItem.m */; };
-		0C07C08C20610B4D007F31EC /* MMLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C05C20610B4D007F31EC /* MMLayout.m */; };
-		0C07C08D20610B4D007F31EC /* MMAlternativeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C05D20610B4D007F31EC /* MMAlternativeItem.m */; };
-		0C07C08E20610B4D007F31EC /* MMMultiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C05F20610B4D007F31EC /* MMMultiItem.m */; };
-		0C07C08F20610B4D007F31EC /* MMSingleFitlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C06520610B4D007F31EC /* MMSingleFitlerView.m */; };
-		0C07C09020610B4D007F31EC /* MMCombineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C06720610B4D007F31EC /* MMCombineCell.m */; };
-		0C07C09120610B4D007F31EC /* MMHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C06B20610B4D007F31EC /* MMHeaderView.m */; };
-		0C07C09220610B4D007F31EC /* MMCombinationFitlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C06C20610B4D007F31EC /* MMCombinationFitlerView.m */; };
-		0C07C09320610B4D007F31EC /* MMNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C06F20610B4D007F31EC /* MMNormalCell.m */; };
-		0C07C09420610B4D007F31EC /* MMLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C07020610B4D007F31EC /* MMLeftCell.m */; };
-		0C07C09520610B4D007F31EC /* MMMultiFitlerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C07220610B4D007F31EC /* MMMultiFitlerView.m */; };
-		0C07C09620610B4D007F31EC /* MMBasePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C07520610B4D007F31EC /* MMBasePopupView.m */; };
-		0C07C09720610B4D007F31EC /* MMDropDownBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C07820610B4D007F31EC /* MMDropDownBox.m */; };
-		0C07C09820610B4D007F31EC /* MMComBoBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C07B20610B4D007F31EC /* MMComBoBoxView.m */; };
-		0C07C09920610B4D007F31EC /* UIView+ComboBoxExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C08020610B4D007F31EC /* UIView+ComboBoxExtension.m */; };
-		0C07C09A20610B4D007F31EC /* UIColor+ComboBoxExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07C08320610B4D007F31EC /* UIColor+ComboBoxExtension.m */; };
-		0C07C09B20610B4D007F31EC /* pulldown.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C07C08520610B4D007F31EC /* pulldown.png */; };
-		0C07C09C20610B4D007F31EC /* list_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C07C08620610B4D007F31EC /* list_selected@2x.png */; };
-		0C07C09D20610B4D007F31EC /* pullup.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C07C08720610B4D007F31EC /* pullup.png */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
+		0CF7425E206262EC001F926F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7425D206262EC001F926F /* BoxView.m */; };
+		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
 		102DF9702057A12B00E1859C /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF96F2057A12B00E1859C /* MessageVC.m */; };
 		102DF9732057A14300E1859C /* WorkingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9722057A14300E1859C /* WorkingVC.m */; };
 		102DF9762057A1AE00E1859C /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9752057A1AE00E1859C /* RoomVC.m */; };
@@ -97,55 +77,16 @@
 		0C07BFCF2060E7EE007F31EC /* CustomerTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerTableCell.m; sourceTree = "<group>"; };
 		0C07BFD62060FB1C007F31EC /* CustomerTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerTableModel.h; sourceTree = "<group>"; };
 		0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerTableModel.m; sourceTree = "<group>"; };
-		0C07C04E20610B4D007F31EC /* MMSelectedPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSelectedPath.h; sourceTree = "<group>"; };
-		0C07C04F20610B4D007F31EC /* MMSelectedPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSelectedPath.m; sourceTree = "<group>"; };
-		0C07C05220610B4D007F31EC /* MMSingleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSingleItem.m; sourceTree = "<group>"; };
-		0C07C05320610B4D007F31EC /* MMSingleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSingleItem.h; sourceTree = "<group>"; };
-		0C07C05520610B4D007F31EC /* MMItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMItem.m; sourceTree = "<group>"; };
-		0C07C05620610B4D007F31EC /* MMItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMItem.h; sourceTree = "<group>"; };
-		0C07C05820610B4D007F31EC /* MMCombinationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCombinationItem.m; sourceTree = "<group>"; };
-		0C07C05920610B4D007F31EC /* MMAlternativeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlternativeItem.h; sourceTree = "<group>"; };
-		0C07C05A20610B4D007F31EC /* MMLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLayout.h; sourceTree = "<group>"; };
-		0C07C05B20610B4D007F31EC /* MMCombinationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCombinationItem.h; sourceTree = "<group>"; };
-		0C07C05C20610B4D007F31EC /* MMLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLayout.m; sourceTree = "<group>"; };
-		0C07C05D20610B4D007F31EC /* MMAlternativeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAlternativeItem.m; sourceTree = "<group>"; };
-		0C07C05F20610B4D007F31EC /* MMMultiItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMultiItem.m; sourceTree = "<group>"; };
-		0C07C06020610B4D007F31EC /* MMMultiItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMultiItem.h; sourceTree = "<group>"; };
-		0C07C06420610B4D007F31EC /* MMSingleFitlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSingleFitlerView.h; sourceTree = "<group>"; };
-		0C07C06520610B4D007F31EC /* MMSingleFitlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSingleFitlerView.m; sourceTree = "<group>"; };
-		0C07C06720610B4D007F31EC /* MMCombineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCombineCell.m; sourceTree = "<group>"; };
-		0C07C06820610B4D007F31EC /* MMHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMHeaderView.h; sourceTree = "<group>"; };
-		0C07C06920610B4D007F31EC /* MMCombinationFitlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCombinationFitlerView.h; sourceTree = "<group>"; };
-		0C07C06A20610B4D007F31EC /* MMCombineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCombineCell.h; sourceTree = "<group>"; };
-		0C07C06B20610B4D007F31EC /* MMHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMHeaderView.m; sourceTree = "<group>"; };
-		0C07C06C20610B4D007F31EC /* MMCombinationFitlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCombinationFitlerView.m; sourceTree = "<group>"; };
-		0C07C06E20610B4D007F31EC /* MMMultiFitlerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMultiFitlerView.h; sourceTree = "<group>"; };
-		0C07C06F20610B4D007F31EC /* MMNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMNormalCell.m; sourceTree = "<group>"; };
-		0C07C07020610B4D007F31EC /* MMLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLeftCell.m; sourceTree = "<group>"; };
-		0C07C07120610B4D007F31EC /* MMNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNormalCell.h; sourceTree = "<group>"; };
-		0C07C07220610B4D007F31EC /* MMMultiFitlerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMultiFitlerView.m; sourceTree = "<group>"; };
-		0C07C07320610B4D007F31EC /* MMLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLeftCell.h; sourceTree = "<group>"; };
-		0C07C07520610B4D007F31EC /* MMBasePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMBasePopupView.m; sourceTree = "<group>"; };
-		0C07C07620610B4D007F31EC /* MMBasePopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMBasePopupView.h; sourceTree = "<group>"; };
-		0C07C07820610B4D007F31EC /* MMDropDownBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDropDownBox.m; sourceTree = "<group>"; };
-		0C07C07920610B4D007F31EC /* MMComBoBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMComBoBoxView.h; sourceTree = "<group>"; };
-		0C07C07A20610B4D007F31EC /* MMDropDownBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDropDownBox.h; sourceTree = "<group>"; };
-		0C07C07B20610B4D007F31EC /* MMComBoBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMComBoBoxView.m; sourceTree = "<group>"; };
-		0C07C07D20610B4D007F31EC /* MMComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMComboBox.h; sourceTree = "<group>"; };
-		0C07C07E20610B4D007F31EC /* MMComboBoxHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMComboBoxHeader.h; sourceTree = "<group>"; };
-		0C07C08020610B4D007F31EC /* UIView+ComboBoxExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ComboBoxExtension.m"; sourceTree = "<group>"; };
-		0C07C08120610B4D007F31EC /* UIColor+ComboBoxExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ComboBoxExtension.h"; sourceTree = "<group>"; };
-		0C07C08220610B4D007F31EC /* UIView+ComboBoxExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ComboBoxExtension.h"; sourceTree = "<group>"; };
-		0C07C08320610B4D007F31EC /* UIColor+ComboBoxExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ComboBoxExtension.m"; sourceTree = "<group>"; };
-		0C07C08520610B4D007F31EC /* pulldown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulldown.png; sourceTree = "<group>"; };
-		0C07C08620610B4D007F31EC /* list_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_selected@2x.png"; sourceTree = "<group>"; };
-		0C07C08720610B4D007F31EC /* pullup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullup.png; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
 		0CF7424220622CE6001F926F /* BankCardListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankCardListVC.m; sourceTree = "<group>"; };
 		0CF7424520622DCD001F926F /* BankCardListTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListTableCell.h; sourceTree = "<group>"; };
 		0CF7424620622DCD001F926F /* BankCardListTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankCardListTableCell.m; sourceTree = "<group>"; };
+		0CF7425C206262EC001F926F /* BoxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxView.h; sourceTree = "<group>"; };
+		0CF7425D206262EC001F926F /* BoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
+		0CF7425F20626756001F926F /* CustomerCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerCollCell.h; sourceTree = "<group>"; };
+		0CF7426020626756001F926F /* CustomerCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerCollCell.m; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -239,6 +180,8 @@
 			children = (
 				0C07BFCE2060E7EE007F31EC /* CustomerTableCell.h */,
 				0C07BFCF2060E7EE007F31EC /* CustomerTableCell.m */,
+				0CF7425F20626756001F926F /* CustomerCollCell.h */,
+				0CF7426020626756001F926F /* CustomerCollCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -250,200 +193,6 @@
 				0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		0C07C04A20610B4D007F31EC /* MMComboBox */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C04B20610B4D007F31EC /* Classes */,
-				0C07C08420610B4D007F31EC /* Assetses */,
-			);
-			path = MMComboBox;
-			sourceTree = "<group>";
-		};
-		0C07C04B20610B4D007F31EC /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C04C20610B4D007F31EC /* MMModel */,
-				0C07C06120610B4D007F31EC /* MMView */,
-				0C07C07C20610B4D007F31EC /* MMHeader */,
-				0C07C07F20610B4D007F31EC /* MMCategory */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		0C07C04C20610B4D007F31EC /* MMModel */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C04D20610B4D007F31EC /* SelectedPath */,
-				0C07C05020610B4D007F31EC /* Item */,
-			);
-			path = MMModel;
-			sourceTree = "<group>";
-		};
-		0C07C04D20610B4D007F31EC /* SelectedPath */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C04E20610B4D007F31EC /* MMSelectedPath.h */,
-				0C07C04F20610B4D007F31EC /* MMSelectedPath.m */,
-			);
-			path = SelectedPath;
-			sourceTree = "<group>";
-		};
-		0C07C05020610B4D007F31EC /* Item */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C05120610B4D007F31EC /* SingleFitlerItem */,
-				0C07C05420610B4D007F31EC /* BaseItem */,
-				0C07C05720610B4D007F31EC /* CombinationItem */,
-				0C07C05E20610B4D007F31EC /* MultFitlerItem */,
-			);
-			path = Item;
-			sourceTree = "<group>";
-		};
-		0C07C05120610B4D007F31EC /* SingleFitlerItem */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C05220610B4D007F31EC /* MMSingleItem.m */,
-				0C07C05320610B4D007F31EC /* MMSingleItem.h */,
-			);
-			path = SingleFitlerItem;
-			sourceTree = "<group>";
-		};
-		0C07C05420610B4D007F31EC /* BaseItem */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C05520610B4D007F31EC /* MMItem.m */,
-				0C07C05620610B4D007F31EC /* MMItem.h */,
-			);
-			path = BaseItem;
-			sourceTree = "<group>";
-		};
-		0C07C05720610B4D007F31EC /* CombinationItem */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C05820610B4D007F31EC /* MMCombinationItem.m */,
-				0C07C05920610B4D007F31EC /* MMAlternativeItem.h */,
-				0C07C05A20610B4D007F31EC /* MMLayout.h */,
-				0C07C05B20610B4D007F31EC /* MMCombinationItem.h */,
-				0C07C05C20610B4D007F31EC /* MMLayout.m */,
-				0C07C05D20610B4D007F31EC /* MMAlternativeItem.m */,
-			);
-			path = CombinationItem;
-			sourceTree = "<group>";
-		};
-		0C07C05E20610B4D007F31EC /* MultFitlerItem */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C05F20610B4D007F31EC /* MMMultiItem.m */,
-				0C07C06020610B4D007F31EC /* MMMultiItem.h */,
-			);
-			path = MultFitlerItem;
-			sourceTree = "<group>";
-		};
-		0C07C06120610B4D007F31EC /* MMView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C06220610B4D007F31EC /* PopupView */,
-				0C07C07720610B4D007F31EC /* ComBoBoxView */,
-			);
-			path = MMView;
-			sourceTree = "<group>";
-		};
-		0C07C06220610B4D007F31EC /* PopupView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C06320610B4D007F31EC /* SingleFitlerView */,
-				0C07C06620610B4D007F31EC /* CombinationFitlerView */,
-				0C07C06D20610B4D007F31EC /* MultFitlerView */,
-				0C07C07420610B4D007F31EC /* BasePopupView */,
-			);
-			path = PopupView;
-			sourceTree = "<group>";
-		};
-		0C07C06320610B4D007F31EC /* SingleFitlerView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C06420610B4D007F31EC /* MMSingleFitlerView.h */,
-				0C07C06520610B4D007F31EC /* MMSingleFitlerView.m */,
-			);
-			path = SingleFitlerView;
-			sourceTree = "<group>";
-		};
-		0C07C06620610B4D007F31EC /* CombinationFitlerView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C06720610B4D007F31EC /* MMCombineCell.m */,
-				0C07C06820610B4D007F31EC /* MMHeaderView.h */,
-				0C07C06920610B4D007F31EC /* MMCombinationFitlerView.h */,
-				0C07C06A20610B4D007F31EC /* MMCombineCell.h */,
-				0C07C06B20610B4D007F31EC /* MMHeaderView.m */,
-				0C07C06C20610B4D007F31EC /* MMCombinationFitlerView.m */,
-			);
-			path = CombinationFitlerView;
-			sourceTree = "<group>";
-		};
-		0C07C06D20610B4D007F31EC /* MultFitlerView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C06E20610B4D007F31EC /* MMMultiFitlerView.h */,
-				0C07C06F20610B4D007F31EC /* MMNormalCell.m */,
-				0C07C07020610B4D007F31EC /* MMLeftCell.m */,
-				0C07C07120610B4D007F31EC /* MMNormalCell.h */,
-				0C07C07220610B4D007F31EC /* MMMultiFitlerView.m */,
-				0C07C07320610B4D007F31EC /* MMLeftCell.h */,
-			);
-			path = MultFitlerView;
-			sourceTree = "<group>";
-		};
-		0C07C07420610B4D007F31EC /* BasePopupView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C07520610B4D007F31EC /* MMBasePopupView.m */,
-				0C07C07620610B4D007F31EC /* MMBasePopupView.h */,
-			);
-			path = BasePopupView;
-			sourceTree = "<group>";
-		};
-		0C07C07720610B4D007F31EC /* ComBoBoxView */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C07820610B4D007F31EC /* MMDropDownBox.m */,
-				0C07C07920610B4D007F31EC /* MMComBoBoxView.h */,
-				0C07C07A20610B4D007F31EC /* MMDropDownBox.h */,
-				0C07C07B20610B4D007F31EC /* MMComBoBoxView.m */,
-			);
-			path = ComBoBoxView;
-			sourceTree = "<group>";
-		};
-		0C07C07C20610B4D007F31EC /* MMHeader */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C07D20610B4D007F31EC /* MMComboBox.h */,
-				0C07C07E20610B4D007F31EC /* MMComboBoxHeader.h */,
-			);
-			path = MMHeader;
-			sourceTree = "<group>";
-		};
-		0C07C07F20610B4D007F31EC /* MMCategory */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C08020610B4D007F31EC /* UIView+ComboBoxExtension.m */,
-				0C07C08120610B4D007F31EC /* UIColor+ComboBoxExtension.h */,
-				0C07C08220610B4D007F31EC /* UIView+ComboBoxExtension.h */,
-				0C07C08320610B4D007F31EC /* UIColor+ComboBoxExtension.m */,
-			);
-			path = MMCategory;
-			sourceTree = "<group>";
-		};
-		0C07C08420610B4D007F31EC /* Assetses */ = {
-			isa = PBXGroup;
-			children = (
-				0C07C08520610B4D007F31EC /* pulldown.png */,
-				0C07C08620610B4D007F31EC /* list_selected@2x.png */,
-				0C07C08720610B4D007F31EC /* pullup.png */,
-			);
-			path = Assetses;
 			sourceTree = "<group>";
 		};
 		0CF74238206229B1001F926F /* view */ = {
@@ -480,6 +229,15 @@
 				0CF7424620622DCD001F926F /* BankCardListTableCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0CF7425B206262DF001F926F /* BoxView */ = {
+			isa = PBXGroup;
+			children = (
+				0CF7425C206262EC001F926F /* BoxView.h */,
+				0CF7425D206262EC001F926F /* BoxView.m */,
+			);
+			path = BoxView;
 			sourceTree = "<group>";
 		};
 		102DF9682057A0A200E1859C /* 登录注册 */ = {
@@ -588,7 +346,7 @@
 		106900032057974200E11F52 /* 第三方SDK */ = {
 			isa = PBXGroup;
 			children = (
-				0C07C04A20610B4D007F31EC /* MMComboBox */,
+				0CF7425B206262DF001F926F /* BoxView */,
 				106900042057974200E11F52 /* CYLTabBarController */,
 			);
 			path = "第三方SDK";
@@ -898,9 +656,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C07C09C20610B4D007F31EC /* list_selected@2x.png in Resources */,
-				0C07C09D20610B4D007F31EC /* pullup.png in Resources */,
-				0C07C09B20610B4D007F31EC /* pulldown.png in Resources */,
 				1069FFD1205795BE00E11F52 /* LaunchScreen.storyboard in Resources */,
 				1069FFCE205795BE00E11F52 /* Assets.xcassets in Resources */,
 				1069FFCC205795BE00E11F52 /* Main.storyboard in Resources */,
@@ -985,55 +740,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C07C08920610B4D007F31EC /* MMSingleItem.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
-				0C07C09320610B4D007F31EC /* MMNormalCell.m in Sources */,
-				0C07C08D20610B4D007F31EC /* MMAlternativeItem.m in Sources */,
-				0C07C09020610B4D007F31EC /* MMCombineCell.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
+				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
-				0C07C08C20610B4D007F31EC /* MMLayout.m in Sources */,
-				0C07C08F20610B4D007F31EC /* MMSingleFitlerView.m in Sources */,
-				0C07C09920610B4D007F31EC /* UIView+ComboBoxExtension.m in Sources */,
-				0C07C08B20610B4D007F31EC /* MMCombinationItem.m in Sources */,
-				0C07C09820610B4D007F31EC /* MMComBoBoxView.m in Sources */,
-				0C07C09620610B4D007F31EC /* MMBasePopupView.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
-				0C07C09720610B4D007F31EC /* MMDropDownBox.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
-				0C07C09120610B4D007F31EC /* MMHeaderView.m in Sources */,
-				0C07C09A20610B4D007F31EC /* UIColor+ComboBoxExtension.m in Sources */,
-				0C07C08A20610B4D007F31EC /* MMItem.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
-				0C07C08E20610B4D007F31EC /* MMMultiItem.m in Sources */,
-				0C07C09220610B4D007F31EC /* MMCombinationFitlerView.m in Sources */,
+				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
-				0C07C09420610B4D007F31EC /* MMLeftCell.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
-				0C07C08820610B4D007F31EC /* MMSelectedPath.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
-				0C07C09520610B4D007F31EC /* MMMultiFitlerView.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
