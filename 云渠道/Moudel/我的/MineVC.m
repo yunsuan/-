@@ -8,11 +8,20 @@
 
 #import "MineVC.h"
 #import "MineCell.h"
+#import "BankCardListVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_namelist;
 }
+@property (nonatomic, strong) UIImageView *headImg;
+
+@property (nonatomic, strong) UILabel *nameL;
+
+@property (nonatomic, strong) UIImageView *codeImg;
+
+@property (nonatomic, strong) UIButton *codeBtn;
+
 @property (nonatomic , strong) UITableView *Mytableview;
 @end
 
@@ -24,10 +33,34 @@
     [self InitDataSouce];
     [self InitUI];
     
-    // Do any additional setup after loading the view.
 }
 
 -(void)InitUI{
+    
+    _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, 42 *SIZE, 60 *SIZE, 60 *SIZE)];
+    _headImg.layer.cornerRadius = 30 *SIZE;
+    _headImg.backgroundColor = YJGreenColor;
+    [self.view addSubview:_headImg];
+    
+    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(91 *SIZE, 67 *SIZE, 160 *SIZE, 12 *SIZE)];
+    _nameL.textColor = YJContentLabColor;
+    _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
+    _nameL.text = @"56318754125623";
+    [self.view addSubview:_nameL];
+    
+    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(288 *SIZE, 48 *SIZE, 38 *SIZE, 38 *SIZE)];
+    _codeImg.backgroundColor = YJGreenColor;
+    [self.view addSubview:_codeImg];
+    
+    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(344 *SIZE, 61 *SIZE, 7 *SIZE, 12 *SIZE)];
+    rightView.backgroundColor = YJGreenColor;
+    rightView.image = [UIImage imageNamed:@""];
+    [self.view addSubview:rightView];
+    
+    _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _codeBtn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>);
+//    [<#UIButton#> addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.Mytableview];
 }
 
@@ -59,10 +92,6 @@
     return 45*SIZE;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 20*SIZE;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -104,10 +133,20 @@
     else if (indexPath.section ==1)
     {
         
+        if (indexPath.row == 0) {
+            
+            BankCardListVC *nextVC = [[BankCardListVC alloc] init];
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            
+        }
     }else
     {
         if (indexPath.row == 0) {
             
+
         }
         else if(indexPath.row ==1)
         {

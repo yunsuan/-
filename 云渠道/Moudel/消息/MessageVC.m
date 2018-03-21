@@ -7,8 +7,11 @@
 //
 
 #import "MessageVC.h"
+#import "MessageTableCell.h"
 
-@interface MessageVC ()
+@interface MessageVC ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *messageTable;
 
 @end
 
@@ -16,22 +19,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+ 
+    [self initUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 2;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 83 *SIZE;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *Identifier = @"MessageTableCell";
+    MessageTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+    if (!cell) {
+        
+        cell = [[MessageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+- (void)initUI{
+    
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.text = @"消息";
+    
+    _messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT) style:UITableViewStylePlain];
+    _messageTable.backgroundColor = YJBackColor;
+    _messageTable.delegate = self;
+    _messageTable.dataSource = self;
+    _messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:_messageTable];
+}
 
 @end

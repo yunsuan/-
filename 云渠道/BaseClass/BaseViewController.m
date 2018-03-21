@@ -38,7 +38,7 @@
     [self.navBackgroundView addSubview:self.titleLabel];
     [self.navBackgroundView addSubview:self.leftButton];
     [self.navBackgroundView addSubview:self.maskButton];
-    //    [self.view addSubview:self.leftviewBtn];
+//        [self.view addSubview:self.leftviewBtn];
     [self.navBackgroundView addSubview:self.rightBtn];
     //    [self.tabBarController.tabBar addSubview:self.leftviewBtn];
     
@@ -56,7 +56,7 @@
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_Width, 44)];
         imageview.image = IMAGE_WITH_NAME(@"nav-beijingtu.png");
         [_navBackgroundView addSubview:imageview];
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 1*SIZE)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT - SIZE, SCREEN_Width, SIZE)];
         line.backgroundColor = YJBackColor;
         [_navBackgroundView addSubview:line];
         
@@ -92,6 +92,7 @@
         _maskButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _maskButton.frame = CGRectMake(0, 20 * sIZE, 60 * sIZE, 44);
         [_maskButton setBackgroundColor:[UIColor clearColor]];
+        [_maskButton addTarget:self action:@selector(ActionMaskBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _maskButton;
 }
@@ -129,6 +130,11 @@
         NSLog(@"11");
     }
     
+}
+
+- (void)ActionMaskBtn:(UIButton *)btn{
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //提示框
