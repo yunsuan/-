@@ -8,6 +8,7 @@
 
 #import "BankCardListVC.h"
 #import "BankCardListTableCell.h"
+#import "AddBankCardVC.h"
 
 @interface BankCardListVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -61,6 +62,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 3 *SIZE)];
     view.backgroundColor = tableView.backgroundColor;
     return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    AddBankCardVC *nextVC = [[AddBankCardVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)initUI{

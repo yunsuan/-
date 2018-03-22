@@ -33,6 +33,7 @@
 #pragma mark - init
 - (void)initialBaseViewInterface {
     
+    self.view.backgroundColor = YJBackColor;
     [self.view addSubview:self.navBackgroundView];
     
     [self.navBackgroundView addSubview:self.titleLabel];

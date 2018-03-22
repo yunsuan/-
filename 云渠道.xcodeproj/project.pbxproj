@@ -14,6 +14,11 @@
 		0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */; };
 		0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82022063467C00238D4F /* RoomCollCell.m */; };
 		0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82062063514500238D4F /* CustomDetailVC.m */; };
+		0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B820A20638A2A00238D4F /* CustomDetailTableCell.m */; };
+		0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B820D2063908E00238D4F /* CustomTableHeader.m */; };
+		0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82102063964500238D4F /* CustomHeaderCollCell.m */; };
+		0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82152063A0C700238D4F /* ChangePassWordVC.m */; };
+		0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82192063AB2900238D4F /* AddBankCardVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -87,6 +92,16 @@
 		0C0B82022063467C00238D4F /* RoomCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCollCell.m; sourceTree = "<group>"; };
 		0C0B82052063514500238D4F /* CustomDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailVC.h; sourceTree = "<group>"; };
 		0C0B82062063514500238D4F /* CustomDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailVC.m; sourceTree = "<group>"; };
+		0C0B820920638A2A00238D4F /* CustomDetailTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailTableCell.h; sourceTree = "<group>"; };
+		0C0B820A20638A2A00238D4F /* CustomDetailTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailTableCell.m; sourceTree = "<group>"; };
+		0C0B820C2063908E00238D4F /* CustomTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader.h; sourceTree = "<group>"; };
+		0C0B820D2063908E00238D4F /* CustomTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader.m; sourceTree = "<group>"; };
+		0C0B820F2063964500238D4F /* CustomHeaderCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomHeaderCollCell.h; sourceTree = "<group>"; };
+		0C0B82102063964500238D4F /* CustomHeaderCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderCollCell.m; sourceTree = "<group>"; };
+		0C0B82142063A0C700238D4F /* ChangePassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePassWordVC.h; sourceTree = "<group>"; };
+		0C0B82152063A0C700238D4F /* ChangePassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePassWordVC.m; sourceTree = "<group>"; };
+		0C0B82182063AB2900238D4F /* AddBankCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBankCardVC.h; sourceTree = "<group>"; };
+		0C0B82192063AB2900238D4F /* AddBankCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBankCardVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -216,10 +231,50 @@
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B8208206389D500238D4F /* view */,
 				0C0B82052063514500238D4F /* CustomDetailVC.h */,
 				0C0B82062063514500238D4F /* CustomDetailVC.m */,
 			);
 			path = "客户详情";
+			sourceTree = "<group>";
+		};
+		0C0B8208206389D500238D4F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C0B820920638A2A00238D4F /* CustomDetailTableCell.h */,
+				0C0B820A20638A2A00238D4F /* CustomDetailTableCell.m */,
+				0C0B820C2063908E00238D4F /* CustomTableHeader.h */,
+				0C0B820D2063908E00238D4F /* CustomTableHeader.m */,
+				0C0B820F2063964500238D4F /* CustomHeaderCollCell.h */,
+				0C0B82102063964500238D4F /* CustomHeaderCollCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0C0B82122063A08900238D4F /* 个人信息 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0B82132063A08900238D4F /* 修改密码 */,
+			);
+			path = "个人信息";
+			sourceTree = "<group>";
+		};
+		0C0B82132063A08900238D4F /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0B82142063A0C700238D4F /* ChangePassWordVC.h */,
+				0C0B82152063A0C700238D4F /* ChangePassWordVC.m */,
+			);
+			path = "修改密码";
+			sourceTree = "<group>";
+		};
+		0C0B82172063AB1700238D4F /* 添加银行卡 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0B82182063AB2900238D4F /* AddBankCardVC.h */,
+				0C0B82192063AB2900238D4F /* AddBankCardVC.m */,
+			);
+			path = "添加银行卡";
 			sourceTree = "<group>";
 		};
 		0CF74238206229B1001F926F /* view */ = {
@@ -244,6 +299,7 @@
 		0CF7424020622C9D001F926F /* 银行卡 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B82172063AB1700238D4F /* 添加银行卡 */,
 				0CF7424420622DAE001F926F /* view */,
 				0CF7424120622CE6001F926F /* BankCardListVC.h */,
 				0CF7424220622CE6001F926F /* BankCardListVC.m */,
@@ -326,6 +382,7 @@
 		102DF96D2057A0A200E1859C /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B82122063A08900238D4F /* 个人信息 */,
 				0CF7423F20622C9D001F926F /* 我的佣金 */,
 				10B2CAAD205A76E000E814AC /* cell */,
 				102DF97D2057A21300E1859C /* MineVC.h */,
@@ -816,8 +873,11 @@
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
+				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
+				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
+				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
@@ -839,9 +899,11 @@
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
+				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
+				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,

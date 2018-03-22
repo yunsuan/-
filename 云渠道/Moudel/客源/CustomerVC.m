@@ -10,6 +10,7 @@
 #import "CustomerTableCell.h"
 #import "CustomerCollCell.h"
 #import "CustomerTableModel.h"
+#import "CustomDetailVC.h"
 
 #import "BoxView.h"
 
@@ -107,7 +108,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    CustomDetailVC *nextVC = [[CustomDetailVC alloc] init];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 

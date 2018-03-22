@@ -9,6 +9,7 @@
 #import "MineVC.h"
 #import "MineCell.h"
 #import "BankCardListVC.h"
+#import "ChangePassWordVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -58,8 +59,9 @@
     [self.view addSubview:rightView];
     
     _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _codeBtn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>);
-//    [<#UIButton#> addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    _codeBtn.frame = CGRectMake(329 *SIZE, 56 *SIZE, 17 *SIZE, 22 *SIZE);
+    [_codeBtn addTarget:self action:@selector(ActionCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_codeBtn];
     
     [self.view addSubview:self.Mytableview];
 }
@@ -69,6 +71,12 @@
     _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家",@"退出登录"]];
 }
 
+- (void)ActionCodeBtn:(UIButton *)btn{
+    
+    ChangePassWordVC *nextVC = [[ChangePassWordVC alloc] init];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
 
 
 #pragma mark  ---  delegate  ---
