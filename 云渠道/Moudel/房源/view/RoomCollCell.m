@@ -1,14 +1,14 @@
 //
-//  CustomerCollCell.m
+//  RoomCollCell.m
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/3/21.
+//  Created by 谷治墙 on 2018/3/22.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "CustomerCollCell.h"
+#import "RoomCollCell.h"
 
-@implementation CustomerCollCell
+@implementation RoomCollCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -22,13 +22,13 @@
 
 - (void)initUI{
     
-    _typeL = [[UILabel alloc] initWithFrame:CGRectMake(0, 14 *SIZE, 70 *SIZE, 11 *SIZE)];
+    _typeL = [[UILabel alloc] initWithFrame:CGRectMake(0, 14 *SIZE, 60 *SIZE, 11 *SIZE)];
     _typeL.textColor = YJContentLabColor;
     _typeL.font = [UIFont systemFontOfSize:12 *SIZE];
     _typeL.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_typeL];
     
-    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(70 *SIZE, 19 *SIZE, 7 *SIZE, 4 *SIZE)];
+    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(60 *SIZE, 19 *SIZE, 7 *SIZE, 4 *SIZE)];
     [self.contentView addSubview:_dropImg];
 }
 

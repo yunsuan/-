@@ -18,6 +18,7 @@
 {
     
     NSMutableArray *_dataArr;
+    
 }
 
 @property (nonatomic, strong) UITableView *customerTable;
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, strong) BoxView *boxView;
+
 
 @end
 

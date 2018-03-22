@@ -9,16 +9,24 @@
 #import "RoomVC.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
+#import "BoxView.h"
+#import "RoomCollCell.h"
 
-
-@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 {
     NSArray *_arr;
+    BOOL _upAndDown;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
 @property (nonatomic , strong) UIView *headerView;
 
+@property (nonatomic, strong) UITextField *searchBar;
+
+@property (nonatomic, strong) UICollectionView *customerColl;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic, strong) BoxView *boxView;
+@property (nonatomic, strong) UIImageView *upImg;
 
 
 -(void)initUI;
@@ -44,15 +52,93 @@
 {
     [self.view addSubview:self.headerView];
     
+    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
+    _searchBar.backgroundColor = YJBackColor;
+    _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
+    //设置显示模式为永远显示(默认不显示)
+    _searchBar.leftViewMode = UITextFieldViewModeAlways;
+    _searchBar.placeholder = @"小区/楼盘/商铺";
+    _searchBar.font = [UIFont systemFontOfSize:11 *SIZE];
+    _searchBar.returnKeyType = UIReturnKeySearch;
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    rightImg.backgroundColor = YJGreenColor;
+    _searchBar.rightView = rightImg;
+    _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
+    _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _searchBar.delegate = self;
+    [self.headerView addSubview:_searchBar];
+    
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.minimumLineSpacing = 0;
+    _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _flowLayout.itemSize = CGSizeMake(81 *SIZE, 40 *SIZE);
+    
+    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE, 324 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _customerColl.backgroundColor = CH_COLOR_white;
+    _customerColl.delegate = self;
+    _customerColl.dataSource = self;
+    _customerColl.bounces = NO;
+    [_customerColl registerClass:[RoomCollCell class] forCellWithReuseIdentifier:@"RoomCollCell"];
+    [self.view addSubview:_customerColl];
+    
+    _upImg = [[UIImageView alloc] initWithFrame:CGRectMake(334 *SIZE, 74 *SIZE, 13 *SIZE, 16 *SIZE)];
+    [self.headerView addSubview:_upImg];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(329 *SIZE, 69 *SIZE, 23 *SIZE, 26 *SIZE);
+    [btn addTarget:self action:@selector(ActionUpAndDownBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView addSubview:btn];
+    
     [self.view addSubview:self.MainTableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)ActionUpAndDownBtn:(UIButton *)btn{
+    
+    _upAndDown = !_upAndDown;
+    if (_upAndDown) {
+        
+        
+    }else{
+        
+        
+    }
 }
 
+//textfieldDelegate;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    return YES;
+}
 
+//collectionViewDelegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 4;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    RoomCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomCollCell" forIndexPath:indexPath];
+    if (!cell) {
+        
+        cell = [[RoomCollCell alloc] initWithFrame:CGRectMake(0, 0, 81 *SIZE, 40 *SIZE)];
+    }
+    cell.typeL.text = @"区域";
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.item < 2) {
+        
+        [[[UIApplication sharedApplication] keyWindow] addSubview:self.boxView];
+    }else{
+        
+        [self.boxView removeFromSuperview];
+        
+    }
+}
 
 #pragma mark  ---  delegate   ---
 
@@ -144,6 +230,15 @@
         _headerView.backgroundColor = [UIColor whiteColor];
     }
     return _headerView;
+}
+
+- (BoxView *)boxView{
+    
+    if (!_boxView) {
+        
+        _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 102 *SIZE)];
+    }
+    return _boxView;
 }
 
 @end

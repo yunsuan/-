@@ -12,6 +12,8 @@
 		0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCA2060D94C007F31EC /* BaseRequest.m */; };
 		0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCF2060E7EE007F31EC /* CustomerTableCell.m */; };
 		0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */; };
+		0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82022063467C00238D4F /* RoomCollCell.m */; };
+		0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82062063514500238D4F /* CustomDetailVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -78,6 +80,10 @@
 		0C07BFCF2060E7EE007F31EC /* CustomerTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerTableCell.m; sourceTree = "<group>"; };
 		0C07BFD62060FB1C007F31EC /* CustomerTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerTableModel.h; sourceTree = "<group>"; };
 		0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerTableModel.m; sourceTree = "<group>"; };
+		0C0B82012063467C00238D4F /* RoomCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCollCell.h; sourceTree = "<group>"; };
+		0C0B82022063467C00238D4F /* RoomCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCollCell.m; sourceTree = "<group>"; };
+		0C0B82052063514500238D4F /* CustomDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailVC.h; sourceTree = "<group>"; };
+		0C0B82062063514500238D4F /* CustomDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -198,6 +204,15 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		0C0B82042063513400238D4F /* 客户详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0B82052063514500238D4F /* CustomDetailVC.h */,
+				0C0B82062063514500238D4F /* CustomDetailVC.m */,
+			);
+			path = "客户详情";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +293,7 @@
 		102DF96B2057A0A200E1859C /* 客源 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B82042063513400238D4F /* 客户详情 */,
 				0C07BFD52060FB01007F31EC /* model */,
 				0C07BFCD2060E7DC007F31EC /* view */,
 				102DF9772057A1DD00E1859C /* CustomerVC.h */,
@@ -314,6 +330,8 @@
 				105E188A2060E1F50031558D /* CompanyCell.m */,
 				105E188C2060E21C0031558D /* PeopleCell.h */,
 				105E188D2060E21C0031558D /* PeopleCell.m */,
+				0C0B82012063467C00238D4F /* RoomCollCell.h */,
+				0C0B82022063467C00238D4F /* RoomCollCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -761,6 +779,7 @@
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
+				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
@@ -770,6 +789,7 @@
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
+				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
