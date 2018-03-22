@@ -30,9 +30,6 @@
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
 		105E189B20622C870031558D /* singleviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E189A20622C870031558D /* singleviewCell.m */; };
 		105E189F206235690031558D /* RoomDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E189E206235690031558D /* RoomDetailVC.m */; };
-		105E18A420625EB30031558D /* UnpaidBrokerageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18A320625EB30031558D /* UnpaidBrokerageVC.m */; };
-		105E18A720625F370031558D /* BrokerageRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18A620625F370031558D /* BrokerageRecordVC.m */; };
-		105E18AB206341CA0031558D /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18AA206341CA0031558D /* UnpaidCell.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -119,12 +116,6 @@
 		105E189A20622C870031558D /* singleviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = singleviewCell.m; sourceTree = "<group>"; };
 		105E189D206235690031558D /* RoomDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailVC.h; sourceTree = "<group>"; };
 		105E189E206235690031558D /* RoomDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailVC.m; sourceTree = "<group>"; };
-		105E18A220625EB30031558D /* UnpaidBrokerageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidBrokerageVC.h; sourceTree = "<group>"; };
-		105E18A320625EB30031558D /* UnpaidBrokerageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidBrokerageVC.m; sourceTree = "<group>"; };
-		105E18A520625F370031558D /* BrokerageRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageRecordVC.h; sourceTree = "<group>"; };
-		105E18A620625F370031558D /* BrokerageRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageRecordVC.m; sourceTree = "<group>"; };
-		105E18A9206341CA0031558D /* UnpaidCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
-		105E18AA206341CA0031558D /* UnpaidCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -234,8 +225,6 @@
 		0CF7423F20622C9D001F926F /* 我的佣金 */ = {
 			isa = PBXGroup;
 			children = (
-				105E18A120625DBE0031558D /* 未结佣金 */,
-				105E18A020625DBE0031558D /* 已结佣金 */,
 				0CF7424020622C9D001F926F /* 银行卡 */,
 			);
 			path = "我的佣金";
@@ -365,34 +354,6 @@
 				105E189E206235690031558D /* RoomDetailVC.m */,
 			);
 			path = "房源详情";
-			sourceTree = "<group>";
-		};
-		105E18A020625DBE0031558D /* 已结佣金 */ = {
-			isa = PBXGroup;
-			children = (
-				105E18A520625F370031558D /* BrokerageRecordVC.h */,
-				105E18A620625F370031558D /* BrokerageRecordVC.m */,
-			);
-			path = "已结佣金";
-			sourceTree = "<group>";
-		};
-		105E18A120625DBE0031558D /* 未结佣金 */ = {
-			isa = PBXGroup;
-			children = (
-				105E18A82063418D0031558D /* cell */,
-				105E18A220625EB30031558D /* UnpaidBrokerageVC.h */,
-				105E18A320625EB30031558D /* UnpaidBrokerageVC.m */,
-			);
-			path = "未结佣金";
-			sourceTree = "<group>";
-		};
-		105E18A82063418D0031558D /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				105E18A9206341CA0031558D /* UnpaidCell.h */,
-				105E18AA206341CA0031558D /* UnpaidCell.m */,
-			);
-			path = cell;
 			sourceTree = "<group>";
 		};
 		106900012057974200E11F52 /* UserModel */ = {
@@ -826,15 +787,7 @@
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
-<<<<<<< HEAD
-=======
-				0C07C09120610B4D007F31EC /* MMHeaderView.m in Sources */,
-				105E18A420625EB30031558D /* UnpaidBrokerageVC.m in Sources */,
-				0C07C09A20610B4D007F31EC /* UIColor+ComboBoxExtension.m in Sources */,
-				0C07C08A20610B4D007F31EC /* MMItem.m in Sources */,
->>>>>>> 8d506ef3e657e275dc352612db492813c1c1c25b
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
-				105E18A720625F370031558D /* BrokerageRecordVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
@@ -852,7 +805,6 @@
 				105E18982060EE710031558D /* TagView.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
-				105E18AB206341CA0031558D /* UnpaidCell.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 			);
