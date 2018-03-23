@@ -8,6 +8,7 @@
 
 #import "MessageVC.h"
 #import "MessageTableCell.h"
+#import "SystemMessageVC.h"
 
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -19,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+    
     [self initUI];
 }
 
@@ -46,6 +47,16 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        SystemMessageVC *next_vc = [[SystemMessageVC alloc]init];
+        [self.navigationController pushViewController:next_vc  animated:YES];
+    }
+    else{
+        
+    }
+}
+
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
@@ -61,3 +72,4 @@
 }
 
 @end
+

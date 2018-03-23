@@ -23,6 +23,8 @@
 
 @property (nonatomic , strong)UIButton *leftviewBtn;
 
+@property (nonatomic, strong) UIView *line;
+
 //弹出框
 - (void)alertControllerWithNsstring:(NSString *)str And:(NSString *)str1 WithCancelBlack:(void(^)(void))CancelBlack WithDefaultBlack:(void(^)(void))defaultBlack;
 

@@ -10,6 +10,7 @@
 #import "MineCell.h"
 #import "BankCardListVC.h"
 #import "ChangePassWordVC.h"
+#import "AuthenticationVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -137,6 +138,12 @@
     if(indexPath.section == 0)
     {
         
+        if (indexPath.row) {
+            
+            AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
     }
     else if (indexPath.section ==1)
     {

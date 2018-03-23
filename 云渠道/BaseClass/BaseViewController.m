@@ -57,9 +57,9 @@
         UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_Width, 44)];
         imageview.image = IMAGE_WITH_NAME(@"nav-beijingtu.png");
         [_navBackgroundView addSubview:imageview];
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT - SIZE, SCREEN_Width, SIZE)];
-        line.backgroundColor = YJBackColor;
-        [_navBackgroundView addSubview:line];
+        _line = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT - SIZE, SCREEN_Width, SIZE)];
+        _line.backgroundColor = YJBackColor;
+        [_navBackgroundView addSubview:_line];
         
         _navBackgroundView.hidden = YES;
     }

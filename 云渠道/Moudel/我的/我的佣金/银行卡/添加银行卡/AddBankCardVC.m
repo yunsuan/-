@@ -136,6 +136,12 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"添加银行卡";
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 13 *SIZE + NAVIGATION_BAR_HEIGHT, 200 *SIZE, 13 *SIZE)];
+    label.textColor = YJContentLabColor;
+    label.font = [UIFont systemFontOfSize:13 *SIZE];
+    label.text = @"请绑定持卡人本人的银行卡";
+    [self.view addSubview:label];
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 40 *SIZE, SCREEN_Width, 260 *SIZE)];
     view.backgroundColor = CH_COLOR_white;
     [self.view addSubview:view];
