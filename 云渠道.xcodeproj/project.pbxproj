@@ -28,6 +28,7 @@
 		0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B824B2064FF6400238D4F /* WorkMessageVC.m */; };
 		0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82502064FF6400238D4F /* SystemMessageCell.m */; };
 		0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82512064FF6400238D4F /* SystemMessageVC.m */; };
+		0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B8257206501B700238D4F /* FeedbackVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -129,6 +130,8 @@
 		0C0B824F2064FF6400238D4F /* SystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageCell.h; sourceTree = "<group>"; };
 		0C0B82502064FF6400238D4F /* SystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageCell.m; sourceTree = "<group>"; };
 		0C0B82512064FF6400238D4F /* SystemMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageVC.m; sourceTree = "<group>"; };
+		0C0B8256206501B700238D4F /* FeedbackVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackVC.h; sourceTree = "<group>"; };
+		0C0B8257206501B700238D4F /* FeedbackVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedbackVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -382,6 +385,15 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		0C0B82552065018E00238D4F /* 意见反馈 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0B8256206501B700238D4F /* FeedbackVC.h */,
+				0C0B8257206501B700238D4F /* FeedbackVC.m */,
+			);
+			path = "意见反馈";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +501,7 @@
 		102DF96D2057A0A200E1859C /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B82552065018E00238D4F /* 意见反馈 */,
 				0C0B821C20649C0600238D4F /* 工作经历 */,
 				0C0B821B2064963E00238D4F /* 公司认证 */,
 				0C0B82122063A08900238D4F /* 个人信息 */,
@@ -995,6 +1008,7 @@
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
+				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
 				0C0B82262064ABB600238D4F /* AuthenCollCell.m in Sources */,
 				105E18B720637D310031558D /* UnpaidBrokerageVC.m in Sources */,
