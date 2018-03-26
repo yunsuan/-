@@ -14,9 +14,27 @@
 
 - (void)head1collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
+- (void)DGActionEditBtn:(UIButton *)btn;
+
 @end
 
 @interface CustomTableHeader : UITableViewHeaderFooterView
+
+@property (nonatomic, strong) UILabel *nameL;
+
+@property (nonatomic, strong) UILabel *genderL;
+
+@property (nonatomic, strong) UILabel *birthL;
+
+@property (nonatomic, strong) UILabel *phoneL;
+
+@property (nonatomic, strong) UILabel *phone2L;
+
+@property (nonatomic, strong) UILabel *certL;
+
+@property (nonatomic, strong) UILabel *numL;
+
+@property (nonatomic, strong) UILabel *addressL;
 
 @property (nonatomic, strong) UICollectionView *headerColl;
 

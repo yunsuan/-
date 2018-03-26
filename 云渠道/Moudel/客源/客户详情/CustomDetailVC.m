@@ -138,10 +138,7 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"客户详情";
-    
-    //    _customDetailTable.estimatedSectionHeaderHeight = 368 *SIZE;
-    //    _customDetailTable.sectionHeaderHeight = UITableViewAutomaticDimension;
-    
+
     _customDetailTable.estimatedRowHeight = 174 *SIZE;
     _customDetailTable.rowHeight = UITableViewAutomaticDimension;
     
