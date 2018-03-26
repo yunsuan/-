@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface InfoDetailCell : UITableViewCell
+@property (nonatomic , strong) UILabel *title;
+@property (nonatomic , strong) UIView *contentview;
 
+-(void)SetCellContentbyarr:(NSArray *)arr;
 @end
