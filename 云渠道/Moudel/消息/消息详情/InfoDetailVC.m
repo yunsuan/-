@@ -74,8 +74,6 @@
 }
 
 
-
-
 #pragma mark    -----  懒加载    ------
 
 -(UITableView *)Maintableview

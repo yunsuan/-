@@ -14,6 +14,8 @@
 
 - (void)head3collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
+- (void)DGActionAddBtn:(UIButton *)btn;
+
 - (void)DGActionEditBtn:(UIButton *)btn;
 
 @end
@@ -39,6 +41,8 @@
 @property (nonatomic, strong) UICollectionView *headerColl;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+@property (nonatomic, strong) UIButton *addBtn;
 
 @property (nonatomic, weak) id<CustomTableHeader3Delegate> delegate;
 

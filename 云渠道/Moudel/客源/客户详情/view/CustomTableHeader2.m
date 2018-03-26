@@ -169,6 +169,16 @@
     [_headerColl registerClass:[CustomHeaderCollCell class] forCellWithReuseIdentifier:@"CustomHeaderCollCell"];
     [self.contentView addSubview:_headerColl];
     
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(10 *SIZE, 19 *SIZE + CGRectGetMaxY(_headerColl.frame), 7 *SIZE, 13 *SIZE)];
+    view1.backgroundColor = COLOR(27, 152, 255, 1);;
+    [self.contentView addSubview:view];
+    
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(28 *SIZE, 19 *SIZE  + CGRectGetMaxY(_headerColl.frame), 80 *SIZE, 15 *SIZE)];
+    label1.textColor = YJTitleLabColor;
+    label1.font = [UIFont systemFontOfSize:15 *SIZE];
+    label1.text = @"跟进记录";
+    [self.contentView addSubview:label1];
+    
     _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _addBtn.frame = CGRectMake(321 *SIZE, CGRectGetMaxY(_headerColl.frame) + 11 *SIZE, 31 *SIZE, 31 *SIZE);
     [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];

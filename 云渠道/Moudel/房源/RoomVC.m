@@ -7,6 +7,7 @@
 //
 
 #import "RoomVC.h"
+#import "RoomDetailVC.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
 #import "BoxView.h"
@@ -191,9 +192,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    RoomDetailVC *nextVC = [[RoomDetailVC alloc] init];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
         switch (indexPath.row) {
             case 0:
             {
+                
                 
             }
                 break;
