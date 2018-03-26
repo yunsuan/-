@@ -8,7 +8,11 @@
 
 #import "RoomDetailVC.h"
 
-@interface RoomDetailVC ()
+@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+
+@property (nonatomic, strong) UICollectionView *segmentColl;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @end
 
@@ -16,12 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self initUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initUI{
+    
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.hidden = NO;
+    
+    
 }
 
 
