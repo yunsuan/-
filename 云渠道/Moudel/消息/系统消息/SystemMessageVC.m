@@ -8,6 +8,7 @@
 
 #import "SystemMessageVC.h"
 #import "SystemMessageCell.h"
+#import "InfoDetailVC.h"
 
 @interface SystemMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -82,7 +83,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
+    [self.navigationController pushViewController:next_vc animated:YES];
 }
 
 
