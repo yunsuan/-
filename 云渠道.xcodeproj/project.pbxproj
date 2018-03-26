@@ -456,6 +456,7 @@
 		102DF9692057A0A200E1859C /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
+				105E18D02068BC140031558D /* 消息详情 */,
 				0C0B82492064FF6400238D4F /* 工作消息 */,
 				0C0B824C2064FF6400238D4F /* 系统消息 */,
 				0CF74238206229B1001F926F /* view */,
@@ -572,6 +573,13 @@
 				105E18B320637D310031558D /* UnpaidCell.h */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		105E18D02068BC140031558D /* 消息详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "消息详情";
 			sourceTree = "<group>";
 		};
 		106900012057974200E11F52 /* UserModel */ = {
