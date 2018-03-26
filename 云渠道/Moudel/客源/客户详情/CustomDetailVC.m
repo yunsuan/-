@@ -11,7 +11,10 @@
 #import "CustomTableHeader.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate>
-
+{
+    
+    NSInteger _item;
+}
 @property (nonatomic, strong) UITableView *customDetailTable;
 
 @end
@@ -26,6 +29,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    _item = indexPath.item;
+    [_customDetailTable reloadData];
     NSLog(@"%@",indexPath);
 }
 
@@ -41,15 +46,21 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
-    if (!header) {
+    if (!_item) {
         
-        header = [[CustomTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 368 *SIZE)];
-        header.delegate = self;
-        [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
+        if (!header) {
+            
+            header = [[CustomTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 368 *SIZE)];
+            header.delegate = self;
+            [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        }
+        
+        return header;
+    }else{
+        
+        return [[UIView alloc] init];
     }
-    
-    return header;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
