@@ -29,6 +29,10 @@
     _titleL.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_titleL];
     
+    _line = [[UIView alloc] initWithFrame:CGRectMake(18 *SIZE, 38 *SIZE, 27 *SIZE, 2 *SIZE)];
+    _line.backgroundColor = COLOR(27, 152, 255, 1);
+    _line.hidden = YES;
+    [self.contentView addSubview:_line];
 }
 
 - (void)setSelected:(BOOL)selected{
@@ -36,9 +40,11 @@
     if (selected) {
         
         _titleL.textColor = COLOR(27, 152, 255, 1);
+        _line.hidden = NO;
     }else{
         
         _titleL.textColor = YJTitleLabColor;
+        _line.hidden = YES;
     }
 }
 

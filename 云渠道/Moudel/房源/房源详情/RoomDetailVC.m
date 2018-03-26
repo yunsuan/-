@@ -18,6 +18,9 @@
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
+@property (nonatomic, strong) UITableView *roomTable;
+
+
 @end
 
 @implementation RoomDetailVC
@@ -27,6 +30,8 @@
     
     [self initDataSource];
     [self initUI];
+    
+    [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
 }
 
 - (void)initDataSource{
@@ -72,6 +77,7 @@
     _segmentColl.dataSource = self;
     [_segmentColl registerClass:[RoomDetailCollCell class] forCellWithReuseIdentifier:@"RoomDetailCollCell"];
     [self.navBackgroundView addSubview:_segmentColl];
+
 }
 
 
