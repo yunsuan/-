@@ -48,6 +48,10 @@
     
 }
 
+- (void)DGActionEditBtn:(UIButton *)btn{
+    
+    NSLog(@"%ld",_item);
+}
 
 
 - (void)head3collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

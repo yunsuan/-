@@ -37,6 +37,17 @@
     }
 }
 
+- (void)ActionAddBtn:(UIButton *)btn{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(DGActionAddBtn:)]) {
+        
+        [_delegate DGActionAddBtn:btn];
+    }else{
+        
+        
+    }
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return 3;
@@ -156,6 +167,11 @@
     
     [_headerColl registerClass:[CustomHeaderCollCell class] forCellWithReuseIdentifier:@"CustomHeaderCollCell"];
     [self.contentView addSubview:_headerColl];
+    
+    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addBtn.frame = CGRectMake(321 *SIZE, CGRectGetMaxY(_headerColl.frame) + 11 *SIZE, 31 *SIZE, 31 *SIZE);
+    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_addBtn];
 }
 
 @end
