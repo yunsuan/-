@@ -64,6 +64,7 @@
     if (!cell) {
         cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    [cell SetCellContentbyarr:@[@"项目名称：凤凰国际",@"项目地址：高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"]];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
