@@ -10,15 +10,22 @@
 
 @implementation InfoDetailCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+        [self initUI];
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)initUI
+{
+    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
+    header.backgroundColor = YJBlueBtnColor;
+    [self.contentView addSubview:header];
 }
+
 
 @end

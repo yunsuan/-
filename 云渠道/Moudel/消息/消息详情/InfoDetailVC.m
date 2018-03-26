@@ -7,6 +7,7 @@
 //
 
 #import "InfoDetailVC.h"
+#import "InfoDetailCell.h"
 
 @interface InfoDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , strong) UITableView *Maintableview;
@@ -24,11 +25,14 @@
     self.titleLabel.text = @"消息详情";
     _Maintableview.rowHeight = 150 *SIZE;
     _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
+    [self initDataSouce];
+    [self initUI];
 }
 
 -(void)initUI
 {
-    
+    [self.view addSubview:self.Maintableview];
+    [self.view addSubview:self.toolview];
 }
 
 -(void)initDataSouce
@@ -54,11 +58,11 @@
 {
     
     
-    static NSString *CellIdentifier = @"SystemMessageCell";
+    static NSString *CellIdentifier = @"InfoDetailCell";
     
-    SystemMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -68,11 +72,6 @@
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
-    [self.navigationController pushViewController:next_vc animated:YES];
-}
 
 
 
@@ -94,7 +93,8 @@
 -(UIView *)toolview
 {
     if (!_toolview) {
-        _toolview  = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_Height-TAB_BAR_HEIGHT, 360, TAB_BAR_HEIGHT)];
+        _toolview  = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_Height-TAB_BAR_HEIGHT, 360*SIZE, TAB_BAR_HEIGHT)];
+        _toolview.backgroundColor = YJLoginBtnColor;
     }
     return _toolview;
 }
