@@ -369,9 +369,9 @@
 		0C0B824C2064FF6400238D4F /* 系统消息 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0B82512064FF6400238D4F /* SystemMessageVC.m */,
 				0C0B824D2064FF6400238D4F /* SystemMessageVC.h */,
 				0C0B824E2064FF6400238D4F /* cell */,
-				0C0B82512064FF6400238D4F /* SystemMessageVC.m */,
 			);
 			path = "系统消息";
 			sourceTree = "<group>";
