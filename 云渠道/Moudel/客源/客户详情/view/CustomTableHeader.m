@@ -44,9 +44,12 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_delegate && [_delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(head1collectionView:didSelectItemAtIndexPath:)]) {
         
-        [_delegate collectionView:_headerColl didSelectItemAtIndexPath:indexPath];
+        [_delegate head1collectionView:_headerColl didSelectItemAtIndexPath:indexPath];
+    }else{
+        
+        NSLog(@"没有代理人");
     }
 }
 

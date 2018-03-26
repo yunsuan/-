@@ -12,7 +12,7 @@
 
 @protocol CustomTableHeaderDelegate <NSObject>
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)head1collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CustomTableHeader2Delegate;
+
+@protocol CustomTableHeader2Delegate <NSObject>
+
+- (void)head2collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)DGActionAddBtn:(UIButton *)btn;
+
+@end
+
 @interface CustomTableHeader2 : UITableViewHeaderFooterView
+
+@property (nonatomic, strong) UICollectionView *headerColl;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+@property (nonatomic, strong) UIButton *addBtn;
+
+@property (nonatomic, weak) id<CustomTableHeader2Delegate> delegate;
 
 @end

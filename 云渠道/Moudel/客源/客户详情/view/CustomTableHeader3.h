@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CustomTableHeader3Delegate;
+
+@protocol CustomTableHeader3Delegate <NSObject>
+
+- (void)head3collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface CustomTableHeader3 : UITableViewHeaderFooterView
+
+@property (nonatomic, strong) UICollectionView *headerColl;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+@property (nonatomic, weak) id<CustomTableHeader3Delegate> delegate;
 
 @end
