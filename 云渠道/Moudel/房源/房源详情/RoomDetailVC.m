@@ -7,7 +7,7 @@
 //
 
 #import "RoomDetailVC.h"
-//#import "RoomCollCell.h"
+#import "RoomDetailCollCell.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -41,12 +41,12 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    RoomCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomCollCell" forIndexPath:indexPath];
+    RoomDetailCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomDetailCollCell" forIndexPath:indexPath];
     if (!cell) {
         
-        cell = [[RoomCollCell alloc] initWithFrame:CGRectMake(0, 0, 64 *SIZE, 44 *SIZE)];
+        cell = [[RoomDetailCollCell alloc] initWithFrame:CGRectMake(0, 0, 64 *SIZE, 40 *SIZE)];
     }
-    cell.titleL.text = 
+    cell.titleL.text = _titleArr[indexPath.item];
     
     return cell;
 }
@@ -61,13 +61,16 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.hidden = NO;
     
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.itemSize = CGSizeMake(64 *SIZE, 44 *SIZE);
+    _flowLayout.minimumLineSpacing = 0;
+    _flowLayout.minimumInteritemSpacing = 0;
     
-    
-    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(84 *SIZE, 20 *SIZE, 192 *SIZE, 44 *SIZE) collectionViewLayout:_flowLayout];
+    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(84 *SIZE, STATUS_BAR_HEIGHT, 192 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
     _segmentColl.backgroundColor = CH_COLOR_white;
     _segmentColl.delegate = self;
     _segmentColl.dataSource = self;
-    [_segmentColl registerClass:[RoomCollCell class] forCellWithReuseIdentifier:@"RoomCollCell"];
+    [_segmentColl registerClass:[RoomDetailCollCell class] forCellWithReuseIdentifier:@"RoomDetailCollCell"];
     [self.navBackgroundView addSubview:_segmentColl];
 }
 
