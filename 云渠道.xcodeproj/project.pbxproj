@@ -48,6 +48,7 @@
 		105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18AE20637D310031558D /* BrokerageRecordVC.m */; };
 		105E18B620637D310031558D /* UnpaidCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18B220637D310031558D /* UnpaidCell.m */; };
 		105E18B720637D310031558D /* UnpaidBrokerageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18B420637D310031558D /* UnpaidBrokerageVC.m */; };
+		105E18D32068BC650031558D /* InfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D22068BC650031558D /* InfoDetailVC.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -170,6 +171,8 @@
 		105E18B220637D310031558D /* UnpaidCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnpaidCell.m; sourceTree = "<group>"; };
 		105E18B320637D310031558D /* UnpaidCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnpaidCell.h; sourceTree = "<group>"; };
 		105E18B420637D310031558D /* UnpaidBrokerageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnpaidBrokerageVC.m; sourceTree = "<group>"; };
+		105E18D12068BC650031558D /* InfoDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoDetailVC.h; sourceTree = "<group>"; };
+		105E18D22068BC650031558D /* InfoDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoDetailVC.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -578,6 +581,8 @@
 		105E18D02068BC140031558D /* 消息详情 */ = {
 			isa = PBXGroup;
 			children = (
+				105E18D12068BC650031558D /* InfoDetailVC.h */,
+				105E18D22068BC650031558D /* InfoDetailVC.m */,
 			);
 			path = "消息详情";
 			sourceTree = "<group>";
@@ -1015,6 +1020,7 @@
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
+				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
