@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CustomTableHeader3.h">
-   </FileRef>
-   <FileRef
-      location = "group:CustomTableHeader3.m">
-   </FileRef>
-   <FileRef
       location = "group:&#x4e91;&#x6e20;&#x9053;.xcodeproj">
    </FileRef>
    <FileRef
