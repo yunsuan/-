@@ -8,8 +8,12 @@
 
 #import "InfoDetailVC.h"
 #import "InfoDetailCell.h"
+#import "CountDownCell.h"
 
 @interface InfoDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSArray *_data;
+}
 @property (nonatomic , strong) UITableView *Maintableview;
 @property (nonatomic , strong) UIView *toolview;
 
@@ -37,7 +41,7 @@
 
 -(void)initDataSouce
 {
-    
+    _data = @[@"项目名称：凤凰国际",@"项目地址：高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
 }
 
 #pragma mark    -----  delegate   ------
@@ -47,9 +51,29 @@
     return 3;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 53*SIZE)];
+    backview.backgroundColor = [UIColor whiteColor];
+    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
+    header.backgroundColor = YJBlueBtnColor;
+    [backview addSubview:header];
+    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
+    title.font = [UIFont systemFontOfSize:15.3*SIZE];
+    title.textColor = YJTitleLabColor;
+    title.text = @"客户信息";
+    [backview addSubview:title];
+    return backview;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 53*SIZE;
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
     
 }
 
@@ -57,18 +81,25 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-    static NSString *CellIdentifier = @"InfoDetailCell";
-    
-    InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.section ==0&&indexPath.row ==2) {
+        static NSString *CellIdentifier = @"CountDownCell";
+        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell setcountdownbytime:99];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else{
+        static NSString *CellIdentifier = @"InfoDetailCell";
+        InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell SetCellContentbystring:_data[indexPath.row]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    [cell SetCellContentbyarr:@[@"项目名称：凤凰国际",@"项目地址：高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"]];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-    
     
     
 }
@@ -79,7 +110,7 @@
 -(UITableView *)Maintableview
 {
     if (!_Maintableview) {
-        _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT-46.3*SIZE) style:UITableViewStylePlain];
+        _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT-46.3*SIZE) style:UITableViewStyleGrouped];
         _Maintableview.backgroundColor = YJBackColor;
         _Maintableview.delegate = self;
         _Maintableview.dataSource = self;
@@ -97,5 +128,6 @@
     }
     return _toolview;
 }
+
 
 @end
