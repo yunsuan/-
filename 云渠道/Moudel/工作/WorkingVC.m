@@ -12,6 +12,7 @@
 @interface WorkingVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_namelist;
+    NSArray *_imglist;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -36,6 +37,7 @@
 -(void)initDateSouce
 {
     _namelist = @[@"推荐",@"被推荐的客户"];
+    _imglist = @[@"recommended",@"client"];
 }
 
 -(void)initUI
@@ -74,7 +76,7 @@
     if (!cell) {
         cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+    [cell setTitle:_namelist[indexPath.row] content:@"今日新增 2，有效 21，修改 39" img:_imglist[indexPath.row]];
     return cell;
     
 }
