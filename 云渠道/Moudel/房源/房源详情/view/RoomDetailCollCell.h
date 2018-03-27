@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UILabel *titleL;
 
+@property (nonatomic, strong) UIView *line;
+
 @end
