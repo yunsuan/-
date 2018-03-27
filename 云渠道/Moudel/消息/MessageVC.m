@@ -60,6 +60,7 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
+    self.leftButton.hidden = YES;
     self.titleLabel.text = @"消息";
     
     _messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT) style:UITableViewStylePlain];

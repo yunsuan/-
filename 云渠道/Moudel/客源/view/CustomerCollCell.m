@@ -28,7 +28,8 @@
     _typeL.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_typeL];
     
-    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(70 *SIZE, 19 *SIZE, 7 *SIZE, 4 *SIZE)];
+    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(70 *SIZE, 17 *SIZE, 10 *SIZE, 10 *SIZE)];
+//    _dropImg.image = [UIImage imageNamed:@"downarrow"];
     [self.contentView addSubview:_dropImg];
 }
 
@@ -36,10 +37,10 @@
     
     if (selected) {
         
-        
+//        _dropImg.image = [UIImage imageNamed:@"uparrow"];
     }else{
         
-        
+//        _dropImg.image = [UIImage imageNamed:@"downarrow"];
     }
 }
 

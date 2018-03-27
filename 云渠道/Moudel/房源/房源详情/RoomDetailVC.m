@@ -13,6 +13,7 @@
 #import "RoomDetailTableCell2.h"
 #import "RoomDetailTableCell3.h"
 #import "RoomDetailTableCell4.h"
+#import "RoomDetailTableCell5.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource>
 {
@@ -24,6 +25,10 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, strong) UITableView *roomTable;
+
+@property (nonatomic, strong) UIButton *recommendBtn;
+
+@property (nonatomic, strong) UIButton *counselBtn;
 
 
 @end
@@ -78,43 +83,87 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
-    return 7;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (section == 6) {
+    if (section == 5) {
 
         return 2;
     }else{
 
         return 1;
     }
-//    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (!section) {
+        
+        return 363 *SIZE;
+    }else{
+        
+        if (section == 5) {
+            
+            return 33 *SIZE;
+        }else{
+            
+            return 6 *SIZE;
+        }
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return CGFLOAT_MIN;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (!section) {
+    
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 363 *SIZE)];
+    }else{
+        
+        if (section == 5) {
+            
+            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 33 *SIZE)];
+        }else{
+            
+            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 6 *SIZE)];
+        }
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    return [[UIView alloc] init];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (!indexPath.section) {
-        
-        RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
-        if (!cell) {
-            
-            cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
+    switch (indexPath.section) {
+        case 0:
+        {
+            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.developL.text = @"阳光物业公司";
+            cell.openL.text = @"2017年02月20日";
+            cell.payL.text = @"2019年02月";
+            cell.timeL.text = @"70年";
+            cell.moreBtn.tag = indexPath.section;
+            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+            break;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.developL.text = @"阳光物业公司";
-        cell.openL.text = @"2017年02月20日";
-        cell.payL.text = @"2019年02月";
-        cell.timeL.text = @"70年";
-        cell.moreBtn.tag = indexPath.section;
-        [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-        return cell;
-    }else{
-        
-        if (indexPath.section == 1) {
-            
+        case 1:
+        {
             RoomDetailTableCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell1"];
             if (!cell) {
                 
@@ -129,30 +178,88 @@
             cell.moreBtn.tag = indexPath.section;
             [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
-        }else{
-            
-            if (indexPath.section == 2) {
+            break;
+        }
+        case 2:
+        {
+            RoomDetailTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell2"];
+            if (!cell) {
                 
-                RoomDetailTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell2"];
-                if (!cell) {
-                    
-                    cell = [[RoomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell2"];
-                }
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                return cell;
-            }else{
-                
-                RoomDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell3"];
-                if (!cell) {
-                    
-                    cell = [[RoomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell3"];
-                }
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.num = 10;
-//                cell.cellColl
-                return cell;
+                cell = [[RoomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell2"];
             }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+            break;
+        }
+        case 3:
+        {
+            RoomDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell3"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell3"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.num = 10;
+            //                cell.cellColl
+            return cell;
+            break;
+        }
+        case 4:
+        {
+            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameL.text = @"张三";
+            cell.priceL.text = @"80 - 100";
+            cell.typeL.text = @"三室一厅";
+            cell.areaL.text = @"郫都区-德源大道";
+            cell.intentionRateL.text = @"23";
+            cell.urgentRateL.text = @"43";
+            cell.matchRateL.text = @"83";
+            cell.phoneL.text = @"13438339177";
+            return cell;
+            break;
+        }
+        case 5:
+        {
+            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameL.text = @"张三";
+            cell.priceL.text = @"80 - 100";
+            cell.typeL.text = @"三室一厅";
+            cell.areaL.text = @"郫都区-德源大道";
+            cell.intentionRateL.text = @"23";
+            cell.urgentRateL.text = @"43";
+            cell.matchRateL.text = @"83";
+            cell.phoneL.text = @"13438339177";
+            return cell;
+            break;
+        }
+        default:{
+            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameL.text = @"张三";
+            cell.priceL.text = @"80 - 100";
+            cell.typeL.text = @"三室一厅";
+            cell.areaL.text = @"郫都区-德源大道";
+            cell.intentionRateL.text = @"23";
+            cell.urgentRateL.text = @"43";
+            cell.matchRateL.text = @"83";
+            cell.phoneL.text = @"13438339177";
+            return cell;
+            break;
         }
     }
 }
@@ -177,11 +284,30 @@
     
     _roomTable.rowHeight = 360 *SIZE;
     _roomTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE) style:UITableViewStyleGrouped];
     _roomTable.backgroundColor = self.view.backgroundColor;
     _roomTable.delegate = self;
     _roomTable.dataSource = self;
+    _roomTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_roomTable];
+    
+    _counselBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _counselBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE, 120 *SIZE, 47 *SIZE);
+    _counselBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+//    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_counselBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
+    [_counselBtn setBackgroundColor:COLOR(255, 188, 88, 1)];
+    [_counselBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.view addSubview:_counselBtn];
+    
+    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _recommendBtn.frame = CGRectMake(120 *SIZE, SCREEN_Height - 47 *SIZE, 240 *SIZE, 47 *SIZE);
+    _recommendBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    //    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_recommendBtn setTitle:@"推荐" forState:UIControlStateNormal];
+    [_recommendBtn setBackgroundColor:COLOR(27, 152, 255, 1)];
+    [_recommendBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.view addSubview:_recommendBtn];
 
 }
 
