@@ -14,6 +14,7 @@
 #import "RoomDetailTableCell3.h"
 #import "RoomDetailTableCell4.h"
 #import "RoomDetailTableCell5.h"
+#import "RoomDetailTableHeader.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource>
 {
@@ -101,7 +102,7 @@
     
     if (!section) {
         
-        return 363 *SIZE;
+        return 368 *SIZE;
     }else{
         
         if (section == 5) {
@@ -123,7 +124,19 @@
     
     if (!section) {
     
-        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 363 *SIZE)];
+        RoomDetailTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader"];
+        if (!header) {
+            
+            header = [[RoomDetailTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
+        }
+        header.titleL.text = @"FUNX自由青年公寓 城北店火爆来袭";
+        header.statusL.text = @"在售";
+        header.attentL.text = @"关注人数：23";
+        header.payL.text = @"交房时间：暂无数据";
+//        header.priceL.text = @""
+        header.addressL.text = @"高新区-天府五街230号";
+        return header;
+//        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 363 *SIZE)];
     }else{
         
         if (section == 5) {

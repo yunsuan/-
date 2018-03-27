@@ -10,4 +10,19 @@
 
 @interface RoomDetailTableHeader : UITableViewHeaderFooterView
 
+@property (nonatomic, strong) UIScrollView *imgScroll;
+
+@property (nonatomic, strong) UILabel *titleL;
+
+@property (nonatomic, strong) UILabel *statusL;
+
+@property (nonatomic, strong) UILabel *attentL;
+
+@property (nonatomic, strong) UILabel *payL;
+
+@property (nonatomic, strong) UILabel *priceL;
+
+@property (nonatomic, strong) UILabel *addressL;
+
+
 @end
