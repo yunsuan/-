@@ -53,6 +53,7 @@
 		105E18B720637D310031558D /* UnpaidBrokerageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18B420637D310031558D /* UnpaidBrokerageVC.m */; };
 		105E18D32068BC650031558D /* InfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D22068BC650031558D /* InfoDetailVC.m */; };
 		105E18D72068C6000031558D /* InfoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D62068C6000031558D /* InfoDetailCell.m */; };
+		105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D92069E3AB0031558D /* CountDownCell.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -185,6 +186,8 @@
 		105E18D22068BC650031558D /* InfoDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoDetailVC.m; sourceTree = "<group>"; };
 		105E18D52068C6000031558D /* InfoDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoDetailCell.h; sourceTree = "<group>"; };
 		105E18D62068C6000031558D /* InfoDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoDetailCell.m; sourceTree = "<group>"; };
+		105E18D82069E3AB0031558D /* CountDownCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountDownCell.h; sourceTree = "<group>"; };
+		105E18D92069E3AB0031558D /* CountDownCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountDownCell.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -619,6 +622,8 @@
 			children = (
 				105E18D52068C6000031558D /* InfoDetailCell.h */,
 				105E18D62068C6000031558D /* InfoDetailCell.m */,
+				105E18D82069E3AB0031558D /* CountDownCell.h */,
+				105E18D92069E3AB0031558D /* CountDownCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1097,6 +1102,7 @@
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
+				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

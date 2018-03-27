@@ -22,34 +22,25 @@
 
 -(void)initUI
 {
-    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
-    header.backgroundColor = YJBlueBtnColor;
-    [self.contentView addSubview:header];
-    _title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
-    _title.font = [UIFont systemFontOfSize:15.3*SIZE];
-    _title.textColor = YJTitleLabColor;
-//    _contentview = [[UIView alloc]init];
-//    __weak __typeof(&*self)weakSelf = self;
-//    [_contentview mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(weakSelf.title.mas_left).offset(1 *SIZE);
-//        make.top.equalTo(weakSelf.title.mas_bottom).offset(1 *SIZE);
-//        make.width.equalTo(@(300 *SIZE));
-//        make.height.equalTo(weakSelf.mas_height);
-//    }];
-    [self.contentView addSubview:_contentview];
-     
+    _contentlab = [[UILabel alloc]init];
+    _contentlab.font = [UIFont systemFontOfSize:13.3*SIZE];
+    _contentlab.numberOfLines = 0;
+    _contentlab.lineBreakMode = NSLineBreakByCharWrapping;
+//    [_contentlab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    _contentlab.textColor = YJContentLabColor;
+    [self.contentView addSubview:_contentlab];
+//    __weak typeof(self)weakSelf=self;
+    [_contentlab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(28.3*SIZE);
+        make.top.equalTo(self.contentView);
+        make.width.mas_equalTo(300*SIZE);
+        make.bottom.equalTo(self.contentView).offset(-15*SIZE);
+    }];
 }
 
--(void)SetCellContentbyarr:(NSArray *)arr
+-(void)SetCellContentbystring:(NSString *)str
 {
-//    for(int i = 0; i<arr.count; i++){
-//        UILabel *contentlab = [[UILabel alloc]init];
-//        contentlab.textColor = YJContentLabColor;
-//        contentlab.text = arr[i];
-//        contentlab.font = [UIFont systemFontOfSize:13.3*SIZE];
-//        contentlab.frame = CGRectMake(0, 20*SIZE+29*SIZE*i, 300*SIZE, 16*SIZE);
-//        [_contentview addSubview:contentlab];
-//    }
+    _contentlab.text = str;
 }
 
 @end
