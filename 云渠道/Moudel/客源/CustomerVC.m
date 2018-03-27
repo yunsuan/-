@@ -119,6 +119,7 @@
     self.titleLabel.text = @"客源";
     self.navBackgroundView.hidden = NO;
     self.view.backgroundColor = YJBackColor;
+     self.leftButton.hidden = YES;
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0;

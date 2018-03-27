@@ -16,4 +16,8 @@
 
 @property (nonatomic, strong) UILabel *contentL;
 
+-(void)SetCellContentbyimg:(NSString *)imgname
+                     title:(NSString *)title
+                   content:(NSString *)content;
+
 @end

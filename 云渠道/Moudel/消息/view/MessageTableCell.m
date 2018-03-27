@@ -31,22 +31,30 @@
     _titleL = [[UILabel alloc] initWithFrame:CGRectMake(77 *SIZE, 25 *SIZE, 200 *SIZE, 14 *SIZE)];
     _titleL.textColor = YJContentLabColor;
     _titleL.font = [UIFont systemFontOfSize:15];
-    _titleL.text = @"系统消息";
+
     [self.contentView addSubview:_titleL];
     
     _titleL = [[UILabel alloc] initWithFrame:CGRectMake(77 *SIZE, 44 *SIZE, 200 *SIZE, 11 *SIZE)];
     _titleL.textColor = YJContentLabColor;
     _titleL.font = [UIFont systemFontOfSize:12 *SIZE];
-    _titleL.text = @"系统消息";
+   
     [self.contentView addSubview:_titleL];
     
     UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(343 *SIZE, 36 *SIZE, 7 *SIZE, 12 *SIZE)];
-    rightView.backgroundColor = YJGreenColor;
+    rightView.image = [UIImage imageNamed:@"rightarrow"];
     [self.contentView addSubview:rightView];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 82 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }
+
+-(void)SetCellContentbyimg:(NSString *)imgname title:(NSString *)title content:(NSString *)content
+{
+    _headImg.image = [UIImage imageNamed:imgname];
+    _titleL.text = title;
+    _contentL.text = content;
+}
+
 
 @end
