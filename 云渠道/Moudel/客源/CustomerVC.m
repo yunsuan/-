@@ -120,6 +120,7 @@
     self.navBackgroundView.hidden = NO;
     self.leftButton.hidden = YES;
     self.view.backgroundColor = YJBackColor;
+     self.leftButton.hidden = YES;
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0;

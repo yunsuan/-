@@ -28,6 +28,7 @@
     self.navBackgroundView.hidden = NO;
     self.leftButton.hidden = YES;
     self.titleLabel.text = @"工作";
+     self.leftButton.hidden = YES;
     [self initDateSouce];
     [self initUI];
 

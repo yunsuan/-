@@ -11,6 +11,9 @@
 #import "SystemMessageVC.h"
 
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSArray *_data;
+}
 
 @property (nonatomic, strong) UITableView *messageTable;
 
@@ -20,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _data = @[@[@"systemmessage",@"系统消息",@"未读消息1条"],@[@"systemmessage",@"工作消息",@"未读消息两条"]];
     [self initUI];
 }
 
@@ -41,6 +44,7 @@
     if (!cell) {
         
         cell = [[MessageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        [cell SetCellContentbyimg:_data[indexPath.row][0] title:_data[indexPath.row][1] content:_data[indexPath.row][2]];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -62,6 +66,7 @@
     self.navBackgroundView.hidden = NO;
     self.leftButton.hidden = YES;
     self.titleLabel.text = @"消息";
+    self.leftButton.hidden = YES;
     
     _messageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT) style:UITableViewStylePlain];
     _messageTable.backgroundColor = YJBackColor;
