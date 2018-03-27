@@ -39,6 +39,7 @@
 		0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5642069DADC0059CE02 /* RoomDetailTableCell3.m */; };
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
+		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -165,6 +166,8 @@
 		0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell4.m; sourceTree = "<group>"; };
 		0C3AD5692069EF290059CE02 /* RoomCellCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCellCollCell.h; sourceTree = "<group>"; };
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
+		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
+		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 				0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */,
 				0C3AD5692069EF290059CE02 /* RoomCellCollCell.h */,
 				0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */,
+				0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */,
+				0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1104,6 +1109,7 @@
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
+				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,

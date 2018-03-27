@@ -118,6 +118,7 @@
     
     self.titleLabel.text = @"客源";
     self.navBackgroundView.hidden = NO;
+    self.leftButton.hidden = YES;
     self.view.backgroundColor = YJBackColor;
      self.leftButton.hidden = YES;
     

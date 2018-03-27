@@ -27,6 +27,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
+    self.leftButton.hidden = YES;
     self.titleLabel.text = @"工作";
      self.leftButton.hidden = YES;
     [self initDateSouce];
@@ -42,6 +43,7 @@
 
 -(void)initUI
 {
+    
     [self.view addSubview:self.MainTableView];
 }
 

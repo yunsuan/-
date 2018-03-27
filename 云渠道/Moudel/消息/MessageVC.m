@@ -64,6 +64,7 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
+    self.leftButton.hidden = YES;
     self.titleLabel.text = @"消息";
     self.leftButton.hidden = YES;
     

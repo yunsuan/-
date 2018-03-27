@@ -10,15 +10,43 @@
 
 @implementation RoomDetailTableCell4
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+        [self initUI];
+    }
+    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)initUI{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 9 *SIZE, 65 *SIZE, 15 *SIZE)];
+    label.textColor = YJTitleLabColor;
+    label.font = [UIFont systemFontOfSize:15 *SIZE];
+    label.text = @"周边及配套";
+    [self.contentView addSubview:label];
+    
+//    _bigImg = [[UIImageView alloc] init];
+//    _bigImg.backgroundColor = YJGreenColor;
+//    _bigImg.contentMode = UIViewContentModeScaleAspectFill;
+//    [self.contentView addSubview:_bigImg];
+//
+//    [self masonryUI];
+}
 
-    // Configure the view for the selected state
+- (void)masonryUI{
+    
+//    [_bigImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self.contentView).offset(0);
+//        make.top.equalTo(self.contentView).offset(33 *SIZE);
+//        make.right.equalTo(self.contentView).offset(0);
+//        make.bottom.equalTo(self.contentView).offset(0);
+//        make.width.equalTo(@(360 *SIZE));
+//        make.height.equalTo(@(187 *SIZE));
+//    }];
 }
 
 @end
