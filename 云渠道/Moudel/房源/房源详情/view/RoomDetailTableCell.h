@@ -10,5 +10,14 @@
 
 @interface RoomDetailTableCell : UITableViewCell
 
+@property (nonatomic, strong) UIButton *moreBtn;
+
+@property (nonatomic, strong) UILabel *developL;
+
+@property (nonatomic, strong) UILabel *openL;
+
+@property (nonatomic, strong) UILabel *payL;
+
+@property (nonatomic, strong) UILabel *timeL;
 
 @end

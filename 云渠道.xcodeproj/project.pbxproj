@@ -33,6 +33,12 @@
 		0C23F6202068BE1E00B4D573 /* CustomTableHeader3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */; };
 		0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */; };
 		0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5582068EF750059CE02 /* RoomDetailTableCell.m */; };
+		0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD55B2069DA980059CE02 /* RoomDetailTableHeader.m */; };
+		0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD55E2069DABC0059CE02 /* RoomDetailTableCell1.m */; };
+		0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5612069DAC90059CE02 /* RoomDetailTableCell2.m */; };
+		0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5642069DADC0059CE02 /* RoomDetailTableCell3.m */; };
+		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
+		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -147,6 +153,18 @@
 		0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailCollCell.m; sourceTree = "<group>"; };
 		0C3AD5572068EF750059CE02 /* RoomDetailTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell.h; sourceTree = "<group>"; };
 		0C3AD5582068EF750059CE02 /* RoomDetailTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell.m; sourceTree = "<group>"; };
+		0C3AD55A2069DA980059CE02 /* RoomDetailTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader.h; sourceTree = "<group>"; };
+		0C3AD55B2069DA980059CE02 /* RoomDetailTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableHeader.m; sourceTree = "<group>"; };
+		0C3AD55D2069DABC0059CE02 /* RoomDetailTableCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell1.h; sourceTree = "<group>"; };
+		0C3AD55E2069DABC0059CE02 /* RoomDetailTableCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell1.m; sourceTree = "<group>"; };
+		0C3AD5602069DAC90059CE02 /* RoomDetailTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell2.h; sourceTree = "<group>"; };
+		0C3AD5612069DAC90059CE02 /* RoomDetailTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell2.m; sourceTree = "<group>"; };
+		0C3AD5632069DADC0059CE02 /* RoomDetailTableCell3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell3.h; sourceTree = "<group>"; };
+		0C3AD5642069DADC0059CE02 /* RoomDetailTableCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell3.m; sourceTree = "<group>"; };
+		0C3AD5662069DAE50059CE02 /* RoomDetailTableCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell4.h; sourceTree = "<group>"; };
+		0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell4.m; sourceTree = "<group>"; };
+		0C3AD5692069EF290059CE02 /* RoomCellCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCellCollCell.h; sourceTree = "<group>"; };
+		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -426,6 +444,18 @@
 				0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */,
 				0C3AD5572068EF750059CE02 /* RoomDetailTableCell.h */,
 				0C3AD5582068EF750059CE02 /* RoomDetailTableCell.m */,
+				0C3AD55A2069DA980059CE02 /* RoomDetailTableHeader.h */,
+				0C3AD55B2069DA980059CE02 /* RoomDetailTableHeader.m */,
+				0C3AD55D2069DABC0059CE02 /* RoomDetailTableCell1.h */,
+				0C3AD55E2069DABC0059CE02 /* RoomDetailTableCell1.m */,
+				0C3AD5602069DAC90059CE02 /* RoomDetailTableCell2.h */,
+				0C3AD5612069DAC90059CE02 /* RoomDetailTableCell2.m */,
+				0C3AD5632069DADC0059CE02 /* RoomDetailTableCell3.h */,
+				0C3AD5642069DADC0059CE02 /* RoomDetailTableCell3.m */,
+				0C3AD5662069DAE50059CE02 /* RoomDetailTableCell4.h */,
+				0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */,
+				0C3AD5692069EF290059CE02 /* RoomCellCollCell.h */,
+				0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1056,9 +1086,11 @@
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */,
+				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
+				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				0C0B82312064CF3B00238D4F /* SelectCompanyCollCell.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
@@ -1068,6 +1100,7 @@
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
+				0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */,
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
@@ -1078,6 +1111,7 @@
 				105E18B720637D310031558D /* UnpaidBrokerageVC.m in Sources */,
 				10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */,
 				0C23F6202068BE1E00B4D573 /* CustomTableHeader3.m in Sources */,
+				0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */,
 				0C0B82232064A2DC00238D4F /* AuthenTableCell.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
@@ -1094,6 +1128,7 @@
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
+				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
 				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
@@ -1105,6 +1140,7 @@
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
+				0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
