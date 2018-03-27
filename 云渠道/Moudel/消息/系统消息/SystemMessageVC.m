@@ -65,20 +65,15 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-
         static NSString *CellIdentifier = @"SystemMessageCell";
         
         SystemMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
             cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
- 
+    [cell SetCellbytitle:@"审核通过" content:@"您于2017-11-23 提交的资料通过审核！" time:@"2017-11-23 12 : 56 : 32" messageimg:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-   
-    
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

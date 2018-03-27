@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _data = @[@[@"systemmessage",@"系统消息",@"未读消息1条"],@[@"systemmessage",@"工作消息",@"未读消息两条"]];
+    _data = @[@[@"systemmessage",@"系统消息",@"未读消息1条"],@[@"worknews",@"工作消息",@"未读消息两条"]];
     [self initUI];
 }
 
