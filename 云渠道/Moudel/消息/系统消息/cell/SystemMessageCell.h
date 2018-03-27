@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface SystemMessageCell : UITableViewCell
-@property (nonatomic , strong) UILabel *title;
+@property (nonatomic , strong) UILabel *titlelab;
+@property (nonatomic , strong) UILabel *contentlab;
+@property (nonatomic , strong) UILabel *timelab;
+@property (nonatomic , strong) UIImageView *messageimg;
 
+-(void)SetCellbytitle:(NSString *)title
+              content:(NSString *)content
+                 time:(NSString *)time
+           messageimg:(BOOL)isopen;
 @end
