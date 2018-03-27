@@ -8,6 +8,7 @@
 
 #import "InfoDetailVC.h"
 #import "InfoDetailCell.h"
+#import "CountDownCell.h"
 
 @interface InfoDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -80,17 +81,25 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
-    static NSString *CellIdentifier = @"InfoDetailCell";
-    
-    InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.section ==0&&indexPath.row ==2) {
+        static NSString *CellIdentifier = @"CountDownCell";
+        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell setcountdownbytime:99];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }else{
+        static NSString *CellIdentifier = @"InfoDetailCell";
+        InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell SetCellContentbystring:_data[indexPath.row]];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    [cell SetCellContentbystring:_data[indexPath.row]];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-    
     
     
 }
@@ -119,5 +128,6 @@
     }
     return _toolview;
 }
+
 
 @end

@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface CountDownCell : UITableViewCell
+@property (nonatomic , strong) UILabel *day;
+@property (nonatomic , strong) UILabel *hour;
+@property (nonatomic , strong) UILabel *min;
+@property (nonatomic , strong) UILabel *sec;
+@property (nonatomic , assign)  NSInteger days;
 
+-(void)setcountdownbytime:(NSInteger )day;
 @end
