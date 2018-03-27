@@ -8,6 +8,10 @@
 
 #import "RoomDetailTableCell4.h"
 
+@interface RoomDetailTableCell4()<BMKMapViewDelegate>
+
+@end
+
 @implementation RoomDetailTableCell4
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -28,25 +32,25 @@
     label.text = @"周边及配套";
     [self.contentView addSubview:label];
     
-//    _bigImg = [[UIImageView alloc] init];
-//    _bigImg.backgroundColor = YJGreenColor;
-//    _bigImg.contentMode = UIViewContentModeScaleAspectFill;
-//    [self.contentView addSubview:_bigImg];
-//
-//    [self masonryUI];
+    _mapView = [[BMKMapView alloc] init];
+    _mapView.delegate = self;
+    _mapView.scrollEnabled = YES;
+    [self.contentView addSubview:_mapView];
+    
+    [self masonryUI];
 }
 
 - (void)masonryUI{
     
-//    [_bigImg mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(self.contentView).offset(0);
-//        make.top.equalTo(self.contentView).offset(33 *SIZE);
-//        make.right.equalTo(self.contentView).offset(0);
-//        make.bottom.equalTo(self.contentView).offset(0);
-//        make.width.equalTo(@(360 *SIZE));
-//        make.height.equalTo(@(187 *SIZE));
-//    }];
+    [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.equalTo(self.contentView).offset(0);
+        make.top.equalTo(self.contentView).offset(33 *SIZE);
+        make.right.equalTo(self.contentView).offset(0);
+        make.width.equalTo(@(360 *SIZE));
+        make.height.equalTo(@(187 *SIZE));
+        make.bottom.equalTo(self.contentView).offset(-59 *SIZE);
+    }];
 }
 
 @end

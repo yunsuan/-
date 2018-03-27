@@ -19,7 +19,10 @@
 #import <AdSupport/AdSupport.h>
 
 @interface AppDelegate ()<JPUSHRegisterDelegate>
-
+{
+    
+    BMKMapManager* _mapManager;
+}
 @end
 
 @implementation AppDelegate
@@ -29,7 +32,12 @@
     //注册通知，退出登陆时回到首页
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(comeBackLoginVC) name:@"goLoginVC" object:nil];
     
-    
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"HFkm6kre5vprHrNAXGF4eZXNx9rEX3pt"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
 //    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
     
     CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];

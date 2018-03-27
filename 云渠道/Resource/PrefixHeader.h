@@ -25,6 +25,9 @@
 #endif
 
 #import "MJRefresh.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Radar/BMKRadarOption.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
 //#import <BaiduMapAPI_Map/BMKMapView.h>
 
 #import <Masonry.h>

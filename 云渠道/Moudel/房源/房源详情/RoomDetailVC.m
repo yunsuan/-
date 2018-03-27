@@ -15,10 +15,11 @@
 #import "RoomDetailTableCell4.h"
 #import "RoomDetailTableCell5.h"
 #import "RoomDetailTableHeader.h"
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
 
-@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource>
+@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 {
-    
+    BMKLocationService *_locationManager;
     NSArray *_titleArr;
 }
 @property (nonatomic, strong) UICollectionView *segmentColl;
@@ -48,11 +49,37 @@
 - (void)initDataSource{
     
     _titleArr = @[@"详情",@"佣金",@"分析"];
+    
+    //初始化实例
+    _locationManager = [[BMKLocationService alloc] init];
+    //设置delegate
+    _locationManager.delegate = self;
+    //设置返回位置的坐标系类型
+//    _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
+    //设置距离过滤参数
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    //设置预期精度参数
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //设置应用位置类型
+//    _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
+    //设置是否自动停止位置更新
+    _locationManager.pausesLocationUpdatesAutomatically = NO;
+    //设置是否允许后台定位
+    _locationManager.allowsBackgroundLocationUpdates = YES;
+    //设置位置获取超时时间
 }
 
 - (void)ActionMoreBtn:(UIButton *)btn{
     
     NSLog(@"%ld",btn.tag);
+}
+
+
+#pragma mark -- BMKMap
+
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    
+    
 }
 
 #pragma mark -- collectionview
@@ -220,20 +247,13 @@
         }
         case 4:
         {
-            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            RoomDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell4"];
             if (!cell) {
                 
-                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+                cell = [[RoomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell4"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.nameL.text = @"张三";
-            cell.priceL.text = @"80 - 100";
-            cell.typeL.text = @"三室一厅";
-            cell.areaL.text = @"郫都区-德源大道";
-            cell.intentionRateL.text = @"23";
-            cell.urgentRateL.text = @"43";
-            cell.matchRateL.text = @"83";
-            cell.phoneL.text = @"13438339177";
+//            cell.mapView.delegate = self;
             return cell;
             break;
         }

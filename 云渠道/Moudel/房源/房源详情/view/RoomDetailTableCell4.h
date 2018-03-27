@@ -10,4 +10,6 @@
 
 @interface RoomDetailTableCell4 : UITableViewCell
 
+@property (nonatomic, strong) BMKMapView *mapView;
+
 @end
