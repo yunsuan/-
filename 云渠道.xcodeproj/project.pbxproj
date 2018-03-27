@@ -62,6 +62,8 @@
 		105E18D32068BC650031558D /* InfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D22068BC650031558D /* InfoDetailVC.m */; };
 		105E18D72068C6000031558D /* InfoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D62068C6000031558D /* InfoDetailCell.m */; };
 		105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D92069E3AB0031558D /* CountDownCell.m */; };
+		105E18DD206A36C40031558D /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 105E18DB206A36C40031558D /* libssl.a */; };
+		105E18DE206A36C40031558D /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 105E18DC206A36C40031558D /* libcrypto.a */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -212,6 +214,8 @@
 		105E18D62068C6000031558D /* InfoDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoDetailCell.m; sourceTree = "<group>"; };
 		105E18D82069E3AB0031558D /* CountDownCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountDownCell.h; sourceTree = "<group>"; };
 		105E18D92069E3AB0031558D /* CountDownCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountDownCell.m; sourceTree = "<group>"; };
+		105E18DB206A36C40031558D /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libssl.a; sourceTree = "<group>"; };
+		105E18DC206A36C40031558D /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -259,6 +263,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				105E18DD206A36C40031558D /* libssl.a in Frameworks */,
+				105E18DE206A36C40031558D /* libcrypto.a in Frameworks */,
 				BF3D5C8D28ABC2D033EBFE3F /* libPods-云渠道.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,6 +877,8 @@
 		588A381E570994FF347F095F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				105E18DC206A36C40031558D /* libcrypto.a */,
+				105E18DB206A36C40031558D /* libssl.a */,
 				F9F61246EF35319F3323AE5C /* libPods-云渠道.a */,
 			);
 			name = Frameworks;
@@ -1047,6 +1055,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-云渠道/Pods-云渠道-resources.sh",
+				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/UMCShare/UMShare/UMSocialSDKPlugin/UMSocialSDKPromptResources.bundle",
@@ -1321,6 +1330,10 @@
 				INFOPLIST_FILE = "云渠道/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit/thirdlibs",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yskj.yunqudao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1339,6 +1352,10 @@
 				INFOPLIST_FILE = "云渠道/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit/thirdlibs",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yskj.yunqudao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

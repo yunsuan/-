@@ -25,7 +25,7 @@
 #endif
 
 #import "MJRefresh.h"
-#import <BaiduMapAPI_Map/BMKMapView.h>
+//#import <BaiduMapAPI_Map/BMKMapView.h>
 
 #import <Masonry.h>
 #import "UIImageView+WebCache.h"
