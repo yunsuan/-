@@ -18,7 +18,7 @@
         
         _headimg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
         _headimg.frame = CGRectMake(10*SIZE, 17*SIZE, 51*SIZE, 51*SIZE);
-        _headimg.backgroundColor = [UIColor blueColor];
+//        _headimg.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:_headimg];
         _titlelab = [[UILabel alloc]initWithFrame:CGRectMake(77*SIZE, 26*SIZE, 200*SIZE, 15*SIZE)];
         _titlelab.textColor = YJTitleLabColor;
@@ -28,9 +28,8 @@
         _contentlab.textColor = YJContentLabColor;
         _contentlab.font =[UIFont systemFontOfSize:12*SIZE];
         [self.contentView addSubview:_contentlab];
-        _tagimg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+        _tagimg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"rightarrow"]];
         _tagimg.frame = CGRectMake(343*SIZE, 36*SIZE, 8*SIZE, 12*SIZE);
-        _tagimg.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_tagimg];
         UIView *lane = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE, 83*SIZE, 360*SIZE, 1*SIZE)];
         lane.backgroundColor = YJBackColor;

@@ -87,7 +87,7 @@
         if (!cell) {
             cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell setcountdownbytime:99];
+        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{

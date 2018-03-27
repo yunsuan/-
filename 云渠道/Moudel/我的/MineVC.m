@@ -39,9 +39,13 @@
 
 -(void)InitUI{
     
+    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, STATUS_BAR_HEIGHT+114*SIZE)];
+    backview.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backview];
+    
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, 42 *SIZE, 60 *SIZE, 60 *SIZE)];
     _headImg.layer.cornerRadius = 30 *SIZE;
-    _headImg.backgroundColor = YJGreenColor;
+    _headImg.image = [UIImage imageNamed:@"def_head"];
     [self.view addSubview:_headImg];
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(91 *SIZE, 67 *SIZE, 160 *SIZE, 12 *SIZE)];
