@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "CompanyModel.h"
 
 @interface CompanyDetailVC : BaseViewController
 
-//- (void)initWithModel:()
+- (instancetype)initWithModel:(CompanyModel *)model;;
 
 @end
