@@ -83,6 +83,8 @@
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _leftButton.center = CGPointMake(25 * SIZE, 20 + 22);
         _leftButton.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
+        _leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT+20);
+        _leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
         [_leftButton setImage:IMAGE_WITH_NAME(@"leftarrow.png") forState:UIControlStateNormal];
     }
     return _leftButton;
@@ -92,6 +94,7 @@
     if (!_maskButton) {
         _maskButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _maskButton.frame = CGRectMake(0, 20 * SIZE, 60 * SIZE, 44);
+        _maskButton.frame = CGRectMake(0, STATUS_BAR_HEIGHT, 60 * sIZE, 44);
         [_maskButton setBackgroundColor:[UIColor clearColor]];
         [_maskButton addTarget:self action:@selector(ActionMaskBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -101,10 +104,10 @@
 - (UIButton *)rightBtn {
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.center = CGPointMake(SCREEN_Width - 50 * SIZE, 45);
+        _rightBtn.center = CGPointMake(SCREEN_Width - 25 * SIZE, STATUS_BAR_HEIGHT+20);
         _rightBtn.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
-        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13 * SIZE];
+//        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13 * SIZE];
         _rightBtn.hidden = YES;
     }
     return _rightBtn;

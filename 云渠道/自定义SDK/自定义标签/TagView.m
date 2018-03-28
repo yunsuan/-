@@ -12,6 +12,7 @@
 @property ( nonatomic , strong ) UICollectionView *collectionview;
 @property (nonatomic , strong) UICollectionViewFlowLayout *layout;
 @property (nonatomic , strong) NSArray *data;
+@property (nonatomic , strong) NSString *type;
 @end
 
 @implementation TagView
@@ -23,24 +24,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         _data = datasouce;
+        _type = type;
         [self addSubview:self.collectionview];
     }
     return self;
 }
 
--(void)initViewWithstring:(NSString *)string
-                    type:(NSString *)type
-                      num:(int)i
-{
-//    UIView *backview =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, string.length*10.7*SIZE+2*4.7*SIZE, 16.7*SIZE)];
-//    backview.layer.masksToBounds = YES;
-//    backview.layer.cornerRadius = 1.7*SIZE;
-//    backview.layer.borderWidth = 0.3*SIZE;
-//    backview.layer.borderColor = COLOR(181, 181, 181, 1).CGColor;
-//
-    
-    
-}
 
 -(UICollectionView *)collectionview
 {
@@ -50,7 +39,6 @@
         _collectionview.delegate = self;
         _collectionview.backgroundColor = [UIColor clearColor];
         _collectionview.bounces = NO;
-        //注册item
         [_collectionview registerClass:[singleviewCell class] forCellWithReuseIdentifier:@"singleviewCell"];
     }
     return _collectionview;
@@ -70,7 +58,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     singleviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"singleviewCell" forIndexPath:indexPath];
-    cell.displayLabel.text = _data[indexPath.row];
+    [cell setstylebytype:_type andsetlab:_data[indexPath.row]];
     return cell;
 }
 

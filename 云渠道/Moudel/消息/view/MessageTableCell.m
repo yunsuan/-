@@ -29,16 +29,16 @@
     [self.contentView addSubview:_headImg];
     
     _titleL = [[UILabel alloc] initWithFrame:CGRectMake(77 *SIZE, 25 *SIZE, 200 *SIZE, 14 *SIZE)];
-    _titleL.textColor = YJContentLabColor;
+    _titleL.textColor = YJTitleLabColor;
     _titleL.font = [UIFont systemFontOfSize:15];
 
     [self.contentView addSubview:_titleL];
     
-    _titleL = [[UILabel alloc] initWithFrame:CGRectMake(77 *SIZE, 44 *SIZE, 200 *SIZE, 11 *SIZE)];
-    _titleL.textColor = YJContentLabColor;
-    _titleL.font = [UIFont systemFontOfSize:12 *SIZE];
+    _contentL = [[UILabel alloc] initWithFrame:CGRectMake(77 *SIZE, 44 *SIZE, 200 *SIZE, 11 *SIZE)];
+    _contentL.textColor = YJContentLabColor;
+    _contentL.font = [UIFont systemFontOfSize:12 *SIZE];
    
-    [self.contentView addSubview:_titleL];
+    [self.contentView addSubview:_contentL];
     
     UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(343 *SIZE, 36 *SIZE, 7 *SIZE, 12 *SIZE)];
     rightView.image = [UIImage imageNamed:@"rightarrow"];

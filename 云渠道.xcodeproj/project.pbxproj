@@ -73,6 +73,7 @@
 		105E18EA206B66700031558D /* NomineeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18E9206B66700031558D /* NomineeVC.m */; };
 		105E18EF206B6BE90031558D /* RecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18EE206B6BE90031558D /* RecommendCell.m */; };
 		105E18F2206B6C340031558D /* NomineeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18F1206B6C340031558D /* NomineeCell.m */; };
+		105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18F5206B8FDB0031558D /* AddCustomerVC.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -243,6 +244,8 @@
 		105E18EE206B6BE90031558D /* RecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendCell.m; sourceTree = "<group>"; };
 		105E18F0206B6C340031558D /* NomineeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeCell.h; sourceTree = "<group>"; };
 		105E18F1206B6C340031558D /* NomineeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCell.m; sourceTree = "<group>"; };
+		105E18F4206B8FDB0031558D /* AddCustomerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCustomerVC.h; sourceTree = "<group>"; };
+		105E18F5206B8FDB0031558D /* AddCustomerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCustomerVC.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -609,6 +612,7 @@
 		102DF96B2057A0A200E1859C /* 客源 */ = {
 			isa = PBXGroup;
 			children = (
+				105E18F3206B8FA60031558D /* 新增客户 */,
 				0C0B82042063513400238D4F /* 客户详情 */,
 				0C07BFD52060FB01007F31EC /* model */,
 				0C07BFCD2060E7DC007F31EC /* view */,
@@ -773,6 +777,15 @@
 				105E18F1206B6C340031558D /* NomineeCell.m */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		105E18F3206B8FA60031558D /* 新增客户 */ = {
+			isa = PBXGroup;
+			children = (
+				105E18F4206B8FDB0031558D /* AddCustomerVC.h */,
+				105E18F5206B8FDB0031558D /* AddCustomerVC.m */,
+			);
+			path = "新增客户";
 			sourceTree = "<group>";
 		};
 		106900012057974200E11F52 /* UserModel */ = {
@@ -1223,6 +1236,7 @@
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
+				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,

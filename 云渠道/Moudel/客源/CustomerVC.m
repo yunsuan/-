@@ -11,8 +11,8 @@
 #import "CustomerCollCell.h"
 #import "CustomerTableModel.h"
 #import "CustomDetailVC.h"
-
 #import "BoxView.h"
+#import "AddCustomerVC.h"
 
 
 @interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -120,8 +120,9 @@
     self.navBackgroundView.hidden = NO;
     self.leftButton.hidden = YES;
     self.view.backgroundColor = YJBackColor;
-     self.leftButton.hidden = YES;
-    
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setImage:[UIImage imageNamed:@"add_3"] forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(action_add) forControlEvents:UIControlEventTouchUpInside];
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
@@ -143,6 +144,13 @@
     _customerTable.dataSource = self;
     _customerTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_customerTable];
+}
+
+
+-(void)action_add
+{
+    AddCustomerVC *next_vc = [[AddCustomerVC alloc]init];
+    [self.navigationController pushViewController:next_vc animated:YES];
 }
 
 - (BoxView *)boxView{

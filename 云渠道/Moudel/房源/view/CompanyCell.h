@@ -15,10 +15,11 @@
 @property (nonatomic , strong) UILabel *contentlab;
 @property (nonatomic , strong) UILabel *statulab;
 @property (nonatomic , strong) TagView *tagview;
+@property (nonatomic , strong) TagView *wuyeview;
 
 -(void)SetTitle:(NSString *)title
           image:(NSString *)imagename
      contentlab:(NSString *)content
           statu:(NSString *)statu;
-
+-(void)settagviewWithdata:(NSArray *)data;
 @end
