@@ -10,6 +10,7 @@
 #import "SelectCompanyTableCell.h"
 #import "SelectCompanyCollCell.h"
 #import "BoxView.h"
+#import "CompanyDetailVC.h"
 
 @interface SelectCompanyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 
@@ -80,7 +81,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    CompanyDetailVC *nextVC = [[CompanyDetailVC alloc] init];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)initUI{

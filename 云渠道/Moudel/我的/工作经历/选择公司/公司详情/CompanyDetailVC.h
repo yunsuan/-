@@ -10,4 +10,6 @@
 
 @interface CompanyDetailVC : BaseViewController
 
+//- (void)initWithModel:()
+
 @end
