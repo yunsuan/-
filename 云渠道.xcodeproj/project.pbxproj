@@ -65,6 +65,8 @@
 		105E18DD206A36C40031558D /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 105E18DB206A36C40031558D /* libssl.a */; };
 		105E18DE206A36C40031558D /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 105E18DC206A36C40031558D /* libcrypto.a */; };
 		105E18E2206B41980031558D /* WorkMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18E1206B41980031558D /* WorkMessageCell.m */; };
+		105E18E7206B662C0031558D /* RecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18E6206B662C0031558D /* RecommendVC.m */; };
+		105E18EA206B66700031558D /* NomineeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18E9206B66700031558D /* NomineeVC.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -219,6 +221,10 @@
 		105E18DC206A36C40031558D /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
 		105E18E0206B41980031558D /* WorkMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkMessageCell.h; sourceTree = "<group>"; };
 		105E18E1206B41980031558D /* WorkMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkMessageCell.m; sourceTree = "<group>"; };
+		105E18E5206B662C0031558D /* RecommendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendVC.h; sourceTree = "<group>"; };
+		105E18E6206B662C0031558D /* RecommendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendVC.m; sourceTree = "<group>"; };
+		105E18E8206B66700031558D /* NomineeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeVC.h; sourceTree = "<group>"; };
+		105E18E9206B66700031558D /* NomineeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeVC.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -573,6 +579,8 @@
 		102DF96C2057A0A200E1859C /* 工作 */ = {
 			isa = PBXGroup;
 			children = (
+				105E18E3206B65E90031558D /* 被推荐的客户 */,
+				105E18E4206B65E90031558D /* 推荐 */,
 				10B2CAA9205A1DD800E814AC /* view */,
 				102DF9712057A14300E1859C /* WorkingVC.h */,
 				102DF9722057A14300E1859C /* WorkingVC.m */,
@@ -685,6 +693,24 @@
 				105E18E1206B41980031558D /* WorkMessageCell.m */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		105E18E3206B65E90031558D /* 被推荐的客户 */ = {
+			isa = PBXGroup;
+			children = (
+				105E18E8206B66700031558D /* NomineeVC.h */,
+				105E18E9206B66700031558D /* NomineeVC.m */,
+			);
+			path = "被推荐的客户";
+			sourceTree = "<group>";
+		};
+		105E18E4206B65E90031558D /* 推荐 */ = {
+			isa = PBXGroup;
+			children = (
+				105E18E5206B662C0031558D /* RecommendVC.h */,
+				105E18E6206B662C0031558D /* RecommendVC.m */,
+			);
+			path = "推荐";
 			sourceTree = "<group>";
 		};
 		106900012057974200E11F52 /* UserModel */ = {
@@ -1105,6 +1131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
 				0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */,
@@ -1152,6 +1179,7 @@
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				0C0B822E2064C99300238D4F /* SelectCompanyTableCell.m in Sources */,
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
+				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
