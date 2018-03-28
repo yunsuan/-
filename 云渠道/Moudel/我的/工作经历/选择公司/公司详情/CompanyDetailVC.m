@@ -121,21 +121,7 @@
     _briefL.frame = CGRectMake(10 *SIZE, 57 *SIZE, 335 *SIZE, height);
     
     [scrollView setContentSize:CGSizeMake(SCREEN_Width, height + 105 *SIZE + 108 *SIZE)];
-//    [_briefL mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.equalTo(_contentView).offset(57 *SIZE);
-//        make.left.equalTo(_contentView).offset(10 *SIZE);
-//        make.right.equalTo(_contentView).offset(-14 *SIZE);
-//        make.bottom.equalTo(_contentView).offset(-48 *SIZE);
-//    }];
-//
-//    [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.top.equalTo(self.navBackgroundView.mas_bottom).offset(108 *SIZE);
-//        make.left.equalTo(self.view).offset(0);
-//        make.right.equalTo(self.view).offset(0);
-//        make.top.equalTo(_briefL.mas_bottom).offset(48 *SIZE);
-//    }];
+
     
     _selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _selectBtn.frame = CGRectMake(0, SCREEN_Height - 43 *SIZE, SCREEN_Width, 43 *SIZE);

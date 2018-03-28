@@ -17,7 +17,7 @@
 #import "RoomDetailTableHeader.h"
 #import "RoomDetailTableHeader5.h"
 
-@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
+@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
 
     NSArray *_titleArr;
@@ -30,10 +30,15 @@
 
 @property (nonatomic, strong) UIButton *recommendBtn;
 
+@property (nonatomic, strong) UIView *parting;
+
 @property (nonatomic, strong) UIButton *counselBtn;
 
 @property (nonatomic, strong) BMKMapView *mapView;
 
+@property (nonatomic, assign) CGFloat alpha;
+
+@property (nonatomic, assign) BOOL animatFinsh;
 
 @end
 
@@ -72,11 +77,163 @@
     
 }
 
+#pragma mark -- animation Method
+
+- (void)navigationAnimation{
+    
+    WS(ws);
+    
+    if (_animatFinsh == NO) {
+    
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:{
+                    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+                        [ws.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.centerY.equalTo(ws.leftButton);
+                            make.left.equalTo(ws.leftButton.mas_right).offset(5 *SIZE);
+                            make.size.mas_offset(CGSizeMake(22, 22));
+                        }];
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+//                        _animatFinsh = YES;
+                    }];
+                    break;
+                }
+                case 1:{
+                    
+                    [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
+                        [ws.parting mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(ws.recommendBtn.mas_right).offset(5 *SIZE);
+                            make.centerY.equalTo(ws.leftButton);
+                            make.width.mas_equalTo(SIZE);
+                            make.height.mas_equalTo(14);
+                        }];
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+//                        _animatFinsh = YES;
+                    }];
+                    break;
+                }
+                case 2:{
+                    [UIView animateWithDuration:0.5 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
+                        [ws.segmentColl mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(ws.parting.mas_right);
+                            make.bottom.equalTo(ws.navBackgroundView);
+                            make.right.equalTo(ws.navBackgroundView);
+                            make.height.mas_equalTo(40);
+                        }];
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        _animatFinsh = YES;
+                    }];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+}
+
+- (void)resetFrame{
+    
+    WS(ws);
+    if (_animatFinsh == YES) {
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:{
+                    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
+                        [ws.segmentColl mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(ws.navBackgroundView.mas_right);
+                            make.bottom.equalTo(ws.navBackgroundView);
+                            make.size.mas_equalTo(CGSizeMake(100, 44));
+                        }];
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:nil];
+                    
+                    break;
+                }
+                case 1:{
+                    
+                    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
+                        [ws.parting mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(self.view.mas_right);
+                            make.centerY.equalTo(self.leftButton);
+                            make.width.mas_equalTo(SIZE);
+                            make.height.mas_equalTo(14);
+                        }];
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                    
+                    break;
+                }
+                case 2:{
+                    [UIView animateWithDuration:0.3 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
+                        [ws.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.centerY.equalTo(self.leftButton);
+                            make.right.equalTo(self.navBackgroundView).offset(- 8 *SIZE);
+                            make.size.mas_offset(CGSizeMake(22, 22));
+                        }];
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        _animatFinsh = NO;
+                    }];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+}
+
 #pragma mark -- delegate
 
 - (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
+}
+
+#pragma mark -- scrollView
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView == _roomTable) {
+        
+        // 计算当前偏移位置
+        CGFloat threholdHeight = 183 *SIZE - NAVIGATION_BAR_HEIGHT;
+        if (scrollView.contentOffset.y >= 0 &&
+            scrollView.contentOffset.y <= threholdHeight) {
+            self.alpha = scrollView.contentOffset.y / threholdHeight;
+            self.navBackgroundView.alpha = self.alpha;
+        }
+        else if (scrollView.contentOffset.y < 0){
+            scrollView.contentOffset = CGPointMake(0, 0);
+        }
+        else{
+            self.navBackgroundView.alpha = 1.0;
+            _recommendBtn.alpha = 1.0f;
+        }
+        
+        if (self.alpha == 0) {
+            _recommendBtn.alpha = 1.0;
+        }
+        
+        if (scrollView.contentOffset.y > threholdHeight &&
+            self.navBackgroundView.alpha == 1.0) {
+            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+            
+            [self navigationAnimation];
+
+        }else{
+            [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+            
+            [self resetFrame];
+        }
+    }
 }
 
 #pragma mark -- collectionview
@@ -326,7 +483,7 @@
     _flowLayout.minimumInteritemSpacing = 0;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(40 *SIZE, STATUS_BAR_HEIGHT, 280 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(SCREEN_Width, STATUS_BAR_HEIGHT, 280 *SIZE, 40) collectionViewLayout:_flowLayout];
     _segmentColl.backgroundColor = CH_COLOR_white;
     _segmentColl.delegate = self;
     _segmentColl.dataSource = self;
@@ -338,7 +495,7 @@
     
     _roomTable.rowHeight = 360 *SIZE;
     _roomTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE) style:UITableViewStyleGrouped];
+    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height - 47 *SIZE) style:UITableViewStyleGrouped];
     _roomTable.backgroundColor = self.view.backgroundColor;
     _roomTable.delegate = self;
     _roomTable.dataSource = self;
@@ -353,8 +510,43 @@
     [_counselBtn setBackgroundColor:COLOR(255, 188, 88, 1)];
     [_counselBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_counselBtn];
-
-
+    
+    [self.view addSubview:self.navBackgroundView];
+    
+//    [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//       
+//        make.centerY.equalTo(@42);
+//        make.centerX.equalTo(@(25 *SIZE));
+//        make.size.mas_offset(CGSizeMake(80 *SIZE, 33 *SIZE));
+//        
+////        _leftButton.center = CGPointMake(25 * sIZE, 20 + 22);
+////        _leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
+//    }];
+    
+    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
+//    [_recommendBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_recommendBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [self.view addSubview:self.recommendBtn];
+    [self.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.leftButton);
+        make.right.equalTo(self.navBackgroundView).offset(- 8 *SIZE);
+        make.size.mas_offset(CGSizeMake(22, 22));
+    }];
+    [self.view addSubview:self.leftButton];
+    [self.view addSubview:self.maskButton];
+    
+    self.parting = [[UIView alloc]init];
+    self.parting.backgroundColor = YJBackColor;
+    [self.view addSubview:self.parting];
+    
+    [self.parting mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_right);
+        make.centerY.equalTo(self.leftButton);
+        make.width.mas_equalTo(0.5);
+        make.height.mas_equalTo(14);
+    }];
+    
 }
 
 - (BMKMapView *)mapView{
