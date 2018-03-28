@@ -10,4 +10,12 @@
 
 @interface PersonalTableCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *titleL;
+
+@property (nonatomic, strong) UIImageView *headImg;
+
+@property (nonatomic, strong) UILabel *contentL;
+
+@property (nonatomic, strong) UIImageView *rightView;
+
 @end
