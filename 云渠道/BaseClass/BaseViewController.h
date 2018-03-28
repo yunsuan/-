@@ -51,7 +51,7 @@
 
 - (NSString *)isSplitHTTP:(NSString *)string;
 
--(NSString *)convertToJsonData:(NSDictionary *)dict;
+- (NSString *)convertToJsonData:(NSDictionary *)dict;
 
 /**
  *  md5加密

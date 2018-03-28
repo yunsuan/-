@@ -16,6 +16,8 @@
 @property (nonatomic , strong) UILabel *statulab;
 @property (nonatomic , strong) UILabel *surelab;
 @property (nonatomic , strong) TagView *tagview;
+@property (nonatomic , strong) TagView *wuyeview;
+
 
 -(void)SetTitle:(NSString *)title
           image:(NSString *)imagename

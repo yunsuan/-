@@ -10,4 +10,5 @@
 
 @interface singleviewCell : UICollectionViewCell
 @property(nonatomic, strong) UILabel *displayLabel;
+-(void)setstylebytype:(NSString *)type andsetlab:(NSString *)str;
 @end

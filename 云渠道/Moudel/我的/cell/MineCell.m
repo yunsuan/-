@@ -26,9 +26,8 @@
         _contentlab.textColor = YJContentLabColor;
         _contentlab.font =[UIFont systemFontOfSize:12*SIZE];
         [self.contentView addSubview:_contentlab];
-        UIImageView *tagview = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
-        tagview.frame = CGRectMake(343*SIZE, 36*SIZE, 8*SIZE, 12*SIZE);
-        tagview.backgroundColor = [UIColor redColor];
+        UIImageView *tagview = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"rightarrow"]];
+        tagview.frame = CGRectMake(343*SIZE, 15.7*SIZE, 6.7*SIZE, 12.3*SIZE);
         [self.contentView addSubview:tagview];
         UIView *lane = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE, 44*SIZE, 360*SIZE, 1*SIZE)];
         lane.backgroundColor = YJBackColor;

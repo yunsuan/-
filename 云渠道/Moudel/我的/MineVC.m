@@ -16,6 +16,7 @@
 {
     NSArray *_namelist;
     NSArray *_imageList;
+    NSArray *_contentList;
 }
 @property (nonatomic, strong) UIImageView *headImg;
 
@@ -44,30 +45,29 @@
     backview.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:backview];
     
-    _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, 42 *SIZE, 60 *SIZE, 60 *SIZE)];
+    _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, STATUS_BAR_HEIGHT+24 *SIZE, 60 *SIZE, 60 *SIZE)];
     _headImg.layer.cornerRadius = 30 *SIZE;
     _headImg.image = [UIImage imageNamed:@"def_head"];
     [self.view addSubview:_headImg];
     
-    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(91 *SIZE, 67 *SIZE, 160 *SIZE, 12 *SIZE)];
+    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(91 *SIZE, STATUS_BAR_HEIGHT+48.7 *SIZE, 160 *SIZE, 12 *SIZE)];
     _nameL.textColor = YJContentLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
     _nameL.text = @"56318754125623";
     [self.view addSubview:_nameL];
+//
+//    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(288 *SIZE, 48 *SIZE, 38 *SIZE, 38 *SIZE)];
+//    _codeImg.backgroundColor = YJGreenColor;
+//    [self.view addSubview:_codeImg];
     
-    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(288 *SIZE, 48 *SIZE, 38 *SIZE, 38 *SIZE)];
-    _codeImg.backgroundColor = YJGreenColor;
-    [self.view addSubview:_codeImg];
-    
-    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(344 *SIZE, 61 *SIZE, 7 *SIZE, 12 *SIZE)];
-    rightView.backgroundColor = YJGreenColor;
-    rightView.image = [UIImage imageNamed:@""];
+    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(344 *SIZE, STATUS_BAR_HEIGHT+42.7 *SIZE, 6.7 *SIZE, 12.3 *SIZE)];
+    rightView.image = [UIImage imageNamed:@"rightarrow"];
     [self.view addSubview:rightView];
     
-    _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _codeBtn.frame = CGRectMake(329 *SIZE, 56 *SIZE, 17 *SIZE, 22 *SIZE);
-    [_codeBtn addTarget:self action:@selector(ActionCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_codeBtn];
+//    _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _codeBtn.frame = CGRectMake(329 *SIZE, 56 *SIZE, 17 *SIZE, 22 *SIZE);
+//    [_codeBtn addTarget:self action:@selector(ActionCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:_codeBtn];
     
     [self.view addSubview:self.Mytableview];
 }
@@ -76,6 +76,7 @@
 {
     _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
     _imageList = @[@[@"certification",@"work"],@[@"commission",@"subscription",@"focus"],@[@"opinion",@"about",@"operation"]];
+    _contentList= @[@[@"云算科技公司",@""],@[@"",@"",@""],@[@" ",@"V1.0",@""]];
 }
 
 - (void)ActionCodeBtn:(UIButton *)btn{
@@ -104,7 +105,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45*SIZE;
+    return 43.3*SIZE;
 }
 
 
@@ -133,7 +134,7 @@
     if (!cell) {
         cell = [[MineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:_imageList[indexPath.section][indexPath.row] contentlab:@""];
+    [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:_imageList[indexPath.section][indexPath.row] contentlab:_contentList[indexPath.section][indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

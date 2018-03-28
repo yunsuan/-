@@ -28,8 +28,8 @@
         _statulab.textColor = COLOR(27, 152, 255, 1);
         _statulab.font = [UIFont systemFontOfSize:12*SIZE];
         [self.contentView addSubview:_statulab];
-        _tagview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 79.7*SIZE, 200*SIZE, 16.7*SIZE) DataSouce:@[@"学区房",@"天上",@"十分漂亮"] type:@"1"];
-        [self.contentView addSubview:_tagview];
+//        _tagview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 79.7*SIZE, 200*SIZE, 16.7*SIZE) DataSouce:@[@"学区房",@"天上",@"十分漂亮"] type:@"1"];
+//        [self.contentView addSubview:_tagview];
         UIView *lane = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE, 119*SIZE, 360*SIZE, 1*SIZE)];
         lane.backgroundColor = YJBackColor;
         [self.contentView addSubview:lane];
@@ -45,4 +45,12 @@
 }
 
 
+-(void)settagviewWithdata:(NSArray *)data
+{
+    _wuyeview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 56.3*SIZE, 200*SIZE, 16.7*SIZE) DataSouce:data[0] type:@"0"];
+    [self.contentView addSubview:_wuyeview];
+    
+    _tagview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 79.7*SIZE, 200*SIZE, 16.7*SIZE) DataSouce:data[1] type:@"1"];
+    [self.contentView addSubview:_tagview];
+}
 @end
