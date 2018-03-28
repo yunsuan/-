@@ -19,6 +19,7 @@
 @property (nonatomic , assign)  NSInteger sec;
 @property (nonatomic , strong) NSTimer *timer;
 
+
 @end
 
 @implementation CountDownCell
@@ -35,6 +36,7 @@
 
 -(void)initUI
 {
+    
     _dayL = [[UILabel alloc]init];
     _dayL.textColor = [UIColor whiteColor];
     _dayL.textAlignment = NSTextAlignmentCenter;
@@ -50,6 +52,13 @@
         make.height.mas_equalTo(30*SIZE);
         make.bottom.equalTo(self.contentView).offset(-15*SIZE);
     }];
+    for (int i=0; i<3; i++) {
+        UILabel *maohao = [[UILabel alloc]initWithFrame:CGRectMake(132*SIZE+i*44*SIZE, 30*SIZE, 10*SIZE, 30*SIZE)];
+        maohao.textColor = COLOR(255, 165, 29, 1);
+        maohao.text = @":";
+        [self.contentView addSubview:maohao];
+    }
+ 
     _hourL= [[UILabel alloc]init];
     _hourL.textColor = [UIColor whiteColor];
     _hourL.textAlignment = NSTextAlignmentCenter;
@@ -90,14 +99,17 @@
     _secL.layer.cornerRadius = 3.3*SIZE;
     [self.contentView addSubview:_secL];
     [_secL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(232.7*SIZE);
+        make.left.equalTo(self.contentView).offset(228.7*SIZE);
         make.top.equalTo(self.contentView).offset(30*SIZE);
         make.width.mas_equalTo(30*SIZE);
         make.height.mas_equalTo(30*SIZE);
         make.bottom.equalTo(self.contentView).offset(-15*SIZE);
     }];
-  
-
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(27*SIZE, 0*SIZE, 300*SIZE, 14*SIZE)];
+    title.font = [UIFont systemFontOfSize:13.3*SIZE];
+    title.textColor = YJTitleLabColor;
+    title.text = @"失效倒计时：";
+    [self.contentView addSubview:title];
 }
 
 
