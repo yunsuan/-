@@ -144,7 +144,7 @@
     if(indexPath.section == 0)
     {
         
-        if (indexPath.row) {
+        if (indexPath.row ==1) {
             
             AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
