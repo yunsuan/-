@@ -9,6 +9,7 @@
 #import "MessageVC.h"
 #import "MessageTableCell.h"
 #import "SystemMessageVC.h"
+#import "WorkMessageVC.h"
 
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -57,7 +58,8 @@
         [self.navigationController pushViewController:next_vc  animated:YES];
     }
     else{
-        
+        WorkMessageVC *next_vc = [[WorkMessageVC alloc]init];
+        [self.navigationController pushViewController:next_vc animated:YES];
     }
 }
 

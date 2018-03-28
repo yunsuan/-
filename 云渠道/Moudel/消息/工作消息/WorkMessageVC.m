@@ -7,8 +7,16 @@
 //
 
 #import "WorkMessageVC.h"
+#import "WorkMessageCell.h"
+#import "InfoDetailVC.h"
 
-@interface WorkMessageVC ()
+@interface WorkMessageVC ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic , strong) UITableView *systemmsgtable;
+
+
+-(void)initUI;
+-(void)initDateSouce;
 
 @end
 
@@ -16,22 +24,77 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = YJBackColor;
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.text = @"工作消息";
+    [self initDateSouce];
+    [self initUI];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)initDateSouce
+{
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)initUI
+{
+    [self.view addSubview:self.systemmsgtable];
+    
 }
-*/
 
+
+
+
+#pragma mark  ---  delegate   ---
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 127*SIZE;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"WorkMessageCell";
+    
+    WorkMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[WorkMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    [cell SetCellbytitle:@"报备的客户" num:@"推荐编号：12456223223"  name:@"姓名：冷月影" project:@"项目：云算公馆" time:@"2017-11-23 12 : 56 : 32" messageimg:0];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
+    [self.navigationController pushViewController:next_vc animated:YES];
+}
+
+
+
+#pragma mark  ---  懒加载   ---
+-(UITableView *)systemmsgtable
+{
+    if(!_systemmsgtable)
+    {
+        _systemmsgtable =   [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+        _systemmsgtable.backgroundColor = YJBackColor;
+        _systemmsgtable.delegate = self;
+        _systemmsgtable.dataSource = self;
+        [_systemmsgtable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    }
+    return _systemmsgtable;
+}
 @end

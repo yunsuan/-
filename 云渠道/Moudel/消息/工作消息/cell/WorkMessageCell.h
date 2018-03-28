@@ -10,4 +10,18 @@
 
 @interface WorkMessageCell : UITableViewCell
 
+@property (nonatomic , strong) UILabel *titlelab;
+@property (nonatomic , strong) UILabel *contentlab;
+@property (nonatomic , strong) UILabel *numlab;
+@property (nonatomic , strong) UILabel *namelab;
+@property (nonatomic , strong) UILabel *projectlab;
+@property (nonatomic , strong) UILabel *timelab;
+@property (nonatomic , strong) UIImageView *messageimg;
+
+-(void)SetCellbytitle:(NSString *)title
+                  num:(NSString *)num
+                 name:(NSString *)name
+              project:(NSString *)project
+                 time:(NSString *)time
+           messageimg:(BOOL)isopen;
 @end
