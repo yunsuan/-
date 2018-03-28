@@ -10,4 +10,18 @@
 
 @interface CompanyModel : NSObject
 
+@property (nonatomic, copy) NSString *headImg;
+
+@property (nonatomic, copy) NSString *name;
+
+@property (nonatomic, copy) NSString *contact;
+
+@property (nonatomic, copy) NSString *code;
+
+@property (nonatomic, copy) NSString *address;
+
+@property (nonatomic, copy) NSString *phone;
+
+@property (nonatomic, copy) NSString *brief;
+
 @end
