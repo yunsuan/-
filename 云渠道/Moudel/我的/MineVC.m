@@ -146,10 +146,13 @@
     {
         
 
-        if (indexPath.row ==1) {
+        if (indexPath.row == 0) {
             AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            
         }
     }
     else if (indexPath.section ==1)
