@@ -39,6 +39,10 @@
         
         cell = [[RoomCellCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 220 *SIZE)];
     }
+    cell.letterL.text = @"A型";
+    cell.areaL.text = @"102m";
+    cell.typeL.text = @"3室1厅1卫";
+    cell.statusL.text = @"在售";
     
     return cell;
 }
@@ -58,7 +62,6 @@
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _cellColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 33 *SIZE, SCREEN_Width, 220 *SIZE) collectionViewLayout:_flowLayout];
-//    [_cellColl setCollectionViewLayout:_flowLayout];
     _cellColl.backgroundColor = self.contentView.backgroundColor;
     _cellColl.delegate = self;
     _cellColl.dataSource = self;

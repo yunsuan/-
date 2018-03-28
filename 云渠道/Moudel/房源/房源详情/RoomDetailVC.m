@@ -15,11 +15,11 @@
 #import "RoomDetailTableCell4.h"
 #import "RoomDetailTableCell5.h"
 #import "RoomDetailTableHeader.h"
-#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import "RoomDetailTableHeader5.h"
 
-@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
+@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
 {
-    BMKLocationService *_locationManager;
+
     NSArray *_titleArr;
 }
 @property (nonatomic, strong) UICollectionView *segmentColl;
@@ -31,6 +31,8 @@
 @property (nonatomic, strong) UIButton *recommendBtn;
 
 @property (nonatomic, strong) UIButton *counselBtn;
+
+@property (nonatomic, strong) BMKMapView *mapView;
 
 
 @end
@@ -46,27 +48,15 @@
     [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
 }
 
+- (void)MapViewPopMethod{
+    
+    self.mapView.delegate = nil;
+    [self.mapView removeFromSuperview];
+}
+
 - (void)initDataSource{
     
-    _titleArr = @[@"详情",@"佣金",@"分析"];
-    
-    //初始化实例
-    _locationManager = [[BMKLocationService alloc] init];
-    //设置delegate
-    _locationManager.delegate = self;
-    //设置返回位置的坐标系类型
-//    _locationManager.coordinateType = BMKLocationCoordinateTypeBMK09LL;
-    //设置距离过滤参数
-    _locationManager.distanceFilter = kCLDistanceFilterNone;
-    //设置预期精度参数
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    //设置应用位置类型
-//    _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
-    //设置是否自动停止位置更新
-    _locationManager.pausesLocationUpdatesAutomatically = NO;
-    //设置是否允许后台定位
-    _locationManager.allowsBackgroundLocationUpdates = YES;
-    //设置位置获取超时时间
+    _titleArr = @[@"楼盘",@"动态",@"楼栋",@"户型",@"分析",@"佣金"];
 }
 
 - (void)ActionMoreBtn:(UIButton *)btn{
@@ -82,10 +72,17 @@
     
 }
 
+#pragma mark -- delegate
+
+- (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+}
+
 #pragma mark -- collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 3;
+    return 6;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -93,7 +90,7 @@
     RoomDetailCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomDetailCollCell" forIndexPath:indexPath];
     if (!cell) {
         
-        cell = [[RoomDetailCollCell alloc] initWithFrame:CGRectMake(0, 0, 64 *SIZE, 40 *SIZE)];
+        cell = [[RoomDetailCollCell alloc] initWithFrame:CGRectMake(0, 0, 50 *SIZE, 40 *SIZE)];
     }
     cell.titleL.text = _titleArr[indexPath.item];
 
@@ -168,7 +165,14 @@
         
         if (section == 5) {
             
-            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 33 *SIZE)];
+            RoomDetailTableHeader5 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader5"];
+            if (!header) {
+                
+                header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
+            }
+            header.numL.text = @"匹配的客户(23)";
+            
+            return header;
         }else{
             
             return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 6 *SIZE)];
@@ -241,7 +245,7 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.num = 10;
-            //                cell.cellColl
+            
             return cell;
             break;
         }
@@ -251,9 +255,20 @@
             if (!cell) {
                 
                 cell = [[RoomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell4"];
+                [cell.contentView addSubview:self.mapView];
+                [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.equalTo(cell.contentView).offset(0);
+                    make.top.equalTo(cell.contentView).offset(33 *SIZE);
+                    make.right.equalTo(cell.contentView).offset(0);
+                    make.width.equalTo(@(360 *SIZE));
+                    make.height.equalTo(@(187 *SIZE));
+                    make.bottom.equalTo(cell.contentView).offset(-59 *SIZE);
+                }];
             }
+            cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.mapView.delegate = self;
+
             return cell;
             break;
         }
@@ -297,20 +312,26 @@
     }
 }
 
+
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.hidden = NO;
     
+    [self.maskButton addTarget:self action:@selector(MapViewPopMethod) forControlEvents:UIControlEventTouchUpInside];
+    
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(64 *SIZE, 44 *SIZE);
+    _flowLayout.itemSize = CGSizeMake(50 *SIZE, 44 *SIZE);
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(84 *SIZE, STATUS_BAR_HEIGHT, 192 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(40 *SIZE, STATUS_BAR_HEIGHT, 280 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
     _segmentColl.backgroundColor = CH_COLOR_white;
     _segmentColl.delegate = self;
     _segmentColl.dataSource = self;
+    _segmentColl.showsHorizontalScrollIndicator = NO;
+    _segmentColl.bounces = NO;
     [_segmentColl registerClass:[RoomDetailCollCell class] forCellWithReuseIdentifier:@"RoomDetailCollCell"];
     [self.navBackgroundView addSubview:_segmentColl];
     
@@ -325,25 +346,28 @@
     [self.view addSubview:_roomTable];
     
     _counselBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _counselBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE, 120 *SIZE, 47 *SIZE);
+    _counselBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE, SCREEN_Width, 47 *SIZE);
     _counselBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
 //    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
     [_counselBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
     [_counselBtn setBackgroundColor:COLOR(255, 188, 88, 1)];
     [_counselBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_counselBtn];
-    
-    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _recommendBtn.frame = CGRectMake(120 *SIZE, SCREEN_Height - 47 *SIZE, 240 *SIZE, 47 *SIZE);
-    _recommendBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    //    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
-    [_recommendBtn setTitle:@"推荐" forState:UIControlStateNormal];
-    [_recommendBtn setBackgroundColor:COLOR(27, 152, 255, 1)];
-    [_recommendBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_recommendBtn];
+
 
 }
 
+- (BMKMapView *)mapView{
+    
+    if (!_mapView) {
+        
+        _mapView = [[BMKMapView alloc] init];
+        _mapView.delegate = self;
+        _mapView.userInteractionEnabled = NO;
+//        [self.contentView addSubview:_mapView];
+    }
+    return _mapView;
+}
 
 
 @end

@@ -20,31 +20,6 @@
     return self;
 }
 
-//- (void)setModel:(CustomerTableModel *)model{
-//    
-//    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HTTPHEAD,model.headStr]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//        
-//    }];
-//    _nameL.text = model.name;
-//    _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.price];
-//    _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.type];
-//    _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.area];
-//    
-//    NSMutableAttributedString *matchStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",model.matchRate,@"%"]];
-//    [matchStr addAttribute:NSForegroundColorAttributeName value:COLOR(27, 152, 255, 1) range:NSMakeRange(4, matchStr.length - 4)];
-//    _matchRateL.attributedText = matchStr;
-//    
-//    _phoneL.text = [NSString stringWithFormat:@"%@",model.phone];
-//    
-//    NSMutableAttributedString *intentionStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买意向度：%@%@",model.intention,@"%"]];
-//    [intentionStr addAttribute:NSForegroundColorAttributeName value:COLOR(255, 165, 29, 1) range:NSMakeRange(6, intentionStr.length - 6)];
-//    _intentionRateL.attributedText = intentionStr;
-//    
-//    NSMutableAttributedString *urgentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买紧迫度：%@%@",model.urgent,@"%"]];
-//    [urgentStr addAttribute:NSForegroundColorAttributeName value:COLOR(255, 165, 29, 1) range:NSMakeRange(6, urgentStr.length - 6)];
-//    _urgentRateL.attributedText = urgentStr;
-//    
-//}
 
 - (void)initUI{
     

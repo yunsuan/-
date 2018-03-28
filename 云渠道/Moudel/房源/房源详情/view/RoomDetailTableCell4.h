@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RoomDetailTableCell4Delegate <NSObject>
+
+- (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface RoomDetailTableCell4 : UITableViewCell
 
-@property (nonatomic, strong) BMKMapView *mapView;
+@property (nonatomic, strong) UICollectionView *POIColl;
+
+@property (nonatomic, weak) id<RoomDetailTableCell4Delegate> delegate;
 
 @end

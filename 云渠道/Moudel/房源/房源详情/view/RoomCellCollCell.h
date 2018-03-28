@@ -10,6 +10,17 @@
 
 @interface RoomCellCollCell : UICollectionViewCell
 
+@property (nonatomic, strong) UIImageView *typeImg;
+
+@property (nonatomic, strong) UILabel *letterL;
+
+@property (nonatomic, strong) UILabel *areaL;
+
+@property (nonatomic, strong) UILabel *typeL;
+
+@property (nonatomic, strong) UILabel *statusL;
+
+
 
 
 @end
