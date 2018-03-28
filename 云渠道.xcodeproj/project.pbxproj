@@ -42,6 +42,7 @@
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
 		0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */; };
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
+		0CE47B5E206B6AB1001ADD73 /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B5D206B6AB1001ADD73 /* CompanyDetailVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -179,6 +180,8 @@
 		0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell4.m; sourceTree = "<group>"; };
 		0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader5.h; sourceTree = "<group>"; };
 		0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableHeader5.m; sourceTree = "<group>"; };
+		0CE47B5C206B6AB1001ADD73 /* CompanyDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyDetailVC.h; sourceTree = "<group>"; };
+		0CE47B5D206B6AB1001ADD73 /* CompanyDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -406,6 +409,7 @@
 		0C0B82272064C62700238D4F /* 选择公司 */ = {
 			isa = PBXGroup;
 			children = (
+				0CE47B5B206B6A9B001ADD73 /* 公司详情 */,
 				0C0B822B2064C97B00238D4F /* view */,
 				0C0B82282064C66A00238D4F /* SelectCompanyVC.h */,
 				0C0B82292064C66A00238D4F /* SelectCompanyVC.m */,
@@ -489,6 +493,15 @@
 				0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0CE47B5B206B6A9B001ADD73 /* 公司详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0CE47B5C206B6AB1001ADD73 /* CompanyDetailVC.h */,
+				0CE47B5D206B6AB1001ADD73 /* CompanyDetailVC.m */,
+			);
+			path = "公司详情";
 			sourceTree = "<group>";
 		};
 		0CF74238206229B1001F926F /* view */ = {
@@ -1194,6 +1207,7 @@
 				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
+				0CE47B5E206B6AB1001ADD73 /* CompanyDetailVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
