@@ -89,40 +89,35 @@
             switch (i) {
                 case 0:{
                     [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-                        [ws.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.centerY.equalTo(ws.leftButton);
-                            make.left.equalTo(ws.leftButton.mas_right).offset(5 *SIZE);
-                            make.size.mas_offset(CGSizeMake(22, 22));
-                        }];
+                       
+                        ws.recommendBtn.frame = CGRectMake(85 *SIZE, STATUS_BAR_HEIGHT + 8, 24, 24);
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:^(BOOL finished) {
-//                        _animatFinsh = YES;
+
                     }];
                     break;
                 }
                 case 1:{
                     
                     [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
-                        [ws.parting mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(ws.recommendBtn.mas_right).offset(5 *SIZE);
-                            make.centerY.equalTo(ws.leftButton);
-                            make.width.mas_equalTo(SIZE);
-                            make.height.mas_equalTo(14);
-                        }];
+                        
+                        ws.parting.frame = CGRectMake(CGRectGetMaxX(ws.recommendBtn.frame) + 5 *SIZE, STATUS_BAR_HEIGHT + 10, SIZE, 20);
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:^(BOOL finished) {
-//                        _animatFinsh = YES;
+                        
                     }];
                     break;
                 }
                 case 2:{
                     [UIView animateWithDuration:0.5 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
-                        [ws.segmentColl mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(ws.parting.mas_right);
-                            make.bottom.equalTo(ws.navBackgroundView);
-                            make.right.equalTo(ws.navBackgroundView);
-                            make.height.mas_equalTo(40);
-                        }];
+                        
+                        ws.segmentColl.frame = CGRectMake(CGRectGetMaxX(ws.parting.frame) + 5 *SIZE, STATUS_BAR_HEIGHT, SCREEN_Width - CGRectGetMaxX(ws.parting.frame) - 5 *SIZE, 40);
+//                        [ws.segmentColl mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                            make.left.equalTo(ws.parting.mas_right);
+//                            make.bottom.equalTo(ws.navBackgroundView);
+//                            make.right.equalTo(ws.navBackgroundView);
+//                            make.height.mas_equalTo(40);
+//                        }];
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:^(BOOL finished) {
                         _animatFinsh = YES;
@@ -144,11 +139,8 @@
             switch (i) {
                 case 0:{
                     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
-                        [ws.segmentColl mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(ws.navBackgroundView.mas_right);
-                            make.bottom.equalTo(ws.navBackgroundView);
-                            make.size.mas_equalTo(CGSizeMake(100, 44));
-                        }];
+                        
+                        ws.segmentColl.frame = CGRectMake(SCREEN_Width, STATUS_BAR_HEIGHT, 280 *SIZE, 40);
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:nil];
                     
@@ -157,12 +149,8 @@
                 case 1:{
                     
                     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
-                        [ws.parting mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(self.view.mas_right);
-                            make.centerY.equalTo(self.leftButton);
-                            make.width.mas_equalTo(SIZE);
-                            make.height.mas_equalTo(14);
-                        }];
+                        
+                        ws.parting.frame = CGRectMake(SCREEN_Width, STATUS_BAR_HEIGHT + 10, SIZE, 20);
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:^(BOOL finished) {
                         
@@ -172,11 +160,8 @@
                 }
                 case 2:{
                     [UIView animateWithDuration:0.3 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
-                        [ws.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.centerY.equalTo(self.leftButton);
-                            make.right.equalTo(self.navBackgroundView).offset(- 8 *SIZE);
-                            make.size.mas_offset(CGSizeMake(22, 22));
-                        }];
+                        
+                        ws.recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:^(BOOL finished) {
                         _animatFinsh = NO;
@@ -512,19 +497,10 @@
     [self.view addSubview:_counselBtn];
     
     [self.view addSubview:self.navBackgroundView];
-    
-//    [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//       
-//        make.centerY.equalTo(@42);
-//        make.centerX.equalTo(@(25 *SIZE));
-//        make.size.mas_offset(CGSizeMake(80 *SIZE, 33 *SIZE));
-//        
-////        _leftButton.center = CGPointMake(25 * sIZE, 20 + 22);
-////        _leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
-//    }];
-    
+
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
+    _recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
+//    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
 //    [_recommendBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
     [_recommendBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [self.view addSubview:self.recommendBtn];
@@ -536,16 +512,9 @@
     [self.view addSubview:self.leftButton];
     [self.view addSubview:self.maskButton];
     
-    self.parting = [[UIView alloc]init];
+    self.parting = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_Width, STATUS_BAR_HEIGHT + 10, SIZE, 20)];
     self.parting.backgroundColor = YJBackColor;
     [self.view addSubview:self.parting];
-    
-    [self.parting mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_right);
-        make.centerY.equalTo(self.leftButton);
-        make.width.mas_equalTo(0.5);
-        make.height.mas_equalTo(14);
-    }];
     
 }
 
@@ -556,7 +525,6 @@
         _mapView = [[BMKMapView alloc] init];
         _mapView.delegate = self;
         _mapView.userInteractionEnabled = NO;
-//        [self.contentView addSubview:_mapView];
     }
     return _mapView;
 }
