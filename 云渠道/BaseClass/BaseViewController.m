@@ -101,10 +101,10 @@
 - (UIButton *)rightBtn {
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.center = CGPointMake(SCREEN_Width - 50 * SIZE, 45);
+        _rightBtn.center = CGPointMake(SCREEN_Width - 25 * SIZE, STATUS_BAR_HEIGHT+20);
         _rightBtn.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
-        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13 * SIZE];
+//        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13 * SIZE];
         _rightBtn.hidden = YES;
     }
     return _rightBtn;
