@@ -107,7 +107,7 @@
     }];
     UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(27*SIZE, 0*SIZE, 300*SIZE, 14*SIZE)];
     title.font = [UIFont systemFontOfSize:13.3*SIZE];
-    title.textColor = YJTitleLabColor;
+    title.textColor = YJContentLabColor;
     title.text = @"失效倒计时：";
     [self.contentView addSubview:title];
 }
