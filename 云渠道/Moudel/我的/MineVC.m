@@ -15,6 +15,7 @@
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_namelist;
+    NSArray *_imageList;
 }
 @property (nonatomic, strong) UIImageView *headImg;
 
@@ -73,7 +74,8 @@
 
 -(void)InitDataSouce
 {
-    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家",@"退出登录"]];
+    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
+    _imageList = @[@[@"certification",@"work"],@[@"commission",@"subscription",@"focus"],@[@"opinion",@"about",@"operation"]];
 }
 
 - (void)ActionCodeBtn:(UIButton *)btn{
@@ -131,7 +133,7 @@
     if (!cell) {
         cell = [[MineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:@"" contentlab:@""];
+    [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:_imageList[indexPath.section][indexPath.row] contentlab:@""];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

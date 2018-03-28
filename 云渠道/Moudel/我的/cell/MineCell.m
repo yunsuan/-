@@ -15,7 +15,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _icon = [[UIImageView alloc]initWithFrame:CGRectMake(15*SIZE,13*SIZE, 17*SIZE, 19*SIZE)];
+        _icon = [[UIImageView alloc]initWithFrame:CGRectMake(15*SIZE,13*SIZE, 19*SIZE, 19*SIZE)];
         [self.contentView addSubview:_icon];
         _titlelab = [[UILabel alloc]initWithFrame:CGRectMake(43*SIZE, 15*SIZE, 200*SIZE, 15*SIZE)];
         _titlelab.textColor = YJTitleLabColor;
