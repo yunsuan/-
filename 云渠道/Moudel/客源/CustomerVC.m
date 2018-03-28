@@ -11,8 +11,8 @@
 #import "CustomerCollCell.h"
 #import "CustomerTableModel.h"
 #import "CustomDetailVC.h"
-
 #import "BoxView.h"
+#import "AddCustomerVC.h"
 
 
 @interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -149,7 +149,8 @@
 
 -(void)action_add
 {
-    
+    AddCustomerVC *next_vc = [[AddCustomerVC alloc]init];
+    [self.navigationController pushViewController:next_vc animated:YES];
 }
 
 - (BoxView *)boxView{
