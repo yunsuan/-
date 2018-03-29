@@ -13,6 +13,7 @@
 		0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCF2060E7EE007F31EC /* CustomerTableCell.m */; };
 		0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */; };
 		0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF52206C820E005BB3B4 /* MyBrokerageVC.m */; };
+		0C08BF57206C835B005BB3B4 /* BrokerageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF56206C835B005BB3B4 /* BrokerageTableCell.m */; };
 		0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82022063467C00238D4F /* RoomCollCell.m */; };
 		0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82062063514500238D4F /* CustomDetailVC.m */; };
 		0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B820A20638A2A00238D4F /* CustomDetailTableCell.m */; };
@@ -129,6 +130,8 @@
 		0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerTableModel.m; sourceTree = "<group>"; };
 		0C08BF51206C820E005BB3B4 /* MyBrokerageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBrokerageVC.h; sourceTree = "<group>"; };
 		0C08BF52206C820E005BB3B4 /* MyBrokerageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBrokerageVC.m; sourceTree = "<group>"; };
+		0C08BF55206C835B005BB3B4 /* BrokerageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageTableCell.h; sourceTree = "<group>"; };
+		0C08BF56206C835B005BB3B4 /* BrokerageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageTableCell.m; sourceTree = "<group>"; };
 		0C0B82012063467C00238D4F /* RoomCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCollCell.h; sourceTree = "<group>"; };
 		0C0B82022063467C00238D4F /* RoomCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCollCell.m; sourceTree = "<group>"; };
 		0C0B82052063514500238D4F /* CustomDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailVC.h; sourceTree = "<group>"; };
@@ -345,6 +348,15 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		0C08BF54206C831C005BB3B4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C08BF55206C835B005BB3B4 /* BrokerageTableCell.h */,
+				0C08BF56206C835B005BB3B4 /* BrokerageTableCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,6 +571,7 @@
 		0CF7423F20622C9D001F926F /* 我的佣金 */ = {
 			isa = PBXGroup;
 			children = (
+				0C08BF54206C831C005BB3B4 /* view */,
 				105E18AF20637D310031558D /* 未结佣金 */,
 				105E18AC20637D310031558D /* 已结佣金 */,
 				0CF7424020622C9D001F926F /* 银行卡 */,
@@ -1310,6 +1323,7 @@
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
+				0C08BF57206C835B005BB3B4 /* BrokerageTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
