@@ -86,6 +86,7 @@
 		105E18F2206B6C340031558D /* NomineeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18F1206B6C340031558D /* NomineeCell.m */; };
 		105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18F5206B8FDB0031558D /* AddCustomerVC.m */; };
 		105E18FA206C829A0031558D /* SinglePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18F9206C829A0031558D /* SinglePickView.m */; };
+		105E18FE206CB5320031558D /* DropDownBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18FD206CB5320031558D /* DropDownBtn.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
 		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
 		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
@@ -282,6 +283,8 @@
 		105E18F5206B8FDB0031558D /* AddCustomerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCustomerVC.m; sourceTree = "<group>"; };
 		105E18F8206C829A0031558D /* SinglePickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePickView.h; sourceTree = "<group>"; };
 		105E18F9206C829A0031558D /* SinglePickView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePickView.m; sourceTree = "<group>"; };
+		105E18FC206CB5320031558D /* DropDownBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropDownBtn.h; sourceTree = "<group>"; };
+		105E18FD206CB5320031558D /* DropDownBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropDownBtn.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
 		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
 		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
@@ -895,6 +898,15 @@
 			path = "单选下拉框";
 			sourceTree = "<group>";
 		};
+		105E18FB206CB35C0031558D /* 自定义按钮 */ = {
+			isa = PBXGroup;
+			children = (
+				105E18FC206CB5320031558D /* DropDownBtn.h */,
+				105E18FD206CB5320031558D /* DropDownBtn.m */,
+			);
+			path = "自定义按钮";
+			sourceTree = "<group>";
+		};
 		106900012057974200E11F52 /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,6 +1048,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				105E18FB206CB35C0031558D /* 自定义按钮 */,
 				105E18F7206C82700031558D /* 单选下拉框 */,
 				105E18952060EAD70031558D /* 自定义标签 */,
 				1069FFFC2057974100E11F52 /* RootTabBar */,
@@ -1366,6 +1379,7 @@
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
+				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
