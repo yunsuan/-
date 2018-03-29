@@ -59,5 +59,13 @@
 -(NSString *)md5:(NSString *)str;
 
 - (void)showContent:(NSString *)str;
+
+//图片压缩至希望的大小
+- (NSData *)resetSizeOfImageData:(UIImage *)source_image maxSize:(NSInteger)maxSize;
+
+//拍照后对图片进行处理
+- (UIImage *)fixOrientation:(UIImage *)aImage;
+
+
 @end
 
