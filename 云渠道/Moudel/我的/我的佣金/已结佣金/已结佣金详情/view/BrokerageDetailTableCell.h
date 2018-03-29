@@ -10,4 +10,12 @@
 
 @interface BrokerageDetailTableCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *titleL;
+
+@property (nonatomic, strong) UILabel *nameL;
+
+@property (nonatomic, strong) UILabel *genderL;
+
+@property (nonatomic, strong) UILabel *phoneL;
+
 @end

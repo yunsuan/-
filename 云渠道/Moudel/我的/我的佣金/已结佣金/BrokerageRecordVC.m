@@ -8,6 +8,7 @@
 
 #import "BrokerageRecordVC.h"
 #import "BrokerageCell.h"
+#import "BrokerageDetailVC.h"
 
 @interface BrokerageRecordVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -93,6 +94,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    BrokerageDetailVC *nextVC = [[BrokerageDetailVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
+    
     switch (indexPath.row) {
         case 0:
         {
