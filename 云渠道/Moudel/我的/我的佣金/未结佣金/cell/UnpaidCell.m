@@ -36,7 +36,7 @@
     _nameL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_nameL];
     
-    _phoneL = [[UILabel alloc] initWithFrame:CGRectMake(75 *SIZE, 16 *SIZE, 100 *SIZE, 9 *SIZE)];
+    _phoneL = [[UILabel alloc] initWithFrame:CGRectMake(75 *SIZE, 16 *SIZE, 100 *SIZE, 10 *SIZE)];
     _phoneL.textColor = YJContentLabColor;
     _phoneL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_phoneL];
@@ -47,12 +47,12 @@
     [self.contentView addSubview:_unitL];
     
     _codeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 62 *SIZE, 200 *SIZE, 11 *SIZE)];
-    _codeL.textColor = YJContentLabColor;
+    _codeL.textColor = YJTitleLabColor;
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
     
     _typeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 85 *SIZE, 100 *SIZE, 11 *SIZE)];
-    _typeL.textColor = YJContentLabColor;
+    _typeL.textColor = YJTitleLabColor;
     _typeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_typeL];
     

@@ -10,4 +10,20 @@
 
 @interface BrokerageCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel *nameL;
+
+@property (nonatomic, strong) UILabel *phoneL;
+
+@property (nonatomic, strong) UILabel *unitL;
+
+@property (nonatomic, strong) UILabel *codeL;
+
+@property (nonatomic, strong) UILabel *typeL;
+
+@property (nonatomic, strong) UILabel *timeL;
+
+@property (nonatomic, strong) UILabel *endTimeL;
+
+@property (nonatomic, strong) UILabel *priceL;
+
 @end
