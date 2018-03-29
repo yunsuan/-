@@ -11,6 +11,7 @@
 #import "BankCardListVC.h"
 #import "ChangePassWordVC.h"
 #import "AuthenticationVC.h"
+#import "PersonalVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -64,10 +65,10 @@
     rightView.image = [UIImage imageNamed:@"rightarrow"];
     [self.view addSubview:rightView];
     
-//    _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _codeBtn.frame = CGRectMake(329 *SIZE, 56 *SIZE, 17 *SIZE, 22 *SIZE);
-//    [_codeBtn addTarget:self action:@selector(ActionCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_codeBtn];
+    _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _codeBtn.frame = CGRectMake(0 *SIZE, 0 *SIZE, SCREEN_Width, STATUS_BAR_HEIGHT+114*SIZE);
+    [_codeBtn addTarget:self action:@selector(ActionCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_codeBtn];
     
     [self.view addSubview:self.Mytableview];
 }
@@ -81,7 +82,7 @@
 
 - (void)ActionCodeBtn:(UIButton *)btn{
     
-    ChangePassWordVC *nextVC = [[ChangePassWordVC alloc] init];
+    PersonalVC *nextVC = [[PersonalVC alloc] init];
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
@@ -146,10 +147,13 @@
     {
         
 
-        if (indexPath.row ==1) {
+        if (indexPath.row == 0) {
             AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            
         }
     }
     else if (indexPath.section ==1)

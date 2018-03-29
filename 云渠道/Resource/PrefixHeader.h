@@ -172,4 +172,6 @@
  */
 #define FyColor_ZhutiColor  COLOR(18, 183, 245, 1)
 
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
 #endif /* Header_h */
