@@ -21,6 +21,7 @@
 		0C08BF69206CC543005BB3B4 /* BrokerageDetailTableCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF68206CC543005BB3B4 /* BrokerageDetailTableCell3.m */; };
 		0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF6B206CCF55005BB3B4 /* BrokerDetailHeader.m */; };
 		0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF6E206CD72E005BB3B4 /* BrokerageDetailTableCell4.m */; };
+		0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF72206CD9C7005BB3B4 /* IDcardAuthenticationVC.m */; };
 		0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82022063467C00238D4F /* RoomCollCell.m */; };
 		0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82062063514500238D4F /* CustomDetailVC.m */; };
 		0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B820A20638A2A00238D4F /* CustomDetailTableCell.m */; };
@@ -155,6 +156,8 @@
 		0C08BF6B206CCF55005BB3B4 /* BrokerDetailHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerDetailHeader.m; sourceTree = "<group>"; };
 		0C08BF6D206CD72E005BB3B4 /* BrokerageDetailTableCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageDetailTableCell4.h; sourceTree = "<group>"; };
 		0C08BF6E206CD72E005BB3B4 /* BrokerageDetailTableCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageDetailTableCell4.m; sourceTree = "<group>"; };
+		0C08BF71206CD9C7005BB3B4 /* IDcardAuthenticationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDcardAuthenticationVC.h; sourceTree = "<group>"; };
+		0C08BF72206CD9C7005BB3B4 /* IDcardAuthenticationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDcardAuthenticationVC.m; sourceTree = "<group>"; };
 		0C0B82012063467C00238D4F /* RoomCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCollCell.h; sourceTree = "<group>"; };
 		0C0B82022063467C00238D4F /* RoomCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCollCell.m; sourceTree = "<group>"; };
 		0C0B82052063514500238D4F /* CustomDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailVC.h; sourceTree = "<group>"; };
@@ -420,6 +423,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0C08BF70206CD994005BB3B4 /* 身份证认证 */ = {
+			isa = PBXGroup;
+			children = (
+				0C08BF71206CD9C7005BB3B4 /* IDcardAuthenticationVC.h */,
+				0C08BF72206CD9C7005BB3B4 /* IDcardAuthenticationVC.m */,
+			);
+			path = "身份证认证";
+			sourceTree = "<group>";
+		};
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,6 +646,7 @@
 		0CF7423F20622C9D001F926F /* 我的佣金 */ = {
 			isa = PBXGroup;
 			children = (
+				0C08BF70206CD994005BB3B4 /* 身份证认证 */,
 				0C08BF54206C831C005BB3B4 /* view */,
 				105E18AF20637D310031558D /* 未结佣金 */,
 				105E18AC20637D310031558D /* 已结佣金 */,
@@ -1330,6 +1343,7 @@
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
+				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
 				0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */,
