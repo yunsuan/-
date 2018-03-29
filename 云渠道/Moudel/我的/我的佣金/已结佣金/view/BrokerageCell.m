@@ -1,14 +1,14 @@
 //
-//  UnpaidCell.m
+//  BrokerageCell.m
 //  云渠道
 //
-//  Created by xiaoq on 2018/3/22.
+//  Created by 谷治墙 on 2018/3/29.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "UnpaidCell.h"
+#import "BrokerageCell.h"
 
-@implementation UnpaidCell
+@implementation BrokerageCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,16 +20,7 @@
     return self;
 }
 
-- (void)ActionExpediteBtn:(UIButton *)btn{
-    
-    if (self.moneybtnBlook) {
-        
-        self.moneybtnBlook(btn.tag);
-    }
-}
-
 - (void)initUI{
-    
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 13 *SIZE, 60 *SIZE, 14 *SIZE)];
     _nameL.textColor = YJTitleLabColor;
@@ -46,6 +37,12 @@
     _unitL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_unitL];
     
+    _priceL = [[UILabel alloc] initWithFrame:CGRectMake(250 *SIZE, 38 *SIZE, 100 *SIZE, 14 *SIZE)];
+    _priceL.textColor = COLOR(255, 70, 70, 1);
+    _priceL.font = [UIFont systemFontOfSize:13 *SIZE];
+    _priceL.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_priceL];
+    
     _codeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 62 *SIZE, 200 *SIZE, 11 *SIZE)];
     _codeL.textColor = YJTitleLabColor;
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
@@ -61,16 +58,11 @@
     _timeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_timeL];
     
-    _expediteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _expediteBtn.frame = CGRectMake(273 *SIZE, 65 *SIZE, 77 *SIZE, 30 *SIZE);
-    _expediteBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_expediteBtn addTarget:self action:@selector(ActionExpediteBtn:) forControlEvents:UIControlEventTouchUpInside];
-    _expediteBtn.layer.cornerRadius = 2 *SIZE;
-    _expediteBtn.clipsToBounds = YES;
-    [_expediteBtn setTitle:@"催佣" forState:UIControlStateNormal];
-    [_expediteBtn setBackgroundColor:YJBlueBtnColor];
-    [_expediteBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.contentView addSubview:_expediteBtn];
+    _endTimeL = [[UILabel alloc] initWithFrame:CGRectMake(215 *SIZE, 109 *SIZE, 135 *SIZE, 11 *SIZE)];
+    _endTimeL.textColor = COLOR(86, 86, 86, 1);
+    _endTimeL.font = [UIFont systemFontOfSize:12 *SIZE];
+    _endTimeL.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_endTimeL];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 133 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;

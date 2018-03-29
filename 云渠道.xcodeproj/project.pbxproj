@@ -14,6 +14,9 @@
 		0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFD72060FB1C007F31EC /* CustomerTableModel.m */; };
 		0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF52206C820E005BB3B4 /* MyBrokerageVC.m */; };
 		0C08BF57206C835B005BB3B4 /* BrokerageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF56206C835B005BB3B4 /* BrokerageTableCell.m */; };
+		0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF5A206CB344005BB3B4 /* BrokerageCell.m */; };
+		0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF5E206CB7CD005BB3B4 /* BrokerageDetailVC.m */; };
+		0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C08BF62206CB8A7005BB3B4 /* BrokerageDetailTableCell.m */; };
 		0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82022063467C00238D4F /* RoomCollCell.m */; };
 		0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B82062063514500238D4F /* CustomDetailVC.m */; };
 		0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B820A20638A2A00238D4F /* CustomDetailTableCell.m */; };
@@ -134,6 +137,12 @@
 		0C08BF52206C820E005BB3B4 /* MyBrokerageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBrokerageVC.m; sourceTree = "<group>"; };
 		0C08BF55206C835B005BB3B4 /* BrokerageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageTableCell.h; sourceTree = "<group>"; };
 		0C08BF56206C835B005BB3B4 /* BrokerageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageTableCell.m; sourceTree = "<group>"; };
+		0C08BF59206CB344005BB3B4 /* BrokerageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageCell.h; sourceTree = "<group>"; };
+		0C08BF5A206CB344005BB3B4 /* BrokerageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageCell.m; sourceTree = "<group>"; };
+		0C08BF5D206CB7CD005BB3B4 /* BrokerageDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageDetailVC.h; sourceTree = "<group>"; };
+		0C08BF5E206CB7CD005BB3B4 /* BrokerageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageDetailVC.m; sourceTree = "<group>"; };
+		0C08BF61206CB8A7005BB3B4 /* BrokerageDetailTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageDetailTableCell.h; sourceTree = "<group>"; };
+		0C08BF62206CB8A7005BB3B4 /* BrokerageDetailTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageDetailTableCell.m; sourceTree = "<group>"; };
 		0C0B82012063467C00238D4F /* RoomCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCollCell.h; sourceTree = "<group>"; };
 		0C0B82022063467C00238D4F /* RoomCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCollCell.m; sourceTree = "<group>"; };
 		0C0B82052063514500238D4F /* CustomDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailVC.h; sourceTree = "<group>"; };
@@ -359,6 +368,34 @@
 			children = (
 				0C08BF55206C835B005BB3B4 /* BrokerageTableCell.h */,
 				0C08BF56206C835B005BB3B4 /* BrokerageTableCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0C08BF58206CB32F005BB3B4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C08BF59206CB344005BB3B4 /* BrokerageCell.h */,
+				0C08BF5A206CB344005BB3B4 /* BrokerageCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0C08BF5C206CB7B8005BB3B4 /* 已结佣金详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0C08BF60206CB88D005BB3B4 /* view */,
+				0C08BF5D206CB7CD005BB3B4 /* BrokerageDetailVC.h */,
+				0C08BF5E206CB7CD005BB3B4 /* BrokerageDetailVC.m */,
+			);
+			path = "已结佣金详情";
+			sourceTree = "<group>";
+		};
+		0C08BF60206CB88D005BB3B4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C08BF61206CB8A7005BB3B4 /* BrokerageDetailTableCell.h */,
+				0C08BF62206CB8A7005BB3B4 /* BrokerageDetailTableCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -728,6 +765,8 @@
 		105E18AC20637D310031558D /* 已结佣金 */ = {
 			isa = PBXGroup;
 			children = (
+				0C08BF5C206CB7B8005BB3B4 /* 已结佣金详情 */,
+				0C08BF58206CB32F005BB3B4 /* view */,
 				105E18AD20637D310031558D /* BrokerageRecordVC.h */,
 				105E18AE20637D310031558D /* BrokerageRecordVC.m */,
 			);
@@ -737,8 +776,8 @@
 		105E18AF20637D310031558D /* 未结佣金 */ = {
 			isa = PBXGroup;
 			children = (
-				105E18B020637D310031558D /* UnpaidBrokerageVC.h */,
 				105E18B120637D310031558D /* cell */,
+				105E18B020637D310031558D /* UnpaidBrokerageVC.h */,
 				105E18B420637D310031558D /* UnpaidBrokerageVC.m */,
 			);
 			path = "未结佣金";
@@ -747,8 +786,8 @@
 		105E18B120637D310031558D /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				105E18B220637D310031558D /* UnpaidCell.m */,
 				105E18B320637D310031558D /* UnpaidCell.h */,
+				105E18B220637D310031558D /* UnpaidCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1268,6 +1307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
@@ -1328,6 +1368,7 @@
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */,
+				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
 				0CE47B5E206B6AB1001ADD73 /* CompanyDetailVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
@@ -1341,6 +1382,7 @@
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
+				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
