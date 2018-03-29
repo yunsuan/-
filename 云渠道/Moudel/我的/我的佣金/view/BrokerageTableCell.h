@@ -10,4 +10,10 @@
 
 @interface BrokerageTableCell : UITableViewCell
 
+@property (nonatomic, strong) UIImageView *backImg;
+
+@property (nonatomic, strong) UILabel *numL;
+
+@property (nonatomic, strong) UILabel *priceL;
+
 @end

@@ -731,8 +731,8 @@
 		105E18AF20637D310031558D /* 未结佣金 */ = {
 			isa = PBXGroup;
 			children = (
-				105E18B020637D310031558D /* UnpaidBrokerageVC.h */,
 				105E18B120637D310031558D /* cell */,
+				105E18B020637D310031558D /* UnpaidBrokerageVC.h */,
 				105E18B420637D310031558D /* UnpaidBrokerageVC.m */,
 			);
 			path = "未结佣金";
@@ -741,8 +741,8 @@
 		105E18B120637D310031558D /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				105E18B220637D310031558D /* UnpaidCell.m */,
 				105E18B320637D310031558D /* UnpaidCell.h */,
+				105E18B220637D310031558D /* UnpaidCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";

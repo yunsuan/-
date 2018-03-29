@@ -8,8 +8,23 @@
 
 #import <UIKit/UIKit.h>
 @class UnpaidCell;
-typedef void (^moneybtnblook)(NSInteger *index);
+typedef void (^moneybtnblook)(NSInteger index);
 
 @interface UnpaidCell : UITableViewCell
 @property (nonatomic , copy) moneybtnblook moneybtnBlook;
+
+@property (nonatomic, strong) UILabel *nameL;
+
+@property (nonatomic, strong) UILabel *phoneL;
+
+@property (nonatomic, strong) UILabel *unitL;
+
+@property (nonatomic, strong) UILabel *codeL;
+
+@property (nonatomic, strong) UILabel *typeL;
+
+@property (nonatomic, strong) UILabel *timeL;
+
+@property (nonatomic, strong) UIButton *expediteBtn;
+
 @end

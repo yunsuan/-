@@ -8,8 +8,7 @@
 
 #import "MineVC.h"
 #import "MineCell.h"
-#import "BankCardListVC.h"
-#import "ChangePassWordVC.h"
+#import "MyBrokerageVC.h"
 #import "AuthenticationVC.h"
 #import "PersonalVC.h"
 
@@ -161,7 +160,7 @@
         
         if (indexPath.row == 0) {
             
-            BankCardListVC *nextVC = [[BankCardListVC alloc] init];
+            MyBrokerageVC *nextVC = [[MyBrokerageVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{

@@ -7,6 +7,7 @@
 //
 
 #import "UnpaidBrokerageVC.h"
+#import "UnpaidCell.h"
 
 @interface UnpaidBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -63,42 +64,35 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 133.3*SIZE;
+    return 134*SIZE;
 }
 
 
 
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//    if (indexPath.row == 1) {
-//        static NSString *CellIdentifier = @"CompanyCell";
-//
-//        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-//        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }else
-//    {
-//        static NSString *CellIdentifier = @"PeopleCell";
-//
-//        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-//        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-//        [cell settagviewWithdata:_arr[indexPath.row]];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }
-//
-//
-//}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    static NSString *CellIdentifier = @"UnpaidCell";
+    
+    UnpaidCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+
+    cell.nameL.text = @"冷月英";
+    cell.phoneL.text = @"18745564512";
+    cell.unitL.text = @"云算公馆  1批次 - 1栋 -1单元 -102";
+    cell.codeL.text = @"推荐编号：TJBHNO1";
+    cell.typeL.text = @"类型：推荐佣金";
+    cell.timeL.text = @"推荐时间：2018-02-10";
+    cell.expediteBtn.tag = indexPath.row;
+    cell.moneybtnBlook = ^(NSInteger index) {
+      
+        NSLog(@"%ld",index);
+    };
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -129,7 +123,8 @@
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
-        [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+//        _MainTableView.
+        [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     return _MainTableView;
 }
