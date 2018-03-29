@@ -19,7 +19,7 @@
         [self.contentView addSubview:_icon];
         _titlelab = [[UILabel alloc]initWithFrame:CGRectMake(43*SIZE, 15*SIZE, 200*SIZE, 15*SIZE)];
         _titlelab.textColor = YJTitleLabColor;
-        _titlelab.font = [UIFont boldSystemFontOfSize:14*SIZE];
+        _titlelab.font = [UIFont systemFontOfSize:13*SIZE];
         [self.contentView addSubview:_titlelab];
         _contentlab = [[UILabel alloc]initWithFrame:CGRectMake(210*SIZE, 16*SIZE, 116*SIZE, 13*SIZE)];
         _contentlab.textAlignment = NSTextAlignmentRight;

@@ -11,6 +11,7 @@
 #import "BankCardListVC.h"
 #import "UnpaidBrokerageVC.h"
 #import "BrokerageRecordVC.h"
+#import "IDcardAuthenticationVC.h"
 
 @interface MyBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -47,6 +48,8 @@
     switch (btn.tag) {
         case 0:
         {
+            IDcardAuthenticationVC *nextVC = [[IDcardAuthenticationVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 1:
