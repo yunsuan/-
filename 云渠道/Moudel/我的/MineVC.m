@@ -180,13 +180,13 @@
         }else{
             
             
-            [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-                
-            } WithDefaultBlack:^{
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-                
-            }];
+//            [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
+//                
+//            } WithDefaultBlack:^{
+//                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
+//                
+//            }];
         }
         
     }
