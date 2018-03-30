@@ -26,6 +26,5 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"我的关注";
     
-    
 }
 @end
