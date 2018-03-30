@@ -46,6 +46,14 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
+		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
+		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
+		0CC19CFA206E21110007CC5F /* SelectCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CED206E21100007CC5F /* SelectCompanyVC.m */; };
+		0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEF206E21100007CC5F /* CompanyModel.m */; };
+		0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CF3206E21100007CC5F /* SelectCompanyCollCell.m */; };
+		0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CF4206E21100007CC5F /* SelectCompanyTableCell.m */; };
+		0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CF6206E21100007CC5F /* AuthenticationVC.m */; };
 		0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */; };
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
@@ -201,6 +209,22 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
+		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
+		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
+		0CC19CE6206E21100007CC5F /* AuthenTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenTableCell.m; sourceTree = "<group>"; };
+		0CC19CE7206E21100007CC5F /* AuthenCollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenCollCell.h; sourceTree = "<group>"; };
+		0CC19CE9206E21100007CC5F /* SelectCompanyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCompanyVC.h; sourceTree = "<group>"; };
+		0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailVC.m; sourceTree = "<group>"; };
+		0CC19CEC206E21100007CC5F /* CompanyDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailVC.h; sourceTree = "<group>"; };
+		0CC19CED206E21100007CC5F /* SelectCompanyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCompanyVC.m; sourceTree = "<group>"; };
+		0CC19CEF206E21100007CC5F /* CompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyModel.m; sourceTree = "<group>"; };
+		0CC19CF0206E21100007CC5F /* CompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyModel.h; sourceTree = "<group>"; };
+		0CC19CF2206E21100007CC5F /* SelectCompanyTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCompanyTableCell.h; sourceTree = "<group>"; };
+		0CC19CF3206E21100007CC5F /* SelectCompanyCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCompanyCollCell.m; sourceTree = "<group>"; };
+		0CC19CF4206E21100007CC5F /* SelectCompanyTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCompanyTableCell.m; sourceTree = "<group>"; };
+		0CC19CF5206E21100007CC5F /* SelectCompanyCollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCompanyCollCell.h; sourceTree = "<group>"; };
+		0CC19CF6206E21100007CC5F /* AuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationVC.m; sourceTree = "<group>"; };
 		0CE47B55206B368A001ADD73 /* RoomCellCollCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCellCollCell4.h; sourceTree = "<group>"; };
 		0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell4.m; sourceTree = "<group>"; };
 		0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader5.h; sourceTree = "<group>"; };
@@ -495,6 +519,10 @@
 		0C0B821B2064963E00238D4F /* 公司认证 */ = {
 			isa = PBXGroup;
 			children = (
+				0CC19CE8206E21100007CC5F /* 选择公司 */,
+				0CC19CE2206E21100007CC5F /* AuthenticationVC.h */,
+				0CC19CF6206E21100007CC5F /* AuthenticationVC.m */,
+				0CC19CE3206E21100007CC5F /* view */,
 			);
 			path = "公司认证";
 			sourceTree = "<group>";
@@ -569,6 +597,58 @@
 				0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */,
 				0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */,
 				0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0CC19CE3206E21100007CC5F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19CE4206E21100007CC5F /* AuthenTableCell.h */,
+				0CC19CE5206E21100007CC5F /* AuthenCollCell.m */,
+				0CC19CE6206E21100007CC5F /* AuthenTableCell.m */,
+				0CC19CE7206E21100007CC5F /* AuthenCollCell.h */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0CC19CE8206E21100007CC5F /* 选择公司 */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19CE9206E21100007CC5F /* SelectCompanyVC.h */,
+				0CC19CEA206E21100007CC5F /* 公司详情 */,
+				0CC19CED206E21100007CC5F /* SelectCompanyVC.m */,
+				0CC19CEE206E21100007CC5F /* model */,
+				0CC19CF1206E21100007CC5F /* view */,
+			);
+			path = "选择公司";
+			sourceTree = "<group>";
+		};
+		0CC19CEA206E21100007CC5F /* 公司详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */,
+				0CC19CEC206E21100007CC5F /* CompanyDetailVC.h */,
+			);
+			path = "公司详情";
+			sourceTree = "<group>";
+		};
+		0CC19CEE206E21100007CC5F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19CEF206E21100007CC5F /* CompanyModel.m */,
+				0CC19CF0206E21100007CC5F /* CompanyModel.h */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		0CC19CF1206E21100007CC5F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19CF2206E21100007CC5F /* SelectCompanyTableCell.h */,
+				0CC19CF3206E21100007CC5F /* SelectCompanyCollCell.m */,
+				0CC19CF4206E21100007CC5F /* SelectCompanyTableCell.m */,
+				0CC19CF5206E21100007CC5F /* SelectCompanyCollCell.h */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1302,6 +1382,7 @@
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
+				0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */,
 				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
@@ -1317,6 +1398,8 @@
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
+				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
+				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
@@ -1331,7 +1414,9 @@
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
+				0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */,
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
+				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				105E18FA206C829A0031558D /* SinglePickView.m in Sources */,
@@ -1344,6 +1429,7 @@
 				0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
+				0CC19CFA206E21110007CC5F /* SelectCompanyVC.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
@@ -1352,6 +1438,7 @@
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
+				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
 				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
@@ -1368,6 +1455,7 @@
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				0C08BF77206CE919005BB3B4 /* MyAttentionVC.m in Sources */,
+				0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */,
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
