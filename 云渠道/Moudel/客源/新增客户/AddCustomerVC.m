@@ -8,9 +8,14 @@
 
 #import "AddCustomerVC.h"
 #import "SinglePickView.h"
+#import "DropDownBtn.h"
+#import "BorderTF.h"
 
 @interface AddCustomerVC ()
 @property (nonatomic , strong) UIScrollView *scrollview;
+@property (nonatomic , strong) DropDownBtn *sex;
+@property (nonatomic , strong) BorderTF *name;
+
 
 -(void)initUI;
 -(void)initDataSouce;
@@ -40,6 +45,14 @@
 -(void)initDataSouce
 {
     
+}
+-(UIScrollView *)scrollview
+{
+    if (!_scrollview) {
+        _scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+        
+    }
+    return _scrollview;
 }
 
 
