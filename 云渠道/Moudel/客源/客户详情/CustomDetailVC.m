@@ -8,6 +8,8 @@
 
 #import "CustomDetailVC.h"
 #import "CustomDetailTableCell.h"
+#import "CustomDetailTableCell2.h"
+#import "CustomDetailTableCell3.h"
 #import "CustomTableHeader.h"
 #import "CustomTableHeader2.h"
 #import "CustomTableHeader3.h"
@@ -15,6 +17,7 @@
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
     
+    NSArray *_arr;
     NSInteger _item;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
@@ -26,7 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initDataSource];
     [self initUI];
+}
+
+- (void)initDataSource{
+    
+    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
 }
 
 - (void)head1collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -126,15 +135,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString * Identifier = @"CustomDetailTableCell";
-    CustomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
-    if (!cell) {
+    if (_item == 0) {
         
-        cell = [[CustomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        NSString * Identifier = @"CustomDetailTableCell";
+        CustomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+        if (!cell) {
+            
+            cell = [[CustomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }else{
+        
+        if (_item == 1) {
+            
+            NSString * Identifier = @"CustomDetailTableCell2";
+            CustomDetailTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+            if (!cell) {
+                
+                cell = [[CustomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.wayL.text = @"跟进方式:电话跟进";
+            cell.intentionL.text = @"购买意向度：45";
+            cell.urgentL.text = @"购买意向度：45";
+            cell.contentL.text = @"12月12日带客户看了样板间，客户表示比较满意，后期会继续跟进。12月12日带客户看了样板间，客户表示比较满意，后期会继续跟进。12月12日带客户看了样板间，客户表示比较满意，后期会继续跟进。";
+            cell.timeL.text = @"跟进时间：2017-12-15";
+            
+            return cell;
+        }else{
+            
+            NSString * Identifier = @"CustomDetailTableCell3";
+            CustomDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+            if (!cell) {
+                
+                cell = [[CustomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell settagviewWithdata:_arr[indexPath.row]];
+            
+            return cell;
+        }
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
 }
 
 

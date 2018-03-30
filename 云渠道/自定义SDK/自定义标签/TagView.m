@@ -25,6 +25,7 @@
     if (self) {
         _data = datasouce;
         _type = type;
+        self.clipsToBounds = YES;
         [self addSubview:self.collectionview];
     }
     return self;
