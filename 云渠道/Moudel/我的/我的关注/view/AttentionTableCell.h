@@ -7,7 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TagView.h"
 
 @interface AttentionTableCell : UITableViewCell
+
+@property (nonatomic, strong) UIImageView *headImg;
+
+@property (nonatomic, strong) UILabel *nameL;
+
+@property (nonatomic, strong) UILabel *areaL;
+
+@property (nonatomic, strong) UILabel *addressL;
+
+@property (nonatomic, strong) UILabel *typeL;
+
+@property (nonatomic, strong) UILabel *attributeL;
+
+@property (nonatomic, strong) UILabel *timeL;
+
+@property (nonatomic, strong) UILabel *priceL;
+
+@property (nonatomic, strong) TagView *tagView;
+
+-(void)settagviewWithdata:(NSArray *)data;
 
 @end

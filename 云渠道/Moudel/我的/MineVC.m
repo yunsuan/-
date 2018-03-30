@@ -11,6 +11,7 @@
 #import "MyBrokerageVC.h"
 #import "AuthenticationVC.h"
 #import "PersonalVC.h"
+#import "MyAttentionVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -165,7 +166,12 @@
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            
+            if (indexPath.row == 2) {
+                
+                MyAttentionVC *nextVC = [[MyAttentionVC alloc] init];
+                nextVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nextVC animated:YES];
+            }
         }
     }else
     {
@@ -179,59 +185,9 @@
         }else{
             
             
-//            [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-//                
-//            } WithDefaultBlack:^{
-//                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-//                [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-//                
-//            }];
         }
         
     }
-//    switch (indexPath.row) {
-//        case 0:
-//        {
-//            MyCommissionVC *next_vc = [[MyCommissionVC alloc]init];
-//            [self.navigationController pushViewController:next_vc animated:YES];
-//        }
-//            break;
-//        case 1:
-//        {
-//            MyAttentionVC *next_vc = [[MyAttentionVC alloc]init];
-//            [self.navigationController pushViewController:next_vc animated:YES];
-//        }
-//            break;
-//        case 2:
-//        {
-//            FixPassWrodVC *next_vc = [[FixPassWrodVC alloc]init];
-//            [self.navigationController pushViewController:next_vc animated:YES];
-//
-//        }
-//            break;
-//        case 3:
-//        {
-//            AbortVC *next_vc = [[AbortVC alloc]init];
-//            [self.navigationController pushViewController:next_vc animated:YES];
-//        }
-//            break;
-//        case 4:
-//        {
-    
-//            [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-//
-//            } WithDefaultBlack:^{
-//                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-//                [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-//
-//            }];
-//
-//        }
-//            break;
-//
-//        default:
-//            break;
-//    }
 }
 
 #pragma mark  ---  懒加载   ---
