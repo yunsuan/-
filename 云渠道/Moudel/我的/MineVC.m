@@ -12,6 +12,7 @@
 #import "AuthenticationVC.h"
 #import "PersonalVC.h"
 #import "MyAttentionVC.h"
+#import "FeedbackVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -177,7 +178,9 @@
     {
         if (indexPath.row == 0) {
             
-
+            FeedbackVC *nextVC = [[FeedbackVC alloc] init];
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
         }
         else if(indexPath.row ==1)
         {

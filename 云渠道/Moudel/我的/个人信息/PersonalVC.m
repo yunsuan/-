@@ -284,6 +284,7 @@
     [_exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     [_exitBtn setBackgroundColor:YJContentLabColor];
     [_exitBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+    [self.view addSubview:_exitBtn];
 }
 
 
