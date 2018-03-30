@@ -9,7 +9,7 @@
 #import "MineVC.h"
 #import "MineCell.h"
 #import "MyBrokerageVC.h"
-//#import "AuthenticationVC.h"
+#import "AuthenticationVC.h"
 #import "PersonalVC.h"
 #import "MyAttentionVC.h"
 #import "FeedbackVC.h"
@@ -149,9 +149,9 @@
         
 
         if (indexPath.row == 0) {
-//            AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
-//            nextVC.hidesBottomBarWhenPushed = YES;
-//            [self.navigationController pushViewController:nextVC animated:YES];
+            AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
             
