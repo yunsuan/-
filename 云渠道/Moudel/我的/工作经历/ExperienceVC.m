@@ -7,8 +7,11 @@
 //
 
 #import "ExperienceVC.h"
+#import "ExperienceTableCell.h"
 
-@interface ExperienceVC ()
+@interface ExperienceVC ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *experienceTable;
 
 @end
 
@@ -20,9 +23,60 @@
     [self initUI];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 144 *SIZE;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ExperienceTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExperienceTableCell"];
+    if (!cell) {
+        
+        cell = [[ExperienceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ExperienceTableCell"];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.timeL.text = @"2017-10-08 —至今";
+    cell.companyL.text = @"云算科技有限公司";
+    cell.recommendL.text = @"推荐客户数量：46";
+    cell.visitL.text = @"推荐客户数量：46";
+    cell.dealL.text = @"推荐客户数量：46";
+    cell.roleL.text = @"角色：推荐经纪人";
+    
+    if (indexPath.row == 0) {
+        
+        cell.upLine.hidden = YES;
+    }else{
+        
+        cell.upLine.hidden = NO;
+    }
+    
+    if (indexPath.row == 2) {
+        
+        cell.downLine.hidden = YES;
+    }else{
+        
+        cell.downLine.hidden = NO;
+    }
+    return cell;
+}
+
 - (void)initUI{
     
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.text = @"工作经历";
     
+    _experienceTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+    _experienceTable.backgroundColor = self.view.backgroundColor;
+    _experienceTable.delegate = self;
+    _experienceTable.dataSource = self;
+    _experienceTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_experienceTable];
 }
 
 @end

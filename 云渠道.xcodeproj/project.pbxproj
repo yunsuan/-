@@ -55,6 +55,8 @@
 		0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CF4206E21100007CC5F /* SelectCompanyTableCell.m */; };
 		0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CF6206E21100007CC5F /* AuthenticationVC.m */; };
 		0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D00206E21500007CC5F /* ExperienceVC.m */; };
+		0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D04206E22EF0007CC5F /* ExperienceTableCell.m */; };
+		0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D07206E30D60007CC5F /* CustomDetailTableCell2.m */; };
 		0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */; };
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
@@ -228,6 +230,10 @@
 		0CC19CF6206E21100007CC5F /* AuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationVC.m; sourceTree = "<group>"; };
 		0CC19CFF206E21500007CC5F /* ExperienceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperienceVC.h; sourceTree = "<group>"; };
 		0CC19D00206E21500007CC5F /* ExperienceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExperienceVC.m; sourceTree = "<group>"; };
+		0CC19D03206E22EF0007CC5F /* ExperienceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperienceTableCell.h; sourceTree = "<group>"; };
+		0CC19D04206E22EF0007CC5F /* ExperienceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExperienceTableCell.m; sourceTree = "<group>"; };
+		0CC19D06206E30D60007CC5F /* CustomDetailTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailTableCell2.h; sourceTree = "<group>"; };
+		0CC19D07206E30D60007CC5F /* CustomDetailTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailTableCell2.m; sourceTree = "<group>"; };
 		0CE47B55206B368A001ADD73 /* RoomCellCollCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCellCollCell4.h; sourceTree = "<group>"; };
 		0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell4.m; sourceTree = "<group>"; };
 		0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader5.h; sourceTree = "<group>"; };
@@ -486,6 +492,8 @@
 				0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */,
 				0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */,
 				0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */,
+				0CC19D06206E30D60007CC5F /* CustomDetailTableCell2.h */,
+				0CC19D07206E30D60007CC5F /* CustomDetailTableCell2.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -533,6 +541,7 @@
 		0C0B821C20649C0600238D4F /* 工作经历 */ = {
 			isa = PBXGroup;
 			children = (
+				0CC19D02206E22D70007CC5F /* view */,
 				0CC19CFF206E21500007CC5F /* ExperienceVC.h */,
 				0CC19D00206E21500007CC5F /* ExperienceVC.m */,
 			);
@@ -654,6 +663,15 @@
 				0CC19CF3206E21100007CC5F /* SelectCompanyCollCell.m */,
 				0CC19CF4206E21100007CC5F /* SelectCompanyTableCell.m */,
 				0CC19CF5206E21100007CC5F /* SelectCompanyCollCell.h */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0CC19D02206E22D70007CC5F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19D03206E22EF0007CC5F /* ExperienceTableCell.h */,
+				0CC19D04206E22EF0007CC5F /* ExperienceTableCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1401,11 +1419,13 @@
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
+				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
+				0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,

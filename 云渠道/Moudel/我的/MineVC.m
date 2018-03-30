@@ -13,6 +13,7 @@
 #import "PersonalVC.h"
 #import "MyAttentionVC.h"
 #import "FeedbackVC.h"
+#import "ExperienceVC.h"
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -76,9 +77,9 @@
 
 -(void)InitDataSouce
 {
-    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
-    _imageList = @[@[@"certification",@"work"],@[@"commission",@"subscription",@"focus"],@[@"opinion",@"about",@"operation"]];
-    _contentList= @[@[@"云算科技公司",@""],@[@"",@"",@""],@[@" ",@"V1.0",@""]];
+    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
+    _imageList = @[@[@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
+    _contentList= @[@[@"云算科技公司",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
 }
 
 - (void)ActionCodeBtn:(UIButton *)btn{
@@ -92,7 +93,7 @@
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 0 || section == 1) {
         return 2;
     }
     else
@@ -154,7 +155,9 @@
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            
+            ExperienceVC *nextVC = [[ExperienceVC alloc] init];
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
         }
     }
     else if (indexPath.section ==1)
@@ -167,7 +170,7 @@
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            if (indexPath.row == 2) {
+            if (indexPath.row == 1) {
                 
                 MyAttentionVC *nextVC = [[MyAttentionVC alloc] init];
                 nextVC.hidesBottomBarWhenPushed = YES;
