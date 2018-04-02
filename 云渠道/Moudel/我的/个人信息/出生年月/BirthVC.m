@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UIButton *birthBtn;
 
+@property (nonatomic, strong) UIView *whiteView;
+
 @property (nonatomic, strong) DateChooseView *dateView;
 
 @property (nonatomic, strong) NSDateFormatter *formatter;
@@ -61,20 +63,28 @@
     _formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateFormat:@"yyyy-MM-dd"];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 12 *SIZE, SCREEN_Width, 50 *SIZE)];
-    view.backgroundColor = CH_COLOR_white;
-    [self.view addSubview:view];
+    [self.view addSubview:self.whiteView];
     
     _birthL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 20 *SIZE, 300 *SIZE, 12 *SIZE)];
     _birthL.textColor = YJTitleLabColor;
     _birthL.font = [UIFont systemFontOfSize:13 *SIZE];
-    [view addSubview:_birthL];
+    [self.whiteView addSubview:_birthL];
     
     _birthBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _birthBtn.frame = CGRectMake(0, 0, SCREEN_Width, 50 *SIZE);
     [_birthBtn addTarget:self action:@selector(ActionBirthBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:_birthBtn];
+    [self.whiteView addSubview:_birthBtn];
     
+}
+
+- (UIView *)whiteView{
+    
+    if (!_whiteView) {
+        
+        _whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 12 *SIZE, SCREEN_Width, 50 *SIZE)];
+        _whiteView.backgroundColor = CH_COLOR_white;
+    }
+    return _whiteView;
 }
 
 - (DateChooseView *)dateView{

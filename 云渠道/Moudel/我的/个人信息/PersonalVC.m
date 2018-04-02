@@ -10,6 +10,7 @@
 #import "PersonalTableCell.h"
 #import "ChangePassWordVC.h"
 #import "BirthVC.h"
+#import "ChangeNameVC.h"
 
 @interface PersonalVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -211,6 +212,8 @@
         }
         case 3:
         {
+            ChangeNameVC *nextVC = [[ChangeNameVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 4:
