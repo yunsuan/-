@@ -428,5 +428,12 @@
     return img;
 }
 
+-(NSString * _Nonnull)gettime:(NSDate * _Nonnull)date//nsdate转字符转
+{
+    NSDateFormatter*dateFormatter = [[NSDateFormatter  alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString*currentDateStr = [dateFormatter stringFromDate:date];
+    return currentDateStr;
+}
 @end
 

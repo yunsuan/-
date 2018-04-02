@@ -66,6 +66,7 @@
 //拍照后对图片进行处理
 - (UIImage *)fixOrientation:(UIImage *)aImage;
 
+-(NSString * _Nonnull)gettime:(NSDate * _Nonnull)date;//服务器时间转字符转
 
 @end
 

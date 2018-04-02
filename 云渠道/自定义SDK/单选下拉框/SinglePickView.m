@@ -8,7 +8,7 @@
 
 #import "SinglePickView.h"
 
-#import "SinglePickView.h"
+
 #define PICKERHEIGHT 216
 #define BGHEIGHT     256
 
