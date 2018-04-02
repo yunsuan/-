@@ -63,6 +63,7 @@
 		0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D142071F2A60007CC5F /* BirthVC.m */; };
 		0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D18207202E80007CC5F /* ChangeNameVC.m */; };
 		0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D1C207205CA0007CC5F /* ChangeAddessVC.m */; };
+		0CC19D222072172C0007CC5F /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */; };
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
@@ -257,6 +258,8 @@
 		0CC19D18207202E80007CC5F /* ChangeNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeNameVC.m; sourceTree = "<group>"; };
 		0CC19D1B207205CA0007CC5F /* ChangeAddessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeAddessVC.h; sourceTree = "<group>"; };
 		0CC19D1C207205CA0007CC5F /* ChangeAddessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeAddessVC.m; sourceTree = "<group>"; };
+		0CC19D202072172C0007CC5F /* AddRequireMentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddRequireMentVC.h; sourceTree = "<group>"; };
+		0CC19D212072172C0007CC5F /* AddRequireMentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddRequireMentVC.m; sourceTree = "<group>"; };
 		0CE47B55206B368A001ADD73 /* RoomCellCollCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCellCollCell4.h; sourceTree = "<group>"; };
 		0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell4.m; sourceTree = "<group>"; };
 		0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader5.h; sourceTree = "<group>"; };
@@ -505,6 +508,7 @@
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0CC19D1F207216F70007CC5F /* 添加需求 */,
 				0C0B8208206389D500238D4F /* view */,
 				0C0B82052063514500238D4F /* CustomDetailVC.h */,
 				0C0B82062063514500238D4F /* CustomDetailVC.m */,
@@ -752,6 +756,15 @@
 				10174BF120720C9A00D00B9A /* AdressChooseView.m */,
 			);
 			path = "自定义地址选择器";
+			sourceTree = "<group>";
+		};
+		0CC19D1F207216F70007CC5F /* 添加需求 */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19D202072172C0007CC5F /* AddRequireMentVC.h */,
+				0CC19D212072172C0007CC5F /* AddRequireMentVC.m */,
+			);
+			path = "添加需求";
 			sourceTree = "<group>";
 		};
 		0CE47B66206B9E20001ADD73 /* view */ = {
@@ -1607,6 +1620,7 @@
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				10174C082072175800D00B9A /* BuildinginfoCell.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
+				0CC19D222072172C0007CC5F /* AddRequireMentVC.m in Sources */,
 				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
