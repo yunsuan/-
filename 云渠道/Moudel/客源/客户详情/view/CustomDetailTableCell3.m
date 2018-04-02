@@ -44,7 +44,7 @@
     _headImg = [[UIImageView alloc]initWithFrame:CGRectMake(11.7*SIZE,16.3*SIZE, 100*SIZE, 88.3*SIZE)];
     [self.contentView addSubview:_headImg];
     
-    _titleL = [[UILabel alloc]initWithFrame:CGRectMake(123.3*SIZE, 16*SIZE, 200*SIZE, 14*SIZE)];
+    _titleL = [[UILabel alloc]initWithFrame:CGRectMake(123.3*SIZE, 16*SIZE, 140*SIZE, 14*SIZE)];
     _titleL.textColor = YJTitleLabColor;
     _titleL.font = [UIFont boldSystemFontOfSize:13.3*SIZE];
     [self.contentView addSubview:_titleL];
@@ -54,10 +54,20 @@
     _addressL.font =[UIFont systemFontOfSize:10.7*SIZE];
     [self.contentView addSubview:_addressL];
     
-    _rateL = [[UILabel alloc]initWithFrame:CGRectMake(327.7*SIZE, 15.7*SIZE, 30*SIZE, 13*SIZE)];
+    _rateL = [[UILabel alloc]initWithFrame:CGRectMake(270 *SIZE, 15.7*SIZE, 77*SIZE, 13*SIZE)];
     _rateL.textColor = COLOR(27, 152, 255, 1);
     _rateL.font = [UIFont systemFontOfSize:12*SIZE];
+    _rateL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_rateL];
+    
+    _recommentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _recommentBtn.frame = CGRectMake(281 *SIZE, 67 *SIZE, 67 *SIZE, 30 *SIZE);
+    _recommentBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+//    [_recommentBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_recommentBtn setTitle:@"推荐" forState:UIControlStateNormal];
+    [_recommentBtn setBackgroundColor:YJBlueBtnColor];
+    [self.contentView addSubview:_recommentBtn];
+//    [_recommentBtn setTitleColor:COLOR(<#_R#>, <#_G#>, <#_B#>, <#_A#>) forState:UIControlStateNormal];
 
     UIView *lane = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE, 119*SIZE, 360*SIZE, 1*SIZE)];
     lane.backgroundColor = YJBackColor;

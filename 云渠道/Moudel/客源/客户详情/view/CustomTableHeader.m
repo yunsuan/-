@@ -66,6 +66,8 @@
 
 - (void)initUI{
     
+    self.contentView.backgroundColor = CH_COLOR_white;
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10 *SIZE, 19 *SIZE, 7 *SIZE, 13 *SIZE)];
     view.backgroundColor = COLOR(27, 152, 255, 1);;
     [self.contentView addSubview:view];
@@ -157,6 +159,15 @@
     [_headerColl registerClass:[CustomHeaderCollCell class] forCellWithReuseIdentifier:@"CustomHeaderCollCell"];
     [self.contentView addSubview:_headerColl];
     
+    
+    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addBtn.frame = CGRectMake(0, CGRectGetMaxY(_headerColl.frame), SCREEN_Width, 40 *SIZE);
+    _addBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+//    [<#UIButton#> addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_addBtn setTitle:@"添加需求" forState:UIControlStateNormal];
+    [_addBtn setImage:[UIImage imageNamed:@"add_3-1"] forState:UIControlStateNormal];
+    [_addBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+    [self.contentView addSubview:_addBtn];
 }
 
 @end

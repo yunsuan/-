@@ -480,7 +480,7 @@
     
     _roomTable.rowHeight = 360 *SIZE;
     _roomTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height - 47 *SIZE) style:UITableViewStyleGrouped];
+    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _roomTable.backgroundColor = self.view.backgroundColor;
     _roomTable.delegate = self;
     _roomTable.dataSource = self;
@@ -488,7 +488,7 @@
     [self.view addSubview:_roomTable];
     
     _counselBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _counselBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE, SCREEN_Width, 47 *SIZE);
+    _counselBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, SCREEN_Width, 47 *SIZE + TAB_BAR_MORE);
     _counselBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
 //    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
     [_counselBtn setTitle:@"电话咨询" forState:UIControlStateNormal];

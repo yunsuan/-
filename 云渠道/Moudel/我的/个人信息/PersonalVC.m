@@ -9,6 +9,8 @@
 #import "PersonalVC.h"
 #import "PersonalTableCell.h"
 #import "ChangePassWordVC.h"
+#import "BirthVC.h"
+#import "ChangeNameVC.h"
 
 @interface PersonalVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -119,16 +121,11 @@
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             UIImage *originalImage = [self fixOrientation:info[UIImagePickerControllerOriginalImage]];
             NSData *data = [self resetSizeOfImageData:originalImage maxSize:150];
-//            [_imgArr removeAllObjects];
-//            [_imgArr addObject:data];
-//            [self RequestPostImg];
         }
     }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         UIImage *originalImage = [self fixOrientation:info[UIImagePickerControllerEditedImage]];
         NSData *data = [self resetSizeOfImageData:originalImage maxSize:150];
-//        [_imgArr removeAllObjects];
-//        [_imgArr addObject:data];
-//        [self RequestPostImg];
+
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -215,6 +212,8 @@
         }
         case 3:
         {
+            ChangeNameVC *nextVC = [[ChangeNameVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 4:
@@ -247,6 +246,8 @@
         }
         case 6:
         {
+            BirthVC *nextVC = [[BirthVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 7:
@@ -270,7 +271,7 @@
     self.titleLabel.text = @"账户信息";
     
     
-    _personTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 50 *SIZE) style:UITableViewStylePlain];
+    _personTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 50 *SIZE - TAB_BAR_MORE) style:UITableViewStylePlain];
     _personTable.backgroundColor = self.view.backgroundColor;
     _personTable.delegate = self;
     _personTable.dataSource = self;
@@ -278,7 +279,7 @@
     [self.view addSubview:_personTable];
     
     _exitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _exitBtn.frame = CGRectMake(0, SCREEN_Height - 50 *SIZE, SCREEN_Width, 50 *SIZE);
+    _exitBtn.frame = CGRectMake(0, SCREEN_Height - 50 *SIZE - TAB_BAR_MORE, SCREEN_Width, 50 *SIZE + TAB_BAR_MORE);
     _exitBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     [_exitBtn addTarget:self action:@selector(ActionExitBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];

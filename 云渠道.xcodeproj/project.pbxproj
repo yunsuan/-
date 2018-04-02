@@ -58,6 +58,11 @@
 		0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D04206E22EF0007CC5F /* ExperienceTableCell.m */; };
 		0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D07206E30D60007CC5F /* CustomDetailTableCell2.m */; };
 		0CC19D0B206E3E9C0007CC5F /* CustomDetailTableCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D0A206E3E9C0007CC5F /* CustomDetailTableCell3.m */; };
+		0CC19D0E2071CF3C0007CC5F /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D0D2071CF3C0007CC5F /* CustomTableCellView.m */; };
+		0CC19D112071D5B10007CC5F /* CustomTableHeader4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D102071D5B10007CC5F /* CustomTableHeader4.m */; };
+		0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D142071F2A60007CC5F /* BirthVC.m */; };
+		0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D18207202E80007CC5F /* ChangeNameVC.m */; };
+		0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D1C207205CA0007CC5F /* ChangeAddessVC.m */; };
 		0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */; };
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
@@ -238,6 +243,16 @@
 		0CC19D07206E30D60007CC5F /* CustomDetailTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailTableCell2.m; sourceTree = "<group>"; };
 		0CC19D09206E3E9C0007CC5F /* CustomDetailTableCell3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailTableCell3.h; sourceTree = "<group>"; };
 		0CC19D0A206E3E9C0007CC5F /* CustomDetailTableCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailTableCell3.m; sourceTree = "<group>"; };
+		0CC19D0C2071CF3C0007CC5F /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
+		0CC19D0D2071CF3C0007CC5F /* CustomTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableCellView.m; sourceTree = "<group>"; };
+		0CC19D0F2071D5B10007CC5F /* CustomTableHeader4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader4.h; sourceTree = "<group>"; };
+		0CC19D102071D5B10007CC5F /* CustomTableHeader4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader4.m; sourceTree = "<group>"; };
+		0CC19D132071F2A60007CC5F /* BirthVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirthVC.h; sourceTree = "<group>"; };
+		0CC19D142071F2A60007CC5F /* BirthVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirthVC.m; sourceTree = "<group>"; };
+		0CC19D17207202E80007CC5F /* ChangeNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeNameVC.h; sourceTree = "<group>"; };
+		0CC19D18207202E80007CC5F /* ChangeNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeNameVC.m; sourceTree = "<group>"; };
+		0CC19D1B207205CA0007CC5F /* ChangeAddessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeAddessVC.h; sourceTree = "<group>"; };
+		0CC19D1C207205CA0007CC5F /* ChangeAddessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeAddessVC.m; sourceTree = "<group>"; };
 		0CE47B55206B368A001ADD73 /* RoomCellCollCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomCellCollCell4.h; sourceTree = "<group>"; };
 		0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell4.m; sourceTree = "<group>"; };
 		0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader5.h; sourceTree = "<group>"; };
@@ -502,6 +517,10 @@
 				0CC19D07206E30D60007CC5F /* CustomDetailTableCell2.m */,
 				0CC19D09206E3E9C0007CC5F /* CustomDetailTableCell3.h */,
 				0CC19D0A206E3E9C0007CC5F /* CustomDetailTableCell3.m */,
+				0CC19D0C2071CF3C0007CC5F /* CustomTableCellView.h */,
+				0CC19D0D2071CF3C0007CC5F /* CustomTableCellView.m */,
+				0CC19D0F2071D5B10007CC5F /* CustomTableHeader4.h */,
+				0CC19D102071D5B10007CC5F /* CustomTableHeader4.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -509,6 +528,9 @@
 		0C0B82122063A08900238D4F /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				0CC19D1A207205BA0007CC5F /* 修改住址 */,
+				0CC19D16207202DA0007CC5F /* 姓名 */,
+				0CC19D122071F2940007CC5F /* 出生年月 */,
 				0CE47B66206B9E20001ADD73 /* view */,
 				0C0B82132063A08900238D4F /* 修改密码 */,
 				0CE47B63206B9D0E001ADD73 /* PersonalVC.h */,
@@ -682,6 +704,33 @@
 				0CC19D04206E22EF0007CC5F /* ExperienceTableCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0CC19D122071F2940007CC5F /* 出生年月 */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19D132071F2A60007CC5F /* BirthVC.h */,
+				0CC19D142071F2A60007CC5F /* BirthVC.m */,
+			);
+			path = "出生年月";
+			sourceTree = "<group>";
+		};
+		0CC19D16207202DA0007CC5F /* 姓名 */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19D17207202E80007CC5F /* ChangeNameVC.h */,
+				0CC19D18207202E80007CC5F /* ChangeNameVC.m */,
+			);
+			path = "姓名";
+			sourceTree = "<group>";
+		};
+		0CC19D1A207205BA0007CC5F /* 修改住址 */ = {
+			isa = PBXGroup;
+			children = (
+				0CC19D1B207205CA0007CC5F /* ChangeAddessVC.h */,
+				0CC19D1C207205CA0007CC5F /* ChangeAddessVC.m */,
+			);
+			path = "修改住址";
 			sourceTree = "<group>";
 		};
 		0CE47B66206B9E20001ADD73 /* view */ = {
@@ -1421,7 +1470,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
+				0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */,
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
+				0CC19D112071D5B10007CC5F /* CustomTableHeader4.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
 				0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */,
 				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
@@ -1432,9 +1483,11 @@
 				0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
+				0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */,
 				0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */,
 				10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */,
 				0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */,
+				0CC19D0E2071CF3C0007CC5F /* CustomTableCellView.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
@@ -1452,6 +1505,7 @@
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
+				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
 				0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */,
 				0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */,
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
