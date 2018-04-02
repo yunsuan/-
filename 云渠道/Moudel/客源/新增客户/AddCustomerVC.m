@@ -162,16 +162,38 @@
 
 -(void)action_sex
 {
-    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:@[@{@"MC":@"男",
-                                                                                             @"ID":@"1"
-                                                                                             },@{@"MC":@"女",
-                                                                                                @"ID":@"2"
-                                                                                                 }]];
+//    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:@[@{@"MC":@"男",
+//                                                                                             @"ID":@"1"
+//                                                                                             },@{@"MC":@"女",
+//                                                                                                @"ID":@"2"
+//                                                                                                 }]];
+//
+//    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+//        _sex.content.text = MC;
+//    };
+//    [self.view addSubview:view];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"性别" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    view.selectedBlock = ^(NSString *MC, NSString *ID) {
-        _sex.content.text = MC;
-    };
-    [self.view addSubview:view];
+    UIAlertAction *male = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        _sex.content.text = @"男";
+    }];
+    
+    UIAlertAction *female = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        _sex.content.text = @"女";
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:male];
+    [alert addAction:female];
+    [alert addAction:cancel];
+    [self.navigationController presentViewController:alert animated:YES completion:^{
+        
+    }];
 }
 
 -(void)action_brith

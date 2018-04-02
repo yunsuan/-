@@ -7,6 +7,7 @@
 //
 
 #import "ChangeAddessVC.h"
+#import "AdressChooseView.h"
 
 @interface ChangeAddessVC ()
 
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) UIImageView *dropImg;
 
 @property (nonatomic, strong) UITextView *detailTV;
+
+@property (nonatomic, strong) AdressChooseView *adressView;
 
 @end
 

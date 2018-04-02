@@ -37,8 +37,8 @@
 -(UIImageView *)dropimg
 {
     if (!_dropimg) {
-        _dropimg =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"downarrow"]];
-        _dropimg.frame = CGRectMake(self.frame.size.width-14*SIZE, 14.7*SIZE, 8*SIZE, 4.3*SIZE);
+        _dropimg =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"downarrow1"]];
+        _dropimg.frame = CGRectMake(self.frame.size.width-14*SIZE, 14.7*SIZE, 8*SIZE, 8*SIZE);
     }
     return _dropimg;
 }
