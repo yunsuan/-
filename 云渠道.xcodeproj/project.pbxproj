@@ -736,17 +736,15 @@
 			path = "修改住址";
 			sourceTree = "<group>";
 		};
-
-    0CC19D1E20720B150007CC5F /* 自定义地址选择器 */ = {
-    isa = PBXGroup;
-    children = (
-    10174BF020720C9A00D00B9A /* AdressChooseView.h */,
-    10174BF120720C9A00D00B9A /* AdressChooseView.m */,
-    );
-    path = "自定义地址选择器";
-    sourceTree = "<group>";
-    };
-        
+		0CC19D1E20720B150007CC5F /* 自定义地址选择器 */ = {
+			isa = PBXGroup;
+			children = (
+				10174BF020720C9A00D00B9A /* AdressChooseView.h */,
+				10174BF120720C9A00D00B9A /* AdressChooseView.m */,
+			);
+			path = "自定义地址选择器";
+			sourceTree = "<group>";
+		};
 		0CE47B66206B9E20001ADD73 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +813,13 @@
 				10174BEE2071D82000D00B9A /* DateChooseView.m */,
 			);
 			path = "自定义时间选择器";
+			sourceTree = "<group>";
+		};
+		10174C012072141D00D00B9A /* 楼盘信息 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "楼盘信息";
 			sourceTree = "<group>";
 		};
 		102DF9682057A0A200E1859C /* 登录注册 */ = {
@@ -920,6 +925,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				10174C012072141D00D00B9A /* 楼盘信息 */,
 				0C3AD5502068E17B0059CE02 /* view */,
 				105E189D206235690031558D /* RoomDetailVC.h */,
 				105E189E206235690031558D /* RoomDetailVC.m */,
@@ -1202,7 +1208,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
-                0CC19D1E20720B150007CC5F /* 自定义地址选择器 */,
+				0CC19D1E20720B150007CC5F /* 自定义地址选择器 */,
 				10174BEC2071D7B800D00B9A /* 自定义时间选择器 */,
 				105E18FF206CF03C0031558D /* 自定义TextField */,
 				105E18FB206CB35C0031558D /* 自定义按钮 */,
