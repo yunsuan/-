@@ -733,13 +733,6 @@
 			path = "修改住址";
 			sourceTree = "<group>";
 		};
-		0CC19D1E20720B150007CC5F /* 自定义地址选择器 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "自定义地址选择器";
-			sourceTree = "<group>";
-		};
 		0CE47B66206B9E20001ADD73 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1195,7 +1188,6 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
-				0CC19D1E20720B150007CC5F /* 自定义地址选择器 */,
 				10174BEC2071D7B800D00B9A /* 自定义时间选择器 */,
 				105E18FF206CF03C0031558D /* 自定义TextField */,
 				105E18FB206CB35C0031558D /* 自定义按钮 */,
