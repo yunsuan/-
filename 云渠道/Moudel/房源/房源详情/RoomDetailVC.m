@@ -529,8 +529,11 @@
     if (!_mapView) {
         
         _mapView = [[BMKMapView alloc] init];
+
         _mapView.delegate = self;
+        _mapView.zoomLevel = 14;
         _mapView.userInteractionEnabled = NO;
+    
     }
     return _mapView;
 }
