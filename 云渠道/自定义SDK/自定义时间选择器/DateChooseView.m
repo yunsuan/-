@@ -8,7 +8,6 @@
 
 #import "DateChooseView.h"
 
-<<<<<<< HEAD
 
 #define PICKERHEIGHT 216
 #define BGHEIGHT     256
@@ -45,18 +44,18 @@
  记录选中的位置
  */
 @property(nonatomic, assign) NSInteger selected;
-=======
+
 @interface DateChooseView()
 {
 
     NSDate *_date;
 }
->>>>>>> f2d235867233a0d11eb8d9530a8a9bcd47906949
+
 @end
 
 @implementation DateChooseView
 
-<<<<<<< HEAD
+
 #pragma mark -- lazy
 - (UIButton *)cancleBtn
 {
@@ -131,7 +130,7 @@
     if (self = [super initWithFrame:frame]) {
         _date =  [NSDate date];
         [self initSuViews];
-=======
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -139,12 +138,10 @@
         
         _date = [NSDate date];
         [self initUI];
->>>>>>> f2d235867233a0d11eb8d9530a8a9bcd47906949
     }
     return self;
 }
 
-<<<<<<< HEAD
 #pragma mark -- 从plist里面读数据
 
 
@@ -212,7 +209,7 @@
     if ([touches.anyObject.view isKindOfClass:[self class]]) {
         [self hidePickerView];
     }
-=======
+    
 - (void)ActionTap{
     
     [self removeFromSuperview];
@@ -301,7 +298,6 @@
     
     [_dataPicker addTarget:self action:@selector(dateChange:) forControlEvents:UIControlEventValueChanged];
     [whiteView addSubview:_dataPicker];
->>>>>>> f2d235867233a0d11eb8d9530a8a9bcd47906949
 }
 
 @end

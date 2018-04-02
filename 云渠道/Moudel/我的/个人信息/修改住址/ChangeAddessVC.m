@@ -10,28 +10,42 @@
 
 @interface ChangeAddessVC ()
 
+@property (nonatomic, strong) UILabel *addressL;
+
+@property (nonatomic, strong) UIButton *addressBtn;
+
+@property (nonatomic, strong) UIView *whiteView;
+
+@property (nonatomic, strong) UIImageView *dropImg;
+
 @end
 
 @implementation ChangeAddessVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self initUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initUI{
+    
+    _whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 50 *SIZE)];
+    _whiteView.backgroundColor = CH_COLOR_white;
+    [self.view addSubview:_whiteView];
+    
+    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 18 *SIZE, 200 *SIZE, 13 *SIZE)];
+    _addressL.textColor = YJTitleLabColor;
+    _addressL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.view addSubview:_addressL];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE , 60 *SIZE + NAVIGATION_BAR_HEIGHT, 100 *SIZE, 12 *SIZE)];
+    label.textColor = YJContentLabColor;
+    label.font = [UIFont systemFontOfSize:13 *SIZE];
+    label.text = @"具体地址";
+    [self.view addSubview:label];
+    
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
