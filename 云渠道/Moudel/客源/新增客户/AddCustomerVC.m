@@ -102,7 +102,7 @@
     [myDatePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_Hans_CN"]];
     //默认为当天。
     [myDatePicker setCalendar:[NSCalendar currentCalendar]];
-     
+    
 
     [self.view addSubview:myDatePicker];
 

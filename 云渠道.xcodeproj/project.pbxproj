@@ -67,6 +67,7 @@
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
 		0CF7425E206262EC001F926F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7425D206262EC001F926F /* BoxView.m */; };
 		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
+		10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BEE2071D82000D00B9A /* DateChooseView.m */; };
 		102DF9702057A12B00E1859C /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF96F2057A12B00E1859C /* MessageVC.m */; };
 		102DF9732057A14300E1859C /* WorkingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9722057A14300E1859C /* WorkingVC.m */; };
 		102DF9762057A1AE00E1859C /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9752057A1AE00E1859C /* RoomVC.m */; };
@@ -255,6 +256,8 @@
 		0CF7425D206262EC001F926F /* BoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		0CF7425F20626756001F926F /* CustomerCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerCollCell.h; sourceTree = "<group>"; };
 		0CF7426020626756001F926F /* CustomerCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerCollCell.m; sourceTree = "<group>"; };
+		10174BED2071D82000D00B9A /* DateChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateChooseView.h; sourceTree = "<group>"; };
+		10174BEE2071D82000D00B9A /* DateChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateChooseView.m; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -745,6 +748,8 @@
 		10174BEC2071D7B800D00B9A /* 自定义时间选择器 */ = {
 			isa = PBXGroup;
 			children = (
+				10174BED2071D82000D00B9A /* DateChooseView.h */,
+				10174BEE2071D82000D00B9A /* DateChooseView.m */,
 			);
 			path = "自定义时间选择器";
 			sourceTree = "<group>";
@@ -1428,6 +1433,7 @@
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */,
+				10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */,
 				0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
