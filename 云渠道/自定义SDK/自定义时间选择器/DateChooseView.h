@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class DateChooseView;
+
+typedef void (^timeBlock)(NSDate *date);
+
 @interface DateChooseView : UIView
+
+@property (nonatomic, copy) timeBlock timeBlock;
+
+@property (nonatomic, strong) UIDatePicker *dataPicker;
+
+@property (nonatomic, strong) UIButton *cancelBtn;
+
+@property (nonatomic, strong) UIButton *confirmBtn;
 
 @end
