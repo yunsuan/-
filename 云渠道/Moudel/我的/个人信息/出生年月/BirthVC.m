@@ -92,9 +92,8 @@
     if (!_dateView) {
         
         _dateView = [[DateChooseView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-        
         __weak __typeof(&*self)weakSelf = self;
-        _dateView.timeBlock = ^(NSDate *date) {
+        _dateView.dateblock = ^(NSDate *date) {
           
             weakSelf.birthL.text = [weakSelf.formatter stringFromDate:date];
         };
