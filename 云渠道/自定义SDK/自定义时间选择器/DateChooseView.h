@@ -12,7 +12,4 @@
 typedef void(^dateblock)(NSDate * date);
 @interface DateChooseView : UIView
 @property(nonatomic, copy) dateblock dateblock;
-
-
-
 @end
