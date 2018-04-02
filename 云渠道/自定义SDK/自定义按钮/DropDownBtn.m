@@ -27,7 +27,7 @@
 -(UILabel *)content
 {
     if (!_content) {
-        _content = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 11.7*SIZE, self.frame.size.width-24*SIZE, 14*SIZE)];
+        _content = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 11*SIZE, self.frame.size.width-24*SIZE, 14*SIZE)];
         _content.font = [UIFont systemFontOfSize:13.3*SIZE];
         _content.textColor = YJContentLabColor;
     }
