@@ -11,6 +11,7 @@
 #import "ChangePassWordVC.h"
 #import "BirthVC.h"
 #import "ChangeNameVC.h"
+#import "ChangeAddessVC.h"
 
 @interface PersonalVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -252,6 +253,8 @@
         }
         case 7:
         {
+            ChangeAddessVC *nextVC = [[ChangeAddessVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 8:

@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UIImageView *dropImg;
 
+@property (nonatomic, strong) UITextView *detailTV;
+
 @end
 
 @implementation ChangeAddessVC
@@ -30,6 +32,8 @@
 
 - (void)initUI{
     
+    self.navBackgroundView.hidden = NO;
+    
     _whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 50 *SIZE)];
     _whiteView.backgroundColor = CH_COLOR_white;
     [self.view addSubview:_whiteView];
@@ -37,7 +41,11 @@
     _addressL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 18 *SIZE, 200 *SIZE, 13 *SIZE)];
     _addressL.textColor = YJTitleLabColor;
     _addressL.font = [UIFont systemFontOfSize:13 *SIZE];
-    [self.view addSubview:_addressL];
+    [_whiteView addSubview:_addressL];
+    
+    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(342 *SIZE, 23 *SIZE, 8 *SIZE, 8 *SIZE)];
+    _dropImg.image = [UIImage imageNamed:@"downarrow1"];
+    [_whiteView addSubview:_dropImg];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE , 60 *SIZE + NAVIGATION_BAR_HEIGHT, 100 *SIZE, 12 *SIZE)];
     label.textColor = YJContentLabColor;
@@ -45,7 +53,10 @@
     label.text = @"具体地址";
     [self.view addSubview:label];
     
-    
+    _detailTV = [[UITextView alloc] initWithFrame:CGRectMake(0, 85 *SIZE + NAVIGATION_BAR_HEIGHT, SCREEN_Width, 117 *SIZE)];
+    _detailTV.contentInset = UIEdgeInsetsMake(13 *SIZE, 10 *SIZE, 13 *SIZE, 10 *SIZE);
+    _detailTV.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.view addSubview:_detailTV];
 }
 
 @end
