@@ -16,6 +16,7 @@
 #import "RoomDetailTableCell5.h"
 #import "RoomDetailTableHeader.h"
 #import "RoomDetailTableHeader5.h"
+#import "BuildingInfoVC.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
@@ -67,6 +68,10 @@
 - (void)ActionMoreBtn:(UIButton *)btn{
     
     NSLog(@"%ld",btn.tag);
+    if (btn.tag == 0) {
+        BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]init];
+        [self.navigationController pushViewController:next_vc animated:YES];
+    }
     
 }
 

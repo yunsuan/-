@@ -74,6 +74,9 @@
 		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
 		10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BEE2071D82000D00B9A /* DateChooseView.m */; };
 		10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BF120720C9A00D00B9A /* AdressChooseView.m */; };
+		10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C03207214CA00D00B9A /* BuildingInfoVC.m */; };
+		10174C082072175800D00B9A /* BuildinginfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C072072175800D00B9A /* BuildinginfoCell.m */; };
+		10174C0B2072179300D00B9A /* LicenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C0A2072179300D00B9A /* LicenceCell.m */; };
 		102DF9702057A12B00E1859C /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF96F2057A12B00E1859C /* MessageVC.m */; };
 		102DF9732057A14300E1859C /* WorkingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9722057A14300E1859C /* WorkingVC.m */; };
 		102DF9762057A1AE00E1859C /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9752057A1AE00E1859C /* RoomVC.m */; };
@@ -276,6 +279,12 @@
 		10174BEE2071D82000D00B9A /* DateChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateChooseView.m; sourceTree = "<group>"; };
 		10174BF020720C9A00D00B9A /* AdressChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdressChooseView.h; sourceTree = "<group>"; };
 		10174BF120720C9A00D00B9A /* AdressChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdressChooseView.m; sourceTree = "<group>"; };
+		10174C02207214CA00D00B9A /* BuildingInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildingInfoVC.h; sourceTree = "<group>"; };
+		10174C03207214CA00D00B9A /* BuildingInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildingInfoVC.m; sourceTree = "<group>"; };
+		10174C062072175800D00B9A /* BuildinginfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildinginfoCell.h; sourceTree = "<group>"; };
+		10174C072072175800D00B9A /* BuildinginfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildinginfoCell.m; sourceTree = "<group>"; };
+		10174C092072179300D00B9A /* LicenceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LicenceCell.h; sourceTree = "<group>"; };
+		10174C0A2072179300D00B9A /* LicenceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LicenceCell.m; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -818,8 +827,22 @@
 		10174C012072141D00D00B9A /* 楼盘信息 */ = {
 			isa = PBXGroup;
 			children = (
+				10174C05207216E100D00B9A /* cell */,
+				10174C02207214CA00D00B9A /* BuildingInfoVC.h */,
+				10174C03207214CA00D00B9A /* BuildingInfoVC.m */,
 			);
 			path = "楼盘信息";
+			sourceTree = "<group>";
+		};
+		10174C05207216E100D00B9A /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				10174C062072175800D00B9A /* BuildinginfoCell.h */,
+				10174C072072175800D00B9A /* BuildinginfoCell.m */,
+				10174C092072179300D00B9A /* LicenceCell.h */,
+				10174C0A2072179300D00B9A /* LicenceCell.m */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		102DF9682057A0A200E1859C /* 登录注册 */ = {
@@ -1518,6 +1541,7 @@
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
+				10174C0B2072179300D00B9A /* LicenceCell.m in Sources */,
 				0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
@@ -1578,8 +1602,10 @@
 				0C08BF77206CE919005BB3B4 /* MyAttentionVC.m in Sources */,
 				0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */,
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
+				10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */,
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
+				10174C082072175800D00B9A /* BuildinginfoCell.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
 				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
