@@ -38,6 +38,8 @@
 
 @property (nonatomic, strong) UICollectionView *headerColl;
 
+@property (nonatomic, strong) UIButton *addBtn;
+
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, weak) id<CustomTableHeaderDelegate> delegate;
