@@ -14,6 +14,7 @@
 #import "CustomTableHeader2.h"
 #import "CustomTableHeader3.h"
 #import "CustomTableHeader4.h"
+#import "AddRequireMentVC.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
@@ -60,6 +61,12 @@
 }
 
 - (void)DGActionAddBtn:(UIButton *)btn{
+    
+    AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+- (void)DG2ActionAddBtn:(UIButton *)btn{
     
     
 }

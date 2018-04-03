@@ -16,6 +16,8 @@
 
 - (void)DGActionEditBtn:(UIButton *)btn;
 
+- (void)DGActionAddBtn:(UIButton *)btn;
+
 @end
 
 @interface CustomTableHeader : UITableViewHeaderFooterView

@@ -46,6 +46,7 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -63,7 +64,6 @@
 		0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D142071F2A60007CC5F /* BirthVC.m */; };
 		0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D18207202E80007CC5F /* ChangeNameVC.m */; };
 		0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D1C207205CA0007CC5F /* ChangeAddessVC.m */; };
-		0CC19D222072172C0007CC5F /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */; };
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
@@ -1503,6 +1503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */,
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
 				0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */,
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
@@ -1594,7 +1595,6 @@
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
-				0CC19D222072172C0007CC5F /* AddRequireMentVC.m in Sources */,
 				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,

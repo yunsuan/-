@@ -37,6 +37,17 @@
     }
 }
 
+- (void)ActionAddBtn:(UIButton *)btn{
+    
+    if (_delegate &&[_delegate respondsToSelector:@selector(DGActionAddBtn:)]) {
+        
+        [_delegate DGActionAddBtn:btn];
+    }else{
+        
+        NSLog(@"没有代理人");
+    }
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return 3;
@@ -163,7 +174,7 @@
     _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _addBtn.frame = CGRectMake(0, CGRectGetMaxY(_headerColl.frame), SCREEN_Width, 40 *SIZE);
     _addBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-//    [<#UIButton#> addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_addBtn setTitle:@"添加需求" forState:UIControlStateNormal];
     [_addBtn setImage:[UIImage imageNamed:@"add_3-1"] forState:UIControlStateNormal];
     [_addBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];

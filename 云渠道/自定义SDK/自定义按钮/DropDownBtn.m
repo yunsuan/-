@@ -24,6 +24,21 @@
     return self;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 5*SIZE;
+        self.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
+        self.layer.borderWidth = 1*SIZE;
+        [self addSubview:self.content];
+        [self addSubview:self.dropimg];
+    }
+    return self;
+}
+
 -(UILabel *)content
 {
     if (!_content) {

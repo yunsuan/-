@@ -40,9 +40,9 @@
 
 - (void)ActionAddBtn:(UIButton *)btn{
     
-    if (_delegate && [_delegate respondsToSelector:@selector(DGActionAddBtn:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(DG2ActionAddBtn:)]) {
         
-        [_delegate DGActionAddBtn:btn];
+        [_delegate DG2ActionAddBtn:btn];
     }else{
         
         

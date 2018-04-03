@@ -14,7 +14,7 @@
 
 - (void)head2collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)DGActionAddBtn:(UIButton *)btn;
+- (void)DG2ActionAddBtn:(UIButton *)btn;
 
 - (void)DGActionEditBtn:(UIButton *)btn;
 
