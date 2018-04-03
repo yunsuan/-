@@ -47,6 +47,7 @@
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
+		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -224,6 +225,8 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowRecordVC.h; sourceTree = "<group>"; };
+		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -508,6 +511,7 @@
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0CB6BAEE20736D4600921C75 /* 跟进记录 */,
 				0CC19D1F207216F70007CC5F /* 添加需求 */,
 				0C0B8208206389D500238D4F /* view */,
 				0C0B82052063514500238D4F /* CustomDetailVC.h */,
@@ -659,6 +663,15 @@
 				0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0CB6BAEE20736D4600921C75 /* 跟进记录 */ = {
+			isa = PBXGroup;
+			children = (
+				0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */,
+				0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */,
+			);
+			path = "跟进记录";
 			sourceTree = "<group>";
 		};
 		0CC19CE3206E21100007CC5F /* view */ = {
@@ -1587,6 +1600,7 @@
 				0C23F6202068BE1E00B4D573 /* CustomTableHeader3.m in Sources */,
 				0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
+				0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
 				0CC19CFA206E21110007CC5F /* SelectCompanyVC.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,

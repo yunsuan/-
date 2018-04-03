@@ -15,6 +15,7 @@
 #import "CustomTableHeader3.h"
 #import "CustomTableHeader4.h"
 #import "AddRequireMentVC.h"
+#import "FollowRecordVC.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
@@ -68,7 +69,8 @@
 
 - (void)DG2ActionAddBtn:(UIButton *)btn{
     
-    
+    FollowRecordVC *nextVC = [[FollowRecordVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)DGActionEditBtn:(UIButton *)btn{
