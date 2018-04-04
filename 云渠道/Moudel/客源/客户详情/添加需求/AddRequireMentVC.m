@@ -440,6 +440,7 @@
             slider.minimumTrackTintColor = COLOR(255, 224, 177, 1);
             slider.thumbTintColor = COLOR(255, 224, 177, 1);
             [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
+            [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateHighlighted];
             [slider addTarget:self action:@selector(ActionSliderChange:) forControlEvents:UIControlEventValueChanged];
             if (i == 0) {
                 
@@ -451,6 +452,18 @@
                 [_infoView addSubview:_urgentSlider];
             }
         }
+        
+//        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 662 *SIZE + i * 110 *SIZE, 15 *SIZE, 11 *SIZE)];
+//        label2.textColor = COLOR(170, 170, 170, 1);
+//        label2.font = [UIFont systemFontOfSize:12 *SIZE];
+//        label2.text = @"0";
+//        [_infoView addSubview:label2];
+//        
+//        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(315 *SIZE, 662 *SIZE + i * 110 *SIZE, 30 *SIZE, 11 *SIZE)];
+//        label3.textColor = COLOR(170, 170, 170, 1);
+//        label3.font = [UIFont systemFontOfSize:12 *SIZE];
+//        label3.text = @"100";
+//        [_infoView addSubview:label3];
 
     }
     

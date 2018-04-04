@@ -16,11 +16,13 @@
 #import "ExperienceVC.h"
 
 
-@interface MineVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface MineVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
+    UIImagePickerController *_imagePickerController; /**< 相册拾取器 */
     NSArray *_namelist;
     NSArray *_imageList;
     NSArray *_contentList;
+    
 }
 @property (nonatomic, strong) UIImageView *headImg;
 
@@ -64,12 +66,12 @@
 //    _codeImg.backgroundColor = YJGreenColor;
 //    [self.view addSubview:_codeImg];
     
-    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(344 *SIZE, STATUS_BAR_HEIGHT+42.7 *SIZE, 6.7 *SIZE, 12.3 *SIZE)];
-    rightView.image = [UIImage imageNamed:@"rightarrow"];
-    [self.view addSubview:rightView];
+//    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(344 *SIZE, STATUS_BAR_HEIGHT+42.7 *SIZE, 6.7 *SIZE, 12.3 *SIZE)];
+//    rightView.image = [UIImage imageNamed:@"rightarrow"];
+//    [self.view addSubview:rightView];
     
     _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _codeBtn.frame = CGRectMake(0 *SIZE, 0 *SIZE, SCREEN_Width, STATUS_BAR_HEIGHT+114*SIZE);
+    _codeBtn.frame = CGRectMake(9 *SIZE, STATUS_BAR_HEIGHT+19 *SIZE, 70 *SIZE, 70*SIZE);
     [_codeBtn addTarget:self action:@selector(ActionCodeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_codeBtn];
     
@@ -78,23 +80,119 @@
 
 -(void)InitDataSouce
 {
-    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
-    _imageList = @[@[@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
-    _contentList= @[@[@"云算科技公司",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
+    _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
+    _imageList = @[@[@"",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
+    _contentList= @[@[@"",@"云算科技公司",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
+    _imagePickerController = [[UIImagePickerController alloc] init];
+    _imagePickerController.delegate = self;
 }
 
 - (void)ActionCodeBtn:(UIButton *)btn{
     
-    PersonalVC *nextVC = [[PersonalVC alloc] init];
-    nextVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:nextVC animated:YES];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"上传头像"
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    // 相册选择
+    [alertController addAction:[UIAlertAction actionWithTitle:@"照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self selectPhotoAlbumPhotos];
+    }]];
+    // 拍照
+    [alertController addAction:[UIAlertAction actionWithTitle:@"拍摄" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self takingPictures];
+    }]];
+    // 取消
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }]];
+    // 推送
+    [self presentViewController:alertController animated:YES completion:^{
+    }];
 }
 
+#pragma mark -- 选择头像
+
+- (void)selectPhotoAlbumPhotos {
+    // 获取支持的媒体格式
+    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    // 判断是否支持需要设置的sourceType
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        
+        // 1、设置图片拾取器上的sourceType
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        // 2、设置支持的媒体格式
+        _imagePickerController.mediaTypes = @[mediaTypes[0]];
+        // 3、其他设置
+        _imagePickerController.allowsEditing = YES; // 如果设置为NO，当用户选择了图片之后不会进入图像编辑界面。
+        // 4、推送图片拾取器控制器
+        [self presentViewController:_imagePickerController animated:YES completion:nil];
+    }
+}
+
+// 拍照
+- (void)takingPictures {
+    // 获取支持的媒体格式
+    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    
+    // 判断是否支持需要设置的sourceType
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        // 1、设置图片拾取器上的sourceType
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        // 2、设置支持的媒体格式
+        _imagePickerController.mediaTypes = @[mediaTypes[0]];
+        // 3、其他设置
+        // 设置相机模式
+        _imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+        // 设置摄像头：前置/后置
+        _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        // 设置闪光模式
+        _imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
+        
+        
+        // 4、推送图片拾取器控制器
+        [self presentViewController:_imagePickerController animated:YES completion:nil];
+        
+    } else {
+        NSLog(@"当前设备不支持拍照");
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                  message:@"当前设备不支持拍照"
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              //                                                              _uploadButton.hidden = NO;
+                                                          }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
+            UIImage *originalImage = [self fixOrientation:info[UIImagePickerControllerOriginalImage]];
+            NSData *data = [self resetSizeOfImageData:originalImage maxSize:150];
+        }
+    }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
+        UIImage *originalImage = [self fixOrientation:info[UIImagePickerControllerEditedImage]];
+        NSData *data = [self resetSizeOfImageData:originalImage maxSize:150];
+        
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+// 用户点击了取消按钮
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 || section == 1) {
+    if (section == 1) {
         return 2;
     }
     else
@@ -148,9 +246,13 @@
     
     if(indexPath.section == 0)
     {
-        
-
         if (indexPath.row == 0) {
+            
+            PersonalVC *nextVC = [[PersonalVC alloc] init];
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else if (indexPath.row == 1) {
+            
             AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
