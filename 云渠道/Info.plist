@@ -63,6 +63,8 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>120.27.21.136:2798/agent</key>
+			<string></string>
 			<key>jpush.cn</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>

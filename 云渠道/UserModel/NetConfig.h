@@ -12,5 +12,14 @@
 
 #endif /* NetConfig_h */
 
+//基础接口
+static NSString *const Base_Net = @"http://120.27.21.136:2798/agent/";
 
-static NSString *const Base_Net = @"http://120.27.21.136:2798/agent";
+//1登录
+static NSString *const Login_URL = @"user/login";
+
+//2验证码
+static NSString *const Captcha_URL = @"user/captcha";
+
+//3注册
+static NSString *const Register_URL = @"user/register";
