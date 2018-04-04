@@ -49,7 +49,7 @@
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
-		0CB6BAF92074A11400921C75 /* HouseTypeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF82074A11400921C75 /* HouseTypeTableCell.m */; };
+		0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAFB2074A1BE00921C75 /* HouseTypeTableCell.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -231,8 +231,8 @@
 		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CB6BAF32074982000921C75 /* HouseTypeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeDetailVC.h; sourceTree = "<group>"; };
 		0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeDetailVC.m; sourceTree = "<group>"; };
-		0CB6BAF72074A11400921C75 /* HouseTypeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeTableCell.h; sourceTree = "<group>"; };
-		0CB6BAF82074A11400921C75 /* HouseTypeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeTableCell.m; sourceTree = "<group>"; };
+		0CB6BAFA2074A1BE00921C75 /* HouseTypeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeTableCell.h; sourceTree = "<group>"; };
+		0CB6BAFB2074A1BE00921C75 /* HouseTypeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeTableCell.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -694,8 +694,8 @@
 		0CB6BAF62074A10300921C75 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				0CB6BAF72074A11400921C75 /* HouseTypeTableCell.h */,
-				0CB6BAF82074A11400921C75 /* HouseTypeTableCell.m */,
+				0CB6BAFA2074A1BE00921C75 /* HouseTypeTableCell.h */,
+				0CB6BAFB2074A1BE00921C75 /* HouseTypeTableCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1642,7 +1642,7 @@
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
-				0CB6BAF92074A11400921C75 /* HouseTypeTableCell.m in Sources */,
+				0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */,
 				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
