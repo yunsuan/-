@@ -47,6 +47,14 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.collCellBlock) {
+        
+        self.collCellBlock(indexPath.item);
+    }
+}
+
 - (void)initUI{
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 9 *SIZE, 65 *SIZE, 15 *SIZE)];

@@ -17,6 +17,7 @@
 #import "RoomDetailTableHeader.h"
 #import "RoomDetailTableHeader5.h"
 #import "BuildingInfoVC.h"
+#import "HouseTypeDetailVC.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
@@ -393,6 +394,11 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.num = 10;
+            cell.collCellBlock = ^(NSInteger index) {
+                
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
             
             return cell;
             break;
@@ -458,6 +464,11 @@
             break;
         }
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
 }
 
 
