@@ -72,9 +72,34 @@
 }
 
 -(void)Login{
-    [[NSUserDefaults standardUserDefaults]setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
-    CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
-    [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];
+    if (_PassWord.text.length<6) {
+        [self showContent:@"密码长度至少为6位"];
+        return;
+    }
+    NSDictionary *parameter = @{
+                                @"account":_Account.text,
+                                @"password":_PassWord.text
+                                };
+    
+    [BaseRequest POST:Login_URL parameters:parameter success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue]==200) {
+        
+            [[NSUserDefaults standardUserDefaults]setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
+            [UserModel defaultModel].Token = resposeObject[@"data"];
+            [UserModel defaultModel].Account = _Account.text;
+            [UserModel defaultModel].Password = _PassWord.text;
+            CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
+            [UserModelArchiver archive];
+            [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];
+        }
+        [self showContent:resposeObject[@"msg"]];
+        
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+    }];
+    
+
 }
 
 -(void)QuickLogin
@@ -103,9 +128,13 @@
 
 -(UITextField *)Account{
     if (!_Account) {
-        _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 219*SIZE, 200*SIZE, 15*SIZE)];
+        _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 219*SIZE, 314*SIZE, 15*SIZE)];
         _Account.placeholder = @"请输入手机号码/云算编号";
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
+        [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        _Account.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _Account.text = [UserModelArchiver unarchive].Account
+        ;
         
     }
     return _Account;
@@ -113,9 +142,12 @@
 
 -(UITextField *)PassWord{
     if (!_PassWord) {
-        _PassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 266*SIZE, 200*SIZE, 15*SIZE)];
+        _PassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 266*SIZE, 314*SIZE, 15*SIZE)];
         _PassWord.placeholder = @"请输入密码";
         _PassWord.font = [UIFont systemFontOfSize:14*SIZE];
+        [_PassWord addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+         _PassWord.secureTextEntry = YES;
+        _PassWord.text = [UserModelArchiver unarchive].Password;
         
     }
     return _PassWord;
@@ -177,6 +209,21 @@
         
     }
     return _FindPassWordBtn;
+}
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == _Account) {
+        if (textField.text.length > 20) {
+            textField.text = [textField.text substringToIndex:20];
+        }
+    }
+    if (textField == _PassWord) {
+        if (textField.text.length > 20) {
+            textField.text = [textField.text substringToIndex:20];
+        }
+    }
+ 
 }
 
 

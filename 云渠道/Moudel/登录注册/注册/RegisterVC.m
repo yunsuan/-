@@ -9,7 +9,7 @@
 #import "RegisterVC.h"
 #import "LoginVC.h"
 
-@interface RegisterVC ()
+@interface RegisterVC ()<UITextFieldDelegate>
 {
     NSInteger surplusTime;//重新发送短信的倒计时时间
     NSTimer *time;
@@ -57,8 +57,51 @@
 
 -(void)Register
 {
-    LoginVC *next_vc = [[LoginVC alloc]init];
-    [self.navigationController pushViewController:next_vc animated:YES];
+    
+    if (![self checkTel:_Account.text]) {
+        [self showContent:@"请输入正确的电话号码！"];
+    }
+    if ([_Code.text isEqualToString:@""]) {
+        [self showContent:@"请输入验证码！"];
+        return;
+    }
+    if (_PassWord.text.length<6) {
+        [self showContent:@"密码长度至少为6位"];
+        return;
+    }
+    if (![self checkPassword:_PassWord.text]) {
+        [self showContent:@"密码格式错误,必须包含数字和字母！"];
+        return;
+    }
+    
+    if (![_PassWord.text isEqualToString:_SurePassWord.text]) {
+        [self showContent:@"两次输入的密码不相同！"];
+        return;
+    }
+    
+
+    
+    NSDictionary *parameter = @{
+                                @"account":_Account.text,
+                                @"password":_PassWord.text,
+                                @"password_verify":_SurePassWord.text,
+                                @"captcha":_Code.text
+                                };
+    
+    [BaseRequest POST:Register_URL parameters:parameter success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue]==200) {
+            LoginVC *next_vc = [[LoginVC alloc]init];
+            [self.navigationController pushViewController:next_vc animated:YES];
+        }
+        else{
+           
+        }
+         [self showContent:resposeObject[@"msg"]];
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+    }];
+
 }
 
 -(void)GetCode{
@@ -76,23 +119,29 @@
         //            [self showContent:[NSString stringWithFormat:@"%@",resposeObject[0][@"content"]]];
         //            if ([resposeObject[0][@"state"] isEqualToString:@"1"])
         //            {
-        _GetCodeBtn.hidden = YES;
-        _timeLabel.hidden = NO;
-        surplusTime = 60;
-        _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
-        //倒计时
-        time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        _GetCodeBtn.userInteractionEnabled = YES;
-        
-        //            }
-        //
-        //
-        //        } failure:^(NSError *error) {
-        //            NSLog(@"%@",error);
-        //            _codebtn.userInteractionEnabled = YES;
-        //
-        //        }];
-        //
+        NSDictionary *parameter = @{
+                                    @"tel":_Account.text
+                                    };
+        [BaseRequest GET:Captcha_URL parameters:parameter success:^(id resposeObject) {
+               NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                _GetCodeBtn.hidden = YES;
+                _timeLabel.hidden = NO;
+                surplusTime = 60;
+                _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
+                //倒计时
+                time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+                
+            }
+            
+            
+             [self showContent:resposeObject[@"msg"]];
+            _GetCodeBtn.userInteractionEnabled = YES;
+        } failure:^(NSError *error) {
+            _GetCodeBtn.userInteractionEnabled = YES;
+            [self showContent:@"网络错误"];
+        }];
+
     }
     else
     {
@@ -124,9 +173,10 @@
 
 -(UITextField *)Account{
     if (!_Account) {
-        _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+124*SIZE, 200*SIZE, 15*SIZE)];
+        _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+124*SIZE, 314*SIZE, 15*SIZE)];
         _Account.placeholder = @"请输入手机号码";
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
+        [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
     }
     return _Account;
@@ -137,6 +187,7 @@
         _Code = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+171*SIZE, 200*SIZE, 15*SIZE)];
         _Code.placeholder = @"请输入验证码";
         _Code.font = [UIFont systemFontOfSize:14*SIZE];
+        [_Code addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
     }
     return _Code;
@@ -145,9 +196,11 @@
 -(UITextField *)PassWord
 {
     if (!_PassWord) {
-        _PassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+218*SIZE, 200*SIZE, 15*SIZE)];
+        _PassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+218*SIZE, 314*SIZE, 15*SIZE)];
         _PassWord.placeholder = @"请输入密码";
         _PassWord.font = [UIFont systemFontOfSize:14*SIZE];
+        [_PassWord addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        _PassWord.secureTextEntry = YES;
         
     }
     return _PassWord;
@@ -156,9 +209,11 @@
 -(UITextField *)SurePassWord
 {
     if (!_SurePassWord) {
-        _SurePassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+265*SIZE, 200*SIZE, 15*SIZE)];
+        _SurePassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+265*SIZE, 314*SIZE, 15*SIZE)];
         _SurePassWord.placeholder = @"再次输入密码";
         _SurePassWord.font = [UIFont systemFontOfSize:14*SIZE];
+        [_SurePassWord addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+         _SurePassWord.secureTextEntry = YES;
     }
     return _SurePassWord;
 }
@@ -218,6 +273,30 @@
         
     }
     return _timeLabel;
+}
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == _Account) {
+        if (textField.text.length > 11) {
+            textField.text = [textField.text substringToIndex:11];
+        }
+    }
+    if (textField == _Code) {
+        if (textField.text.length > 4) {
+            textField.text = [textField.text substringToIndex:4];
+        }
+    }
+    if (textField == _PassWord) {
+        if (textField.text.length > 20) {
+            textField.text = [textField.text substringToIndex:20];
+        }
+    }
+    if (textField == _SurePassWord) {
+        if (textField.text.length > 20) {
+            textField.text = [textField.text substringToIndex:20];
+        }
+    }
 }
 
 @end
