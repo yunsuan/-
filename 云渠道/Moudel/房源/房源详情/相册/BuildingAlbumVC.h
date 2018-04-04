@@ -10,4 +10,10 @@
 
 @interface BuildingAlbumVC : BaseViewController
 
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, strong) UICollectionView *albumColl;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
 @end

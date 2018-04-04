@@ -8,7 +8,7 @@
 
 #import "BuildingAlbumVC.h"
 
-@interface BuildingAlbumVC ()
+@interface BuildingAlbumVC ()<UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @end
 
@@ -16,22 +16,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+ 
+    [self initUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initUI{
+    
+    self.titleLabel.text = @"楼盘相册";
+    self.navBackgroundView.hidden = NO;
+    self.navBackgroundView.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 55 *SIZE - TAB_BAR_MORE)];
+    _scrollView.delegate = self;
+    [self.view addSubview:_scrollView];
+    
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.itemSize = CGSizeMake(50 *SIZE, 27 *SIZE);
+    _flowLayout.minimumInteritemSpacing = 7 *SIZE;
+    _flowLayout.sectionInset = UIEdgeInsetsMake(SIZE, 10 *SIZE, 27 *SIZE, 10 *SIZE);
+    
+    
+    
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
