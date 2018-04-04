@@ -236,7 +236,7 @@
 - (NSString *)isSplitHTTP:(NSString *)string {
     if (![string isEqual:@""]) {
         if (![[string substringToIndex:4] isEqualToString:@"http"]) {
-            string = [NSString stringWithFormat:@"%@%@",HTTPHEAD,string];
+            string = [NSString stringWithFormat:@"%@%@",Base_Net,string];
         }
     }
     return string;

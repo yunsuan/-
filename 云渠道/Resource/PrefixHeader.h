@@ -28,6 +28,7 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Radar/BMKRadarOption.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import "NetConfig.h"
 //#import <BaiduMapAPI_Map/BMKMapView.h>
 
 #import <Masonry.h>
@@ -38,9 +39,7 @@
 #import "BaseRequest.h"
 
 
-#define HTTPHEADNUMBER @"http://101.205.19.65:10000"
-#define HTTPHEAD @"http://182.92.161.212/pigadoption"
-#define kBaseUrl @"http://101.205.19.65:10000/TelService.ashx"
+
 #ifndef deviceVersion
 #define deviceVersion [[[UIDevice currentDevice] systemVersion] floatValue]
 #endif

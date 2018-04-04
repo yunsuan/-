@@ -11,12 +11,12 @@
 @implementation BaseRequest
 
 + (void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
-    //    [SVProgressHUD show];
+//        [SVProgressHUD show];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.requestSerializer.timeoutInterval = 10.0f;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-    NSString *str = [NSString stringWithFormat:@"%@%@",HTTPHEADNUMBER,url];
+    NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     
     [manager GET:str parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -41,7 +41,7 @@
     manager.requestSerializer.timeoutInterval = 6;
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"text/json", @"text/javascript", @"application/json", nil];
-    NSString *str = [NSString stringWithFormat:@"%@%@",HTTPHEADNUMBER,url];
+    NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     [manager POST:str parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -63,7 +63,7 @@
 
 + (void)Updateimg:(NSString *)url parameters:(NSDictionary *)parameters constructionBody:(void (^)(id<AFMultipartFormData>))blocks success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     
-    NSString *str = [NSString stringWithFormat:@"%@%@",HTTPHEADNUMBER,url];
+    NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:str]];
     //2.创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
