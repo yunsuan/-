@@ -8,6 +8,11 @@
 
 #import "HouseTypeDetailVC.h"
 #import "RoomDetailTableCell5.h"
+#import "HouseTypeTableCell.h"
+#import "HouseTypeTableCell2.h"
+#import "HouseTypeDetailVC.h"
+#import "HouseTypeTableHeader.h"
+#import "HouseTypeTableHeader2.h"
 
 @interface HouseTypeDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -36,23 +41,109 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return 8 *SIZE;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (section == 0) {
+        
+        return 183 *SIZE;
+    }
+    return 33 *SIZE;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (section == 0) {
+        
+        HouseTypeTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HouseTypeTableHeader"];
+        if (!header) {
+            
+            header = [[HouseTypeTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 184 *SIZE)];
+        }
+        
+        return header;
+    }else{
+        
+        HouseTypeTableHeader2 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HouseTypeTableHeader2"];
+        if (!header) {
+            
+            header = [[HouseTypeTableHeader2 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 33 *SIZE)];
+        }
+        if (section == 1) {
+            
+            header.titleL.font = [UIFont systemFontOfSize:15 *SIZE];
+            header.titleL.text = @"本楼盘其他户型";
+        }else{
+            
+            header.titleL.font = [UIFont systemFontOfSize:13 *SIZE];
+            header.titleL.text = @"匹配的客户(23)";
+        }
+        return header;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
-    if (!cell) {
+    if (indexPath.section == 0) {
         
-        cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+        HouseTypeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HouseTypeTableCell"];
+        if (!cell) {
+            
+            cell = [[HouseTypeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HouseTypeTableCell"];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.typeL.text = @"A型";
+        cell.areaL.text = @"建筑面积：95㎡-100㎡";
+        cell.houseDisL.text = @"户型分布：1栋、3栋";
+        cell.titleL.text = @"户型卖点";
+        cell.contentL.text = @"核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费。";
+        
+        return cell;
+    }else{
+        if (indexPath.section == 1) {
+            
+            HouseTypeTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"HouseTypeTableCell2"];
+            if (!cell) {
+                
+                cell = [[HouseTypeTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HouseTypeTableCell2"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.num = 3;
+            cell.collCellBlock = ^(NSInteger index) {
+              
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
+            
+            return cell;
+        }else{
+            
+            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameL.text = @"张三";
+            cell.priceL.text = @"80 - 100";
+            cell.typeL.text = @"三室一厅";
+            cell.areaL.text = @"郫都区-德源大道";
+            cell.intentionRateL.text = @"23";
+            cell.urgentRateL.text = @"43";
+            cell.matchRateL.text = @"83";
+            cell.phoneL.text = @"13438339177";
+            return cell;
+        }
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.nameL.text = @"张三";
-    cell.priceL.text = @"80 - 100";
-    cell.typeL.text = @"三室一厅";
-    cell.areaL.text = @"郫都区-德源大道";
-    cell.intentionRateL.text = @"23";
-    cell.urgentRateL.text = @"43";
-    cell.matchRateL.text = @"83";
-    cell.phoneL.text = @"13438339177";
-    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    return [[UIView alloc] init];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -67,7 +158,7 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"户型详情";
     self.line.hidden = YES;
-    
+
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
     //    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
@@ -80,6 +171,8 @@
         make.size.mas_offset(CGSizeMake(22, 22));
     }];
     
+//    _houseTable.estimatedRowHeight = 172 *SIZE;
+//    _houseTable.rowHeight = UITableViewAutomaticDimension;
     _houseTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _houseTable.backgroundColor = self.view.backgroundColor;
     _houseTable.delegate = self;

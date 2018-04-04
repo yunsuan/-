@@ -50,6 +50,10 @@
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
 		0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAFB2074A1BE00921C75 /* HouseTypeTableCell.m */; };
+		0CB6BAFF2074A82D00921C75 /* HouseTypeTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAFE2074A82D00921C75 /* HouseTypeTableCell2.m */; };
+		0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB012074A9A300921C75 /* HouseTypeTableHeader.m */; };
+		0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB042074AA8100921C75 /* HouseTypeTableHeader2.m */; };
+		0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB072074C6DE00921C75 /* HouseHeaderCollCell.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -233,6 +237,14 @@
 		0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeDetailVC.m; sourceTree = "<group>"; };
 		0CB6BAFA2074A1BE00921C75 /* HouseTypeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeTableCell.h; sourceTree = "<group>"; };
 		0CB6BAFB2074A1BE00921C75 /* HouseTypeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeTableCell.m; sourceTree = "<group>"; };
+		0CB6BAFD2074A82D00921C75 /* HouseTypeTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeTableCell2.h; sourceTree = "<group>"; };
+		0CB6BAFE2074A82D00921C75 /* HouseTypeTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeTableCell2.m; sourceTree = "<group>"; };
+		0CB6BB002074A9A300921C75 /* HouseTypeTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeTableHeader.h; sourceTree = "<group>"; };
+		0CB6BB012074A9A300921C75 /* HouseTypeTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeTableHeader.m; sourceTree = "<group>"; };
+		0CB6BB032074AA8100921C75 /* HouseTypeTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeTableHeader2.h; sourceTree = "<group>"; };
+		0CB6BB042074AA8100921C75 /* HouseTypeTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeTableHeader2.m; sourceTree = "<group>"; };
+		0CB6BB062074C6DE00921C75 /* HouseHeaderCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseHeaderCollCell.h; sourceTree = "<group>"; };
+		0CB6BB072074C6DE00921C75 /* HouseHeaderCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseHeaderCollCell.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -696,6 +708,14 @@
 			children = (
 				0CB6BAFA2074A1BE00921C75 /* HouseTypeTableCell.h */,
 				0CB6BAFB2074A1BE00921C75 /* HouseTypeTableCell.m */,
+				0CB6BAFD2074A82D00921C75 /* HouseTypeTableCell2.h */,
+				0CB6BAFE2074A82D00921C75 /* HouseTypeTableCell2.m */,
+				0CB6BB002074A9A300921C75 /* HouseTypeTableHeader.h */,
+				0CB6BB012074A9A300921C75 /* HouseTypeTableHeader.m */,
+				0CB6BB032074AA8100921C75 /* HouseTypeTableHeader2.h */,
+				0CB6BB042074AA8100921C75 /* HouseTypeTableHeader2.m */,
+				0CB6BB062074C6DE00921C75 /* HouseHeaderCollCell.h */,
+				0CB6BB072074C6DE00921C75 /* HouseHeaderCollCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1602,6 +1622,7 @@
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
+				0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
@@ -1614,6 +1635,7 @@
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
+				0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */,
 				0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */,
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
@@ -1633,6 +1655,7 @@
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
 				0CC19CFA206E21110007CC5F /* SelectCompanyVC.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
+				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
@@ -1673,6 +1696,7 @@
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */,
 				0C08BF66206CBC0B005BB3B4 /* BrokerageDetailTableCell2.m in Sources */,
+				0CB6BAFF2074A82D00921C75 /* HouseTypeTableCell2.m in Sources */,
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
