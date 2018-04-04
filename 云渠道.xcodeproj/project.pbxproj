@@ -291,6 +291,7 @@
 		10174C072072175800D00B9A /* BuildinginfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildinginfoCell.m; sourceTree = "<group>"; };
 		10174C092072179300D00B9A /* LicenceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LicenceCell.h; sourceTree = "<group>"; };
 		10174C0A2072179300D00B9A /* LicenceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LicenceCell.m; sourceTree = "<group>"; };
+		10174C1220747A6600D00B9A /* NetConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetConfig.h; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -1123,6 +1124,7 @@
 				0C07BFC12060D835007F31EC /* UserModel.m */,
 				0C07BFC32060D88C007F31EC /* UserModelArchiver.h */,
 				0C07BFC42060D88C007F31EC /* UserModelArchiver.m */,
+				10174C1220747A6600D00B9A /* NetConfig.h */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
