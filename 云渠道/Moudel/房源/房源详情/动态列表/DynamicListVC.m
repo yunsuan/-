@@ -8,9 +8,9 @@
 
 #import "DynamicListVC.h"
 
-@interface DynamicListVC ()
+@interface DynamicListVC ()<UITableViewDelegate,UITableViewDataSource>
 
-
+@property (nonatomic, strong) UITableView *listTable;
 
 @end
 
@@ -26,6 +26,12 @@
     
     self.navBackgroundView.hidden = NO;
     
+    _listTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStylePlain];
+    _listTable.backgroundColor = self.view.backgroundColor;
+    _listTable.delegate = self;
+    _listTable.dataSource = self;
+    
+    [self.view addSubview:_listTable];
 }
 
 @end
