@@ -81,6 +81,7 @@
 		0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */; };
 		0CF04F222079AAE500A45F4A /* RoomDetailTableCell7.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F212079AAE500A45F4A /* RoomDetailTableCell7.m */; };
 		0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */; };
+		0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F28207A0AF500A45F4A /* DynamicListVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -307,6 +308,8 @@
 		0CF04F212079AAE500A45F4A /* RoomDetailTableCell7.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell7.m; sourceTree = "<group>"; };
 		0CF04F232079AD1000A45F4A /* RoomDetailTableCell8.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell8.h; sourceTree = "<group>"; };
 		0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell8.m; sourceTree = "<group>"; };
+		0CF04F27207A0AF500A45F4A /* DynamicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicListVC.h; sourceTree = "<group>"; };
+		0CF04F28207A0AF500A45F4A /* DynamicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicListVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -880,6 +883,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0CF04F26207A0AD600A45F4A /* 动态列表 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F27207A0AF500A45F4A /* DynamicListVC.h */,
+				0CF04F28207A0AF500A45F4A /* DynamicListVC.m */,
+			);
+			path = "动态列表";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1065,6 +1077,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F26207A0AD600A45F4A /* 动态列表 */,
 				0CB6BB092074D23A00921C75 /* 相册 */,
 				0CB6BAF2207497F600921C75 /* 户型详情 */,
 				10174C012072141D00D00B9A /* 楼盘信息 */,
@@ -1709,6 +1722,7 @@
 				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
+				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
