@@ -23,6 +23,7 @@
 #import "BuildingInfoVC.h"
 #import "HouseTypeDetailVC.h"
 #import "DynamicListVC.h"
+#import "CustomMatchListVC.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
@@ -476,7 +477,11 @@
                 header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
             }
             header.numL.text = @"匹配的客户(23)";
-            
+            header.moreBtnBlock = ^{
+                
+                CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
             return header;
         }else{
             

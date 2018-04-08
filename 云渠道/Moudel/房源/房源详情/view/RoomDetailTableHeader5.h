@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class RoomDetailTableHeader5;
+
+typedef void(^moreBtnBlock)(void);
+
 @interface RoomDetailTableHeader5 : UITableViewHeaderFooterView
+
+@property (nonatomic, strong) moreBtnBlock moreBtnBlock;
 
 @property (nonatomic, strong) UILabel *numL;
 

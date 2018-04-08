@@ -83,6 +83,7 @@
 		0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */; };
 		0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F28207A0AF500A45F4A /* DynamicListVC.m */; };
 		0CF04F2D207A0DA300A45F4A /* DynamicListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F2C207A0DA300A45F4A /* DynamicListTableCell.m */; };
+		0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F30207A145B00A45F4A /* CustomMatchListVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -313,6 +314,8 @@
 		0CF04F28207A0AF500A45F4A /* DynamicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicListVC.m; sourceTree = "<group>"; };
 		0CF04F2B207A0DA300A45F4A /* DynamicListTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicListTableCell.h; sourceTree = "<group>"; };
 		0CF04F2C207A0DA300A45F4A /* DynamicListTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicListTableCell.m; sourceTree = "<group>"; };
+		0CF04F2F207A145B00A45F4A /* CustomMatchListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMatchListVC.h; sourceTree = "<group>"; };
+		0CF04F30207A145B00A45F4A /* CustomMatchListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchListVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -905,6 +908,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0CF04F2E207A141F00A45F4A /* 匹配客户列表 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F2F207A145B00A45F4A /* CustomMatchListVC.h */,
+				0CF04F30207A145B00A45F4A /* CustomMatchListVC.m */,
+			);
+			path = "匹配客户列表";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1090,6 +1102,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F2E207A141F00A45F4A /* 匹配客户列表 */,
 				0CF04F26207A0AD600A45F4A /* 动态列表 */,
 				0CB6BB092074D23A00921C75 /* 相册 */,
 				0CB6BAF2207497F600921C75 /* 户型详情 */,
@@ -1676,6 +1689,7 @@
 				0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */,
+				0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */,
 				0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */,
 				10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */,
 				0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */,
