@@ -45,7 +45,7 @@
     _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 82 *SIZE, SCREEN_Width,  SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 83 *SIZE, SCREEN_Width,  SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

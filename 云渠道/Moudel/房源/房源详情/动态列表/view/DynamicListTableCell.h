@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class DynamicListTableCell;
+
+typedef void(^cellBtnBlock)(NSInteger index);
+
 @interface DynamicListTableCell : UITableViewCell
+
+@property (nonatomic, copy) cellBtnBlock cellBtnBlock;
+
+@property (nonatomic, strong) UILabel *titleL;
+
+@property (nonatomic, strong) UILabel *timeL;
+
+@property (nonatomic, strong) UILabel *contentL;
 
 @end

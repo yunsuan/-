@@ -22,6 +22,7 @@
 #import "RoomDetailTableHeader6.h"
 #import "BuildingInfoVC.h"
 #import "HouseTypeDetailVC.h"
+#import "DynamicListVC.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
@@ -82,6 +83,12 @@
     NSLog(@"%ld",btn.tag);
     if (btn.tag == 0) {
         BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]init];
+        [self.navigationController pushViewController:next_vc animated:YES];
+    }
+    
+    if (btn.tag == 9) {
+        
+        DynamicListVC *next_vc = [[DynamicListVC alloc]init];
         [self.navigationController pushViewController:next_vc animated:YES];
     }
     
@@ -320,38 +327,6 @@
             [self resetFrame];
         }
         
-        
-//        _rect0 = [_roomTable convertRect:[_roomTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] toView:[_roomTable superview]];
-//        _rect1 = [_roomTable convertRect:[_roomTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]] toView:[_roomTable superview]];
-//        _rect2 = [_roomTable convertRect:[_roomTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5]] toView:[_roomTable superview]];
-//        _rect3 = [_roomTable convertRect:[_roomTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:9]] toView:[_roomTable superview]];
-//        _rect4 = [_roomTable convertRect:[_roomTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:10]] toView:[_roomTable superview]];
-//        _rect5 = [_roomTable convertRect:[_roomTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:11]] toView:[_roomTable superview]];
-//        if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y < CGRectGetMinY(_rect1)) {
-//
-//            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-//        }
-//        else if (scrollView.contentOffset.y > CGRectGetMinY(_rect1) && scrollView.contentOffset.y < CGRectGetMinY(_rect2)) {
-//
-//            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-//        }
-//        else if (scrollView.contentOffset.y > CGRectGetMinY(_rect2) && scrollView.contentOffset.y < CGRectGetMinY(_rect3)) {
-//
-//            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-//        }
-//        else if (scrollView.contentOffset.y > CGRectGetMinY(_rect3) && scrollView.contentOffset.y < CGRectGetMinY(_rect4)) {
-//
-//            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-//        }
-//        else if (scrollView.contentOffset.y > CGRectGetMinY(_rect4) && scrollView.contentOffset.y < CGRectGetMinY(_rect5)) {
-//
-//            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:4 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-//        }
-////        if (scrollView.contentOffset.y > CGRectGetMaxY(_rect4) && scrollView.contentOffset.y < CGRectGetMaxY(_rect5)) {
-//        else{
-//
-//            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:5 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-//        }
     }
 }
 
