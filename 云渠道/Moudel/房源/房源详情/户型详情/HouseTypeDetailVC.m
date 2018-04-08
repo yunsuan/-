@@ -13,6 +13,7 @@
 #import "HouseTypeDetailVC.h"
 #import "HouseTypeTableHeader.h"
 #import "HouseTypeTableHeader2.h"
+#import "BuildingAlbumVC.h"
 
 @interface HouseTypeDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 

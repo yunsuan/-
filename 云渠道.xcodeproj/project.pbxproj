@@ -76,6 +76,11 @@
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
 		0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */; };
+		0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */; };
+		0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1B2079A4C500A45F4A /* RoomDetailTableHeader6.m */; };
+		0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */; };
+		0CF04F222079AAE500A45F4A /* RoomDetailTableCell7.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F212079AAE500A45F4A /* RoomDetailTableCell7.m */; };
+		0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -292,6 +297,16 @@
 		0CE47B64206B9D0E001ADD73 /* PersonalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalVC.m; sourceTree = "<group>"; };
 		0CE47B67206B9E33001ADD73 /* PersonalTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTableCell.h; sourceTree = "<group>"; };
 		0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTableCell.m; sourceTree = "<group>"; };
+		0CF04F1720750AC700A45F4A /* BuildingAlbumCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildingAlbumCollCell.h; sourceTree = "<group>"; };
+		0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildingAlbumCollCell.m; sourceTree = "<group>"; };
+		0CF04F1A2079A4C500A45F4A /* RoomDetailTableHeader6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader6.h; sourceTree = "<group>"; };
+		0CF04F1B2079A4C500A45F4A /* RoomDetailTableHeader6.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableHeader6.m; sourceTree = "<group>"; };
+		0CF04F1D2079A5F700A45F4A /* RoomDetailTableCell6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell6.h; sourceTree = "<group>"; };
+		0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell6.m; sourceTree = "<group>"; };
+		0CF04F202079AAE500A45F4A /* RoomDetailTableCell7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell7.h; sourceTree = "<group>"; };
+		0CF04F212079AAE500A45F4A /* RoomDetailTableCell7.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell7.m; sourceTree = "<group>"; };
+		0CF04F232079AD1000A45F4A /* RoomDetailTableCell8.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell8.h; sourceTree = "<group>"; };
+		0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell8.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -683,6 +698,14 @@
 				0CE47B56206B368A001ADD73 /* RoomCellCollCell4.m */,
 				0CE47B58206B4401001ADD73 /* RoomDetailTableHeader5.h */,
 				0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */,
+				0CF04F1A2079A4C500A45F4A /* RoomDetailTableHeader6.h */,
+				0CF04F1B2079A4C500A45F4A /* RoomDetailTableHeader6.m */,
+				0CF04F1D2079A5F700A45F4A /* RoomDetailTableCell6.h */,
+				0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */,
+				0CF04F202079AAE500A45F4A /* RoomDetailTableCell7.h */,
+				0CF04F212079AAE500A45F4A /* RoomDetailTableCell7.m */,
+				0CF04F232079AD1000A45F4A /* RoomDetailTableCell8.h */,
+				0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -726,6 +749,7 @@
 		0CB6BB092074D23A00921C75 /* 相册 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F162075093100A45F4A /* view */,
 				0CB6BB0A2074D2BE00921C75 /* BuildingAlbumVC.h */,
 				0CB6BB0B2074D2BE00921C75 /* BuildingAlbumVC.m */,
 			);
@@ -843,6 +867,15 @@
 			children = (
 				0CE47B67206B9E33001ADD73 /* PersonalTableCell.h */,
 				0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0CF04F162075093100A45F4A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F1720750AC700A45F4A /* BuildingAlbumCollCell.h */,
+				0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1621,6 +1654,7 @@
 				10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */,
 				0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */,
 				0CC19D0E2071CF3C0007CC5F /* CustomTableCellView.m in Sources */,
+				0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
@@ -1651,6 +1685,7 @@
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
 				0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */,
 				0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */,
+				0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */,
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
@@ -1665,10 +1700,12 @@
 				0C23F6202068BE1E00B4D573 /* CustomTableHeader3.m in Sources */,
 				0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
+				0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */,
 				0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */,
 				1069FFC9205795BE00E11F52 /* ViewController.m in Sources */,
 				0CC19CFA206E21110007CC5F /* SelectCompanyVC.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
+				0CF04F222079AAE500A45F4A /* RoomDetailTableCell7.m in Sources */,
 				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
@@ -1691,6 +1728,7 @@
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
+				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,
 				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
