@@ -210,13 +210,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.selected = 0;
-//        self.dataSource = data;
-//        if (data.count == 0) {
-//            self.dataSource = @[@{@"MC":@"",
-//                                  @"ID":@""
-//                                  }];
-//        }
-
+        
         [self loadDatas];
        
       
@@ -232,7 +226,6 @@
 {
     [self getprovincearray];
     
-
 }
 
 -(void)getprovincearray
@@ -240,7 +233,10 @@
     [BaseRequest GET:ProvinceList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         self.provinceArray = resposeObject;
+        self.provinceStr = self.provinceArray[0][@"name"];
+        self.provinceid = self.provinceArray[0][@"code"];
         [self getCityArrayByprovince:_provinceArray[0][@"code"]];
+        
     } failure:^(NSError *error) {
         
     }];
@@ -252,6 +248,8 @@
         NSLog(@"%@",resposeObject);
         self.cityArray = resposeObject;
         [self getAreaArrayBycity:_cityArray[0][@"code"]];
+        self.cityStr = self.cityArray[0][@"name"];
+        self.cityid = self.cityArray[0][@"code"];
 
     } failure:^(NSError *error) {
         
@@ -264,17 +262,21 @@
     [BaseRequest GET:AreaList_URL parameters:@{@"cityCode":cityid} success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         self.areaArray = resposeObject;
-        self.provinceStr = self.provinceArray[0][@"name"];
-        self.cityStr = self.cityArray[0][@"name"];
         self.areaStr = self.areaArray[0][@"name"];
-        self.provinceid = self.provinceArray[0][@"code"];
-        self.cityid = self.cityArray[0][@"code"];
         self.areaid = self.areaArray[0][@"code"];
-         [self initSuViews];
+        if (!_cityidArray) {
+            [self initSuViews];
+            _cityidArray = @[@"2"];
+        }
+       
+        
+        
     } failure:^(NSError *error) {
         
     }];
 }
+
+
 
 //- (NSArray *)getAreaidFromCity:(NSInteger)row
 //{
@@ -416,6 +418,8 @@
         self.selected = row;
         [self getCityArrayByprovince:_provinceArray[row][@"code"]];
         [self getAreaArrayBycity:_cityArray[0][@"code"]];
+        self.provinceStr = self.provinceArray[row][@"name"];
+        self.provinceid = self.provinceArray[row][@"code"];
         
         [self.pickerView reloadComponent:1];
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
@@ -423,8 +427,7 @@
         [self.pickerView reloadComponent:2];
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
         
-        self.provinceStr = self.provinceArray[row][@"name"];
-        self.provinceid = self.provinceArray[row][@"code"];
+
         self.cityStr = self.cityArray[0][@"name"];
         self.cityid = self.cityArray[0][@"code"];
         self.areaStr = self.areaArray[0][@"name"];
