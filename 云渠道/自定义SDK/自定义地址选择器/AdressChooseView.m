@@ -210,14 +210,16 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.selected = 0;
-        self.dataSource = data;
-        if (data.count == 0) {
-            self.dataSource = @[@{@"MC":@"",
-                                  @"ID":@""
-                                  }];
-        }
-        [self initSuViews];
+//        self.dataSource = data;
+//        if (data.count == 0) {
+//            self.dataSource = @[@{@"MC":@"",
+//                                  @"ID":@""
+//                                  }];
+//        }
+
         [self loadDatas];
+       
+      
     }
     return self;
 }
@@ -228,109 +230,124 @@
 #pragma mark -- 从plist里面读数据
 - (void)loadDatas
 {
-    //    MBSJModel* mbsjmodel =  [[MBSJModel alloc]init];
-    //    self.dataSource = [mbsjmodel getXZQY];
-    NSMutableArray * tempArray = [NSMutableArray array];
-    NSMutableArray *tempArray1 =[NSMutableArray array];
-    for (int i =0 ; i<_dataSource.count; i++) {
-        [tempArray addObject:_dataSource[i][@"MC"]];
-        [tempArray1 addObject:_dataSource[i][@"ID"]];
-    }
+    [self getprovincearray];
     
-    
-    //省
-    self.provinceArray = [tempArray copy];
-    
-    self.provinceidArray = [tempArray1 copy];
-    //市
-    self.cityArray = [self getCityNamesFromProvince:0];
-    
-    self.cityidArray =[self getCityidFromProvince:0];
-    //区
-    self.areaArray = [self getAreaNamesFromCity:0];
-    
-    self.areaidArray = [self getAreaidFromCity:0];
-    
-    self.provinceStr = self.provinceArray[0];
-    self.cityStr = self.cityArray[0];
-    self.areaStr = self.areaArray[0];
-    self.provinceid = self.provinceidArray[0];
-    self.cityid = self.cityidArray[0];
-    self.areaid = self.areaidArray[0];
+
 }
 
-- (NSArray *)getAreaidFromCity:(NSInteger)row
+-(void)getprovincearray
 {
-    NSArray * tempArr = _dataSource[self.selected][@"levellist"];
-    if(tempArr.count >0){
+    [BaseRequest GET:ProvinceList_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        self.provinceArray = resposeObject;
+        [self getCityArrayByprovince:_provinceArray[0][@"code"]];
+    } failure:^(NSError *error) {
         
-        NSArray * temparr =self.dataSource[self.selected][@"levellist"][row][@"levellist"];
-        if (temparr.count>0) {
-            NSMutableArray * array = [NSMutableArray array];
-            for (int i = 0; i<temparr.count; i++) {
-                [array addObject:temparr[i][@"ID"]];
-            }
-            return [array copy];
-        }
-        else
-            return @[@""];
-    }
-    else
-        return @[@""];
+    }];
 }
 
-- (NSArray *)getCityidFromProvince:(NSInteger)row
+-(void)getCityArrayByprovince:(NSString *)proid
 {
-    
-    NSArray * tempArr = _dataSource[row][@"levellist"];
-    NSMutableArray * tempArray = [NSMutableArray array];
-    if (tempArr.count>0) {
-        for (int i = 0; i<tempArr.count; i++) {
-            [tempArray addObject:tempArr[i][@"ID"]];
-        }
-        return [tempArray copy];
-    }
-    else
-        return @[@""];
-    
-}
+    [BaseRequest GET:CityList_URL parameters:@{@"provinceCode":proid} success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        self.cityArray = resposeObject;
+        [self getAreaArrayBycity:_cityArray[0][@"code"]];
 
-
-- (NSArray *)getAreaNamesFromCity:(NSInteger)row
-{
-    NSArray * tempArr = _dataSource[self.selected][@"levellist"];
-    if(tempArr.count >0){
+    } failure:^(NSError *error) {
         
-        NSArray * temparr =self.dataSource[self.selected][@"levellist"][row][@"levellist"];
-        if (temparr.count>0) {
-            NSMutableArray * array = [NSMutableArray array];
-            for (int i = 0; i<temparr.count; i++) {
-                [array addObject:temparr[i][@"MC"]];
-            }
-            return [array copy];
-        }
-        else
-            return @[@""];
-    }
-    else
-        return @[@""];
+    }];
 }
 
-- (NSArray *)getCityNamesFromProvince:(NSInteger)row
+
+-(void)getAreaArrayBycity:(NSString *)cityid
 {
-    
-    NSArray * tempArr = _dataSource[row][@"levellist"];
-    NSMutableArray * tempArray = [NSMutableArray array];
-    if (tempArr.count>0) {
-        for (int i = 0; i<tempArr.count; i++) {
-            [tempArray addObject:tempArr[i][@"MC"]];
-        }
-        return [tempArray copy];
-    }
-    else
-        return @[@""];
-    
+    [BaseRequest GET:AreaList_URL parameters:@{@"cityCode":cityid} success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        self.areaArray = resposeObject;
+        self.provinceStr = self.provinceArray[0][@"name"];
+        self.cityStr = self.cityArray[0][@"name"];
+        self.areaStr = self.areaArray[0][@"name"];
+        self.provinceid = self.provinceArray[0][@"code"];
+        self.cityid = self.cityArray[0][@"code"];
+        self.areaid = self.areaArray[0][@"code"];
+         [self initSuViews];
+    } failure:^(NSError *error) {
+        
+    }];
 }
+
+//- (NSArray *)getAreaidFromCity:(NSInteger)row
+//{
+//    NSArray * tempArr = _dataSource[self.selected][@"levellist"];
+//    if(tempArr.count >0){
+//
+//        NSArray * temparr =self.dataSource[self.selected][@"levellist"][row][@"levellist"];
+//        if (temparr.count>0) {
+//            NSMutableArray * array = [NSMutableArray array];
+//            for (int i = 0; i<temparr.count; i++) {
+//                [array addObject:temparr[i][@"ID"]];
+//            }
+//            return [array copy];
+//        }
+//        else
+//            return @[@""];
+//    }
+//    else
+//        return @[@""];
+//}
+//
+//- (NSArray *)getCityidFromProvince:(NSInteger)row
+//{
+//
+//    NSArray * tempArr = _dataSource[row][@"levellist"];
+//    NSMutableArray * tempArray = [NSMutableArray array];
+//    if (tempArr.count>0) {
+//        for (int i = 0; i<tempArr.count; i++) {
+//            [tempArray addObject:tempArr[i][@"ID"]];
+//        }
+//        return [tempArray copy];
+//    }
+//    else
+//        return @[@""];
+//
+//}
+//
+//
+//- (NSArray *)getAreaNamesFromCity:(NSInteger)row
+//{
+//    NSArray * tempArr = _dataSource[self.selected][@"levellist"];
+//    if(tempArr.count >0){
+//
+//        NSArray * temparr =self.dataSource[self.selected][@"levellist"][row][@"levellist"];
+//        if (temparr.count>0) {
+//            NSMutableArray * array = [NSMutableArray array];
+//            for (int i = 0; i<temparr.count; i++) {
+//                [array addObject:temparr[i][@"MC"]];
+//            }
+//            return [array copy];
+//        }
+//        else
+//            return @[@""];
+//    }
+//    else
+//        return @[@""];
+//}
+//
+//- (NSArray *)getCityNamesFromProvince:(NSInteger)row
+//{
+//
+//    NSArray * tempArr = _dataSource[row][@"levellist"];
+//    NSMutableArray * tempArray = [NSMutableArray array];
+//    if (tempArr.count>0) {
+//        for (int i = 0; i<tempArr.count; i++) {
+//            [tempArray addObject:tempArr[i][@"MC"]];
+//        }
+//        return [tempArray copy];
+//    }
+//    else
+//        return @[@""];
+//
+//}
 
 
 #pragma mark -- loadSubViews
@@ -384,11 +401,11 @@
     label.adjustsFontSizeToFitWidth = YES;
     label.textAlignment = NSTextAlignmentCenter;
     if (component == 0) {
-        label.text = self.provinceArray[row];
+        label.text = self.provinceArray[row][@"name"];
     }else if (component == 1){
-        label.text = self.cityArray[row];
+        label.text = self.cityArray[row][@"name"];
     }else if (component == 2){
-        label.text = self.areaArray[row];
+        label.text = self.areaArray[row][@"name"];
     }
     return label;
 }
@@ -397,10 +414,8 @@
 {
     if (component == 0) {//选择省
         self.selected = row;
-        self.cityArray = [self getCityNamesFromProvince:row];
-        self.cityidArray = [self getCityidFromProvince:row];
-        self.areaArray = [self getAreaNamesFromCity:0];
-        self.areaidArray = [self getAreaidFromCity:0];
+        [self getCityArrayByprovince:_provinceArray[row][@"code"]];
+        [self getAreaArrayBycity:_cityArray[0][@"code"]];
         
         [self.pickerView reloadComponent:1];
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
@@ -408,26 +423,25 @@
         [self.pickerView reloadComponent:2];
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
         
-        self.provinceStr = self.provinceArray[row];
-        self.provinceid = self.provinceidArray[row];
-        self.cityStr = self.cityArray[0];
-        self.cityid = self.cityidArray[0];
-        self.areaStr = self.areaArray[0];
-        self.areaid = self.areaidArray[0];
+        self.provinceStr = self.provinceArray[row][@"name"];
+        self.provinceid = self.provinceArray[row][@"code"];
+        self.cityStr = self.cityArray[0][@"name"];
+        self.cityid = self.cityArray[0][@"code"];
+        self.areaStr = self.areaArray[0][@"name"];
+        self.areaid = self.areaArray[0][@"code"];
         
     }else if (component == 1){//选择市
-        self.areaArray = [self getAreaNamesFromCity:row];
-        self.areaidArray = [self getAreaidFromCity:row];
+        [self getAreaArrayBycity:_cityArray[row][@"code"]];
         [self.pickerView reloadComponent:2];
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
-        self.cityStr = self.cityArray[row];
-        self.cityid =  self.cityidArray[row];
-        self.areaStr = self.areaArray[0];
-        self.areaid = self.areaidArray[0];
+        self.cityStr = self.cityArray[row][@"name"];
+        self.cityid =  self.cityArray[row][@"id"];
+        self.areaStr = self.areaArray[0][@"name"];
+        self.areaid = self.areaArray[0][@"id"];
         
     }else if (component == 2){//选择区
-        self.areaStr = self.areaArray[row];
-        self.areaid =  self.areaidArray[row];
+        self.areaStr = self.areaArray[row][@"name"];
+        self.areaid =  self.areaArray[row][@"id"];
     }
 }
 
