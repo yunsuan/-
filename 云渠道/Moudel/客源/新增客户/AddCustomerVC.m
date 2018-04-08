@@ -11,6 +11,7 @@
 #import "DropDownBtn.h"
 #import "BorderTF.h"
 #import "DateChooseView.h"
+#import "AdressChooseView.h"
 
 @interface AddCustomerVC ()
 @property (nonatomic , strong) UIScrollView *scrollview;
@@ -213,6 +214,13 @@
 
 -(void)action_address
 {
+    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+    [self.view addSubview:view];
+    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+        self.adress.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+    };
+    
+    
     
 }
 
