@@ -9,6 +9,7 @@
 #import "UnconfirmDetailVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
+#import "CompleteCustomVC1.h"
 
 @interface UnconfirmDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -58,6 +59,8 @@
     
     UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
     }];
     
     UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

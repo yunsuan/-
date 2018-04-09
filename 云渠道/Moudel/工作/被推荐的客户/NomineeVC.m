@@ -10,6 +10,7 @@
 #import "NomineeCollCell.h"
 #import "NomineeCell.h"
 #import "UnconfirmDetailVC.h"
+#import "CompleteCustomVC1.h"
 
 @interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -147,6 +148,8 @@
         
         UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
+            CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
         }];
         
         UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
