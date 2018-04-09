@@ -88,6 +88,7 @@
 		0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F36207B051500A45F4A /* RecommendCell5.m */; };
 		0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F39207B074500A45F4A /* RecommendCell3.m */; };
 		0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F3D207B0F2900A45F4A /* UnconfirmDetailVC.m */; };
+		0CF04F3F207B0FD400A45F4A /* InfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D22068BC650031558D /* InfoDetailVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -1838,6 +1839,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1069FFDE205795BE00E11F52 /* ___Tests.m in Sources */,
+				0CF04F3F207B0FD400A45F4A /* InfoDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

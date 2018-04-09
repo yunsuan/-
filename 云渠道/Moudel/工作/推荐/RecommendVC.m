@@ -11,6 +11,7 @@
 #import "RecommendCell3.h"
 #import "RecommendCell5.h"
 #import "RecommendCollCell.h"
+#import "UnconfirmDetailVC.h"
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -179,6 +180,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
+    if (_index == 0) {
+        
+        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
 }
 
 
