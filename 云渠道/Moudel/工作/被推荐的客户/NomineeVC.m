@@ -7,10 +7,21 @@
 //
 
 #import "NomineeVC.h"
+#import "NomineeCollCell.h"
+#import "NomineeCell.h"
+#import "UnconfirmDetailVC.h"
 
-@interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    
+    NSInteger _index;
+    NSArray *_titleArr;
+}
 @property (nonatomic , strong) UITableView *MainTableView;
+
+@property (nonatomic, strong) UICollectionView *nomineeColl;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 -(void)initUI;
 -(void)initDateSouce;
@@ -20,11 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = YJBackColor;
-    self.navBackgroundView.hidden = NO;
-    self.leftButton.hidden = YES;
-    self.titleLabel.text = @"报备的客户";
-    self.leftButton.hidden = YES;
+    
     [self initDateSouce];
     [self initUI];
     
@@ -33,15 +40,65 @@
 -(void)initDateSouce
 {
     
+    _titleArr = @[@"待确认",@"有效",@"无效"];
 }
 
 -(void)initUI
 {
     
-    [self.view addSubview:self.MainTableView];
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.text = @"报备的客户";
+    self.line.hidden = YES;
+    
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.minimumLineSpacing = 0;
+    _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 3, 40 *SIZE);
+    
+    _nomineeColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _nomineeColl.backgroundColor = CH_COLOR_white;
+    _nomineeColl.delegate = self;
+    _nomineeColl.dataSource = self;
+    _nomineeColl.bounces = NO;
+    [_nomineeColl registerClass:[NomineeCollCell class] forCellWithReuseIdentifier:@"NomineeCollCell"];
+    [self.view addSubview:_nomineeColl];
+    [_nomineeColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
+    
+    _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
+    _MainTableView.backgroundColor = YJBackColor;
+    _MainTableView.delegate = self;
+    _MainTableView.dataSource = self;
+    [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_MainTableView];
 }
 
 
+
+
+#pragma mark  ---  delegate   ---
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 3;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NomineeCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NomineeCollCell" forIndexPath:indexPath];
+    if (!cell) {
+        
+        cell = [[NomineeCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /3, 40 *SIZE)];
+    }
+    cell.titleL.text = _titleArr[indexPath.item];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    _index = indexPath.item;
+    [self.MainTableView reloadData];
+}
 
 
 #pragma mark  ---  delegate   ---
@@ -51,92 +108,42 @@
     return 2;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-    
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 190*SIZE;
+    
+    return 108 *SIZE;
 }
 
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"WorkingCell";
-//
-//    WorkingCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (!cell) {
-//        cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    [cell setTitle:_namelist[indexPath.row] content:@"今日新增 2，有效 21，修改 39" img:_imglist[indexPath.row]];
-//    return cell;
-//
-//}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+        
+        static NSString *CellIdentifier = @"NomineeCell";
+        
+        NomineeCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[NomineeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
+        cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
+        
+        return cell;
+}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    switch (indexPath.row) {
-    //        case 0:
-    //        {
-    //            MyCommissionVC *next_vc = [[MyCommissionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 1:
-    //        {
-    //            MyAttentionVC *next_vc = [[MyAttentionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 2:
-    //        {
-    //            FixPassWrodVC *next_vc = [[FixPassWrodVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //
-    //        }
-    //            break;
-    //        case 3:
-    //        {
-    //            AbortVC *next_vc = [[AbortVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 4:
-    //        {
-    //    [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-    //
-    //    } WithDefaultBlack:^{
-    //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-    //        [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-    //
-    //    }];
     
-    //        }
-    //            break;
-    //
-    //        default:
-    //            break;
-    //    }
-}
-
-
-
-#pragma mark  ---  懒加载   ---
--(UITableView *)MainTableView
-{
-    if(!_MainTableView)
-    {
-        _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT+1*SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT-1*SIZE) style:UITableViewStylePlain];
-        _MainTableView.backgroundColor = YJBackColor;
-        _MainTableView.delegate = self;
-        _MainTableView.dataSource = self;
-        [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        //        _MainTableView.scrollEnabled = NO;
+    if (_index == 0) {
+        
+        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
     }
-    return _MainTableView;
 }
+
+
 
 
 @end

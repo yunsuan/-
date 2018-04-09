@@ -95,6 +95,7 @@
 		0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */; };
 		0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */; };
 		0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F54207B3CFE00A45F4A /* confirmDetailVC.m */; };
+		0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -348,6 +349,8 @@
 		0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintUnCompleteVC.m; sourceTree = "<group>"; };
 		0CF04F53207B3CFE00A45F4A /* confirmDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = confirmDetailVC.h; sourceTree = "<group>"; };
 		0CF04F54207B3CFE00A45F4A /* confirmDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = confirmDetailVC.m; sourceTree = "<group>"; };
+		0CF04F56207B4CDA00A45F4A /* NomineeCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeCollCell.h; sourceTree = "<group>"; };
+		0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCollCell.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1301,6 +1304,8 @@
 			children = (
 				105E18F0206B6C340031558D /* NomineeCell.h */,
 				105E18F1206B6C340031558D /* NomineeCell.m */,
+				0CF04F56207B4CDA00A45F4A /* NomineeCollCell.h */,
+				0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1798,6 +1803,7 @@
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
+				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,

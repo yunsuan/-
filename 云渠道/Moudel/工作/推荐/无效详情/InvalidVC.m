@@ -9,6 +9,7 @@
 #import "InvalidVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
+#import "ComplaintVC.h"
 
 @interface InvalidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -42,7 +43,8 @@
 
 - (void)ActionComplaintBtn:(UIButton *)btn{
     
-    
+    ComplaintVC *nextVC = [[ComplaintVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)ActionRecommendBtn:(UIButton *)btn{
