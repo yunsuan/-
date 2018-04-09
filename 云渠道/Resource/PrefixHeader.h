@@ -57,6 +57,7 @@
 
 #define JpushAppKey @"2dd909361c253b51e0cd05a9"
 #define version @"1.0"
+#define ACCESSROLE @"agent"
 
 // 判断是否是iPhone X
 #define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)

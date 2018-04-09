@@ -45,17 +45,13 @@
     [manager POST:str parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         if (success) {
             success(responseObject);
-            
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
         if (failure) {
             failure(error);
-            
         }
     }];
 }
@@ -71,7 +67,8 @@
     //3.设置允许请求的类别
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/json",@"application/json",@"text/javascript",@"text/html", @"application/javascript", @"text/js", nil];
     
-    
+    [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
+     [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
     
     manager.requestSerializer.timeoutInterval = 30;
     
@@ -84,7 +81,7 @@
     [manager POST:str parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         blocks(formData);
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *err;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject
