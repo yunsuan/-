@@ -11,6 +11,13 @@
 #import "RecommendCell3.h"
 #import "RecommendCell5.h"
 #import "RecommendCollCell.h"
+#import "UnconfirmDetailVC.h"
+#import "InvalidVC.h"
+#import "ValidVC.h"
+#import "ComplaintVC.h"
+#import "ComplaintUnCompleteVC.h"
+#import "ComplaintCompleteVC.h"
+#import "confirmDetailVC.h"
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -36,9 +43,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.leftButton.hidden = YES;
     self.titleLabel.text = @"推荐";
-    self.leftButton.hidden = YES;
     [self initDateSouce];
     [self initUI];
     
@@ -179,6 +184,39 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
    
+    if (_index == 0) {
+        
+        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommend"];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    
+    if (_index == 1) {
+        
+        confirmDetailVC *nextVC = [[confirmDetailVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (_index == 2) {
+        
+        ValidVC *nextVC = [[ValidVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (_index == 3) {
+        
+        InvalidVC *nextVC = [[InvalidVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (_index == 4) {
+        
+        if (indexPath.row == 0) {
+            
+            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
+    }
 }
 
 

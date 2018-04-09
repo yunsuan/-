@@ -88,6 +88,14 @@
 		0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F36207B051500A45F4A /* RecommendCell5.m */; };
 		0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F39207B074500A45F4A /* RecommendCell3.m */; };
 		0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F3D207B0F2900A45F4A /* UnconfirmDetailVC.m */; };
+		0CF04F3F207B0FD400A45F4A /* InfoDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18D22068BC650031558D /* InfoDetailVC.m */; };
+		0CF04F43207B308000A45F4A /* InvalidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F42207B308000A45F4A /* InvalidVC.m */; };
+		0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F46207B367100A45F4A /* ComplaintVC.m */; };
+		0CF04F4B207B36C100A45F4A /* ValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F4A207B36C100A45F4A /* ValidVC.m */; };
+		0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */; };
+		0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */; };
+		0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F54207B3CFE00A45F4A /* confirmDetailVC.m */; };
+		0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -329,6 +337,20 @@
 		0CF04F39207B074500A45F4A /* RecommendCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendCell3.m; sourceTree = "<group>"; };
 		0CF04F3C207B0F2900A45F4A /* UnconfirmDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnconfirmDetailVC.h; sourceTree = "<group>"; };
 		0CF04F3D207B0F2900A45F4A /* UnconfirmDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnconfirmDetailVC.m; sourceTree = "<group>"; };
+		0CF04F41207B308000A45F4A /* InvalidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvalidVC.h; sourceTree = "<group>"; };
+		0CF04F42207B308000A45F4A /* InvalidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvalidVC.m; sourceTree = "<group>"; };
+		0CF04F45207B367100A45F4A /* ComplaintVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplaintVC.h; sourceTree = "<group>"; };
+		0CF04F46207B367100A45F4A /* ComplaintVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintVC.m; sourceTree = "<group>"; };
+		0CF04F49207B36C100A45F4A /* ValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValidVC.h; sourceTree = "<group>"; };
+		0CF04F4A207B36C100A45F4A /* ValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ValidVC.m; sourceTree = "<group>"; };
+		0CF04F4C207B399200A45F4A /* ComplaintCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplaintCompleteVC.h; sourceTree = "<group>"; };
+		0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintCompleteVC.m; sourceTree = "<group>"; };
+		0CF04F4F207B39AA00A45F4A /* ComplaintUnCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplaintUnCompleteVC.h; sourceTree = "<group>"; };
+		0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintUnCompleteVC.m; sourceTree = "<group>"; };
+		0CF04F53207B3CFE00A45F4A /* confirmDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = confirmDetailVC.h; sourceTree = "<group>"; };
+		0CF04F54207B3CFE00A45F4A /* confirmDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = confirmDetailVC.m; sourceTree = "<group>"; };
+		0CF04F56207B4CDA00A45F4A /* NomineeCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeCollCell.h; sourceTree = "<group>"; };
+		0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCollCell.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -940,6 +962,46 @@
 			path = "待确认详情";
 			sourceTree = "<group>";
 		};
+		0CF04F40207B305300A45F4A /* 无效详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F41207B308000A45F4A /* InvalidVC.h */,
+				0CF04F42207B308000A45F4A /* InvalidVC.m */,
+			);
+			path = "无效详情";
+			sourceTree = "<group>";
+		};
+		0CF04F44207B365E00A45F4A /* 申诉 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F45207B367100A45F4A /* ComplaintVC.h */,
+				0CF04F46207B367100A45F4A /* ComplaintVC.m */,
+				0CF04F4C207B399200A45F4A /* ComplaintCompleteVC.h */,
+				0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */,
+				0CF04F4F207B39AA00A45F4A /* ComplaintUnCompleteVC.h */,
+				0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */,
+			);
+			path = "申诉";
+			sourceTree = "<group>";
+		};
+		0CF04F48207B36B300A45F4A /* 有效详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F49207B36C100A45F4A /* ValidVC.h */,
+				0CF04F4A207B36C100A45F4A /* ValidVC.m */,
+			);
+			path = "有效详情";
+			sourceTree = "<group>";
+		};
+		0CF04F52207B3CCD00A45F4A /* 已确认详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F53207B3CFE00A45F4A /* confirmDetailVC.h */,
+				0CF04F54207B3CFE00A45F4A /* confirmDetailVC.m */,
+			);
+			path = "已确认详情";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1210,6 +1272,10 @@
 		105E18E4206B65E90031558D /* 推荐 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F52207B3CCD00A45F4A /* 已确认详情 */,
+				0CF04F48207B36B300A45F4A /* 有效详情 */,
+				0CF04F44207B365E00A45F4A /* 申诉 */,
+				0CF04F40207B305300A45F4A /* 无效详情 */,
 				0CF04F3B207B0EEF00A45F4A /* 待确认详情 */,
 				105E18EB206B6B410031558D /* cell */,
 				105E18E5206B662C0031558D /* RecommendVC.h */,
@@ -1238,6 +1304,8 @@
 			children = (
 				105E18F0206B6C340031558D /* NomineeCell.h */,
 				105E18F1206B6C340031558D /* NomineeCell.m */,
+				0CF04F56207B4CDA00A45F4A /* NomineeCollCell.h */,
+				0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1704,6 +1772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */,
 				0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */,
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
 				0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */,
@@ -1730,9 +1799,11 @@
 				0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
+				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
+				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
@@ -1752,6 +1823,7 @@
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,
 				0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */,
 				0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */,
+				0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */,
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
@@ -1773,6 +1845,7 @@
 				10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */,
 				0C23F6202068BE1E00B4D573 /* CustomTableHeader3.m in Sources */,
 				0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */,
+				0CF04F43207B308000A45F4A /* InvalidVC.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */,
 				0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */,
@@ -1786,6 +1859,7 @@
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
+				0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
@@ -1821,6 +1895,7 @@
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
+				0CF04F4B207B36C100A45F4A /* ValidVC.m in Sources */,
 				0CC19D0B206E3E9C0007CC5F /* CustomDetailTableCell3.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */,
@@ -1842,6 +1917,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1069FFDE205795BE00E11F52 /* ___Tests.m in Sources */,
+				0CF04F3F207B0FD400A45F4A /* InfoDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

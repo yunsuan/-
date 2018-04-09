@@ -9,6 +9,7 @@
 #import "WorkingVC.h"
 #import "WorkingCell.h"
 #import "RecommendVC.h"
+#import "NomineeVC.h"
 
 @interface WorkingVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -92,6 +93,10 @@
     if (indexPath.row == 0) {
         
         RecommendVC *nextVC = [[RecommendVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        NomineeVC *nextVC = [[NomineeVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

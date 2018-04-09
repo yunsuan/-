@@ -1,5 +1,5 @@
 //
-//  UnconfirmDetailVC.h
+//  ValidVC.h
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/4/9.
@@ -8,8 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface UnconfirmDetailVC : BaseViewController
-
-- (instancetype)initWithString:(NSString *)str;
+@interface ValidVC : BaseViewController
 
 @end

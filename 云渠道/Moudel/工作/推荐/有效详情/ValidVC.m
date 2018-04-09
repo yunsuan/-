@@ -1,41 +1,32 @@
 //
-//  UnconfirmDetailVC.m
+//  ValidVC.m
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/4/9.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "UnconfirmDetailVC.h"
+#import "ValidVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
+#import "BrokerageDetailTableCell3.h"
 
-@interface UnconfirmDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ValidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_data;
     NSArray *_titleArr;
-    NSString *_str;
 }
-@property (nonatomic , strong) UITableView *Maintableview;
-@property (nonatomic , strong) UIButton *confirmBtn;
+@property (nonatomic , strong) UITableView *validTable;
+
+@property (nonatomic , strong) UIButton *printBtn;
 
 @end
 
-@implementation UnconfirmDetailVC
-
-- (instancetype)initWithString:(NSString *)str
-{
-    self = [super init];
-    if (self) {
-        
-        _str = str;
-    }
-    return self;
-}
+@implementation ValidVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self initDataSouce];
     [self initUI];
 }
@@ -48,34 +39,19 @@
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
 }
 
-- (void)ActionConfirmBtn:(UIButton *)btn{
+- (void)ActionPrintBtn:(UIButton *)btn{
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认到访" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [alert addAction:valid];
-    [alert addAction:invalid];
-    [alert addAction:cancel];
-    [self.navigationController presentViewController:alert animated:YES completion:^{
-        
-    }];
 }
 
 #pragma mark    -----  delegate   ------
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 3) {
+        
+        return 7;
+    }
     return 3;
 }
 
@@ -118,6 +94,31 @@
         [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
+    }else if(indexPath.section == 3 && indexPath.row > 1){
+        
+        BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
+        if (!cell) {
+            
+            cell = [[BrokerageDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell3"];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
+        if (indexPath.row == 2) {
+            
+            cell.upLine.hidden = YES;
+        }else{
+            
+            cell.upLine.hidden = NO;
+        }
+        if (indexPath.row == 6) {
+            
+            cell.downLine.hidden = YES;
+        }else{
+            
+            cell.downLine.hidden = NO;
+        }
+        return cell;
     }else{
         static NSString *CellIdentifier = @"InfoDetailCell";
         InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -128,40 +129,33 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    
-    
 }
 
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"待确认详情";
-    _Maintableview.rowHeight = 150 *SIZE;
-    _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.titleLabel.text = @"有效到访详情";
     
-    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
-    _Maintableview.backgroundColor = YJBackColor;
-    _Maintableview.delegate = self;
-    _Maintableview.dataSource = self;
-    [_Maintableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_Maintableview];
     
-    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _confirmBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
-    _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_confirmBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [_confirmBtn setBackgroundColor:YJBlueBtnColor];
-    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    if ([_str isEqualToString:@"recommended"]) {
-     
-        [self.view addSubview:_confirmBtn];
-        
-    }else{
-        
-        _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
-    }
+    _validTable.rowHeight = 150 *SIZE;
+    _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
-
+    _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _validTable.backgroundColor = YJBackColor;
+    _validTable.delegate = self;
+    _validTable.dataSource = self;
+    [_validTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_validTable];
+    
+    _printBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _printBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
+    _printBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_printBtn addTarget:self action:@selector(ActionPrintBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_printBtn setTitle:@"打印" forState:UIControlStateNormal];
+    [_printBtn setBackgroundColor:YJBlueBtnColor];
+    [_printBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+//    [self.view addSubview:_printBtn];
+    
 }
+
 @end
