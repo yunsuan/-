@@ -12,6 +12,7 @@
 #import "RecommendCell5.h"
 #import "RecommendCollCell.h"
 #import "UnconfirmDetailVC.h"
+#import "InvalidVC.h"
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -183,6 +184,11 @@
     if (_index == 0) {
         
         UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (_index == 3) {
+        
+        InvalidVC *nextVC = [[InvalidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

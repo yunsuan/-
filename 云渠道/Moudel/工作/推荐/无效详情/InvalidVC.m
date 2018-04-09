@@ -77,6 +77,16 @@
     return 53*SIZE;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return 5 *SIZE;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 5 *SIZE)];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 5;
@@ -87,35 +97,27 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section ==0 && indexPath.row ==2) {
-        static NSString *CellIdentifier = @"CountDownCell";
-        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else{
-        static NSString *CellIdentifier = @"InfoDetailCell";
-        InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell SetCellContentbystring:_data[indexPath.row]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    static NSString *CellIdentifier = @"InfoDetailCell";
+    InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    
+    [cell SetCellContentbystring:_data[indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+    return cell;
+
 }
 
 -(void)initUI
 {
     
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.text = @"失效详情";
+    
     _invalidTable.rowHeight = 150 *SIZE;
     _invalidTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStylePlain];
+    _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _invalidTable.backgroundColor = YJBackColor;
     _invalidTable.delegate = self;
     _invalidTable.dataSource = self;
@@ -135,7 +137,7 @@
     _recommendBtn.frame = CGRectMake(120 *SIZE, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, 240 *SIZE, 47 *SIZE + TAB_BAR_MORE);
     _recommendBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_recommendBtn setTitle:@"申诉" forState:UIControlStateNormal];
+    [_recommendBtn setTitle:@"重新推荐" forState:UIControlStateNormal];
     [_recommendBtn setBackgroundColor:YJBlueBtnColor];
     [_recommendBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_recommendBtn];
