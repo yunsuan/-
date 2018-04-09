@@ -92,6 +92,8 @@
 		0CF04F43207B308000A45F4A /* InvalidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F42207B308000A45F4A /* InvalidVC.m */; };
 		0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F46207B367100A45F4A /* ComplaintVC.m */; };
 		0CF04F4B207B36C100A45F4A /* ValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F4A207B36C100A45F4A /* ValidVC.m */; };
+		0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */; };
+		0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -339,6 +341,10 @@
 		0CF04F46207B367100A45F4A /* ComplaintVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintVC.m; sourceTree = "<group>"; };
 		0CF04F49207B36C100A45F4A /* ValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValidVC.h; sourceTree = "<group>"; };
 		0CF04F4A207B36C100A45F4A /* ValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ValidVC.m; sourceTree = "<group>"; };
+		0CF04F4C207B399200A45F4A /* ComplaintCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplaintCompleteVC.h; sourceTree = "<group>"; };
+		0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintCompleteVC.m; sourceTree = "<group>"; };
+		0CF04F4F207B39AA00A45F4A /* ComplaintUnCompleteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplaintUnCompleteVC.h; sourceTree = "<group>"; };
+		0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplaintUnCompleteVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -964,6 +970,10 @@
 			children = (
 				0CF04F45207B367100A45F4A /* ComplaintVC.h */,
 				0CF04F46207B367100A45F4A /* ComplaintVC.m */,
+				0CF04F4C207B399200A45F4A /* ComplaintCompleteVC.h */,
+				0CF04F4D207B399200A45F4A /* ComplaintCompleteVC.m */,
+				0CF04F4F207B39AA00A45F4A /* ComplaintUnCompleteVC.h */,
+				0CF04F50207B39AA00A45F4A /* ComplaintUnCompleteVC.m */,
 			);
 			path = "申诉";
 			sourceTree = "<group>";
@@ -1771,6 +1781,7 @@
 				0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
+				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
@@ -1793,6 +1804,7 @@
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,
 				0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */,
 				0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */,
+				0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */,
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,

@@ -1,28 +1,28 @@
 //
-//  ValidVC.m
+//  ComplaintCompleteVC.m
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/4/9.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "ValidVC.h"
+#import "ComplaintCompleteVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
 #import "BrokerageDetailTableCell3.h"
 
-@interface ValidVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ComplaintCompleteVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_data;
     NSArray *_titleArr;
 }
-@property (nonatomic , strong) UITableView *validTable;
+@property (nonatomic , strong) UITableView *completeTable;
 
-@property (nonatomic , strong) UIButton *printBtn;
+@property (nonatomic , strong) UIButton *continueBtn;
 
 @end
 
-@implementation ValidVC
+@implementation ComplaintCompleteVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +39,7 @@
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
 }
 
-- (void)ActionPrintBtn:(UIButton *)btn{
+- (void)ActionContinueBtn:(UIButton *)btn{
     
     
 }
@@ -50,7 +50,7 @@
 {
     if (section == 3) {
         
-        return 7;
+        return 6;
     }
     return 3;
 }
@@ -94,7 +94,7 @@
         [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if(indexPath.section == 3 && indexPath.row > 1){
+    }else if(indexPath.section == 3 && indexPath.row > 2){
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
@@ -104,14 +104,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
-        if (indexPath.row == 2) {
+        if (indexPath.row == 3) {
             
             cell.upLine.hidden = YES;
         }else{
             
             cell.upLine.hidden = NO;
         }
-        if (indexPath.row == 6) {
+        if (indexPath.row == 5) {
             
             cell.downLine.hidden = YES;
         }else{
@@ -134,27 +134,27 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"有效到访详情";
+    self.titleLabel.text = @"申诉详情";
     
     
-    _validTable.rowHeight = 150 *SIZE;
-    _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _completeTable.rowHeight = 150 *SIZE;
+    _completeTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
-    _validTable.backgroundColor = YJBackColor;
-    _validTable.delegate = self;
-    _validTable.dataSource = self;
-    [_validTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_validTable];
+    _completeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _completeTable.backgroundColor = YJBackColor;
+    _completeTable.delegate = self;
+    _completeTable.dataSource = self;
+    [_completeTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_completeTable];
     
-    _printBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _printBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
-    _printBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_printBtn addTarget:self action:@selector(ActionPrintBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_printBtn setTitle:@"打印" forState:UIControlStateNormal];
-    [_printBtn setBackgroundColor:YJBlueBtnColor];
-    [_printBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_printBtn];
+    _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _continueBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
+    _continueBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_continueBtn addTarget:self action:@selector(ActionContinueBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_continueBtn setTitle:@"继续申诉" forState:UIControlStateNormal];
+    [_continueBtn setBackgroundColor:YJBlueBtnColor];
+    [_continueBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.view addSubview:_continueBtn];
     
 }
 

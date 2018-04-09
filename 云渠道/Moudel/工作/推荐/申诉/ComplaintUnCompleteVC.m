@@ -1,28 +1,28 @@
 //
-//  ValidVC.m
+//  ComplaintUnCompleteVC.m
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/4/9.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "ValidVC.h"
+#import "ComplaintUnCompleteVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
 #import "BrokerageDetailTableCell3.h"
 
-@interface ValidVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ComplaintUnCompleteVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_data;
     NSArray *_titleArr;
 }
-@property (nonatomic , strong) UITableView *validTable;
+@property (nonatomic , strong) UITableView *unCompleteTable;
 
-@property (nonatomic , strong) UIButton *printBtn;
+@property (nonatomic , strong) UIButton *cancelBtn;
 
 @end
 
-@implementation ValidVC
+@implementation ComplaintUnCompleteVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +39,7 @@
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
 }
 
-- (void)ActionPrintBtn:(UIButton *)btn{
+- (void)ActionCancelBtn:(UIButton *)btn{
     
     
 }
@@ -50,7 +50,7 @@
 {
     if (section == 3) {
         
-        return 7;
+        return 6;
     }
     return 3;
 }
@@ -94,7 +94,7 @@
         [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if(indexPath.section == 3 && indexPath.row > 1){
+    }else if(indexPath.section == 3 && indexPath.row > 2){
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
@@ -104,14 +104,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
-        if (indexPath.row == 2) {
+        if (indexPath.row == 3) {
             
             cell.upLine.hidden = YES;
         }else{
             
             cell.upLine.hidden = NO;
         }
-        if (indexPath.row == 6) {
+        if (indexPath.row == 5) {
             
             cell.downLine.hidden = YES;
         }else{
@@ -134,27 +134,27 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"有效到访详情";
+    self.titleLabel.text = @"申诉详情";
     
     
-    _validTable.rowHeight = 150 *SIZE;
-    _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _unCompleteTable.rowHeight = 150 *SIZE;
+    _unCompleteTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
-    _validTable.backgroundColor = YJBackColor;
-    _validTable.delegate = self;
-    _validTable.dataSource = self;
-    [_validTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_validTable];
+    _unCompleteTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _unCompleteTable.backgroundColor = YJBackColor;
+    _unCompleteTable.delegate = self;
+    _unCompleteTable.dataSource = self;
+    [_unCompleteTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_unCompleteTable];
     
-    _printBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _printBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
-    _printBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_printBtn addTarget:self action:@selector(ActionPrintBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_printBtn setTitle:@"打印" forState:UIControlStateNormal];
-    [_printBtn setBackgroundColor:YJBlueBtnColor];
-    [_printBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_printBtn];
+    _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cancelBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
+    _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn setTitle:@"取消申诉" forState:UIControlStateNormal];
+    [_cancelBtn setBackgroundColor:YJBlueBtnColor];
+    [_cancelBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.view addSubview:_cancelBtn];
     
 }
 

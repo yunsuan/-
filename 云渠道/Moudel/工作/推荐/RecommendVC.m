@@ -13,6 +13,10 @@
 #import "RecommendCollCell.h"
 #import "UnconfirmDetailVC.h"
 #import "InvalidVC.h"
+#import "ValidVC.h"
+#import "ComplaintVC.h"
+#import "ComplaintUnCompleteVC.h"
+#import "ComplaintCompleteVC.h"
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -186,10 +190,33 @@
         UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
+    
+    if (_index == 1) {
+        
+        InvalidVC *nextVC = [[InvalidVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (_index == 2) {
+        
+        ValidVC *nextVC = [[ValidVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
     if (_index == 3) {
         
         InvalidVC *nextVC = [[InvalidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (_index == 4) {
+        
+        if (indexPath.row == 0) {
+            
+            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
     }
 }
 
