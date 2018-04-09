@@ -17,6 +17,7 @@
 #import "ComplaintVC.h"
 #import "ComplaintUnCompleteVC.h"
 #import "ComplaintCompleteVC.h"
+#import "confirmDetailVC.h"
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -193,7 +194,7 @@
     
     if (_index == 1) {
         
-        InvalidVC *nextVC = [[InvalidVC alloc] init];
+        confirmDetailVC *nextVC = [[confirmDetailVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     if (_index == 2) {

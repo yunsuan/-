@@ -35,7 +35,7 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"客户信息",@"项目信息",@"委托人信息"];
+    _titleArr = @[@"推荐编号",@"处理信息",@"申诉信息",@"失效信息",@"委托人信息"];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
 }
 
@@ -48,7 +48,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 3) {
+    if (section == 4) {
         
         return 6;
     }
@@ -77,7 +77,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
     
 }
 
@@ -94,7 +94,7 @@
         [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if(indexPath.section == 3 && indexPath.row > 2){
+    }else if(indexPath.section == 4 && indexPath.row > 2){
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
