@@ -20,6 +20,30 @@
     return self;
 }
 
+- (void)ActionMessBtn:(UIButton *)btn{
+    
+    if (self.messBtnBlock) {
+        
+        self.messBtnBlock(self.tag);
+    }
+}
+
+- (void)ActionPhoneBtn:(UIButton *)btn{
+    
+    if (self.phoneBtnBlock) {
+        
+        self.phoneBtnBlock(self.tag);
+    }
+}
+
+- (void)ActionComfirmBtn:(UIButton *)btn{
+    
+    if (self.confirmBtnBlock) {
+        
+        self.confirmBtnBlock(self.tag);
+    }
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 15 *SIZE, 50 *SIZE, 13 *SIZE)];
@@ -44,7 +68,28 @@
     _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
     
+    _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _messBtn.frame = CGRectMake(296 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
+    [_messBtn addTarget:self action:@selector(ActionMessBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_messBtn setBackgroundImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_messBtn];
     
+    _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _phoneBtn.frame = CGRectMake(335 *SIZE, 19 *SIZE, 19 *SIZE, 10 *SIZE);
+    [_phoneBtn addTarget:self action:@selector(ActionPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_messBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_phoneBtn];
+    
+    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _confirmBtn.frame = CGRectMake(273 *SIZE, 61 *SIZE, 77 *SIZE, 30 *SIZE);
+    _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_confirmBtn addTarget:self action:@selector(ActionComfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_confirmBtn setBackgroundColor:YJBlueBtnColor];
+    _confirmBtn.layer.cornerRadius = 2 *SIZE;
+    _confirmBtn.clipsToBounds = YES;
+    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.contentView addSubview:_confirmBtn];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 106 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;

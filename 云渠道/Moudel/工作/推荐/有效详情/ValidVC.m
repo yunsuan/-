@@ -140,7 +140,7 @@
     _validTable.rowHeight = 150 *SIZE;
     _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _validTable.backgroundColor = YJBackColor;
     _validTable.delegate = self;
     _validTable.dataSource = self;
@@ -154,7 +154,7 @@
     [_printBtn setTitle:@"打印" forState:UIControlStateNormal];
     [_printBtn setBackgroundColor:YJBlueBtnColor];
     [_printBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_printBtn];
+//    [self.view addSubview:_printBtn];
     
 }
 

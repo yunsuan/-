@@ -14,6 +14,7 @@
 {
     NSArray *_data;
     NSArray *_titleArr;
+    NSString *_str;
 }
 @property (nonatomic , strong) UITableView *Maintableview;
 @property (nonatomic , strong) UIButton *confirmBtn;
@@ -21,6 +22,16 @@
 @end
 
 @implementation UnconfirmDetailVC
+
+- (instancetype)initWithString:(NSString *)str
+{
+    self = [super init];
+    if (self) {
+        
+        _str = str;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -142,7 +153,15 @@
     [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
     [_confirmBtn setBackgroundColor:YJBlueBtnColor];
     [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_confirmBtn];
+    if ([_str isEqualToString:@"recommended"]) {
+     
+        [self.view addSubview:_confirmBtn];
+        
+    }else{
+        
+        _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
+    }
+    
 
 }
 @end

@@ -10,4 +10,6 @@
 
 @interface UnconfirmDetailVC : BaseViewController
 
+- (instancetype)initWithString:(NSString *)str;
+
 @end

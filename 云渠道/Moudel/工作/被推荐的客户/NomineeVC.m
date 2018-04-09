@@ -116,20 +116,51 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         
-        static NSString *CellIdentifier = @"NomineeCell";
+    static NSString *CellIdentifier = @"NomineeCell";
         
-        NomineeCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[NomineeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NomineeCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[NomineeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
-        cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
+    cell.nameL.text = @"张三";
+    cell.codeL.text = @"推荐编号：456522312";
+    cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
+    cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
+    cell.tag = indexPath.row;
+    cell.messBtnBlock = ^(NSInteger index) {
         
-        return cell;
+        
+    };
+    cell.phoneBtnBlock = ^(NSInteger index) {
+        
+        
+    };
+    cell.confirmBtnBlock = ^(NSInteger index) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认到访" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [alert addAction:valid];
+        [alert addAction:invalid];
+        [alert addAction:cancel];
+        [self.navigationController presentViewController:alert animated:YES completion:^{
+            
+        }];
+    };
+    return cell;
 }
 
 
@@ -138,7 +169,7 @@
     
     if (_index == 0) {
         
-        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] init];
+        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommended"];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

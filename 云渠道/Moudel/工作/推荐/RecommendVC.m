@@ -43,9 +43,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.leftButton.hidden = YES;
     self.titleLabel.text = @"推荐";
-//    self.leftButton.hidden = YES;
     [self initDateSouce];
     [self initUI];
     
@@ -188,7 +186,7 @@
    
     if (_index == 0) {
         
-        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] init];
+        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommend"];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     

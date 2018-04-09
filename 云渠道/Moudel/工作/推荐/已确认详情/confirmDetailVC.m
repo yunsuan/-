@@ -33,7 +33,7 @@
 {
     
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    _titleArr = @[@"推荐编号",@"推荐客户",@"推荐项目",@"到访信息"];
+    _titleArr = @[@"推荐客户",@"推荐项目",@"到访信息"];
 }
 
 
@@ -76,7 +76,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 3;
     
 }
 
