@@ -8,6 +8,7 @@
 
 #import "WorkingVC.h"
 #import "WorkingCell.h"
+#import "RecommendVC.h"
 
 @interface WorkingVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -86,48 +87,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    switch (indexPath.row) {
-    //        case 0:
-    //        {
-    //            MyCommissionVC *next_vc = [[MyCommissionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 1:
-    //        {
-    //            MyAttentionVC *next_vc = [[MyAttentionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 2:
-    //        {
-    //            FixPassWrodVC *next_vc = [[FixPassWrodVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //
-    //        }
-    //            break;
-    //        case 3:
-    //        {
-    //            AbortVC *next_vc = [[AbortVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 4:
-    //        {
-//    [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-//        
-//    } WithDefaultBlack:^{
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-//        
-//    }];
     
-    //        }
-    //            break;
-    //
-    //        default:
-    //            break;
-    //    }
+    if (indexPath.row == 0) {
+        
+        RecommendVC *nextVC = [[RecommendVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
 }
 
 

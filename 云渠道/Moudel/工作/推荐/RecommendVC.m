@@ -7,13 +7,20 @@
 //
 
 #import "RecommendVC.h"
+#import "RecommendCell.h"
+#import "RecommendCollCell.h"
 
-@interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic , strong) UITableView *MainTableView;
 
+@property (nonatomic, strong) UICollectionView *recommendColl;
+
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
 -(void)initUI;
 -(void)initDateSouce;
+
 @end
 
 @implementation RecommendVC
@@ -37,11 +44,41 @@
 
 -(void)initUI
 {
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.minimumLineSpacing = 0;
+    _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 5, 40 *SIZE);
     
+    _recommendColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _recommendColl.backgroundColor = CH_COLOR_white;
+    _recommendColl.delegate = self;
+    _recommendColl.dataSource = self;
+    _recommendColl.bounces = NO;
+    [_recommendColl registerClass:[RecommendCollCell class] forCellWithReuseIdentifier:@"RecommendCollCell"];
+    [self.view addSubview:_recommendColl];
     [self.view addSubview:self.MainTableView];
 }
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 5;
+}
 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    RecommendCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RecommendCollCell" forIndexPath:indexPath];
+    if (!cell) {
+
+        cell = [[RecommendCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /5, 40 *SIZE)];
+    }
+    cell.titleL.text = @"需求类型";
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 
 
 #pragma mark  ---  delegate   ---
@@ -51,74 +88,33 @@
     return 2;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-    
-}
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 190*SIZE;
+    return 127*SIZE;
 }
 
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"WorkingCell";
-//
-//    WorkingCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (!cell) {
-//        cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    [cell setTitle:_namelist[indexPath.row] content:@"今日新增 2，有效 21，修改 39" img:_imglist[indexPath.row]];
-//    return cell;
-//
-//}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"RecommendCell";
+
+    RecommendCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.nameL.text = @"张三";
+    cell.projectL.text = @"推荐项目：云算公馆";
+    cell.codeL.text = @"推荐编号：456522312";
+    cell.confirmL.text = @"到访确认人：李四";
+    cell.addressL.text = @"项目地址：四川-成都-郫都区";
+    cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
+
+    return cell;
+
+}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    switch (indexPath.row) {
-    //        case 0:
-    //        {
-    //            MyCommissionVC *next_vc = [[MyCommissionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 1:
-    //        {
-    //            MyAttentionVC *next_vc = [[MyAttentionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 2:
-    //        {
-    //            FixPassWrodVC *next_vc = [[FixPassWrodVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //
-    //        }
-    //            break;
-    //        case 3:
-    //        {
-    //            AbortVC *next_vc = [[AbortVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 4:
-    //        {
-    //    [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-    //
-    //    } WithDefaultBlack:^{
-    //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-    //        [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-    //
-    //    }];
-    
-    //        }
-    //            break;
-    //
-    //        default:
-    //            break;
-    //    }
+   
 }
 
 
@@ -128,7 +124,7 @@
 {
     if(!_MainTableView)
     {
-        _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT+1*SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT-1*SIZE) style:UITableViewStylePlain];
+        _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;

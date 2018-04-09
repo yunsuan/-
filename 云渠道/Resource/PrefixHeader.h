@@ -99,9 +99,11 @@
 #define YJBackColor  COLOR(240, 240, 240, 1)
 #define YJTitleLabColor  COLOR(51, 51, 51, 1)
 #define YJContentLabColor  COLOR(115, 115, 115, 1)
+#define YJ86Color   COLOR(86, 86, 86, 1)
 #define YJGreenColor  COLOR(60, 191, 75, 1)
 #define YJLoginBtnColor   COLOR(0x1b, 0x80, 0xfe, 1)
 #define YJBlueBtnColor   COLOR(27, 152, 255, 1)
+
 /**
  *  第一部分,颜色部分
  */
