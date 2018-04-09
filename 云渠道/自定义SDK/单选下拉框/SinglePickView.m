@@ -132,12 +132,12 @@
         self.dataSource=date;
         self.selected = 0;
         if (date.count == 0) {
-            _dataSource = @[@{@"MC":@"",
-                              @"ID":@""
+            _dataSource = @[@{@"param":@"",
+                              @"id":@""
                               }];
         }
-        self.name = _dataSource[0][@"MC"];
-        self.ID = _dataSource[0][@"ID"];
+        self.name = _dataSource[0][@"param"];
+        self.ID = _dataSource[0][@"id"];
         
     }
     return self;
@@ -200,13 +200,13 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return _dataSource[row][@"MC"];
+    return _dataSource[row][@"param"];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    _name = _dataSource[row][@"MC"];
-    _ID = _dataSource[row][@"ID"];
+    _name = _dataSource[row][@"param"];
+    _ID = _dataSource[row][@"id"];
 }
 
 

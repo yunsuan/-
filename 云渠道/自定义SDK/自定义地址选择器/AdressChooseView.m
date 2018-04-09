@@ -213,6 +213,12 @@
     [self getprovincearray];
     [self getCityArrayByprovince:0];
     [self getAreaArrayBycity:0];
+    self.provinceStr = self.provinceArray[0][@"name"];
+    self.provinceid = self.provinceArray[0][@"region"];
+    self.cityStr = self.cityArray[0][@"name"];
+    self.cityid = self.cityArray[0][@"region"];
+    self.areaStr = self.areaArray[0][@"name"];
+    self.areaid = self.areaArray[0][@"region"];
 }
 
 -(void)getprovincearray

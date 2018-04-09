@@ -133,13 +133,6 @@
     return self;
 }
 
-
-#pragma mark -- 从plist里面读数据
-
-
-
-
-
 #pragma mark -- loadSubViews
 - (void)initSuViews
 {
@@ -175,10 +168,8 @@
 
 - (void)dateChange:(UIDatePicker *)date
 {
-    
     NSLog(@"%@", date.date);
     _date = date.date;
-    
 }
 
 #pragma mark -- Button
@@ -204,7 +195,6 @@
 }
     
 - (void)ActionTap{
-    
     [self removeFromSuperview];
 }
 

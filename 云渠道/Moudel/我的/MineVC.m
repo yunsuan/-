@@ -52,6 +52,7 @@
     [self.view addSubview:backview];
     
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, STATUS_BAR_HEIGHT+24 *SIZE, 60 *SIZE, 60 *SIZE)];
+    _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = 30 *SIZE;
     _headImg.image = [UIImage imageNamed:@"def_head"];
     [self.view addSubview:_headImg];
@@ -172,16 +173,31 @@
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             UIImage *originalImage = [self fixOrientation:info[UIImagePickerControllerOriginalImage]];
-            NSData *data = [self resetSizeOfImageData:originalImage maxSize:150];
+            [self updateheadimgbyimg:originalImage];
         }
     }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         UIImage *originalImage = [self fixOrientation:info[UIImagePickerControllerEditedImage]];
-        NSData *data = [self resetSizeOfImageData:originalImage maxSize:150];
+        [self updateheadimgbyimg:originalImage];
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)updateheadimgbyimg:(UIImage *)img
+{
+    NSData *data = [self resetSizeOfImageData:img maxSize:150];
+    
+    [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"headimg"
+                                                    }
+          constructionBody:^(id<AFMultipartFormData> formData) {
+              [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
+    } success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        _headImg.image = img;
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 
 // 用户点击了取消按钮
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
