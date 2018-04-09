@@ -44,20 +44,19 @@
 @property(nonatomic, strong) NSArray * provinceArray;
 
 
-@property(nonatomic ,strong)NSArray * provinceidArray;
+
 /**
  市
  */
 @property(nonatomic, strong) NSArray * cityArray;
 
-@property(nonatomic, strong) NSArray * cityidArray;
+
 
 /**
  区
  */
 @property(nonatomic, strong) NSArray * areaArray;
 
-@property(nonatomic ,strong) NSArray *areaidArray;
 /**
  所有数据
  */
@@ -158,13 +157,7 @@
     return _pickerView;
 }
 
-- (NSArray *)provinceidArray
-{
-    if (!_provinceidArray) {
-        _provinceidArray = [NSArray array];
-    }
-    return _provinceidArray;
-}
+
 
 
 - (NSArray *)provinceArray
@@ -175,13 +168,6 @@
     return _provinceArray;
 }
 
--(NSArray *)cityidArray
-{
-    if (!_cityidArray) {
-        _cityidArray = [NSArray array];
-    }
-    return _cityidArray;
-}
 
 - (NSArray *)cityArray
 {
@@ -191,13 +177,7 @@
     return _cityArray;
 }
 
-- (NSArray *)areaidArray
-{
-    if (!_areaidArray) {
-        _areaidArray = [NSArray array];
-    }
-    return _areaidArray;
-}
+
 - (NSArray *)areaArray
 {
     if (!_areaArray) {
@@ -210,8 +190,8 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.selected = 0;
-        
         [self loadDatas];
+        [self initSuViews];
        
       
     }
@@ -224,132 +204,35 @@
 #pragma mark -- 从plist里面读数据
 - (void)loadDatas
 {
-    [self getprovincearray];
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
     
+    NSError *err;
+    _dataSource = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    [self getprovincearray];
+    [self getCityArrayByprovince:0];
+    [self getAreaArrayBycity:0];
 }
 
 -(void)getprovincearray
 {
-    [BaseRequest GET:ProvinceList_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        self.provinceArray = resposeObject;
-        self.provinceStr = self.provinceArray[0][@"name"];
-        self.provinceid = self.provinceArray[0][@"code"];
-        [self getCityArrayByprovince:_provinceArray[0][@"code"]];
-        
-    } failure:^(NSError *error) {
-        
-    }];
+    _provinceArray = _dataSource;
 }
 
--(void)getCityArrayByprovince:(NSString *)proid
+-(void)getCityArrayByprovince:(NSInteger)num
 {
-    [BaseRequest GET:CityList_URL parameters:@{@"provinceCode":proid} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        self.cityArray = resposeObject;
-        [self getAreaArrayBycity:_cityArray[0][@"code"]];
-        self.cityStr = self.cityArray[0][@"name"];
-        self.cityid = self.cityArray[0][@"code"];
-
-    } failure:^(NSError *error) {
-        
-    }];
+    _cityArray = _provinceArray[num][@"item"];
 }
 
 
--(void)getAreaArrayBycity:(NSString *)cityid
+-(void)getAreaArrayBycity:(NSInteger )num
 {
-    [BaseRequest GET:AreaList_URL parameters:@{@"cityCode":cityid} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        self.areaArray = resposeObject;
-        self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"code"];
-        if (!_cityidArray) {
-            [self initSuViews];
-            _cityidArray = @[@"2"];
-        }
-       
-        
-        
-    } failure:^(NSError *error) {
-        
-    }];
+    _areaArray = _cityArray[num][@"item"];
 }
 
 
 
-//- (NSArray *)getAreaidFromCity:(NSInteger)row
-//{
-//    NSArray * tempArr = _dataSource[self.selected][@"levellist"];
-//    if(tempArr.count >0){
-//
-//        NSArray * temparr =self.dataSource[self.selected][@"levellist"][row][@"levellist"];
-//        if (temparr.count>0) {
-//            NSMutableArray * array = [NSMutableArray array];
-//            for (int i = 0; i<temparr.count; i++) {
-//                [array addObject:temparr[i][@"ID"]];
-//            }
-//            return [array copy];
-//        }
-//        else
-//            return @[@""];
-//    }
-//    else
-//        return @[@""];
-//}
-//
-//- (NSArray *)getCityidFromProvince:(NSInteger)row
-//{
-//
-//    NSArray * tempArr = _dataSource[row][@"levellist"];
-//    NSMutableArray * tempArray = [NSMutableArray array];
-//    if (tempArr.count>0) {
-//        for (int i = 0; i<tempArr.count; i++) {
-//            [tempArray addObject:tempArr[i][@"ID"]];
-//        }
-//        return [tempArray copy];
-//    }
-//    else
-//        return @[@""];
-//
-//}
-//
-//
-//- (NSArray *)getAreaNamesFromCity:(NSInteger)row
-//{
-//    NSArray * tempArr = _dataSource[self.selected][@"levellist"];
-//    if(tempArr.count >0){
-//
-//        NSArray * temparr =self.dataSource[self.selected][@"levellist"][row][@"levellist"];
-//        if (temparr.count>0) {
-//            NSMutableArray * array = [NSMutableArray array];
-//            for (int i = 0; i<temparr.count; i++) {
-//                [array addObject:temparr[i][@"MC"]];
-//            }
-//            return [array copy];
-//        }
-//        else
-//            return @[@""];
-//    }
-//    else
-//        return @[@""];
-//}
-//
-//- (NSArray *)getCityNamesFromProvince:(NSInteger)row
-//{
-//
-//    NSArray * tempArr = _dataSource[row][@"levellist"];
-//    NSMutableArray * tempArray = [NSMutableArray array];
-//    if (tempArr.count>0) {
-//        for (int i = 0; i<tempArr.count; i++) {
-//            [tempArray addObject:tempArr[i][@"MC"]];
-//        }
-//        return [tempArray copy];
-//    }
-//    else
-//        return @[@""];
-//
-//}
 
 
 #pragma mark -- loadSubViews
@@ -416,10 +299,10 @@
 {
     if (component == 0) {//选择省
         self.selected = row;
-        [self getCityArrayByprovince:_provinceArray[row][@"code"]];
-        [self getAreaArrayBycity:_cityArray[0][@"code"]];
+        [self getCityArrayByprovince:row];
+        [self getAreaArrayBycity:0];
         self.provinceStr = self.provinceArray[row][@"name"];
-        self.provinceid = self.provinceArray[row][@"code"];
+        self.provinceid = self.provinceArray[row][@"region"];
         
         [self.pickerView reloadComponent:1];
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
@@ -429,22 +312,22 @@
         
 
         self.cityStr = self.cityArray[0][@"name"];
-        self.cityid = self.cityArray[0][@"code"];
+        self.cityid = self.cityArray[0][@"region"];
         self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"code"];
+        self.areaid = self.areaArray[0][@"region"];
         
     }else if (component == 1){//选择市
-        [self getAreaArrayBycity:_cityArray[row][@"code"]];
+        [self getAreaArrayBycity:row];
         [self.pickerView reloadComponent:2];
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
         self.cityStr = self.cityArray[row][@"name"];
-        self.cityid =  self.cityArray[row][@"id"];
+        self.cityid =  self.cityArray[row][@"region"];
         self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"id"];
+        self.areaid = self.areaArray[0][@"region"];
         
     }else if (component == 2){//选择区
         self.areaStr = self.areaArray[row][@"name"];
-        self.areaid =  self.areaArray[row][@"id"];
+        self.areaid =  self.areaArray[row][@"region"];
     }
 }
 
