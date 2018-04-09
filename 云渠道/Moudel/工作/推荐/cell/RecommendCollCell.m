@@ -28,7 +28,7 @@
     _titleL.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_titleL];
     
-    _line = [[UIView alloc] initWithFrame:CGRectMake(19 *SIZE, 38 *SIZE, 27 *SIZE, 2 *SIZE)];
+    _line = [[UIView alloc] initWithFrame:CGRectMake(22.5 *SIZE, 38 *SIZE, 27 *SIZE, 2 *SIZE)];
     _line.backgroundColor = YJBlueBtnColor;
     _line.hidden = YES;
     [self.contentView addSubview:_line];

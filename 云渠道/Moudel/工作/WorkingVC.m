@@ -78,6 +78,7 @@
     WorkingCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     [cell setTitle:_namelist[indexPath.row] content:@"今日新增 2，有效 21，修改 39" img:_imglist[indexPath.row]];
     return cell;

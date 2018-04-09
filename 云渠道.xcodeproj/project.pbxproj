@@ -85,6 +85,8 @@
 		0CF04F2D207A0DA300A45F4A /* DynamicListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F2C207A0DA300A45F4A /* DynamicListTableCell.m */; };
 		0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F30207A145B00A45F4A /* CustomMatchListVC.m */; };
 		0CF04F34207B00F900A45F4A /* RecommendCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F33207B00F900A45F4A /* RecommendCollCell.m */; };
+		0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F36207B051500A45F4A /* RecommendCell5.m */; };
+		0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F39207B074500A45F4A /* RecommendCell3.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -319,6 +321,10 @@
 		0CF04F30207A145B00A45F4A /* CustomMatchListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchListVC.m; sourceTree = "<group>"; };
 		0CF04F32207B00F900A45F4A /* RecommendCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendCollCell.h; sourceTree = "<group>"; };
 		0CF04F33207B00F900A45F4A /* RecommendCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendCollCell.m; sourceTree = "<group>"; };
+		0CF04F35207B051500A45F4A /* RecommendCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendCell5.h; sourceTree = "<group>"; };
+		0CF04F36207B051500A45F4A /* RecommendCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendCell5.m; sourceTree = "<group>"; };
+		0CF04F38207B074500A45F4A /* RecommendCell3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendCell3.h; sourceTree = "<group>"; };
+		0CF04F39207B074500A45F4A /* RecommendCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendCell3.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1204,6 +1210,10 @@
 				105E18EE206B6BE90031558D /* RecommendCell.m */,
 				0CF04F32207B00F900A45F4A /* RecommendCollCell.h */,
 				0CF04F33207B00F900A45F4A /* RecommendCollCell.m */,
+				0CF04F35207B051500A45F4A /* RecommendCell5.h */,
+				0CF04F36207B051500A45F4A /* RecommendCell5.m */,
+				0CF04F38207B074500A45F4A /* RecommendCell3.h */,
+				0CF04F39207B074500A45F4A /* RecommendCell3.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1692,6 +1702,7 @@
 				0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */,
+				0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */,
 				0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */,
@@ -1799,6 +1810,7 @@
 				0CB6BAFF2074A82D00921C75 /* HouseTypeTableCell2.m in Sources */,
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
+				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,

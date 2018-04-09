@@ -8,10 +8,17 @@
 
 #import "RecommendVC.h"
 #import "RecommendCell.h"
+#import "RecommendCell3.h"
+#import "RecommendCell5.h"
 #import "RecommendCollCell.h"
 
-@interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
+@interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
+    
+    NSInteger _index;
+    NSArray *_titleArr;
+}
 @property (nonatomic , strong) UITableView *MainTableView;
 
 @property (nonatomic, strong) UICollectionView *recommendColl;
@@ -40,6 +47,7 @@
 -(void)initDateSouce
 {
     
+    _titleArr = @[@"未确认",@"已确认",@"有效",@"无效",@"申诉"];
 }
 
 -(void)initUI
@@ -57,6 +65,8 @@
     _recommendColl.bounces = NO;
     [_recommendColl registerClass:[RecommendCollCell class] forCellWithReuseIdentifier:@"RecommendCollCell"];
     [self.view addSubview:_recommendColl];
+    [_recommendColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
+    
     [self.view addSubview:self.MainTableView];
 }
 
@@ -72,12 +82,14 @@
 
         cell = [[RecommendCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /5, 40 *SIZE)];
     }
-    cell.titleL.text = @"需求类型";
+    cell.titleL.text = _titleArr[indexPath.item];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    _index = indexPath.item;
+    [self.MainTableView reloadData];
 }
 
 
@@ -89,26 +101,78 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 127*SIZE;
+    
+    if (_index < 2) {
+        
+        return 127*SIZE;
+        
+    }else if (_index < 4){
+        
+        return 113 *SIZE;
+    }else{
+        
+        return 108 *SIZE;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"RecommendCell";
-
-    RecommendCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (_index < 2) {
+        
+        static NSString *CellIdentifier = @"RecommendCell";
+        
+        RecommendCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.projectL.text = @"推荐项目：云算公馆";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.confirmL.text = @"到访确认人：李四";
+        cell.addressL.text = @"项目地址：四川-成都-郫都区";
+        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
+        
+        return cell;
+    }else if (_index < 4){
+        
+        static NSString *CellIdentifier = @"RecommendCell3";
+        
+        RecommendCell3 *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[RecommendCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.confirmL.text = @"到访确认人：李四";
+        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
+        cell.phoneL.text = @"18725455623";
+        cell.statusL.text = @"已来访";
+        
+        return cell;
+    }else{
+        
+        static NSString *CellIdentifier = @"RecommendCell5";
+        
+        RecommendCell5 *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[RecommendCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.confirmL.text = @"到访确认人：李四";
+        cell.phoneL.text = @"联系电话：18789455612";
+        cell.statusL.text = @"处理完成";
+        cell.recomTimeL.text = @"推荐日期：2017-12-15";
+        cell.timeL.text = @"申诉日期：2017-12-15  13:00:00";
+        
+        return cell;
     }
-    cell.nameL.text = @"张三";
-    cell.projectL.text = @"推荐项目：云算公馆";
-    cell.codeL.text = @"推荐编号：456522312";
-    cell.confirmL.text = @"到访确认人：李四";
-    cell.addressL.text = @"项目地址：四川-成都-郫都区";
-    cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
-
-    return cell;
-
 }
 
 
