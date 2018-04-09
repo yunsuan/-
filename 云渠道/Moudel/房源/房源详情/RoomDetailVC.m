@@ -14,15 +14,28 @@
 #import "RoomDetailTableCell3.h"
 #import "RoomDetailTableCell4.h"
 #import "RoomDetailTableCell5.h"
+#import "RoomDetailTableCell6.h"
+#import "RoomDetailTableCell7.h"
+#import "RoomDetailTableCell8.h"
 #import "RoomDetailTableHeader.h"
 #import "RoomDetailTableHeader5.h"
+#import "RoomDetailTableHeader6.h"
 #import "BuildingInfoVC.h"
 #import "HouseTypeDetailVC.h"
+#import "DynamicListVC.h"
+#import "CustomMatchListVC.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
 
     NSArray *_titleArr;
+    CGRect _rect0;
+    CGRect _rect1;
+    CGRect _rect2;
+    CGRect _rect3;
+    CGRect _rect4;
+    CGRect _rect5;
+    BOOL _isScrollDown;
 }
 @property (nonatomic, strong) UICollectionView *segmentColl;
 
@@ -62,8 +75,8 @@
 }
 
 - (void)initDataSource{
-    
-    _titleArr = @[@"楼盘",@"动态",@"楼栋",@"户型",@"分析",@"佣金"];
+
+    _titleArr = @[@"楼盘",@"分析",@"佣金",@"动态",@"楼栋",@"户型"];
 }
 
 - (void)ActionMoreBtn:(UIButton *)btn{
@@ -71,6 +84,12 @@
     NSLog(@"%ld",btn.tag);
     if (btn.tag == 0) {
         BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]init];
+        [self.navigationController pushViewController:next_vc animated:YES];
+    }
+    
+    if (btn.tag == 9) {
+        
+        DynamicListVC *next_vc = [[DynamicListVC alloc]init];
         [self.navigationController pushViewController:next_vc animated:YES];
     }
     
@@ -119,14 +138,51 @@
                     [UIView animateWithDuration:0.5 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
                         
                         ws.segmentColl.frame = CGRectMake(CGRectGetMaxX(ws.parting.frame) + 5 *SIZE, STATUS_BAR_HEIGHT, SCREEN_Width - CGRectGetMaxX(ws.parting.frame) - 5 *SIZE, 40);
-//                        [ws.segmentColl mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                            make.left.equalTo(ws.parting.mas_right);
-//                            make.bottom.equalTo(ws.navBackgroundView);
-//                            make.right.equalTo(ws.navBackgroundView);
-//                            make.height.mas_equalTo(40);
-//                        }];
+
                         [ws.navBackgroundView layoutIfNeeded];
                     } completion:^(BOOL finished) {
+                        
+                        _animatFinsh = YES;
+                    }];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }else{
+        
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:{
+                    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+                        
+                        ws.recommendBtn.frame = CGRectMake(85 *SIZE, STATUS_BAR_HEIGHT + 8, 24, 24);
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                    break;
+                }
+                case 1:{
+                    
+                    [UIView animateWithDuration:0.5 delay:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
+                        
+                        ws.parting.frame = CGRectMake(CGRectGetMaxX(ws.recommendBtn.frame) + 5 *SIZE, STATUS_BAR_HEIGHT + 10, SIZE, 20);
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                    break;
+                }
+                case 2:{
+                    [UIView animateWithDuration:0.5 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
+                        
+                        ws.segmentColl.frame = CGRectMake(CGRectGetMaxX(ws.parting.frame) + 5 *SIZE, STATUS_BAR_HEIGHT, SCREEN_Width - CGRectGetMaxX(ws.parting.frame) - 5 *SIZE, 40);
+                        
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        
                         _animatFinsh = YES;
                     }];
                     break;
@@ -179,6 +235,45 @@
                     break;
             }
         }
+    }else{
+        
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:{
+                    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
+                        
+                        ws.segmentColl.frame = CGRectMake(SCREEN_Width, STATUS_BAR_HEIGHT, 280 *SIZE, 40);
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:nil];
+                    
+                    break;
+                }
+                case 1:{
+                    
+                    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
+                        
+                        ws.parting.frame = CGRectMake(SCREEN_Width, STATUS_BAR_HEIGHT + 10, SIZE, 20);
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                    
+                    break;
+                }
+                case 2:{
+                    [UIView animateWithDuration:0.3 delay:0.2 options:UIViewAnimationOptionTransitionNone animations:^{
+                        
+                        ws.recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
+                        [ws.navBackgroundView layoutIfNeeded];
+                    } completion:^(BOOL finished) {
+                        _animatFinsh = NO;
+                    }];
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
     }
 }
 
@@ -192,8 +287,13 @@
 #pragma mark -- scrollView
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+
     if (scrollView == _roomTable) {
+        
+        static CGFloat lastOffsetY = 0;
+        
+        _isScrollDown = lastOffsetY < scrollView.contentOffset.y;
+        lastOffsetY = scrollView.contentOffset.y;
         
         // 计算当前偏移位置
         CGFloat threholdHeight = 183 *SIZE - NAVIGATION_BAR_HEIGHT;
@@ -207,15 +307,17 @@
         }
         else{
             self.navBackgroundView.alpha = 1.0;
-            _recommendBtn.alpha = 1.0f;
+//            _recommendBtn.alpha = 1.0f;
         }
         
-        if (self.alpha == 0) {
-            _recommendBtn.alpha = 1.0;
-        }
+//        if (self.alpha == 0) {
+//            _recommendBtn.alpha = 1.0;
+//        }
         
         if (scrollView.contentOffset.y > threholdHeight &&
             self.navBackgroundView.alpha == 1.0) {
+//        if (scrollView.contentOffset.y > threholdHeight) {
+            
             [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
             
             [self navigationAnimation];
@@ -225,8 +327,10 @@
             
             [self resetFrame];
         }
+        
     }
 }
+
 
 #pragma mark -- collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -248,6 +352,40 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    switch (indexPath.item) {
+        case 0:
+        {
+            [_roomTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+        case 1:
+        {
+            [_roomTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+        case 2:
+        {
+            [_roomTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+        case 3:
+        {
+            [_roomTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:9] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+        case 4:
+        {
+            [_roomTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:10] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+        case 5:
+        {
+            [_roomTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:11] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            break;
+        }
+        default:
+            break;
+    }
     
 }
 
@@ -257,15 +395,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
-    return 6;
+    return 14;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (section == 5) {
+    if (section == 13) {
 
         return 2;
-    }else{
+    }else if(section == 6 || section == 7){
+        
+        return 3;
+    }else{ 
 
         return 1;
     }
@@ -278,9 +419,12 @@
         return 368 *SIZE;
     }else{
         
-        if (section == 5) {
+        if (section == 13) {
             
             return 33 *SIZE;
+        }else if(section == 1 || section == 6 || section == 7){
+            
+            return 40 *SIZE;
         }else{
             
             return 6 *SIZE;
@@ -309,10 +453,23 @@
 //        header.priceL.text = @""
         header.addressL.text = @"高新区-天府五街230号";
         return header;
-//        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 363 *SIZE)];
+
     }else{
         
-        if (section == 5) {
+        if (section == 1) {
+            
+            RoomDetailTableHeader6 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader6"];
+            if (!header) {
+                
+                header = [[RoomDetailTableHeader6 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 40 *SIZE)];
+            }
+            header.titleL.text = @"项目分析";
+            
+            return header;
+        }/*else if (section == 2) {
+            
+            
+        }*/else if (section == 13) {
             
             RoomDetailTableHeader5 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader5"];
             if (!header) {
@@ -320,7 +477,11 @@
                 header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
             }
             header.numL.text = @"匹配的客户(23)";
-            
+            header.moreBtnBlock = ^{
+                
+                CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
             return header;
         }else{
             
@@ -356,7 +517,67 @@
             break;
         }
         case 1:
+        case 2:
+        case 3:
+        case 4:
         {
+            RoomDetailTableCell6 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell6"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell6 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell6"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.titleL.text = @"项目优势";
+            cell.contentL.text = @"房子二梯三户边套，南北通透户型，产证面积89平实用95平，可谈朝南带阳台，厨房朝北带很大生活阳台，一个卧室朝南，二个朝南。非常方正，没有一点浪费空间。";
+            
+            return cell;
+            
+            break;
+        }
+        case 5:
+        {
+            
+            RoomDetailTableCell7 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell7"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell7 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell7"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.timeL.text = @"2017-06-11";
+            cell.proTime.text = @"有效来访保护期：7 天";
+            cell.proTime1.text = @"有效来访保护期：7 天";
+            cell.proTime2.text = @"有效来访保护期：7 天";
+            return cell;
+        }
+        case 6:
+        case 7:
+        {
+            RoomDetailTableCell8 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell8"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell8 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell8"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.titleL.text = @"报备佣金：20000元";
+            cell.timeL.text = @"结佣日期：成交后7日";
+            return cell;
+            break;
+        }
+        case 8:
+        {
+            RoomDetailTableCell6 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell6"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell6 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell6"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.titleL.text = @"备注：";
+            cell.contentL.text = @"到访确认保护期：推荐 - 委托人判断到访的时间 \n有效来访保护期：委托人发起确认后 - 分配置业顾问时间段 \n成交保护期：分配置业顾问后开始 - 该客户成交房源截止时间段";
+            return cell;
+        }
+        case 9:
+        {
+            
             RoomDetailTableCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell1"];
             if (!cell) {
                 
@@ -372,9 +593,10 @@
             [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
             break;
+
         }
-        case 2:
-        {
+        case 10:{
+            
             RoomDetailTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell2"];
             if (!cell) {
                 
@@ -384,9 +606,10 @@
             
             return cell;
             break;
+
         }
-        case 3:
-        {
+        case 11:{
+            
             RoomDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell3"];
             if (!cell) {
                 
@@ -403,8 +626,8 @@
             return cell;
             break;
         }
-        case 4:
-        {
+        case 12:{
+            
             RoomDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell4"];
             if (!cell) {
                 
@@ -422,12 +645,13 @@
             }
             cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
             return cell;
             break;
+
         }
-        case 5:
-        {
+        case 13:{
+            
             RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
             if (!cell) {
                 
@@ -444,6 +668,7 @@
             cell.phoneL.text = @"13438339177";
             return cell;
             break;
+
         }
         default:{
             RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
@@ -469,6 +694,64 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+   
+    if (_isScrollDown) {
+        if (indexPath.section == 0) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }else if (indexPath.section == 4) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }else if (indexPath.section == 8) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+        else if (indexPath.section == 9) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:4 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+        else if (indexPath.section == 10) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:5 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+        else if (indexPath.section == 11) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:5 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+    
+    if (!_isScrollDown) {
+        
+        if (section == 0) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }else if (section == 1) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }else if (section == 5) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+        else if (section == 9) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+        else if (section == 10) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:4 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+        else if (section == 11) {
+            
+            [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:5 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }
+    }
 }
 
 
