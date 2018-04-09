@@ -86,6 +86,7 @@
 		10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C03207214CA00D00B9A /* BuildingInfoVC.m */; };
 		10174C082072175800D00B9A /* BuildinginfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C072072175800D00B9A /* BuildinginfoCell.m */; };
 		10174C0B2072179300D00B9A /* LicenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C0A2072179300D00B9A /* LicenceCell.m */; };
+		10174C14207B010500D00B9A /* region.json in Resources */ = {isa = PBXBuildFile; fileRef = 10174C13207B010500D00B9A /* region.json */; };
 		102DF9702057A12B00E1859C /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF96F2057A12B00E1859C /* MessageVC.m */; };
 		102DF9732057A14300E1859C /* WorkingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9722057A14300E1859C /* WorkingVC.m */; };
 		102DF9762057A1AE00E1859C /* RoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9752057A1AE00E1859C /* RoomVC.m */; };
@@ -313,6 +314,7 @@
 		10174C092072179300D00B9A /* LicenceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LicenceCell.h; sourceTree = "<group>"; };
 		10174C0A2072179300D00B9A /* LicenceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LicenceCell.m; sourceTree = "<group>"; };
 		10174C1220747A6600D00B9A /* NetConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetConfig.h; sourceTree = "<group>"; };
+		10174C13207B010500D00B9A /* region.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = region.json; sourceTree = "<group>"; };
 		102DF96E2057A12B00E1859C /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		102DF96F2057A12B00E1859C /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
 		102DF9712057A14300E1859C /* WorkingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkingVC.h; sourceTree = "<group>"; };
@@ -1341,6 +1343,7 @@
 		1069FFFF2057974200E11F52 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				10174C13207B010500D00B9A /* region.json */,
 				106900002057974200E11F52 /* PrefixHeader.h */,
 			);
 			path = Resource;
@@ -1518,6 +1521,7 @@
 				1069FFD1205795BE00E11F52 /* LaunchScreen.storyboard in Resources */,
 				1069FFCE205795BE00E11F52 /* Assets.xcassets in Resources */,
 				1069FFCC205795BE00E11F52 /* Main.storyboard in Resources */,
+				10174C14207B010500D00B9A /* region.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
