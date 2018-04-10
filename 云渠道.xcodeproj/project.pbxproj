@@ -160,6 +160,7 @@
 		10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAA6205A0D1300E814AC /* FindPassWordVC.m */; };
 		10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAB205A1DFA00E814AC /* WorkingCell.m */; };
 		10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAF205A76FC00E814AC /* MineCell.m */; };
+		10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E4207C805F00CFE59D /* DistributVC.m */; };
 		BF3D5C8D28ABC2D033EBFE3F /* libPods-云渠道.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F61246EF35319F3323AE5C /* libPods-云渠道.a */; };
 /* End PBXBuildFile section */
 
@@ -485,6 +486,8 @@
 		10B2CAAB205A1DFA00E814AC /* WorkingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkingCell.m; sourceTree = "<group>"; };
 		10B2CAAE205A76FC00E814AC /* MineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineCell.h; sourceTree = "<group>"; };
 		10B2CAAF205A76FC00E814AC /* MineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineCell.m; sourceTree = "<group>"; };
+		10DBB1E3207C805F00CFE59D /* DistributVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributVC.h; sourceTree = "<group>"; };
+		10DBB1E4207C805F00CFE59D /* DistributVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributVC.m; sourceTree = "<group>"; };
 		B040976ECCBAE7E833CAD51A /* Pods-云渠道.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-云渠道.debug.xcconfig"; path = "Pods/Target Support Files/Pods-云渠道/Pods-云渠道.debug.xcconfig"; sourceTree = "<group>"; };
 		B4E233417D126BDD0E0282A9 /* Pods-云渠道.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-云渠道.release.xcconfig"; path = "Pods/Target Support Files/Pods-云渠道/Pods-云渠道.release.xcconfig"; sourceTree = "<group>"; };
 		F9F61246EF35319F3323AE5C /* libPods-云渠道.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-云渠道.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1616,6 +1619,8 @@
 		10DBB1E2207C7F6500CFE59D /* 楼栋信息 */ = {
 			isa = PBXGroup;
 			children = (
+				10DBB1E3207C805F00CFE59D /* DistributVC.h */,
+				10DBB1E4207C805F00CFE59D /* DistributVC.m */,
 			);
 			path = "楼栋信息";
 			sourceTree = "<group>";
@@ -1933,6 +1938,7 @@
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
+				10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */,
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
 				0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */,
 				0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */,
