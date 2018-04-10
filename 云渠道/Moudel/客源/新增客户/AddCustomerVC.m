@@ -12,12 +12,13 @@
 #import "BorderTF.h"
 #import "DateChooseView.h"
 #import "AdressChooseView.h"
+#import "CustomerInfoModel.h"
 
 @interface AddCustomerVC ()
 @property (nonatomic , strong) UIScrollView *scrollview;
 @property (nonatomic , strong) DropDownBtn *sex;
 @property (nonatomic , strong) BorderTF *name;
-@property (nonatomic , strong) DropDownBtn *brith;
+@property (nonatomic , strong) DropDownBtn *birth;
 @property (nonatomic , strong) BorderTF *tel1;
 @property (nonatomic , strong) BorderTF *tel2;
 @property (nonatomic , strong) BorderTF *tel3;
@@ -26,6 +27,7 @@
 @property (nonatomic , strong) DropDownBtn *adress;
 @property (nonatomic , strong) UITextView *detailadress;
 @property (nonatomic , strong) UIButton *surebtn;
+@property (nonatomic , strong) CustomerInfoModel *Customerinfomodel;
 
 
 
@@ -48,7 +50,8 @@
 
 -(void)initDataSouce
 {
-    
+    _Customerinfomodel = [[CustomerInfoModel alloc]init];
+    _Customerinfomodel.sex = @"0";
 }
 
 -(void)initUI
@@ -77,7 +80,7 @@
     
     //性别
     UILabel *sexlab = [[UILabel alloc]initWithFrame:CGRectMake(208.7*SIZE, 56*SIZE, 100*SIZE, 14*SIZE)];
-    sexlab.text = @"*性别:";
+    sexlab.text = @"性别:";
     sexlab.font = [UIFont systemFontOfSize:13.3*SIZE];
     sexlab.textColor = YJTitleLabColor;
     [self.scrollview addSubview:sexlab];
@@ -90,9 +93,9 @@
     brithlab.font = [UIFont systemFontOfSize:13.3*SIZE];
     brithlab.textColor = YJTitleLabColor;
     [self.scrollview addSubview:brithlab];
-    _brith = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 96*SIZE, 257.7*SIZE, 33.3*SIZE)];
-    [_brith addTarget:self action:@selector(action_brith) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollview addSubview:_brith];
+    _birth = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 96*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    [_birth addTarget:self action:@selector(action_brith) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollview addSubview:_birth];
     
     //电话
     UILabel *tellab1 = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 156*SIZE, 100*SIZE, 14*SIZE)];
@@ -178,11 +181,13 @@
     UIAlertAction *male = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         _sex.content.text = @"男";
+        _Customerinfomodel.sex = @"1";
     }];
     
     UIAlertAction *female = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         _sex.content.text = @"女";
+        _Customerinfomodel.sex =@"2";
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -202,7 +207,8 @@
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
         NSLog(@"%@",[self gettime:date]);
-        _brith.content.text = [self gettime:date];
+        _birth.content.text = [self gettime:date];
+        _Customerinfomodel.birth = _birth.content.text;
     };
     [self.view addSubview:view];
 }
@@ -216,6 +222,7 @@
             SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:dataarr];
                 view.selectedBlock = ^(NSString *MC, NSString *ID) {
                     _numclass.content.text = MC;
+                    _Customerinfomodel.card_type = ID;
                 };
                 [self.view addSubview:view];
             
@@ -231,15 +238,30 @@
     [self.view addSubview:view];
     view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
         self.adress.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+        _Customerinfomodel.province = proviceid;
+        _Customerinfomodel.city = cityid;
+        _Customerinfomodel.district = areaid;
     };
-    
-    
-    
 }
 
 -(void)action_sure
 {
-    
+    _Customerinfomodel.name = _name.textfield.text;
+    _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
+    _Customerinfomodel.card_id = _num.textfield.text;
+    _Customerinfomodel.address = _detailadress.text;
+    [BaseRequest POST:AddCustomer_URL parameters:[_Customerinfomodel modeltodic] success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] ==200) {
+        }
+      
+        
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        [self showContent:@"网络出错"];
+    }];
 }
 
 -(UIScrollView *)scrollview

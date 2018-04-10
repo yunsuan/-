@@ -1216,6 +1216,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				10DBB1E2207C7F6500CFE59D /* 楼栋信息 */,
 				0CF04F2E207A141F00A45F4A /* 匹配客户列表 */,
 				0CF04F26207A0AD600A45F4A /* 动态列表 */,
 				0CB6BB092074D23A00921C75 /* 相册 */,
@@ -1582,6 +1583,13 @@
 				10B2CAAF205A76FC00E814AC /* MineCell.m */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		10DBB1E2207C7F6500CFE59D /* 楼栋信息 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "楼栋信息";
 			sourceTree = "<group>";
 		};
 		588A381E570994FF347F095F /* Frameworks */ = {

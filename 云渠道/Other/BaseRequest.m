@@ -16,6 +16,8 @@
     
     manager.requestSerializer.timeoutInterval = 10.0f;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
+    [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     
     [manager GET:str parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -36,11 +38,16 @@
 }
 
 + (void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
+    
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.requestSerializer.timeoutInterval = 6;
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"text/json", @"text/javascript", @"application/json", nil];
+    
+    [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
+    [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     [manager POST:str parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
