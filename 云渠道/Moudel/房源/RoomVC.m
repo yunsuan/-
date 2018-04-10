@@ -13,6 +13,7 @@
 #import "BoxView.h"
 #import "RoomCollCell.h"
 #import "HouseSearchVC.h"
+#import "PYSearchViewController.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -23,7 +24,7 @@
 #import<BaiduMapAPI_Search/BMKPoiSearchType.h>
 
 
-@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,PYSearchViewControllerDelegate>
 {
     NSArray *_arr;
     BOOL _upAndDown;
@@ -144,9 +145,30 @@
 
 - (void)ActionSearchBtn:(UIButton *)btn{
     
-    HouseSearchVC *nextVC = [[HouseSearchVC alloc] init];
-    nextVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:nextVC animated:YES];
+    // 1.创建热门搜索
+    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    // 2. 创建控制器
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // 开始搜索执行以下代码
+        // 如：跳转到指定控制器
+        [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText] animated:YES];
+    }];
+    // 3. 设置风格
+//    if (indexPath.section == 0) { // 选择热门搜索
+        searchViewController.hotSearchStyle = 3; // 热门搜索风格根据选择
+        searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+//    } else { // 选择搜索历史
+//        searchViewController.hotSearchStyle = PYHotSearchStyleDefault; // 热门搜索风格为默认
+//        searchViewController.searchHistoryStyle = (NSInteger)indexPath.row; // 搜索历史风格根据选择
+//    }
+    // 4. 设置代理
+    searchViewController.delegate = self;
+    // 5. 跳转到搜索控制器
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    [self presentViewController:nav  animated:NO completion:nil];
+//    HouseSearchVC *nextVC = [[HouseSearchVC alloc] init];
+//    nextVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)ActionCityBtn:(UIButton *)btn{

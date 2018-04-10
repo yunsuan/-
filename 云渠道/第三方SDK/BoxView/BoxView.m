@@ -26,10 +26,6 @@
     return self;
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    
-//    return 1;
-//}
 
 - (void)initUI{
     
@@ -39,12 +35,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionTap)];
     [backView addGestureRecognizer:tap];
     [self addSubview:backView];
-    
-//    _mainTable = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-//    _mainTable.backgroundColor = YJBackColor;;
-//    _mainTable.delegate = self;
-//    _mainTable.dataSource = self;
-//    [self addSubview:_mainTable];
+
 }
 
 - (void)ActionTap{

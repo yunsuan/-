@@ -107,6 +107,12 @@
 		0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F76207C8C2800A45F4A /* MyCodeVC.m */; };
 		0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F7C207C929300A45F4A /* TransmitView.m */; };
 		0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F80207C9C8A00A45F4A /* HouseSearchVC.m */; };
+		0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F83207CAFAF00A45F4A /* UIColor+PYSearchExtension.m */; };
+		0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F84207CAFAF00A45F4A /* PYSearchViewController.m */; };
+		0CF04F91207CAFB000A45F4A /* PYSearchSuggestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F85207CAFAF00A45F4A /* PYSearchSuggestionViewController.m */; };
+		0CF04F92207CAFB000A45F4A /* PYSearchConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F87207CAFAF00A45F4A /* PYSearchConst.m */; };
+		0CF04F93207CAFB000A45F4A /* PYSearch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0CF04F88207CAFAF00A45F4A /* PYSearch.bundle */; };
+		0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -386,6 +392,18 @@
 		0CF04F7C207C929300A45F4A /* TransmitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransmitView.m; sourceTree = "<group>"; };
 		0CF04F7F207C9C8A00A45F4A /* HouseSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseSearchVC.h; sourceTree = "<group>"; };
 		0CF04F80207C9C8A00A45F4A /* HouseSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseSearchVC.m; sourceTree = "<group>"; };
+		0CF04F83207CAFAF00A45F4A /* UIColor+PYSearchExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PYSearchExtension.m"; sourceTree = "<group>"; };
+		0CF04F84207CAFAF00A45F4A /* PYSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYSearchViewController.m; sourceTree = "<group>"; };
+		0CF04F85207CAFAF00A45F4A /* PYSearchSuggestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYSearchSuggestionViewController.m; sourceTree = "<group>"; };
+		0CF04F86207CAFAF00A45F4A /* UIView+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PYSearchExtension.h"; sourceTree = "<group>"; };
+		0CF04F87207CAFAF00A45F4A /* PYSearchConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYSearchConst.m; sourceTree = "<group>"; };
+		0CF04F88207CAFAF00A45F4A /* PYSearch.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PYSearch.bundle; sourceTree = "<group>"; };
+		0CF04F89207CAFAF00A45F4A /* PYSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearch.h; sourceTree = "<group>"; };
+		0CF04F8A207CAFAF00A45F4A /* PYSearchSuggestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchSuggestionViewController.h; sourceTree = "<group>"; };
+		0CF04F8B207CAFAF00A45F4A /* PYSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchViewController.h; sourceTree = "<group>"; };
+		0CF04F8C207CAFAF00A45F4A /* UIColor+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PYSearchExtension.h"; sourceTree = "<group>"; };
+		0CF04F8D207CAFAF00A45F4A /* PYSearchConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchConst.h; sourceTree = "<group>"; };
+		0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PYSearchExtension.m"; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1097,6 +1115,25 @@
 			path = "搜索";
 			sourceTree = "<group>";
 		};
+		0CF04F82207CAFAF00A45F4A /* PYSearch */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F83207CAFAF00A45F4A /* UIColor+PYSearchExtension.m */,
+				0CF04F84207CAFAF00A45F4A /* PYSearchViewController.m */,
+				0CF04F85207CAFAF00A45F4A /* PYSearchSuggestionViewController.m */,
+				0CF04F86207CAFAF00A45F4A /* UIView+PYSearchExtension.h */,
+				0CF04F87207CAFAF00A45F4A /* PYSearchConst.m */,
+				0CF04F88207CAFAF00A45F4A /* PYSearch.bundle */,
+				0CF04F89207CAFAF00A45F4A /* PYSearch.h */,
+				0CF04F8A207CAFAF00A45F4A /* PYSearchSuggestionViewController.h */,
+				0CF04F8B207CAFAF00A45F4A /* PYSearchViewController.h */,
+				0CF04F8C207CAFAF00A45F4A /* UIColor+PYSearchExtension.h */,
+				0CF04F8D207CAFAF00A45F4A /* PYSearchConst.h */,
+				0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */,
+			);
+			path = PYSearch;
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1479,6 +1516,7 @@
 		106900032057974200E11F52 /* 第三方SDK */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F82207CAFAF00A45F4A /* PYSearch */,
 				0CF7425B206262DF001F926F /* BoxView */,
 				106900042057974200E11F52 /* CYLTabBarController */,
 			);
@@ -1808,6 +1846,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1069FFD1205795BE00E11F52 /* LaunchScreen.storyboard in Resources */,
+				0CF04F93207CAFB000A45F4A /* PYSearch.bundle in Resources */,
 				1069FFCE205795BE00E11F52 /* Assets.xcassets in Resources */,
 				1069FFCC205795BE00E11F52 /* Main.storyboard in Resources */,
 				10174C14207B010500D00B9A /* region.json in Resources */,
@@ -1903,6 +1942,7 @@
 				0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */,
 				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
+				0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
 				0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
@@ -1923,6 +1963,7 @@
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
+				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
@@ -1966,6 +2007,7 @@
 				0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */,
 				0CF04F2D207A0DA300A45F4A /* DynamicListTableCell.m in Sources */,
 				0C08BF69206CC543005BB3B4 /* BrokerageDetailTableCell3.m in Sources */,
+				0CF04F92207CAFB000A45F4A /* PYSearchConst.m in Sources */,
 				105E18B720637D310031558D /* UnpaidBrokerageVC.m in Sources */,
 				0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */,
 				10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */,
@@ -2005,6 +2047,7 @@
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
+				0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
 				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
@@ -2037,6 +2080,7 @@
 				0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */,
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
+				0CF04F91207CAFB000A45F4A /* PYSearchSuggestionViewController.m in Sources */,
 				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
