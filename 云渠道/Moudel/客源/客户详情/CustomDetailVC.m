@@ -133,7 +133,7 @@
             return 417 *SIZE;
         }else{
             
-            return 484 *SIZE;
+            return 435 *SIZE;
         }
     }
 }
@@ -218,7 +218,7 @@
             CustomTableHeader3 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader3"];
             if (!header) {
                 
-                header = [[CustomTableHeader3 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 485 *SIZE)];
+                header = [[CustomTableHeader3 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 435 *SIZE)];
                 header.delegate = self;
                 [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
             }

@@ -1,19 +1,17 @@
 //
-//  InvalidVC.m
+//  NoInvalidVC.m
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/4/9.
+//  Created by 谷治墙 on 2018/4/10.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "InvalidVC.h"
+#import "NoInvalidVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
 #import "ComplaintVC.h"
-#import "RecommendView.h"
-#import "TransmitView.h"
 
-@interface InvalidVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface NoInvalidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     
     NSArray *_data;
@@ -22,20 +20,16 @@
 
 @property (nonatomic , strong) UITableView *invalidTable;
 
-@property (nonatomic , strong) UIButton *recommendBtn;
-
 @property (nonatomic , strong) UIButton *complaintBtn;
 
-@property (nonatomic, strong) RecommendView *recommendView;
 
-@property (nonatomic, strong) TransmitView *transmitView;
 @end
 
-@implementation InvalidVC
+@implementation NoInvalidVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self initDateSouce];
     [self initUI];
 }
@@ -51,18 +45,6 @@
     
     ComplaintVC *nextVC = [[ComplaintVC alloc] init];
     [self.navigationController pushViewController:nextVC animated:YES];
-}
-
-- (void)ActionRecommendBtn:(UIButton *)btn{
-    
-    self.recommendView.codeL.text = @"推荐编号:  245622333225566";
-    self.recommendView.nameL.text = @"客户:  张三";
-    self.recommendView.projectL.text = @"项目名称：凤凰国际";
-    self.recommendView.addressL.text = @"失效描述：客户在规定时间内未到访，失效!";
-    self.recommendView.contactL.text = @"到访确认人：张三";
-    self.recommendView.phoneL.text = @"联系方式：13900000000 ";
-    self.recommendView.timeL.text = @"失效时间：6:30:56";
-    [[UIApplication sharedApplication].keyWindow addSubview:self.recommendView];
 }
 
 #pragma mark    -----  delegate   ------
@@ -119,9 +101,9 @@
     }
     [cell SetCellContentbystring:_data[indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+    
     return cell;
-
+    
 }
 
 -(void)initUI
@@ -140,44 +122,14 @@
     [self.view addSubview:_invalidTable];
     
     _complaintBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _complaintBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, 120 *SIZE, 47 *SIZE + TAB_BAR_MORE);
+    _complaintBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, 360 *SIZE, 47 *SIZE + TAB_BAR_MORE);
     _complaintBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     [_complaintBtn addTarget:self action:@selector(ActionComplaintBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_complaintBtn setTitle:@"申诉" forState:UIControlStateNormal];
-    [_complaintBtn setBackgroundColor:COLOR(191, 191, 191, 1)];
+    [_complaintBtn setBackgroundColor:YJBlueBtnColor];
     [_complaintBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_complaintBtn];
     
-    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _recommendBtn.frame = CGRectMake(120 *SIZE, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, 240 *SIZE, 47 *SIZE + TAB_BAR_MORE);
-    _recommendBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_recommendBtn setTitle:@"重新推荐" forState:UIControlStateNormal];
-    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
-    [_recommendBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_recommendBtn];
-}
-
-- (RecommendView *)recommendView{
-    
-    if (!_recommendView) {
-        
-        _recommendView = [[RecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-        _recommendView.tranmitBtnBlock = ^{
-            
-            [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
-        };
-    }
-    return _recommendView;
-}
-
-- (TransmitView *)transmitView{
-    
-    if (!_transmitView) {
-        
-        _transmitView = [[TransmitView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-    }
-    return _transmitView;
 }
 
 @end

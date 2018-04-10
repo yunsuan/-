@@ -10,6 +10,7 @@
 #import "AuthenTableCell.h"
 #import "AuthenCollCell.h"
 #import "SelectCompanyVC.h"
+#import "AuditStatusVC.h"
 
 @interface AuthenticationVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
@@ -54,6 +55,12 @@
 - (void)ActionCancelBtn:(UIButton *)btn{
     [_imgArr removeObjectAtIndex:btn.tag];
     [self.authenColl reloadData];
+}
+
+- (void)ActionConfirmBtn:(UIButton *)btn{
+    
+    AuditStatusVC *nextVC = [[AuditStatusVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 #pragma mark --table代理
@@ -293,7 +300,7 @@
     [_commitBtn setTitle:@"提交申请" forState:UIControlStateNormal];
     [_commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _commitBtn.titleLabel.font = [UIFont systemFontOfSize:16 *SIZE];
-//    [_commitBtn addTarget:self action:@selector(Login) forControlEvents:UIControlEventTouchUpInside];
+    [_commitBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_commitBtn];
 }
 

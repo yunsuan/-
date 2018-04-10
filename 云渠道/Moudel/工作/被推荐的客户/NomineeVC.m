@@ -9,9 +9,12 @@
 #import "NomineeVC.h"
 #import "NomineeCollCell.h"
 #import "NomineeCell.h"
+#import "NomineeCell3.h"
 #import "UnconfirmDetailVC.h"
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
+#import "NoInvalidVC.h"
+#import "ValidVC.h"
 
 @interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -114,60 +117,93 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (_index == 2) {
+        
+        return 133 *SIZE;
+    }
     return 108 *SIZE;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         
-    static NSString *CellIdentifier = @"NomineeCell";
+    if (_index == 0 || _index == 1) {
         
-    NomineeCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[NomineeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"NomineeCell";
+        
+        NomineeCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[NomineeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
+        cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
+        cell.tag = indexPath.row;
+        cell.messBtnBlock = ^(NSInteger index) {
+            
+            
+        };
+        cell.phoneBtnBlock = ^(NSInteger index) {
+            
+            
+        };
+        cell.confirmBtnBlock = ^(NSInteger index) {
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认到访" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            }];
+            
+            UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
+            }];
+            
+            [alert addAction:valid];
+            [alert addAction:invalid];
+            [alert addAction:cancel];
+            [self.navigationController presentViewController:alert animated:YES completion:^{
+                
+            }];
+        };
+        return cell;
+    }else{
+        
+        static NSString *CellIdentifier = @"NomineeCell3";
+        
+        NomineeCell3 *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[NomineeCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.projectL.text = @"项目名称：云算公馆";
+        cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
+        cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
+        cell.statusL.text = @"未到访失效";
+        cell.tag = indexPath.row;
+        cell.messBtnBlock = ^(NSInteger index) {
+            
+            
+        };
+        cell.phoneBtnBlock = ^(NSInteger index) {
+            
+            
+        };
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-    cell.nameL.text = @"张三";
-    cell.codeL.text = @"推荐编号：456522312";
-    cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
-    cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
-    cell.tag = indexPath.row;
-    cell.messBtnBlock = ^(NSInteger index) {
-        
-        
-    };
-    cell.phoneBtnBlock = ^(NSInteger index) {
-        
-        
-    };
-    cell.confirmBtnBlock = ^(NSInteger index) {
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认到访" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        
-        UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
-        }];
-        
-        UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
-        }];
-        
-        [alert addAction:valid];
-        [alert addAction:invalid];
-        [alert addAction:cancel];
-        [self.navigationController presentViewController:alert animated:YES completion:^{
-            
-        }];
-    };
-    return cell;
 }
 
 
@@ -177,6 +213,14 @@
     if (_index == 0) {
         
         UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommended"];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else if(_index == 1) {
+        
+        ValidVC *nextVC = [[ValidVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        NoInvalidVC *nextVC = [[NoInvalidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

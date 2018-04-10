@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class RecommendView;
+
+typedef void(^tranmitBtnBlock)(void);
+
 @interface RecommendView : UIView
+
+@property (nonatomic, copy) tranmitBtnBlock tranmitBtnBlock;
 
 @property (nonatomic, strong) UIView *whiteView;
 
