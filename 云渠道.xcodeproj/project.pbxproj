@@ -102,6 +102,7 @@
 		0CF04F66207C555F00A45F4A /* FailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F65207C555F00A45F4A /* FailView.m */; };
 		0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F68207C5C3900A45F4A /* InvalidView.m */; };
 		0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F6B207C62D800A45F4A /* NomineeCell3.m */; };
+		0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F6F207C830C00A45F4A /* NoInvalidVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -371,6 +372,8 @@
 		0CF04F68207C5C3900A45F4A /* InvalidView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvalidView.m; sourceTree = "<group>"; };
 		0CF04F6A207C62D800A45F4A /* NomineeCell3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeCell3.h; sourceTree = "<group>"; };
 		0CF04F6B207C62D800A45F4A /* NomineeCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCell3.m; sourceTree = "<group>"; };
+		0CF04F6E207C830C00A45F4A /* NoInvalidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoInvalidVC.h; sourceTree = "<group>"; };
+		0CF04F6F207C830C00A45F4A /* NoInvalidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoInvalidVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1050,6 +1053,15 @@
 			path = "弹出框";
 			sourceTree = "<group>";
 		};
+		0CF04F6D207C82F700A45F4A /* 被推荐失效详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F6E207C830C00A45F4A /* NoInvalidVC.h */,
+				0CF04F6F207C830C00A45F4A /* NoInvalidVC.m */,
+			);
+			path = "被推荐失效详情";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1320,6 +1332,7 @@
 		105E18E3206B65E90031558D /* 被推荐的客户 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F6D207C82F700A45F4A /* 被推荐失效详情 */,
 				0CF04F59207B5B7500A45F4A /* 完善客户信息 */,
 				105E18EC206B6B490031558D /* cell */,
 				105E18E8206B66700031558D /* NomineeVC.h */,
@@ -1947,6 +1960,7 @@
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */,
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
+				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,

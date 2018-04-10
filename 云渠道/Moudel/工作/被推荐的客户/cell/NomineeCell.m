@@ -59,13 +59,13 @@
     _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 61 *SIZE, 170 *SIZE, 10 *SIZE)];
     _reportTimeL.textColor = YJ86Color;
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    _reportTimeL.textAlignment = NSTextAlignmentRight;
+//    _reportTimeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_reportTimeL];
     
     _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
     _timeL.textColor = YJ86Color;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    _timeL.textAlignment = NSTextAlignmentRight;
+//    _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
     
     _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];

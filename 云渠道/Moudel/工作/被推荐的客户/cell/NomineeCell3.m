@@ -48,16 +48,19 @@
     _codeL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_codeL];
     
-    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 61 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _projectL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 63 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _projectL.textColor = YJ86Color;
+    _projectL.font = [UIFont systemFontOfSize:11 *SIZE];
+    [self.contentView addSubview:_projectL];
+    
+    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 86 *SIZE, 170 *SIZE, 10 *SIZE)];
     _reportTimeL.textColor = YJ86Color;
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    _reportTimeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_reportTimeL];
     
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 108 *SIZE, 170 *SIZE, 10 *SIZE)];
     _timeL.textColor = YJ86Color;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
     
     _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -72,7 +75,13 @@
     [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
     [self.contentView addSubview:_phoneBtn];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 107 *SIZE, SCREEN_Width, SIZE)];
+    _statusL = [[UILabel alloc] initWithFrame:CGRectMake(230 *SIZE, 60 *SIZE, 110 *SIZE, 10 *SIZE)];
+    _statusL.textColor = YJ86Color;
+    _statusL.font = [UIFont systemFontOfSize:11 *SIZE];
+    _statusL.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_statusL];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 132 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }
