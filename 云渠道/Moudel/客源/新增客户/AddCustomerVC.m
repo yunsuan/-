@@ -246,6 +246,14 @@
 
 -(void)action_sure
 {
+    if (_name.textfield.text.length == 0) {
+        [self showContent:@"请输入姓名！"];
+        return;
+    }
+    if ([self checkTel:_tel1.textfield.text]) {
+        [self showContent:@"请输入正确的电话号码"];
+        return;
+    }
     _Customerinfomodel.name = _name.textfield.text;
     _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
     _Customerinfomodel.card_id = _num.textfield.text;
@@ -254,6 +262,10 @@
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] ==200) {
+            
+        }
+        else{
+            
         }
       
         
