@@ -24,6 +24,7 @@
 #import "HouseTypeDetailVC.h"
 #import "DynamicListVC.h"
 #import "CustomMatchListVC.h"
+#import "DistributVC.h"
 
 @interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
 {
@@ -693,7 +694,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.section == 10) {
+        
+        DistributVC *nextVC = [[DistributVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+        
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
