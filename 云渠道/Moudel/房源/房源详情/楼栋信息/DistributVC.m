@@ -90,10 +90,8 @@
           initialSpringVelocity:1 // 初始速度
                         options:UIViewAnimationOptionCurveEaseInOut // 动画过渡效果
                      animations:^{
-                         
                          _openbtn.alpha = 1;
                          _drawerview.frame = CGRectMake(360*SIZE, 0, 113*SIZE, SCREEN_Height);
-                         
                      } completion:^(BOOL finished) {
                          // 动画完成后执行
                          // code...

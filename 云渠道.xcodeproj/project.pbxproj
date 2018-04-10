@@ -179,6 +179,10 @@
 		10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAF205A76FC00E814AC /* MineCell.m */; };
 		10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E4207C805F00CFE59D /* DistributVC.m */; };
 		10DBB1E8207CB39200CFE59D /* HousedistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E7207CB39200CFE59D /* HousedistributVC.m */; };
+		10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1EC207CCACE00CFE59D /* KyoCinameSeatScrollView.m */; };
+		10DBB1F5207CCACE00CFE59D /* KyoCenterLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1ED207CCACE00CFE59D /* KyoCenterLineView.m */; };
+		10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1EE207CCACE00CFE59D /* KyoRowIndexView.m */; };
+		10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1F2207CCACE00CFE59D /* SMScrollView.m */; };
 		BF3D5C8D28ABC2D033EBFE3F /* libPods-云渠道.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F61246EF35319F3323AE5C /* libPods-云渠道.a */; };
 /* End PBXBuildFile section */
 
@@ -542,6 +546,13 @@
 		10DBB1E4207C805F00CFE59D /* DistributVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributVC.m; sourceTree = "<group>"; };
 		10DBB1E6207CB39200CFE59D /* HousedistributVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HousedistributVC.h; sourceTree = "<group>"; };
 		10DBB1E7207CB39200CFE59D /* HousedistributVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HousedistributVC.m; sourceTree = "<group>"; };
+		10DBB1EB207CCACE00CFE59D /* KyoRowIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyoRowIndexView.h; sourceTree = "<group>"; };
+		10DBB1EC207CCACE00CFE59D /* KyoCinameSeatScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KyoCinameSeatScrollView.m; sourceTree = "<group>"; };
+		10DBB1ED207CCACE00CFE59D /* KyoCenterLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KyoCenterLineView.m; sourceTree = "<group>"; };
+		10DBB1EE207CCACE00CFE59D /* KyoRowIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KyoRowIndexView.m; sourceTree = "<group>"; };
+		10DBB1F0207CCACE00CFE59D /* KyoCinameSeatScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyoCinameSeatScrollView.h; sourceTree = "<group>"; };
+		10DBB1F2207CCACE00CFE59D /* SMScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMScrollView.m; sourceTree = "<group>"; };
+		10DBB1F3207CCACE00CFE59D /* SMScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMScrollView.h; sourceTree = "<group>"; };
 		B040976ECCBAE7E833CAD51A /* Pods-云渠道.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-云渠道.debug.xcconfig"; path = "Pods/Target Support Files/Pods-云渠道/Pods-云渠道.debug.xcconfig"; sourceTree = "<group>"; };
 		B4E233417D126BDD0E0282A9 /* Pods-云渠道.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-云渠道.release.xcconfig"; path = "Pods/Target Support Files/Pods-云渠道/Pods-云渠道.release.xcconfig"; sourceTree = "<group>"; };
 		F9F61246EF35319F3323AE5C /* libPods-云渠道.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-云渠道.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1678,6 +1689,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				10DBB1E9207CCACE00CFE59D /* 选房 */,
 				0CF04F60207C4C8900A45F4A /* 弹出框 */,
 				0CC19D1E20720B150007CC5F /* 自定义地址选择器 */,
 				10174BEC2071D7B800D00B9A /* 自定义时间选择器 */,
@@ -1753,6 +1765,37 @@
 				10DBB1E7207CB39200CFE59D /* HousedistributVC.m */,
 			);
 			path = "楼栋信息";
+			sourceTree = "<group>";
+		};
+		10DBB1E9207CCACE00CFE59D /* 选房 */ = {
+			isa = PBXGroup;
+			children = (
+				10DBB1EA207CCACE00CFE59D /* KyoCinameSeatScrollView */,
+				10DBB1F1207CCACE00CFE59D /* SESScrollView */,
+			);
+			path = "选房";
+			sourceTree = "<group>";
+		};
+		10DBB1EA207CCACE00CFE59D /* KyoCinameSeatScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				10DBB1EB207CCACE00CFE59D /* KyoRowIndexView.h */,
+				10DBB1EC207CCACE00CFE59D /* KyoCinameSeatScrollView.m */,
+				10DBB1ED207CCACE00CFE59D /* KyoCenterLineView.m */,
+				10DBB1EE207CCACE00CFE59D /* KyoRowIndexView.m */,
+				10DBB1EF207CCACE00CFE59D /* KyoCenterLineView.h */,
+				10DBB1F0207CCACE00CFE59D /* KyoCinameSeatScrollView.h */,
+			);
+			path = KyoCinameSeatScrollView;
+			sourceTree = "<group>";
+		};
+		10DBB1F1207CCACE00CFE59D /* SESScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				10DBB1F2207CCACE00CFE59D /* SMScrollView.m */,
+				10DBB1F3207CCACE00CFE59D /* SMScrollView.h */,
+			);
+			path = SESScrollView;
 			sourceTree = "<group>";
 		};
 		588A381E570994FF347F095F /* Frameworks */ = {
@@ -2002,6 +2045,7 @@
 				0CC19D0E2071CF3C0007CC5F /* CustomTableCellView.m in Sources */,
 				0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */,
 				0CF04F5F207B5BA900A45F4A /* CompleteCustomVC2.m in Sources */,
+				10DBB1F5207CCACE00CFE59D /* KyoCenterLineView.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
@@ -2014,6 +2058,7 @@
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
+				10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */,
 				10174C0B2072179300D00B9A /* LicenceCell.m in Sources */,
 				0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
@@ -2091,7 +2136,10 @@
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
 				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
+
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
+				10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */,
+
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
 				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
@@ -2121,6 +2169,7 @@
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				0CF04F5C207B5B9D00A45F4A /* CompleteCustomVC1.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
+				10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */,
 				0CF04F4B207B36C100A45F4A /* ValidVC.m in Sources */,
 				0CC19D0B206E3E9C0007CC5F /* CustomDetailTableCell3.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
