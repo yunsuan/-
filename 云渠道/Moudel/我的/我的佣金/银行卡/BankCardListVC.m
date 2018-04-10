@@ -24,6 +24,28 @@
     [self initUI];
 }
 
+- (void)ActionRightBtn:(UIButton *)btn{
+    
+    NSString *str = [NSString stringWithFormat:@"%@，您好！有且仅能绑定一张银行卡，如欲绑定其他银行卡请先将当前银行卡解除绑定。",@"温先生"];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:str preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"解除绑定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:confirm];
+    [alert addAction:cancel];
+    [self.navigationController presentViewController:alert animated:YES completion:^{
+        
+    }];
+    
+}
+    
+    
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 2;
@@ -74,6 +96,12 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"银行卡";
+    
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setTitle:@"解绑" forState:UIControlStateNormal];
+    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
+    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     _bankTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
     _bankTable.backgroundColor = YJBackColor;

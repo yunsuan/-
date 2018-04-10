@@ -82,7 +82,7 @@
 -(void)InitDataSouce
 {
     _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于易家",@"操作指南"]];
-    _imageList = @[@[@"",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
+    _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
     _contentList= @[@[@"",@"云算科技公司",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
