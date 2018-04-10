@@ -14,6 +14,7 @@
 @property (nonatomic , strong) UIButton *openbtn;
 @property (nonatomic , strong) UIView * drawerview;
 @property (nonatomic , strong) UIButton *closebtn;
+@property (nonatomic , strong) UIScrollView *choosebuildingview;
 
 -(void)initUI;
 -(void)initDataSouce;
@@ -38,10 +39,27 @@
     [self.view addSubview:self.openbtn];
     [self.view addSubview:self.drawerview];
     [self.drawerview addSubview:self.closebtn];
+    [self.drawerview addSubview:self.choosebuildingview];
+    [self setItemforchoosebuildingviewbynum:20];
+    
+    UISwipeGestureRecognizer * right=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(action_close)];
+    right.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:right];
+    
+    UISwipeGestureRecognizer * left=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(action_open)];
+    left.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:left];
+    
 }
 
 -(void)initDataSouce
 {
+    
+}
+
+-(void)action_buildingchoose:(UIButton *)sender
+{
+    NSLog(@"%ld",sender.tag);
     
 }
 
@@ -142,6 +160,33 @@
         [_closebtn setImage:[UIImage imageNamed:@"rightarrow_white"] forState:UIControlStateNormal];
     }
     return _closebtn;
+}
+
+-(UIScrollView *)choosebuildingview
+{
+    if (!_choosebuildingview) {
+        _choosebuildingview = [[UIScrollView alloc]initWithFrame:CGRectMake(36*SIZE, 100*SIZE, 67*SIZE, SCREEN_Height-110*SIZE)];
+        _choosebuildingview.backgroundColor = [UIColor clearColor];
+    }
+    return _choosebuildingview;
+}
+
+-(void)setItemforchoosebuildingviewbynum:(NSInteger )num
+{
+    _choosebuildingview.contentSize = CGSizeMake(67*SIZE, 35*SIZE+57*SIZE*num);
+    for (int i= 0; i<num; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = COLOR(240, 240, 240, 1);
+        btn.frame = CGRectMake(0, i*57*SIZE, 67*SIZE, 33*SIZE);
+        btn.layer.masksToBounds = YES;
+        btn.layer.cornerRadius = 2*SIZE;
+        [btn setTitle:@"1栋" forState:UIControlStateNormal];
+        [btn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13*SIZE];
+        btn.tag = 1000+i;
+        [btn addTarget:self action:@selector(action_buildingchoose:) forControlEvents:UIControlEventTouchUpInside];
+        [_choosebuildingview addSubview:btn];
+    }
 }
 
 @end
