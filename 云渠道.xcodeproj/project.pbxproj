@@ -100,6 +100,8 @@
 		0CF04F5F207B5BA900A45F4A /* CompleteCustomVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F5E207B5BA900A45F4A /* CompleteCustomVC2.m */; };
 		0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F62207C4CBF00A45F4A /* RecommendView.m */; };
 		0CF04F66207C555F00A45F4A /* FailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F65207C555F00A45F4A /* FailView.m */; };
+		0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F68207C5C3900A45F4A /* InvalidView.m */; };
+		0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F6B207C62D800A45F4A /* NomineeCell3.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -364,6 +366,10 @@
 		0CF04F62207C4CBF00A45F4A /* RecommendView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
 		0CF04F64207C555F00A45F4A /* FailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FailView.h; sourceTree = "<group>"; };
 		0CF04F65207C555F00A45F4A /* FailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FailView.m; sourceTree = "<group>"; };
+		0CF04F67207C5C3900A45F4A /* InvalidView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvalidView.h; sourceTree = "<group>"; };
+		0CF04F68207C5C3900A45F4A /* InvalidView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvalidView.m; sourceTree = "<group>"; };
+		0CF04F6A207C62D800A45F4A /* NomineeCell3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeCell3.h; sourceTree = "<group>"; };
+		0CF04F6B207C62D800A45F4A /* NomineeCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCell3.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1035,6 +1041,8 @@
 				0CF04F62207C4CBF00A45F4A /* RecommendView.m */,
 				0CF04F64207C555F00A45F4A /* FailView.h */,
 				0CF04F65207C555F00A45F4A /* FailView.m */,
+				0CF04F67207C5C3900A45F4A /* InvalidView.h */,
+				0CF04F68207C5C3900A45F4A /* InvalidView.m */,
 			);
 			path = "弹出框";
 			sourceTree = "<group>";
@@ -1353,6 +1361,8 @@
 				105E18F1206B6C340031558D /* NomineeCell.m */,
 				0CF04F56207B4CDA00A45F4A /* NomineeCollCell.h */,
 				0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */,
+				0CF04F6A207C62D800A45F4A /* NomineeCell3.h */,
+				0CF04F6B207C62D800A45F4A /* NomineeCell3.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1930,6 +1940,7 @@
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
 				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
+				0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */,
 				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,
 				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
@@ -1955,6 +1966,7 @@
 				0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */,
 				0C08BF66206CBC0B005BB3B4 /* BrokerageDetailTableCell2.m in Sources */,
 				0CB6BAFF2074A82D00921C75 /* HouseTypeTableCell2.m in Sources */,
+				0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */,
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,

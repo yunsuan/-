@@ -11,6 +11,7 @@
 #import "NomineeCell.h"
 #import "UnconfirmDetailVC.h"
 #import "CompleteCustomVC1.h"
+#import "InvalidView.h"
 
 @interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) UICollectionView *nomineeColl;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+@property (nonatomic, strong) InvalidView *invalidView;
 
 -(void)initUI;
 -(void)initDateSouce;
@@ -154,6 +157,7 @@
         
         UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
+            [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
         }];
         
         [alert addAction:valid];
@@ -175,6 +179,15 @@
         UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommended"];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
+}
+
+- (InvalidView *)invalidView{
+    
+    if (!_invalidView) {
+        
+        _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    }
+    return _invalidView;
 }
 
 
