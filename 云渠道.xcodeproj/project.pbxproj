@@ -106,6 +106,7 @@
 		0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F72207C899D00A45F4A /* AuditStatusVC.m */; };
 		0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F76207C8C2800A45F4A /* MyCodeVC.m */; };
 		0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F7C207C929300A45F4A /* TransmitView.m */; };
+		0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F80207C9C8A00A45F4A /* HouseSearchVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -383,6 +384,8 @@
 		0CF04F76207C8C2800A45F4A /* MyCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCodeVC.m; sourceTree = "<group>"; };
 		0CF04F7B207C929300A45F4A /* TransmitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransmitView.h; sourceTree = "<group>"; };
 		0CF04F7C207C929300A45F4A /* TransmitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransmitView.m; sourceTree = "<group>"; };
+		0CF04F7F207C9C8A00A45F4A /* HouseSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseSearchVC.h; sourceTree = "<group>"; };
+		0CF04F80207C9C8A00A45F4A /* HouseSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseSearchVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1085,6 +1088,15 @@
 			path = "我的二维码";
 			sourceTree = "<group>";
 		};
+		0CF04F7E207C9C7A00A45F4A /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F7F207C9C8A00A45F4A /* HouseSearchVC.h */,
+				0CF04F80207C9C8A00A45F4A /* HouseSearchVC.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1203,6 +1215,7 @@
 		102DF96A2057A0A200E1859C /* 房源 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F7E207C9C7A00A45F4A /* 搜索 */,
 				105E18882060E1970031558D /* view */,
 				102DF9742057A1AE00E1859C /* RoomVC.h */,
 				102DF9752057A1AE00E1859C /* RoomVC.m */,
@@ -1947,6 +1960,7 @@
 				0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				105E18FA206C829A0031558D /* SinglePickView.m in Sources */,
+				0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
 				0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */,
 				0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */,
