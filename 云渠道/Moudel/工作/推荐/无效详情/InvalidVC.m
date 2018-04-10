@@ -10,6 +10,7 @@
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
 #import "ComplaintVC.h"
+#import "RecommendView.h"
 
 @interface InvalidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -23,6 +24,8 @@
 @property (nonatomic , strong) UIButton *recommendBtn;
 
 @property (nonatomic , strong) UIButton *complaintBtn;
+
+@property (nonatomic, strong) RecommendView *recommendView;
 @end
 
 @implementation InvalidVC
@@ -49,7 +52,14 @@
 
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
-    
+    self.recommendView.codeL.text = @"推荐编号:  245622333225566";
+    self.recommendView.nameL.text = @"客户:  张三";
+    self.recommendView.projectL.text = @"项目名称：凤凰国际";
+    self.recommendView.addressL.text = @"失效描述：客户在规定时间内未到访，失效!";
+    self.recommendView.contactL.text = @"到访确认人：张三";
+    self.recommendView.phoneL.text = @"联系方式：13900000000 ";
+    self.recommendView.timeL.text = @"失效时间：6:30:56";
+    [[UIApplication sharedApplication].keyWindow addSubview:self.recommendView];
 }
 
 #pragma mark    -----  delegate   ------
@@ -143,6 +153,15 @@
     [_recommendBtn setBackgroundColor:YJBlueBtnColor];
     [_recommendBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_recommendBtn];
+}
+
+- (RecommendView *)recommendView{
+    
+    if (!_recommendView) {
+        
+        _recommendView = [[RecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    }
+    return _recommendView;
 }
 
 @end

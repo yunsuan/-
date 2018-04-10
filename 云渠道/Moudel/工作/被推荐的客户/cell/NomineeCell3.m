@@ -1,14 +1,14 @@
 //
-//  NomineeCell.m
+//  NomineeCell3.m
 //  云渠道
 //
-//  Created by xiaoq on 2018/3/28.
+//  Created by 谷治墙 on 2018/4/10.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "NomineeCell.h"
+#import "NomineeCell3.h"
 
-@implementation NomineeCell
+@implementation NomineeCell3
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,14 +36,6 @@
     }
 }
 
-- (void)ActionComfirmBtn:(UIButton *)btn{
-    
-    if (self.confirmBtnBlock) {
-        
-        self.confirmBtnBlock(self.tag);
-    }
-}
-
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 15 *SIZE, 50 *SIZE, 13 *SIZE)];
@@ -55,7 +47,7 @@
     _codeL.textColor = YJ86Color;
     _codeL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_codeL];
-
+    
     _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 61 *SIZE, 170 *SIZE, 10 *SIZE)];
     _reportTimeL.textColor = YJ86Color;
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
@@ -79,17 +71,6 @@
     [_phoneBtn addTarget:self action:@selector(ActionPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
     [self.contentView addSubview:_phoneBtn];
-    
-    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _confirmBtn.frame = CGRectMake(273 *SIZE, 61 *SIZE, 77 *SIZE, 30 *SIZE);
-    _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_confirmBtn addTarget:self action:@selector(ActionComfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [_confirmBtn setBackgroundColor:YJBlueBtnColor];
-    _confirmBtn.layer.cornerRadius = 2 *SIZE;
-    _confirmBtn.clipsToBounds = YES;
-    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.contentView addSubview:_confirmBtn];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 107 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
