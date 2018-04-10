@@ -18,7 +18,7 @@
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 
-@interface AppDelegate ()<JPUSHRegisterDelegate>
+@interface AppDelegate ()<JPUSHRegisterDelegate,BMKMapViewDelegate>
 {
     
     BMKMapManager* _mapManager;

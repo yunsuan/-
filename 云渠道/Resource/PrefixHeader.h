@@ -28,6 +28,8 @@
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Radar/BMKRadarOption.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Base/BMKMapManager.h>
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import "NetConfig.h"
 //#import <BaiduMapAPI_Map/BMKMapView.h>
 

@@ -12,17 +12,32 @@
 #import "PeopleCell.h"
 #import "BoxView.h"
 #import "RoomCollCell.h"
+#import "HouseSearchVC.h"
 
-@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
+#import<BaiduMapAPI_Location/BMKLocationService.h>
+
+#import<BaiduMapAPI_Search/BMKGeocodeSearch.h>
+
+#import<BaiduMapAPI_Map/BMKMapComponent.h>
+
+#import<BaiduMapAPI_Search/BMKPoiSearchType.h>
+
+
+@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 {
     NSArray *_arr;
     BOOL _upAndDown;
+    
+    BMKLocationService *_locService;  //定位
+    BMKGeoCodeSearch *_geocodesearch; //地理编码主类，用来查询、返回结果信息
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
 @property (nonatomic , strong) UIView *headerView;
 
-@property (nonatomic, strong) UITextField *searchBar;
+@property (nonatomic, strong) UIButton *cityBtn;
+
+@property (nonatomic, strong) UIView *searchBar;
 
 @property (nonatomic, strong) UICollectionView *customerColl;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
@@ -47,29 +62,128 @@
 -(void)initDateSouce
 {
     
-   
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+    
+    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    _geocodesearch.delegate = self;
+    [self startLocation];//开始定位方法
+}
+
+-(void)startLocation
+
+{
+    
+    //初始化BMKLocationService
+    
+    _locService = [[BMKLocationService alloc]init];
+    
+    _locService.delegate = self;
+    
+    _locService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    
+    //启动LocationService
+    
+    [_locService startUserLocationService];
+    
+}
+
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+
+{
+    
+    NSLog(@"heading is %@",userLocation.heading);
+    
+}
+
+//处理位置坐标更新
+
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+
+{
+    
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    //地理反编码
+    
+    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
+    
+    reverseGeocodeSearchOption.reverseGeoPoint = userLocation.location.coordinate;
+    
+    BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
+    
+    if(flag){
+        
+        NSLog(@"反geo检索发送成功");
+        
+        [_locService stopUserLocationService];
+        
+    }else{
+        
+        NSLog(@"反geo检索发送失败");
+        
+    }
+    
+}
+
+#pragma mark -------------地理反编码的delegate---------------
+
+-(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+
+{
+    
+    NSLog(@"address:%@----%@",result.addressDetail,result.address);
+    [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
+}
+
+//定位失败
+
+- (void)didFailToLocateUserWithError:(NSError *)error{
+    
+    NSLog(@"error:%@",error);
+    
+}
+
+- (void)ActionSearchBtn:(UIButton *)btn{
+    
+    HouseSearchVC *nextVC = [[HouseSearchVC alloc] init];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+- (void)ActionCityBtn:(UIButton *)btn{
+    
+    
 }
 
 -(void)initUI
 {
     [self.view addSubview:self.headerView];
     
-    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
+    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cityBtn.frame = CGRectMake(0, 19 *SIZE, 50 *SIZE, 21 *SIZE);
+    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
+    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+    [self.headerView addSubview:_cityBtn];
+    
+    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
-    _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
-    //设置显示模式为永远显示(默认不显示)
-    _searchBar.leftViewMode = UITextFieldViewModeAlways;
-    _searchBar.placeholder = @"小区/楼盘/商铺";
-    _searchBar.font = [UIFont systemFontOfSize:11 *SIZE];
-    _searchBar.returnKeyType = UIReturnKeySearch;
-    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
-    rightImg.backgroundColor = YJGreenColor;
-    _searchBar.rightView = rightImg;
-    _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
-    _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
-    _searchBar.delegate = self;
     [self.headerView addSubview:_searchBar];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 11 *SIZE, 100 *SIZE, 12 *SIZE)];
+    label.textColor = COLOR(147, 147, 147, 1);
+    label.text = @"小区/楼盘/商铺";
+    label.font = [UIFont systemFontOfSize:11 *SIZE];
+    [_searchBar addSubview:label];
+    
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(256 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    rightImg.image = [UIImage imageNamed:@"search_2"];
+    [_searchBar addSubview:rightImg];
+    
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchBtn.frame = _searchBar.bounds;
+    [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchBar addSubview:searchBtn];
+
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0;
