@@ -13,6 +13,8 @@
 #import "UnconfirmDetailVC.h"
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
+#import "NoInvalidVC.h"
+#import "ValidVC.h"
 
 @interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -115,17 +117,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_index == 0) {
+    if (_index == 2) {
         
-        return 108 *SIZE;
+        return 133 *SIZE;
     }
-    return 133 *SIZE;
+    return 108 *SIZE;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         
-    if (_index == 0) {
+    if (_index == 0 || _index == 1) {
         
         static NSString *CellIdentifier = @"NomineeCell";
         
@@ -211,6 +213,14 @@
     if (_index == 0) {
         
         UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommended"];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else if(_index == 1) {
+        
+        ValidVC *nextVC = [[ValidVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        NoInvalidVC *nextVC = [[NoInvalidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

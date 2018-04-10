@@ -103,6 +103,8 @@
 		0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F68207C5C3900A45F4A /* InvalidView.m */; };
 		0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F6B207C62D800A45F4A /* NomineeCell3.m */; };
 		0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F6F207C830C00A45F4A /* NoInvalidVC.m */; };
+		0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F72207C899D00A45F4A /* AuditStatusVC.m */; };
+		0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F76207C8C2800A45F4A /* MyCodeVC.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -374,6 +376,10 @@
 		0CF04F6B207C62D800A45F4A /* NomineeCell3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCell3.m; sourceTree = "<group>"; };
 		0CF04F6E207C830C00A45F4A /* NoInvalidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoInvalidVC.h; sourceTree = "<group>"; };
 		0CF04F6F207C830C00A45F4A /* NoInvalidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoInvalidVC.m; sourceTree = "<group>"; };
+		0CF04F71207C899D00A45F4A /* AuditStatusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuditStatusVC.h; sourceTree = "<group>"; };
+		0CF04F72207C899D00A45F4A /* AuditStatusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditStatusVC.m; sourceTree = "<group>"; };
+		0CF04F75207C8C2800A45F4A /* MyCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCodeVC.h; sourceTree = "<group>"; };
+		0CF04F76207C8C2800A45F4A /* MyCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCodeVC.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -657,6 +663,7 @@
 		0C0B82122063A08900238D4F /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F74207C8C1900A45F4A /* 我的二维码 */,
 				0CC19D1A207205BA0007CC5F /* 修改住址 */,
 				0CC19D16207202DA0007CC5F /* 姓名 */,
 				0CC19D122071F2940007CC5F /* 出生年月 */,
@@ -693,6 +700,8 @@
 				0CC19CE2206E21100007CC5F /* AuthenticationVC.h */,
 				0CC19CF6206E21100007CC5F /* AuthenticationVC.m */,
 				0CC19CE3206E21100007CC5F /* view */,
+				0CF04F71207C899D00A45F4A /* AuditStatusVC.h */,
+				0CF04F72207C899D00A45F4A /* AuditStatusVC.m */,
 			);
 			path = "公司认证";
 			sourceTree = "<group>";
@@ -1060,6 +1069,15 @@
 				0CF04F6F207C830C00A45F4A /* NoInvalidVC.m */,
 			);
 			path = "被推荐失效详情";
+			sourceTree = "<group>";
+		};
+		0CF04F74207C8C1900A45F4A /* 我的二维码 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F75207C8C2800A45F4A /* MyCodeVC.h */,
+				0CF04F76207C8C2800A45F4A /* MyCodeVC.m */,
+			);
+			path = "我的二维码";
 			sourceTree = "<group>";
 		};
 		0CF74238206229B1001F926F /* view */ = {
@@ -1920,10 +1938,12 @@
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
+				0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				105E18FA206C829A0031558D /* SinglePickView.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
 				0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */,
+				0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */,
 				0CF04F2D207A0DA300A45F4A /* DynamicListTableCell.m in Sources */,
 				0C08BF69206CC543005BB3B4 /* BrokerageDetailTableCell3.m in Sources */,
 				105E18B720637D310031558D /* UnpaidBrokerageVC.m in Sources */,
