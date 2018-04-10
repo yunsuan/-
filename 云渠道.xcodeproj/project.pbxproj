@@ -98,6 +98,8 @@
 		0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */; };
 		0CF04F5C207B5B9D00A45F4A /* CompleteCustomVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F5B207B5B9D00A45F4A /* CompleteCustomVC1.m */; };
 		0CF04F5F207B5BA900A45F4A /* CompleteCustomVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F5E207B5BA900A45F4A /* CompleteCustomVC2.m */; };
+		0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F62207C4CBF00A45F4A /* RecommendView.m */; };
+		0CF04F66207C555F00A45F4A /* FailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F65207C555F00A45F4A /* FailView.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -357,6 +359,10 @@
 		0CF04F5B207B5B9D00A45F4A /* CompleteCustomVC1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompleteCustomVC1.m; sourceTree = "<group>"; };
 		0CF04F5D207B5BA900A45F4A /* CompleteCustomVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompleteCustomVC2.h; sourceTree = "<group>"; };
 		0CF04F5E207B5BA900A45F4A /* CompleteCustomVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompleteCustomVC2.m; sourceTree = "<group>"; };
+		0CF04F61207C4CBF00A45F4A /* RecommendView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendView.h; sourceTree = "<group>"; };
+		0CF04F62207C4CBF00A45F4A /* RecommendView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
+		0CF04F64207C555F00A45F4A /* FailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FailView.h; sourceTree = "<group>"; };
+		0CF04F65207C555F00A45F4A /* FailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FailView.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1019,6 +1025,17 @@
 			path = "完善客户信息";
 			sourceTree = "<group>";
 		};
+		0CF04F60207C4C8900A45F4A /* 弹出框 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F61207C4CBF00A45F4A /* RecommendView.h */,
+				0CF04F62207C4CBF00A45F4A /* RecommendView.m */,
+				0CF04F64207C555F00A45F4A /* FailView.h */,
+				0CF04F65207C555F00A45F4A /* FailView.m */,
+			);
+			path = "弹出框";
+			sourceTree = "<group>";
+		};
 		0CF74238206229B1001F926F /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1506,6 +1523,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F60207C4C8900A45F4A /* 弹出框 */,
 				0CC19D1E20720B150007CC5F /* 自定义地址选择器 */,
 				10174BEC2071D7B800D00B9A /* 自定义时间选择器 */,
 				105E18FF206CF03C0031558D /* 自定义TextField */,
@@ -1874,6 +1892,7 @@
 				0CF04F222079AAE500A45F4A /* RoomDetailTableCell7.m in Sources */,
 				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
+				0CF04F66207C555F00A45F4A /* FailView.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
@@ -1897,6 +1916,7 @@
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
+				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
 				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,
 				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
