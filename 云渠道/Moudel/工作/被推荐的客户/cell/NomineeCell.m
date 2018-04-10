@@ -75,9 +75,9 @@
     [self.contentView addSubview:_messBtn];
     
     _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _phoneBtn.frame = CGRectMake(335 *SIZE, 19 *SIZE, 19 *SIZE, 10 *SIZE);
+    _phoneBtn.frame = CGRectMake(335 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
     [_phoneBtn addTarget:self action:@selector(ActionPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_messBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+    [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
     [self.contentView addSubview:_phoneBtn];
     
     _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
