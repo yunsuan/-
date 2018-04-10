@@ -170,41 +170,24 @@
     [_headerColl registerClass:[CustomHeaderCollCell class] forCellWithReuseIdentifier:@"CustomHeaderCollCell"];
     [self.contentView addSubview:_headerColl];
     
-    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addBtn.frame = CGRectMake(321 *SIZE, CGRectGetMaxY(_headerColl.frame) + 11 *SIZE, 31 *SIZE, 31 *SIZE);
-    [_addBtn setImage:[UIImage imageNamed:@"add_3"] forState:UIControlStateNormal];
-    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_addBtn];
     
-    UILabel *newL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 18 *SIZE + CGRectGetMaxY(_headerColl.frame), 50 *SIZE, 14 *SIZE)];
-    newL.textColor = YJTitleLabColor;
-    newL.font = [UIFont systemFontOfSize:15 *SIZE];
-    newL.text = @"新房";
-    [self.contentView addSubview:newL];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 67 *SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE)];
+    line.backgroundColor = YJBackColor;
     
-    for (int i = 0; i < 2; i++) {
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 50 *SIZE * (i + 1) - SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE)];
-        line.backgroundColor = YJBackColor;
-        if (i == 1) {
-            
-            line.frame = CGRectMake(0 , 117 *SIZE - SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE);
-        }
-        [self.contentView addSubview:line];
-    }
+   [self.contentView addSubview:line];
     
-    _numListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 68 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
+    _numListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 18 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
     _numListL.textColor = YJTitleLabColor;
     _numListL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_numListL];
     
-    _recommendListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 92 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
+    _recommendListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 42 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
     _recommendListL.textColor = YJBlueBtnColor;
     _recommendListL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_recommendListL];
     
     _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _moreBtn.frame = CGRectMake(287 *SIZE, 66 *SIZE + CGRectGetMaxY(_headerColl.frame), 70 *SIZE, 20 *SIZE);
+    _moreBtn.frame = CGRectMake(287 *SIZE, 15 *SIZE + CGRectGetMaxY(_headerColl.frame), 70 *SIZE, 20 *SIZE);
     _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
 //    [_moreBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
     [_moreBtn setTitle:@"产看全部 》" forState:UIControlStateNormal];

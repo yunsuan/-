@@ -11,6 +11,7 @@
 #import "InfoDetailCell.h"
 #import "ComplaintVC.h"
 #import "RecommendView.h"
+#import "TransmitView.h"
 
 @interface InvalidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -26,6 +27,8 @@
 @property (nonatomic , strong) UIButton *complaintBtn;
 
 @property (nonatomic, strong) RecommendView *recommendView;
+
+@property (nonatomic, strong) TransmitView *transmitView;
 @end
 
 @implementation InvalidVC
@@ -160,8 +163,21 @@
     if (!_recommendView) {
         
         _recommendView = [[RecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        _recommendView.tranmitBtnBlock = ^{
+            
+            [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+        };
     }
     return _recommendView;
+}
+
+- (TransmitView *)transmitView{
+    
+    if (!_transmitView) {
+        
+        _transmitView = [[TransmitView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    }
+    return _transmitView;
 }
 
 @end

@@ -22,7 +22,10 @@
 
 - (void)ActionTranmitBtn:(UIButton *)btn{
     
-    [self removeFromSuperview];
+    if (self.tranmitBtnBlock) {
+        
+        self.tranmitBtnBlock();
+    }
 }
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
