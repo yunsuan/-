@@ -14,6 +14,7 @@
 #import "RoomCollCell.h"
 #import "HouseSearchVC.h"
 #import "PYSearchViewController.h"
+#import "MoreView.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -44,6 +45,7 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) BoxView *boxView;
 @property (nonatomic, strong) UIImageView *upImg;
+@property (nonatomic, strong) MoreView *moreView;
 
 
 -(void)initUI;
@@ -265,10 +267,10 @@
     
     if (indexPath.item < 2) {
         
-        [[[UIApplication sharedApplication] keyWindow] addSubview:self.boxView];
+        [[[UIApplication sharedApplication] keyWindow] addSubview:self.moreView];
     }else{
         
-        [self.boxView removeFromSuperview];
+        [self.moreView removeFromSuperview];
         
     }
 }
@@ -376,6 +378,15 @@
         _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 102 *SIZE)];
     }
     return _boxView;
+}
+
+- (MoreView *)moreView{
+    
+    if (!_moreView) {
+        
+        _moreView = [[MoreView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+    }
+    return _moreView;
 }
 
 @end

@@ -115,6 +115,10 @@
 		0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */; };
 		0CF04F97207CB97F00A45F4A /* AuthenedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F96207CB97F00A45F4A /* AuthenedVC.m */; };
 		0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F99207CBBCB00A45F4A /* AuthenedTableHeader.m */; };
+		0CF04F9E207CC23300A45F4A /* GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F9D207CC23300A45F4A /* GuideVC.m */; };
+		0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04FA0207CCC8E00A45F4A /* MoreView.m */; };
+		0CF04FA4207CCDF000A45F4A /* MoreViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04FA3207CCDF000A45F4A /* MoreViewCollCell.m */; };
+		0CF04FA7207CD1A100A45F4A /* MoreViewCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04FA6207CD1A100A45F4A /* MoreViewCollHeader.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -411,6 +415,14 @@
 		0CF04F96207CB97F00A45F4A /* AuthenedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenedVC.m; sourceTree = "<group>"; };
 		0CF04F98207CBBCB00A45F4A /* AuthenedTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenedTableHeader.h; sourceTree = "<group>"; };
 		0CF04F99207CBBCB00A45F4A /* AuthenedTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenedTableHeader.m; sourceTree = "<group>"; };
+		0CF04F9C207CC23300A45F4A /* GuideVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideVC.h; sourceTree = "<group>"; };
+		0CF04F9D207CC23300A45F4A /* GuideVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GuideVC.m; sourceTree = "<group>"; };
+		0CF04F9F207CCC8E00A45F4A /* MoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
+		0CF04FA0207CCC8E00A45F4A /* MoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
+		0CF04FA2207CCDF000A45F4A /* MoreViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreViewCollCell.h; sourceTree = "<group>"; };
+		0CF04FA3207CCDF000A45F4A /* MoreViewCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreViewCollCell.m; sourceTree = "<group>"; };
+		0CF04FA5207CD1A100A45F4A /* MoreViewCollHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreViewCollHeader.h; sourceTree = "<group>"; };
+		0CF04FA6207CD1A100A45F4A /* MoreViewCollHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreViewCollHeader.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -1097,6 +1109,12 @@
 				0CF04F68207C5C3900A45F4A /* InvalidView.m */,
 				0CF04F7B207C929300A45F4A /* TransmitView.h */,
 				0CF04F7C207C929300A45F4A /* TransmitView.m */,
+				0CF04F9F207CCC8E00A45F4A /* MoreView.h */,
+				0CF04FA0207CCC8E00A45F4A /* MoreView.m */,
+				0CF04FA2207CCDF000A45F4A /* MoreViewCollCell.h */,
+				0CF04FA3207CCDF000A45F4A /* MoreViewCollCell.m */,
+				0CF04FA5207CD1A100A45F4A /* MoreViewCollHeader.h */,
+				0CF04FA6207CD1A100A45F4A /* MoreViewCollHeader.m */,
 			);
 			path = "弹出框";
 			sourceTree = "<group>";
@@ -1145,6 +1163,15 @@
 				0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */,
 			);
 			path = PYSearch;
+			sourceTree = "<group>";
+		};
+		0CF04F9B207CC21300A45F4A /* 引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				0CF04F9C207CC23300A45F4A /* GuideVC.h */,
+				0CF04F9D207CC23300A45F4A /* GuideVC.m */,
+			);
+			path = "引导页";
 			sourceTree = "<group>";
 		};
 		0CF74238206229B1001F926F /* view */ = {
@@ -1628,6 +1655,7 @@
 		1069FFF92057974100E11F52 /* Moudel */ = {
 			isa = PBXGroup;
 			children = (
+				0CF04F9B207CC21300A45F4A /* 引导页 */,
 				102DF9692057A0A200E1859C /* 消息 */,
 				102DF96C2057A0A200E1859C /* 工作 */,
 				102DF96A2057A0A200E1859C /* 房源 */,
@@ -1999,6 +2027,7 @@
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,
+				0CF04F9E207CC23300A45F4A /* GuideVC.m in Sources */,
 				0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */,
 				0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */,
 				0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */,
@@ -2054,6 +2083,7 @@
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
 				0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */,
 				0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */,
+				0CF04FA7207CD1A100A45F4A /* MoreViewCollHeader.m in Sources */,
 				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
@@ -2061,6 +2091,7 @@
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
 				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
+				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
 				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
@@ -2077,6 +2108,7 @@
 				0C08BF77206CE919005BB3B4 /* MyAttentionVC.m in Sources */,
 				0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */,
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
+				0CF04FA4207CCDF000A45F4A /* MoreViewCollCell.m in Sources */,
 				0CF04F34207B00F900A45F4A /* RecommendCollCell.m in Sources */,
 				10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */,
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,

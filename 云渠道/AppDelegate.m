@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "CYLTabBarControllerConfig.h"
 #import "LoginVC.h"
+#import "GuideVC.h"
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -32,6 +33,8 @@
     //注册通知，退出登陆时回到首页
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(comeBackLoginVC) name:@"goLoginVC" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goHome) name:@"goHome" object:nil];
+    
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
     BOOL ret = [_mapManager start:@"HFkm6kre5vprHrNAXGF4eZXNx9rEX3pt"  generalDelegate:nil];
@@ -39,11 +42,27 @@
         NSLog(@"manager start failed!");
     }
 //    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
+    BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:@"Guided"];
+    if (flag == YES) {
+
+        CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
+        _window.rootViewController = tabBarControllerConfig.tabBarController;
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Guided"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
     
-    CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
-    _window.rootViewController = tabBarControllerConfig.tabBarController;
-    
-    
+        _window .alpha = 0;
+        _window = nil;
+        _window =[[UIWindow alloc]init];
+        GuideVC *guideVC = [[GuideVC alloc] init];
+        UINavigationController *guideNav = [[UINavigationController alloc] initWithRootViewController:guideVC];
+        guideNav.navigationBarHidden = YES;
+        _window.rootViewController = guideNav;
+        [_window makeKeyAndVisible];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Guided"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+
     //极光配置
     //Required
     //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
@@ -95,6 +114,12 @@
     _window.rootViewController = mainLogin_nav;
     [_window makeKeyAndVisible];
     
+}
+
+- (void)goHome{
+    
+    CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
+    _window.rootViewController = tabBarControllerConfig.tabBarController;
 }
 
 
