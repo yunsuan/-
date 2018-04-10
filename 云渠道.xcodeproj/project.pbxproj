@@ -113,6 +113,8 @@
 		0CF04F92207CAFB000A45F4A /* PYSearchConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F87207CAFAF00A45F4A /* PYSearchConst.m */; };
 		0CF04F93207CAFB000A45F4A /* PYSearch.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0CF04F88207CAFAF00A45F4A /* PYSearch.bundle */; };
 		0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */; };
+		0CF04F97207CB97F00A45F4A /* AuthenedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F96207CB97F00A45F4A /* AuthenedVC.m */; };
+		0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F99207CBBCB00A45F4A /* AuthenedTableHeader.m */; };
 		0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7423A206229C4001F926F /* MessageTableCell.m */; };
 		0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424220622CE6001F926F /* BankCardListVC.m */; };
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
@@ -409,6 +411,10 @@
 		0CF04F8C207CAFAF00A45F4A /* UIColor+PYSearchExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PYSearchExtension.h"; sourceTree = "<group>"; };
 		0CF04F8D207CAFAF00A45F4A /* PYSearchConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYSearchConst.h; sourceTree = "<group>"; };
 		0CF04F8E207CAFAF00A45F4A /* UIView+PYSearchExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PYSearchExtension.m"; sourceTree = "<group>"; };
+		0CF04F95207CB97F00A45F4A /* AuthenedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenedVC.h; sourceTree = "<group>"; };
+		0CF04F96207CB97F00A45F4A /* AuthenedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenedVC.m; sourceTree = "<group>"; };
+		0CF04F98207CBBCB00A45F4A /* AuthenedTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenedTableHeader.h; sourceTree = "<group>"; };
+		0CF04F99207CBBCB00A45F4A /* AuthenedTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenedTableHeader.m; sourceTree = "<group>"; };
 		0CF74239206229C4001F926F /* MessageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTableCell.h; sourceTree = "<group>"; };
 		0CF7423A206229C4001F926F /* MessageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTableCell.m; sourceTree = "<group>"; };
 		0CF7424120622CE6001F926F /* BankCardListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
@@ -741,6 +747,8 @@
 				0CC19CE3206E21100007CC5F /* view */,
 				0CF04F71207C899D00A45F4A /* AuditStatusVC.h */,
 				0CF04F72207C899D00A45F4A /* AuditStatusVC.m */,
+				0CF04F95207CB97F00A45F4A /* AuthenedVC.h */,
+				0CF04F96207CB97F00A45F4A /* AuthenedVC.m */,
 			);
 			path = "公司认证";
 			sourceTree = "<group>";
@@ -883,6 +891,8 @@
 				0CC19CE5206E21100007CC5F /* AuthenCollCell.m */,
 				0CC19CE6206E21100007CC5F /* AuthenTableCell.m */,
 				0CC19CE7206E21100007CC5F /* AuthenCollCell.h */,
+				0CF04F98207CBBCB00A45F4A /* AuthenedTableHeader.h */,
+				0CF04F99207CBBCB00A45F4A /* AuthenedTableHeader.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2039,6 +2049,7 @@
 				0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */,
 				0CF04F4E207B399200A45F4A /* ComplaintCompleteVC.m in Sources */,
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
+				0CF04F97207CB97F00A45F4A /* AuthenedVC.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
@@ -2098,6 +2109,7 @@
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
+				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
 				0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */,

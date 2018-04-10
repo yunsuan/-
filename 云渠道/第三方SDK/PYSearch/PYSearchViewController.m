@@ -810,7 +810,7 @@
     label.userInteractionEnabled = YES;
     label.font = [UIFont systemFontOfSize:12];
     label.text = title;
-    label.textColor = [UIColor grayColor];
+    label.textColor = CH_COLOR_white;
     label.backgroundColor = [UIColor py_colorWithHexString:@"#fafafa"];
     label.layer.cornerRadius = 3;
     label.clipsToBounds = YES;
@@ -916,12 +916,12 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    // 如果有搜索文本且显示搜索建议，则隐藏
-    self.baseSearchTableView.hidden = searchText.length && !self.searchSuggestionHidden;
-    // 根据输入文本显示建议搜索条件
-    self.searchSuggestionVC.view.hidden = self.searchSuggestionHidden || !searchText.length;
-    // 放在最上层
-    [self.view bringSubviewToFront:self.searchSuggestionVC.view];
+//    // 如果有搜索文本且显示搜索建议，则隐藏
+//    self.baseSearchTableView.hidden = searchText.length && !self.searchSuggestionHidden;
+//    // 根据输入文本显示建议搜索条件
+//    self.searchSuggestionVC.view.hidden = self.searchSuggestionHidden || !searchText.length;
+//    // 放在最上层
+//    [self.view bringSubviewToFront:self.searchSuggestionVC.view];
     // 如果代理实现了代理方法则调用代理方法
     if ([self.delegate respondsToSelector:@selector(searchViewController:searchTextDidChange:searchText:)]) {
         [self.delegate searchViewController:self searchTextDidChange:searchBar searchText:searchText];

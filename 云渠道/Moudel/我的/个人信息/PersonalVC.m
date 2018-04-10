@@ -12,10 +12,11 @@
 #import "BirthVC.h"
 #import "ChangeNameVC.h"
 #import "ChangeAddessVC.h"
+#import "MyCodeVC.h"
 
 @interface PersonalVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    UIImagePickerController *_imagePickerController; /**< 相册拾取器 */
+//    UIImagePickerController *_imagePickerController; /**< 相册拾取器 */
     NSArray *_titleArr;
     NSMutableArray *_contentArr;
 }
@@ -38,8 +39,8 @@
     
     _titleArr = @[@"运算编号",@"我的二维码",@"姓名",@"电话号码",@"性别",@"出生年月",@"住址",@"修改密码"];
     _contentArr = [[NSMutableArray alloc] initWithArray:_titleArr];
-    _imagePickerController = [[UIImagePickerController alloc] init];
-    _imagePickerController.delegate = self;
+//    _imagePickerController = [[UIImagePickerController alloc] init];
+//    _imagePickerController.delegate = self;
 }
 
 
@@ -79,19 +80,11 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleL.text = _titleArr[indexPath.row];
     cell.contentL.text = _contentArr[indexPath.row];
-//    if (indexPath.row == 0) {
-//
-//        cell.contentL.hidden = YES;
-//        cell.headImg.hidden = NO;
-//    }else{
-//
-//
-//    }
-    
+
     cell.contentL.hidden = NO;
     cell.headImg.hidden = YES;
     
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 || indexPath.row == 4) {
         
         cell.rightView.hidden = YES;
     }else{
@@ -110,9 +103,10 @@
         }
         case 1:
         {
+            MyCodeVC *nextVC = [[MyCodeVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
-        
         case 2:
         {
             ChangeNameVC *nextVC = [[ChangeNameVC alloc] init];
@@ -121,6 +115,7 @@
         }
         case 3:
         {
+            
             break;
         }
         case 4:
