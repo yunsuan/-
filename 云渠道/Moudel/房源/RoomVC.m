@@ -71,13 +71,14 @@
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
     
-//    [BaseRequest POST:ProjectList_URL parameters:nil success:^(id resposeObject) {
-//       
-//        NSLog(@"%@",resposeObject);
-//    } failure:^(NSError *error) {
-//        
-//        NSLog(@"%@",error.localizedDescription);
-//    }];
+    
+    [BaseRequest POST:ProjectList_URL parameters:nil success:^(id resposeObject) {
+       
+        NSLog(@"%@",resposeObject);
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error.localizedDescription);
+    }];
 }
 
 -(void)startLocation

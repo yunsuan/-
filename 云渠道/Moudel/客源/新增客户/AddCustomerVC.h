@@ -7,10 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "CustomerInfoModel.h"
+#import "CustomerModel.h"
 
 @interface AddCustomerVC : BaseViewController
 
-- (instancetype)initWithModel:(CustomerInfoModel *)model;
+- (instancetype)initWithModel:(CustomerModel *)model;
 
 @end

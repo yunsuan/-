@@ -17,7 +17,7 @@
 @interface AddCustomerVC ()
 {
     
-    CustomerInfoModel *_model;
+    CustomerModel *_model;
 }
 @property (nonatomic , strong) UIScrollView *scrollview;
 @property (nonatomic , strong) DropDownBtn *sex;
@@ -39,7 +39,7 @@
 
 @implementation AddCustomerVC
 
-- (instancetype)initWithModel:(CustomerInfoModel *)model
+- (instancetype)initWithModel:(CustomerModel *)model
 {
     self = [super init];
     if (self) {
@@ -259,27 +259,54 @@
         [self showContent:@"请输入正确的电话号码"];
         return;
     }
-    _Customerinfomodel.name = _name.textfield.text;
-    _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
-    _Customerinfomodel.card_id = _num.textfield.text;
-    _Customerinfomodel.address = _detailadress.text;
-
-    [BaseRequest POST:AddCustomer_URL parameters:[_Customerinfomodel modeltodic] success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
-        if ([resposeObject[@"code"] integerValue] ==200) {
-            
-        }
-        else{
-            
-        }
-      
+    
+    if (_model.clientId) {
+        
+        _model.name = _name.textfield.text;
+        _model.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
+        _model.card_id = _num.textfield.text;
+        _model.address = _detailadress.text;
         
         
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        [self showContent:@"网络出错"];
-    }];
+        [BaseRequest POST:UpdateClient_URL parameters:[_model modeltodic] success:^(id resposeObject) {
+            NSLog(@"%@",resposeObject);
+            [self showContent:resposeObject[@"msg"]];
+            if ([resposeObject[@"code"] integerValue] ==200) {
+                
+            }
+            else{
+                
+            }
+            
+            
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+            [self showContent:@"网络出错"];
+        }];
+    }else{
+        _Customerinfomodel.name = _name.textfield.text;
+        _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
+        _Customerinfomodel.card_id = _num.textfield.text;
+        _Customerinfomodel.address = _detailadress.text;
+        
+        [BaseRequest POST:AddCustomer_URL parameters:[_Customerinfomodel modeltodic] success:^(id resposeObject) {
+            NSLog(@"%@",resposeObject);
+            [self showContent:resposeObject[@"msg"]];
+            if ([resposeObject[@"code"] integerValue] ==200) {
+                
+            }
+            else{
+                
+            }
+            
+            
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+            [self showContent:@"网络出错"];
+        }];
+    }
 }
 
 -(UIScrollView *)scrollview

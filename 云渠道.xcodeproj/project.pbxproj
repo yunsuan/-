@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A4207DAEC00045E3C1 /* CustomerModel.m */; };
 		0C07BFC22060D835007F31EC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFC12060D835007F31EC /* UserModel.m */; };
 		0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFC42060D88C007F31EC /* UserModelArchiver.m */; };
 		0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCA2060D94C007F31EC /* BaseRequest.m */; };
@@ -204,6 +205,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0606A3207DAEC00045E3C1 /* CustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerModel.h; sourceTree = "<group>"; };
+		0C0606A4207DAEC00045E3C1 /* CustomerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerModel.m; sourceTree = "<group>"; };
 		0C07BFBF2060AC26007F31EC /* 云渠道.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "云渠道.entitlements"; sourceTree = "<group>"; };
 		0C07BFC02060D835007F31EC /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		0C07BFC12060D835007F31EC /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
@@ -587,6 +590,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0606A2207DAE990045E3C1 /* 客户信息model */ = {
+			isa = PBXGroup;
+			children = (
+				0C0606A3207DAEC00045E3C1 /* CustomerModel.h */,
+				0C0606A4207DAEC00045E3C1 /* CustomerModel.m */,
+			);
+			path = "客户信息model";
+			sourceTree = "<group>";
+		};
 		0C07BFCD2060E7DC007F31EC /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,6 +695,7 @@
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0606A2207DAE990045E3C1 /* 客户信息model */,
 				0CB6BAEE20736D4600921C75 /* 跟进记录 */,
 				0CC19D1F207216F70007CC5F /* 添加需求 */,
 				0C0B8208206389D500238D4F /* view */,
@@ -2057,6 +2070,7 @@
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
+				0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */,
@@ -2137,10 +2151,8 @@
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
 				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
-
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
 				10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */,
-
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
 				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,

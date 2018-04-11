@@ -31,8 +31,13 @@
 - (void)initDataShource{
     
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+    
+    [BaseRequest POST:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
-
 
 #pragma table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
