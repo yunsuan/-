@@ -16,6 +16,7 @@
 #import "CustomTableHeader4.h"
 #import "AddRequireMentVC.h"
 #import "FollowRecordVC.h"
+#import "AddCustomerVC.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
@@ -76,6 +77,9 @@
 - (void)DGActionEditBtn:(UIButton *)btn{
     
     NSLog(@"%ld",_item);
+    CustomerInfoModel *model = [[CustomerInfoModel alloc] init];
+    AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:model];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 

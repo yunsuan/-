@@ -60,6 +60,8 @@
 
 - (void)showContent:(NSString *)str;
 
+- (BOOL)isEmpty:(NSString *)str;
+
 //图片压缩至希望的大小
 - (NSData *)resetSizeOfImageData:(UIImage *)source_image maxSize:(NSInteger)maxSize;
 

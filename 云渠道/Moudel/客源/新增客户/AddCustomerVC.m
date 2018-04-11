@@ -12,9 +12,13 @@
 #import "BorderTF.h"
 #import "DateChooseView.h"
 #import "AdressChooseView.h"
-#import "CustomerInfoModel.h"
+//#import "CustomerInfoModel.h"
 
 @interface AddCustomerVC ()
+{
+    
+    CustomerInfoModel *_model;
+}
 @property (nonatomic , strong) UIScrollView *scrollview;
 @property (nonatomic , strong) DropDownBtn *sex;
 @property (nonatomic , strong) BorderTF *name;
@@ -29,14 +33,21 @@
 @property (nonatomic , strong) UIButton *surebtn;
 @property (nonatomic , strong) CustomerInfoModel *Customerinfomodel;
 
-
-
-
 -(void)initUI;
 -(void)initDataSouce;
 @end
 
 @implementation AddCustomerVC
+
+- (instancetype)initWithModel:(CustomerInfoModel *)model
+{
+    self = [super init];
+    if (self) {
+        
+        _model = model;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,6 +87,7 @@
     namelab.textColor = YJTitleLabColor;
     [self.scrollview addSubview:namelab];
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
+    _name.textfield.text = _model.name;
     [self.scrollview addSubview:_name];
     
     //性别
@@ -166,16 +178,7 @@
 
 -(void)action_sex
 {
-//    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:@[@{@"MC":@"男",
-//                                                                                             @"ID":@"1"
-//                                                                                             },@{@"MC":@"女",
-//                                                                                                @"ID":@"2"
-//                                                                                                 }]];
-//
-//    view.selectedBlock = ^(NSString *MC, NSString *ID) {
-//        _sex.content.text = MC;
-//    };
-//    [self.view addSubview:view];
+
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"性别" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *male = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -246,11 +249,13 @@
 
 -(void)action_sure
 {
-    if (_name.textfield.text.length == 0) {
+    if (_name.textfield.text.length == 0 || [self isEmpty:_name.textfield.text]) {
+        
         [self showContent:@"请输入姓名！"];
         return;
     }
-    if ([self checkTel:_tel1.textfield.text]) {
+    if (![self checkTel:_tel1.textfield.text]) {
+        
         [self showContent:@"请输入正确的电话号码"];
         return;
     }
@@ -258,6 +263,7 @@
     _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
     _Customerinfomodel.card_id = _num.textfield.text;
     _Customerinfomodel.address = _detailadress.text;
+
     [BaseRequest POST:AddCustomer_URL parameters:[_Customerinfomodel modeltodic] success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
