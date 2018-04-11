@@ -20,9 +20,44 @@
     return self;
 }
 
+- (void)ActionDeleteBtn:(UIButton *)btn{
+    
+    if (self.deleteBtnBlock) {
+        
+        self.deleteBtnBlock(self.tag);
+    }
+}
+
+- (void)ActionEditBtn:(UIButton *)btn{
+ 
+    if (self.editBlock) {
+        
+        self.editBlock(self.tag);
+    }
+}
+
 - (void)initUI{
     
     for (int i = 0 ; i < 11; i++) {
+        
+        if (i < 2) {
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(280 *SIZE + i * 47 *SIZE, 5 *SIZE, 29 *SIZE, 29 *SIZE);
+            if (i == 0) {
+                
+                [btn addTarget:self action:@selector(ActionDeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
+                [btn setImage:[UIImage imageNamed:@"delete_2"] forState:UIControlStateNormal];
+                _deleteBtn = btn;
+                [self addSubview:_deleteBtn];
+            }else{
+                
+                [btn addTarget:self action:@selector(ActionEditBtn:) forControlEvents:UIControlEventTouchUpInside];
+                [btn setImage:[UIImage imageNamed:@"eidt"] forState:UIControlStateNormal];
+                _editBtn = btn;
+                [self addSubview:_editBtn];
+            }
+        }
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(29 *SIZE, 13 *SIZE + i * 30 *SIZE, 230 *SIZE, 12 *SIZE)];
         label.textColor = YJTitleLabColor;

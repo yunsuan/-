@@ -40,6 +40,7 @@
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C23F6202068BE1E00B4D573 /* CustomTableHeader3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
+		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
 		0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */; };
 		0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5582068EF750059CE02 /* RoomDetailTableCell.m */; };
 		0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD55B2069DA980059CE02 /* RoomDetailTableHeader.m */; };
@@ -274,6 +275,8 @@
 		0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader3.m; sourceTree = "<group>"; };
 		0C342FB5207DEB540058406D /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		0C342FB6207DEB540058406D /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		0C342FB8207E01510058406D /* CustomRequireModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomRequireModel.h; sourceTree = "<group>"; };
+		0C342FB9207E01510058406D /* CustomRequireModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomRequireModel.m; sourceTree = "<group>"; };
 		0C3AD5542068E5C30059CE02 /* RoomDetailCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailCollCell.h; sourceTree = "<group>"; };
 		0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailCollCell.m; sourceTree = "<group>"; };
 		0C3AD5572068EF750059CE02 /* RoomDetailTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell.h; sourceTree = "<group>"; };
@@ -601,6 +604,8 @@
 			children = (
 				0C0606A3207DAEC00045E3C1 /* CustomerModel.h */,
 				0C0606A4207DAEC00045E3C1 /* CustomerModel.m */,
+				0C342FB8207E01510058406D /* CustomRequireModel.h */,
+				0C342FB9207E01510058406D /* CustomRequireModel.m */,
 			);
 			path = "客户信息model";
 			sourceTree = "<group>";
@@ -2104,6 +2109,7 @@
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
+				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,
 				0CF04F9E207CC23300A45F4A /* GuideVC.m in Sources */,

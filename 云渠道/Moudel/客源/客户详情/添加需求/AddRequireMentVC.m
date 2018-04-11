@@ -14,6 +14,7 @@
 {
     
     NSInteger _num;
+    CustomRequireModel *_model;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -93,6 +94,16 @@
 @end
 
 @implementation AddRequireMentVC
+
+- (instancetype)initWithCustomRequireModel:(CustomRequireModel *)model
+{
+    self = [super init];
+    if (self) {
+        
+        _model = model;
+    }
+    return self;
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -216,7 +227,14 @@
 
 - (void)initUI{
 
-    self.titleLabel.text = @"添加客户";
+    if (_model) {
+        
+        self.titleLabel.text = @"修改需求";
+    }else{
+        
+        self.titleLabel.text = @"添加需求";
+    }
+//    self.titleLabel.text = @"添加客户";
     self.navBackgroundView.hidden = NO;
     self.line.hidden = YES;
     
@@ -481,17 +499,6 @@
             }
         }
         
-//        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 662 *SIZE + i * 110 *SIZE, 15 *SIZE, 11 *SIZE)];
-//        label2.textColor = COLOR(170, 170, 170, 1);
-//        label2.font = [UIFont systemFontOfSize:12 *SIZE];
-//        label2.text = @"0";
-//        [_infoView addSubview:label2];
-//        
-//        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(315 *SIZE, 662 *SIZE + i * 110 *SIZE, 30 *SIZE, 11 *SIZE)];
-//        label3.textColor = COLOR(170, 170, 170, 1);
-//        label3.font = [UIFont systemFontOfSize:12 *SIZE];
-//        label3.text = @"100";
-//        [_infoView addSubview:label3];
 
     }
     
@@ -525,7 +532,7 @@
     [_nextBtn setBackgroundColor:YJBlueBtnColor];
     _nextBtn.layer.cornerRadius = 2 *SIZE;
     _nextBtn.clipsToBounds = YES;
-    [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    [_nextBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_scrolleView addSubview:_nextBtn];
     
     [self masonryUI];

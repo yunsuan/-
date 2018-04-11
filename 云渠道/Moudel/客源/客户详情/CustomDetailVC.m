@@ -254,6 +254,19 @@
             cell = [[CustomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.cellView.tag = indexPath.row;
+        cell.cellView.editBlock = ^(NSInteger index) {
+            
+            
+//            AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:<#(CustomRequireModel *)#>];
+//            [self.navigationController pushViewController:nextVC animated:YES];
+        };
+        
+        cell.cellView.deleteBtnBlock = ^(NSInteger index) {
+            
+            
+        };
+        
         cell.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
         cell.cellView.priceL.text = @"总价：80万-100万";
         cell.cellView.areaL.text = @"面积：80㎡-120㎡";

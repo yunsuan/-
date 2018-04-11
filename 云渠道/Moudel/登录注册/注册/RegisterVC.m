@@ -90,14 +90,16 @@
     
     [BaseRequest POST:Register_URL parameters:parameter success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        if ([resposeObject[@"code"] integerValue]==200) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
             LoginVC *next_vc = [[LoginVC alloc]init];
             [self.navigationController pushViewController:next_vc animated:YES];
         }
         else{
            
         }
-         [self showContent:resposeObject[@"msg"]];
+        [self showContent:resposeObject[@"msg"]];
     } failure:^(NSError *error) {
         [self showContent:@"网络错误"];
     }];

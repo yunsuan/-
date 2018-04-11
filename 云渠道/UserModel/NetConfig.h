@@ -70,6 +70,15 @@ static NSString *const ListClient_URL = @"agent/client/list";
 //新增客户需求
 static NSString *const AddCliendAddNeed_URL = @"agent/client/addNeed";
 
+//修改客户需求
+static NSString *const UpdateClientNeed_URL = @"agent/client/updateNeed";
+
+//删除客户需求
+static NSString *const DeleteClientNeed_URL = @"agent/client/deletNeed";
+
+//新增客户跟进记录
+static NSString *const AddCliendAddFollow_URL = @"agent/client/addFollow";
+
 //获取关注列表
 static NSString *const GetFocusProjectList_URL = @"agent/personal/getFocusProjectList";
 

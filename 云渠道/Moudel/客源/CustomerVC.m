@@ -64,9 +64,10 @@
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
-                        
+//                        self SetData:<#(NSArray *)#>
                     }else{
                         
+                        _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
                         [self showContent:@"暂无数据"];
                     }
                 }else{
@@ -103,9 +104,9 @@
             }
         }];
         
-        CustomerTableModel *model = [[CustomerTableModel alloc] initWithDictionary:tempDic];
+//        CustomerModel *model = [[CustomerModel alloc] initWithDictionary:tempDic];
         
-        [_dataArr addObject:model];
+//        [_dataArr addObject:model];
     }
     
     [_customerTable reloadData];
@@ -142,7 +143,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return _dataArr.count;
+    return 3;
+//    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

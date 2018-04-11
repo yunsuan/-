@@ -42,7 +42,10 @@ static dispatch_once_t onceToken;
             
             id value = [aDecoder decodeObjectForKey:key];
             
-            [self setValue:value forKey:key];
+            if (value) {
+                
+                [self setValue:value forKey:key];
+            }
             
         }
         // 获得c的父类
