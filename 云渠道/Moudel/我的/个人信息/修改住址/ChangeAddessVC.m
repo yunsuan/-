@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UITextView *detailTV;
 
-@property (nonatomic, strong) AdressChooseView *adressView;
+//@property (nonatomic, strong) AdressChooseView *adressView;
 
 @end
 
@@ -46,6 +46,10 @@
     _addressL.font = [UIFont systemFontOfSize:13 *SIZE];
     [_whiteView addSubview:_addressL];
     
+    _addressL.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action_address)];
+    [_addressL addGestureRecognizer:tap];
+    
     _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(342 *SIZE, 23 *SIZE, 8 *SIZE, 8 *SIZE)];
     _dropImg.image = [UIImage imageNamed:@"downarrow1"];
     [_whiteView addSubview:_dropImg];
@@ -60,6 +64,18 @@
     _detailTV.contentInset = UIEdgeInsetsMake(13 *SIZE, 10 *SIZE, 13 *SIZE, 10 *SIZE);
     _detailTV.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.view addSubview:_detailTV];
+}
+
+-(void)action_address
+{
+    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+    [self.view addSubview:view];
+    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+        _addressL.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//        _Customerinfomodel.province = proviceid;
+//        _Customerinfomodel.city = cityid;
+//        _Customerinfomodel.district = areaid;
+    };
 }
 
 @end

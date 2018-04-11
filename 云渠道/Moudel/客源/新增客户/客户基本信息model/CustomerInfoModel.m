@@ -10,7 +10,7 @@
 
 @implementation CustomerInfoModel
 
--(NSMutableArray *)modeltodic
+-(NSMutableDictionary *)modeltodic
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     Class c = self.class;

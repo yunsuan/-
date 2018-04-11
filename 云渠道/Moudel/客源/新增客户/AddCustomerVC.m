@@ -12,11 +12,10 @@
 #import "BorderTF.h"
 #import "DateChooseView.h"
 #import "AdressChooseView.h"
-//#import "CustomerInfoModel.h"
+#import "CustomerModel.h"
 
 @interface AddCustomerVC ()
 {
-    
     CustomerModel *_model;
 }
 @property (nonatomic , strong) UIScrollView *scrollview;
