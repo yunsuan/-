@@ -7,6 +7,7 @@
 //
 
 #import "DistributVC.h"
+#import "HousedistributVC.h"
 
 @interface DistributVC ()
 @property (nonatomic , strong) UIImageView *backimg;
@@ -60,6 +61,8 @@
 -(void)action_buildingchoose:(UIButton *)sender
 {
     NSLog(@"%ld",sender.tag);
+    HousedistributVC *next_vc = [[HousedistributVC alloc]init];
+    [self.navigationController pushViewController:next_vc animated:YES];
     
 }
 

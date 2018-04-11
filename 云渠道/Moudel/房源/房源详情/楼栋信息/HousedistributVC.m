@@ -77,7 +77,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = COLOR(243, 243, 243, 1);
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"房源";
+    self.titleLabel.text = @"1栋1单元详情";
     [self.leftButton setImage:IMAGE_WITH_NAME(@"youjiantou.png") forState:UIControlStateNormal];
     [self.maskButton addTarget:self action:@selector(action_back) forControlEvents:UIControlEventTouchUpInside];
     //    [self.view addSubview:self.MycollectionView];
@@ -95,7 +95,7 @@
 -(void)post{
     
 //
-
+    [self initInterFace];
 //
     
 }
