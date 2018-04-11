@@ -30,7 +30,7 @@
     _titleL.textColor = YJTitleLabColor;
     _titleL.font = [UIFont systemFontOfSize:13 *SIZE];
     _titleL.textAlignment = NSTextAlignmentCenter;
-    _titleL.text = @"需求信息";
+//    _titleL.text = @"需求信息";
     [self.contentView addSubview:_titleL];
 }
 

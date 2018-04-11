@@ -28,5 +28,8 @@
 
 @property (nonatomic, copy) NSString *urgent;
 
+- (NSMutableDictionary *)modeltodic;
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
+
 @end
 

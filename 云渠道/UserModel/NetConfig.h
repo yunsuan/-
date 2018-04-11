@@ -64,6 +64,12 @@ static NSString *const UploadFile_URL = @"agent/file/upload";
 //6修改客户信息
 static NSString *const UpdateClient_URL = @"agent/client/update";
 
+//7客户列表
+static NSString *const ListClient_URL = @"agent/client/list";
+
+//新增客户需求
+static NSString *const AddCliendAddNeed_URL = @"agent/client/addNeed";
+
 //获取关注列表
 static NSString *const GetFocusProjectList_URL = @"agent/personal/getFocusProjectList";
 

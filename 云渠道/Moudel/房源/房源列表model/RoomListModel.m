@@ -10,7 +10,7 @@
 
 @implementation RoomListModel
 
--(NSMutableArray *)modeltodic
+-(NSMutableDictionary *)modeltodic
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     Class c = self.class;
@@ -31,7 +31,16 @@
         c = [c superclass];
         free(ivars);}
     return dic;
-    
 }
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict{
+    
+    if (self = [super init]) {
+        
+        [self setValuesForKeysWithDictionary:dict];
+    }
+    return self;
+}
+
 
 @end

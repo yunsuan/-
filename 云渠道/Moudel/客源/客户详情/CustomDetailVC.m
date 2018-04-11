@@ -77,7 +77,7 @@
 - (void)DGActionEditBtn:(UIButton *)btn{
     
     NSLog(@"%ld",_item);
-    CustomerInfoModel *model = [[CustomerInfoModel alloc] init];
+    CustomerModel *model = [[CustomerModel alloc] init];
     AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:model];
     [self.navigationController pushViewController:nextVC animated:YES];
 }

@@ -94,6 +94,24 @@
 
 @implementation AddRequireMentVC
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // 禁用返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 开启返回手势
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -107,7 +125,13 @@
 
 - (void)ActionSliderChange:(UISlider *)slider{
     
-    
+    if (slider == _intentionSlider) {
+        
+        _intentionTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
+    }else{
+        
+        _urgentTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
+    }
 }
 
 - (void)ActionAddBtn:(UIButton *)btn{
@@ -416,12 +440,16 @@
                 case 3:
                 {
                     _intentionTF = TF;
+                    _intentionTF.textfield.textAlignment = NSTextAlignmentRight;
+                    _intentionTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_intentionTF];
                     break;
                 }
                 case 4:
                 {
                     _urgentTF = TF;
+                    _urgentTF.textfield.textAlignment = NSTextAlignmentRight;
+                    _urgentTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_urgentTF];
                     break;
                 }

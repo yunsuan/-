@@ -10,7 +10,10 @@
 #import "CustomHeaderCollCell.h"
 
 @interface CustomTableHeader3()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-
+{
+    
+    NSArray *_titleArr;
+}
 
 @end
 
@@ -21,6 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        _titleArr = @[@"需求信息",@"跟进记录",@"匹配信息"];
         [self initUI];
     }
     return self;
@@ -60,6 +64,7 @@
         
         cell = [[CustomHeaderCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 47 *SIZE)];
     }
+    cell.titleL.text = _titleArr[indexPath.item];
     
     return cell;
 }

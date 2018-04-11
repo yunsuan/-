@@ -11,12 +11,15 @@
 @interface RoomListModel : NSObject
 
 @property (nonatomic , strong) NSString *city;
-@property (nonatomic , strong) NSString *project_name;
+@property (nonatomic , strong) NSString *deposit;
 @property (nonatomic , strong) NSString *district;
-@property (nonatomic , strong) NSString *average_price;
-@property (nonatomic , strong) NSString *property_id;
-@property (nonatomic , strong) NSString *province;
+@property (nonatomic , strong) NSString *img_url;
+@property (nonatomic , strong) NSString *project_name;
+@property (nonatomic , strong) NSString *project_tags;
+@property (nonatomic, strong) NSString *province;
+@property (nonatomic, strong) NSString *sale_state;
 
 - (NSMutableDictionary *)modeltodic;
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end

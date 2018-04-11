@@ -32,10 +32,24 @@
     
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
     [BaseRequest POST:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
         
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"status"] integerValue] == 200) {
+            
+            
+        }else{
+            
+            
+        }
     } failure:^(NSError *error) {
         
+        NSLog(@"%@",error.localizedDescription);
     }];
 }
 

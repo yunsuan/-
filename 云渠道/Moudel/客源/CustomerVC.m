@@ -20,7 +20,7 @@
 {
     
     NSMutableArray *_dataArr;
-    
+    NSMutableDictionary *_parameter;
 }
 
 @property (nonatomic, strong) UITableView *customerTable;
@@ -40,11 +40,70 @@
     [super viewDidLoad];
     
     [self initUI];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    
+    [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    if ([resposeObject[@"data"][@"data"] count]) {
+                        
+                        
+                    }else{
+                        
+                        [self showContent:@"暂无数据"];
+                    }
+                }else{
+                    
+                    [self showContent:@"暂无数据"];
+                }
+            }else{
+                
+                [self showContent:@"暂无数据"];
+            }
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([tempDic[key] isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        CustomerTableModel *model = [[CustomerTableModel alloc] initWithDictionary:tempDic];
+        
+        [_dataArr addObject:model];
+    }
+    
+    [_customerTable reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 4;
+    return _dataArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -145,6 +204,15 @@
     _customerTable.dataSource = self;
     _customerTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_customerTable];
+    _customerTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       
+        [self RequestMethod];
+    }];
+    
+    _customerTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        [self RequestMethod];
+    }];
 }
 
 

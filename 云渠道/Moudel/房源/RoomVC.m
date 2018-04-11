@@ -35,6 +35,7 @@
     BMKGeoCodeSearch *_geocodesearch; //地理编码主类，用来查询、返回结果信息
     NSInteger page;
     NSMutableDictionary *_parameter;
+    NSMutableArray *_dataArr;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -68,6 +69,7 @@
 -(void)initDateSouce
 {
     
+    _dataArr = [@[] mutableCopy];
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     page = 1;
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
@@ -76,30 +78,63 @@
     [self RequestMethod];
 }
 
-- (void)RequestMethod{
+- (void)SetData:(NSArray *)data{
     
-    RoomListModel *model = [[RoomListModel alloc] init];
-    model.city = @"510100";
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([tempDic[key] isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        RoomListModel *model = [[RoomListModel alloc] initWithDictionary:tempDic];
+        
+        [_dataArr addObject:model];
+    }
+    
+    [_MainTableView reloadData];
+}
+
+- (void)RequestMethod{
+
     if (page == 1) {
         
+        [_dataArr removeAllObjects];
         self.MainTableView.mj_footer.state = MJRefreshStateIdle;
     }
     
-    _parameter = [NSMutableDictionary dictionaryWithDictionary:[model modeltodic]];
-    [_parameter setObject:@(page) forKey:@"page"];
-    [BaseRequest GET:ProjectList_URL parameters:_parameter success:^(id resposeObject) {
+    NSDictionary *dic = @{@"city":@"510100",@"page":@(page)};
+    [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
         [self.MainTableView.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
-        if ([resposeObject[@"status"] integerValue] == 200) {
+        if ([resposeObject[@"code"] integerValue] == 200) {
             
-//            if () {
-//                <#statements#>
-//            }
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    [self SetData:resposeObject[@"data"][@"data"]];
+                    if (page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                        
+                        self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                    }
+                }else{
+                    
+                    [self showContent:@"暂无数据"];
+                }
+            }else{
+                
+                [self showContent:resposeObject[@"msg"]];
+            }
         }else{
             
-//            self showContent:<#(NSString *)#>
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -317,7 +352,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _dataArr.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -333,32 +368,45 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == 1) {
-        static NSString *CellIdentifier = @"CompanyCell";
-        
-        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-        [cell settagviewWithdata:_arr[indexPath.row]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else
-    {
-        static NSString *CellIdentifier = @"PeopleCell";
-        
-        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-        [cell settagviewWithdata:_arr[indexPath.row]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    static NSString *CellIdentifier = @"PeopleCell";
+    
+    PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    RoomListModel *model = _dataArr[indexPath.row];
+    [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
+    [cell settagviewWithdata:_arr[indexPath.row]];
+//    [cell settagviewWithdata:([model.project_tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+
+//    if (indexPath.row == 1) {
+//        static NSString *CellIdentifier = @"CompanyCell";
+//
+//        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+//        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
+//        [cell settagviewWithdata:_arr[indexPath.row]];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }else
+//    {
+//        static NSString *CellIdentifier = @"PeopleCell";
+//
+//        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+//        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
+//        [cell settagviewWithdata:_arr[indexPath.row]];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

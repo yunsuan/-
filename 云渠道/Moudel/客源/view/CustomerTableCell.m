@@ -22,9 +22,6 @@
 
 - (void)setModel:(CustomerTableModel *)model{
     
-    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,model.headStr]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        
-    }];
     _nameL.text = model.name;
     _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.price];
     _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.type];
@@ -48,11 +45,11 @@
 
 - (void)initUI{
     
-    _headImg = [[UIImageView alloc] init];
-    _headImg.layer.cornerRadius = 33.5 *SIZE;
-    _headImg.clipsToBounds = YES;
-    _headImg.backgroundColor = CH_COLOR_white;
-    [self.contentView addSubview:_headImg];
+    _gender = [[UIImageView alloc] init];
+//    _gender.layer.cornerRadius = 33.5 *SIZE;
+//    _gender.clipsToBounds = YES;
+    _gender.backgroundColor = CH_COLOR_white;
+    [self.contentView addSubview:_gender];
     
     _nameL = [[UILabel alloc] init];
     _nameL.textColor = YJTitleLabColor;
@@ -107,42 +104,43 @@
 
 - (void)MasonryUI{
     
-    [_headImg mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
-        make.top.equalTo(self.contentView.mas_top).offset(20 *SIZE);
-        make.width.equalTo(@(67 *SIZE));
-        make.height.equalTo(@(67 *SIZE));
-    }];
     
     [_nameL mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView.mas_left).offset(89 *SIZE);
-        make.top.equalTo(self.contentView.mas_top).offset(19 *SIZE);
+        make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
+        make.top.equalTo(self.contentView.mas_top).offset(14 *SIZE);
         make.width.equalTo(@(140 *SIZE));
         make.height.equalTo(@(14 *SIZE));
     }];
     
+    [_gender mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_nameL.mas_left).offset(10 *SIZE);
+        make.top.equalTo(self.contentView.mas_top).offset(16 *SIZE);
+        make.width.equalTo(@(12 *SIZE));
+        make.height.equalTo(@(12 *SIZE));
+    }];
+    
     [_priceL mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView.mas_left).offset(89 *SIZE);
-        make.top.equalTo(self.contentView.mas_top).offset(41 *SIZE);
+        make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
+        make.top.equalTo(self.contentView.mas_top).offset(36 *SIZE);
         make.width.equalTo(@(140 *SIZE));
         make.height.equalTo(@(10 *SIZE));
     }];
     
     [_typeL mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView.mas_left).offset(89 *SIZE);
-        make.top.equalTo(self.contentView.mas_top).offset(59 *SIZE);
+        make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
+        make.top.equalTo(self.contentView.mas_top).offset(56 *SIZE);
         make.width.equalTo(@(140 *SIZE));
         make.height.equalTo(@(10 *SIZE));
     }];
     
     [_areaL mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView.mas_left).offset(89 *SIZE);
-        make.top.equalTo(self.contentView.mas_top).offset(80 *SIZE);
+        make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
+        make.top.equalTo(self.contentView.mas_top).offset(75 *SIZE);
         make.width.equalTo(@(140 *SIZE));
         make.height.equalTo(@(10 *SIZE));
     }];
