@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A4207DAEC00045E3C1 /* CustomerModel.m */; };
+		0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A8207DB3050045E3C1 /* RoomListModel.m */; };
 		0C07BFC22060D835007F31EC /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFC12060D835007F31EC /* UserModel.m */; };
 		0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFC42060D88C007F31EC /* UserModelArchiver.m */; };
 		0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C07BFCA2060D94C007F31EC /* BaseRequest.m */; };
@@ -207,6 +208,8 @@
 /* Begin PBXFileReference section */
 		0C0606A3207DAEC00045E3C1 /* CustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerModel.h; sourceTree = "<group>"; };
 		0C0606A4207DAEC00045E3C1 /* CustomerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerModel.m; sourceTree = "<group>"; };
+		0C0606A7207DB3050045E3C1 /* RoomListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomListModel.h; sourceTree = "<group>"; };
+		0C0606A8207DB3050045E3C1 /* RoomListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomListModel.m; sourceTree = "<group>"; };
 		0C07BFBF2060AC26007F31EC /* 云渠道.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "云渠道.entitlements"; sourceTree = "<group>"; };
 		0C07BFC02060D835007F31EC /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		0C07BFC12060D835007F31EC /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
@@ -597,6 +600,15 @@
 				0C0606A4207DAEC00045E3C1 /* CustomerModel.m */,
 			);
 			path = "客户信息model";
+			sourceTree = "<group>";
+		};
+		0C0606A6207DB2F50045E3C1 /* 房源列表model */ = {
+			isa = PBXGroup;
+			children = (
+				0C0606A7207DB3050045E3C1 /* RoomListModel.h */,
+				0C0606A8207DB3050045E3C1 /* RoomListModel.m */,
+			);
+			path = "房源列表model";
 			sourceTree = "<group>";
 		};
 		0C07BFCD2060E7DC007F31EC /* view */ = {
@@ -1317,6 +1329,7 @@
 		102DF96A2057A0A200E1859C /* 房源 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0606A6207DB2F50045E3C1 /* 房源列表model */,
 				0CF04F7E207C9C7A00A45F4A /* 搜索 */,
 				105E18882060E1970031558D /* view */,
 				102DF9742057A1AE00E1859C /* RoomVC.h */,
@@ -2084,6 +2097,7 @@
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
+				0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,

@@ -15,6 +15,7 @@
 #import "HouseSearchVC.h"
 #import "PYSearchViewController.h"
 #import "MoreView.h"
+#import "RoomListModel.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -32,6 +33,8 @@
     
     BMKLocationService *_locService;  //定位
     BMKGeoCodeSearch *_geocodesearch; //地理编码主类，用来查询、返回结果信息
+    NSInteger page;
+    NSMutableDictionary *_parameter;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -66,19 +69,45 @@
 {
     
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
-    
+    page = 1;
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
     
+    RoomListModel *model = [[RoomListModel alloc] init];
+    model.city = @"510100";
+    if (page == 1) {
+        
+        self.MainTableView.mj_footer.state = MJRefreshStateIdle;
+    }
     
-    [BaseRequest POST:ProjectList_URL parameters:nil success:^(id resposeObject) {
-       
+    _parameter = [NSMutableDictionary dictionaryWithDictionary:[model modeltodic]];
+    [_parameter setObject:@(page) forKey:@"page"];
+    [BaseRequest GET:ProjectList_URL parameters:_parameter success:^(id resposeObject) {
+        
+        [self.MainTableView.mj_header endRefreshing];
+        [self.MainTableView.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"status"] integerValue] == 200) {
+            
+//            if () {
+//                <#statements#>
+//            }
+        }else{
+            
+//            self showContent:<#(NSString *)#>
+        }
     } failure:^(NSError *error) {
         
+        [self.MainTableView.mj_header endRefreshing];
+        [self.MainTableView.mj_footer endRefreshing];
         NSLog(@"%@",error.localizedDescription);
     }];
+
 }
 
 -(void)startLocation
@@ -367,6 +396,16 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            
+            page = 1;
+            [self RequestMethod];
+        }];
+        
+        _MainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            
+            [self RequestMethod];
+        }];
     }
     return _MainTableView;
 }
