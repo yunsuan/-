@@ -15,6 +15,7 @@
 #import "HouseSearchVC.h"
 #import "PYSearchViewController.h"
 #import "MoreView.h"
+#import "RoomListModel.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -71,8 +72,9 @@
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
     
-    
-    [BaseRequest POST:ProjectList_URL parameters:nil success:^(id resposeObject) {
+    RoomListModel *model = [[RoomListModel alloc] init];
+    model.city = @"2330";
+    [BaseRequest POST:ProjectList_URL parameters:[model modeltodic] success:^(id resposeObject) {
        
         NSLog(@"%@",resposeObject);
     } failure:^(NSError *error) {
