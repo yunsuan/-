@@ -87,7 +87,7 @@
         if ([resposeObject[@"code"] integerValue]==200) {
         
             [[NSUserDefaults standardUserDefaults]setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
-            [UserModel defaultModel].Token = resposeObject[@"data"];
+            [UserModel defaultModel].Token = resposeObject[@"data"][@"token"];
             [UserModel defaultModel].Account = _Account.text;
             [UserModel defaultModel].Password = _PassWord.text;
             CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];

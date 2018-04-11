@@ -52,6 +52,8 @@
         
     } WithDefaultBlack:^{
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
+        [UserModel defaultModel].Token = @"";
+        [UserModelArchiver archive];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
         
     }];
