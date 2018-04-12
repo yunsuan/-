@@ -9,12 +9,14 @@
 #import "AddRequireMentVC.h"
 #import "DropDownBtn.h"
 #import "BorderTF.h"
+#import "AdressChooseView.h"
 
 @interface AddRequireMentVC ()<UITextViewDelegate>
 {
     
     NSInteger _num;
     CustomRequireModel *_model;
+    NSInteger _btnNum;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -91,6 +93,8 @@
 
 @property (nonatomic, strong) UIButton *nextBtn;
 
+//@property (nonatomic, strong) AdressChooseView *addressChooseView;
+
 @end
 
 @implementation AddRequireMentVC
@@ -126,7 +130,57 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [BaseRequest GET:Config_URL parameters:nil success:^(id resposeObject) {
+       
+        NSLog(@"%@",resposeObject);
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
     [self initUI];
+}
+
+- (void)ActionAreaBtn:(UIButton *)btn{
+    
+    switch (btn.tag) {
+        case 0:
+        {
+            _btnNum = 1;
+            break;
+        }
+        case 1:
+        {
+            _btnNum = 2;
+            break;
+        }
+        case 2:
+        {
+            _btnNum = 3;
+            break;
+        }
+        default:
+            break;
+    }
+    AdressChooseView *addressChooseView= [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+    WS(weakself);
+    addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+        
+        if (_btnNum == 1) {
+            
+            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+        }else if (_btnNum == 2){
+            
+            weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+        }else{
+            
+            weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+        }
+    };
+    
+    [self.view addSubview:addressChooseView];
 }
 
 - (void)ActionNextBtn:(UIButton *)btn{
@@ -150,7 +204,7 @@
         [dic setObject:@"1" forKey:@"pay_type"];
         [dic setObject:@"20" forKey:@"intent"];
         [dic setObject:@"50" forKey:@"urgency"];
-        [BaseRequest POST:@"agent/client/addClientAndNeed" parameters:dic success:^(id resposeObject) {
+        [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
             NSLog(@"%@",resposeObject);
         } failure:^(NSError *error) {
@@ -176,70 +230,79 @@
 
 - (void)ActionAddBtn:(UIButton *)btn{
     
-    _num += 1;
-    if (_num == 1) {
+    if (_num == 0) {
         
-        [_addressBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        if (_addressBtn.content.text.length) {
             
-            make.left.equalTo(_infoView).offset(81 *SIZE);
-            make.top.equalTo(_addressBtn.mas_bottom).offset(19 *SIZE);
-            make.width.equalTo(@(258 *SIZE));
-            make.height.equalTo(@(33 *SIZE));
-        }];
-        _addressBtn2.hidden = NO;
-        
-        
-        [_houseTypeL mas_remakeConstraints:^(MASConstraintMaker *make) {
+            _num += 1;
+            [_addressBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(81 *SIZE);
+                make.top.equalTo(_addressBtn.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+            _addressBtn2.hidden = NO;
             
-            make.left.equalTo(_infoView).offset(10 *SIZE);
-            make.top.equalTo(_addressBtn2.mas_bottom).offset(29 *SIZE);
-            make.width.equalTo(@(70 *SIZE));
-            make.height.equalTo(@(13 *SIZE));
-        }];
-        
-        [_houseTypeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
             
-            make.left.equalTo(_infoView).offset(81 *SIZE);
-            make.top.equalTo(_addressBtn2.mas_bottom).offset(19 *SIZE);
-            make.width.equalTo(@(258 *SIZE));
-            make.height.equalTo(@(33 *SIZE));
-        }];
-        
+            [_houseTypeL mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(10 *SIZE);
+                make.top.equalTo(_addressBtn2.mas_bottom).offset(29 *SIZE);
+                make.width.equalTo(@(70 *SIZE));
+                make.height.equalTo(@(13 *SIZE));
+            }];
+            
+            [_houseTypeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(81 *SIZE);
+                make.top.equalTo(_addressBtn2.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+        }else{
+            
+            [self showContent:@"请选择意向区域"];
+        }
     }else{
-        
-        [_addressBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+    
+        if (_addressBtn2.content.text.length) {
+
+            _num += 1;
+            [_addressBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(81 *SIZE);
+                make.top.equalTo(_addressBtn.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
             
-            make.left.equalTo(_infoView).offset(81 *SIZE);
-            make.top.equalTo(_addressBtn.mas_bottom).offset(19 *SIZE);
-            make.width.equalTo(@(258 *SIZE));
-            make.height.equalTo(@(33 *SIZE));
-        }];
-        
-        [_addressBtn3 mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [_addressBtn3 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(81 *SIZE);
+                make.top.equalTo(_addressBtn2.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+            _addressBtn2.hidden = NO;
+            _addressBtn3.hidden = NO;
             
-            make.left.equalTo(_infoView).offset(81 *SIZE);
-            make.top.equalTo(_addressBtn2.mas_bottom).offset(19 *SIZE);
-            make.width.equalTo(@(258 *SIZE));
-            make.height.equalTo(@(33 *SIZE));
-        }];
-        _addressBtn2.hidden = NO;
-        _addressBtn3.hidden = NO;
-        
-        [_houseTypeL mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [_houseTypeL mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(10 *SIZE);
+                make.top.equalTo(_addressBtn3.mas_bottom).offset(29 *SIZE);
+                make.width.equalTo(@(70 *SIZE));
+                make.height.equalTo(@(13 *SIZE));
+            }];
             
-            make.left.equalTo(_infoView).offset(10 *SIZE);
-            make.top.equalTo(_addressBtn3.mas_bottom).offset(29 *SIZE);
-            make.width.equalTo(@(70 *SIZE));
-            make.height.equalTo(@(13 *SIZE));
-        }];
-        
-        [_houseTypeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.equalTo(_infoView).offset(81 *SIZE);
-            make.top.equalTo(_addressBtn3.mas_bottom).offset(19 *SIZE);
-            make.width.equalTo(@(258 *SIZE));
-            make.height.equalTo(@(33 *SIZE));
-        }];
+            [_houseTypeBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_infoView).offset(81 *SIZE);
+                make.top.equalTo(_addressBtn3.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+        }
     }
 }
 
@@ -389,10 +452,12 @@
         if (i < 10) {
             
             DropDownBtn *btn = [[DropDownBtn alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
+            btn.tag = i;
             switch (i) {
                 case 0:
                 {
                     _addressBtn = btn;
+                    [_addressBtn addTarget:self action:@selector(ActionAreaBtn:) forControlEvents:UIControlEventTouchUpInside];
                     _addressBtn.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
                     [_infoView addSubview:_addressBtn];
                     break;
@@ -402,6 +467,7 @@
                     _addressBtn2 = btn;
                     _addressBtn2.hidden = YES;
                     _addressBtn2.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
+                    [_addressBtn2 addTarget:self action:@selector(ActionAreaBtn:) forControlEvents:UIControlEventTouchUpInside];
                     [_infoView addSubview:_addressBtn2];
                     break;
                 }
@@ -410,6 +476,7 @@
                     _addressBtn3 = btn;
                     _addressBtn3.hidden = YES;
                     _addressBtn3.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
+                    [_addressBtn3 addTarget:self action:@selector(ActionAreaBtn:) forControlEvents:UIControlEventTouchUpInside];
                     [_infoView addSubview:_addressBtn3];
                     break;
                 }
@@ -858,5 +925,31 @@
     }];
     
 }
+
+//- (AdressChooseView *)addressChooseView{
+//    
+//    if (!_addressChooseView) {
+//        
+//        _addressChooseView = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+//        WS(weakself);
+//        _addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+//            
+//            if (_btnNum == 1) {
+//                
+//                weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//                weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//            }else if (_btnNum == 2){
+//                
+//                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//            }else{
+//                
+//                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//            }
+//        };
+//    }
+//    return _addressChooseView;
+//}
 
 @end

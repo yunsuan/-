@@ -201,6 +201,7 @@
     tellab1.textColor = YJTitleLabColor;
     [_scrollview addSubview:tellab1];
     _tel1 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 146*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    _tel1.textfield.keyboardType = UIKeyboardTypePhonePad;
     [_scrollview addSubview:_tel1];
     
     _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -211,10 +212,12 @@
     
     _tel2 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 196*SIZE, 257.7*SIZE, 33.3*SIZE)];
     _tel2.hidden = YES;
+    _tel2.textfield.keyboardType = UIKeyboardTypePhonePad;
     [_scrollview addSubview:_tel2];
 
     _tel3 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 246*SIZE, 257.7*SIZE, 33.3*SIZE)];
     _tel3.hidden = YES;
+    _tel3.textfield.keyboardType = UIKeyboardTypePhonePad;
     [_scrollview addSubview:_tel3];
     
     //证件类型
@@ -236,6 +239,7 @@
     [_scrollview addSubview:_numlab];
     
     _num = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 346*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    _num.textfield.keyboardType = UIKeyboardTypeDefault;
     [_scrollview addSubview:_num];
     
     //地址
@@ -479,7 +483,7 @@
             
             _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@",_tel1.textfield.text,_tel2.textfield.text];
         }
-        if (_numAdd == 2 && [self checkTel:_tel2.textfield.text]) {
+        if (_numAdd > 1 && [self checkTel:_tel2.textfield.text]) {
             
             _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
         }

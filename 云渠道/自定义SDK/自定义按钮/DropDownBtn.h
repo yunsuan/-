@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DropDownBtn : UIButton
+
+@property (nonatomic, copy) NSString *str;
 @property (nonatomic , strong) UILabel *content;
 @property (nonatomic , strong) UIImageView *dropimg;
 
