@@ -400,21 +400,14 @@
 
 -(void)action_numclass
 {
-    [BaseRequest GET:Config_URL parameters:@{@"id":[NSString stringWithFormat:@"%ld",CARD_TYPE]} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        if ([resposeObject[@"code"] integerValue] == 200) {
-            NSArray *dataarr = resposeObject[@"data"][@"param"];
-            SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:dataarr];
-                view.selectedBlock = ^(NSString *MC, NSString *ID) {
-                    _numclass.content.text = MC;
-                    _Customerinfomodel.card_type = ID;
-                };
-                [self.view addSubview:view];
-            
-        }
-    } failure:^(NSError *error) {
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:CARD_TYPE]];
+    
+    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+    _numclass.content.text = MC;
+    _Customerinfomodel.card_type = ID;
         
-    }];
+    };
+    [self.view addSubview:view];
 }
 
 -(void)action_address

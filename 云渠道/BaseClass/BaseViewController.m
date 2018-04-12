@@ -11,6 +11,8 @@
 //#import "LogoinViewController.h"
 #import <CommonCrypto/CommonDigest.h>
 
+
+
 @interface BaseViewController ()
 
 @end
@@ -455,5 +457,12 @@
     NSString*currentDateStr = [dateFormatter stringFromDate:date];
     return currentDateStr;
 }
+-(NSArray *)getDetailConfigArrByConfigState:(ConfigState)configState
+{
+     NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+     NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%lu",(unsigned long)configState]];
+    return dic[@"param"];
+}
+
 @end
 
