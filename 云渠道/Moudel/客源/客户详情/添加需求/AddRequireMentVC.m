@@ -131,7 +131,36 @@
 
 - (void)ActionNextBtn:(UIButton *)btn{
     
-    
+    if ([self.status isEqualToString:@"addCustom"]) {
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.infoModel modeltodic]];
+        [dic setObject:@"510100" forKey:@"region"];
+        [dic setObject:@"60" forKey:@"property_type"];
+        [dic setObject:@"100" forKey:@"price_min"];
+        [dic setObject:@"150" forKey:@"price_max"];
+        [dic setObject:@"80" forKey:@"area_min"];
+        [dic setObject:@"100" forKey:@"area_max"];
+        [dic setObject:@"34" forKey:@"build_type"];
+        [dic setObject:@"3" forKey:@"orientation"];
+        [dic setObject:@"3" forKey:@"floor_min"];
+        [dic setObject:@"10" forKey:@"floor_max"];
+        [dic setObject:@"1" forKey:@"ladder_ratio"];
+        [dic setObject:@"1" forKey:@"decorate"];
+        [dic setObject:@"1" forKey:@"buy_purpose"];
+        [dic setObject:@"1" forKey:@"pay_type"];
+        [dic setObject:@"20" forKey:@"intent"];
+        [dic setObject:@"50" forKey:@"urgency"];
+        [BaseRequest POST:@"agent/client/addClientAndNeed" parameters:dic success:^(id resposeObject) {
+           
+            NSLog(@"%@",resposeObject);
+        } failure:^(NSError *error) {
+            
+            NSLog(@"%@",error);
+        }];
+    }else{
+        
+        
+    }
 }
 
 - (void)ActionSliderChange:(UISlider *)slider{
@@ -532,6 +561,7 @@
     [_nextBtn setBackgroundColor:YJBlueBtnColor];
     _nextBtn.layer.cornerRadius = 2 *SIZE;
     _nextBtn.clipsToBounds = YES;
+    [_nextBtn addTarget:self action:@selector(ActionNextBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_nextBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_scrolleView addSubview:_nextBtn];
     

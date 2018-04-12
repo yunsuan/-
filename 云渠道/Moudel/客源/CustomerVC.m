@@ -14,8 +14,6 @@
 #import "BoxView.h"
 #import "AddCustomerVC.h"
 
-
-
 @interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     
@@ -40,9 +38,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initDataSource];
     [self initUI];
-    _page = 1;
     [self RequestMethod];
+}
+
+- (void)initDataSource{
+    
+    _page = 1;
+    _dataArr = [@[] mutableCopy];
 }
 
 - (void)RequestMethod{
@@ -64,7 +68,8 @@
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
-//                        self SetData:<#(NSArray *)#>
+                        [self SetData:resposeObject[@"data"][@"data"]];
+                        
                     }else{
                         
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -100,15 +105,20 @@
             
             if ([tempDic[key] isKindOfClass:[NSNull class]]) {
                 
-                [tempDic setObject:@"" forKey:key];
+                if ([key isEqualToString:@"region"]) {
+                    
+                    [tempDic setObject:@[] forKey:@"region"];
+                }else{
+                    
+                    [tempDic setObject:@"" forKey:key];
+                }
             }
         }];
         
-//        CustomerModel *model = [[CustomerModel alloc] initWithDictionary:tempDic];
+        CustomerTableModel *model = [[CustomerTableModel alloc] initWithDictionary:tempDic];
         
-//        [_dataArr addObject:model];
+        [_dataArr addObject:model];
     }
-    
     [_customerTable reloadData];
 }
 
@@ -143,8 +153,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
-//    return _dataArr.count;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -161,18 +170,9 @@
         cell = [[CustomerTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     
-    CustomerTableModel *model = [[CustomerTableModel alloc] init];
-    
-    model.name = @"金三";
-    model.price = @"80-100万";
-    model.type = @"三室一厅一卫";
-    model.area = @"郫都区-德源大道";
-    model.matchRate = @"30";
-    model.phone = @"15983804766";
-    model.intention = @"23";
-    model.urgent = @"43";
-    
+    CustomerTableModel *model = _dataArr[indexPath.row];
     cell.model = model;
     
     return cell;

@@ -13,16 +13,22 @@
 #import "DateChooseView.h"
 #import "AdressChooseView.h"
 #import "CustomerModel.h"
+#import "AddRequireMentVC.h"
 
 @interface AddCustomerVC ()
 {
+    NSInteger _numAdd;
     CustomerModel *_model;
 }
 @property (nonatomic , strong) UIScrollView *scrollview;
+@property (nonatomic, strong) UILabel *numclasslab;
+@property (nonatomic, strong) UILabel *numlab;
+@property (nonatomic, strong) UILabel *adresslab;
 @property (nonatomic , strong) DropDownBtn *sex;
 @property (nonatomic , strong) BorderTF *name;
 @property (nonatomic , strong) DropDownBtn *birth;
 @property (nonatomic , strong) BorderTF *tel1;
+@property (nonatomic, strong) UIButton *addBtn;
 @property (nonatomic , strong) BorderTF *tel2;
 @property (nonatomic , strong) BorderTF *tel3;
 @property (nonatomic , strong) DropDownBtn *numclass;
@@ -50,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"添加客户";
     [self initDataSouce];
@@ -64,9 +70,88 @@
     _Customerinfomodel.sex = @"0";
 }
 
+- (void)ActionAddBtn:(UIButton *)btn{
+    
+    if (_numAdd == 0 ) {
+        
+        if ([self checkTel:_tel1.textfield.text]) {
+            
+            _numAdd += 1;
+            [_tel2 mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_scrollview).offset(80 *SIZE);
+                make.top.equalTo(_tel1.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+            _tel2.hidden = NO;
+            
+            
+            [_numclasslab mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_scrollview).offset(9 *SIZE);
+                make.top.equalTo(_tel2.mas_bottom).offset(30 *SIZE);
+                make.width.equalTo(@(65 *SIZE));
+                make.height.equalTo(@(13 *SIZE));
+            }];
+            
+            [_numclass mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_scrollview).offset(80 *SIZE);
+                make.top.equalTo(_tel2.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+        }else{
+            
+            [self showContent:@"请填写正确的电话号码"];
+        }
+        
+    }else{
+        
+        if ([self checkTel:_tel2.textfield.text]) {
+            
+            _numAdd += 1;
+            [_tel3 mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_scrollview).offset(80 *SIZE);
+                make.top.equalTo(_tel2.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+            _tel3.hidden = NO;
+            
+            
+            [_numclasslab mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_scrollview).offset(9 *SIZE);
+                make.top.equalTo(_tel3.mas_bottom).offset(30 *SIZE);
+                make.width.equalTo(@(65 *SIZE));
+                make.height.equalTo(@(13 *SIZE));
+            }];
+            
+            [_numclass mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(_scrollview).offset(80 *SIZE);
+                make.top.equalTo(_tel3.mas_bottom).offset(19 *SIZE);
+                make.width.equalTo(@(258 *SIZE));
+                make.height.equalTo(@(33 *SIZE));
+            }];
+        }else{
+            
+            [self showContent:@"请填写正确的电话号码"];
+        }
+    }
+}
+
 -(void)initUI
 {
-    [self.view addSubview:self.scrollview];
+    
+    _scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE,SCREEN_Height - NAVIGATION_BAR_HEIGHT)];
+    _scrollview.contentSize = CGSizeMake(360*SIZE, 680*SIZE);
+    _scrollview.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_scrollview];
+    
     UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 53*SIZE)];
     // 顶部
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
@@ -77,103 +162,197 @@
     title.textColor = YJTitleLabColor;
     title.text = @"客户信息";
     [backview addSubview:title];
-    [self.scrollview addSubview:backview];
+    [_scrollview addSubview:backview];
     
     //姓名
     UILabel *namelab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 56*SIZE, 100*SIZE, 14*SIZE)];
     namelab.text = @"*姓名:";
     namelab.font = [UIFont systemFontOfSize:13.3*SIZE];
     namelab.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:namelab];
+    [_scrollview addSubview:namelab];
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
     _name.textfield.text = _model.name;
-    [self.scrollview addSubview:_name];
+    [_scrollview addSubview:_name];
     
     //性别
     UILabel *sexlab = [[UILabel alloc]initWithFrame:CGRectMake(208.7*SIZE, 56*SIZE, 100*SIZE, 14*SIZE)];
     sexlab.text = @"性别:";
     sexlab.font = [UIFont systemFontOfSize:13.3*SIZE];
     sexlab.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:sexlab];
+    [_scrollview addSubview:sexlab];
     _sex = [[DropDownBtn alloc]initWithFrame:CGRectMake(251.3*SIZE, 46*SIZE, 86.7*SIZE, 33.3*SIZE)];
     [_sex addTarget:self action:@selector(action_sex) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollview addSubview:_sex];
+    [_scrollview addSubview:_sex];
+    
     //出生日期
     UILabel *brithlab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 106*SIZE, 100*SIZE, 14*SIZE)];
     brithlab.text = @"出生日期:";
     brithlab.font = [UIFont systemFontOfSize:13.3*SIZE];
     brithlab.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:brithlab];
+    [_scrollview addSubview:brithlab];
     _birth = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 96*SIZE, 257.7*SIZE, 33.3*SIZE)];
     [_birth addTarget:self action:@selector(action_brith) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollview addSubview:_birth];
+    [_scrollview addSubview:_birth];
     
     //电话
-    UILabel *tellab1 = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 156*SIZE, 100*SIZE, 14*SIZE)];
-    tellab1.text = @"*联系号码1:";
+    UILabel *tellab1 = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 169*SIZE, 100*SIZE, 14*SIZE)];
+    tellab1.text = @"*联系号码:";
     tellab1.font = [UIFont systemFontOfSize:13.3*SIZE];
     tellab1.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:tellab1];
+    [_scrollview addSubview:tellab1];
     _tel1 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 146*SIZE, 257.7*SIZE, 33.3*SIZE)];
-    [self.scrollview addSubview:_tel1];
+    [_scrollview addSubview:_tel1];
     
-    UILabel *tellab2 = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 206*SIZE, 100*SIZE, 14*SIZE)];
-    tellab2.text = @"联系号码2:";
-    tellab2.font = [UIFont systemFontOfSize:13.3*SIZE];
-    tellab2.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:tellab2];
+    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addBtn.frame = CGRectMake(313 *SIZE, 162 *SIZE, 25 *SIZE, 25 *SIZE);
+    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
+    [_scrollview addSubview:_addBtn];
+    
     _tel2 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 196*SIZE, 257.7*SIZE, 33.3*SIZE)];
-    [self.scrollview addSubview:_tel2];
-    
-    UILabel *tellab3 = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 256*SIZE, 100*SIZE, 14*SIZE)];
-    tellab3.text = @"联系号码3:";
-    tellab3.font = [UIFont systemFontOfSize:13.3*SIZE];
-    tellab3.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:tellab3];
+    _tel2.hidden = YES;
+    [_scrollview addSubview:_tel2];
+
     _tel3 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 246*SIZE, 257.7*SIZE, 33.3*SIZE)];
-    [self.scrollview addSubview:_tel3];
+    _tel3.hidden = YES;
+    [_scrollview addSubview:_tel3];
+    
     //证件类型
-    UILabel *numclasslab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 306*SIZE, 100*SIZE, 14*SIZE)];
-    numclasslab.text = @"证件类型:";
-    numclasslab.font = [UIFont systemFontOfSize:13.3*SIZE];
-    numclasslab.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:numclasslab];
+    _numclasslab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 306*SIZE, 100*SIZE, 14*SIZE)];
+    _numclasslab.text = @"证件类型:";
+    _numclasslab.font = [UIFont systemFontOfSize:13.3*SIZE];
+    _numclasslab.textColor = YJTitleLabColor;
+    [_scrollview addSubview:_numclasslab];
+    
     _numclass = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 296*SIZE, 257.7*SIZE, 33.3*SIZE)];
     [_numclass addTarget:self action:@selector(action_numclass) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollview addSubview:_numclass];
+    [_scrollview addSubview:_numclass];
+    
     //证件号
-    UILabel *numlab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 356*SIZE, 100*SIZE, 14*SIZE)];
-    numlab.text = @"证件号:";
-    numlab.font = [UIFont systemFontOfSize:13.3*SIZE];
-    numlab.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:numlab];
+    _numlab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 356*SIZE, 100*SIZE, 14*SIZE)];
+    _numlab.text = @"证件号:";
+    _numlab.font = [UIFont systemFontOfSize:13.3*SIZE];
+    _numlab.textColor = YJTitleLabColor;
+    [_scrollview addSubview:_numlab];
+    
     _num = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 346*SIZE, 257.7*SIZE, 33.3*SIZE)];
-    [self.scrollview addSubview:_num];
+    [_scrollview addSubview:_num];
+    
     //地址
-    UILabel *_adresslab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 406*SIZE, 100*SIZE, 14*SIZE)];
+    _adresslab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 406*SIZE, 100*SIZE, 14*SIZE)];
     _adresslab.text = @"地址:";
     _adresslab.font = [UIFont systemFontOfSize:13.3*SIZE];
     _adresslab.textColor = YJTitleLabColor;
-    [self.scrollview addSubview:_adresslab];
-    _adress = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 396*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    [_scrollview addSubview:_adresslab];
     
+    _adress = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 396*SIZE, 257.7*SIZE, 33.3*SIZE)];
     [_adress addTarget:self action:@selector(action_address) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollview addSubview:_adress];
-     UIView * detailadressview = [[UIView alloc]initWithFrame:CGRectMake(80.3*SIZE, 446*SIZE, 257.7*SIZE, 86.7*SIZE)];
-    detailadressview.layer.masksToBounds = YES;
-    detailadressview.layer.cornerRadius = 5*SIZE;
-    detailadressview.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
-    detailadressview.layer.borderWidth = 1*SIZE;
-    [_scrollview addSubview:detailadressview];
+    [_scrollview addSubview:_adress];
+    
+//     UIView * detailadressview = [[UIView alloc]initWithFrame:CGRectMake(80.3*SIZE, 446*SIZE, 257.7*SIZE, 86.7*SIZE)];
+//    detailadressview.layer.masksToBounds = YES;
+//    detailadressview.layer.cornerRadius = 5*SIZE;
+//    detailadressview.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
+//    detailadressview.layer.borderWidth = 1*SIZE;
+//    [_scrollview addSubview:detailadressview];
     
     _detailadress = [[UITextView alloc]initWithFrame:CGRectMake(90.3*SIZE,456*SIZE, 237.7*SIZE, 66.7*SIZE)];
-    _detailadress.textColor =YJTitleLabColor;
+    _detailadress.textColor = YJTitleLabColor;
+    _detailadress.layer.cornerRadius = 5 *SIZE;
+    _detailadress.clipsToBounds = YES;
+    _detailadress.layer.borderWidth = SIZE;
+    _detailadress.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
     _detailadress.font = [UIFont systemFontOfSize:13.3*SIZE];
-    [self.scrollview addSubview:_detailadress];
-    [self.scrollview addSubview:self.surebtn];
+    [_scrollview addSubview:_detailadress];
     
+    [_scrollview addSubview:self.surebtn];
+    
+    [self masonryUI];
 }
 
+- (void)masonryUI{
+    
+    [_scrollview mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.view).offset(0);
+        make.top.equalTo(self.view).offset(NAVIGATION_BAR_HEIGHT);
+        make.right.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(0);
+    }];
+    
+    [_tel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(81 *SIZE);
+        make.top.equalTo(_scrollview).offset(158 *SIZE);
+        make.width.equalTo(@(217 *SIZE));
+        make.height.equalTo(@(33 *SIZE));
+    }];
+    
+    [_numclasslab mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(_scrollview).offset(9 *SIZE);
+        make.top.equalTo(_tel1.mas_bottom).offset(30 *SIZE);
+        make.width.equalTo(@(65 *SIZE));
+        make.height.equalTo(@(13 *SIZE));
+    }];
+    
+    [_numclass mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(80 *SIZE);
+        make.top.equalTo(_tel1.mas_bottom).offset(19 *SIZE);
+        make.width.equalTo(@(258 *SIZE));
+        make.height.equalTo(@(33 *SIZE));
+    }];
+    
+    [_numlab mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(9 *SIZE);
+        make.top.equalTo(_numclass.mas_bottom).offset(30 *SIZE);
+        make.width.equalTo(@(65 *SIZE));
+        make.height.equalTo(@(13 *SIZE));
+    }];
+    
+    [_num mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(80 *SIZE);
+        make.top.equalTo(_numclass.mas_bottom).offset(19 *SIZE);
+        make.width.equalTo(@(258 *SIZE));
+        make.height.equalTo(@(33 *SIZE));
+    }];
+    
+    [_adresslab mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(9 *SIZE);
+        make.top.equalTo(_num.mas_bottom).offset(30 *SIZE);
+        make.width.equalTo(@(65 *SIZE));
+        make.height.equalTo(@(13 *SIZE));
+    }];
+    
+    [_adress mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(80 *SIZE);
+        make.top.equalTo(_num.mas_bottom).offset(19 *SIZE);
+        make.width.equalTo(@(258 *SIZE));
+        make.height.equalTo(@(33 *SIZE));
+    }];
+    
+    [_detailadress mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(80 *SIZE);
+        make.top.equalTo(_adress.mas_bottom).offset(24 *SIZE);
+        make.width.equalTo(@(258 *SIZE));
+        make.height.equalTo(@(77 *SIZE));
+    }];
+    
+    [self.surebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_scrollview).offset(22 *SIZE);
+        make.top.equalTo(_detailadress.mas_bottom).offset(43 *SIZE);
+        make.width.equalTo(@(317 *SIZE));
+        make.height.equalTo(@(40 *SIZE));
+        make.bottom.equalTo(_scrollview.mas_bottom).offset(-53 *SIZE);
+    }];
+}
 
 -(void)action_sex
 {
@@ -272,6 +451,7 @@
             [self showContent:resposeObject[@"msg"]];
             if ([resposeObject[@"code"] integerValue] ==200) {
                 
+                
             }
             else{
                 
@@ -286,38 +466,33 @@
     }else{
         
         _Customerinfomodel.name = _name.textfield.text;
-        _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
+        
+        if ([self checkTel:_tel1.textfield.text]) {
+            
+            _Customerinfomodel.tel = _tel1.textfield.text;
+        }else{
+            
+            [self showContent:@"请填写正确的电话号码"];
+            return;
+        }
+        if (_numAdd == 1 && [self checkTel:_tel2.textfield.text]) {
+            
+            _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@",_tel1.textfield.text,_tel2.textfield.text];
+        }
+        if (_numAdd == 2 && [self checkTel:_tel2.textfield.text]) {
+            
+            _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
+        }
         _Customerinfomodel.card_id = _num.textfield.text;
         _Customerinfomodel.address = _detailadress.text;
         
-        [BaseRequest POST:AddCustomer_URL parameters:[_Customerinfomodel modeltodic] success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            [self showContent:resposeObject[@"msg"]];
-            if ([resposeObject[@"code"] integerValue] ==200) {
-                
-                
-            }
-            else{
-                
-                
-            }
-
-        } failure:^(NSError *error) {
-            NSLog(@"%@",error);
-            [self showContent:@"网络出错"];
-        }];
+        AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] init];
+        nextVC.status = @"addCustom";
+        nextVC.infoModel = _Customerinfomodel;
+        [self.navigationController pushViewController:nextVC animated:YES];
     }
 }
 
--(UIScrollView *)scrollview
-{
-    if (!_scrollview) {
-        _scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE,SCREEN_Height - NAVIGATION_BAR_HEIGHT)];
-        _scrollview.contentSize = CGSizeMake(360*SIZE, 680*SIZE);
-        _scrollview.backgroundColor = [UIColor whiteColor];
-    }
-    return _scrollview;
-}
 
 -(UIButton *)surebtn
 {
@@ -327,7 +502,14 @@
         _surebtn.backgroundColor = YJBlueBtnColor;
         _surebtn.layer.masksToBounds = YES;
         _surebtn.layer.cornerRadius = 1.7*SIZE;
-        [_surebtn setTitle:@"确定" forState:UIControlStateNormal];
+        
+        if (_model.name) {
+            
+            [_surebtn setTitle:@"确定" forState:UIControlStateNormal];
+        }else{
+         
+            [_surebtn setTitle:@"下一步" forState:UIControlStateNormal];
+        }
         [_surebtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _surebtn.titleLabel.font = [UIFont systemFontOfSize:15.3*SIZE];
         [_surebtn addTarget:self action:@selector(action_sure) forControlEvents:UIControlEventTouchUpInside];
