@@ -11,6 +11,7 @@
 #import "BorderTF.h"
 #import "AdressChooseView.h"
 #import "CustomerVC.h"
+#import "SinglePickView.h"
 
 @interface AddRequireMentVC ()<UITextViewDelegate>
 {
@@ -184,6 +185,138 @@
     [self.view addSubview:addressChooseView];
 }
 
+- (void)ActionTagBtn:(UIButton *)btn{
+    
+    switch (btn.tag) {
+        case 0:
+        {
+            break;
+        }
+        case 1:
+        {
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+        case 3:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PROPERTY_TYPE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.houseTypeBtn.content.text = MC;
+                weakself.houseTypeBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 4:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PROPERTY_TYPE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.houseTypeBtn.content.text = MC;
+                weakself.houseTypeBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 5:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PROPERTY_TYPE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.houseTypeBtn.content.text = MC;
+                weakself.houseTypeBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 6:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:HOUSE_TYPE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.typeBtn.content.text = MC;
+                weakself.typeBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 7:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:FACE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.faceBtn.content.text = MC;
+                weakself.faceBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 8:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BUY_TYPE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.purposeBtn.content.text = MC;
+                weakself.purposeBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 9:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.payWayBtn.content.text = MC;
+                weakself.payWayBtn.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 10:
+        {
+//            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
+//            WS(weakself);
+//            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+//
+//                weakself.payWayBtn.content.text = MC;
+//                weakself.payWayBtn.str = ID;
+//            };
+//            [self.view addSubview:view];
+            break;
+        }
+        case 11:
+        {
+            break;
+        }
+        case 12:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:DECORATE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.standardTF.content.text = MC;
+                weakself.standardTF.str = ID;
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 - (void)ActionNextBtn:(UIButton *)btn{
     
     if ([self.status isEqualToString:@"addCustom"]) {
@@ -229,7 +362,7 @@
         }
         if (_typeBtn.str.length) {
             
-            [dic setObject:_typeBtn.str forKey:@"build_type"];
+            [dic setObject:_typeBtn.str forKey:@"house_type"];
         }
         if (_faceBtn.str.length) {
             
@@ -437,7 +570,7 @@
     [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
     [_infoView addSubview:_addBtn];
     
-    for(int i = 0; i < 12; i++){
+    for(int i = 0; i < 13; i++){
         
         UILabel *label = [[UILabel alloc] init];
         label.textColor = YJTitleLabColor;
@@ -535,6 +668,7 @@
             
             DropDownBtn *btn = [[DropDownBtn alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
             btn.tag = i;
+            [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
             switch (i) {
                 case 0:
                 {

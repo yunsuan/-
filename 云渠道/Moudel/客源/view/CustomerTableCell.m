@@ -30,8 +30,8 @@
         make.width.equalTo(@(_nameL.mj_textWith + 10 *SIZE));
         make.height.equalTo(@(14 *SIZE));
     }];
-    _priceL.text = [NSString stringWithFormat:@"意向总价：%@-%@",model.price_min,model.price_max];
-    _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.build_type];
+    _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.total_price];
+    _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.house_type];
     _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.region[0][@"city"]];
     
 //    NSMutableAttributedString *matchStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",model.matchRate,@"%"]];
