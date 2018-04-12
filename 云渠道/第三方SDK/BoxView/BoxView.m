@@ -8,7 +8,7 @@
 
 #import "BoxView.h"
 
-@interface BoxView()//<UITableViewDelegate,UITableViewDataSource>
+@interface BoxView()///<UITableViewDelegate,UITableViewDataSource>
 
 
 

@@ -84,7 +84,7 @@
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
         [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
            
-            if ([tempDic[key] isKindOfClass:[NSNull class]]) {
+            if ([obj isKindOfClass:[NSNull class]]) {
                 
                 [tempDic setObject:@"" forKey:key];
             }

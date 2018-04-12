@@ -34,8 +34,8 @@ typedef NS_OPTIONS(NSUInteger, ConfigState){
     AVERAGE=22, //均价
     FOLLOW_TYPE=23,//跟进方式
     APPEAL_TYPE=24,   //申述类型
-    TOTAL_PRICE = 25,    //面积
-    AREA = 26   //总价
+    TOTAL_PRICE = 25,    //总价
+    AREA = 26   //面积
 };
 
 

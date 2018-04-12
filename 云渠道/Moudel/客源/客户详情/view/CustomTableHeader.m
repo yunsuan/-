@@ -30,6 +30,104 @@
     return self;
 }
 
+- (void)setModel:(CustomerModel *)model{
+    
+    if (model.name) {
+        
+        self.nameL.text = [NSString stringWithFormat:@"姓名：%@",model.name];
+    }else{
+        
+        self.nameL.text = @"姓名";
+    }
+    
+    if ([model.sex integerValue] == 1) {
+        
+        self.genderL.text = @"性别：男";
+    }else if([model.sex integerValue] == 2){
+        
+        self.genderL.text = @"性别：女";
+    }else{
+        
+        self.genderL.text = @"性别：";
+    }
+    
+    if (model.birth) {
+        
+        self.birthL.text = [NSString stringWithFormat:@"出生年月：%@",model.birth];
+    }else{
+        
+        self.birthL.text = @"出生年月：";
+    }
+    
+    NSArray *telArr = [model.tel componentsSeparatedByString:@","];
+    if (telArr.count == 0) {
+        
+        self.phoneL.text = @"联系电话：";
+        self.phone2L.text = @"联系电话：";
+    }else if (telArr.count == 1){
+        
+        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
+        self.phone2L.text = @"联系电话：";
+    }else{
+        
+        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
+        self.phone2L.text = [NSString stringWithFormat:@"联系电话：%@",telArr[1]];
+    }
+    
+    NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+    NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",2]];
+    NSArray *typeArr = dic[@"param"];
+    self.certL.text = @"证件类型：";
+    for (int i = 0; i < typeArr.count; i++) {
+        
+        if ([typeArr[i][@"id"] integerValue] == [model.card_type integerValue]) {
+            
+            self.certL.text = [NSString stringWithFormat:@"证件类型：%@",typeArr[i][@"param"]];
+            break;
+        }
+    }
+    
+    if (model.card_id) {
+        
+        self.numL.text = [NSString stringWithFormat:@"证件号码：%@",model.card_id];
+    }else{
+        
+        self.numL.text = @"证件号码：";
+    }
+    
+    self.addressL.text = @"地址：";
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+    
+    NSError *err;
+    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                  options:NSJSONReadingMutableContainers
+                                                    error:&err];
+    for (int i = 0; i < provice.count; i++) {
+        
+        if([provice[i][@"region"] integerValue] == [model.province integerValue]){
+            
+            NSArray *city = provice[i][@"item"];
+            for (int j = 0; i < city.count; j++) {
+                
+                if([city[j][@"region"] integerValue] == [model.city integerValue]){
+                    
+                    NSArray *area = city[j][@"item"];
+                    
+                    for (int k = 0; i < area.count; j++) {
+                        
+                        if([area[k][@"region"] integerValue] == [model.district integerValue]){
+                    
+                            self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[j][@"name"],area[k][@"name"],model.address];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+}
+
 - (void)ActionEditBtn:(UIButton *)btn{
     
     if (_delegate &&[_delegate respondsToSelector:@selector(DGActionEditBtn:)]) {
@@ -52,6 +150,8 @@
     }
 }
 
+
+#pragma mark -- CollDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return 3;

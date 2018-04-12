@@ -22,13 +22,27 @@
 {
     NSArray *_arr;
     NSInteger _item;
-    NSMutableArray *_showArr;
+    NSMutableArray *_showArr;//是否展开
+    NSString *_clientId;
+    
+    CustomerModel *_customModel;//客户信息
+    NSMutableArray *_dataArr;//需求信息
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
 
 @end
 
 @implementation CustomDetailVC
+
+- (instancetype)initWithClientId:(NSString *)clientId
+{
+    self = [super init];
+    if (self) {
+        
+        _clientId = clientId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,14 +53,85 @@
 
 - (void)initDataSource{
     
+    _customModel = [[CustomerModel alloc] init];
     _showArr = [@[] mutableCopy];
+    _dataArr = [@[] mutableCopy];
     for ( int i = 0; i < 3; i++) {
         
         [_showArr addObject:@1];
     }
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+    [self RequestMethod];
 }
 
+- (void)RequestMethod{
+    
+    [BaseRequest GET:GetCliendInfo_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if ([resposeObject[@"data"][@"basic"] isKindOfClass:[NSDictionary class]]) {
+                    
+                    [self setCustomModel:resposeObject[@"data"][@"basic"]];
+                }
+                if ([resposeObject[@"data"][@"need_info"] isKindOfClass:[NSArray class]]) {
+                    
+                    [self setData:resposeObject[@"data"][@"need_info"]];
+                }
+                [_customDetailTable reloadData];
+            }else{
+                
+                [self showContent:@"暂无客户信息"];
+            }
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)setCustomModel:(NSDictionary *)dic{
+    
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        if ([obj isKindOfClass:[NSNull class]]) {
+            
+            [tempDic setObject:@"" forKey:key];
+        }
+    }];
+    _customModel = [[CustomerModel alloc] initWithDictionary:tempDic];
+}
+
+- (void)setData:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        if ([data[i] isKindOfClass:[NSDictionary class]]) {
+            
+            NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:data[i]];
+            [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [tempDic setObject:@"" forKey:key];
+                }
+            }];
+            
+            CustomRequireModel *model = [[CustomRequireModel alloc] initWithDictionary:tempDic];
+            [_dataArr addObject:model];
+        }
+    }
+}
+
+
+#pragma mark -- TableDelegate
 - (void)head1collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     _item = indexPath.item;
@@ -164,14 +249,7 @@
                 header.delegate = self;
                 [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
             }
-            header.nameL.text = @"姓名：张三";
-            header.genderL.text = @"性别：男";
-            header.birthL.text = @"出生年月：1994-12-12";
-            header.phoneL.text = @"联系电话：18745564523";
-            header.phone2L.text = @"联系电话：15983804766";
-            header.certL.text = @"证件类型：身份证";
-            header.numL.text = @"证件号：510623187876891234";
-            header.addressL.text = @"地址：四川 - 成都 - 郫都区 - 大禹东路108号";
+            header.model = _customModel;
             
             return header;
         }

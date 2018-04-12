@@ -16,6 +16,7 @@
 @interface AddRequireMentVC ()<UITextViewDelegate>
 {
     
+    NSMutableArray *_stairArr;
     NSInteger _num;
     CustomRequireModel *_model;
     NSInteger _btnNum;
@@ -139,7 +140,19 @@
         
         NSLog(@"%@",error);
     }];
+    
+    [self initDataSource];
     [self initUI];
+}
+
+- (void)initDataSource{
+    
+    _stairArr = [[NSMutableArray alloc] init];
+    for (int i = 1; i < 50; i++) {
+        
+        NSString *str = [NSString stringWithFormat:@"%d层",i];
+        [_stairArr addObject:@{@"id":@(i),@"param":str}];
+    }
 }
 
 - (void)ActionAreaBtn:(UIButton *)btn{
@@ -207,31 +220,31 @@
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
                 weakself.houseTypeBtn.content.text = MC;
-                weakself.houseTypeBtn.str = ID;
+                weakself.houseTypeBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
         }
         case 4:
         {
-            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PROPERTY_TYPE]];
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:TOTAL_PRICE]];
             WS(weakself);
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
-                weakself.houseTypeBtn.content.text = MC;
-                weakself.houseTypeBtn.str = ID;
+                weakself.priceBtn.content.text = MC;
+                weakself.priceBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
         }
         case 5:
         {
-            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PROPERTY_TYPE]];
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:AREA]];
             WS(weakself);
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
-                weakself.houseTypeBtn.content.text = MC;
-                weakself.houseTypeBtn.str = ID;
+                weakself.areaBtn.content.text = MC;
+                weakself.areaBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
@@ -243,7 +256,7 @@
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
                 weakself.typeBtn.content.text = MC;
-                weakself.typeBtn.str = ID;
+                weakself.typeBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
@@ -255,7 +268,7 @@
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
                 weakself.faceBtn.content.text = MC;
-                weakself.faceBtn.str = ID;
+                weakself.faceBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
@@ -267,7 +280,7 @@
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
                 weakself.purposeBtn.content.text = MC;
-                weakself.purposeBtn.str = ID;
+                weakself.purposeBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
@@ -279,25 +292,33 @@
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
                 weakself.payWayBtn.content.text = MC;
-                weakself.payWayBtn.str = ID;
+                weakself.payWayBtn.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
         }
         case 10:
         {
-//            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
-//            WS(weakself);
-//            view.selectedBlock = ^(NSString *MC, NSString *ID) {
-//
-//                weakself.payWayBtn.content.text = MC;
-//                weakself.payWayBtn.str = ID;
-//            };
-//            [self.view addSubview:view];
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_stairArr];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.floorTF1.content.text = MC;
+                weakself.floorTF1.str = [NSString stringWithFormat:@"%@",ID];
+            };
+            [self.view addSubview:view];
             break;
         }
         case 11:
         {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_stairArr];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.floorTF2.content.text = MC;
+                weakself.floorTF2.str = [NSString stringWithFormat:@"%@",ID];
+            };
+            [self.view addSubview:view];
             break;
         }
         case 12:
@@ -307,7 +328,7 @@
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 
                 weakself.standardTF.content.text = MC;
-                weakself.standardTF.str = ID;
+                weakself.standardTF.str = [NSString stringWithFormat:@"%@",ID];
             };
             [self.view addSubview:view];
             break;
@@ -344,21 +365,13 @@
             
             [dic setObject:_houseTypeBtn.str forKey:@"property_type"];
         }
-        if (_houseTypeBtn.str.length) {
+        if (_priceBtn.str.length) {
             
-            [dic setObject:_houseTypeBtn.str forKey:@"price_min"];
+            [dic setObject:_priceBtn.str forKey:@"total_price"];
         }
-        if (_houseTypeBtn.str.length) {
+        if (_areaBtn.str.length) {
             
-            [dic setObject:_houseTypeBtn.str forKey:@"price_max"];
-        }
-        if (_houseTypeBtn.str.length) {
-            
-            [dic setObject:_houseTypeBtn.str forKey:@"area_min"];
-        }
-        if (_houseTypeBtn.str.length) {
-            
-            [dic setObject:_houseTypeBtn.str forKey:@"area_max"];
+            [dic setObject:_areaBtn.str forKey:@"area"];
         }
         if (_typeBtn.str.length) {
             
