@@ -30,7 +30,6 @@
 {
     NSArray *_arr;
     BOOL _upAndDown;
-    
     BMKLocationService *_locService;  //定位
     BMKGeoCodeSearch *_geocodesearch; //地理编码主类，用来查询、返回结果信息
     NSInteger _page;
