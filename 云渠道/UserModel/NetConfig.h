@@ -10,32 +10,6 @@
 #define NetConfig_h
 #endif /* NetConfig_h */
 
-typedef NS_OPTIONS(NSUInteger, ConfigState){
-    BANK_TYPE=1, //银行类型
-    CARD_TYPE=2, //证件类型
-    COMMISSION_TYPE=3, //提成方式
-    COMPLAINT_TYPE=4, //投诉方式
-    COMPLAINT_RESOLVE_TYPE=5, //投诉解决方式
-    CONTRACT_END_REASON=6, //合同终止原因
-    ENABLED_TYPE=7, //禁用类型
-    HOUSE_OLD=8,//房龄
-    HOUSE_TYPE=9,//住房类型
-    MONEY_TYPE=10,//货币类型
-    OPEN_TYPE=11,//开盘方式
-    BUY_TYPE=12,//置业目的
-    PAY_WAY=13,//支付方式
-    PROJECT_IMG_TYPE=14,//项目图片类型
-    PROJECT_TAGS_DEFAULT=15,//项目标签默认
-    PROPERTY_TYPE=16,//物业类型
-    BUILD_TYPE=17,//建筑类型
-    USER_DISABLED_TYPE=18,//用户失效类型
-    FACE=19,//朝向
-    LADDER_RATIO=20,//梯户比
-    DECORATE=21, //装修标准、
-    AVERAGE=22, //均价
-    FOLLOW_TYPE=23,//跟进方式
-    APPEAL_TYPE=24   //申述类型
-};
 
 #pragma mark ---  基础接口  ---
 //基础接口

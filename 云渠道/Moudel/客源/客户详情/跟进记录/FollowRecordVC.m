@@ -9,6 +9,8 @@
 #import "FollowRecordVC.h"
 #import "BorderTF.h"
 #import "DropDownBtn.h"
+#import "SinglePickView.h"
+#import "DateChooseView.h"
 
 @interface FollowRecordVC ()
 {
@@ -66,6 +68,27 @@
     _titleArr = @[@"客户名称",@"跟进时间",@"跟进人"];
     _wayArr = @[@"电话",@"QQ",@"微信",@"面谈",@"其他"];
 
+}
+
+-(void)action_pay
+{
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
+    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+        _payWayBtn.content.text = MC;
+        
+    };
+    [self.view addSubview:view];
+
+}
+
+-(void)action_nexttime
+{
+    DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    view.dateblock = ^(NSDate *date) {
+        NSLog(@"%@",[self gettime:date]);
+        _nextTimeBtn.content.text = [self gettime:date];
+    };
+    [self.view addSubview:view];
 }
 
 - (void)ActionSelectBtn:(UIButton *)btn{
@@ -260,8 +283,8 @@
             label.text = @"跟进内容:";
         }else{
             
-            label.frame = CGRectMake(9 *SIZE, 531 *SIZE, 70 *SIZE, 10 *SIZE);
-            label.font = [UIFont systemFontOfSize:11 *SIZE];
+            label.frame = CGRectMake(9 *SIZE, 531 *SIZE, 72 *SIZE, 10 *SIZE);
+            label.font = [UIFont systemFontOfSize:10.5 *SIZE];
             label.text = @"下次回访时间:";
         }
         [view2 addSubview:label];
@@ -269,6 +292,8 @@
     
     _payWayBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 345 *SIZE, 258 *SIZE, 33 *SIZE)];
     [view2 addSubview:_payWayBtn];
+    [_payWayBtn addTarget:self action:@selector(action_pay) forControlEvents:UIControlEventTouchUpInside];
+    
     
     _followTV = [[UITextView alloc] initWithFrame:CGRectMake(80 *SIZE, 408 *SIZE, 258 *SIZE, 77 *SIZE)];
     _followTV.layer.cornerRadius = 5 *SIZE;
@@ -279,6 +304,7 @@
     
     _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 519 *SIZE, 258 *SIZE, 33 *SIZE)];
     [view2 addSubview:_nextTimeBtn];
+    [_nextTimeBtn addTarget:self action:@selector(action_nexttime) forControlEvents:UIControlEventTouchUpInside];
     
     _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _confirmBtn.frame = CGRectMake(22 *SIZE, 846 *SIZE, 317 *SIZE, 40 *SIZE);

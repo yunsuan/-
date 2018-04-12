@@ -12,6 +12,7 @@
 @property (nonatomic , strong) NSString *Token;
 @property (nonatomic , strong) NSString *Account;
 @property (nonatomic , strong) NSString *Password;
+@property (nonatomic , strong) NSDictionary *Configdic;
 
 + (UserModel *)defaultModel;
 

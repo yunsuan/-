@@ -30,6 +30,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [BaseRequest GET:Config_URL parameters:nil success:^(id resposeObject) {
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            [UserModel defaultModel].Configdic = resposeObject[@"data"];
+            [UserModelArchiver archive];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
     //注册通知，退出登陆时回到首页
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(comeBackLoginVC) name:@"goLoginVC" object:nil];
     
