@@ -15,16 +15,15 @@
 #define kRowIndexSpace  2.0
 #define kRowIndexViewDefaultColor   [UIColor clearColor]
 #define kCenterLineViewTail 6.0
-#define KweixuanColor COLOR(0xc4, 0xc4, 0xc4, 1)
-#define KyidingColor COLOR(0xdf, 0xb0, 0x45, 1)
-#define KyishouColor COLOR(0xef, 0x5e, 0x52, 1)
+#define KweixuanColor COLOR(220, 220, 220, 1)
+#define KyidingColor COLOR(255, 215, 154, 1)
+#define KyishouColor COLOR(244, 117, 100, 1)
 
 
 @interface HousedistributVC ()<SMCinameSeatScrollViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic , strong)NSMutableArray *datasouce;
 @property (nonatomic , strong)NSDictionary *fjxx;
-
 @property (nonatomic, assign)  NSUInteger row;
 @property (nonatomic, assign)  NSUInteger column;
 @property (nonatomic, assign)  CGSize seatSize;
@@ -48,7 +47,7 @@
 @property (assign, nonatomic)  BOOL rowIndexStick;  /**< 是否让showIndexView粘着左边 */
 @property (strong, nonatomic)  UIColor *rowIndexViewColor;
 @property (assign, nonatomic)  NSInteger rowIndexType; //座位左边行号提示样式
-@property (strong, nonatomic)  NSArray *arrayRowIndex; //座位号左边行号提示（用它则忽略
+@property (strong, nonatomic)  NSMutableArray *arrayRowIndex; //座位号左边行号提示（用它则忽略
 
 @property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) KyoRowIndexView *rowIndexView;
@@ -59,11 +58,10 @@
 @property (retain, nonatomic) SMScrollView *myScrollView;
 @property (strong, nonatomic) NSMutableDictionary *dictSeatState;
 
-@property (nonatomic , strong)UILabel *name;
-@property (nonatomic , strong)UIImageView *img;
+
 @property ( nonatomic , strong )UIView *maskView;
 @property ( nonatomic , strong )UIView *tanchuanView;
-@property (nonatomic , strong)UIImageView *guanbi;
+@property (nonatomic , strong) UIButton *dropbtn;
 
 
 -(void)initDataSouce;
@@ -78,10 +76,6 @@
     self.view.backgroundColor = COLOR(243, 243, 243, 1);
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"1栋1单元详情";
-    [self.leftButton setImage:IMAGE_WITH_NAME(@"youjiantou.png") forState:UIControlStateNormal];
-    [self.maskButton addTarget:self action:@selector(action_back) forControlEvents:UIControlEventTouchUpInside];
-    //    [self.view addSubview:self.MycollectionView];
-    
     [self post];
     
     
@@ -93,46 +87,47 @@
 }
 
 -(void)post{
-    
-//
+    _datasouce = [NSMutableArray arrayWithArray: @[
+  @{@"FLOORNUM" : @"17",
+     @"LIST" :@[@{@"DYMC":@"一单元",
+                @"FJID" : @"1019",},
+               @{@"DYMC":@"一单元",
+                 @"FJID" : @"1019",
+                }]
+    },
+    @{@"FLOORNUM" : @"17",
+         @"LIST" :@[@{@"DYMC":@"一单元",
+                    @"FJID" : @"1019",},
+                     @{@"DYMC":@"一单元",
+                    @"FJID" : @"1019",}]
+     }
+                   ]];
     [self initInterFace];
-//
-    
 }
 
 
-
-
+-(void)initheader
+{
+    [self.view addSubview:self.dropbtn];
+    NSArray *arr = @[@"已定",@"已售",@"未售"];
+    NSArray *colorarr = @[KyidingColor,KyishouColor,KweixuanColor];
+    for (int i = 0 ; i<3; i++) {
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE+i*66.7*SIZE, 47.7*SIZE+NAVIGATION_BAR_HEIGHT, 50*SIZE, 26.7*SIZE)];
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.text = arr[i];
+        lab.backgroundColor = colorarr[i];
+        lab.layer.masksToBounds = YES;
+        lab.layer.cornerRadius = 1.7*SIZE;
+        lab.textColor = [UIColor whiteColor];
+        lab.font = [UIFont systemFontOfSize:12*SIZE];
+        [self.view addSubview:lab];
+    }
+}
 
 -(void)initInterFace
 {
-    NSArray *arr = @[@"未售",@"已定",@"已售"];
-    
-    
-    for (int i = 0 ; i<3; i++) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(176*SIZE+i*65*SIZE, 64+9*SIZE, 17*SIZE, 17*SIZE)];
-        view.layer.masksToBounds = YES;
-        view.layer.cornerRadius = 2*SIZE;
-        if (i == 0) {
-            view.backgroundColor = KweixuanColor;
-        }
-        else if(i == 1)
-        {
-            view.backgroundColor = KyidingColor;
-        }
-        else
-        {
-            view.backgroundColor = KyishouColor;
-        }
-        [self.view addSubview:view];
-        UILabel * lab = [[UILabel alloc]initWithFrame:CGRectMake(200*SIZE+i*65*SIZE, 64, 28*SIZE, 34*SIZE)];
-        lab.font = [UIFont systemFontOfSize:13*SIZE];
-        lab.text = arr[i];
-        lab.textColor = COLOR(115, 115, 115, 1);
-        [self.view addSubview:lab];
-    }
-    [self.view addSubview:self.name];
-    [self.view addSubview:self.img];
+    [self initheader];
+
     _row = _datasouce.count;
     _column = 0;
     for (int i = 0; i<_row; i++) {
@@ -190,7 +185,7 @@
     _contentView.clipsToBounds = YES;
     _SMCinameSeatScrollViewDelegate = self;
     
-    self.myScrollView = [[SMScrollView alloc] initWithFrame:CGRectMake(0, 64+30*SIZE, 360*SIZE, SCREEN_Height-64-30*SIZE)];
+    self.myScrollView = [[SMScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT+81.3*SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT-81.3*SIZE)];
     self.myScrollView.maximumZoomScale = 2;
     self.myScrollView.delegate = self;
     self.myScrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -204,7 +199,6 @@
     [self.view addSubview:self.myScrollView];
     
     self.myScrollView.contentSize = CGSizeMake((self.seatLeft + self.column * self.seatSize.width + self.seatRight) * _myScrollView.zoomScale,(self.seatTop + self.row * self.seatSize.height + self.seatBottom) * _myScrollView.zoomScale);
-    
     
     //画座位
     [self drawSeat];
@@ -269,6 +263,9 @@
     }
     
     self.centerLineView.hidden = YES;
+    
+    [self.view addSubview:self.maskView];
+    [self.view addSubview:self.tanchuanView];
 }
 
 - (void)drawSeat{
@@ -321,10 +318,8 @@
             btnSeat.frame = CGRectMake(x+1, y+0.5, self.seatSize.width-2, self.seatSize.height-1);
             if (self.SMCinameSeatScrollViewDelegate &&
                 [self.SMCinameSeatScrollViewDelegate respondsToSelector:@selector(kyoCinameSeatScrollViewSeatStateWithRow:withColumn:)]) {
-                
                 KyoCinameSeatState state = [self.SMCinameSeatScrollViewDelegate kyoCinameSeatScrollViewSeatStateWithRow:row withColumn:column];
-                
-//                [btnSeat setImage:[self getSeatImageWithState:state] forState:UIControlStateNormal];
+                [btnSeat setImage:[self getSeatImageWithState:state] forState:UIControlStateNormal];
             } else {
                 [btnSeat setImage:self.imgSeatNormal forState:UIControlStateNormal];
             }
@@ -371,8 +366,6 @@
     } else if (currentState == KyoCinameSeatStateHadBuy || currentState == KyoCinameSeatStateUnexist) {
         return;
     }
-    //
-    
     
     _fjxx = _datasouce[row][@"LIST"][column];
     if ([self.statusStr isEqualToString:@"0"]||[self.statusStr isEqualToString:@"1"]) {
@@ -441,7 +434,7 @@
 
 #pragma mark --------------------
 #pragma mark - Events
-//- (void)btnSeatTouchIn:(UIButton *)btn {
+- (void)btnSeatTouchIn:(UIButton *)btn {
 //    NSArray *arraySeat = self.dictSeat[@(btn.tag)];
 //    NSUInteger columns = [arraySeat indexOfObject:btn];
 //    NetConfitModel *model=[[NetConfitModel alloc]init];
@@ -464,35 +457,35 @@
 //            }
 //
 //        }
-////        else if (state == 4)
-////        {
-////            [self alertControllerWithNsstring:@"温馨提示" And:@"房屋状态已改变"];
-////            btn.backgroundColor = KyishouColor;
-////            btn.userInteractionEnabled = NO;
-////        }
-////        else
-////        {
-////            [self alertControllerWithNsstring:@"温馨提示" And:@"房屋状态已改变"];
-////            btn.backgroundColor =KyidingColor;
-////            btn.userInteractionEnabled = NO;
-////        }
-////
-////
-////
-////
-////
-////
-////
-////
-////    } failure:^(NSError *error) {
-////        NSLog(@"%@",error);
-////
-////    }];
-////
-////
-////}
+//        else if (state == 4)
+//        {
+//            [self alertControllerWithNsstring:@"温馨提示" And:@"房屋状态已改变"];
+//            btn.backgroundColor = KyishouColor;
+//            btn.userInteractionEnabled = NO;
+//        }
+//        else
+//        {
+//            [self alertControllerWithNsstring:@"温馨提示" And:@"房屋状态已改变"];
+//            btn.backgroundColor =KyidingColor;
+//            btn.userInteractionEnabled = NO;
+//        }
 //
 //
+//
+//
+//
+//
+//
+//
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//
+//    }];
+
+
+}
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
     //画座位行数提示
@@ -511,10 +504,8 @@
         self.rowIndexView.frame = CGRectMake((kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) < 2 ? 2:(kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) / _myScrollView.zoomScale, self.seatTop,
                                              kRowIndexWith,
                                              self.row * self.seatSize.height);
-
         NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
         NSLog(@"self.myScrollView.contentSize = %@",NSStringFromCGSize( _myScrollView.contentSize));
-
         self.rowIndexView.rowIndexType = self.rowIndexType;
         self.rowIndexView.arrayRowIndex = self.arrayRowIndex;
         self.rowIndexView.hidden = NO;
@@ -524,139 +515,77 @@
 }
 
 
-- (void)action_back {
-    [self.navigationController popViewControllerAnimated:YES];
+
+
+-(void)action_drop
+{
+    self.maskView.hidden = NO;
+    self.tanchuanView.hidden = NO;
 }
 
--(UILabel *)name
+-(UIButton *)dropbtn
 {
-    if (!_name) {
-        _name = [[UILabel alloc]init];
-        _name.frame = CGRectMake(34*SIZE, 64, 200*SIZE, 34*SIZE);
-        _name.font = [UIFont systemFontOfSize:14*SIZE];
-        _name.textColor = COLOR(115, 115, 115, 1);
-        _name.text = [NSString stringWithFormat:@"%@-%@%@",_myarr[0] ,_myarr[1] ,_myarr[2]];
+    if (!_dropbtn) {
+        _dropbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _dropbtn.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, 33.3*SIZE);
+        _dropbtn.backgroundColor = [UIColor whiteColor];
+        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xia"]];
+        img.frame = CGRectMake(171*SIZE, 10.7*SIZE, 18.7*SIZE, 12*SIZE);
+        [_dropbtn addSubview:img];
+        [_dropbtn addTarget:self action:@selector(action_drop) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _name;
+    return _dropbtn;
 }
 
--(UIImageView *)img
+-(UIView *)tanchuanView
 {
-    if (!_img ) {
-        _img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"fangwu"]];
-        _img.frame = CGRectMake(15*SIZE, 64+10*SIZE, 15*SIZE, 13*SIZE);
+    if (!_tanchuanView) {
+        _tanchuanView = [[UIView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE,158*SIZE)];
+        _tanchuanView.backgroundColor = COLOR(240, 240, 240, 1);
+        _tanchuanView.hidden =YES;
+        
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0,1, 360*SIZE, 123*SIZE)];
+        view.backgroundColor = [UIColor whiteColor];
+        NSArray *arr =  @[@[@"单元个数：2",@"单元个数：2"],@[@"单元个数：2",@"单元个数：2"],@[@"单元个数：2",@"单元个数：2"],@[@"单元个数：2",@"单元个数：2"]];
+        for (int i=0; i<4; i++) {
+            for (int j=0; j<2; j++) {
+                UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(9.7*SIZE+j*200*SIZE, 13.3*SIZE+i*27.7*SIZE, 180*SIZE, 13*SIZE)];
+                lab.text = arr[i][j];
+                lab.font = [UIFont systemFontOfSize:12*SIZE];
+                lab.textColor = COLOR(51, 51, 51, 1);
+                [view addSubview:lab];
+            }
+        }
+        [_tanchuanView addSubview:view];
+        
+        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 123.3*SIZE, 360*SIZE, 33.3*SIZE);
+        btn.backgroundColor = [UIColor whiteColor];
+        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shang"]];
+        img.frame = CGRectMake(171*SIZE, 10.7*SIZE, 18.7*SIZE, 12*SIZE);
+        [btn addSubview:img];
+        [btn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
+        [self.tanchuanView addSubview:btn];
     }
-    return _img;
-}
-
--(UIImageView *)guanbi
-{
-    if (!_guanbi) {
-        _guanbi = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"guanbi"]];
-        _guanbi.frame = CGRectMake(250*SIZE, 26*SIZE, 30*SIZE, 54*SIZE);
-        //        _guanbi.userInteractionEnabled = YES;
-    }
-    return _guanbi;
-}
-
-//-(UIView *)tanchuanView
-//{
-//    if (!_tanchuanView) {
-//        _tanchuanView = [[UIView alloc]initWithFrame:CGRectMake(46*SIZE, 80*SIZE, 268*SIZE, SCREEN_Height-80*SIZE-14*SIZE)];
-//        _tanchuanView.backgroundColor = [UIColor whiteColor];
-//        _tanchuanView.layer.masksToBounds = YES;
-//        _tanchuanView.layer.cornerRadius = 2*SIZE;
-//
-//        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 268*SIZE, 25*SIZE)];
-//        lab.textColor = COLOR(85, 85, 85, 1);
-//        lab.text = [InfoCenterArchiver unarchive].XMMC;
-//        lab.textAlignment = NSTextAlignmentCenter;
-//        //        lab.font = [UIFont systemFontOfSize:20*SIZE];
-//        lab.font = [UIFont boldSystemFontOfSize:20*SIZE];
-//        [_tanchuanView addSubview:lab];
-//
-//        //        UIView *lane3 = [[UIView alloc]initWithFrame:CGRectMake(0, 23*SIZE, 268*SIZE, 2*SIZE)];
-//        //        lane3.backgroundColor = COLOR(243, 243, 243, 1);
-//        //        [_tanchuanView addSubview:lane3];
-//
-//
-//
-//        UIView * view2  =  [[UIView alloc]initWithFrame:CGRectMake(0, 25*SIZE, 268*SIZE, SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)];
-//        view2.backgroundColor =[UIColor whiteColor];
-//        [_tanchuanView addSubview:view2];
-//
-//        NSArray *arr1 = @[@"房  号",@"价  格",@"物  业"];
-//        NSArray *arr2 = @[_fjxx[@"FJMC"],_fjxx[@"FJZJ"],_fjxx[@"WYMC"]];
-//        NSArray *arr3 = @[@[@"楼  栋：",@"单  元：",@"楼  层："],@[@"计价规则：",@"单  价：",@"总  价："],@[@"建筑面积：",@"套内面积：",@"户型信息："]];
-//        NSArray *arr4 = @[@[_fjxx[@"LDMC"],_fjxx[@"DYMC"],_fjxx[@"FLOORNUM"]],@[_fjxx[@"JJGZ"],_fjxx[@"JZDJ"],_fjxx[@"FJZJ"]],@[_fjxx[@"JZMJ"],_fjxx[@"TNMJ"],_fjxx[@"HXMC"]]];
-//        for (int i = 0; i<3; i++) {
-//            UILabel *lab1 = [[UILabel alloc]init];
-//            [WJQTools setLableAttributeWithLable:lab1 fram:CGRectMake(10*SIZE, 10*SIZE+i*(SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)/3, 70*SIZE, 15*SIZE) font:15*SIZE TextAlignment:NSTextAlignmentLeft];
-//            lab1.text = arr1[i];
-//            lab1.textColor = COLOR(85, 85, 85, 1);
-//            [view2 addSubview:lab1];
-//            UILabel *lab2 = [[UILabel alloc]init];
-//            [WJQTools setLableAttributeWithLable:lab2 fram:CGRectMake(91*SIZE, 10*SIZE+i*(SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)/3, 269*SIZE, 15*SIZE) font:15*SIZE TextAlignment:NSTextAlignmentLeft];
-//            lab2.text = arr2[i];
-//            lab2.textColor = COLOR(85, 85, 85, 1);
-//            [view2 addSubview:lab2];
-//            UIView *lane1 = [[UIView alloc]initWithFrame:CGRectMake(0, 32*SIZE+i*(SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)/3, 81*SIZE, 2*SIZE)];
-//            lane1.backgroundColor = COLOR(18, 183, 245, 1);
-//            [view2 addSubview:lane1];
-//            UIView *lane2 = [[UIView alloc]initWithFrame:CGRectMake(0, 34*SIZE+i*(SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)/3, 268*SIZE, 2*SIZE)];
-//            lane2.backgroundColor = COLOR(243, 243, 243, 1);
-//            [view2 addSubview:lane2];
-//
-//            for (int j = 0; j<3; j++) {
-//                UILabel *lab1 = [[UILabel alloc]init];
-//                [WJQTools setLableAttributeWithLable:lab1 fram:CGRectMake(10*SIZE, 55*SIZE+i*(SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)/3+j*(SCREEN_Height-61*SIZE-14*SIZE-180*SIZE)/9, 75*SIZE, 14*SIZE) font:14*SIZE TextAlignment:NSTextAlignmentLeft];
-//                lab1.text = arr3[i][j];
-//                lab1.textColor = COLOR(85, 85, 85, 1);
-//                [view2 addSubview:lab1];
-//                UILabel *lab2 = [[UILabel alloc]init];
-//                [WJQTools setLableAttributeWithLable:lab2 fram:CGRectMake(80*SIZE, 45*SIZE+i*(SCREEN_Height-61*SIZE-14*SIZE-85*SIZE)/3+j*(SCREEN_Height-61*SIZE-14*SIZE-180*SIZE)/9, 170*SIZE, 30*SIZE) font:14*SIZE TextAlignment:NSTextAlignmentLeft];
-//                lab2.text = [NSString stringWithFormat:@"  %@",arr4[i][j]];
-//                lab2.textColor = COLOR(115, 115, 115, 1);
-//                lab2.layer.masksToBounds = YES;
-//                lab2.layer.cornerRadius = 5*SIZE;
-//                lab2.layer.borderColor  = COLOR (194,192,192,1).CGColor;
-//                lab2.layer.borderWidth  = 1*SIZE;
-//                [view2 addSubview:lab2];
-//            }
-//        }
-//
-//
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [WJQTools setButtonAttributeWithButton:btn Title:@"计价" TitleFont:20*SIZE ImageName:nil Tag:1 fram:CGRectMake(0, view2.frame.size.height+27*SIZE, 268*SIZE, _tanchuanView.frame.size.height- view2.frame.size.height-27*SIZE)];
-//        btn.backgroundColor = COLOR(18, 183, 245, 1);
-//        [btn addTarget:self action:@selector(action_jijia) forControlEvents:UIControlEventTouchUpInside];
-//        [_tanchuanView addSubview:btn];
-//        btn.hidden =YES;
-//    }
-//    return _tanchuanView;
-//}
--(void)action_jijia //计价
-{
-//    CountmoneyViewController *next_vc = [[CountmoneyViewController alloc]init];
-//    [self.navigationController pushViewController:next_vc animated:YES];
+    return _tanchuanView;
 }
 
 - (UIView *)maskView {
     if (!_maskView) {
-        _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height)];
         _maskView.backgroundColor = [UIColor blackColor];
         _maskView.alpha = 0.5;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maskViewTap)];
         [_maskView addGestureRecognizer:tap];
+        _maskView.hidden = YES;
     }
     return _maskView;
 }
 
 - (void)maskViewTap {
-    [self.tanchuanView removeFromSuperview];
-    [self.guanbi removeFromSuperview];
-    self.tanchuanView = nil;
-    [self.maskView removeFromSuperview];
+    self.tanchuanView.hidden = YES;
+    self.maskView.hidden = YES;
 }
 
 
