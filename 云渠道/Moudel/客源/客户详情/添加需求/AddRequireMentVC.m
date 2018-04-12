@@ -10,6 +10,7 @@
 #import "DropDownBtn.h"
 #import "BorderTF.h"
 #import "AdressChooseView.h"
+#import "CustomerVC.h"
 
 @interface AddRequireMentVC ()<UITextViewDelegate>
 {
@@ -69,11 +70,11 @@
 
 @property (nonatomic, strong) UILabel *urgentL;
 
-@property (nonatomic, strong) BorderTF *floorTF1;
+@property (nonatomic, strong) DropDownBtn *floorTF1;
 
-@property (nonatomic, strong) BorderTF *floorTF2;
+@property (nonatomic, strong) DropDownBtn *floorTF2;
 
-@property (nonatomic, strong) BorderTF *standardTF;
+@property (nonatomic, strong) DropDownBtn *standardTF;
 
 @property (nonatomic, strong) BorderTF *intentionTF;
 
@@ -188,32 +189,113 @@
     if ([self.status isEqualToString:@"addCustom"]) {
         
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[self.infoModel modeltodic]];
-        [dic setObject:@"510100" forKey:@"region"];
-        [dic setObject:@"60" forKey:@"property_type"];
-        [dic setObject:@"100" forKey:@"price_min"];
-        [dic setObject:@"150" forKey:@"price_max"];
-        [dic setObject:@"80" forKey:@"area_min"];
-        [dic setObject:@"100" forKey:@"area_max"];
-        [dic setObject:@"34" forKey:@"build_type"];
-        [dic setObject:@"3" forKey:@"orientation"];
-        [dic setObject:@"3" forKey:@"floor_min"];
-        [dic setObject:@"10" forKey:@"floor_max"];
-        [dic setObject:@"1" forKey:@"ladder_ratio"];
-        [dic setObject:@"1" forKey:@"decorate"];
-        [dic setObject:@"1" forKey:@"buy_purpose"];
-        [dic setObject:@"1" forKey:@"pay_type"];
-        [dic setObject:@"20" forKey:@"intent"];
-        [dic setObject:@"50" forKey:@"urgency"];
+        if (_btnNum == 1) {
+            if (self.addressBtn.str.length) {
+                
+                [dic setObject:self.addressBtn.str forKey:@"region"];
+            }
+        }else if (_btnNum == 2){
+            
+            if (self.addressBtn2.str.length) {
+                
+                [dic setObject:[NSString stringWithFormat:@"%@,%@",self.addressBtn.str,self.addressBtn2.str] forKey:@"region"];
+            }
+        }else{
+            
+            if (self.addressBtn3.str.length) {
+                
+                [dic setObject:[NSString stringWithFormat:@"%@,%@,%@",self.addressBtn.str,self.addressBtn2.str,self.addressBtn3.str] forKey:@"region"];
+            }
+        }
+        if (_houseTypeBtn.str.length) {
+            
+            [dic setObject:_houseTypeBtn.str forKey:@"property_type"];
+        }
+        if (_houseTypeBtn.str.length) {
+            
+            [dic setObject:_houseTypeBtn.str forKey:@"price_min"];
+        }
+        if (_houseTypeBtn.str.length) {
+            
+            [dic setObject:_houseTypeBtn.str forKey:@"price_max"];
+        }
+        if (_houseTypeBtn.str.length) {
+            
+            [dic setObject:_houseTypeBtn.str forKey:@"area_min"];
+        }
+        if (_houseTypeBtn.str.length) {
+            
+            [dic setObject:_houseTypeBtn.str forKey:@"area_max"];
+        }
+        if (_typeBtn.str.length) {
+            
+            [dic setObject:_typeBtn.str forKey:@"build_type"];
+        }
+        if (_faceBtn.str.length) {
+            
+            [dic setObject:_faceBtn.str forKey:@"orientation"];
+        }
+        if (_floorTF1.str.length) {
+            
+            [dic setObject:_floorTF1.str forKey:@"floor_min"];
+        }
+        if (_floorTF2.str.length) {
+            
+            [dic setObject:_floorTF2.str forKey:@"floor_max"];
+        }
+//        if (_houseTypeBtn.str.length) {
+//
+//            [dic setObject:_houseTypeBtn.str forKey:@"ladder_ratio"];
+//        }
+        if (_standardTF.str.length) {
+            
+            [dic setObject:_standardTF.str forKey:@"decorate"];
+        }
+        if (_purposeBtn.str.length) {
+            
+            [dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
+        }
+        if (_payWayBtn.str.length) {
+            
+            [dic setObject:_payWayBtn.str forKey:@"pay_type"];
+        }
+        if (_intentionTF.textfield.text.length) {
+            
+            [dic setObject:_intentionTF.textfield.text forKey:@"intent"];
+        }
+        if (_urgentTF.textfield.text.length) {
+            
+            [dic setObject:_urgentTF.textfield.text forKey:@"urgency"];
+        }
+        if (_urgentTF.textfield.text.length) {
+            
+            [dic setObject:_urgentTF.textfield.text forKey:@"need_tags"];
+        }
+        if (_markTV.text.length) {
+            
+            [dic setObject:_markTV.text forKey:@"comment"];
+        }
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
             NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self showContent:@"添加成功"];
+                for (UIViewController *vc in self.childViewControllers) {
+                    
+                    if ([vc isKindOfClass:[CustomerVC class]]) {
+                        
+                        [self.navigationController popToViewController:vc animated:YES];
+                    }
+                }
+            }
         } failure:^(NSError *error) {
             
             NSLog(@"%@",error);
         }];
     }else{
         
-        
+        [self showContent:@"网络错误"];
     }
 }
 
@@ -449,7 +531,7 @@
                 break;
         }
         
-        if (i < 10) {
+        if (i < 13) {
             
             DropDownBtn *btn = [[DropDownBtn alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
             btn.tag = i;
@@ -522,6 +604,25 @@
                     [_infoView addSubview:_payWayBtn];
                     break;
                 }
+                case 10:
+                {
+                    _floorTF1 = btn;
+                    _floorTF1.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
+                    [_infoView addSubview:_floorTF1];
+                    break;
+                }
+                case 11:
+                {
+                    _floorTF2 = btn;
+                    _floorTF2.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
+                    [_infoView addSubview:_floorTF2];
+                    break;
+                }
+                case 12:{
+                    
+                    _standardTF = btn;
+                    [_infoView addSubview:_standardTF];
+                }
                 default:
                     break;
             }
@@ -533,22 +634,22 @@
             switch (i) {
                 case 0:
                 {
-                    _floorTF1 = TF;
-                    _floorTF1.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
-                    [_infoView addSubview:_floorTF1];
+//                    _floorTF1 = TF;
+//                    _floorTF1.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
+//                    [_infoView addSubview:_floorTF1];
                     break;
                 }
                 case 1:
                 {
-                    _floorTF2 = TF;
-                    _floorTF2.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
-                    [_infoView addSubview:_floorTF2];
+//                    _floorTF2 = TF;
+//                    _floorTF2.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
+//                    [_infoView addSubview:_floorTF2];
                     break;
                 }
                 case 2:
                 {
-                    _standardTF = TF;
-                    [_infoView addSubview:_standardTF];
+//                    _standardTF = TF;
+//                    [_infoView addSubview:_standardTF];
                     break;
                 }
                 case 3:
