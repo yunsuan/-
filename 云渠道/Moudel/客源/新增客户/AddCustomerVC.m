@@ -504,7 +504,6 @@
             
             [_surebtn setTitle:@"确定" forState:UIControlStateNormal];
         }else{
-         
             [_surebtn setTitle:@"下一步" forState:UIControlStateNormal];
         }
         [_surebtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
