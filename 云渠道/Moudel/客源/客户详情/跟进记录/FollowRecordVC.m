@@ -110,7 +110,6 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"跟进记录";
-    
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT)];
 //    _scrollView.delegate = self;
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width, 878 *SIZE)];

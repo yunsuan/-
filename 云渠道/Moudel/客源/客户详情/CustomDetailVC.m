@@ -20,7 +20,6 @@
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
-    
     NSArray *_arr;
     NSInteger _item;
     NSMutableArray *_showArr;
