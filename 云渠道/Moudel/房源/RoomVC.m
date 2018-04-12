@@ -33,7 +33,7 @@
     
     BMKLocationService *_locService;  //定位
     BMKGeoCodeSearch *_geocodesearch; //地理编码主类，用来查询、返回结果信息
-    NSInteger page;
+    NSInteger _page;
     NSMutableDictionary *_parameter;
     NSMutableArray *_dataArr;
 }
@@ -71,7 +71,7 @@
     
     _dataArr = [@[] mutableCopy];
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
-    page = 1;
+    _page = 1;
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
@@ -101,13 +101,13 @@
 
 - (void)RequestMethod{
 
-    if (page == 1) {
+    if (_page == 1) {
         
         [_dataArr removeAllObjects];
         self.MainTableView.mj_footer.state = MJRefreshStateIdle;
     }
     
-    NSDictionary *dic = @{@"city":@"510100",@"page":@(page)};
+    NSDictionary *dic = @{@"city":@"510100",@"page":@(_page)};
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
@@ -120,7 +120,7 @@
                 if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
                     
                     [self SetData:resposeObject[@"data"][@"data"]];
-                    if (page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                    if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
                         
                         self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     }
@@ -446,7 +446,7 @@
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             
-            page = 1;
+            _page = 1;
             [self RequestMethod];
         }];
         

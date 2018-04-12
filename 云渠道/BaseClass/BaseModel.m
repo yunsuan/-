@@ -24,8 +24,10 @@
             key = [key substringFromIndex:1];
             id value = [self valueForKey:key];
             
-            [dic setValue:value forKey:key];
-            
+            if (value) {
+                
+                [dic setValue:value forKey:key];
+            }
         }
         // 获得c的父类
         c = [c superclass];

@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "CustomRequireModel.h"
 
 @interface AddRequireMentVC : BaseViewController
+
+- (instancetype)initWithCustomRequireModel:(CustomRequireModel *)model;
 
 @end

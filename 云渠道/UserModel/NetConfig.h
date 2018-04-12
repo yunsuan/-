@@ -74,19 +74,20 @@ static NSString *const ListClient_URL = @"agent/client/list";
 //新增客户和需求
 static NSString *const AddCustomer_URL = @"agent/client/addClientAndNeed";
 
-
 //6修改客户信息
 static NSString *const UpdateClient_URL = @"agent/client/update";
-
 
 
 //新增客户需求
 static NSString *const AddCliendAddNeed_URL = @"agent/client/addNeed";
 
 //修改客户需求
-static NSString *const UpdateCliendAddNeed_URL = @"agent/client/updateNeed";
+
+static NSString *const UpdateNeed_URL = @"agent/client/updateNeed";
+
 //删除客户需求
-static NSString *const DeleteCliendAddNeed_URL = @"agent/client/deleteNeed";
+static NSString *const DeleteNeed_URL = @"agent/client/deleteNeed";
+
 //获取客户信息
 static NSString *const GetCliendInfo_URL = @"agent/client/getInfo";
 
@@ -95,6 +96,7 @@ static NSString *const AddRecord_URL = @"agent/client/addFollow";
 
 //获取客户跟进
 static NSString *const GetRecord_URL = @"agent/client/getFollowList";
+
 
 
 

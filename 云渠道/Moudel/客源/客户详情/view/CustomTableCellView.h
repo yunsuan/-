@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class CustomTableCellView;
+
+typedef void(^deleteBtnBlock)(NSInteger index);
+
+typedef void(^editBlock)(NSInteger index);
+
 @interface CustomTableCellView : UIView
+
+@property (nonatomic, copy) deleteBtnBlock deleteBtnBlock;
+
+@property (nonatomic, copy) editBlock editBlock;
 
 @property (nonatomic, strong) UILabel *addressL;
 
@@ -31,5 +41,9 @@
 @property (nonatomic, strong) UILabel *intentionL;
 
 @property (nonatomic, strong) UILabel *urgentL;
+
+@property (nonatomic, strong) UIButton *deleteBtn;
+
+@property (nonatomic, strong) UIButton *editBtn;
 
 @end

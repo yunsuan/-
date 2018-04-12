@@ -284,6 +284,7 @@
             [self showContent:@"网络出错"];
         }];
     }else{
+        
         _Customerinfomodel.name = _name.textfield.text;
         _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
         _Customerinfomodel.card_id = _num.textfield.text;
@@ -294,13 +295,13 @@
             [self showContent:resposeObject[@"msg"]];
             if ([resposeObject[@"code"] integerValue] ==200) {
                 
+                
             }
             else{
                 
+                
             }
-            
-            
-            
+
         } failure:^(NSError *error) {
             NSLog(@"%@",error);
             [self showContent:@"网络出错"];

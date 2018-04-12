@@ -21,6 +21,7 @@
     
     NSMutableArray *_dataArr;
     NSMutableDictionary *_parameter;
+    NSInteger _page;
 }
 
 @property (nonatomic, strong) UITableView *customerTable;
@@ -40,15 +41,21 @@
     [super viewDidLoad];
     
     [self initUI];
+    _page = 1;
     [self RequestMethod];
 }
 
 - (void)RequestMethod{
     
-    
+    if (_page == 1) {
+        
+        _customerTable.mj_footer.state = MJRefreshStateIdle;
+    }
     [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [_customerTable.mj_footer endRefreshing];
+        [_customerTable.mj_header endRefreshing];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -57,9 +64,10 @@
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
-                        
+//                        self SetData:<#(NSArray *)#>
                     }else{
                         
+                        _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
                         [self showContent:@"暂无数据"];
                     }
                 }else{
@@ -76,7 +84,10 @@
         }
     } failure:^(NSError *error) {
        
+        [_customerTable.mj_footer endRefreshing];
+        [_customerTable.mj_header endRefreshing];
         NSLog(@"%@",error.localizedDescription);
+        [self showContent:@""];
     }];
 }
 
@@ -93,9 +104,9 @@
             }
         }];
         
-        CustomerTableModel *model = [[CustomerTableModel alloc] initWithDictionary:tempDic];
+//        CustomerModel *model = [[CustomerModel alloc] initWithDictionary:tempDic];
         
-        [_dataArr addObject:model];
+//        [_dataArr addObject:model];
     }
     
     [_customerTable reloadData];
@@ -103,7 +114,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _dataArr.count;
+    return 4;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -133,6 +144,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return 3;
+//    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -206,6 +218,7 @@
     [self.view addSubview:_customerTable];
     _customerTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
        
+        _page = 1;
         [self RequestMethod];
     }];
     
