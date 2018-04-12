@@ -819,7 +819,7 @@
     }];
     
     [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+
         make.left.equalTo(_scrolleView).offset(22 *SIZE);
         make.top.equalTo(_markTV.mas_bottom).offset(40 *SIZE);
         make.right.equalTo(_scrolleView).offset(-22 *SIZE);

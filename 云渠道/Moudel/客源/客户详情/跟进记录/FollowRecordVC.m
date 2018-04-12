@@ -75,7 +75,6 @@
     SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         _payWayBtn.content.text = MC;
-        
     };
     [self.view addSubview:view];
 
