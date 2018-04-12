@@ -10,23 +10,30 @@
 
 @interface CustomerTableModel : NSObject
 
-@property (nonatomic, copy) NSString *headStr;
+@property (nonatomic, copy) NSString *build_type;
+
+@property (nonatomic, copy) NSString *client_id;
+
+@property (nonatomic, copy) NSString *intent;
 
 @property (nonatomic, copy) NSString *name;
 
-@property (nonatomic, copy) NSString *price;
+@property (nonatomic, copy) NSString *price_max;
 
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *price_min;
 
-@property (nonatomic, copy) NSString *area;
+@property (nonatomic, copy) NSString *property_type;
 
-@property (nonatomic, copy) NSString *matchRate;
+@property (nonatomic, copy) NSArray *region;
 
-@property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *sex;
 
-@property (nonatomic, copy) NSString *intention;
+@property (nonatomic, copy) NSString *tel;
 
-@property (nonatomic, copy) NSString *urgent;
+@property (nonatomic, copy) NSString *urgency;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
+- (NSMutableDictionary *)modeltodic;
 
 @end
 

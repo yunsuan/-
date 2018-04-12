@@ -23,24 +23,41 @@
 - (void)setModel:(CustomerTableModel *)model{
     
     _nameL.text = model.name;
-    _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.price];
-    _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.type];
-    _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.area];
+    [_nameL mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
+        make.top.equalTo(self.contentView.mas_top).offset(14 *SIZE);
+        make.width.equalTo(@(_nameL.mj_textWith + 10 *SIZE));
+        make.height.equalTo(@(14 *SIZE));
+    }];
+    _priceL.text = [NSString stringWithFormat:@"意向总价：%@-%@",model.price_min,model.price_max];
+    _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.build_type];
+    _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.region[0][@"city"]];
     
-    NSMutableAttributedString *matchStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",model.matchRate,@"%"]];
-    [matchStr addAttribute:NSForegroundColorAttributeName value:COLOR(27, 152, 255, 1) range:NSMakeRange(4, matchStr.length - 4)];
-    _matchRateL.attributedText = matchStr;
+//    NSMutableAttributedString *matchStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",model.matchRate,@"%"]];
+//    [matchStr addAttribute:NSForegroundColorAttributeName value:COLOR(27, 152, 255, 1) range:NSMakeRange(4, matchStr.length - 4)];
+//    _matchRateL.attributedText = matchStr;
     
-    _phoneL.text = [NSString stringWithFormat:@"%@",model.phone];
+    _phoneL.text = [NSString stringWithFormat:@"%@",model.tel];
     
-    NSMutableAttributedString *intentionStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买意向度：%@%@",model.intention,@"%"]];
+    NSMutableAttributedString *intentionStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买意向度：%@%@",model.intent,@"%"]];
     [intentionStr addAttribute:NSForegroundColorAttributeName value:COLOR(255, 165, 29, 1) range:NSMakeRange(6, intentionStr.length - 6)];
     _intentionRateL.attributedText = intentionStr;
     
-    NSMutableAttributedString *urgentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买紧迫度：%@%@",model.urgent,@"%"]];
+    NSMutableAttributedString *urgentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买紧迫度：%@%@",model.urgency,@"%"]];
     [urgentStr addAttribute:NSForegroundColorAttributeName value:COLOR(255, 165, 29, 1) range:NSMakeRange(6, urgentStr.length - 6)];
     _urgentRateL.attributedText = urgentStr;
     
+    if ([model.sex integerValue] == 0) {
+        
+        _gender.image = [UIImage imageNamed:@""];
+    }else if ([model.sex integerValue] == 1){
+        
+        _gender.image = [UIImage imageNamed:@"man"];
+    }else{
+        
+        _gender.image = [UIImage imageNamed:@"girl"];
+    }
 }
 
 - (void)initUI{
@@ -109,13 +126,13 @@
         
         make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
         make.top.equalTo(self.contentView.mas_top).offset(14 *SIZE);
-        make.width.equalTo(@(140 *SIZE));
+        make.width.equalTo(@(_nameL.mj_textWith + 10 *SIZE));
         make.height.equalTo(@(14 *SIZE));
     }];
     
     [_gender mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(_nameL.mas_left).offset(10 *SIZE);
+        make.left.equalTo(_nameL.mas_right).offset(10 *SIZE);
         make.top.equalTo(self.contentView.mas_top).offset(16 *SIZE);
         make.width.equalTo(@(12 *SIZE));
         make.height.equalTo(@(12 *SIZE));
