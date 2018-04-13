@@ -10,4 +10,6 @@
 
 @interface CustomDetailVC : BaseViewController
 
+- (instancetype)initWithClientId:(NSString *)clientId;
+
 @end

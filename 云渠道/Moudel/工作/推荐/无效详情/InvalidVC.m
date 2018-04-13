@@ -163,9 +163,10 @@
     if (!_recommendView) {
         
         _recommendView = [[RecommendView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        WS(weakSelf)
         _recommendView.tranmitBtnBlock = ^{
             
-            [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+            [[UIApplication sharedApplication].keyWindow addSubview:weakSelf.transmitView];
         };
     }
     return _recommendView;

@@ -435,7 +435,7 @@
         return;
     }
     
-    if (_model.clientId) {
+    if (_model.client_id) {
         
         _model.name = _name.textfield.text;
         _model.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];

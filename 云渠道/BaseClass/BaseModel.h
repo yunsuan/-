@@ -10,6 +10,8 @@
 
 @interface BaseModel : NSObject
 
+@property (nonatomic,copy)NSString *other;
+
 - (NSMutableDictionary *)modeltodic;
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomerModel.h"
 
 @protocol CustomTableHeaderDelegate;
 
@@ -45,6 +46,8 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, weak) id<CustomTableHeaderDelegate> delegate;
+
+@property (nonatomic, strong) CustomerModel *model;
 
 
 

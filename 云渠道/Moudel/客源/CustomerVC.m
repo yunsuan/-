@@ -103,7 +103,7 @@
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
         [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             
-            if ([tempDic[key] isKindOfClass:[NSNull class]]) {
+            if ([obj isKindOfClass:[NSNull class]]) {
                 
                 if ([key isEqualToString:@"region"]) {
                     
@@ -180,7 +180,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CustomDetailVC *nextVC = [[CustomDetailVC alloc] init];
+    CustomerTableModel *model = _dataArr[indexPath.row];
+    CustomDetailVC *nextVC = [[CustomDetailVC alloc] initWithClientId:model.client_id];
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
 }

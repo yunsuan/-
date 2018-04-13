@@ -10,6 +10,9 @@
 
 @interface CustomerModel : CustomerInfoModel
 
-@property (nonatomic, strong) NSString *clientId;
+@property (nonatomic, strong) NSString *client_id;
+
+- (NSMutableDictionary *)modeltodic;
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end
