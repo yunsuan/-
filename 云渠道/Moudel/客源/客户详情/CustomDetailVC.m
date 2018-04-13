@@ -161,8 +161,8 @@
 - (void)DGActionEditBtn:(UIButton *)btn{
     
     NSLog(@"%ld",_item);
-    CustomerModel *model = [[CustomerModel alloc] init];
-    AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:model];
+
+    AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:_customModel];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -194,7 +194,7 @@
             
             if ([_showArr[section] integerValue] == 1) {
                 
-                return 1;
+                return _dataArr.count;
             }else{
                 
                 return 0;
@@ -261,6 +261,13 @@
         }
         header.typeL.text = @"物业类型：住宅";
         header.showBtn.tag = section;
+        if ([_showArr[section] integerValue] == 1) {
+            
+            [header.showBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
+        }else{
+            
+            [header.showBtn setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
+        }
         header.showBtnBlock = ^(NSInteger index) {
           
             if ([_showArr[index] integerValue] == 1) {
@@ -284,14 +291,8 @@
                 header.delegate = self;
                 [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
             }
-            header.nameL.text = @"姓名：张三";
-            header.genderL.text = @"性别：男";
-            header.birthL.text = @"出生年月：1994-12-12";
-            header.phoneL.text = @"联系电话：18745564523";
-            header.phone2L.text = @"联系电话：15983804766";
-            header.certL.text = @"证件类型：身份证";
-            header.numL.text = @"证件号：510623187876891234";
-            header.addressL.text = @"地址：四川 - 成都 - 郫都区 - 大禹东路108号";
+
+            header.model = _customModel;
             
             return header;
         }else{
@@ -303,14 +304,8 @@
                 header.delegate = self;
                 [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
             }
-            header.nameL.text = @"姓名：张三";
-            header.genderL.text = @"性别：男";
-            header.birthL.text = @"出生年月：1994-12-12";
-            header.phoneL.text = @"联系电话：18745564523";
-            header.phone2L.text = @"联系电话：15983804766";
-            header.certL.text = @"证件类型：身份证";
-            header.numL.text = @"证件号：510623187876891234";
-            header.addressL.text = @"地址：四川 - 成都 - 郫都区 - 大禹东路108号";
+
+            header.model = _customModel;
             
             header.numListL.text = @"匹配项目列表(3)";
             header.recommendListL.text = @"已推荐项目数(2)";
@@ -332,30 +327,20 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.cellView.tag = indexPath.row;
+        
         cell.cellView.editBlock = ^(NSInteger index) {
             
             
-//            AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:<#(CustomRequireModel *)#>];
-//            [self.navigationController pushViewController:nextVC animated:YES];
+            AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:_dataArr[index]];
+            [self.navigationController pushViewController:nextVC animated:YES];
         };
         
         cell.cellView.deleteBtnBlock = ^(NSInteger index) {
             
-            
+//            [BaseRequest POST:DeleteNeed_URL parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
         };
         
-        cell.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
-        cell.cellView.priceL.text = @"总价：80万-100万";
-        cell.cellView.areaL.text = @"面积：80㎡-120㎡";
-        cell.cellView.houseTypeL.text = @"房型：三室一厅一卫、两室一厅一卫";
-        cell.cellView.faceL.text = @"朝向：西南";
-        cell.cellView.floorL.text = @"楼层：6层-12层";
-        cell.cellView.standardL.text = @"装修标准：毛胚、简装";
-        cell.cellView.purposeL.text = @"置业目的：安家置业";
-        cell.cellView.payWayL.text = @"付款方式：全款";
-        cell.cellView.intentionL.text = @"购房意向度：45";
-        cell.cellView.urgentL.text = @"购房紧迫度：45";
-        cell.requireL.text = @"不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。不要顶层和底层，希望小区绿化较好。";
+        cell.model = _dataArr[indexPath.row];
         
         return cell;
     }else{

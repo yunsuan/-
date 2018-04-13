@@ -22,7 +22,11 @@
 
 - (void)setModel:(CustomerTableModel *)model{
     
-    _nameL.text = model.name;
+    if (model.name) {
+        
+        _nameL.text = model.name;
+    }
+    
     [_nameL mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
@@ -30,9 +34,31 @@
         make.width.equalTo(@(_nameL.mj_textWith + 10 *SIZE));
         make.height.equalTo(@(14 *SIZE));
     }];
-    _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.total_price];
-    _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.house_type];
-    _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.region[0][@"city"]];
+    
+    if (model.total_price) {
+        
+        _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.total_price];
+    }else{
+        
+        _priceL.text = @"意向总价：";
+    }
+    
+    if (model.house_type) {
+        
+        _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.house_type];
+    }else{
+        
+        _typeL.text = @"意向户型：";
+    }
+    
+    if ([_model.region count]) {
+        
+        _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.region[0][@"city"]];
+    }else{
+        
+        _areaL.text = @"意向区域：";
+    }
+   
     
 //    NSMutableAttributedString *matchStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",model.matchRate,@"%"]];
 //    [matchStr addAttribute:NSForegroundColorAttributeName value:COLOR(27, 152, 255, 1) range:NSMakeRange(4, matchStr.length - 4)];

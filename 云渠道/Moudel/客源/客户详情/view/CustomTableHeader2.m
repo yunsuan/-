@@ -52,6 +52,111 @@
     }
 }
 
+- (void)setModel:(CustomerModel *)model{
+    
+    if (model.name) {
+        
+        self.nameL.text = [NSString stringWithFormat:@"姓名：%@",model.name];
+    }else{
+        
+        self.nameL.text = @"姓名";
+    }
+    
+    if ([model.sex integerValue] == 1) {
+        
+        self.genderL.text = @"性别：男";
+    }else if([model.sex integerValue] == 2){
+        
+        self.genderL.text = @"性别：女";
+    }else{
+        
+        self.genderL.text = @"性别：";
+    }
+    
+    if (model.birth) {
+        
+        self.birthL.text = [NSString stringWithFormat:@"出生年月：%@",model.birth];
+    }else{
+        
+        self.birthL.text = @"出生年月：";
+    }
+    
+    if (model.tel) {
+        
+        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",model.tel];
+    }else{
+        
+        self.phoneL.text = @"联系电话：";
+    }
+    //    NSArray *telArr = [model.tel componentsSeparatedByString:@","];
+    //    if (telArr.count == 0) {
+    //
+    //        self.phoneL.text = @"联系电话：";
+    //        self.phone2L.text = @"联系电话：";
+    //    }else if (telArr.count == 1){
+    //
+    //        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
+    //        self.phone2L.text = @"联系电话：";
+    //    }else{
+    //
+    //        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
+    //        self.phone2L.text = [NSString stringWithFormat:@"联系电话：%@",telArr[1]];
+    //    }
+    
+    NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+    NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",2]];
+    NSArray *typeArr = dic[@"param"];
+    self.certL.text = @"证件类型：";
+    for (int i = 0; i < typeArr.count; i++) {
+        
+        if ([typeArr[i][@"id"] integerValue] == [model.card_type integerValue]) {
+            
+            self.certL.text = [NSString stringWithFormat:@"证件类型：%@",typeArr[i][@"param"]];
+            break;
+        }
+    }
+    
+    if (model.card_id) {
+        
+        self.numL.text = [NSString stringWithFormat:@"证件号码：%@",model.card_id];
+    }else{
+        
+        self.numL.text = @"证件号码：";
+    }
+    
+    self.addressL.text = @"地址：";
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+    
+    NSError *err;
+    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+    for (int i = 0; i < provice.count; i++) {
+        
+        if([provice[i][@"region"] integerValue] == [model.province integerValue]){
+            
+            NSArray *city = provice[i][@"item"];
+            for (int j = 0; j < city.count; j++) {
+                
+                if([city[j][@"region"] integerValue] == [model.city integerValue]){
+                    
+                    NSArray *area = city[j][@"item"];
+                    
+                    for (int k = 0; k < area.count; k++) {
+                        
+                        if([area[k][@"region"] integerValue] == [model.district integerValue]){
+                            
+                            self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],model.address];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+#pragma mark -- CollDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return 3;
@@ -102,7 +207,7 @@
     [editBtn setTitleColor:COLOR(27, 152, 255, 1) forState:UIControlStateNormal];
     [self.contentView addSubview:editBtn];
     
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 7; i++) {
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(28 *SIZE, 54 *SIZE + 31 *SIZE * i, 317 *SIZE, 31 *SIZE)];
         label.textColor = YJContentLabColor;
@@ -133,25 +238,25 @@
                 [self.contentView addSubview:_phoneL];
                 break;
             }
+//            case 4:
+//            {
+//                _phone2L = label;
+//                [self.contentView addSubview:_phone2L];
+//                break;
+//            }
             case 4:
-            {
-                _phone2L = label;
-                [self.contentView addSubview:_phone2L];
-                break;
-            }
-            case 5:
             {
                 _certL = label;
                 [self.contentView addSubview:_certL];
                 break;
             }
-            case 6:
+            case 5:
             {
                 _numL = label;
                 [self.contentView addSubview:_numL];
                 break;
             }
-            case 7:
+            case 6:
             {
                 _addressL = label;
                 [self.contentView addSubview:_addressL];
