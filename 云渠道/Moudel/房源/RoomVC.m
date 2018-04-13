@@ -110,7 +110,7 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
-        [self.MainTableView.mj_footer endRefreshing];
+//        [self.MainTableView.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
