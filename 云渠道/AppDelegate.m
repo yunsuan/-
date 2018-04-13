@@ -30,7 +30,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     [BaseRequest GET:Config_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue] == 200) {
             [UserModel defaultModel].Configdic = resposeObject[@"data"];
