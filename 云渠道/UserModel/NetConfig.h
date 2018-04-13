@@ -37,6 +37,7 @@ static NSString *const UploadFile_URL = @"agent/file/upload";
 //获取关注列表
 static NSString *const GetFocusProjectList_URL = @"agent/personal/getFocusProjectList";
 
+static NSString *const GetPersonalBaseInfo_URL = @"agent/personal/getBaseInfo";
 
 
 #pragma mark ---  客源  ---

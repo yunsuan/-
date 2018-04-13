@@ -86,6 +86,21 @@
     _contentList= @[@[@"",@"云算科技公司",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
+    
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest POST:GetPersonalBaseInfo_URL parameters:nil success:^(id resposeObject) {
+        
+        [self.Mytableview.mj_header endRefreshing];
+        NSLog(@"%@",resposeObject);
+    } failure:^(NSError *error) {
+        
+        [self.Mytableview.mj_header endRefreshing];
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)ActionCodeBtn:(UIButton *)btn{
@@ -326,6 +341,10 @@
         _Mytableview.delegate = self;
         _Mytableview.dataSource = self;
         [_Mytableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        _Mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+           
+            [self RequestMethod];
+        }];
     }
     return _Mytableview;
 }
