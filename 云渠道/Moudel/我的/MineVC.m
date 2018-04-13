@@ -54,13 +54,30 @@
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, STATUS_BAR_HEIGHT+24 *SIZE, 60 *SIZE, 60 *SIZE)];
     _headImg.layer.masksToBounds = YES;
     _headImg.layer.cornerRadius = 30 *SIZE;
-    _headImg.image = [UIImage imageNamed:@"def_head"];
+    if ([UserInfoModel defaultModel].head_img) {
+        
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            if (error) {
+                
+                _headImg.image = [UIImage imageNamed:@"def_head"];
+            }
+        }];
+    }else{
+        
+        _headImg.image = [UIImage imageNamed:@"def_head"];
+    }
+//    _headImg.image = [UIImage imageNamed:@"def_head"];
     [self.view addSubview:_headImg];
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(91 *SIZE, STATUS_BAR_HEIGHT+48.7 *SIZE, 160 *SIZE, 12 *SIZE)];
     _nameL.textColor = YJContentLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
-    _nameL.text = @"56318754125623";
+//    _nameL.text = @"56318754125623";
+    if ([UserInfoModel defaultModel].account) {
+        
+        _nameL.text = [UserInfoModel defaultModel].account;
+    }
     [self.view addSubview:_nameL];
 //
 //    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(288 *SIZE, 48 *SIZE, 38 *SIZE, 38 *SIZE)];
@@ -87,7 +104,7 @@
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
     
-    [self RequestMethod];
+//    [self RequestMethod];
 }
 
 - (void)RequestMethod{
@@ -96,11 +113,65 @@
         
         [self.Mytableview.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                [self SetData:resposeObject[@"data"]];
+            }else{
+                
+                [self showContent:@"暂时没有用户资料"];
+            }
+            [self.Mytableview reloadData];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
     } failure:^(NSError *error) {
         
         [self.Mytableview.mj_header endRefreshing];
+        [self showContent:@"网络错误"];
         NSLog(@"%@",error);
     }];
+}
+
+- (void)SetData:(NSDictionary *)data{
+    
+    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data];
+    [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        if ([obj isKindOfClass:[NSNull class]]) {
+            
+            [tempDic setObject:@"" forKey:key];
+        }
+    }];
+    [UserInfoModel defaultModel].absolute_address = tempDic[@"absolute_address"];
+    [UserInfoModel defaultModel].account = tempDic[@"account"];
+    [UserInfoModel defaultModel].birth = tempDic[@"birth"];
+    [UserInfoModel defaultModel].city = tempDic[@"city"];
+    [UserInfoModel defaultModel].district = tempDic[@"district"];
+    [UserInfoModel defaultModel].head_img = tempDic[@"head_img"];
+    [UserInfoModel defaultModel].name = tempDic[@"name"];
+    [UserInfoModel defaultModel].province = tempDic[@"province"];
+    [UserInfoModel defaultModel].sex = tempDic[@"sex"];
+    [UserInfoModel defaultModel].tel = tempDic[@"tel"];
+    [UserModelArchiver infoArchive];
+    
+    if ([UserInfoModel defaultModel].head_img) {
+        
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:[UserInfoModel defaultModel].head_img] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            if (error) {
+                
+                _headImg.image = [UIImage imageNamed:@"def_head"];
+            }
+        }];
+    }
+    
+    if ([UserInfoModel defaultModel].account) {
+        
+        _nameL.text = [UserInfoModel defaultModel].account;
+    }
 }
 
 - (void)ActionCodeBtn:(UIButton *)btn{
@@ -208,9 +279,20 @@
               [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
     } success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        _headImg.image = img;
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _headImg.image = img;
+            [UserInfoModel defaultModel].head_img = resposeObject[@"data"];
+            [UserModelArchiver infoArchive];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
     }];
 }
 

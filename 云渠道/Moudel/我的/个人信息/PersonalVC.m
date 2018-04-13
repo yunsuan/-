@@ -16,7 +16,7 @@
 
 @interface PersonalVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-//    UIImagePickerController *_imagePickerController; /**< 相册拾取器 */
+
     NSArray *_titleArr;
     NSMutableArray *_contentArr;
 }
@@ -39,8 +39,30 @@
     
     _titleArr = @[@"运算编号",@"我的二维码",@"姓名",@"电话号码",@"性别",@"出生年月",@"住址",@"修改密码"];
     _contentArr = [[NSMutableArray alloc] initWithArray:_titleArr];
-//    _imagePickerController = [[UIImagePickerController alloc] init];
-//    _imagePickerController.delegate = self;
+    if ([UserInfoModel defaultModel].account) {
+        
+        [_contentArr replaceObjectAtIndex:0 withObject:[UserInfoModel defaultModel].account];
+    }
+    if ([UserInfoModel defaultModel].name) {
+        
+        [_contentArr replaceObjectAtIndex:2 withObject:[UserInfoModel defaultModel].name];
+    }
+    if ([UserInfoModel defaultModel].tel) {
+        
+        [_contentArr replaceObjectAtIndex:3 withObject:[UserInfoModel defaultModel].tel];
+    }
+    if ([UserInfoModel defaultModel].sex) {
+        
+        [_contentArr replaceObjectAtIndex:4 withObject:[UserInfoModel defaultModel].sex];
+    }
+    if ([UserInfoModel defaultModel].birth) {
+        
+        [_contentArr replaceObjectAtIndex:5 withObject:[UserInfoModel defaultModel].birth];
+    }
+//    if ([UserInfoModel defaultModel].) {
+//
+//        [_contentArr replaceObjectAtIndex:6 withObject:[UserInfoModel defaultModel].name];
+//    }
 }
 
 

@@ -37,6 +37,7 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 #import "UserModel.h"
+#import "UserInfoModel.h"
 #import "UserModelArchiver.h"
 #import "BaseRequest.h"
 
