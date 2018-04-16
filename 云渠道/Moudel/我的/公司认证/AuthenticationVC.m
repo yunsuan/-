@@ -52,6 +52,8 @@
     _imagePickerController.delegate = self;
 }
 
+
+
 - (void)ActionCancelBtn:(UIButton *)btn{
     [_imgArr removeObjectAtIndex:btn.tag];
     [self.authenColl reloadData];

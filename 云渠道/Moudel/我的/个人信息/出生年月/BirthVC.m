@@ -10,7 +10,10 @@
 #import "DateChooseView.h"
 
 @interface BirthVC ()
-
+{
+    
+    NSDate *_date;
+}
 @property (nonatomic, strong) UILabel *birthL;
 
 @property (nonatomic, strong) UIButton *birthBtn;
@@ -45,7 +48,27 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_birthL.text.length && ![self isEmpty:_birthL.text]) {
+        
+        NSDictionary *dic = @{@"birth":_date};
+        [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [UserInfoModel defaultModel].birth = _birthL.text;
+                [UserModelArchiver infoArchive];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            
+            [self showContent:@"网络错误"];
+            NSLog(@"%@",error);
+        }];
+    }
 }
 
 
@@ -95,6 +118,7 @@
         __weak __typeof(&*self)weakSelf = self;
         _dateView.dateblock = ^(NSDate *date) {
           
+            _date = date;
             weakSelf.birthL.text = [weakSelf.formatter stringFromDate:date];
         };
     }

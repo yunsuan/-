@@ -19,6 +19,7 @@
 
     NSArray *_titleArr;
     NSMutableArray *_contentArr;
+//    NSMutableArray *
 }
 @property (nonatomic, strong) UITableView *personTable;
 
@@ -27,6 +28,13 @@
 @end
 
 @implementation PersonalVC
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [_personTable reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,30 +47,72 @@
     
     _titleArr = @[@"运算编号",@"我的二维码",@"姓名",@"电话号码",@"性别",@"出生年月",@"住址",@"修改密码"];
     _contentArr = [[NSMutableArray alloc] initWithArray:_titleArr];
-    if ([UserInfoModel defaultModel].account) {
+    if ([UserInfoModel defaultModel].account.length) {
         
         [_contentArr replaceObjectAtIndex:0 withObject:[UserInfoModel defaultModel].account];
     }
-    if ([UserInfoModel defaultModel].name) {
+    if ([UserInfoModel defaultModel].name.length) {
         
         [_contentArr replaceObjectAtIndex:2 withObject:[UserInfoModel defaultModel].name];
     }
-    if ([UserInfoModel defaultModel].tel) {
+    if ([UserInfoModel defaultModel].tel.length) {
         
         [_contentArr replaceObjectAtIndex:3 withObject:[UserInfoModel defaultModel].tel];
     }
     if ([UserInfoModel defaultModel].sex) {
         
-        [_contentArr replaceObjectAtIndex:4 withObject:[UserInfoModel defaultModel].sex];
+        if ([[UserInfoModel defaultModel].sex integerValue] == 0) {
+            
+            [_contentArr replaceObjectAtIndex:4 withObject:@"性别"];
+        }else if ([[UserInfoModel defaultModel].sex integerValue] == 1){
+            
+            [_contentArr replaceObjectAtIndex:4 withObject:@"男"];
+        }else if ([[UserInfoModel defaultModel].sex integerValue] == 2){
+            
+            [_contentArr replaceObjectAtIndex:4 withObject:@"女"];
+        }
     }
-    if ([UserInfoModel defaultModel].birth) {
+    if ([UserInfoModel defaultModel].birth.length) {
         
         [_contentArr replaceObjectAtIndex:5 withObject:[UserInfoModel defaultModel].birth];
     }
-//    if ([UserInfoModel defaultModel].) {
-//
-//        [_contentArr replaceObjectAtIndex:6 withObject:[UserInfoModel defaultModel].name];
-//    }
+    if ([UserInfoModel defaultModel].province.length && [UserInfoModel defaultModel].city.length && [UserInfoModel defaultModel].district.length) {
+
+        NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+        
+        NSError *err;
+        NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                           options:NSJSONReadingMutableContainers
+                                                             error:&err];
+        for (int i = 0; i < provice.count; i++) {
+            
+            if([provice[i][@"region"] integerValue] == [[UserInfoModel defaultModel].province integerValue]){
+                
+                NSArray *city = provice[i][@"item"];
+                for (int j = 0; j < city.count; j++) {
+                    
+                    if([city[j][@"region"] integerValue] == [[UserInfoModel defaultModel].city integerValue]){
+                        
+                        NSArray *area = city[j][@"item"];
+                        
+                        for (int k = 0; k < area.count; k++) {
+                            
+                            if([area[k][@"region"] integerValue] == [[UserInfoModel defaultModel].district integerValue]){
+                                
+                                if ([UserInfoModel defaultModel].absolute_address.length) {
+                                    
+                                    [_contentArr replaceObjectAtIndex:6 withObject:[NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],[UserInfoModel defaultModel].absolute_address]];
+                                }else{
+                                    
+                                    [_contentArr replaceObjectAtIndex:6 withObject:[NSString stringWithFormat:@"地址：%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]]];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -103,7 +153,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleL.text = _titleArr[indexPath.row];
-    cell.contentL.text = _contentArr[indexPath.row];
+    cell.contentL.text = _titleArr[indexPath.row];
 
     cell.contentL.hidden = NO;
     cell.headImg.hidden = YES;
@@ -115,6 +165,129 @@
         
         cell.rightView.hidden = NO;
     }
+    
+    switch (indexPath.row) {
+        case 0:
+        {
+            if ([UserInfoModel defaultModel].account.length) {
+                
+                cell.contentL.text = [UserInfoModel defaultModel].account;
+                
+            }
+            break;
+        }
+        case 1:{
+            
+            break;
+        }
+        case 2:
+        {
+            if ([UserInfoModel defaultModel].name.length) {
+                
+                cell.contentL.text = [UserInfoModel defaultModel].name;
+                
+            }
+            break;
+        }
+        case 3:
+        {
+            if ([UserInfoModel defaultModel].tel.length) {
+                
+                cell.contentL.text = [UserInfoModel defaultModel].tel;
+                
+            }
+            break;
+        }
+        case 4:
+        {
+            if ([UserInfoModel defaultModel].sex) {
+                
+                if ([[UserInfoModel defaultModel].sex integerValue] == 0) {
+                    
+                    cell.contentL.text = @"性别";
+                }else if ([[UserInfoModel defaultModel].sex integerValue] == 1){
+                    
+                    cell.contentL.text = @"男";
+                }else if ([[UserInfoModel defaultModel].sex integerValue] == 2){
+                    
+                    cell.contentL.text = @"女";
+                }
+            }
+            break;
+        }
+        case 5:
+        {
+            if ([UserInfoModel defaultModel].birth.length) {
+                
+                cell.contentL.text = [UserInfoModel defaultModel].birth;
+                
+            }
+            break;
+        }
+        case 6:
+        {
+//            if ([UserInfoModel defaultModel].tel.length) {
+//
+//                cell.contentL.text = [UserInfoModel defaultModel].tel;
+//
+//            }
+            if ([UserInfoModel defaultModel].province.length && [UserInfoModel defaultModel].city.length && [UserInfoModel defaultModel].district.length) {
+                
+                NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+                
+                NSError *err;
+                NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:&err];
+                for (int i = 0; i < provice.count; i++) {
+                    
+                    if([provice[i][@"region"] integerValue] == [[UserInfoModel defaultModel].province integerValue]){
+                        
+                        NSArray *city = provice[i][@"item"];
+                        for (int j = 0; j < city.count; j++) {
+                            
+                            if([city[j][@"region"] integerValue] == [[UserInfoModel defaultModel].city integerValue]){
+                                
+                                NSArray *area = city[j][@"item"];
+                                
+                                for (int k = 0; k < area.count; k++) {
+                                    
+                                    if([area[k][@"region"] integerValue] == [[UserInfoModel defaultModel].district integerValue]){
+                                        
+                                        if ([UserInfoModel defaultModel].absolute_address.length) {
+                                            
+                                            cell.contentL.text = [NSString stringWithFormat:@"%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],[UserInfoModel defaultModel].absolute_address];
+
+                                        }else{
+                                            
+                                            cell.contentL.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            break;
+        }
+        case 7:
+        {
+//            if ([UserInfoModel defaultModel].tel.length) {
+//
+//                cell.contentL.text = [UserInfoModel defaultModel].tel;
+//
+//            }
+            break;
+        }
+        default:
+            break;
+    }
+    
+    
+    
+    
     return cell;
 }
 
@@ -148,10 +321,46 @@
             
             UIAlertAction *male = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
+                NSDictionary *dic = @{@"sex":@1};
+                [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
+                    
+                    NSLog(@"%@",resposeObject);
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        [UserInfoModel defaultModel].sex = @"1";
+                        [UserModelArchiver infoArchive];
+                        [_personTable reloadData];
+                    }else{
+                        
+                        [self showContent:resposeObject[@"msg"]];
+                    }
+                } failure:^(NSError *error) {
+                   
+                    NSLog(@"%@",error);
+                    [self showContent:@"网络错误"];
+                }];
             }];
             
             UIAlertAction *female = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
+                NSDictionary *dic = @{@"sex":@2};
+                [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
+                    
+                    NSLog(@"%@",resposeObject);
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        [UserInfoModel defaultModel].sex = @"2";
+                        [UserModelArchiver infoArchive];
+                        [_personTable reloadData];
+                    }else{
+                        
+                        [self showContent:resposeObject[@"msg"]];
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                    [self showContent:@"网络错误"];
+                }];
             }];
             
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

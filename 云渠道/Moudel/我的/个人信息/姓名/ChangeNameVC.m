@@ -25,7 +25,27 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_nameTF.text.length && ![self isEmpty:_nameTF.text]) {
+        
+        NSDictionary *dic = @{@"name":_nameTF.text};
+        [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [UserInfoModel defaultModel].name = _nameTF.text;
+                [UserModelArchiver infoArchive];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            
+            [self showContent:@"网络错误"];
+            NSLog(@"%@",error);
+        }];
+    }
 }
 
 - (void)initUI{

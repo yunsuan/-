@@ -11,7 +11,7 @@
 
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    
+    NSMutableArray *_dataArr;
     NSArray *_arr;
 }
 @property (nonatomic, strong) UITableView *attentionTable;
@@ -31,26 +31,55 @@
 - (void)initDataShource{
     
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
-    
+    _dataArr = [@[] mutableCopy];
     [self RequestMethod];
 }
 
 - (void)RequestMethod{
     
-    [BaseRequest POST:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"status"] integerValue] == 200) {
             
-            
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    [self SetData:resposeObject[@"data"][@"data"]];
+                }else{
+                    
+                    [self showContent:@"暂无关注"];
+                }
+            }else{
+                
+                [self showContent:@"暂无关注"];
+            }
         }else{
             
-            
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
+        NSLog(@"%@",error);
         NSLog(@"%@",error.localizedDescription);
     }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+    }
 }
 
 #pragma table

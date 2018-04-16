@@ -13,7 +13,10 @@
 #import "CompanyDetailVC.h"
 
 @interface SelectCompanyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
-
+{
+    
+    NSMutableArray *_dataArr;
+}
 @property (nonatomic, strong) UITableView *selecTable;
 
 @property (nonatomic, strong) UITextField *searchBar;
@@ -28,7 +31,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initDataSource];
     [self initUI];
+}
+
+- (void)initDataSource{
+    
+    _dataArr = [@[] mutableCopy];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest POST:GetCompanyList_URL parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    [self SetData:resposeObject[@"data"][@"data"]];
+                }else{
+                    
+                    [self showContent:@"暂无公司资料"];
+                }
+            }else{
+                
+                [self showContent:@"暂无公司资料"];
+            }
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    
 }
 
 
@@ -92,6 +138,8 @@
     UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 160 *SIZE)];
     whiteView.backgroundColor = CH_COLOR_white;
     [self.view addSubview:whiteView];
+    
+    [whiteView addSubview:self.leftButton];
     
     UILabel *titleL = [[UILabel alloc] init];
     titleL.center = CGPointMake(SCREEN_Width / 2, STATUS_BAR_HEIGHT+20 );

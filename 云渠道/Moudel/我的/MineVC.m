@@ -67,26 +67,18 @@
         
         _headImg.image = [UIImage imageNamed:@"def_head"];
     }
-//    _headImg.image = [UIImage imageNamed:@"def_head"];
     [self.view addSubview:_headImg];
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(91 *SIZE, STATUS_BAR_HEIGHT+48.7 *SIZE, 160 *SIZE, 12 *SIZE)];
     _nameL.textColor = YJContentLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
-//    _nameL.text = @"56318754125623";
+
     if ([UserInfoModel defaultModel].account) {
         
         _nameL.text = [UserInfoModel defaultModel].account;
     }
     [self.view addSubview:_nameL];
-//
-//    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(288 *SIZE, 48 *SIZE, 38 *SIZE, 38 *SIZE)];
-//    _codeImg.backgroundColor = YJGreenColor;
-//    [self.view addSubview:_codeImg];
-    
-//    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(344 *SIZE, STATUS_BAR_HEIGHT+42.7 *SIZE, 6.7 *SIZE, 12.3 *SIZE)];
-//    rightView.image = [UIImage imageNamed:@"rightarrow"];
-//    [self.view addSubview:rightView];
+
     
     _codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _codeBtn.frame = CGRectMake(9 *SIZE, STATUS_BAR_HEIGHT+19 *SIZE, 70 *SIZE, 70*SIZE);
@@ -104,7 +96,7 @@
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
     
-//    [self RequestMethod];
+    [self RequestMethod];
 }
 
 - (void)RequestMethod{
@@ -153,7 +145,7 @@
     [UserInfoModel defaultModel].head_img = tempDic[@"head_img"];
     [UserInfoModel defaultModel].name = tempDic[@"name"];
     [UserInfoModel defaultModel].province = tempDic[@"province"];
-    [UserInfoModel defaultModel].sex = tempDic[@"sex"];
+    [UserInfoModel defaultModel].sex = [NSString stringWithFormat:@"%@",tempDic[@"sex"]];
     [UserInfoModel defaultModel].tel = tempDic[@"tel"];
     [UserModelArchiver infoArchive];
     
@@ -282,9 +274,24 @@
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            _headImg.image = img;
-            [UserInfoModel defaultModel].head_img = resposeObject[@"data"];
-            [UserModelArchiver infoArchive];
+            NSDictionary *dic = @{@"head_img":resposeObject[@"data"]};
+            [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
+                
+                NSLog(@"%@",resposeObject);
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    _headImg.image = img;
+                    [UserInfoModel defaultModel].head_img = dic[@"head_img"];
+                    [UserModelArchiver infoArchive];
+                }else{
+                    
+                    [self showContent:resposeObject[@"msg"]];
+                }
+            } failure:^(NSError *error) {
+               
+                NSLog(@"%@",error);
+                [self showContent:@"网络错误"];
+            }];
         }else{
             
             [self showContent:resposeObject[@"msg"]];
