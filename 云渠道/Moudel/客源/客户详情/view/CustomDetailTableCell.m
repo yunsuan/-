@@ -20,6 +20,175 @@
     return self;
 }
 
+- (void)setModel:(CustomRequireModel *)model{
+    
+    
+    self.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
+
+    if (model.total_price) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",26]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.total_price integerValue]) {
+                
+                self.cellView.priceL.text = [NSString stringWithFormat:@"总价：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.priceL.text = @"总价：";
+    }
+    
+    if (model.area) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",26]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.area integerValue]) {
+                
+                self.cellView.areaL.text = [NSString stringWithFormat:@"面积：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.areaL.text = @"面积：";
+    }
+    
+    if (model.house_type) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
+                
+                self.cellView.houseTypeL.text = [NSString stringWithFormat:@"房型：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.houseTypeL.text = @"房型：";
+    }
+    
+    if (model.orientation) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",19]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.orientation integerValue]) {
+                
+                self.cellView.faceL.text = [NSString stringWithFormat:@"朝向：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.standardL.text = @"朝向：";
+    }
+    
+    if (model.floor_max && model.floor_min) {
+        
+        self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层-%@层",model.floor_min,model.floor_max];
+    }else if (model.floor_min && !model.floor_max){
+        
+        self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层以上",model.floor_min];
+    }else if (model.floor_max && !model.floor_min){
+        
+        self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层以上",model.floor_max];
+    }else{
+        
+        self.cellView.floorL.text = @"楼层：";
+    }
+    
+    if (model.decorate) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",21]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.decorate integerValue]) {
+                
+                self.cellView.standardL.text = [NSString stringWithFormat:@"装修标准：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.standardL.text = @"装修标准：";
+    }
+    
+    if (model.buy_purpose) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",12]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.buy_purpose integerValue]) {
+                
+                self.cellView.purposeL.text = [NSString stringWithFormat:@"置业目的：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.purposeL.text = @"置业目的：";
+    }
+    
+    if (model.buy_purpose) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",13]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.pay_type integerValue]) {
+                
+                self.cellView.payWayL.text = [NSString stringWithFormat:@"付款方式：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        self.cellView.payWayL.text = @"付款方式：";
+    }
+    
+    if (model.intent) {
+        
+        self.cellView.intentionL.text = [NSString stringWithFormat:@"购房意向度：%@",model.urgency];
+    }else{
+        
+        self.cellView.intentionL.text = @"购房意向度：";
+    }
+    if (model.urgency) {
+        
+        self.cellView.urgentL.text = [NSString stringWithFormat:@"购房紧迫度：%@",model.urgency];
+    }else{
+        
+        self.cellView.urgentL.text = @"购房紧迫度：";
+    }
+    self.requireL.text = model.comment;
+}
+
 - (void)initUI{
     
     _cellView = [[CustomTableCellView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 348 *SIZE)];

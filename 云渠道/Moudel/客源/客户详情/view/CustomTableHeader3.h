@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomerModel.h"
 
 @protocol CustomTableHeader3Delegate;
 
@@ -30,7 +31,7 @@
 
 @property (nonatomic, strong) UILabel *phoneL;
 
-@property (nonatomic, strong) UILabel *phone2L;
+//@property (nonatomic, strong) UILabel *phone2L;
 
 @property (nonatomic, strong) UILabel *certL;
 
@@ -51,5 +52,7 @@
 @property (nonatomic, strong) UIButton *moreBtn;
 
 @property (nonatomic, weak) id<CustomTableHeader3Delegate> delegate;
+
+@property (nonatomic, strong) CustomerModel *model;
 
 @end

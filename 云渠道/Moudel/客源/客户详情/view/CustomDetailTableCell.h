@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomTableCellView.h"
 #import "TagView.h"
+#import "CustomRequireModel.h"
 
 @interface CustomDetailTableCell : UITableViewCell
 
@@ -17,5 +18,7 @@
 @property (nonatomic, strong) TagView *tagView;
 
 @property (nonatomic, strong) UILabel *requireL;
+
+@property (nonatomic, strong) CustomRequireModel *model;
 
 @end

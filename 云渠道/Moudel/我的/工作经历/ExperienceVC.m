@@ -10,7 +10,10 @@
 #import "ExperienceTableCell.h"
 
 @interface ExperienceVC ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    
+    NSMutableArray *_dataArr;
+}
 @property (nonatomic, strong) UITableView *experienceTable;
 
 @end
@@ -21,6 +24,32 @@
     [super viewDidLoad];
     
     [self initUI];
+    [self initDataSource];
+}
+
+- (void)initDataSource{
+    
+    _dataArr = [@[] mutableCopy];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest GET:WorkHis_URL parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

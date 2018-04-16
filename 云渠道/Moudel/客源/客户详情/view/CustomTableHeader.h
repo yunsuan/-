@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong) UILabel *phoneL;
 
-@property (nonatomic, strong) UILabel *phone2L;
+//@property (nonatomic, strong) UILabel *phone2L;
 
 @property (nonatomic, strong) UILabel *certL;
 
