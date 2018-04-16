@@ -24,6 +24,15 @@
         _contentlab.textColor = YJContentLabColor;
         _contentlab.font =[UIFont systemFontOfSize:10.7*SIZE];
         [self.contentView addSubview:_contentlab];
+        
+        _brokerageLevel = [[LevelView alloc] initWithFrame:CGRectMake(123 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
+        _brokerageLevel.titleL.text = @"佣金";
+        [self.contentView addSubview:_brokerageLevel];
+        
+        _getLevel = [[LevelView alloc] initWithFrame:CGRectMake(217 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
+        _getLevel.titleL.text = @"结佣";
+        [self.contentView addSubview:_getLevel];
+        
         _statulab = [[UILabel alloc]initWithFrame:CGRectMake(327.7*SIZE, 15.7*SIZE, 30*SIZE, 13*SIZE)];
         _statulab.textColor = COLOR(27, 152, 255, 1);
         _statulab.font = [UIFont systemFontOfSize:12*SIZE];
