@@ -20,10 +20,25 @@
     return self;
 }
 
+- (void)setModel:(MyAttentionModel *)model{
+    
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,model.img_url]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+       
+        if (error) {
+            
+            _headImg.image = [UIImage imageNamed:@""];
+        }
+    }];
+    _nameL.text = model.project_name;
+    _areaL.text = [NSString stringWithFormat:@"%@元/㎡",model.average_price];
+    
+}
+
 - (void)initUI{
     
     _headImg = [[UIImageView alloc]initWithFrame:CGRectMake(10 *SIZE, 16*SIZE, 100 *SIZE, 88 *SIZE)];
-    _headImg.backgroundColor = YJGreenColor;
+//    _headImg.backgroundColor = YJGreenColor;
+    _headImg.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_headImg];
     
     _nameL = [[UILabel alloc]initWithFrame:CGRectMake(121 *SIZE, 16 *SIZE, 230*SIZE, 14*SIZE)];

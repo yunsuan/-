@@ -46,6 +46,8 @@ static NSString *const GetCompanyList_URL = @"agent/personal/getCompanyList";
 static NSString *const WorkHis_URL = @"agent/personal/WorkHis";
 //获取经纪人申请历史
 static NSString *const ApplyHis_URL = @"agent/personal/ApplyHis";
+//取消关注项目
+static NSString *const CancelFocusProject_URL = @"agent/personal/cancelFocusProject";
 #pragma mark ---  客源  ---
 
 
