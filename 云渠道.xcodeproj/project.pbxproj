@@ -964,8 +964,8 @@
 		0CC19CE8206E21100007CC5F /* 选择公司 */ = {
 			isa = PBXGroup;
 			children = (
-				0CC19CE9206E21100007CC5F /* SelectCompanyVC.h */,
 				0CC19CEA206E21100007CC5F /* 公司详情 */,
+				0CC19CE9206E21100007CC5F /* SelectCompanyVC.h */,
 				0CC19CED206E21100007CC5F /* SelectCompanyVC.m */,
 				0CC19CEE206E21100007CC5F /* model */,
 				0CC19CF1206E21100007CC5F /* view */,

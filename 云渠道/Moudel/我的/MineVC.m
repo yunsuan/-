@@ -53,6 +53,7 @@
     
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(14 *SIZE, STATUS_BAR_HEIGHT+24 *SIZE, 60 *SIZE, 60 *SIZE)];
     _headImg.layer.masksToBounds = YES;
+    _headImg.contentMode = UIViewContentModeScaleAspectFill;
     _headImg.layer.cornerRadius = 30 *SIZE;
     if ([UserInfoModel defaultModel].head_img) {
         

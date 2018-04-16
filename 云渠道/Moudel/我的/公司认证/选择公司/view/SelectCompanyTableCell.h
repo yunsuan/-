@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CompanyModel.h"
 
 @interface SelectCompanyTableCell : UITableViewCell
 
@@ -21,5 +22,7 @@
 @property (nonatomic, strong) UILabel *phoneL;
 
 @property (nonatomic, strong) UILabel *contactL;
+
+@property (nonatomic, strong) CompanyModel *model;
 
 @end

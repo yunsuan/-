@@ -39,6 +39,10 @@
     [self initUI];
 }
 
+- (void)ActionSelectBtn:(UIButton *)btn{
+    
+    
+}
 
 - (void)initUI{
     
@@ -55,38 +59,38 @@
     
     UIImageView *headImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 17 *SIZE, 67 *SIZE, 67 *SIZE)];
     [topView addSubview:headImg];
-    [headImg sd_setImageWithURL:[NSURL URLWithString:_model.headImg] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [headImg sd_setImageWithURL:[NSURL URLWithString:_model.log] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
     }];
     UILabel *nameL = [[UILabel alloc] initWithFrame:CGRectMake(88 *SIZE, 12 *SIZE, 300 *SIZE, 13 *SIZE)];
     nameL.textColor = YJTitleLabColor;
     nameL.font = [UIFont systemFontOfSize:13 *SIZE];
-    nameL.text = _model.name;
+    nameL.text = _model.company_name;
     [topView addSubview:nameL];
     
     UILabel *contactL = [[UILabel alloc] initWithFrame:CGRectMake(89 *SIZE, 35 *SIZE, 300 *SIZE, 10 *SIZE)];
     contactL.textColor = YJContentLabColor;
     contactL.font = [UIFont systemFontOfSize:11 *SIZE];
-    contactL.text = _model.contact;
+    contactL.text = [NSString stringWithFormat:@"负责人：%@",_model.contact];
     [topView addSubview:contactL];
     
     UILabel *phoneL = [[UILabel alloc] initWithFrame:CGRectMake(220 *SIZE, 12 *SIZE, 130 *SIZE, 10 *SIZE)];
     phoneL.textColor = YJContentLabColor;
     phoneL.font = [UIFont systemFontOfSize:11 *SIZE];
     phoneL.textAlignment = NSTextAlignmentRight;
-    phoneL.text = _model.phone;
+    phoneL.text = [NSString stringWithFormat:@"联系电话：%@",_model.contact_tel];
     [topView addSubview:phoneL];
     
     UILabel *codeL = [[UILabel alloc] initWithFrame:CGRectMake(88 *SIZE, 57 *SIZE, 300 *SIZE, 10 *SIZE)];
     codeL.textColor = YJContentLabColor;
     codeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    codeL.text = _model.code;
+//    codeL.text = [NSString stringWithFormat:@"营业执照号：%@",_model.code];
     [topView addSubview:codeL];
     
     UILabel *addressL = [[UILabel alloc] initWithFrame:CGRectMake(88 *SIZE, 78 *SIZE, 300 *SIZE, 10 *SIZE)];
     addressL.textColor = YJTitleLabColor;
     addressL.font = [UIFont systemFontOfSize:11 *SIZE];
-    addressL.text = _model.address;
+    addressL.text = [NSString stringWithFormat:@"地址：%@",_model.absolute_address];
     [topView addSubview:addressL];
     
     _contentView = [[UIView alloc] init];
@@ -124,9 +128,9 @@
 
     
     _selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _selectBtn.frame = CGRectMake(0, SCREEN_Height - 43 *SIZE, SCREEN_Width, 43 *SIZE);
+    _selectBtn.frame = CGRectMake(0, SCREEN_Height - 43 *SIZE - TAB_BAR_MORE, SCREEN_Width, 43 *SIZE + TAB_BAR_MORE);
     _selectBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-//    [_selectBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_selectBtn addTarget:self action:@selector(ActionSelectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_selectBtn setTitle:@"选择该公司" forState:UIControlStateNormal];
     [_selectBtn setBackgroundColor:COLOR(27, 152, 255, 1)];
     [_selectBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];

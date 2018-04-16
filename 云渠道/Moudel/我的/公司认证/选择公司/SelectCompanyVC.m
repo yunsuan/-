@@ -11,6 +11,7 @@
 #import "SelectCompanyCollCell.h"
 #import "BoxView.h"
 #import "CompanyDetailVC.h"
+#import "CompanyModel.h"
 
 @interface SelectCompanyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 {
@@ -74,7 +75,21 @@
 
 - (void)SetData:(NSArray *)data{
     
-    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        CompanyModel *model = [[CompanyModel alloc] initWithDictionary:tempDic];
+        [_dataArr addObject:model];
+    }
+    [_selecTable reloadData];
 }
 
 
@@ -104,7 +119,7 @@
 #pragma mark --table代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 2;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -122,12 +137,14 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.model = _dataArr[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CompanyDetailVC *nextVC = [[CompanyDetailVC alloc] init];
+    CompanyModel *model = _dataArr[indexPath.row];
+    CompanyDetailVC *nextVC = [[CompanyDetailVC alloc] initWithModel:model];
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
@@ -182,7 +199,7 @@
     [_selectColl registerClass:[SelectCompanyCollCell class] forCellWithReuseIdentifier:@"SelectCompanyCollCell"];
     [whiteView addSubview:_selectColl];
     
-    _selecTable = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 141 *SIZE, SCREEN_Width, SCREEN_Height - 141 *SIZE - STATUS_BAR_HEIGHT) style:UITableViewStylePlain];
+    _selecTable = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_selectColl.frame) + SIZE, SCREEN_Width, SCREEN_Height - CGRectGetMaxY(_selectColl.frame) - SIZE) style:UITableViewStylePlain];
     _selecTable.backgroundColor = self.view.backgroundColor;
     _selecTable.delegate = self;
     _selecTable.dataSource = self;
