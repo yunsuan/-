@@ -76,19 +76,15 @@
                         [self showContent:@"暂无数据"];
                     }
                 }else{
-                    
                     [self showContent:@"暂无数据"];
                 }
             }else{
-                
                 [self showContent:@"暂无数据"];
             }
         }else{
-            
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
-       
         [_customerTable.mj_footer endRefreshing];
         [_customerTable.mj_header endRefreshing];
         NSLog(@"%@",error.localizedDescription);
