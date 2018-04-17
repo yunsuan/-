@@ -62,6 +62,52 @@
 -(void)Register
 {
     
+    
+    if (![self checkTel:_Account.text]) {
+        [self showContent:@"请输入正确的电话号码！"];
+    }
+    if ([_Code.text isEqualToString:@""]) {
+        [self showContent:@"请输入验证码！"];
+        return;
+    }
+    if (_PassWord.text.length<6) {
+        [self showContent:@"密码长度至少为6位"];
+        return;
+    }
+    if (![self checkPassword:_PassWord.text]) {
+        [self showContent:@"密码格式错误,必须包含数字和字母！"];
+        return;
+    }
+    
+    if (![_PassWord.text isEqualToString:_SurePassWord.text]) {
+        [self showContent:@"两次输入的密码不相同！"];
+        return;
+    }
+    
+    
+    
+    NSDictionary *parameter = @{
+                                @"account":_Account.text,
+                                @"password":_PassWord.text,
+                                @"password_verify":_SurePassWord.text,
+                                @"captcha":_Code.text
+                                };
+    
+    [BaseRequest POST:Register_URL parameters:parameter success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }
+        else{
+            
+        }
+        
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+    }];
 }
 
 -(void)GetCode{
@@ -70,23 +116,28 @@
     
     _GetCodeBtn.userInteractionEnabled = NO;
     if([self checkTel:_Account.text]) {
+    
+        NSDictionary *parameter = @{
+                                    @"tel":_Account.text
+                                    };
+        [BaseRequest GET:Captcha_URL parameters:parameter success:^(id resposeObject) {
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                _GetCodeBtn.hidden = YES;
+                _timeLabel.hidden = NO;
+                surplusTime = 60;
+                _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
+                //倒计时
+                time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+            }
+            
+            [self showContent:resposeObject[@"msg"]];
+            _GetCodeBtn.userInteractionEnabled = YES;
+        } failure:^(NSError *error) {
+            _GetCodeBtn.userInteractionEnabled = YES;
+            [self showContent:@"网络错误"];
+        }];
         
-        //        NetConfitModel *model = [[NetConfitModel alloc]init];
-        //
-        //        [BaseNetRequest startpost:@"/TelService.ashx" parameters:[model configgetCodebyphone:@"13438339177"] success:^(id resposeObject) {
-        //
-        //            NSLog(@"%@",resposeObject);
-        //            [self showContent:[NSString stringWithFormat:@"%@",resposeObject[0][@"content"]]];
-        //            if ([resposeObject[0][@"state"] isEqualToString:@"1"])
-        //            {
-        _GetCodeBtn.hidden = YES;
-        _timeLabel.hidden = NO;
-        surplusTime = 60;
-        _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
-        //倒计时
-        time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        _GetCodeBtn.userInteractionEnabled = YES;
-
     }
     else
     {
