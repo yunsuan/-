@@ -60,8 +60,8 @@
 		0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB042074AA8100921C75 /* HouseTypeTableHeader2.m */; };
 		0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB072074C6DE00921C75 /* HouseHeaderCollCell.m */; };
 		0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB0B2074D2BE00921C75 /* BuildingAlbumVC.m */; };
-		0CBD857420847FB200E7B183 /* MyAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857320847FB200E7B183 /* MyAttentionModel.m */; };
 		0CBD857720848EC700E7B183 /* LevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857620848EC700E7B183 /* LevelView.m */; };
+		0CBD857A2085931A00E7B183 /* MyAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85792085931A00E7B183 /* MyAttentionModel.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -316,10 +316,10 @@
 		0CB6BB072074C6DE00921C75 /* HouseHeaderCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseHeaderCollCell.m; sourceTree = "<group>"; };
 		0CB6BB0A2074D2BE00921C75 /* BuildingAlbumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildingAlbumVC.h; sourceTree = "<group>"; };
 		0CB6BB0B2074D2BE00921C75 /* BuildingAlbumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildingAlbumVC.m; sourceTree = "<group>"; };
-		0CBD857220847FB200E7B183 /* MyAttentionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAttentionModel.h; sourceTree = "<group>"; };
-		0CBD857320847FB200E7B183 /* MyAttentionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAttentionModel.m; sourceTree = "<group>"; };
 		0CBD857520848EC700E7B183 /* LevelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelView.h; sourceTree = "<group>"; };
 		0CBD857620848EC700E7B183 /* LevelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelView.m; sourceTree = "<group>"; };
+		0CBD85782085931A00E7B183 /* MyAttentionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAttentionModel.h; sourceTree = "<group>"; };
+		0CBD85792085931A00E7B183 /* MyAttentionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAttentionModel.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -942,8 +942,8 @@
 		0CBD857120847FA400E7B183 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				0CBD857220847FB200E7B183 /* MyAttentionModel.h */,
-				0CBD857320847FB200E7B183 /* MyAttentionModel.m */,
+				0CBD85782085931A00E7B183 /* MyAttentionModel.h */,
+				0CBD85792085931A00E7B183 /* MyAttentionModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2084,6 +2084,7 @@
 				0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */,
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
 				0CC19D112071D5B10007CC5F /* CustomTableHeader4.m in Sources */,
+				0CBD857A2085931A00E7B183 /* MyAttentionModel.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
 				0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */,
 				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
@@ -2112,7 +2113,6 @@
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
-				0CBD857420847FB200E7B183 /* MyAttentionModel.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,

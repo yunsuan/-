@@ -20,19 +20,19 @@
     return self;
 }
 
-- (void)setModel:(MyAttentionModel *)model{
-    
-    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,model.img_url]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-       
-        if (error) {
-            
-            _headImg.image = [UIImage imageNamed:@""];
-        }
-    }];
-    _nameL.text = model.project_name;
-    _areaL.text = [NSString stringWithFormat:@"%@元/㎡",model.average_price];
-    
-}
+//- (void)setModel:(MyAttentionModel *)model{
+//    
+//    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,model.img_url]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//       
+//        if (error) {
+//            
+//            _headImg.image = [UIImage imageNamed:@""];
+//        }
+//    }];
+//    _nameL.text = model.project_name;
+//    _areaL.text = [NSString stringWithFormat:@"%@元/㎡",model.average_price];
+//    
+//}
 
 - (void)initUI{
     
