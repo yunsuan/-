@@ -46,7 +46,7 @@
 - (void)initDataSource{
     
     _titleArr = @[@"运算编号",@"我的二维码",@"姓名",@"电话号码",@"性别",@"出生年月",@"住址",@"修改密码"];
-    _contentArr = [[NSMutableArray alloc] initWithArray:_titleArr];
+    _contentArr = [[NSMutableArray alloc] initWithArray:@[@"运算编号",@"",@"姓名",@"电话号码",@"性别",@"出生年月",@"住址",@"******"]];
     if ([UserInfoModel defaultModel].account.length) {
         
         [_contentArr replaceObjectAtIndex:0 withObject:[UserInfoModel defaultModel].account];
@@ -153,7 +153,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleL.text = _titleArr[indexPath.row];
-    cell.contentL.text = _titleArr[indexPath.row];
+    cell.contentL.text = _contentArr[indexPath.row];
 
     cell.contentL.hidden = NO;
     cell.headImg.hidden = YES;

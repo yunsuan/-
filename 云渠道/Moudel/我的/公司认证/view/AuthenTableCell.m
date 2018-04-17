@@ -35,7 +35,7 @@
     [self.contentView addSubview:_contentL];
     
     UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(343 *SIZE, 16 *SIZE, 7 *SIZE, 12 *SIZE)];
-    rightView.backgroundColor = YJGreenColor;
+    rightView.image = [UIImage imageNamed:@"rightarrow"];
     [self.contentView addSubview:rightView];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 50 *SIZE, SCREEN_Width, SIZE)];
