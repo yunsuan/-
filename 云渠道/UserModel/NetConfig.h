@@ -29,6 +29,9 @@ static NSString *const Captcha_URL = @"agent/user/captcha";
 //3注册
 static NSString *const Register_URL = @"agent/user/register";
 
+//修改密码
+static NSString *const ChangePassword_URL = @"agent/user/changePassword";
+
 
 
 #pragma mark ---  我的  ---
