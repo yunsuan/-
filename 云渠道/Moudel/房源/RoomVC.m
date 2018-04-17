@@ -243,7 +243,7 @@
 - (void)ActionCityBtn:(UIButton *)btn{
     
     AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
-    [self.view addSubview:view];
+    [[UIApplication sharedApplication].keyWindow addSubview:view];
     view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
         
         if (![area isEqualToString:@"市辖区"]) {

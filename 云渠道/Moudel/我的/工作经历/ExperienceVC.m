@@ -40,7 +40,13 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            if ([resposeObject[@"data"] isKindOfClass:[NSArray class]]) {
+                
+                [self SetData:resposeObject[@"data"]];
+            }else{
+                
+                [self showContent:@"暂时没有记录"];
+            }
         }else{
             
             [self showContent:resposeObject[@"msg"]];
@@ -50,6 +56,11 @@
         NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

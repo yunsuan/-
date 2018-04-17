@@ -96,12 +96,12 @@
     return _dataArr.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 120*SIZE;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     static NSString *CellIdentifier = @"PeopleCell";
     
@@ -109,12 +109,56 @@
     if (!cell) {
         cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    RoomListModel *model = _dataArr[indexPath.row];
+    MyAttentionModel *model = _dataArr[indexPath.row];
     [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
-    [cell settagviewWithdata:_arr[indexPath.row]];
-    //    [cell settagviewWithdata:([model.project_tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]])];
+    
+    
+    NSMutableArray *tempArr = [@[] mutableCopy];
+    for (int i = 0; i < model.property_tags.count; i++) {
+        
+        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                
+                [tempArr addObject:obj[@"param"]];
+                *stop = YES;
+            }
+        }];
+    }
+    NSArray *tempArr1 = @[tempArr,[model.project_tags componentsSeparatedByString:@","]];
+    [cell settagviewWithdata:tempArr1];
+    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
+    [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+    
+    //    if (indexPath.row == 1) {
+    //        static NSString *CellIdentifier = @"CompanyCell";
+    //
+    //        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //        if (!cell) {
+    //            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    //        }
+    //        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+    //        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
+    //        [cell settagviewWithdata:_arr[indexPath.row]];
+    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        return cell;
+    //    }else
+    //    {
+    //        static NSString *CellIdentifier = @"PeopleCell";
+    //
+    //        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //        if (!cell) {
+    //            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    //        }
+    //        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+    //        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
+    //        [cell settagviewWithdata:_arr[indexPath.row]];
+    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        return cell;
+    //    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
