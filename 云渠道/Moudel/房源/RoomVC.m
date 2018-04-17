@@ -16,6 +16,7 @@
 #import "PYSearchViewController.h"
 #import "MoreView.h"
 #import "RoomListModel.h"
+#import "AdressChooseView.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -241,63 +242,29 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
-    
-}
-
--(void)initUI
-{
-    [self.view addSubview:self.headerView];
-    
-    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _cityBtn.frame = CGRectMake(0, 19 *SIZE, 50 *SIZE, 21 *SIZE);
-    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
-    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
-    [self.headerView addSubview:_cityBtn];
-    
-    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
-    _searchBar.backgroundColor = YJBackColor;
-    [self.headerView addSubview:_searchBar];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 11 *SIZE, 100 *SIZE, 12 *SIZE)];
-    label.textColor = COLOR(147, 147, 147, 1);
-    label.text = @"小区/楼盘/商铺";
-    label.font = [UIFont systemFontOfSize:11 *SIZE];
-    [_searchBar addSubview:label];
-    
-    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(256 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
-    rightImg.image = [UIImage imageNamed:@"search_2"];
-    [_searchBar addSubview:rightImg];
-    
-    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchBtn.frame = _searchBar.bounds;
-    [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_searchBar addSubview:searchBtn];
-
-    
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.minimumLineSpacing = 0;
-    _flowLayout.minimumInteritemSpacing = 0;
-    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _flowLayout.itemSize = CGSizeMake(81 *SIZE, 40 *SIZE);
-    
-    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE, 324 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
-    _customerColl.backgroundColor = CH_COLOR_white;
-    _customerColl.delegate = self;
-    _customerColl.dataSource = self;
-    _customerColl.bounces = NO;
-    [_customerColl registerClass:[RoomCollCell class] forCellWithReuseIdentifier:@"RoomCollCell"];
-    [self.view addSubview:_customerColl];
-    
-    _upImg = [[UIImageView alloc] initWithFrame:CGRectMake(334 *SIZE, 74 *SIZE, 13 *SIZE, 16 *SIZE)];
-    [self.headerView addSubview:_upImg];
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(329 *SIZE, 69 *SIZE, 23 *SIZE, 26 *SIZE);
-    [btn addTarget:self action:@selector(ActionUpAndDownBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.headerView addSubview:btn];
-    
-    [self.view addSubview:self.MainTableView];
+    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+    [self.view addSubview:view];
+    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+        
+        if (![area isEqualToString:@"市辖区"]) {
+            
+            [_cityBtn setTitle:area forState:UIControlStateNormal];
+        }else{
+            
+            if (![city isEqualToString:@"市辖区"]) {
+                
+                [_cityBtn setTitle:city forState:UIControlStateNormal];
+            }else{
+                
+                [_cityBtn setTitle:province forState:UIControlStateNormal];
+            }
+        }
+        
+//        _provinceId = proviceid;
+//        _cityId = cityid;
+//        _areaId = areaid;
+//        _addressL.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+    };
 }
 
 - (void)ActionUpAndDownBtn:(UIButton *)btn{
@@ -375,10 +342,25 @@
     }
     RoomListModel *model = _dataArr[indexPath.row];
     [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
-    [cell settagviewWithdata:_arr[indexPath.row]];
+    
+    
+    NSMutableArray *tempArr = [@[] mutableCopy];
+    for (int i = 0; i < model.property_tags.count; i++) {
+        
+        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                
+                [tempArr addObject:obj[@"param"]];
+                *stop = YES;
+            }
+        }];
+    }
+    NSArray *tempArr1 = @[tempArr,[model.project_tags componentsSeparatedByString:@","]];
+    [cell settagviewWithdata:tempArr1];
     [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
     [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
-//    [cell settagviewWithdata:([model.project_tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]])];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 
@@ -433,7 +415,61 @@
         }
 }
 
-
+-(void)initUI
+{
+    [self.view addSubview:self.headerView];
+    
+    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cityBtn.frame = CGRectMake(0, 19 *SIZE, 50 *SIZE, 21 *SIZE);
+    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
+    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+    [self.headerView addSubview:_cityBtn];
+    
+    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
+    _searchBar.backgroundColor = YJBackColor;
+    [self.headerView addSubview:_searchBar];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 11 *SIZE, 100 *SIZE, 12 *SIZE)];
+    label.textColor = COLOR(147, 147, 147, 1);
+    label.text = @"小区/楼盘/商铺";
+    label.font = [UIFont systemFontOfSize:11 *SIZE];
+    [_searchBar addSubview:label];
+    
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(256 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    rightImg.image = [UIImage imageNamed:@"search_2"];
+    [_searchBar addSubview:rightImg];
+    
+    UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchBtn.frame = _searchBar.bounds;
+    [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_searchBar addSubview:searchBtn];
+    
+    
+    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout.minimumLineSpacing = 0;
+    _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _flowLayout.itemSize = CGSizeMake(81 *SIZE, 40 *SIZE);
+    
+    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE, 324 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _customerColl.backgroundColor = CH_COLOR_white;
+    _customerColl.delegate = self;
+    _customerColl.dataSource = self;
+    _customerColl.bounces = NO;
+    [_customerColl registerClass:[RoomCollCell class] forCellWithReuseIdentifier:@"RoomCollCell"];
+    [self.view addSubview:_customerColl];
+    
+    _upImg = [[UIImageView alloc] initWithFrame:CGRectMake(334 *SIZE, 74 *SIZE, 13 *SIZE, 16 *SIZE)];
+    [self.headerView addSubview:_upImg];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(329 *SIZE, 69 *SIZE, 23 *SIZE, 26 *SIZE);
+    [btn addTarget:self action:@selector(ActionUpAndDownBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView addSubview:btn];
+    
+    [self.view addSubview:self.MainTableView];
+}
 
 #pragma mark  ---  懒加载   ---
 -(UITableView *)MainTableView

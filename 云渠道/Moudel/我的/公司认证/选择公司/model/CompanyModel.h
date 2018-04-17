@@ -24,7 +24,9 @@
 
 @property (nonatomic, copy) NSString *district;
 
-@property (nonatomic, copy) NSString *log;
+@property (nonatomic, copy) NSString *logo;
+
+@property (nonatomic, copy) NSString *comment;
 
 @property (nonatomic, copy) NSString *province;
 

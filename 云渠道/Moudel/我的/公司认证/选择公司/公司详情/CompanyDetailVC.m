@@ -59,7 +59,7 @@
     
     UIImageView *headImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 17 *SIZE, 67 *SIZE, 67 *SIZE)];
     [topView addSubview:headImg];
-    [headImg sd_setImageWithURL:[NSURL URLWithString:_model.log] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [headImg sd_setImageWithURL:[NSURL URLWithString:_model.logo] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
     }];
     UILabel *nameL = [[UILabel alloc] initWithFrame:CGRectMake(88 *SIZE, 12 *SIZE, 300 *SIZE, 13 *SIZE)];
@@ -117,7 +117,8 @@
     _briefL.numberOfLines = 0;
     [_contentView addSubview:_briefL];
     
-    _briefL.text = @"房产云算软件专门为房产经纪人研发的房地产软件，能够帮助房产经纪人更好的管理手上的房源信息，并且批量的将房源群发到当地的各大房产网站，省去了大量发布房源的时间，并且能够第一时间从各大房产网上获取最新的房源信息让房产经纪人能够及时的获取第一手资料，并且迅速完成配对，促进交易的完成。";
+//    _briefL.text = @"房产云算软件专门为房产经纪人研发的房地产软件，能够帮助房产经纪人更好的管理手上的房源信息，并且批量的将房源群发到当地的各大房产网站，省去了大量发布房源的时间，并且能够第一时间从各大房产网上获取最新的房源信息让房产经纪人能够及时的获取第一手资料，并且迅速完成配对，促进交易的完成。";
+    _briefL.text = _model.comment;
     UIFont *font=[UIFont systemFontOfSize:12 *SIZE];
     NSDictionary *attr = @{NSFontAttributeName:font};
     CGFloat height = [_briefL.text boundingRectWithSize:CGSizeMake(335 *SIZE, SCREEN_Height * 3) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size.height;

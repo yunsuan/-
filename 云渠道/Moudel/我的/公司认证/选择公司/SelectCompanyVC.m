@@ -157,6 +157,7 @@
     [self.view addSubview:whiteView];
     
     [whiteView addSubview:self.leftButton];
+    [whiteView addSubview:self.maskButton];
     
     UILabel *titleL = [[UILabel alloc] init];
     titleL.center = CGPointMake(SCREEN_Width / 2, STATUS_BAR_HEIGHT+20 );
