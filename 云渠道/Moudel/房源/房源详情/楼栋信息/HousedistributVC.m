@@ -137,7 +137,7 @@
         }
     }
     
-    _seatSize = CGSizeMake(79*SIZE, 34*SIZE);
+    _seatSize = CGSizeMake(93*SIZE, 34*SIZE);
     _seatTop = 20;
     _seatLeft = 30;
     _seatBottom = 20;

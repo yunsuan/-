@@ -10,6 +10,9 @@
 #import "RoomCellCollCell4.h"
 
 @interface RoomDetailTableCell4()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
+{
+    NSArray *namearr;
+}
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
@@ -21,7 +24,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        namearr = @[@"学校",@"医院",@"购物",@"餐饮",@"楼盘"];
         [self initUI];
     }
     return self;
@@ -40,7 +43,7 @@
         cell = [[RoomCellCollCell4 alloc] initWithFrame:CGRectMake(0, 0, 60 *SIZE, 27 *SIZE)];
     }
     
-    cell.titleL.text = @"123123";
+    cell.titleL.text = namearr[indexPath.row];
     return cell;
 }
 
