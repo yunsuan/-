@@ -25,10 +25,14 @@
 #import "DynamicListVC.h"
 #import "CustomMatchListVC.h"
 #import "DistributVC.h"
+#import <BaiduMapAPI_Search/BMKPoiSearchType.h>
+#import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
+#import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate>
+@interface RoomDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,UIScrollViewDelegate,BMKPoiSearchDelegate,RoomDetailTableCell4Delegate>
 {
-
+    CLLocationCoordinate2D _leftBottomPoint;
+    CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
     NSArray *_titleArr;
     CGRect _rect0;
     CGRect _rect1;
@@ -51,6 +55,8 @@
 @property (nonatomic, strong) UIButton *counselBtn;
 
 @property (nonatomic, strong) BMKMapView *mapView;
+
+@property (nonatomic, strong) BMKPoiSearch *poisearch;
 
 @property (nonatomic, assign) CGFloat alpha;
 
@@ -281,7 +287,8 @@
 #pragma mark -- delegate
 
 - (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    NSArray * namearr = @[@"学校",@"医院",@"购物",@"餐饮",@"楼盘"];
+    [self beginSearchWithname:namearr[indexPath.row]];
     
 }
 
@@ -633,6 +640,7 @@
             if (!cell) {
                 
                 cell = [[RoomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell4"];
+                cell.delegate = self;
                 [cell.contentView addSubview:self.mapView];
                 [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
                     
@@ -824,19 +832,84 @@
     
 }
 
+
 - (BMKMapView *)mapView{
     
     if (!_mapView) {
         
         _mapView = [[BMKMapView alloc] init];
-
         _mapView.delegate = self;
-        _mapView.zoomLevel = 14;
-        _mapView.userInteractionEnabled = NO;
-    
+        _mapView.zoomLevel = 15;
+//        _mapView.userInteractionEnabled = NO;
+        _mapView.isSelectedAnnotationViewFront = YES;
     }
     return _mapView;
 }
 
+- (void)mapViewDidFinishLoading:(BMKMapView *)mapView
+{
+    _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
+    _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
+    //开始搜索
+}
+
+
+
+- (void)beginSearchWithname:(NSString *)name{
+
+    _poisearch = [[BMKPoiSearch alloc]init];
+    _poisearch.delegate = self;
+    
+    BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
+    boundSearchOption.pageIndex = 0;
+    boundSearchOption.pageCapacity = 40;
+    boundSearchOption.keyword = name;
+    boundSearchOption.leftBottom =_leftBottomPoint;
+    boundSearchOption.rightTop =_rightBottomPoint;
+    
+    BOOL flag = [_poisearch poiSearchInbounds:boundSearchOption];
+    if(flag)
+    {
+        NSLog(@"范围内检索发送成功");
+    }
+    else
+    {
+        NSLog(@"范围内检索发送失败");
+    }
+}
+
+#pragma mark implement BMKSearchDelegate
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult*)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+        [_mapView removeAnnotations:array];
+        array = [NSArray arrayWithArray:_mapView.overlays];
+        [_mapView removeOverlays:array];
+        //在此处理正常结果
+        for (int i = 0; i < result.poiInfoList.count; i++)
+        {
+            BMKPoiInfo* poi = [result.poiInfoList objectAtIndex:i];
+            [self addAnimatedAnnotationWithName:poi.name withAddress:poi.pt];
+        }
+        
+    } else if (error == BMK_SEARCH_AMBIGUOUS_ROURE_ADDR){
+        NSLog(@"起始点有歧义");
+    } else {
+        // 各种情况的判断。。。
+    }
+}
+// 添加动画Annotation
+- (void)addAnimatedAnnotationWithName:(NSString *)name withAddress:(CLLocationCoordinate2D)coor {
+    BMKPointAnnotation*animatedAnnotation = [[BMKPointAnnotation alloc]init];
+    animatedAnnotation.coordinate = coor;
+    animatedAnnotation.title = name;
+    [_mapView addAnnotation:animatedAnnotation];
+}
+- (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
+    _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
+}
 
 @end
