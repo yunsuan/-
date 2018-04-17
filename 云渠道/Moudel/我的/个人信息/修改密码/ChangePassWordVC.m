@@ -43,6 +43,9 @@
     [self.view addSubview:self.SurePassWord];
     [self.view addSubview:self.timeLabel];
     [self.view addSubview:self.PassWord];
+    [self.view addSubview:self.leftButton];
+    [self.view addSubview:self.maskButton];
+    
     UILabel  *title = [[UILabel alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+53*SIZE, 100*SIZE, 22*SIZE)];
     title.text = @"修改密码";
     title.font = [UIFont systemFontOfSize:21*SIZE];
@@ -83,16 +86,7 @@
         //倒计时
         time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
         _GetCodeBtn.userInteractionEnabled = YES;
-        
-        //            }
-        //
-        //
-        //        } failure:^(NSError *error) {
-        //            NSLog(@"%@",error);
-        //            _codebtn.userInteractionEnabled = YES;
-        //
-        //        }];
-        //
+
     }
     else
     {
@@ -234,18 +228,6 @@
 }
 
 
-//-(UIButton *)ProtocolBtn
-//{
-//    if (!_ProtocolBtn) {
-//        _ProtocolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _ProtocolBtn.frame =  CGRectMake(0, SCREEN_Height-TAB_BAR_MORE-13*SIZE-19*SIZE, 360*SIZE, 13*SIZE);
-//        [_ProtocolBtn setTitle:@"注册/登录即代表同意《易家用户使用协议》" forState: UIControlStateNormal];
-//        [_ProtocolBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
-//        _ProtocolBtn.titleLabel.font = [UIFont systemFontOfSize:12*SIZE];
-//        [_ProtocolBtn addTarget:self action:@selector(Protocol) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _ProtocolBtn;
-//}
 
 -(UILabel *)timeLabel
 {

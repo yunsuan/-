@@ -62,6 +62,7 @@
 		0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BB0B2074D2BE00921C75 /* BuildingAlbumVC.m */; };
 		0CBD857720848EC700E7B183 /* LevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857620848EC700E7B183 /* LevelView.m */; };
 		0CBD857A2085931A00E7B183 /* MyAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85792085931A00E7B183 /* MyAttentionModel.m */; };
+		0CBD857D2085C6EA00E7B183 /* BankCardListTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857C2085C6E900E7B183 /* BankCardListTableCell2.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -320,6 +321,8 @@
 		0CBD857620848EC700E7B183 /* LevelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelView.m; sourceTree = "<group>"; };
 		0CBD85782085931A00E7B183 /* MyAttentionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAttentionModel.h; sourceTree = "<group>"; };
 		0CBD85792085931A00E7B183 /* MyAttentionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAttentionModel.m; sourceTree = "<group>"; };
+		0CBD857B2085C6E900E7B183 /* BankCardListTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListTableCell2.h; sourceTree = "<group>"; };
+		0CBD857C2085C6E900E7B183 /* BankCardListTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankCardListTableCell2.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -1277,6 +1280,8 @@
 			children = (
 				0CF7424520622DCD001F926F /* BankCardListTableCell.h */,
 				0CF7424620622DCD001F926F /* BankCardListTableCell.m */,
+				0CBD857B2085C6E900E7B183 /* BankCardListTableCell2.h */,
+				0CBD857C2085C6E900E7B183 /* BankCardListTableCell2.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2209,6 +2214,7 @@
 				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
 				105E189F206235690031558D /* RoomDetailVC.m in Sources */,
+				0CBD857D2085C6EA00E7B183 /* BankCardListTableCell2.m in Sources */,
 				0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,

@@ -7,18 +7,21 @@
 //
 
 #import "AddBankCardVC.h"
+#import "DropDownBtn.h"
+#import "SinglePickView.h"
 
 @interface AddBankCardVC ()<UITextFieldDelegate>
 {
     NSInteger surplusTime;//重新发送短信的倒计时时间
     NSTimer *time;
+    NSString *_cardType;
 }
 
 @property (nonatomic, strong) UITextField *peopleTF;
 
 @property (nonatomic, strong) UITextField *cardNumTF;
 
-@property (nonatomic, strong) UITextField *cardTypeTF;
+@property (nonatomic, strong) DropDownBtn *cardTypeTF;
 
 @property (nonatomic, strong) UITextField *phoneTF;
 
@@ -49,7 +52,7 @@
         NSInteger existedLength = textField.text.length;
         NSInteger selectedLength = range.length;
         NSInteger replaceLength = string.length;
-        if (existedLength - selectedLength + replaceLength > 11) {
+        if (existedLength - selectedLength + replaceLength > 20) {
             return NO;
         }
     }else if (textField == self.codeTF){
@@ -78,41 +81,93 @@
 
 - (void)ActionAddBtn:(UIButton *)btn{
     
-    
+    if ([self isEmpty:_peopleTF.text]) {
+        
+        [self showContent:@"请输入持卡人姓名"];
+        return;
+    }
+    if ([self isEmpty:_cardNumTF.text]) {
+        
+        [self showContent:@"请输入银行卡账号"];
+        return;
+    }
+//    if ([self isEmpty:_cardTypeTF.text]) {
+//
+//        [self showContent:@"请输入持卡人姓名"];
+//        return;
+//    }
+    if (!_cardType.length) {
+        
+        [self showContent:@"请选择卡类型"];
+        return;
+    }
+    if (![self checkTel:_phoneTF.text]) {
+        
+        [self showContent:@"请输入正确的电话号码"];
+        return;
+    }
+    if ([self isEmpty:_codeTF.text]) {
+        
+        [self showContent:@"请输入验证码"];
+        return;
+    }
+    NSDictionary *dic = @{@"card_owner":_peopleTF.text,
+                          @"bank_card":_cardNumTF.text,
+                          @"bank":_cardType,
+                          @"tel":_phoneTF.text,
+                          @"captcha":_codeTF.text
+                          };
+    [BaseRequest POST:BindingBankCard_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 -(void)ActionGetBtn:(UIButton *)btn{
     //获取验证码
     
-    
+    if (![self checkTel:_phoneTF.text]) {
+        
+        [self showContent:@"请输入正确的电话号码"];
+        return;
+    }
     _GetCodeBtn.userInteractionEnabled = NO;
     if([self checkTel:_phoneTF.text]) {
         
-        //        NetConfitModel *model = [[NetConfitModel alloc]init];
-        //
-        //        [BaseNetRequest startpost:@"/TelService.ashx" parameters:[model configgetCodebyphone:@"13438339177"] success:^(id resposeObject) {
-        //
-        //            NSLog(@"%@",resposeObject);
-        //            [self showContent:[NSString stringWithFormat:@"%@",resposeObject[0][@"content"]]];
-        //            if ([resposeObject[0][@"state"] isEqualToString:@"1"])
-        //            {
-        _GetCodeBtn.hidden = YES;
-        _timeLabel.hidden = NO;
-        surplusTime = 60;
-        _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
-        //倒计时
-        time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        _GetCodeBtn.userInteractionEnabled = YES;
+
+        NSDictionary *dic = @{@"tel":_phoneTF.text};
+        [BaseRequest GET:SendCaptcha_URL parameters:dic success:^(id resposeObject) {
+            _GetCodeBtn.userInteractionEnabled = YES;
+            if ([resposeObject[@"code"] integerValue] == 200) {
+
+                surplusTime = 60;
+
+                [_GetCodeBtn setTitle:[NSString stringWithFormat:@"%ldS", (long)surplusTime] forState:UIControlStateNormal];
+                //倒计时
+                time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+                _GetCodeBtn.userInteractionEnabled = YES;
+            }else{
+                
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+           
+            _GetCodeBtn.userInteractionEnabled = YES;
+            NSLog(@"%@",error);
+            [self showContent:@"网络错误"];
+        }];
         
-        //            }
-        //
-        //
-        //        } failure:^(NSError *error) {
-        //            NSLog(@"%@",error);
-        //            _codebtn.userInteractionEnabled = YES;
-        //
-        //        }];
-        //
     }
     else
     {
@@ -122,13 +177,28 @@
 
 - (void)updateTime {
     surplusTime--;
-    _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
+//    _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
+    [_GetCodeBtn setTitle:[NSString stringWithFormat:@"%ldS", (long)surplusTime] forState:UIControlStateNormal];
     if (surplusTime == 0) {
         [time invalidate];
         time = nil;
-        _timeLabel.hidden = YES;
-        _GetCodeBtn.hidden = NO;
+        [_GetCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+//        _timeLabel.hidden = YES;
+//        _GetCodeBtn.hidden = NO;
     }
+}
+
+- (void)ActionBankTypeBtn:(UIButton *)btn{
+    
+    SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BANK_TYPE]];
+    
+    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+        
+        _cardTypeTF.content.text = MC;
+        _cardType = [NSString stringWithFormat:@"%@",ID];
+        
+    };
+    [self.view addSubview:view];
 }
 
 - (void)initUI{
@@ -160,7 +230,7 @@
         line.backgroundColor = YJBackColor;
         [view addSubview:line];
         
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(87 *SIZE, 14 *SIZE + i * 52 *SIZE, 150 *SIZE, 22 *SIZE)];
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(87 *SIZE, i * 52 *SIZE, 200 *SIZE, 52 *SIZE)];
         textField.font = [UIFont systemFontOfSize:13 *SIZE];
         textField.delegate = self;
         switch (i) {
@@ -179,8 +249,11 @@
             }
             case 2:
             {
-                _cardTypeTF = textField;
-                _cardTypeTF.userInteractionEnabled = NO;
+                
+                _cardTypeTF = [[DropDownBtn alloc] initWithFrame:textField.frame];
+                _cardTypeTF.dropimg.hidden = YES;
+                _cardTypeTF.layer.borderWidth = 0;
+                [_cardTypeTF addTarget:self action:@selector(ActionBankTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
                 [view addSubview:_cardTypeTF];
                 break;
             }
