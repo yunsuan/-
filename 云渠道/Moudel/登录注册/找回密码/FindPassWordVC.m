@@ -29,7 +29,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navBackgroundView.hidden = NO;
+    self.navBackgroundView.backgroundColor = YJBackColor;
     [self InitUI];
+    
     
 }
 
