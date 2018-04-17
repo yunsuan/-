@@ -7,7 +7,10 @@
 //
 
 #import "MyAttentionVC.h"
-#import "AttentionTableCell.h"
+//#import "AttentionTableCell.h"
+#import "RoomListModel.h"
+#import "MyAttentionModel.h"
+#import "PeopleCell.h"
 
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -40,7 +43,7 @@
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        if ([resposeObject[@"status"] integerValue] == 200) {
+        if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
                 
@@ -79,38 +82,38 @@
                 [tempDic setObject:@"" forKey:key];
             }
         }];
+        
+        MyAttentionModel *model = [[MyAttentionModel alloc] initWithDictionary:tempDic];
+        
+        [_dataArr addObject:model];
     }
+    [_attentionTable reloadData];
 }
 
 #pragma table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 141 *SIZE;
+    return 120*SIZE;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    AttentionTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AttentionTableCell"];
+    static NSString *CellIdentifier = @"PeopleCell";
+    
+    PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        
-        cell = [[AttentionTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AttentionTableCell"];
+        cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.nameL.text = @"新希望国际大厦 套三 清水房";
-    cell.areaL.text = @"10342元/㎡";
-    cell.addressL.text = @"高新区-天府三街";
-    cell.typeL.text = @"物业类型：住宅";
-    cell.attributeL.text = @"所属门店：NO23";
-    cell.timeL.text = @"添加房源日期：2017-10-23";
-    cell.priceL.text = @"120万";
+    RoomListModel *model = _dataArr[indexPath.row];
+    [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
     [cell settagviewWithdata:_arr[indexPath.row]];
-    
+    //    [cell settagviewWithdata:([model.project_tags componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -126,7 +129,24 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    MyAttentionModel *model = _dataArr[indexPath.row];
+    NSDictionary *dic = @{@"focus_id":model.focus_id};
+    [BaseRequest GET:CancelFocusProject_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_dataArr removeObjectAtIndex:indexPath.row];
+            [tableView reloadData];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{

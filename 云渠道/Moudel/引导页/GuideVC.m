@@ -81,7 +81,7 @@
     }
     
     _pageControl = [[UIPageControl alloc] init];
-    _pageControl.frame = CGRectMake(140 *SIZE, 611 *SIZE, 80 *SIZE, 10 *SIZE);//指定位置大小
+    _pageControl.frame = CGRectMake(140 *SIZE, SCREEN_Height - 24 *SIZE - TAB_BAR_MORE, 80 *SIZE, 10 *SIZE);//指定位置大小
     _pageControl.numberOfPages = 3;//指定页面个数
     _pageControl.currentPage = 0;//指定pagecontroll的值，默认选中的小白点（第一个）
     //添加委托方法，当点击小白点就执行此方法
@@ -92,7 +92,7 @@
     [self.view addSubview:_pageControl];
     
     _inBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _inBtn.frame = CGRectMake(120 *SIZE, 570 *SIZE, 120 *SIZE, 33 *SIZE);
+    _inBtn.frame = CGRectMake(120 *SIZE, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, 120 *SIZE, 33 *SIZE);
     _inBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     _inBtn.layer.cornerRadius = 5 *SIZE;
     _inBtn.clipsToBounds = YES;

@@ -8,20 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CompanyModel : NSObject
+@interface CompanyModel : BaseModel
 
-@property (nonatomic, copy) NSString *headImg;
+@property (nonatomic, copy) NSString *absolute_address;
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *city;
+
+@property (nonatomic, copy) NSString *company_id;
+
+@property (nonatomic, copy) NSString *company_name;
 
 @property (nonatomic, copy) NSString *contact;
 
-@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *contact_tel;
 
-@property (nonatomic, copy) NSString *address;
+@property (nonatomic, copy) NSString *district;
 
-@property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *log;
 
-@property (nonatomic, copy) NSString *brief;
+@property (nonatomic, copy) NSString *province;
 
 @end

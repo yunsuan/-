@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TagView.h"
+#import "MyAttentionModel.h"
 
 @interface AttentionTableCell : UITableViewCell
 
@@ -28,6 +29,8 @@
 @property (nonatomic, strong) UILabel *priceL;
 
 @property (nonatomic, strong) TagView *tagView;
+
+@property (nonatomic, strong) MyAttentionModel *model;
 
 -(void)settagviewWithdata:(NSArray *)data;
 

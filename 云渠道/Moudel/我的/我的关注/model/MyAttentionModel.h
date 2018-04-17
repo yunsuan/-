@@ -10,4 +10,18 @@
 
 @interface MyAttentionModel : BaseModel
 
+@property (nonatomic, strong) NSString *img_url;
+
+@property (nonatomic, strong) NSString *absolute_address;
+
+@property (nonatomic, strong) NSString *average_price;
+
+@property (nonatomic, strong) NSString *focus_id;
+
+@property (nonatomic, strong) NSString *project_name;
+
+@property (nonatomic, strong) NSString *project_tags;
+
+@property (nonatomic, strong) NSString *project_id;
+
 @end
