@@ -8,10 +8,14 @@
 
 #import "BankCardListVC.h"
 #import "BankCardListTableCell.h"
+#import "BankCardListTableCell2.h"
 #import "AddBankCardVC.h"
 
 @interface BankCardListVC ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    
+    NSMutableArray *_dataArr;
+}
 @property (nonatomic, strong) UITableView *bankTable;
 
 @end
@@ -21,34 +25,81 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initDataSource];
     [self initUI];
+    
+}
+
+- (void)initDataSource{
+    
+    _dataArr = [@[] mutableCopy];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest POST:BankCardInfo_URL parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                [self SetData:resposeObject[@"data"]];
+            }
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetData:(NSDictionary *)data{
+    
+    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data];
+    [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        if ([obj isKindOfClass:[NSNull class]]) {
+            
+            [tempDic setObject:@"" forKey:key];
+        }
+    }];
+    
+    [_dataArr addObject:tempDic];
+    [_bankTable reloadData];
 }
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    NSString *str = [NSString stringWithFormat:@"%@，您好！有且仅能绑定一张银行卡，如欲绑定其他银行卡请先将当前银行卡解除绑定。",@"温先生"];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:str preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"解除绑定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    if (_dataArr.count) {
         
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSString *str = [NSString stringWithFormat:@"%@，您好！有且仅能绑定一张银行卡，如欲绑定其他银行卡请先将当前银行卡解除绑定。",@"温先生"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:str preferredStyle:UIAlertControllerStyleAlert];
         
-    }];
-    [alert addAction:confirm];
-    [alert addAction:cancel];
-    [self.navigationController presentViewController:alert animated:YES completion:^{
+        UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"解除绑定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
         
-    }];
-    
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alert addAction:confirm];
+        [alert addAction:cancel];
+        [self.navigationController presentViewController:alert animated:YES completion:^{
+            
+        }];
+    }
 }
     
     
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -68,15 +119,35 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *Identifier = @"BankCardListTableCell";
-    BankCardListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
-    if (!cell) {
+    if (_dataArr.count) {
         
-        cell = [[BankCardListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        NSString *Identifier = @"BankCardListTableCell";
+        BankCardListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+        if (!cell) {
+            
+            cell = [[BankCardListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backImg.image = [UIImage imageNamed:@"bg_china"];
+//        cell.bankL.text = _dataArr[indexPath.section][@"bank"];
+        NSMutableAttributedString *atti = [[NSMutableAttributedString alloc] initWithString:_dataArr[indexPath.section][@"bank_card"]];
+//        atti addAttribute:<#(nonnull NSAttributedStringKey)#> value:<#(nonnull id)#> range:<#(NSRange)#>
+        cell.accL.attributedText = atti;
+        
+        return cell;
+    }else{
+        
+        NSString *Identifier = @"BankCardListTableCell2";
+        BankCardListTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+        if (!cell) {
+            
+            cell = [[BankCardListTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -88,8 +159,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    AddBankCardVC *nextVC = [[AddBankCardVC alloc] init];
-    [self.navigationController pushViewController:nextVC animated:YES];
+    if (!_dataArr.count) {
+        
+        AddBankCardVC *nextVC = [[AddBankCardVC alloc] init];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        
+    }
 }
 
 - (void)initUI{
