@@ -20,6 +20,8 @@
 @property (nonatomic , strong) UIButton *ProtocolBtn;
 @property (nonatomic , strong) UIButton *FindPassWordBtn;
 @property (nonatomic , strong) UIImageView *Headerimg;
+@property (nonatomic , strong) UIButton  *QQBtn;
+@property (nonatomic , strong) UIButton  *WEIBOBTN;
 @end
 
 @implementation LoginVC
@@ -36,9 +38,11 @@
     [self.view addSubview:self.RegisterBtn];
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
+    [self.view addSubview:self.QQBtn];
+    [self.view addSubview:self.WEIBOBTN];
 //    [self.view addSubview:self.QuickLoginBtn];
     [self.view addSubview:self.LoginBtn];
-    [self.view addSubview:self.ProtocolBtn];
+//    [self.view addSubview:self.ProtocolBtn];
     [self.view addSubview:self.FindPassWordBtn];
     for (int i = 0; i<2; i++) {
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
@@ -171,6 +175,27 @@
 }
 
 
+
+-(UIButton *)QQBtn{
+    if (!_QQBtn) {
+        _QQBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _QQBtn.frame = CGRectMake(106.7*SIZE, 456.3*SIZE+NAVIGATION_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+        _QQBtn.backgroundColor = YJBlueBtnColor;
+    }
+    return _QQBtn;
+}
+
+
+- (UIButton *)WEIBOBTN
+{
+    if (!_WEIBOBTN) {
+        _WEIBOBTN = [UIButton buttonWithType:UIButtonTypeCustom];
+        _WEIBOBTN.frame = CGRectMake(213.3*SIZE, 456.3*SIZE+NAVIGATION_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+        _WEIBOBTN.backgroundColor = YJBlueBtnColor;
+    }
+    return _WEIBOBTN;
+    
+}
 
 //-(UIButton *)QuickLoginBtn
 //{
