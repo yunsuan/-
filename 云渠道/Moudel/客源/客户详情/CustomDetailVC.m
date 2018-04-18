@@ -17,6 +17,7 @@
 #import "AddRequireMentVC.h"
 #import "FollowRecordVC.h"
 #import "AddCustomerVC.h"
+#import "RoomMatchListVC.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
@@ -257,6 +258,23 @@
             header.numListL.text = @"匹配项目列表(3)";
             header.recommendListL.text = @"已推荐项目数(2)";
             
+            header.moreBtnBlock = ^{
+                
+                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
+            
+            header.editBtnBlock = ^{
+                
+                AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:_customModel];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
+            header.addBtnBlock = ^{
+                
+            };
+            header.statusBtnBlock = ^{
+                
+            };
             return header;
         }
     }

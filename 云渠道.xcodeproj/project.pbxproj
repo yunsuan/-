@@ -70,6 +70,7 @@
 		0CBD859720871B6900E7B183 /* RoomDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD859620871B6900E7B183 /* RoomDetailModel.m */; };
 		0CBD859820872C8500E7B183 /* CustomTableHeader3.h in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */; };
 		0CBD859920872C8500E7B183 /* CustomTableHeader3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */; };
+		0CBD859D2087365100E7B183 /* RoomMatchListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD859C2087365100E7B183 /* RoomMatchListVC.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -342,6 +343,8 @@
 		0CBD85922085FE5D00E7B183 /* RoomAnalyzeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomAnalyzeVC.m; sourceTree = "<group>"; };
 		0CBD859520871B6900E7B183 /* RoomDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailModel.h; sourceTree = "<group>"; };
 		0CBD859620871B6900E7B183 /* RoomDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailModel.m; sourceTree = "<group>"; };
+		0CBD859B2087365100E7B183 /* RoomMatchListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomMatchListVC.h; sourceTree = "<group>"; };
+		0CBD859C2087365100E7B183 /* RoomMatchListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomMatchListVC.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -747,6 +750,7 @@
 		0C0B82042063513400238D4F /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0CBD859A2087362100E7B183 /* 匹配项目 */,
 				0C0606A2207DAE990045E3C1 /* 客户信息model */,
 				0CB6BAEE20736D4600921C75 /* 跟进记录 */,
 				0CC19D1F207216F70007CC5F /* 添加需求 */,
@@ -977,6 +981,15 @@
 				0CBD859620871B6900E7B183 /* RoomDetailModel.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		0CBD859A2087362100E7B183 /* 匹配项目 */ = {
+			isa = PBXGroup;
+			children = (
+				0CBD859B2087365100E7B183 /* RoomMatchListVC.h */,
+				0CBD859C2087365100E7B183 /* RoomMatchListVC.m */,
+			);
+			path = "匹配项目";
 			sourceTree = "<group>";
 		};
 		0CC19CE3206E21100007CC5F /* view */ = {
@@ -2297,6 +2310,7 @@
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				0CF04F91207CAFB000A45F4A /* PYSearchSuggestionViewController.m in Sources */,
+				0CBD859D2087365100E7B183 /* RoomMatchListVC.m in Sources */,
 				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,

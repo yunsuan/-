@@ -32,23 +32,33 @@
 
 - (void)ActionEditBtn:(UIButton *)btn{
     
-    if (_delegate &&[_delegate respondsToSelector:@selector(DGActionEditBtn:)]) {
+    if (self.editBtnBlock) {
         
-        [_delegate DGActionEditBtn:btn];
-    }else{
-        
-        NSLog(@"没有代理人");
+        self.editBtnBlock();
     }
 }
 
 - (void)ActionAddBtn:(UIButton *)btn{
     
-    if (_delegate && [_delegate respondsToSelector:@selector(DGActionAddBtn:)]) {
+    if (self.addBtnBlock) {
         
-        [_delegate DGActionAddBtn:btn];
-    }else{
+        self.addBtnBlock();
+    }
+}
+
+- (void)ActionMoreBtn:(UIButton *)btn{
+    
+    if (self.moreBtnBlock) {
         
-        NSLog(@"没有代理人");
+        self.moreBtnBlock();
+    }
+}
+
+- (void)ActionStatusBtn:(UIButton *)btn{
+    
+    if (self.statusBtnBlock) {
+        
+        self.statusBtnBlock();
     }
 }
 
@@ -291,12 +301,13 @@
     
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _recommendBtn.frame = CGRectMake(245 *SIZE, 87 *SIZE + CGRectGetMaxY(_headerColl.frame), 108 *SIZE, 26 *SIZE);
+    [_recommendBtn addTarget:self action:@selector(ActionStatusBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_recommendBtn];
     
     _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _moreBtn.frame = CGRectMake(287 *SIZE, 65 *SIZE + CGRectGetMaxY(_headerColl.frame), 70 *SIZE, 20 *SIZE);
     _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
-//    [_moreBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_moreBtn setTitle:@"产看全部 》" forState:UIControlStateNormal];
     [_moreBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
     [self.contentView addSubview:_moreBtn];

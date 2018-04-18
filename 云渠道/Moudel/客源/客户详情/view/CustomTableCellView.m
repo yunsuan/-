@@ -87,43 +87,43 @@
                 [self addSubview:_houseTypeL];
                 break;
             }
+//            case 4:
+//            {
+//                _faceL = label;
+//                [self addSubview:_faceL];
+//                break;
+//            }
             case 4:
-            {
-                _faceL = label;
-                [self addSubview:_faceL];
-                break;
-            }
-            case 5:
             {
                 _floorL = label;
                 [self addSubview:_floorL];
                 break;
             }
-            case 6:
+            case 5:
             {
                 _standardL = label;
                 [self addSubview:_standardL];
                 break;
             }
-            case 7:
+            case 6:
             {
                 _purposeL = label;
                 [self addSubview:_purposeL];
                 break;
             }
-            case 8:
+            case 7:
             {
                 _payWayL = label;
                 [self addSubview:_payWayL];
                 break;
             }
-            case 9:
+            case 8:
             {
                 _intentionL = label;
                 [self addSubview:_intentionL];
                 break;
             }
-            case 10:
+            case 9:
             {
                 _urgentL = label;
                 [self addSubview:_urgentL];

@@ -59,7 +59,13 @@
     [super viewDidLoad];
 
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"添加客户";
+    if (_model.client_id) {
+        
+        self.titleLabel.text = @"修改信息";
+    }else{
+        
+        self.titleLabel.text = @"添加客户";
+    }
     [self initDataSouce];
     [self initUI];
 

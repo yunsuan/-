@@ -15,13 +15,24 @@
 
 - (void)head3collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)DGActionAddBtn:(UIButton *)btn;
-
-- (void)DGActionEditBtn:(UIButton *)btn;
-
 @end
 
+@class CustomTableHeader3;
+
+typedef void(^AddBtnBlock)(void);
+typedef void(^EditBtnBlock)(void);
+typedef void(^MoreBtnBlock)(void);
+typedef void(^StatusBtnBlock)(void);
+
 @interface CustomTableHeader3 : UITableViewHeaderFooterView
+
+@property (nonatomic, copy) AddBtnBlock addBtnBlock;
+
+@property (nonatomic, copy) EditBtnBlock editBtnBlock;
+
+@property (nonatomic, copy) MoreBtnBlock moreBtnBlock;
+
+@property (nonatomic, copy) StatusBtnBlock statusBtnBlock;
 
 @property (nonatomic, strong) UILabel *nameL;
 

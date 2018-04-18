@@ -28,7 +28,7 @@ typedef void(^editBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *houseTypeL;
 
-@property (nonatomic, strong) UILabel *faceL;
+//@property (nonatomic, strong) UILabel *faceL;
 
 @property (nonatomic, strong) UILabel *floorL;
 

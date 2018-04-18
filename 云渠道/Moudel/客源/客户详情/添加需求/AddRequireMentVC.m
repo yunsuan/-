@@ -42,7 +42,7 @@
 
 @property (nonatomic, strong) DropDownBtn *typeBtn;
 
-@property (nonatomic, strong) DropDownBtn *faceBtn;
+//@property (nonatomic, strong) DropDownBtn *faceBtn;
 
 @property (nonatomic, strong) DropDownBtn *purposeBtn;
 
@@ -58,7 +58,7 @@
 
 @property (nonatomic, strong) UILabel *typeL;
 
-@property (nonatomic, strong) UILabel *faceL;
+//@property (nonatomic, strong) UILabel *faceL;
 
 @property (nonatomic, strong) UILabel *floorL;
 
@@ -263,18 +263,6 @@
         }
         case 7:
         {
-            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:FACE]];
-            WS(weakself);
-            view.selectedBlock = ^(NSString *MC, NSString *ID) {
-                
-                weakself.faceBtn.content.text = MC;
-                weakself.faceBtn.str = [NSString stringWithFormat:@"%@",ID];
-            };
-            [self.view addSubview:view];
-            break;
-        }
-        case 8:
-        {
             SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BUY_TYPE]];
             WS(weakself);
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
@@ -285,7 +273,7 @@
             [self.view addSubview:view];
             break;
         }
-        case 9:
+        case 8:
         {
             SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
             WS(weakself);
@@ -297,7 +285,7 @@
             [self.view addSubview:view];
             break;
         }
-        case 10:
+        case 9:
         {
             SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_stairArr];
             WS(weakself);
@@ -309,7 +297,7 @@
             [self.view addSubview:view];
             break;
         }
-        case 11:
+        case 10:
         {
             SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_stairArr];
             WS(weakself);
@@ -321,7 +309,7 @@
             [self.view addSubview:view];
             break;
         }
-        case 12:
+        case 11:
         {
             SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:DECORATE]];
             WS(weakself);
@@ -376,10 +364,6 @@
         if (_typeBtn.str.length) {
             
             [dic setObject:_typeBtn.str forKey:@"house_type"];
-        }
-        if (_faceBtn.str.length) {
-            
-            [dic setObject:_faceBtn.str forKey:@"orientation"];
         }
         if (_floorTF1.str.length) {
             
@@ -437,11 +421,106 @@
             }
         } failure:^(NSError *error) {
             
+            [self showContent:@"网络错误"];
             NSLog(@"%@",error);
         }];
     }else{
-        
-        [self showContent:@"网络错误"];
+    
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:_model.need_id forKey:@"need_id"];
+        if (_btnNum == 1) {
+            if (self.addressBtn.str.length) {
+                
+                [dic setObject:self.addressBtn.str forKey:@"region"];
+            }
+        }else if (_btnNum == 2){
+            
+            if (self.addressBtn2.str.length) {
+                
+                [dic setObject:[NSString stringWithFormat:@"%@,%@",self.addressBtn.str,self.addressBtn2.str] forKey:@"region"];
+            }
+        }else{
+            
+            if (self.addressBtn3.str.length) {
+                
+                [dic setObject:[NSString stringWithFormat:@"%@,%@,%@",self.addressBtn.str,self.addressBtn2.str,self.addressBtn3.str] forKey:@"region"];
+            }
+        }
+        if (_houseTypeBtn.str.length) {
+            
+            [dic setObject:_houseTypeBtn.str forKey:@"property_type"];
+        }
+        if (_priceBtn.str.length) {
+            
+            [dic setObject:_priceBtn.str forKey:@"total_price"];
+        }
+        if (_areaBtn.str.length) {
+            
+            [dic setObject:_areaBtn.str forKey:@"area"];
+        }
+        if (_typeBtn.str.length) {
+            
+            [dic setObject:_typeBtn.str forKey:@"house_type"];
+        }
+        if (_floorTF1.str.length) {
+            
+            [dic setObject:_floorTF1.str forKey:@"floor_min"];
+        }
+        if (_floorTF2.str.length) {
+            
+            [dic setObject:_floorTF2.str forKey:@"floor_max"];
+        }
+        //        if (_houseTypeBtn.str.length) {
+        //
+        //            [dic setObject:_houseTypeBtn.str forKey:@"ladder_ratio"];
+        //        }
+        if (_standardTF.str.length) {
+            
+            [dic setObject:_standardTF.str forKey:@"decorate"];
+        }
+        if (_purposeBtn.str.length) {
+            
+            [dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
+        }
+        if (_payWayBtn.str.length) {
+            
+            [dic setObject:_payWayBtn.str forKey:@"pay_type"];
+        }
+        if (_intentionTF.textfield.text.length) {
+            
+            [dic setObject:_intentionTF.textfield.text forKey:@"intent"];
+        }
+        if (_urgentTF.textfield.text.length) {
+            
+            [dic setObject:_urgentTF.textfield.text forKey:@"urgency"];
+        }
+        if (_urgentTF.textfield.text.length) {
+            
+            [dic setObject:_urgentTF.textfield.text forKey:@"need_tags"];
+        }
+        if (_markTV.text.length) {
+            
+            [dic setObject:_markTV.text forKey:@"comment"];
+        }
+        [BaseRequest POST:UpdateNeed_URL parameters:dic success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self showContent:@"修改成功"];
+                for (UIViewController *vc in self.navigationController.viewControllers) {
+                    
+                    if ([vc isKindOfClass:[CustomerVC class]]) {
+                        
+                        [self.navigationController popToViewController:vc animated:YES];
+                    }
+                }
+            }
+        } failure:^(NSError *error) {
+            
+            [self showContent:@"网络错误"];
+            NSLog(@"%@",error);
+        }];
     }
 }
 
@@ -620,53 +699,46 @@
             case 4:
             {
                 _typeL = label;
-                _typeL.text = @"房型:";
+                _typeL.text = @"户型:";
                 [_infoView addSubview:_typeL];
                 break;
             }
             case 5:
-            {
-                _faceL = label;
-                _faceL.text = @"朝向:";
-                [_infoView addSubview:_faceL];
-                break;
-            }
-            case 6:
             {
                 _floorL = label;
                 _floorL.text = @"楼层:";
                 [_infoView addSubview:_floorL];
                 break;
             }
-            case 7:
+            case 6:
             {
                 _standardL = label;
                 _standardL.text = @"装修标准:";
                 [_infoView addSubview:_standardL];
                 break;
             }
-            case 8:
+            case 7:
             {
                 _purposeL = label;
                 _purposeL.text = @"置业目的:";
                 [_infoView addSubview:_purposeL];
                 break;
             }
-            case 9:
+            case 8:
             {
                 _payWayL = label;
                 _payWayL.text = @"付款方式:";
                 [_infoView addSubview:_payWayL];
                 break;
             }
-            case 10:
+            case 9:
             {
                 _intentionL = label;
                 _intentionL.text = @"购房意向度:";
                 [_infoView addSubview:_intentionL];
                 break;
             }
-            case 11:
+            case 10:
             {
                 _urgentL = label;
                 _urgentL.text = @"购房紧迫度:";
@@ -677,7 +749,7 @@
                 break;
         }
         
-        if (i < 13) {
+        if (i < 12) {
             
             DropDownBtn *btn = [[DropDownBtn alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
             btn.tag = i;
@@ -688,6 +760,7 @@
                     _addressBtn = btn;
                     [_addressBtn addTarget:self action:@selector(ActionAreaBtn:) forControlEvents:UIControlEventTouchUpInside];
                     _addressBtn.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
+                    
                     [_infoView addSubview:_addressBtn];
                     break;
                 }
@@ -735,37 +808,31 @@
                 }
                 case 7:
                 {
-                    _faceBtn = btn;
-                    [_infoView addSubview:_faceBtn];
-                    break;
-                }
-                case 8:
-                {
                     _purposeBtn = btn;
                     [_infoView addSubview:_purposeBtn];
                     break;
                 }
-                case 9:
+                case 8:
                 {
                     _payWayBtn = btn;
                     [_infoView addSubview:_payWayBtn];
                     break;
                 }
-                case 10:
+                case 9:
                 {
                     _floorTF1 = btn;
                     _floorTF1.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
                     [_infoView addSubview:_floorTF1];
                     break;
                 }
-                case 11:
+                case 10:
                 {
                     _floorTF2 = btn;
                     _floorTF2.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
                     [_infoView addSubview:_floorTF2];
                     break;
                 }
-                case 12:{
+                case 11:{
                     
                     _standardTF = btn;
                     [_infoView addSubview:_standardTF];
@@ -802,6 +869,10 @@
                 case 3:
                 {
                     _intentionTF = TF;
+                    if (_model.intent) {
+                        
+                        _intentionTF.textfield.text = [NSString stringWithFormat:@"%@",_model.intent];
+                    }
                     _intentionTF.textfield.textAlignment = NSTextAlignmentRight;
                     _intentionTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_intentionTF];
@@ -810,6 +881,10 @@
                 case 4:
                 {
                     _urgentTF = TF;
+                    if (_model.urgency) {
+                        
+                        _urgentTF.textfield.text = [NSString stringWithFormat:@"%@",_model.urgency];
+                    }
                     _urgentTF.textfield.textAlignment = NSTextAlignmentRight;
                     _urgentTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_urgentTF];
@@ -835,10 +910,18 @@
             if (i == 0) {
                 
                 _intentionSlider = slider;
+                if (_model.intent) {
+                    
+                    _intentionSlider.value = [_model.intent integerValue];
+                }
                 [_infoView addSubview:_intentionSlider];
             }else{
                 
                 _urgentSlider = slider;
+                if (_model.urgency) {
+                    
+                    _urgentSlider.value = [_model.urgency integerValue];
+                }
                 [_infoView addSubview:_urgentSlider];
             }
         }
@@ -870,6 +953,10 @@
     _placeL.textColor = YJContentLabColor;
     _placeL.font = [UIFont systemFontOfSize:12 *SIZE];
     _placeL.text = @"备注...";
+    if (_model.comment) {
+        
+        _placeL.text = _model.comment;
+    }
     [_markTV addSubview:_placeL];
     
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -988,31 +1075,31 @@
         make.top.equalTo(_areaBtn.mas_bottom).offset(19 *SIZE);
         make.width.equalTo(@(258 *SIZE));
         make.height.equalTo(@(33 *SIZE));
-        make.bottom.equalTo(_faceBtn.mas_top).offset(-19 *SIZE);
-    }];
-
-    [_faceL mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_typeBtn.mas_bottom).offset(29 *SIZE);
-        make.width.equalTo(@(70 *SIZE));
-        make.height.equalTo(@(13 *SIZE));
-//        make.bottom.equalTo(_floorL.mas_top).offset(-39 *SIZE);
-    }];
-    
-    [_faceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.left.equalTo(_infoView).offset(81 *SIZE);
-        make.top.equalTo(_typeBtn.mas_bottom).offset(19 *SIZE);
-        make.width.equalTo(@(258 *SIZE));
-        make.height.equalTo(@(33 *SIZE));
         make.bottom.equalTo(_floorTF1.mas_top).offset(-19 *SIZE);
     }];
+
+//    [_faceL mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(10 *SIZE);
+//        make.top.equalTo(_typeBtn.mas_bottom).offset(29 *SIZE);
+//        make.width.equalTo(@(70 *SIZE));
+//        make.height.equalTo(@(13 *SIZE));
+////        make.bottom.equalTo(_floorL.mas_top).offset(-39 *SIZE);
+//    }];
+//
+//    [_faceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(81 *SIZE);
+//        make.top.equalTo(_typeBtn.mas_bottom).offset(19 *SIZE);
+//        make.width.equalTo(@(258 *SIZE));
+//        make.height.equalTo(@(33 *SIZE));
+//        make.bottom.equalTo(_floorTF1.mas_top).offset(-19 *SIZE);
+//    }];
 
     [_floorL mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_faceBtn.mas_bottom).offset(29 *SIZE);
+        make.top.equalTo(_typeBtn.mas_bottom).offset(29 *SIZE);
         make.width.equalTo(@(70 *SIZE));
         make.height.equalTo(@(13 *SIZE));
 //        make.bottom.equalTo(_standardL.mas_top).offset(-45 *SIZE);
@@ -1021,7 +1108,7 @@
     [_floorTF1 mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.left.equalTo(_infoView).offset(81 *SIZE);
-        make.top.equalTo(_faceBtn.mas_bottom).offset(19 *SIZE);
+        make.top.equalTo(_typeBtn.mas_bottom).offset(19 *SIZE);
         make.width.equalTo(@(117 *SIZE));
         make.height.equalTo(@(33 *SIZE));
         make.bottom.equalTo(_standardTF.mas_top).offset(-19 *SIZE);
@@ -1030,7 +1117,7 @@
     [_floorTF2 mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.left.equalTo(_infoView).offset(222 *SIZE);
-        make.top.equalTo(_faceBtn.mas_bottom).offset(19 *SIZE);
+        make.top.equalTo(_typeBtn.mas_bottom).offset(19 *SIZE);
         make.width.equalTo(@(117 *SIZE));
         make.height.equalTo(@(33 *SIZE));
         make.bottom.equalTo(_standardTF.mas_top).offset(-19 *SIZE);
@@ -1173,31 +1260,5 @@
     }];
     
 }
-
-//- (AdressChooseView *)addressChooseView{
-//    
-//    if (!_addressChooseView) {
-//        
-//        _addressChooseView = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
-//        WS(weakself);
-//        _addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
-//            
-//            if (_btnNum == 1) {
-//                
-//                weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-//                weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
-//            }else if (_btnNum == 2){
-//                
-//                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-//                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
-//            }else{
-//                
-//                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-//                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
-//            }
-//        };
-//    }
-//    return _addressChooseView;
-//}
 
 @end

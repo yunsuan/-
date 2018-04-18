@@ -289,7 +289,7 @@
     return YES;
 }
 
-//collectionViewDelegate
+#pragma mark -- collectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return 4;

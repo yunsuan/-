@@ -23,12 +23,43 @@
 - (void)setModel:(CustomRequireModel *)model{
     
     
-    self.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
-
+//    self.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
+    
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+    
+    NSError *err;
+    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+    NSArray *arr = [_model.region componentsSeparatedByString:@","];
+    
+    for (int i = 0; i < provice.count; i++) {
+        
+        if([provice[i][@"region"] integerValue] == [arr[0] integerValue]){
+            
+            NSArray *city = provice[i][@"item"];
+            for (int j = 0; j < city.count; j++) {
+                
+                if([city[j][@"region"] integerValue] == [arr[1] integerValue]){
+                    
+                    NSArray *area = city[j][@"item"];
+                    
+                    for (int k = 0; k < area.count; k++) {
+                        
+                        if([area[k][@"region"] integerValue] == [arr[2] integerValue]){
+                            
+                            self.cellView.addressL.text = [NSString stringWithFormat:@"区域：%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     if ([model.total_price integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",26]];
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",25]];
         NSArray *typeArr = dic[@"param"];
         for (int i = 0; i < typeArr.count; i++) {
             
@@ -82,24 +113,24 @@
         self.cellView.houseTypeL.text = @"房型：";
     }
     
-    if ([model.orientation integerValue]) {
-        
-        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",19]];
-        NSArray *typeArr = dic[@"param"];
-        for (int i = 0; i < typeArr.count; i++) {
-            
-            if ([typeArr[i][@"id"] integerValue] == [model.orientation integerValue]) {
-                
-                self.cellView.faceL.text = [NSString stringWithFormat:@"朝向：%@",typeArr[i][@"param"]];
-                break;
-            }
-        }
-        
-    }else{
-        
-        self.cellView.faceL.text = @"朝向：";
-    }
+//    if ([model.orientation integerValue]) {
+//        
+//        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+//        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",19]];
+//        NSArray *typeArr = dic[@"param"];
+//        for (int i = 0; i < typeArr.count; i++) {
+//            
+//            if ([typeArr[i][@"id"] integerValue] == [model.orientation integerValue]) {
+//                
+//                self.cellView.faceL.text = [NSString stringWithFormat:@"朝向：%@",typeArr[i][@"param"]];
+//                break;
+//            }
+//        }
+//        
+//    }else{
+//        
+//        self.cellView.faceL.text = @"朝向：";
+//    }
     
     if ([model.floor_max integerValue] && [model.floor_min integerValue]) {
         
