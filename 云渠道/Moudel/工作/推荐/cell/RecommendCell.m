@@ -22,45 +22,49 @@
 
 - (void)initUI{
     
-    _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 28 *SIZE, 67 *SIZE, 67 *SIZE)];
-    _headImg.layer.cornerRadius = 33.5 *SIZE;
-    _headImg.clipsToBounds = YES;
-    [self.contentView addSubview:_headImg];
-    
-    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(90 *SIZE, 18 *SIZE, 50 *SIZE, 14 *SIZE)];
+    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 21 *SIZE, 50 *SIZE, 14 *SIZE)];
     _nameL.textColor = YJTitleLabColor;
     _nameL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_nameL];
     
-    _projectL = [[UILabel alloc] initWithFrame:CGRectMake(200 *SIZE, 21 *SIZE, 150 *SIZE, 10 *SIZE)];
-    _projectL.textColor = YJ86Color;
-    _projectL.font = [UIFont systemFontOfSize:11 *SIZE];
-    _projectL.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_projectL];
-    
-    _codeL = [[UILabel alloc] initWithFrame:CGRectMake(90 *SIZE, 42 *SIZE, 200 *SIZE, 11 *SIZE)];
+    _codeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 49 *SIZE, 200 *SIZE, 11 *SIZE)];
     _codeL.textColor = YJ86Color;
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
     
-    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(90 *SIZE, 62 *SIZE, 200 *SIZE, 10 *SIZE)];
-    _confirmL.textColor = YJ86Color;
-    _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
-    [self.contentView addSubview:_confirmL];
-    
-    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(90 *SIZE, 80 *SIZE, 200 *SIZE, 10 *SIZE)];
-    _addressL.textColor = YJ86Color;
-    _addressL.font = [UIFont systemFontOfSize:11 *SIZE];
-    [self.contentView addSubview:_addressL];
-    
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(90 *SIZE, 99 *SIZE, 300 *SIZE, 10 *SIZE)];
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 72 *SIZE, 300 *SIZE, 10 *SIZE)];
     _timeL.textColor = YJBlueBtnColor;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_timeL];
     
+    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 97 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _confirmL.textColor = YJContentLabColor;
+    _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
+    [self.contentView addSubview:_confirmL];
+    
+    _projectL = [[UILabel alloc] init];
+    _projectL.textColor = YJ86Color;
+    _projectL.font = [UIFont systemFontOfSize:11 *SIZE];
+    _projectL.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_projectL];
+
+    _statusImg = [[UIImageView alloc] init];
+    _statusImg.layer.cornerRadius = 10 *SIZE;
+    _statusImg.clipsToBounds = YES;
+    [self.contentView addSubview:_statusImg];
+    
+    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(180 *SIZE, 97 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _addressL.textColor = YJContentLabColor;
+    _addressL.font = [UIFont systemFontOfSize:11 *SIZE];
+    _addressL.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_addressL];
+    
+    
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 126 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
+
 }
+
 
 @end

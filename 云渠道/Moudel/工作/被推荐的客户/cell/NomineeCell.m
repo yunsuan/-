@@ -68,11 +68,11 @@
 //    _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
     
-    _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _messBtn.frame = CGRectMake(296 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
-    [_messBtn addTarget:self action:@selector(ActionMessBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_messBtn setBackgroundImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
-    [self.contentView addSubview:_messBtn];
+//    _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _messBtn.frame = CGRectMake(296 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
+//    [_messBtn addTarget:self action:@selector(ActionMessBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [_messBtn setBackgroundImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
+//    [self.contentView addSubview:_messBtn];
     
     _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _phoneBtn.frame = CGRectMake(335 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
@@ -85,7 +85,7 @@
     _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     [_confirmBtn addTarget:self action:@selector(ActionComfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [_confirmBtn setBackgroundColor:YJBlueBtnColor];
+    [_confirmBtn setBackgroundColor:COLOR(255, 165, 29, 1)];
     _confirmBtn.layer.cornerRadius = 2 *SIZE;
     _confirmBtn.clipsToBounds = YES;
     [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
