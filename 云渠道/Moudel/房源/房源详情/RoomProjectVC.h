@@ -10,5 +10,6 @@
 
 @interface RoomProjectVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
 
 @end

@@ -11,4 +11,6 @@
 
 @interface RoomDetailVC1 : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end

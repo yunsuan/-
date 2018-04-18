@@ -15,6 +15,7 @@
 {
     
     NSArray *_titleArr;
+    NSString *_projectId;
 }
 @property (nonatomic, strong) UICollectionView *segmentColl;
 
@@ -33,6 +34,16 @@
 @end
 
 @implementation RoomDetailVC1
+
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _projectId = projectId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -124,7 +135,7 @@
     self.scrollView.bounces = NO;
     
     // 创建控制器
-    _roomProjectVC = [RoomProjectVC new];
+    _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:_projectId];
     _roomBrokerageVC = [[RoomBrokerageVC alloc] init];
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];

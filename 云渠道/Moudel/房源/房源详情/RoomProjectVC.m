@@ -28,7 +28,8 @@
 @interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
 {
     
-    
+    NSMutableArray *_dynamicArr;
+    NSString *_projectId;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -47,6 +48,16 @@
 
 @implementation RoomProjectVC
 
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _projectId = projectId;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -62,11 +73,6 @@
 //    [self.mapView removeFromSuperview];
 //}
 
-//- (void)MapViewPopMethod{
-//
-//    self.mapView.delegate = nil;
-//    [self.mapView removeFromSuperview];
-//}
 
 - (void)initDataSource{
     
@@ -75,19 +81,45 @@
 
 - (void)RequestMethod{
     
-    NSDictionary *dic = @{@"project_id":@""};
-    [BaseRequest POST:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:_projectId forKey:@"project_id"];
+    if ([UserModel defaultModel].Token) {
+        
+        [dic setObject:@1 forKey:@"is_agent"];
+    }else{
+        
+        [dic setObject:@0 forKey:@"is_agent"];
+    }
+    [BaseRequest GET:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                [self SetData:resposeObject[@"data"]];
+            }else{
+                
+                [self showContent:@"暂时没有数据"];
+            }
         }
     } failure:^(NSError *error) {
        
         NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
+}
+
+- (void)SetData:(NSDictionary *)data{
+    
+//    if (data[@"dynamic"] ) {
+//        <#statements#>
+//    }
+    if ([data[@"project_basic_info"] isKindOfClass:[NSDictionary class]]) {
+        
+        
+    }
 }
 
 - (void)ActionMoreBtn:(UIButton *)btn{
