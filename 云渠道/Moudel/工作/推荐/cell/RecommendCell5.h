@@ -20,8 +20,6 @@
 
 @property (nonatomic, strong) UILabel *timeL;
 
-@property (nonatomic, strong) UILabel *phoneL;
-
 @property (nonatomic, strong) UILabel *statusL;
 
 @end

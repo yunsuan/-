@@ -8,6 +8,7 @@
 
 #import "RoomVC.h"
 #import "RoomDetailVC.h"
+#import "RoomDetailVC1.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
 #import "BoxView.h"
@@ -36,6 +37,9 @@
     NSInteger _page;
     NSMutableDictionary *_parameter;
     NSMutableArray *_dataArr;
+    NSString *_provice;
+    NSString *_city;
+    NSString *_district;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -394,10 +398,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    RoomDetailVC *nextVC = [[RoomDetailVC alloc] init];
+    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] init];
+//    nextVC.navigationController
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
+    
+//    RoomDetailVC *nextVC = [[RoomDetailVC alloc] init];
+//    nextVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:nextVC animated:YES];
         switch (indexPath.row) {
             case 0:
             {

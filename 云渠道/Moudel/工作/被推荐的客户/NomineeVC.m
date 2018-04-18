@@ -9,6 +9,7 @@
 #import "NomineeVC.h"
 #import "NomineeCollCell.h"
 #import "NomineeCell.h"
+#import "NomineeCell2.h"
 #import "NomineeCell3.h"
 #import "UnconfirmDetailVC.h"
 #import "CompleteCustomVC1.h"
@@ -119,7 +120,7 @@
     
     if (_index == 2) {
         
-        return 133 *SIZE;
+        return 120 *SIZE;
     }
     return 108 *SIZE;
 }
@@ -127,7 +128,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
         
-    if (_index == 0 || _index == 1) {
+    if (_index == 0) {
         
         static NSString *CellIdentifier = @"NomineeCell";
         
@@ -139,13 +140,9 @@
         
         cell.nameL.text = @"张三";
         cell.codeL.text = @"推荐编号：456522312";
-        cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
-        cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
+        cell.reportTimeL.text = @"报备日期：2017-12-12";
+        cell.timeL.text = @"失效时间：2017-12-15";
         cell.tag = indexPath.row;
-        cell.messBtnBlock = ^(NSInteger index) {
-            
-            
-        };
         cell.phoneBtnBlock = ^(NSInteger index) {
             
             
@@ -176,6 +173,27 @@
                 
             }];
         };
+        return cell;
+    }else if (_index == 1){
+        
+        static NSString *CellIdentifier = @"NomineeCell2";
+        
+        NomineeCell2 *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[NomineeCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.contactL.text = @"置业顾问：丽萨";
+        cell.reportTimeL.text = @"报备日期：2017-12-12";
+        cell.tag = indexPath.row;
+        cell.phoneBtnBlock = ^(NSInteger index) {
+            
+            
+        };
+        
         return cell;
     }else{
         

@@ -1,17 +1,16 @@
 //
-//  RecommendCell3.h
+//  NomineeCell2.h
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/4/9.
+//  Created by 谷治墙 on 2018/4/17.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-@class RecommendCell3;
 
 typedef void(^phoneBtnBlock)(NSInteger index);
 
-@interface RecommendCell3 : UITableViewCell
+@interface NomineeCell2 : UITableViewCell
 
 @property (nonatomic, copy) phoneBtnBlock phoneBtnBlock;
 
@@ -19,12 +18,12 @@ typedef void(^phoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *codeL;
 
-@property (nonatomic, strong) UILabel *confirmL;
+@property (nonatomic, strong) UILabel *contactL;
 
-@property (nonatomic, strong) UILabel *timeL;
-
-@property (nonatomic, strong) UILabel *statusL;
+@property (nonatomic, strong) UILabel *reportTimeL;
 
 @property (nonatomic, strong) UIButton *phoneBtn;
+
+@property (nonatomic, strong) UILabel *statusL;
 
 @end

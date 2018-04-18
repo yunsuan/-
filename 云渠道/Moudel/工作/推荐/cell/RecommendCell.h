@@ -10,18 +10,19 @@
 
 @interface RecommendCell : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *headImg;
-
 @property (nonatomic, strong) UILabel *nameL;
 
 @property (nonatomic, strong) UILabel *codeL;
 
+@property (nonatomic, strong) UILabel *timeL;
+
 @property (nonatomic, strong) UILabel *confirmL;
+
+@property (nonatomic, strong) UIImageView *statusImg;
+
+@property (nonatomic, strong) UILabel *projectL;
 
 @property (nonatomic, strong) UILabel *addressL;
 
-@property (nonatomic, strong) UILabel *timeL;
-
-@property (nonatomic, strong) UILabel *projectL;
 
 @end

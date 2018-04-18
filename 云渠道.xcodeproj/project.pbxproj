@@ -63,6 +63,11 @@
 		0CBD857720848EC700E7B183 /* LevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857620848EC700E7B183 /* LevelView.m */; };
 		0CBD857A2085931A00E7B183 /* MyAttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85792085931A00E7B183 /* MyAttentionModel.m */; };
 		0CBD857D2085C6EA00E7B183 /* BankCardListTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857C2085C6E900E7B183 /* BankCardListTableCell2.m */; };
+		0CBD85802085EA7E00E7B183 /* NomineeCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD857F2085EA7E00E7B183 /* NomineeCell2.m */; };
+		0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85882085F8F200E7B183 /* RoomDetailVC1.m */; };
+		0CBD858C2085F90500E7B183 /* RoomProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD858B2085F90500E7B183 /* RoomProjectVC.m */; };
+		0CBD85902085FE4500E7B183 /* RoomBrokerageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD858F2085FE4500E7B183 /* RoomBrokerageVC.m */; };
+		0CBD85932085FE5D00E7B183 /* RoomAnalyzeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85922085FE5D00E7B183 /* RoomAnalyzeVC.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -323,6 +328,16 @@
 		0CBD85792085931A00E7B183 /* MyAttentionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAttentionModel.m; sourceTree = "<group>"; };
 		0CBD857B2085C6E900E7B183 /* BankCardListTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BankCardListTableCell2.h; sourceTree = "<group>"; };
 		0CBD857C2085C6E900E7B183 /* BankCardListTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BankCardListTableCell2.m; sourceTree = "<group>"; };
+		0CBD857E2085EA7E00E7B183 /* NomineeCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomineeCell2.h; sourceTree = "<group>"; };
+		0CBD857F2085EA7E00E7B183 /* NomineeCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomineeCell2.m; sourceTree = "<group>"; };
+		0CBD85872085F8F200E7B183 /* RoomDetailVC1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailVC1.h; sourceTree = "<group>"; };
+		0CBD85882085F8F200E7B183 /* RoomDetailVC1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailVC1.m; sourceTree = "<group>"; };
+		0CBD858A2085F90500E7B183 /* RoomProjectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomProjectVC.h; sourceTree = "<group>"; };
+		0CBD858B2085F90500E7B183 /* RoomProjectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomProjectVC.m; sourceTree = "<group>"; };
+		0CBD858E2085FE4500E7B183 /* RoomBrokerageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomBrokerageVC.h; sourceTree = "<group>"; };
+		0CBD858F2085FE4500E7B183 /* RoomBrokerageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageVC.m; sourceTree = "<group>"; };
+		0CBD85912085FE5D00E7B183 /* RoomAnalyzeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomAnalyzeVC.h; sourceTree = "<group>"; };
+		0CBD85922085FE5D00E7B183 /* RoomAnalyzeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomAnalyzeVC.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -1450,6 +1465,14 @@
 				0C3AD5502068E17B0059CE02 /* view */,
 				105E189D206235690031558D /* RoomDetailVC.h */,
 				105E189E206235690031558D /* RoomDetailVC.m */,
+				0CBD85872085F8F200E7B183 /* RoomDetailVC1.h */,
+				0CBD85882085F8F200E7B183 /* RoomDetailVC1.m */,
+				0CBD858A2085F90500E7B183 /* RoomProjectVC.h */,
+				0CBD858B2085F90500E7B183 /* RoomProjectVC.m */,
+				0CBD858E2085FE4500E7B183 /* RoomBrokerageVC.h */,
+				0CBD858F2085FE4500E7B183 /* RoomBrokerageVC.m */,
+				0CBD85912085FE5D00E7B183 /* RoomAnalyzeVC.h */,
+				0CBD85922085FE5D00E7B183 /* RoomAnalyzeVC.m */,
 			);
 			path = "房源详情";
 			sourceTree = "<group>";
@@ -1565,6 +1588,8 @@
 				0CF04F57207B4CDA00A45F4A /* NomineeCollCell.m */,
 				0CF04F6A207C62D800A45F4A /* NomineeCell3.h */,
 				0CF04F6B207C62D800A45F4A /* NomineeCell3.m */,
+				0CBD857E2085EA7E00E7B183 /* NomineeCell2.h */,
+				0CBD857F2085EA7E00E7B183 /* NomineeCell2.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -2103,6 +2128,7 @@
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */,
 				0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */,
+				0CBD85802085EA7E00E7B183 /* NomineeCell2.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
 				0CC19D152071F2A60007CC5F /* BirthVC.m in Sources */,
 				0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */,
@@ -2150,6 +2176,7 @@
 				0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */,
 				0CF04F97207CB97F00A45F4A /* AuthenedVC.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
+				0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
 				0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */,
@@ -2177,6 +2204,7 @@
 				0C3AD5622069DAC90059CE02 /* RoomDetailTableCell2.m in Sources */,
 				10DBB1E8207CB39200CFE59D /* HousedistributVC.m in Sources */,
 				0CF04F43207B308000A45F4A /* InvalidVC.m in Sources */,
+				0CBD85902085FE4500E7B183 /* RoomBrokerageVC.m in Sources */,
 				102DF97F2057A21300E1859C /* MineVC.m in Sources */,
 				0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */,
 				0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */,
@@ -2185,6 +2213,7 @@
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
 				0CF04F222079AAE500A45F4A /* RoomDetailTableCell7.m in Sources */,
 				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
+				0CBD858C2085F90500E7B183 /* RoomProjectVC.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				0CF04F66207C555F00A45F4A /* FailView.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
@@ -2226,6 +2255,7 @@
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				0C08BF77206CE919005BB3B4 /* MyAttentionVC.m in Sources */,
 				0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */,
+				0CBD85932085FE5D00E7B183 /* RoomAnalyzeVC.m in Sources */,
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
 				0CF04FA4207CCDF000A45F4A /* MoreViewCollCell.m in Sources */,
 				0CF04F34207B00F900A45F4A /* RecommendCollCell.m in Sources */,

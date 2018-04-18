@@ -52,7 +52,7 @@
 -(void)initDateSouce
 {
     
-    _titleArr = @[@"未确认",@"已确认",@"有效",@"无效",@"申诉"];
+    _titleArr = @[@"确认中",@"有效",@"无效",@"申诉"];
 }
 
 -(void)initUI
@@ -61,7 +61,7 @@
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 5, 40 *SIZE);
+    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 4, 40 *SIZE);
     
     _recommendColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
     _recommendColl.backgroundColor = CH_COLOR_white;
@@ -77,7 +77,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 5;
+    return 4;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -85,7 +85,7 @@
     RecommendCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RecommendCollCell" forIndexPath:indexPath];
     if (!cell) {
 
-        cell = [[RecommendCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /5, 40 *SIZE)];
+        cell = [[RecommendCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /4, 40 *SIZE)];
     }
     cell.titleL.text = _titleArr[indexPath.item];
     return cell;
@@ -107,11 +107,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_index < 2) {
+    if (_index == 0) {
         
         return 127*SIZE;
         
-    }else if (_index < 4){
+    }else if (_index < 3){
         
         return 113 *SIZE;
     }else{
@@ -122,7 +122,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_index < 2) {
+    if (_index == 0) {
         
         static NSString *CellIdentifier = @"RecommendCell";
         
@@ -140,7 +140,7 @@
         cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
         
         return cell;
-    }else if (_index < 4){
+    }else if (_index < 3){
         
         static NSString *CellIdentifier = @"RecommendCell3";
         
@@ -154,7 +154,7 @@
         cell.codeL.text = @"推荐编号：456522312";
         cell.confirmL.text = @"到访确认人：李四";
         cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
-        cell.phoneL.text = @"18725455623";
+//        cell.phoneL.text = @"18725455623";
         cell.statusL.text = @"已来访";
         
         return cell;
@@ -171,7 +171,7 @@
         cell.nameL.text = @"张三";
         cell.codeL.text = @"推荐编号：456522312";
         cell.confirmL.text = @"到访确认人：李四";
-        cell.phoneL.text = @"联系电话：18789455612";
+//        cell.phoneL.text = @"联系电话：18789455612";
         cell.statusL.text = @"处理完成";
         cell.recomTimeL.text = @"推荐日期：2017-12-15";
         cell.timeL.text = @"申诉日期：2017-12-15  13:00:00";
