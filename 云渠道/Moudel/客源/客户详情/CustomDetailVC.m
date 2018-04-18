@@ -22,7 +22,6 @@
 {
     NSArray *_arr;
     NSInteger _item;
-    NSMutableArray *_showArr;//是否展开
     NSString *_clientId;
     
     CustomerModel *_customModel;//客户信息
@@ -54,12 +53,7 @@
 - (void)initDataSource{
     
     _customModel = [[CustomerModel alloc] init];
-    _showArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
-    for ( int i = 0; i < 3; i++) {
-        
-        [_showArr addObject:@1];
-    }
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     [self RequestMethod];
 }
@@ -178,7 +172,7 @@
     
     if (_item == 0) {
         
-        return 3;
+        return 1;
     }
     return 1;
 }
@@ -187,20 +181,7 @@
     
     if (_item == 0) {
         
-        if (section == 0) {
-            
-            return 0;
-        }else{
-            
-            if ([_showArr[section] integerValue] == 1) {
-                
-                return _dataArr.count;
-            }else{
-                
-                return 0;
-            }
-        }
-        
+        return _dataArr.count;
     }
     return 2;
 }
@@ -209,11 +190,7 @@
     
     if (!_item) {
         
-        if (section == 0) {
-            
-            return 407 *SIZE;
-        }
-        return 40 *SIZE;
+        return 367 *SIZE;
     }else{
         
         if (_item == 1) {
@@ -221,7 +198,7 @@
             return 417 *SIZE;
         }else{
             
-            return 435 *SIZE;
+            return 485 *SIZE;
         }
     }
 }
@@ -240,45 +217,15 @@
     
     if (!_item) {
         
-        if (section == 0) {
-            
-            CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
-            if (!header) {
-                
-                header = [[CustomTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 368 *SIZE)];
-                header.delegate = self;
-                [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-            }
-            header.model = _customModel;
-            
-            return header;
-        }
-        CustomTableHeader4 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader4"];
+        CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
         if (!header) {
             
-            header = [[CustomTableHeader4 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 40 *SIZE)];
-            
+            header = [[CustomTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 368 *SIZE)];
+            header.delegate = self;
+            [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         }
-        header.typeL.text = @"物业类型：住宅";
-        header.showBtn.tag = section;
-        if ([_showArr[section] integerValue] == 1) {
-            
-            [header.showBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
-        }else{
-            
-            [header.showBtn setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
-        }
-        header.showBtnBlock = ^(NSInteger index) {
-          
-            if ([_showArr[index] integerValue] == 1) {
-                
-                [_showArr replaceObjectAtIndex:index withObject:@0];
-            }else{
-                
-                [_showArr replaceObjectAtIndex:index withObject:@1];
-            }
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationNone];
-        };
+        header.model = _customModel;
+        
         return header;
     }else{
         
@@ -300,7 +247,7 @@
             CustomTableHeader3 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader3"];
             if (!header) {
                 
-                header = [[CustomTableHeader3 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 435 *SIZE)];
+                header = [[CustomTableHeader3 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 485 *SIZE)];
                 header.delegate = self;
                 [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
             }
@@ -334,12 +281,6 @@
             AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:_dataArr[index]];
             [self.navigationController pushViewController:nextVC animated:YES];
         };
-        
-        cell.cellView.deleteBtnBlock = ^(NSInteger index) {
-            
-//            [BaseRequest POST:DeleteNeed_URL parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
-        };
-        
         cell.model = _dataArr[indexPath.row];
         
         return cell;

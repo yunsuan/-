@@ -48,7 +48,7 @@
         [_delegate DGActionAddBtn:btn];
     }else{
         
-        
+        NSLog(@"没有代理人");
     }
 }
 
@@ -88,21 +88,7 @@
         
         self.phoneL.text = @"联系电话：";
     }
-    //    NSArray *telArr = [model.tel componentsSeparatedByString:@","];
-    //    if (telArr.count == 0) {
-    //
-    //        self.phoneL.text = @"联系电话：";
-    //        self.phone2L.text = @"联系电话：";
-    //    }else if (telArr.count == 1){
-    //
-    //        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
-    //        self.phone2L.text = @"联系电话：";
-    //    }else{
-    //
-    //        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
-    //        self.phone2L.text = [NSString stringWithFormat:@"联系电话：%@",telArr[1]];
-    //    }
-    
+
     NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
     NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",2]];
     NSArray *typeArr = dic[@"param"];
@@ -238,12 +224,6 @@
                 [self.contentView addSubview:_phoneL];
                 break;
             }
-//            case 4:
-//            {
-//                _phone2L = label;
-//                [self.contentView addSubview:_phone2L];
-//                break;
-//            }
             case 4:
             {
                 _certL = label;
@@ -281,28 +261,50 @@
     [self.contentView addSubview:_headerColl];
     
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 67 *SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 49 *SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     
    [self.contentView addSubview:line];
     
-    _numListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 18 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 18 *SIZE + CGRectGetMaxY(_headerColl.frame), 50 *SIZE, 14 *SIZE)];
+    label2.textColor = YJTitleLabColor;
+    label2.font = [UIFont systemFontOfSize:15 *SIZE];
+    label2.text = @"新房";
+    [self.contentView addSubview:label2];
+    
+    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addBtn.frame = CGRectMake(321 *SIZE, 10 *SIZE + CGRectGetMaxY(_headerColl.frame), 36 *SIZE, 36 *SIZE);
+    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_addBtn setImage:[UIImage imageNamed:@"add_3"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_addBtn];
+    
+    _numListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 76 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
     _numListL.textColor = YJTitleLabColor;
     _numListL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_numListL];
     
-    _recommendListL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 42 *SIZE + CGRectGetMaxY(_headerColl.frame), 150 *SIZE, 16 *SIZE)];
+    _recommendListL = [[UILabel alloc] initWithFrame:CGRectMake(250 *SIZE, 92 *SIZE + CGRectGetMaxY(_headerColl.frame), 98 *SIZE, 16 *SIZE)];
     _recommendListL.textColor = YJBlueBtnColor;
+    _recommendListL.textAlignment = NSTextAlignmentRight;
     _recommendListL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_recommendListL];
     
+    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _recommendBtn.frame = CGRectMake(245 *SIZE, 87 *SIZE + CGRectGetMaxY(_headerColl.frame), 108 *SIZE, 26 *SIZE);
+    [self.contentView addSubview:_recommendBtn];
+    
     _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _moreBtn.frame = CGRectMake(287 *SIZE, 15 *SIZE + CGRectGetMaxY(_headerColl.frame), 70 *SIZE, 20 *SIZE);
+    _moreBtn.frame = CGRectMake(287 *SIZE, 65 *SIZE + CGRectGetMaxY(_headerColl.frame), 70 *SIZE, 20 *SIZE);
     _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
 //    [_moreBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
     [_moreBtn setTitle:@"产看全部 》" forState:UIControlStateNormal];
     [_moreBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
     [self.contentView addSubview:_moreBtn];
+    
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 117 *SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE)];
+    line2.backgroundColor = YJBackColor;
+    
+    [self.contentView addSubview:line2];
 }
 
 @end

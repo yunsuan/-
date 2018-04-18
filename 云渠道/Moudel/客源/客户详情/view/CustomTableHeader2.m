@@ -284,16 +284,25 @@
     view1.backgroundColor = COLOR(27, 152, 255, 1);;
     [self.contentView addSubview:view];
     
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(28 *SIZE, 19 *SIZE  + CGRectGetMaxY(_headerColl.frame), 80 *SIZE, 15 *SIZE)];
-    label1.textColor = YJTitleLabColor;
-    label1.font = [UIFont systemFontOfSize:15 *SIZE];
-    label1.text = @"跟进记录";
-    [self.contentView addSubview:label1];
-    
     _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addBtn.frame = CGRectMake(321 *SIZE, CGRectGetMaxY(_headerColl.frame) + 11 *SIZE, 31 *SIZE, 31 *SIZE);
+    _addBtn.frame = CGRectMake(0, CGRectGetMaxY(_headerColl.frame), SCREEN_Width, 40 *SIZE);
+    _addBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_addBtn setTitle:@"跟进记录" forState:UIControlStateNormal];
+    [_addBtn setImage:[UIImage imageNamed:@"add_3-1"] forState:UIControlStateNormal];
+    [_addBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
     [self.contentView addSubview:_addBtn];
+    
+//    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(28 *SIZE, 19 *SIZE  + CGRectGetMaxY(_headerColl.frame), 80 *SIZE, 15 *SIZE)];
+//    label1.textColor = YJTitleLabColor;
+//    label1.font = [UIFont systemFontOfSize:15 *SIZE];
+//    label1.text = @"跟进记录";
+//    [self.contentView addSubview:label1];
+//
+//    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _addBtn.frame = CGRectMake(321 *SIZE, CGRectGetMaxY(_headerColl.frame) + 11 *SIZE, 31 *SIZE, 31 *SIZE);
+//    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:_addBtn];
 }
 
 @end

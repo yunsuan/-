@@ -21,6 +21,7 @@
 #import "DynamicListVC.h"
 #import "CustomMatchListVC.h"
 #import "DistributVC.h"
+#import "RoomDetailModel.h"
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
@@ -30,6 +31,7 @@
     
     NSMutableArray *_dynamicArr;
     NSString *_projectId;
+    RoomDetailModel *_model;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -76,6 +78,7 @@
 
 - (void)initDataSource{
     
+    _model = [[RoomDetailModel alloc] init];
     [self RequestMethod];
 }
 
@@ -118,8 +121,18 @@
 //    }
     if ([data[@"project_basic_info"] isKindOfClass:[NSDictionary class]]) {
         
-        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"project_basic_info"]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        _model = [[RoomDetailModel alloc] initWithDictionary:tempDic];
     }
+    
+    [_roomTable reloadData];
 }
 
 - (void)ActionMoreBtn:(UIButton *)btn{

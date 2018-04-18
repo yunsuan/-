@@ -25,7 +25,7 @@
     
     self.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
 
-    if (model.total_price) {
+    if ([model.total_price integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",26]];
@@ -44,7 +44,7 @@
         self.cellView.priceL.text = @"总价：";
     }
     
-    if (model.area) {
+    if ([model.area integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",26]];
@@ -63,7 +63,7 @@
         self.cellView.areaL.text = @"面积：";
     }
     
-    if (model.house_type) {
+    if ([model.house_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
@@ -82,7 +82,7 @@
         self.cellView.houseTypeL.text = @"房型：";
     }
     
-    if (model.orientation) {
+    if ([model.orientation integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",19]];
@@ -98,10 +98,10 @@
         
     }else{
         
-        self.cellView.standardL.text = @"朝向：";
+        self.cellView.faceL.text = @"朝向：";
     }
     
-    if (model.floor_max && model.floor_min) {
+    if ([model.floor_max integerValue] && [model.floor_min integerValue]) {
         
         self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层-%@层",model.floor_min,model.floor_max];
     }else if (model.floor_min && !model.floor_max){
@@ -115,7 +115,7 @@
         self.cellView.floorL.text = @"楼层：";
     }
     
-    if (model.decorate) {
+    if ([model.decorate integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",21]];
@@ -134,7 +134,7 @@
         self.cellView.standardL.text = @"装修标准：";
     }
     
-    if (model.buy_purpose) {
+    if ([model.buy_purpose integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",12]];
@@ -153,7 +153,7 @@
         self.cellView.purposeL.text = @"置业目的：";
     }
     
-    if (model.buy_purpose) {
+    if ([model.buy_purpose integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",13]];
@@ -172,14 +172,15 @@
         self.cellView.payWayL.text = @"付款方式：";
     }
     
-    if (model.intent) {
+    if ([model.intent integerValue]) {
         
         self.cellView.intentionL.text = [NSString stringWithFormat:@"购房意向度：%@",model.urgency];
     }else{
         
         self.cellView.intentionL.text = @"购房意向度：";
     }
-    if (model.urgency) {
+    
+    if ([model.urgency integerValue]) {
         
         self.cellView.urgentL.text = [NSString stringWithFormat:@"购房紧迫度：%@",model.urgency];
     }else{

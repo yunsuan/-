@@ -49,7 +49,7 @@
                 [btn addTarget:self action:@selector(ActionDeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
                 [btn setImage:[UIImage imageNamed:@"delete_2"] forState:UIControlStateNormal];
                 _deleteBtn = btn;
-                [self addSubview:_deleteBtn];
+//                [self addSubview:_deleteBtn];
             }else{
                 
                 [btn addTarget:self action:@selector(ActionEditBtn:) forControlEvents:UIControlEventTouchUpInside];

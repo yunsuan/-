@@ -49,6 +49,8 @@
 
 @property (nonatomic, strong) UILabel *recommendListL;
 
+@property (nonatomic, strong) UIButton *recommendBtn;
+
 @property (nonatomic, strong) UIButton *moreBtn;
 
 @property (nonatomic, weak) id<CustomTableHeader3Delegate> delegate;
