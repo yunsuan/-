@@ -118,7 +118,7 @@
             [self.Mytableview reloadData];
         }else{
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -286,7 +286,7 @@
                     [UserModelArchiver infoArchive];
                 }else{
                     
-                    [self showContent:resposeObject[@"msg"]];
+//                    [self showContent:resposeObject[@"msg"]];
                 }
             } failure:^(NSError *error) {
                
