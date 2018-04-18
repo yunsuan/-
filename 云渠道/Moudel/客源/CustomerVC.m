@@ -88,7 +88,7 @@
         [_customerTable.mj_footer endRefreshing];
         [_customerTable.mj_header endRefreshing];
         NSLog(@"%@",error.localizedDescription);
-        [self showContent:@""];
+        [self showContent:@"网络错误"];
     }];
 }
 
@@ -234,9 +234,7 @@
 }
 
 - (BoxView *)boxView{
-    
     if (!_boxView) {
-        
         _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, 43 *SIZE + NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 43 *SIZE)];
     }
     return _boxView;
