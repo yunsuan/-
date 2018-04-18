@@ -30,7 +30,7 @@
             if ([arr[0] isEqualToString:@"agent"]&&![arr[1] isEqualToString:@"user"]) {
                 if ([[UserModel defaultModel].Token isEqualToString:@""]) {
                     [BaseRequest alertControllerWithNsstring:@"温馨提示" And:@"请先登录" WithCancelBlack:^{
-    
+                        
                     } WithDefaultBlack:^{
                         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
                         [UserModel defaultModel].Token = @"";
@@ -40,13 +40,13 @@
                     }];
                     
                 }
-                if ([responseObject[@"code"] integerValue] == 401) {
+                else if ([responseObject[@"code"] integerValue] == 401) {
                     
                     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
                     hud.mode = MBProgressHUDModeText;
                     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
                     hud.bezelView.color = [UIColor colorWithWhite:0.f alpha:0.7f];
-                    hud.label.text= str;
+                    hud.label.text= @"账号在其他地点登录，请重新登录！";
                     hud.label.textColor = [UIColor whiteColor];
                     hud.margin = 10.f;
                     [hud setOffset:CGPointMake(0, 10.f*SIZE)];
@@ -61,9 +61,8 @@
                         [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
                         return ;
                     });
-
+                    
                 }
-          
             }
             success(responseObject);
         }
@@ -174,8 +173,6 @@
                              
                                                               error:&err];
         NSLog(@"%@",err);
-        
-        
         success(dic);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
