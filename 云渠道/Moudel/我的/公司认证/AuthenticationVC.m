@@ -124,12 +124,12 @@
             cell.imageView.image = _imgArr[indexPath.item];
         }else{
             
-            cell.imageView.image = [UIImage imageNamed:@"add"];
+            cell.imageView.image =[UIImage imageNamed:@"uploadphotos"];
             cell.cancelBtn.hidden = YES;
         }
     }else{
         
-        cell.imageView.image = [UIImage imageNamed:@"add"];
+        cell.imageView.image =[UIImage imageNamed:@"uploadphotos"];
         cell.cancelBtn.hidden = YES;
     }
     

@@ -23,6 +23,7 @@
 - (void)initUI{
     
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 3 *SIZE, 100 *SIZE, 83 *SIZE)];
+    _imageView.image =[UIImage imageNamed:@"uploadphotos"];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_imageView];
     
