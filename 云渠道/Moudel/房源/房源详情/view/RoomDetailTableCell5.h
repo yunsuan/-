@@ -10,7 +10,7 @@
 
 @interface RoomDetailTableCell5 : UITableViewCell
 
-@property (nonatomic, strong) UIImageView *headImg; //头像
+@property (nonatomic, strong) UIImageView *gender; //头像
 
 @property (nonatomic, strong) UILabel *nameL;//姓名
 

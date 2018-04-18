@@ -23,13 +23,13 @@
 
 - (void)initUI{
     
-    _titleL = [[UILabel alloc] initWithFrame:CGRectMake(0, 15 *SIZE, 50 *SIZE, 14 *SIZE)];
+    _titleL = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 66 *SIZE, 14 *SIZE)];
     _titleL.textColor = YJTitleLabColor;
     _titleL.font = [UIFont systemFontOfSize:15 *SIZE];
     _titleL.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_titleL];
     
-    _line = [[UIView alloc] initWithFrame:CGRectMake(11 *SIZE, 38 *SIZE, 28 *SIZE, 2 *SIZE)];
+    _line = [[UIView alloc] initWithFrame:CGRectMake(20 *SIZE, 42, 28 *SIZE, 2)];
     _line.backgroundColor = COLOR(27, 152, 255, 1);
     _line.hidden = YES;
     [self.contentView addSubview:_line];

@@ -22,6 +22,8 @@
 
 - (void)initUI{
     
+    self.contentView.backgroundColor = CH_COLOR_white;
+    
     _imgScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 183 *SIZE)];
     _imgScroll.backgroundColor = YJGreenColor;
     [self.contentView addSubview:_imgScroll];

@@ -108,4 +108,6 @@ static NSString *const GetRecord_URL = @"agent/client/getFollowList";
 //获取项目列表
 static NSString *const ProjectList_URL = @"user/project/list";
 
+//获取项目信息，动态，户型等信息
+static NSString *const ProjectDetail_URL = @"user/project/detail";
 

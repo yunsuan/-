@@ -60,6 +60,8 @@
 
 - (void)initUI{
     
+    self.backgroundColor = YJBackColor;
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 9 *SIZE, 80 *SIZE, 15 *SIZE)];
     label.textColor = YJTitleLabColor;
     label.font = [UIFont systemFontOfSize:15 *SIZE];

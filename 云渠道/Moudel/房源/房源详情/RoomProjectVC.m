@@ -7,8 +7,41 @@
 //
 
 #import "RoomProjectVC.h"
+#import "RoomDetailTableHeader.h"
+#import "RoomDetailTableHeader5.h"
+#import "RoomDetailTableHeader6.h"
+#import "RoomDetailTableCell.h"
+#import "RoomDetailTableCell1.h"
+#import "RoomDetailTableCell2.h"
+#import "RoomDetailTableCell3.h"
+#import "RoomDetailTableCell4.h"
+#import "RoomDetailTableCell5.h"
+#import "BuildingInfoVC.h"
+#import "HouseTypeDetailVC.h"
+#import "DynamicListVC.h"
+#import "CustomMatchListVC.h"
+#import "DistributVC.h"
+#import <BaiduMapAPI_Search/BMKPoiSearchType.h>
+#import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
+#import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomProjectVC ()
+@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
+{
+    
+    
+}
+
+@property (nonatomic, strong) UITableView *roomTable;
+
+@property (nonatomic, strong) UIButton *recommendBtn;
+
+@property (nonatomic, strong) UIView *parting;
+
+@property (nonatomic, strong) UIButton *counselBtn;
+
+@property (nonatomic, strong) BMKMapView *mapView;
+
+@property (nonatomic, strong) BMKPoiSearch *poisearch;
 
 @end
 
@@ -16,22 +49,358 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self initDataSource];
+    [self initUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//- (void)viewWillAppear:(BOOL)animated{
+//    
+//    [super viewWillAppear:animated];
+//    
+//    self.mapView.delegate = nil;
+//    [self.mapView removeFromSuperview];
+//}
+
+//- (void)MapViewPopMethod{
+//
+//    self.mapView.delegate = nil;
+//    [self.mapView removeFromSuperview];
+//}
+
+- (void)initDataSource{
+    
+    [self RequestMethod];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)RequestMethod{
+    
+    NSDictionary *dic = @{@"project_id":@""};
+    [BaseRequest POST:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
-*/
+
+- (void)ActionMoreBtn:(UIButton *)btn{
+    
+    NSLog(@"%ld",btn.tag);
+    if (btn.tag == 1) {
+        BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]init];
+        [self.navigationController pushViewController:next_vc animated:YES];
+    }
+    
+    if (btn.tag == 2) {
+        
+        DynamicListVC *next_vc = [[DynamicListVC alloc]init];
+        [self.navigationController pushViewController:next_vc animated:YES];
+    }
+    
+}
+
+#pragma mark -- BMKMap
+
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    
+    
+}
+
+
+#pragma mark -- delegate
+
+- (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+}
+
+
+#pragma mark -- tableview
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 7;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    if (section == 6) {
+        
+        return 2;
+    }else{
+        
+        if (section == 0) {
+            
+            return 0;
+        }else{
+            
+            return 1;
+        }
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (!section) {
+        
+        return 368 *SIZE;
+    }else{
+        
+        if (section == 6) {
+            
+            return 33 *SIZE;
+        }else{
+            
+            return 6 *SIZE;
+        }
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return CGFLOAT_MIN;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if (!section) {
+        
+        RoomDetailTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader"];
+        if (!header) {
+            
+            header = [[RoomDetailTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
+        }
+        header.titleL.text = @"FUNX自由青年公寓 城北店火爆来袭";
+        header.statusL.text = @"在售";
+        header.attentL.text = @"关注人数：23";
+        header.payL.text = @"交房时间：暂无数据";
+        //        header.priceL.text = @""
+        header.addressL.text = @"高新区-天府五街230号";
+        return header;
+        
+    }else{
+        
+        if (section == 6) {
+              
+              RoomDetailTableHeader5 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader5"];
+              if (!header) {
+                  
+                  header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
+              }
+              header.numL.text = @"匹配的客户(23)";
+              header.moreBtnBlock = ^{
+                  
+                  CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] init];
+                  [self.navigationController pushViewController:nextVC animated:YES];
+              };
+              return header;
+          }else{
+              
+              return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 6 *SIZE)];
+          }
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    return [[UIView alloc] init];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    switch (indexPath.section) {
+        case 0:
+        case 1:
+        {
+            
+            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
+            if (!cell) {
+                
+                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.developL.text = @"阳光物业公司";
+            cell.openL.text = @"2017年02月20日";
+            cell.payL.text = @"2019年02月";
+            cell.timeL.text = @"70年";
+            cell.moreBtn.tag = indexPath.section;
+            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+            break;
+        }
+        case 2:
+        {
+
+            RoomDetailTableCell1 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell1"];
+            if (!cell) {
+
+                cell = [[RoomDetailTableCell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell1"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+            cell.numL.text = @"（共13条）";
+            cell.titleL.text = @"云算公馆参考价格5000元/㎡";
+            cell.timeL.text = @"2017年12月19日   12:43:00";
+            cell.contentL.text = @"2017年11月28日讯：云算公馆现房在售，在售房源建筑面积188㎡只余底层且只余一套，三室..";
+            cell.moreBtn.tag = indexPath.section;
+            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+            break;
+        }
+        case 3:
+        {
+
+            RoomDetailTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell2"];
+            if (!cell) {
+
+                cell = [[RoomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell2"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+            return cell;
+            break;
+        }
+        case 4:
+        {
+
+            RoomDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell3"];
+            if (!cell) {
+
+                cell = [[RoomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell3"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.num = 10;
+            cell.collCellBlock = ^(NSInteger index) {
+
+                //                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
+                //                [self.navigationController pushViewController:nextVC animated:YES];
+            };
+
+            return cell;
+            break;
+        }
+        case 5:
+        {
+
+            RoomDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell4"];
+            if (!cell) {
+
+                cell = [[RoomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell4"];
+                cell.delegate = self;
+                [cell.contentView addSubview:self.mapView];
+                [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+                    make.left.equalTo(cell.contentView).offset(0);
+                    make.top.equalTo(cell.contentView).offset(33 *SIZE);
+                    make.right.equalTo(cell.contentView).offset(0);
+                    make.width.equalTo(@(360 *SIZE));
+                    make.height.equalTo(@(187 *SIZE));
+                    make.bottom.equalTo(cell.contentView).offset(-59 *SIZE);
+                }];
+            }
+            cell.delegate = self;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+            return cell;
+            break;
+        }
+
+        case 6:
+        {
+
+
+            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            if (!cell) {
+
+                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameL.text = @"张三";
+            cell.priceL.text = @"80 - 100";
+            cell.typeL.text = @"三室一厅";
+            cell.areaL.text = @"郫都区-德源大道";
+            cell.intentionRateL.text = @"23";
+            cell.urgentRateL.text = @"43";
+            cell.matchRateL.text = @"83";
+            cell.phoneL.text = @"13438339177";
+            return cell;
+            break;
+        }
+        default:{
+            RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+            if (!cell) {
+
+                cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.nameL.text = @"张三";
+            cell.priceL.text = @"80 - 100";
+            cell.typeL.text = @"三室一厅";
+            cell.areaL.text = @"郫都区-德源大道";
+            cell.intentionRateL.text = @"23";
+            cell.urgentRateL.text = @"43";
+            cell.matchRateL.text = @"83";
+            cell.phoneL.text = @"13438339177";
+            return cell;
+            break;
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 10) {
+        
+//        DistributVC *nextVC = [[DistributVC alloc] init];
+//        [self.navigationController pushViewController:nextVC animated:YES];
+        
+    }
+}
+
+
+
+- (void)initUI{
+    
+    
+    _roomTable.rowHeight = 360 *SIZE;
+    _roomTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _roomTable.backgroundColor = self.view.backgroundColor;
+    _roomTable.delegate = self;
+    _roomTable.dataSource = self;
+    _roomTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_roomTable];
+    
+    _counselBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _counselBtn.frame = CGRectMake(0, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE, SCREEN_Width, 47 *SIZE + TAB_BAR_MORE);
+    _counselBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    //    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_counselBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
+    [_counselBtn setBackgroundColor:COLOR(255, 188, 88, 1)];
+    [_counselBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.view addSubview:_counselBtn];
+
+}
+
+
+- (BMKMapView *)mapView{
+    
+    if (!_mapView) {
+        
+        _mapView = [[BMKMapView alloc] init];
+        _mapView.delegate = self;
+        _mapView.zoomLevel = 15;
+        _mapView.isSelectedAnnotationViewFront = YES;
+    }
+    return _mapView;
+}
 
 @end
