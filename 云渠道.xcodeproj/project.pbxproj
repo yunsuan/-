@@ -71,6 +71,11 @@
 		0CBD859820872C8500E7B183 /* CustomTableHeader3.h in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */; };
 		0CBD859920872C8500E7B183 /* CustomTableHeader3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */; };
 		0CBD859D2087365100E7B183 /* RoomMatchListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD859C2087365100E7B183 /* RoomMatchListVC.m */; };
+		0CBD85A0208835C800E7B183 /* CustomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD859F208835C800E7B183 /* CustomDetailTableCell4.m */; };
+		0CBD85A3208835F300E7B183 /* CustomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85A2208835F300E7B183 /* CustomDetailTableCell5.m */; };
+		0CBD85A42088448600E7B183 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
+		0CBD85A7208863C200E7B183 /* TagView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85A6208863C100E7B183 /* TagView2.m */; };
+		0CBD85AA208876DC00E7B183 /* TagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85A9208876DC00E7B183 /* TagViewCollCell.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -344,6 +349,14 @@
 		0CBD859620871B6900E7B183 /* RoomDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailModel.m; sourceTree = "<group>"; };
 		0CBD859B2087365100E7B183 /* RoomMatchListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomMatchListVC.h; sourceTree = "<group>"; };
 		0CBD859C2087365100E7B183 /* RoomMatchListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomMatchListVC.m; sourceTree = "<group>"; };
+		0CBD859E208835C800E7B183 /* CustomDetailTableCell4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailTableCell4.h; sourceTree = "<group>"; };
+		0CBD859F208835C800E7B183 /* CustomDetailTableCell4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailTableCell4.m; sourceTree = "<group>"; };
+		0CBD85A1208835F200E7B183 /* CustomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDetailTableCell5.h; sourceTree = "<group>"; };
+		0CBD85A2208835F300E7B183 /* CustomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomDetailTableCell5.m; sourceTree = "<group>"; };
+		0CBD85A5208863C100E7B183 /* TagView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagView2.h; sourceTree = "<group>"; };
+		0CBD85A6208863C100E7B183 /* TagView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagView2.m; sourceTree = "<group>"; };
+		0CBD85A8208876DC00E7B183 /* TagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagViewCollCell.h; sourceTree = "<group>"; };
+		0CBD85A9208876DC00E7B183 /* TagViewCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagViewCollCell.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -777,6 +790,10 @@
 				0CC19D0A206E3E9C0007CC5F /* CustomDetailTableCell3.m */,
 				0CC19D0F2071D5B10007CC5F /* CustomTableHeader4.h */,
 				0CC19D102071D5B10007CC5F /* CustomTableHeader4.m */,
+				0CBD859E208835C800E7B183 /* CustomDetailTableCell4.h */,
+				0CBD859F208835C800E7B183 /* CustomDetailTableCell4.m */,
+				0CBD85A1208835F200E7B183 /* CustomDetailTableCell5.h */,
+				0CBD85A2208835F300E7B183 /* CustomDetailTableCell5.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1470,6 +1487,10 @@
 				105E18972060EE710031558D /* TagView.m */,
 				105E189920622C870031558D /* singleviewCell.h */,
 				105E189A20622C870031558D /* singleviewCell.m */,
+				0CBD85A5208863C100E7B183 /* TagView2.h */,
+				0CBD85A6208863C100E7B183 /* TagView2.m */,
+				0CBD85A8208876DC00E7B183 /* TagViewCollCell.h */,
+				0CBD85A9208876DC00E7B183 /* TagViewCollCell.m */,
 			);
 			path = "自定义标签";
 			sourceTree = "<group>";
@@ -2191,6 +2212,7 @@
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
+				0CBD85A0208835C800E7B183 /* CustomDetailTableCell4.m in Sources */,
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,
 				0CBD857720848EC700E7B183 /* LevelView.m in Sources */,
 				0CF04F9E207CC23300A45F4A /* GuideVC.m in Sources */,
@@ -2203,6 +2225,7 @@
 				0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
+				0CBD85A3208835F300E7B183 /* CustomDetailTableCell5.m in Sources */,
 				0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */,
 				0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */,
 				0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */,
@@ -2274,6 +2297,7 @@
 				0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */,
 				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,
 				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
+				0CBD85AA208876DC00E7B183 /* TagViewCollCell.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				0C08BF77206CE919005BB3B4 /* MyAttentionVC.m in Sources */,
@@ -2310,6 +2334,7 @@
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
 				0C08BF7B206DCEEB005BB3B4 /* AttentionTableCell.m in Sources */,
+				0CBD85A7208863C200E7B183 /* TagView2.m in Sources */,
 				0C08BF57206C835B005BB3B4 /* BrokerageTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2327,6 +2352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CBD85A42088448600E7B183 /* AddRequireMentVC.m in Sources */,
 				1069FFE9205795BE00E11F52 /* ___UITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

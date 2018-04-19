@@ -197,7 +197,7 @@
         _purposeL.text = @"置业目的：";
     }
     
-    if ([model.buy_purpose integerValue]) {
+    if ([model.pay_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",13]];
