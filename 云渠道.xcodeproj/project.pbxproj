@@ -140,6 +140,7 @@
 		0CF7425E206262EC001F926F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7425D206262EC001F926F /* BoxView.m */; };
 		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
 		1016245B208863BB00AD53DE /* YJChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245A208863BB00AD53DE /* YJChooseView.m */; };
+		1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245D2088640300AD53DE /* YJChooseViewCell.m */; };
 		10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BEE2071D82000D00B9A /* DateChooseView.m */; };
 		10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BF120720C9A00D00B9A /* AdressChooseView.m */; };
 		10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C03207214CA00D00B9A /* BuildingInfoVC.m */; };
@@ -483,6 +484,8 @@
 		0CF7426020626756001F926F /* CustomerCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerCollCell.m; sourceTree = "<group>"; };
 		10162459208863BB00AD53DE /* YJChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJChooseView.h; sourceTree = "<group>"; };
 		1016245A208863BB00AD53DE /* YJChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJChooseView.m; sourceTree = "<group>"; };
+		1016245C2088640300AD53DE /* YJChooseViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJChooseViewCell.h; sourceTree = "<group>"; };
+		1016245D2088640300AD53DE /* YJChooseViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJChooseViewCell.m; sourceTree = "<group>"; };
 		10174BED2071D82000D00B9A /* DateChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateChooseView.h; sourceTree = "<group>"; };
 		10174BEE2071D82000D00B9A /* DateChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateChooseView.m; sourceTree = "<group>"; };
 		10174BF020720C9A00D00B9A /* AdressChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdressChooseView.h; sourceTree = "<group>"; };
@@ -1339,6 +1342,8 @@
 			children = (
 				10162459208863BB00AD53DE /* YJChooseView.h */,
 				1016245A208863BB00AD53DE /* YJChooseView.m */,
+				1016245C2088640300AD53DE /* YJChooseViewCell.h */,
+				1016245D2088640300AD53DE /* YJChooseViewCell.m */,
 			);
 			path = "自定义选择页面";
 			sourceTree = "<group>";
@@ -2229,6 +2234,7 @@
 				0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
 				0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */,
+				1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */,
 				0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */,
 				0CF04F2D207A0DA300A45F4A /* DynamicListTableCell.m in Sources */,
 				0C08BF69206CC543005BB3B4 /* BrokerageDetailTableCell3.m in Sources */,
