@@ -139,6 +139,7 @@
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
 		0CF7425E206262EC001F926F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7425D206262EC001F926F /* BoxView.m */; };
 		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
+		1016245B208863BB00AD53DE /* YJChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245A208863BB00AD53DE /* YJChooseView.m */; };
 		10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BEE2071D82000D00B9A /* DateChooseView.m */; };
 		10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BF120720C9A00D00B9A /* AdressChooseView.m */; };
 		10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174C03207214CA00D00B9A /* BuildingInfoVC.m */; };
@@ -480,6 +481,8 @@
 		0CF7425D206262EC001F926F /* BoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		0CF7425F20626756001F926F /* CustomerCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerCollCell.h; sourceTree = "<group>"; };
 		0CF7426020626756001F926F /* CustomerCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerCollCell.m; sourceTree = "<group>"; };
+		10162459208863BB00AD53DE /* YJChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJChooseView.h; sourceTree = "<group>"; };
+		1016245A208863BB00AD53DE /* YJChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJChooseView.m; sourceTree = "<group>"; };
 		10174BED2071D82000D00B9A /* DateChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateChooseView.h; sourceTree = "<group>"; };
 		10174BEE2071D82000D00B9A /* DateChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateChooseView.m; sourceTree = "<group>"; };
 		10174BF020720C9A00D00B9A /* AdressChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdressChooseView.h; sourceTree = "<group>"; };
@@ -1331,6 +1334,15 @@
 			path = BoxView;
 			sourceTree = "<group>";
 		};
+		101624582088638B00AD53DE /* 自定义选择页面 */ = {
+			isa = PBXGroup;
+			children = (
+				10162459208863BB00AD53DE /* YJChooseView.h */,
+				1016245A208863BB00AD53DE /* YJChooseView.m */,
+			);
+			path = "自定义选择页面";
+			sourceTree = "<group>";
+		};
 		10174BEC2071D7B800D00B9A /* 自定义时间选择器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1801,6 +1813,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				101624582088638B00AD53DE /* 自定义选择页面 */,
 				10DBB1E9207CCACE00CFE59D /* 选房 */,
 				0CF04F60207C4C8900A45F4A /* 弹出框 */,
 				0CC19D1E20720B150007CC5F /* 自定义地址选择器 */,
@@ -2238,6 +2251,7 @@
 				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
 				0CBD858C2085F90500E7B183 /* RoomProjectVC.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
+				1016245B208863BB00AD53DE /* YJChooseView.m in Sources */,
 				0CF04F66207C555F00A45F4A /* FailView.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
