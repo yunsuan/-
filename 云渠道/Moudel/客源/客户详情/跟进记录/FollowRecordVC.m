@@ -83,6 +83,15 @@
 }
 
 
+-(void)action_time
+{
+    DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    view.dateblock = ^(NSDate *date) {
+        NSLog(@"%@",[self gettime:date]);
+        _timeL.text = [self gettime:date];
+    };
+    [self.view addSubview:view];
+}
 
 - (void)ActionSliderChange:(UIButton *)btn{
     
@@ -105,6 +114,7 @@
     UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(0, 136 *SIZE, SCREEN_Width, 591 *SIZE)];
     view2.backgroundColor = CH_COLOR_white;
     [_scrollView addSubview:view2];
+    
 
     for (int i = 0; i < 3; i++) {
         
@@ -123,12 +133,24 @@
             _timeL = [[UILabel alloc] initWithFrame:CGRectMake(78 *SIZE, 60 *SIZE, 200 *SIZE, 13 *SIZE)];
             _timeL.textColor = YJTitleLabColor;
             _timeL.font = [UIFont systemFontOfSize:13 *SIZE];
+            _timeL.userInteractionEnabled = YES;
             [view1 addSubview:_timeL];
+            UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(action_time)];
+            [_timeL addGestureRecognizer:gesture];
+            
         }else{
             
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(78 *SIZE , i * 43 *SIZE, 270 *SIZE, 42 *SIZE)];
             textField.font = [UIFont systemFontOfSize:13 *SIZE];
+            textField.userInteractionEnabled = NO;
             [view1 addSubview:textField];
+            if (i == 2) {
+                textField.text  = [UserInfoModel defaultModel].name;
+            }
+            else{
+                textField.text = _customername;
+            }
+            
         }
     }
     
@@ -217,7 +239,7 @@
             label.text = @"跟进内容:";
         }else{
             
-            label.frame = CGRectMake(9 *SIZE, 420*SIZE+_chooseview.frame.size.height *SIZE, 72 *SIZE, 10 *SIZE);
+            label.frame = CGRectMake(9 *SIZE, 420*SIZE+_chooseview.frame.size.height , 72 *SIZE, 10 *SIZE);
             label.font = [UIFont systemFontOfSize:10.5 *SIZE];
             label.text = @"下次回访时间:";
         }

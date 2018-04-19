@@ -152,6 +152,7 @@
 - (void)DG2ActionAddBtn:(UIButton *)btn{
     
     FollowRecordVC *nextVC = [[FollowRecordVC alloc] init];
+    nextVC.customername = _customModel.name;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
