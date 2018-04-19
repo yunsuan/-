@@ -22,8 +22,24 @@
 
 - (void)setModel:(CustomRequireModel *)model{
     
-    
-//    self.cellView.addressL.text = @"区域：成都 - 郫都区   成都 -高新区";
+    if ([model.property_type integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.property_type integerValue]) {
+                
+                _typeL.text = [NSString stringWithFormat:@"物业类型：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
+        
+    }else{
+        
+        _typeL.text = @"物业类型：";
+    }
     
     NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
     
@@ -31,29 +47,45 @@
     NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
                                                        options:NSJSONReadingMutableContainers
                                                          error:&err];
-    NSArray *arr = [_model.region componentsSeparatedByString:@","];
+    NSArray *arr = [model.region componentsSeparatedByString:@","];
     
-    for (int i = 0; i < provice.count; i++) {
+    if (arr.count) {
         
-        if([provice[i][@"region"] integerValue] == [arr[0] integerValue]){
+        for (int a = 0; a < arr.count; a++) {
             
-            NSArray *city = provice[i][@"item"];
-            for (int j = 0; j < city.count; j++) {
-                
-                if([city[j][@"region"] integerValue] == [arr[1] integerValue]){
+            NSArray *arr1 = [arr[a] componentsSeparatedByString:@"-"];
+            for (int i = 0; i < provice.count; i++) {
+
+                if([provice[i][@"region"] integerValue] == [arr1[0] integerValue]){
                     
-                    NSArray *area = city[j][@"item"];
-                    
-                    for (int k = 0; k < area.count; k++) {
+                    NSArray *city = provice[i][@"item"];
+                    for (int j = 0; j < city.count; j++) {
                         
-                        if([area[k][@"region"] integerValue] == [arr[2] integerValue]){
+                        if([city[j][@"region"] integerValue] == [arr1[1] integerValue]){
                             
-                            self.cellView.addressL.text = [NSString stringWithFormat:@"区域：%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                            NSArray *area = city[j][@"item"];
+                            
+                            for (int k = 0; k < area.count; k++) {
+                                
+                                if([area[k][@"region"] integerValue] == [arr1[2] integerValue]){
+                                    
+                                    if (a == 0) {
+                                        
+                                        _addressL.text = [NSString stringWithFormat:@"区域：%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                                    }else{
+                                     
+                                        _addressL.text = [NSString stringWithFormat:@"%@,%@-%@-%@",_addressL.text,provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
+    }else{
+        
+        _addressL.text = @"区域：";
     }
     
     if ([model.total_price integerValue]) {
@@ -65,14 +97,14 @@
             
             if ([typeArr[i][@"id"] integerValue] == [model.total_price integerValue]) {
                 
-                self.cellView.priceL.text = [NSString stringWithFormat:@"总价：%@",typeArr[i][@"param"]];
+                _priceL.text = [NSString stringWithFormat:@"总价：%@",typeArr[i][@"param"]];
                 break;
             }
         }
         
     }else{
         
-        self.cellView.priceL.text = @"总价：";
+        _priceL.text = @"总价：";
     }
     
     if ([model.area integerValue]) {
@@ -84,14 +116,14 @@
             
             if ([typeArr[i][@"id"] integerValue] == [model.area integerValue]) {
                 
-                self.cellView.areaL.text = [NSString stringWithFormat:@"面积：%@",typeArr[i][@"param"]];
+                _areaL.text = [NSString stringWithFormat:@"面积：%@",typeArr[i][@"param"]];
                 break;
             }
         }
         
     }else{
         
-        self.cellView.areaL.text = @"面积：";
+        _areaL.text = @"面积：";
     }
     
     if ([model.house_type integerValue]) {
@@ -103,47 +135,28 @@
             
             if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
                 
-                self.cellView.houseTypeL.text = [NSString stringWithFormat:@"房型：%@",typeArr[i][@"param"]];
+                _houseTypeL.text = [NSString stringWithFormat:@"户型：%@",typeArr[i][@"param"]];
                 break;
             }
         }
         
     }else{
         
-        self.cellView.houseTypeL.text = @"房型：";
+        _houseTypeL.text = @"户型：";
     }
-    
-//    if ([model.orientation integerValue]) {
-//        
-//        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-//        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",19]];
-//        NSArray *typeArr = dic[@"param"];
-//        for (int i = 0; i < typeArr.count; i++) {
-//            
-//            if ([typeArr[i][@"id"] integerValue] == [model.orientation integerValue]) {
-//                
-//                self.cellView.faceL.text = [NSString stringWithFormat:@"朝向：%@",typeArr[i][@"param"]];
-//                break;
-//            }
-//        }
-//        
-//    }else{
-//        
-//        self.cellView.faceL.text = @"朝向：";
-//    }
     
     if ([model.floor_max integerValue] && [model.floor_min integerValue]) {
         
-        self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层-%@层",model.floor_min,model.floor_max];
+        _floorL.text = [NSString stringWithFormat:@"楼层：%@层-%@层",model.floor_min,model.floor_max];
     }else if (model.floor_min && !model.floor_max){
         
-        self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层以上",model.floor_min];
+        _floorL.text = [NSString stringWithFormat:@"楼层：%@层以上",model.floor_min];
     }else if (model.floor_max && !model.floor_min){
         
-        self.cellView.floorL.text = [NSString stringWithFormat:@"楼层：%@层以上",model.floor_max];
+        _floorL.text = [NSString stringWithFormat:@"楼层：%@层以上",model.floor_max];
     }else{
         
-        self.cellView.floorL.text = @"楼层：";
+        _floorL.text = @"楼层：";
     }
     
     if ([model.decorate integerValue]) {
@@ -155,14 +168,14 @@
             
             if ([typeArr[i][@"id"] integerValue] == [model.decorate integerValue]) {
                 
-                self.cellView.standardL.text = [NSString stringWithFormat:@"装修标准：%@",typeArr[i][@"param"]];
+                _standardL.text = [NSString stringWithFormat:@"装修标准：%@",typeArr[i][@"param"]];
                 break;
             }
         }
         
     }else{
         
-        self.cellView.standardL.text = @"装修标准：";
+        _standardL.text = @"装修标准：";
     }
     
     if ([model.buy_purpose integerValue]) {
@@ -174,14 +187,14 @@
             
             if ([typeArr[i][@"id"] integerValue] == [model.buy_purpose integerValue]) {
                 
-                self.cellView.purposeL.text = [NSString stringWithFormat:@"置业目的：%@",typeArr[i][@"param"]];
+                _purposeL.text = [NSString stringWithFormat:@"置业目的：%@",typeArr[i][@"param"]];
                 break;
             }
         }
         
     }else{
         
-        self.cellView.purposeL.text = @"置业目的：";
+        _purposeL.text = @"置业目的：";
     }
     
     if ([model.buy_purpose integerValue]) {
@@ -193,73 +206,221 @@
             
             if ([typeArr[i][@"id"] integerValue] == [model.pay_type integerValue]) {
                 
-                self.cellView.payWayL.text = [NSString stringWithFormat:@"付款方式：%@",typeArr[i][@"param"]];
+                _payWayL.text = [NSString stringWithFormat:@"付款方式：%@",typeArr[i][@"param"]];
                 break;
             }
         }
         
     }else{
         
-        self.cellView.payWayL.text = @"付款方式：";
+        _payWayL.text = @"付款方式：";
     }
     
     if ([model.intent integerValue]) {
         
-        self.cellView.intentionL.text = [NSString stringWithFormat:@"购房意向度：%@",model.urgency];
+        _intentionL.text = [NSString stringWithFormat:@"购房意向度：%@",model.urgency];
     }else{
         
-        self.cellView.intentionL.text = @"购房意向度：";
+        _intentionL.text = @"购房意向度：";
     }
     
     if ([model.urgency integerValue]) {
         
-        self.cellView.urgentL.text = [NSString stringWithFormat:@"购房紧迫度：%@",model.urgency];
+        _urgentL.text = [NSString stringWithFormat:@"购房紧迫度：%@",model.urgency];
     }else{
         
-        self.cellView.urgentL.text = @"购房紧迫度：";
+        _urgentL.text = @"购房紧迫度：";
     }
-    self.requireL.text = model.comment;
+}
+
+- (void)ActionEditBtn:(UIButton *)btn{
+    
+    if (self.editBlock) {
+        
+        self.editBlock(self.tag);
+    }
 }
 
 - (void)initUI{
     
-    _cellView = [[CustomTableCellView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 348 *SIZE)];
-    [self.contentView addSubview:_cellView];
+    for (int i = 0 ; i < 11; i++) {
+        
+        if (i < 2) {
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(280 *SIZE + i * 47 *SIZE, 5 *SIZE, 29 *SIZE, 29 *SIZE);
+            if (i == 0) {
+                
+                
+            }else{
+                
+                [btn addTarget:self action:@selector(ActionEditBtn:) forControlEvents:UIControlEventTouchUpInside];
+                [btn setImage:[UIImage imageNamed:@"eidt"] forState:UIControlStateNormal];
+                _editBtn = btn;
+                [self addSubview:_editBtn];
+            }
+        }
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.textColor = YJTitleLabColor;
+        label.font = [UIFont systemFontOfSize:13 *SIZE];
+        switch (i) {
+            case 0:
+            {
+                _typeL = label;
+                [self.contentView addSubview:_typeL];
+                break;
+            }
+            case 1:
+            {
+                _addressL = label;
+                _addressL.numberOfLines = 0;
+                [self.contentView addSubview:_addressL];
+                break;
+            }
+            case 2:
+            {
+                _priceL = label;
+                [self.contentView addSubview:_priceL];
+                break;
+            }
+            case 3:
+            {
+                _areaL = label;
+                [self.contentView addSubview:_areaL];
+                break;
+            }
+            case 4:
+            {
+                _houseTypeL = label;
+                [self.contentView addSubview:_houseTypeL];
+                break;
+            }
+            case 5:
+            {
+                _floorL = label;
+                [self.contentView addSubview:_floorL];
+                break;
+            }
+            case 6:
+            {
+                _standardL = label;
+                [self.contentView addSubview:_standardL];
+                break;
+            }
+            case 7:
+            {
+                _purposeL = label;
+                [self.contentView addSubview:_purposeL];
+                break;
+            }
+            case 8:
+            {
+                _payWayL = label;
+                [self.contentView addSubview:_payWayL];
+                break;
+            }
+            case 9:
+            {
+                _intentionL = label;
+                [self.contentView addSubview:_intentionL];
+                break;
+            }
+            case 10:
+            {
+                _urgentL = label;
+                [self.contentView addSubview:_urgentL];
+                break;
+            }
+            default:
+                break;
+        }
+    }
     
-    UILabel *tagL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 367 *SIZE, 80 *SIZE, 14 *SIZE)];
-    tagL.textColor = YJTitleLabColor;
-    tagL.font = [UIFont systemFontOfSize:15 *SIZE];
-    tagL.text = @"需求标签";
-    [self.contentView addSubview:tagL];
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 466 *SIZE, SCREEN_Width, 36 *SIZE)];
-    view.backgroundColor = YJBackColor;
-    [self.contentView addSubview:view];
-    
-    UILabel *requestL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 12 *SIZE, 100 *SIZE, 12 *SIZE)];
-    requestL.textColor = YJContentLabColor;
-    requestL.font = [UIFont systemFontOfSize:13 *SIZE];
-    requestL.text = @"其他要求";
-    [view addSubview:requestL];
-    
-    _requireL = [[UILabel alloc] init];
-    _requireL.textColor = YJContentLabColor;
-    _requireL.numberOfLines = 0;
-    _requireL.font = [UIFont systemFontOfSize:12 *SIZE];
-    [self.contentView addSubview:_requireL];
-    
-    [self masonryUI];
+    [self MasonryUI];
 }
 
-- (void)masonryUI{
+- (void)MasonryUI{
     
-    [_requireL mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+    [_typeL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
         make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(self.contentView).offset(518 *SIZE);
-        make.right.equalTo(self.contentView).offset(-28 *SIZE);
-        make.bottom.equalTo(self.contentView).offset(-72 *SIZE);
+        make.top.equalTo(self.contentView).offset(32 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
     }];
+    
+    [_addressL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_typeL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_priceL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_addressL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_areaL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_priceL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_houseTypeL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_areaL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_floorL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_houseTypeL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_standardL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_floorL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_purposeL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_standardL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_payWayL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_purposeL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_intentionL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_payWayL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+    }];
+    
+    [_urgentL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_intentionL.mas_bottom).offset(18 *SIZE);
+        make.width.equalTo(@(300 *SIZE));
+        make.bottom.equalTo(self.contentView).offset(-17 *SIZE);
+    }];
+    
+    
 }
 
 @end

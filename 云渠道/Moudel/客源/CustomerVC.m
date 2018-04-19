@@ -95,6 +95,7 @@
 
 - (void)RequestAddMethod{
     
+    _page += 1;
     [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);

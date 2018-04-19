@@ -291,9 +291,9 @@
             cell = [[CustomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.cellView.tag = indexPath.row;
+//        cell.cellView.tag = indexPath.row;
         
-        cell.cellView.editBlock = ^(NSInteger index) {
+        cell.editBlock = ^(NSInteger index) {
             
             
             AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:_dataArr[index]];
@@ -346,7 +346,7 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"客户详情";
 
-    _customDetailTable.estimatedRowHeight = 174 *SIZE;
+    _customDetailTable.estimatedRowHeight = 367 *SIZE;
     _customDetailTable.rowHeight = UITableViewAutomaticDimension;
     
     _customDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStyleGrouped];
