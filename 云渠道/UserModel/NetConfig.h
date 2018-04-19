@@ -100,10 +100,6 @@ static NSString *const AddRecord_URL = @"agent/client/addFollow";
 static NSString *const GetRecord_URL = @"agent/client/getFollowList";
 
 
-
-
-
-
 #pragma mark ---  房源  ---
 //获取项目列表
 static NSString *const ProjectList_URL = @"user/project/list";

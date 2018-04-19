@@ -214,11 +214,11 @@
     [self getCityArrayByprovince:0];
     [self getAreaArrayBycity:0];
     self.provinceStr = self.provinceArray[0][@"name"];
-    self.provinceid = self.provinceArray[0][@"region"];
+    self.provinceid = self.provinceArray[0][@"code"];
     self.cityStr = self.cityArray[0][@"name"];
-    self.cityid = self.cityArray[0][@"region"];
+    self.cityid = self.cityArray[0][@"code"];
     self.areaStr = self.areaArray[0][@"name"];
-    self.areaid = self.areaArray[0][@"region"];
+    self.areaid = self.areaArray[0][@"code"];
 }
 
 -(void)getprovincearray
@@ -228,13 +228,13 @@
 
 -(void)getCityArrayByprovince:(NSInteger)num
 {
-    _cityArray = _provinceArray[num][@"item"];
+    _cityArray = _provinceArray[num][@"city"];
 }
 
 
 -(void)getAreaArrayBycity:(NSInteger )num
 {
-    _areaArray = _cityArray[num][@"item"];
+    _areaArray = _cityArray[num][@"district"];
 }
 
 
@@ -308,7 +308,7 @@
         [self getCityArrayByprovince:row];
         [self getAreaArrayBycity:0];
         self.provinceStr = self.provinceArray[row][@"name"];
-        self.provinceid = self.provinceArray[row][@"region"];
+        self.provinceid = self.provinceArray[row][@"code"];
         
         [self.pickerView reloadComponent:1];
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
@@ -318,22 +318,22 @@
         
 
         self.cityStr = self.cityArray[0][@"name"];
-        self.cityid = self.cityArray[0][@"region"];
+        self.cityid = self.cityArray[0][@"code"];
         self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"region"];
+        self.areaid = self.areaArray[0][@"code"];
         
     }else if (component == 1){//选择市
         [self getAreaArrayBycity:row];
         [self.pickerView reloadComponent:2];
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
         self.cityStr = self.cityArray[row][@"name"];
-        self.cityid =  self.cityArray[row][@"region"];
+        self.cityid =  self.cityArray[row][@"code"];
         self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"region"];
+        self.areaid = self.areaArray[0][@"code"];
         
     }else if (component == 2){//选择区
         self.areaStr = self.areaArray[row][@"name"];
-        self.areaid =  self.areaArray[row][@"region"];
+        self.areaid =  self.areaArray[row][@"code"];
     }
 }
 
@@ -370,6 +370,7 @@
         [self hidePickerView];
     }
 }
+
 
 
 @end
