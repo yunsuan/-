@@ -10,6 +10,8 @@
 #import "CustomDetailTableCell.h"
 #import "CustomDetailTableCell2.h"
 #import "CustomDetailTableCell3.h"
+#import "CustomDetailTableCell4.h"
+#import "CustomDetailTableCell5.h"
 #import "CustomTableHeader.h"
 #import "CustomTableHeader2.h"
 #import "CustomTableHeader3.h"
@@ -173,7 +175,7 @@
     
     if (_item == 0) {
         
-        return 1;
+        return 3;
     }
     return 1;
 }
@@ -191,7 +193,19 @@
     
     if (!_item) {
         
-        return 367 *SIZE;
+        if (section == 0) {
+            
+            return 367 *SIZE;
+        }else{
+            
+            if (section == 1) {
+                
+                return 5 *SIZE;
+            }else{
+                
+                return 36 *SIZE;
+            }
+        }
     }else{
         
         if (_item == 1) {
@@ -218,16 +232,34 @@
     
     if (!_item) {
         
-        CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
-        if (!header) {
+        if (section == 0) {
             
-            header = [[CustomTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 368 *SIZE)];
-            header.delegate = self;
-            [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+            CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
+            if (!header) {
+                
+                header = [[CustomTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 368 *SIZE)];
+                header.delegate = self;
+                [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+            }
+            header.model = _customModel;
+            
+            return header;
+        }else{
+            
+            if (section == 1) {
+                
+                return [[UIView alloc] init];
+            }else{
+                
+                UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 36 *SIZE)];
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(28 *SIZE, 12 *SIZE, 100 *SIZE, 12 *SIZE)];
+                label.textColor = YJContentLabColor;
+                label.font = [UIFont systemFontOfSize:13 *SIZE];
+                label.text = @"其他要求";
+                [view addSubview:label];
+                return view;
+            }
         }
-        header.model = _customModel;
-        
-        return header;
     }else{
         
         if (_item == 1) {
@@ -284,24 +316,69 @@
     
     if (_item == 0) {
         
-        NSString * Identifier = @"CustomDetailTableCell";
-        CustomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
-        if (!cell) {
+        if (indexPath.section == 0) {
             
-            cell = [[CustomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+            NSString * Identifier = @"CustomDetailTableCell";
+            CustomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+            if (!cell) {
+                
+                cell = [[CustomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.editBlock = ^(NSInteger index) {
+                
+                
+                AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:_dataArr[index]];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
+            cell.model = _dataArr[indexPath.row];
+            
+            return cell;
+        }else{
+            
+            if (indexPath.section == 1) {
+                
+                CustomDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomDetailTableCell4"];
+                if (!cell) {
+                    
+                    cell = [[CustomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomDetailTableCell4"];
+                }
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                
+                CustomRequireModel *model = _dataArr[indexPath.row];
+                NSArray *arr =  [model.need_tags componentsSeparatedByString:@","];
+                
+                UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+                layout.itemSize = CGSizeMake(77 *SIZE, 30 *SIZE);
+                layout.minimumInteritemSpacing = 11 *SIZE;
+                layout.sectionInset = UIEdgeInsetsMake(0, 28 *SIZE, 0, 0);
+                
+                cell.tagView = [[TagView2 alloc] initWithFrame:CGRectMake(0, 49 *SIZE, SCREEN_Width, 30 *SIZE) DataSouce:arr type:@"0" flowLayout:layout];
+                [cell.contentView addSubview:cell.tagView];
+                [cell.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(cell.contentView).offset(0);
+                    make.top.equalTo(cell.contentView).offset(49 *SIZE);
+                    make.height.equalTo(@(30 *SIZE));
+                    make.right.equalTo(cell.contentView).offset(0);
+                   
+                    make.bottom.equalTo(cell.contentView).offset(-39 *SIZE);
+                }];
+                return cell;
+            }else{
+                
+                CustomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomDetailTableCell5"];
+                if (!cell) {
+                    
+                    cell = [[CustomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomDetailTableCell5"];
+                }
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                CustomRequireModel *model = _dataArr[0];
+                cell.contentL.text = model.comment;
+                return cell;
+            }
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell.cellView.tag = indexPath.row;
-        
-        cell.editBlock = ^(NSInteger index) {
-            
-            
-            AddRequireMentVC *nextVC = [[AddRequireMentVC alloc] initWithCustomRequireModel:_dataArr[index]];
-            [self.navigationController pushViewController:nextVC animated:YES];
-        };
-        cell.model = _dataArr[indexPath.row];
-        
-        return cell;
     }else{
         
         if (_item == 1) {

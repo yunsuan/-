@@ -133,14 +133,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [BaseRequest GET:Config_URL parameters:nil success:^(id resposeObject) {
-       
-        NSLog(@"%@",resposeObject);
-    } failure:^(NSError *error) {
-        
-        NSLog(@"%@",error);
-    }];
-    
     [self initDataSource];
     [self initUI];
 }
@@ -760,7 +752,6 @@
                     _addressBtn = btn;
                     [_addressBtn addTarget:self action:@selector(ActionAreaBtn:) forControlEvents:UIControlEventTouchUpInside];
                     _addressBtn.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
-                    
                     [_infoView addSubview:_addressBtn];
                     break;
                 }
@@ -848,22 +839,17 @@
             switch (i) {
                 case 0:
                 {
-//                    _floorTF1 = TF;
-//                    _floorTF1.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
-//                    [_infoView addSubview:_floorTF1];
+                    
                     break;
                 }
                 case 1:
                 {
-//                    _floorTF2 = TF;
-//                    _floorTF2.frame = CGRectMake(0, 0, 117 *SIZE, 33 *SIZE);
-//                    [_infoView addSubview:_floorTF2];
+
                     break;
                 }
                 case 2:
                 {
-//                    _standardTF = TF;
-//                    [_infoView addSubview:_standardTF];
+
                     break;
                 }
                 case 3:
@@ -947,18 +933,20 @@
     _markTV = [[UITextView alloc] init];
     _markTV.delegate = self;
     _markTV.contentInset = UIEdgeInsetsMake(10 *SIZE, 12 *SIZE, 12 *SIZE, 12 *SIZE);
+    
     [_scrolleView addSubview:_markTV];
     
     _placeL = [[UILabel alloc] initWithFrame:CGRectMake(6 *SIZE, 7 *SIZE, 40 *SIZE, 11 *SIZE)];
     _placeL.textColor = YJContentLabColor;
     _placeL.font = [UIFont systemFontOfSize:12 *SIZE];
     _placeL.text = @"备注...";
-    if (_model.comment) {
-        
-        _placeL.text = _model.comment;
-    }
     [_markTV addSubview:_placeL];
     
+    if (_model.comment) {
+        
+        _markTV.text = _model.comment;
+        _placeL.hidden = YES;
+    }
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_nextBtn setBackgroundColor:YJBlueBtnColor];
     _nextBtn.layer.cornerRadius = 2 *SIZE;
@@ -967,8 +955,190 @@
     [_nextBtn setTitle:@"确定" forState:UIControlStateNormal];
     [_scrolleView addSubview:_nextBtn];
     
+    
     [self masonryUI];
+    
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+    
+    NSError *err;
+    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+    NSArray *arr = [_model.region componentsSeparatedByString:@","];
+
+    if (arr.count) {
+        
+        for (int a = 0; a < arr.count; a++) {
+            
+            NSArray *arr1 = [arr[a] componentsSeparatedByString:@"-"];
+            for (int i = 0; i < provice.count; i++) {
+                
+                if([provice[i][@"region"] integerValue] == [arr1[0] integerValue]){
+                    
+                    NSArray *city = provice[i][@"item"];
+                    for (int j = 0; j < city.count; j++) {
+                        
+                        if([city[j][@"region"] integerValue] == [arr1[1] integerValue]){
+                            
+                            NSArray *area = city[j][@"item"];
+                            
+                            for (int k = 0; k < area.count; k++) {
+                                
+                                if([area[k][@"region"] integerValue] == [arr1[2] integerValue]){
+                                    
+                                    if (a == 0) {
+                                        
+                                        _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                                        _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"region"],city[0][@"region"],area[k][@"region"]];
+                                    }else{
+                                        
+                                        if (a == 1) {
+                                            
+                                            [self ActionAddBtn:_addBtn];
+                                            _addressBtn2.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                                            _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"region"],city[0][@"region"],area[k][@"region"]];
+                                        }else{
+                                            
+                                            [self ActionAddBtn:_addBtn];
+                                            _addressBtn3.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
+                                            _addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"region"],city[0][@"region"],area[k][@"region"]];
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    if ([_model.property_type integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.property_type integerValue]) {
+                
+                _typeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _typeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+    }
+    
+    if ([_model.total_price integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",25]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.total_price integerValue]) {
+                
+                _priceBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _priceBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+    }
+    
+    if ([_model.area integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",26]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.area integerValue]) {
+                
+                _areaBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _areaBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+    }
+    
+    if ([_model.house_type integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.house_type integerValue]) {
+                
+                _houseTypeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _houseTypeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+    }
+    
+    if (_model.floor_min){
+        
+        _floorTF1.content.text = [NSString stringWithFormat:@"%@层",_model.floor_min];
+        _floorTF1.str = [NSString stringWithFormat:@"%@",_model.floor_min];
+    }
+    if (_model.floor_max){
+        
+        _floorTF2.content.text = [NSString stringWithFormat:@"%@层",_model.floor_max];
+        _floorTF2.str = [NSString stringWithFormat:@"%@",_model.floor_max];
+    }
+    
+    if ([_model.decorate integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",21]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.decorate integerValue]) {
+                
+                _standardTF.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _standardTF.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+    }
+    
+    if ([_model.buy_purpose integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",12]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.buy_purpose integerValue]) {
+                
+                _purposeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _purposeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+    }
+    
+    if ([_model.pay_type integerValue]) {
+        
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",13]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [_model.pay_type integerValue]) {
+                
+                _payWayBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _payWayBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                break;
+            }
+        }
+        
+    }
 }
+
 
 
 - (void)masonryUI{
