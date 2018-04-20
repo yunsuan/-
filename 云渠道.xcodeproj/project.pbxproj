@@ -50,6 +50,11 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
+		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
+		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
+		0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7820897F16005609C7 /* AddTagCollFooter.m */; };
+		0CA37B7D2089933B005609C7 /* CustomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7C2089933B005609C7 /* CustomSearchVC.m */; };
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
@@ -76,6 +81,7 @@
 		0CBD85A42088448600E7B183 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CBD85A7208863C200E7B183 /* TagView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85A6208863C100E7B183 /* TagView2.m */; };
 		0CBD85AA208876DC00E7B183 /* TagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85A9208876DC00E7B183 /* TagViewCollCell.m */; };
+		0CBD85AD2088842100E7B183 /* AddTagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBD85AC2088842100E7B183 /* AddTagVC.m */; };
 		0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE5206E21100007CC5F /* AuthenCollCell.m */; };
 		0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CE6206E21100007CC5F /* AuthenTableCell.m */; };
 		0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */; };
@@ -315,6 +321,16 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
+		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
+		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
+		0CA37B722088938C005609C7 /* AddTagViewCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagViewCollCell.m; sourceTree = "<group>"; };
+		0CA37B742088A0C4005609C7 /* AddTagCollHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagCollHeader.h; sourceTree = "<group>"; };
+		0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagCollHeader.m; sourceTree = "<group>"; };
+		0CA37B7720897F16005609C7 /* AddTagCollFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagCollFooter.h; sourceTree = "<group>"; };
+		0CA37B7820897F16005609C7 /* AddTagCollFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagCollFooter.m; sourceTree = "<group>"; };
+		0CA37B7B2089933B005609C7 /* CustomSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSearchVC.h; sourceTree = "<group>"; };
+		0CA37B7C2089933B005609C7 /* CustomSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSearchVC.m; sourceTree = "<group>"; };
 		0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowRecordVC.h; sourceTree = "<group>"; };
 		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CB6BAF32074982000921C75 /* HouseTypeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeDetailVC.h; sourceTree = "<group>"; };
@@ -359,6 +375,8 @@
 		0CBD85A6208863C100E7B183 /* TagView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagView2.m; sourceTree = "<group>"; };
 		0CBD85A8208876DC00E7B183 /* TagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagViewCollCell.h; sourceTree = "<group>"; };
 		0CBD85A9208876DC00E7B183 /* TagViewCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagViewCollCell.m; sourceTree = "<group>"; };
+		0CBD85AB2088842100E7B183 /* AddTagVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagVC.h; sourceTree = "<group>"; };
+		0CBD85AC2088842100E7B183 /* AddTagVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagVC.m; sourceTree = "<group>"; };
 		0CC19CE2206E21100007CC5F /* AuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationVC.h; sourceTree = "<group>"; };
 		0CC19CE4206E21100007CC5F /* AuthenTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenTableCell.h; sourceTree = "<group>"; };
 		0CC19CE5206E21100007CC5F /* AuthenCollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenCollCell.m; sourceTree = "<group>"; };
@@ -937,6 +955,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0CA37B7A20899329005609C7 /* 客源搜索结果 */ = {
+			isa = PBXGroup;
+			children = (
+				0CA37B7B2089933B005609C7 /* CustomSearchVC.h */,
+				0CA37B7C2089933B005609C7 /* CustomSearchVC.m */,
+			);
+			path = "客源搜索结果";
+			sourceTree = "<group>";
+		};
 		0CB6BAEE20736D4600921C75 /* 跟进记录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1114,6 +1141,16 @@
 			children = (
 				0CC19D202072172C0007CC5F /* AddRequireMentVC.h */,
 				0CC19D212072172C0007CC5F /* AddRequireMentVC.m */,
+				0CBD85AB2088842100E7B183 /* AddTagVC.h */,
+				0CBD85AC2088842100E7B183 /* AddTagVC.m */,
+				0CA37B6E20889028005609C7 /* AddTagView.h */,
+				0CA37B6F20889028005609C7 /* AddTagView.m */,
+				0CA37B712088938C005609C7 /* AddTagViewCollCell.h */,
+				0CA37B722088938C005609C7 /* AddTagViewCollCell.m */,
+				0CA37B742088A0C4005609C7 /* AddTagCollHeader.h */,
+				0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */,
+				0CA37B7720897F16005609C7 /* AddTagCollFooter.h */,
+				0CA37B7820897F16005609C7 /* AddTagCollFooter.m */,
 			);
 			path = "添加需求";
 			sourceTree = "<group>";
@@ -1444,6 +1481,7 @@
 		102DF96B2057A0A200E1859C /* 客源 */ = {
 			isa = PBXGroup;
 			children = (
+				0CA37B7A20899329005609C7 /* 客源搜索结果 */,
 				105E18F3206B8FA60031558D /* 新增客户 */,
 				0C0B82042063513400238D4F /* 客户详情 */,
 				0C07BFD52060FB01007F31EC /* model */,
@@ -2180,6 +2218,7 @@
 				0CBD857A2085931A00E7B183 /* MyAttentionModel.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
 				0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */,
+				0CA37B7020889028005609C7 /* AddTagView.m in Sources */,
 				0CBD859720871B6900E7B183 /* RoomDetailModel.m in Sources */,
 				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
@@ -2198,6 +2237,7 @@
 				0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */,
 				0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */,
 				10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */,
+				0CA37B7D2089933B005609C7 /* CustomSearchVC.m in Sources */,
 				0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */,
 				0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */,
 				0CF04F5F207B5BA900A45F4A /* CompleteCustomVC2.m in Sources */,
@@ -2226,6 +2266,7 @@
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
+				0CBD85AD2088842100E7B183 /* AddTagVC.m in Sources */,
 				0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
@@ -2249,6 +2290,7 @@
 				0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */,
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
+				0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */,
 				0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */,
@@ -2292,6 +2334,7 @@
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
 				10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */,
+				0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */,
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
 				0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */,
 				0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */,
@@ -2335,6 +2378,7 @@
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				10174C18207C4EF600D00B9A /* CustomerInfoModel.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
+				0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */,
 				0CF04F5C207B5B9D00A45F4A /* CompleteCustomVC1.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
 				10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */,
