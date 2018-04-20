@@ -30,6 +30,7 @@
     
     CustomerModel *_customModel;//客户信息
     NSMutableArray *_dataArr;//需求信息
+    NSMutableArray *_FollowArr;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
 
@@ -71,8 +72,29 @@
     
     _customModel = [[CustomerModel alloc] init];
     _dataArr = [@[] mutableCopy];
+    _FollowArr = [@[] mutableCopy];
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     [self RequestMethod];
+}
+
+- (void)GetFollowRequestMethod{
+    
+    [BaseRequest GET:GetRecord_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _FollowArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"data"]];
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (void)RequestMethod{
@@ -104,6 +126,7 @@
     } failure:^(NSError *error) {
        
         NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
     }];
 }
 
@@ -147,6 +170,16 @@
     
     _item = indexPath.item;
     [_customDetailTable reloadData];
+    if (_item == 1) {
+        
+        if (_FollowArr.count) {
+            
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self GetFollowRequestMethod];
+        }
+    }
     NSLog(@"%@",indexPath);
 }
 
@@ -154,6 +187,17 @@
     
     _item = indexPath.item;
     [_customDetailTable reloadData];
+//    if (_item == 1) {
+//
+//        if (_FollowArr.count) {
+//
+//            [_customDetailTable reloadData];
+//        }else{
+//
+//            [self GetFollowRequestMethod];
+//        }
+//    }
+    
     NSLog(@"%@",indexPath);
 }
 
@@ -200,6 +244,9 @@
     if (_item == 0) {
         
         return _dataArr.count;
+    }else if (_item == 1){
+        
+        return _FollowArr.count;
     }
     return 2;
 }
@@ -412,11 +459,21 @@
                 cell = [[CustomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.wayL.text = @"跟进方式:电话跟进";
-            cell.intentionL.text = @"购买意向度：45";
-            cell.urgentL.text = @"购买意向度：45";
-            cell.contentL.text = @"12月12日带客户看了样板间，客户表示比较满意，后期会继续跟进。12月12日带客户看了样板间，客户表示比较满意，后期会继续跟进。12月12日带客户看了样板间，客户表示比较满意，后期会继续跟进。";
-            cell.timeL.text = @"跟进时间：2017-12-15";
+            
+            NSArray *arr = [self getDetailConfigArrByConfigState:FOLLOW_TYPE];
+            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([_FollowArr[indexPath.row][@"follow_type"] integerValue] == [obj[@"id"] integerValue]) {
+                    
+                    cell.wayL.text = [NSString stringWithFormat:@"跟进方式:%@",obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+            
+            cell.intentionL.text = [NSString stringWithFormat:@"购买意向度:%@",_FollowArr[indexPath.row][@"intent"]];
+            cell.urgentL.text = [NSString stringWithFormat:@"购买紧迫度:%@",_FollowArr[indexPath.row][@"urgency"]];
+            cell.contentL.text = _FollowArr[indexPath.row][@"comment"];
+            cell.timeL.text = [NSString stringWithFormat:@"跟进时间:%@",_FollowArr[indexPath.row][@"follow_time"]];
             
             return cell;
         }else{

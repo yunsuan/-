@@ -86,6 +86,10 @@
         
         [dic setObject:_type forKey:@"property_type"];
     }
+    if (_district.length) {
+        
+        [dic setObject:_district forKey:@"district"];
+    }
 
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
@@ -150,6 +154,10 @@
     if (_type) {
         
         [dic setObject:_type forKey:@"property_type"];
+    }
+    if (_district.length) {
+        
+        [dic setObject:_district forKey:@"district"];
     }
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
@@ -506,13 +514,6 @@
         
         _adressView = [[AddressChooseView2 alloc]initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - (41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE))];
         WS(weakSelf);
-//        _adressView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
-//
-//            if (proviceid) {
-//
-//
-//            }
-//        };
         _adressView.confirmAreaBlock = ^(NSString *pro, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
           
             if (area.length) {
@@ -529,7 +530,7 @@
                 [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
             }else{
                 
-                _district = @"";
+//                _district = @"";
                 [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
             }
             
