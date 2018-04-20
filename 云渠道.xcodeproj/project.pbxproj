@@ -56,6 +56,10 @@
 		0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7820897F16005609C7 /* AddTagCollFooter.m */; };
 		0CA37B7D2089933B005609C7 /* CustomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7C2089933B005609C7 /* CustomSearchVC.m */; };
 		0CA37B802089C3C9005609C7 /* BoxViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7F2089C3C9005609C7 /* BoxViewCell.m */; };
+		0CA37B892089D511005609C7 /* BDDynamicTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B832089D510005609C7 /* BDDynamicTreeNode.m */; };
+		0CA37B8A2089D511005609C7 /* BDDynamicTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B842089D510005609C7 /* BDDynamicTreeCell.m */; };
+		0CA37B8B2089D511005609C7 /* BDDynamicTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B862089D510005609C7 /* BDDynamicTree.m */; };
+		0CA37B8C2089D511005609C7 /* BDDynamicTreeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA37B882089D510005609C7 /* BDDynamicTreeCell.xib */; };
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
@@ -334,6 +338,13 @@
 		0CA37B7C2089933B005609C7 /* CustomSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSearchVC.m; sourceTree = "<group>"; };
 		0CA37B7E2089C3C9005609C7 /* BoxViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxViewCell.h; sourceTree = "<group>"; };
 		0CA37B7F2089C3C9005609C7 /* BoxViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxViewCell.m; sourceTree = "<group>"; };
+		0CA37B822089D510005609C7 /* BDDynamicTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicTree.h; sourceTree = "<group>"; };
+		0CA37B832089D510005609C7 /* BDDynamicTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicTreeNode.m; sourceTree = "<group>"; };
+		0CA37B842089D510005609C7 /* BDDynamicTreeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicTreeCell.m; sourceTree = "<group>"; };
+		0CA37B852089D510005609C7 /* BDDynamicTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicTreeNode.h; sourceTree = "<group>"; };
+		0CA37B862089D510005609C7 /* BDDynamicTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicTree.m; sourceTree = "<group>"; };
+		0CA37B872089D510005609C7 /* BDDynamicTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicTreeCell.h; sourceTree = "<group>"; };
+		0CA37B882089D510005609C7 /* BDDynamicTreeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDDynamicTreeCell.xib; sourceTree = "<group>"; };
 		0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowRecordVC.h; sourceTree = "<group>"; };
 		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CB6BAF32074982000921C75 /* HouseTypeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeDetailVC.h; sourceTree = "<group>"; };
@@ -967,6 +978,20 @@
 			path = "客源搜索结果";
 			sourceTree = "<group>";
 		};
+		0CA37B812089D510005609C7 /* BDDynamicTree */ = {
+			isa = PBXGroup;
+			children = (
+				0CA37B822089D510005609C7 /* BDDynamicTree.h */,
+				0CA37B832089D510005609C7 /* BDDynamicTreeNode.m */,
+				0CA37B842089D510005609C7 /* BDDynamicTreeCell.m */,
+				0CA37B852089D510005609C7 /* BDDynamicTreeNode.h */,
+				0CA37B862089D510005609C7 /* BDDynamicTree.m */,
+				0CA37B872089D510005609C7 /* BDDynamicTreeCell.h */,
+				0CA37B882089D510005609C7 /* BDDynamicTreeCell.xib */,
+			);
+			path = BDDynamicTree;
+			sourceTree = "<group>";
+		};
 		0CB6BAEE20736D4600921C75 /* 跟进记录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,6 +1158,7 @@
 		0CC19D1E20720B150007CC5F /* 自定义地址选择器 */ = {
 			isa = PBXGroup;
 			children = (
+				0CA37B812089D510005609C7 /* BDDynamicTree */,
 				10174BF020720C9A00D00B9A /* AdressChooseView.h */,
 				10174BF120720C9A00D00B9A /* AdressChooseView.m */,
 			);
@@ -2130,6 +2156,7 @@
 				1069FFCE205795BE00E11F52 /* Assets.xcassets in Resources */,
 				1069FFCC205795BE00E11F52 /* Main.storyboard in Resources */,
 				10174C14207B010500D00B9A /* region.json in Resources */,
+				0CA37B8C2089D511005609C7 /* BDDynamicTreeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2221,6 +2248,7 @@
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
 				0CC19D112071D5B10007CC5F /* CustomTableHeader4.m in Sources */,
 				0CBD857A2085931A00E7B183 /* MyAttentionModel.m in Sources */,
+				0CA37B8A2089D511005609C7 /* BDDynamicTreeCell.m in Sources */,
 				105E18EA206B66700031558D /* NomineeVC.m in Sources */,
 				0CC19CFC206E21110007CC5F /* SelectCompanyCollCell.m in Sources */,
 				0CA37B7020889028005609C7 /* AddTagView.m in Sources */,
@@ -2269,6 +2297,7 @@
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
 				0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
+				0CA37B892089D511005609C7 /* BDDynamicTreeNode.m in Sources */,
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CBD85AD2088842100E7B183 /* AddTagVC.m in Sources */,
@@ -2336,6 +2365,7 @@
 				0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
 				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
+				0CA37B8B2089D511005609C7 /* BDDynamicTree.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
 				10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */,
