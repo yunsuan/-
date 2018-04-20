@@ -112,7 +112,7 @@
 
 - (void)initUI{
     
-    _searchTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, SCREEN_Height-STATUS_BAR_HEIGHT) style:UITableViewStylePlain];
+    _searchTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, SCREEN_Height - STATUS_BAR_HEIGHT) style:UITableViewStylePlain];
     _searchTable.backgroundColor = YJBackColor;
     _searchTable.delegate = self;
     _searchTable.dataSource = self;

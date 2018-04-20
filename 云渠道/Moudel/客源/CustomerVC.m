@@ -14,6 +14,7 @@
 #import "BoxView.h"
 #import "AddCustomerVC.h"
 #import "PYSearchViewController.h"
+#import "CustomSearchVC.h"
 
 @interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PYSearchViewControllerDelegate>
 {
@@ -179,7 +180,7 @@
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
-//        [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText] animated:YES];
+        [searchViewController.navigationController pushViewController:[[CustomSearchVC alloc] initWithTitle:searchText] animated:YES];
     }];
     // 3. 设置风格
     searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
@@ -223,6 +224,7 @@
 }
 
 
+#pragma mark -- TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return _dataArr.count;

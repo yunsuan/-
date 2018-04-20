@@ -54,6 +54,7 @@
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
 		0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7820897F16005609C7 /* AddTagCollFooter.m */; };
+		0CA37B7D2089933B005609C7 /* CustomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7C2089933B005609C7 /* CustomSearchVC.m */; };
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
@@ -328,6 +329,8 @@
 		0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagCollHeader.m; sourceTree = "<group>"; };
 		0CA37B7720897F16005609C7 /* AddTagCollFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagCollFooter.h; sourceTree = "<group>"; };
 		0CA37B7820897F16005609C7 /* AddTagCollFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagCollFooter.m; sourceTree = "<group>"; };
+		0CA37B7B2089933B005609C7 /* CustomSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSearchVC.h; sourceTree = "<group>"; };
+		0CA37B7C2089933B005609C7 /* CustomSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSearchVC.m; sourceTree = "<group>"; };
 		0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowRecordVC.h; sourceTree = "<group>"; };
 		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CB6BAF32074982000921C75 /* HouseTypeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeDetailVC.h; sourceTree = "<group>"; };
@@ -952,6 +955,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0CA37B7A20899329005609C7 /* 客源搜索结果 */ = {
+			isa = PBXGroup;
+			children = (
+				0CA37B7B2089933B005609C7 /* CustomSearchVC.h */,
+				0CA37B7C2089933B005609C7 /* CustomSearchVC.m */,
+			);
+			path = "客源搜索结果";
+			sourceTree = "<group>";
+		};
 		0CB6BAEE20736D4600921C75 /* 跟进记录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1469,6 +1481,7 @@
 		102DF96B2057A0A200E1859C /* 客源 */ = {
 			isa = PBXGroup;
 			children = (
+				0CA37B7A20899329005609C7 /* 客源搜索结果 */,
 				105E18F3206B8FA60031558D /* 新增客户 */,
 				0C0B82042063513400238D4F /* 客户详情 */,
 				0C07BFD52060FB01007F31EC /* model */,
@@ -2224,6 +2237,7 @@
 				0CF04F31207A145B00A45F4A /* CustomMatchListVC.m in Sources */,
 				0C0B82542064FF6400238D4F /* SystemMessageVC.m in Sources */,
 				10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */,
+				0CA37B7D2089933B005609C7 /* CustomSearchVC.m in Sources */,
 				0CE47B57206B368A001ADD73 /* RoomCellCollCell4.m in Sources */,
 				0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */,
 				0CF04F5F207B5BA900A45F4A /* CompleteCustomVC2.m in Sources */,
