@@ -109,7 +109,6 @@
 {
     self = [super init];
     if (self) {
-        
         _model = model;
     }
     return self;

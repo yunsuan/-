@@ -359,32 +359,23 @@
                     cell = [[CustomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomDetailTableCell4"];
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
                 cell.addBtn.hidden = YES;
-
-                
                 CustomRequireModel *model = _dataArr[indexPath.row];
                 NSArray *arr =  [model.need_tags componentsSeparatedByString:@","];
-                
                 UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
                 layout.itemSize = CGSizeMake(77 *SIZE, 30 *SIZE);
                 layout.minimumInteritemSpacing = 0 *SIZE;
                 layout.sectionInset = UIEdgeInsetsMake(0, 28 *SIZE, 0, 0);
-                
                 NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
                 NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
                 for (int i = 0; i < arr.count; i++) {
-                    
                     [tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
                         if ([obj[@"id"] integerValue] == [arr[i] integerValue]) {
-                            
                             [tagArr1 addObject:obj[@"param"]];
                             *stop = YES;
                         }
                     }];
                 }
-                
                 cell.tagView = [[TagView2 alloc] initWithFrame:CGRectMake(0, 49 *SIZE, SCREEN_Width, 30 *SIZE) DataSouce:tagArr1 type:@"0" flowLayout:layout];
                 [cell.contentView addSubview:cell.tagView];
                 [cell.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -392,19 +383,15 @@
                     make.top.equalTo(cell.contentView).offset(49 *SIZE);
                     make.height.equalTo(@(30 *SIZE));
                     make.right.equalTo(cell.contentView).offset(0);
-                   
                     make.bottom.equalTo(cell.contentView).offset(-39 *SIZE);
                 }];
                 return cell;
             }else{
-                
                 CustomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"CustomDetailTableCell5"];
                 if (!cell) {
-                    
                     cell = [[CustomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomDetailTableCell5"];
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
                 CustomRequireModel *model = _dataArr[0];
                 cell.contentL.text = model.comment;
                 return cell;
