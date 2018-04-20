@@ -13,11 +13,9 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        
         [self.contentView addSubview:self.displayLabel];
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = 1.7*SIZE;
-
     }
     return self;
 }
