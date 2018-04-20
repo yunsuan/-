@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ConfirmBtnBlock)(NSString *ID);
+
+typedef void(^CancelBtnBlock)(void);
+
 @interface BoxView : UIView
+
+@property (nonatomic, copy) ConfirmBtnBlock confirmBtnBlock;
+
+@property (nonatomic, copy) CancelBtnBlock cancelBtnBlock;
+
+@property (nonatomic, strong) NSMutableArray *dataArr;
+
+@property (nonatomic, strong) NSMutableArray *selectArr;
 
 @property (nonatomic, strong) UITableView *mainTable;
 
