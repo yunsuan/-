@@ -40,8 +40,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *str = _dataArr[indexPath.row][@"param"];
-    return CGSizeMake(13 *SIZE * str.length + 20 *SIZE * 2, 37*SIZE);
+    return CGSizeMake(80 *SIZE, 37*SIZE);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -86,19 +85,21 @@
     [self addSubview:_addBtn];
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.minimumInteritemSpacing = 0 *SIZE;
+    _flowLayout.minimumInteritemSpacing = 7 *SIZE;
     _flowLayout.sectionInset = UIEdgeInsetsMake(0, 32 *SIZE, 0, 0);
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
     
     _tagColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 60 *SIZE, SCREEN_Width, 37 *SIZE) collectionViewLayout:_flowLayout];
     _tagColl.backgroundColor = CH_COLOR_white;
     _tagColl.delegate = self;
     _tagColl.dataSource = self;
+    _tagColl.showsHorizontalScrollIndicator = NO;
+    _tagColl.showsVerticalScrollIndicator = NO;
     
     [_tagColl registerClass:[AddTagViewCollCell class] forCellWithReuseIdentifier:@"AddTagViewCollCell"];
     [self addSubview:_tagColl];
     
-//    UILabel *placeL = []
     
 }
 

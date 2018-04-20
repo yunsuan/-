@@ -42,6 +42,8 @@
         _collectionview.delegate = self;
         _collectionview.backgroundColor = [UIColor clearColor];
         _collectionview.bounces = NO;
+        _collectionview.showsVerticalScrollIndicator = NO;
+        _collectionview.showsHorizontalScrollIndicator = NO;
         [_collectionview registerClass:[TagViewCollCell class] forCellWithReuseIdentifier:@"TagViewCollCell"];
     }
     return _collectionview;

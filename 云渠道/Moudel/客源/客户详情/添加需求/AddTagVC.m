@@ -36,7 +36,7 @@
         _dataArr = [[NSMutableArray alloc] init];
         for (int i = 0; i < array.count; i++) {
             [_tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj[@"id"] integerValue] == [array[i] integerValue]) {
+                if ([obj[@"id"] integerValue] == [array[i][@"id"] integerValue]) {
                     [_dataArr addObject:obj];
                     *stop = YES;
                 }
@@ -68,13 +68,8 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section == 0) {
-        NSString *str = _tagArr[indexPath.item][@"param"];
-        return CGSizeMake(13 *SIZE * str.length + 20 *SIZE * 2, 37*SIZE);
-    }else{
-        NSString *str = _dataArr[indexPath.item][@"param"];
-        return CGSizeMake(13 *SIZE * str.length + 20 *SIZE * 2, 37*SIZE);
-    }
+    return CGSizeMake(80 *SIZE, 37*SIZE);
+
     
 }
 
@@ -100,7 +95,13 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     
-    return CGSizeMake(SCREEN_Width, 7 *SIZE);
+    if (section == 0) {
+        
+        return CGSizeMake(SCREEN_Width, 7 *SIZE);
+    }else{
+        
+        return CGSizeZero;
+    }
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -181,14 +182,17 @@
     self.titleLabel.text = @"添加标签";
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.minimumInteritemSpacing = 0 *SIZE;
+    _flowLayout.minimumInteritemSpacing = 2 *SIZE;
     _flowLayout.sectionInset = UIEdgeInsetsMake(0, 32 *SIZE, 31 *SIZE, 0);
+//    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     
     _tagColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 40 *SIZE - TAB_BAR_MORE) collectionViewLayout:_flowLayout];
     _tagColl.backgroundColor = CH_COLOR_white;
     _tagColl.delegate = self;
     _tagColl.dataSource = self;
+    _tagColl.showsHorizontalScrollIndicator = NO;
+    _tagColl.showsVerticalScrollIndicator = NO;
     
     [_tagColl registerClass:[AddTagViewCollCell class] forCellWithReuseIdentifier:@"AddTagViewCollCell"];
     [_tagColl registerClass:[AddTagCollHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"AddTagCollHeader"];

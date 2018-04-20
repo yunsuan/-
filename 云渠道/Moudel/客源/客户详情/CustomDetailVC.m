@@ -359,12 +359,16 @@
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.addBtn.hidden = YES;
+                [cell.tagView removeFromSuperview];
+
                 CustomRequireModel *model = _dataArr[indexPath.row];
                 NSArray *arr =  [model.need_tags componentsSeparatedByString:@","];
                 UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
                 layout.itemSize = CGSizeMake(77 *SIZE, 30 *SIZE);
-                layout.minimumInteritemSpacing = 0 *SIZE;
+                layout.minimumInteritemSpacing = 11 *SIZE;
                 layout.sectionInset = UIEdgeInsetsMake(0, 28 *SIZE, 0, 0);
+                layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+
                 NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
                 NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
                 for (int i = 0; i < arr.count; i++) {

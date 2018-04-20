@@ -979,7 +979,7 @@
     WS(weak);
     _tagView.addBtnBlock = ^{
         
-        AddTagVC *nextVC = [[AddTagVC alloc] initWithArray:arr];
+        AddTagVC *nextVC = [[AddTagVC alloc] initWithArray:weak.tagView.dataArr];
         
         nextVC.saveBtnBlock = ^(NSArray *array) {
             
