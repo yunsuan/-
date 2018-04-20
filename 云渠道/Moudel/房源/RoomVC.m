@@ -178,9 +178,7 @@
 //处理位置坐标更新
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-
 {
-    
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //地理反编码
     
@@ -360,7 +358,7 @@
             }
         }];
     }
-    NSArray *tempArr1 = @[tempArr,[model.project_tags componentsSeparatedByString:@","]];
+    NSArray *tempArr1 = @[tempArr,model.project_tags.length ==0?@[]:[model.project_tags componentsSeparatedByString:@","]];
     [cell settagviewWithdata:tempArr1];
     [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
     [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
