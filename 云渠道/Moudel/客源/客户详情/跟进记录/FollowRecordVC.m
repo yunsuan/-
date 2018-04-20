@@ -11,10 +11,10 @@
 #import "DropDownBtn.h"
 #import "SinglePickView.h"
 #import "DateChooseView.h"
+#import "YJChooseView.h"
 
 @interface FollowRecordVC ()
 {
-    
     NSArray *_titleArr;
     NSArray *_wayArr;
 }
@@ -31,15 +31,7 @@
 
 @property (nonatomic, strong) BorderTF *urgentTF;
 
-@property (nonatomic, strong) UIButton *phoneBtn;
-
-@property (nonatomic, strong) UIButton *QQBtn;
-
-@property (nonatomic, strong) UIButton *wechatBtn;
-
-@property (nonatomic, strong) UIButton *faceBtn;
-
-@property (nonatomic, strong) UIButton *otherBtn;
+@property (nonatomic , strong) YJChooseView *chooseview;
 
 @property (nonatomic, strong) UISlider *intentionSlider;
 
@@ -66,7 +58,7 @@
 - (void)initDataSource{
     
     _titleArr = @[@"客户名称",@"跟进时间",@"跟进人"];
-    _wayArr = @[@"电话",@"QQ",@"微信",@"面谈",@"其他"];
+
 
 }
 
@@ -90,15 +82,15 @@
     [self.view addSubview:view];
 }
 
-- (void)ActionSelectBtn:(UIButton *)btn{
-    
-    [_QQBtn setImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
-    [_otherBtn setImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
-    [_wechatBtn setImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
-    [_faceBtn setImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
-    [_phoneBtn setImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateNormal];
-    
+
+-(void)action_time
+{
+    DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    view.dateblock = ^(NSDate *date) {
+        NSLog(@"%@",[self gettime:date]);
+        _timeL.text = [self gettime:date];
+    };
+    [self.view addSubview:view];
 }
 
 - (void)ActionSliderChange:(UIButton *)btn{
@@ -122,6 +114,7 @@
     UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(0, 136 *SIZE, SCREEN_Width, 591 *SIZE)];
     view2.backgroundColor = CH_COLOR_white;
     [_scrollView addSubview:view2];
+    
 
     for (int i = 0; i < 3; i++) {
         
@@ -140,74 +133,39 @@
             _timeL = [[UILabel alloc] initWithFrame:CGRectMake(78 *SIZE, 60 *SIZE, 200 *SIZE, 13 *SIZE)];
             _timeL.textColor = YJTitleLabColor;
             _timeL.font = [UIFont systemFontOfSize:13 *SIZE];
+            _timeL.userInteractionEnabled = YES;
             [view1 addSubview:_timeL];
+            UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(action_time)];
+            [_timeL addGestureRecognizer:gesture];
+            
         }else{
             
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(78 *SIZE , i * 43 *SIZE, 270 *SIZE, 42 *SIZE)];
             textField.font = [UIFont systemFontOfSize:13 *SIZE];
+            textField.userInteractionEnabled = NO;
             [view1 addSubview:textField];
+            if (i == 2) {
+                textField.text  = [UserInfoModel defaultModel].name;
+            }
+            else{
+                textField.text = _customername;
+            }
+            
         }
     }
     
-    UILabel *wayL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 20 *SIZE, 60 *SIZE, 11 *SIZE)];
-    wayL.textColor = YJTitleLabColor;
-    wayL.font = [UIFont systemFontOfSize:12 *SIZE];
-    wayL.text = @"跟进方式";
-    [view2 addSubview:wayL];
+    NSArray *data =  [self getDetailConfigArrByConfigState:FOLLOW_TYPE];
+    _chooseview = [[YJChooseView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 18*SIZE+40*SIZE*(data.count%2==0?data.count/2:data.count/2+1)) NumOfitem:data.count Title:@"跟进方式：" DataSouce:data];
+    [view2 addSubview:_chooseview];
     
-    for (int i = 0; i < 5; i++) {
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(71 *SIZE + (i % 2) * 146 *SIZE, 15 *SIZE + (i / 2) * 40 *SIZE, 60 *SIZE, 25 *SIZE);
-        btn.tag = i;
-        btn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-        [btn addTarget:self action:@selector(ActionSelectBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitle:_wayArr[i] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"default"] forState:UIControlStateNormal];
-        [btn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
-        switch (i) {
-            case 0:
-            {
-                _phoneBtn = btn;
-                [view2 addSubview:_phoneBtn];
-                break;
-            }
-            case 1:
-            {
-                _QQBtn = btn;
-                [view2 addSubview:_QQBtn];
-                break;
-            }
-            case 2:
-            {
-                _wechatBtn = btn;
-                [view2 addSubview:_wechatBtn];
-                break;
-            }
-            case 3:
-            {
-                _faceBtn = btn;
-                [view2 addSubview:_faceBtn];
-                break;
-            }
-            case 4:
-            {
-                _otherBtn = btn;
-                [view2 addSubview:_otherBtn];
-                break;
-            }
-            default:
-                break;
-        }
-    }
+
     
     for (int i = 0; i < 2; i++) {
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 156 *SIZE + i * 98 *SIZE, 70 *SIZE, 11 *SIZE)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 45 *SIZE+_chooseview.frame.size.height + i * 98 *SIZE, 70 *SIZE, 11 *SIZE)];
         label.textColor = YJTitleLabColor;
         label.font = [UIFont systemFontOfSize:12 *SIZE];
         if (i == 0) {
-            
             label.text = @"购房意向度";
         }else{
             
@@ -215,7 +173,7 @@
         }
         [view2 addSubview:label];
         
-        BorderTF *TF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 145 *SIZE + i * 95 *SIZE, 258 *SIZE, 33 *SIZE)];
+        BorderTF *TF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 34 *SIZE+_chooseview.frame.size.height + i * 95 *SIZE, 258 *SIZE, 33 *SIZE)];
         switch (i) {
             case 0:
             {
@@ -233,7 +191,7 @@
                 break;
         }
         
-        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(11 *SIZE, 203 *SIZE + i * 98 *SIZE, 327 *SIZE, 5 *SIZE)];
+        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(11 *SIZE, 92 *SIZE+_chooseview.frame.size.height + i * 98 *SIZE, 327 *SIZE, 5 *SIZE)];
         slider.userInteractionEnabled = YES;
         slider.minimumValue = 0.0;
         slider.maximumValue = 100.0;
@@ -244,13 +202,13 @@
         [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateHighlighted];
         [slider addTarget:self action:@selector(ActionSliderChange:) forControlEvents:UIControlEventValueChanged];
         
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 214 *SIZE + i * 104 *SIZE, 15 *SIZE, 11 *SIZE)];
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, 103 *SIZE+_chooseview.frame.size.height + i * 104 *SIZE, 15 *SIZE, 11 *SIZE)];
         label2.textColor = COLOR(170, 170, 170, 1);
         label2.font = [UIFont systemFontOfSize:12 *SIZE];
         label2.text = @"0";
         [view2 addSubview:label2];
         
-        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(315 *SIZE, 214 *SIZE + i * 104 *SIZE, 30 *SIZE, 11 *SIZE)];
+        UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(315 *SIZE, 103 *SIZE+_chooseview.frame.size.height + i * 104 *SIZE, 30 *SIZE, 11 *SIZE)];
         label3.textColor = COLOR(170, 170, 170, 1);
         label3.font = [UIFont systemFontOfSize:12 *SIZE];
         label3.text = @"100";
@@ -269,7 +227,7 @@
     
     for (int i = 0; i < 3; i++) {
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 356 *SIZE, 70 *SIZE, 13 *SIZE)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 245 *SIZE+_chooseview.frame.size.height, 70 *SIZE, 13 *SIZE)];
         label.textColor = YJTitleLabColor;
         label.font = [UIFont systemFontOfSize:13 *SIZE];
         if (i == 0) {
@@ -277,40 +235,44 @@
             label.text = @"付款方式:";
         }else if (i == 1){
             
-            label.frame = CGRectMake(9 *SIZE, 418 *SIZE, 70 *SIZE, 10 *SIZE);
+            label.frame = CGRectMake(9 *SIZE, 307 *SIZE+_chooseview.frame.size.height, 70 *SIZE, 10 *SIZE);
             label.text = @"跟进内容:";
         }else{
             
-            label.frame = CGRectMake(9 *SIZE, 531 *SIZE, 72 *SIZE, 10 *SIZE);
+            label.frame = CGRectMake(9 *SIZE, 420*SIZE+_chooseview.frame.size.height , 72 *SIZE, 10 *SIZE);
             label.font = [UIFont systemFontOfSize:10.5 *SIZE];
             label.text = @"下次回访时间:";
         }
         [view2 addSubview:label];
     }
     
-    _payWayBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 345 *SIZE, 258 *SIZE, 33 *SIZE)];
+    _payWayBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 236 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
     [view2 addSubview:_payWayBtn];
     [_payWayBtn addTarget:self action:@selector(action_pay) forControlEvents:UIControlEventTouchUpInside];
     
     
-    _followTV = [[UITextView alloc] initWithFrame:CGRectMake(80 *SIZE, 408 *SIZE, 258 *SIZE, 77 *SIZE)];
+    _followTV = [[UITextView alloc] initWithFrame:CGRectMake(80 *SIZE, 297 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 77 *SIZE)];
     _followTV.layer.cornerRadius = 5 *SIZE;
     _followTV.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
     _followTV.layer.borderWidth = SIZE;
     _followTV.clipsToBounds = YES;
     [view2 addSubview:_followTV];
     
-    _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 519 *SIZE, 258 *SIZE, 33 *SIZE)];
+    _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 408 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
     [view2 addSubview:_nextTimeBtn];
+    
+    view2.frame = CGRectMake(0, 136 *SIZE, SCREEN_Width, 408 *SIZE+_chooseview.frame.size.height +70*SIZE);
     [_nextTimeBtn addTarget:self action:@selector(action_nexttime) forControlEvents:UIControlEventTouchUpInside];
     
     _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _confirmBtn.frame = CGRectMake(22 *SIZE, 846 *SIZE, 317 *SIZE, 40 *SIZE);
+    _confirmBtn.frame = CGRectMake(22 *SIZE, 56.7 *SIZE+view1.frame.size.height+view2.frame.size.height     , 317 *SIZE, 40 *SIZE);
     [_confirmBtn setBackgroundColor:YJBlueBtnColor];
     _confirmBtn.layer.cornerRadius = 2 *SIZE;
     _confirmBtn.clipsToBounds = YES;
     [_confirmBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [_scrollView addSubview:_confirmBtn];
+    
+    [_scrollView setContentSize:CGSizeMake(SCREEN_Width, 56.7 *SIZE+view1.frame.size.height+view2.frame.size.height+70*SIZE)];
 }
 
 @end

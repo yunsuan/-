@@ -153,6 +153,7 @@
 - (void)DG2ActionAddBtn:(UIButton *)btn{
     
     FollowRecordVC *nextVC = [[FollowRecordVC alloc] init];
+    nextVC.customername = _customModel.name;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -211,7 +212,7 @@
         
         if (_item == 1) {
             
-            return 417 *SIZE;
+            return 407 *SIZE;
         }else{
             
             return 485 *SIZE;
@@ -268,7 +269,7 @@
             CustomTableHeader2 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader2"];
             if (!header) {
                 
-                header = [[CustomTableHeader2 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 418 *SIZE)];
+                header = [[CustomTableHeader2 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 408 *SIZE)];
                 header.delegate = self;
                 [header.headerColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
             }

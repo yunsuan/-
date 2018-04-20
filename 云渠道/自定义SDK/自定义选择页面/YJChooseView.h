@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface YJChooseView : UIView
+
+@property (nonatomic , assign) NSInteger type;
+@property (nonatomic , strong) UILabel *titlelab;
+@property (nonatomic , strong) UICollectionView *mycollectionView;
+
+
+
+
+-(instancetype)initWithFrame:(CGRect)frame
+                   NumOfitem:(NSInteger)itemnum
+                       Title:(NSString *)name
+                   DataSouce:(NSArray *)datasouce;
+
+-(NSString *)GetDidID;
+
+
 
 @end

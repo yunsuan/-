@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface FollowRecordVC : BaseViewController
-
+@property (nonatomic , strong) NSString *customername;
 @end
