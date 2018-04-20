@@ -35,11 +35,8 @@
         _tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
         _dataArr = [[NSMutableArray alloc] init];
         for (int i = 0; i < array.count; i++) {
-            
             [_tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-               
-                if ([obj[@"id"] integerValue] == [array[i] integerValue]) {
-                    
+                if ([obj[@"id"] integerValue] == [array[i][@"id"] integerValue]) {
                     [_dataArr addObject:obj];
                     *stop = YES;
                 }
@@ -59,13 +56,11 @@
 
 - (void)initDataSource{
     
-    
 }
 
 - (void)ActionSaveBtn:(UIButton *)btn{
     
     if (self.saveBtnBlock) {
-        
         self.saveBtnBlock(_dataArr);
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -74,16 +69,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     return CGSizeMake(80 *SIZE, 37*SIZE);
-//    if (indexPath.section == 0) {
-//        
-////        NSString *str = _tagArr[indexPath.item][@"param"];
-//        return CGSizeMake(77 *SIZE, 37*SIZE);
-//    }else{
-//        
-//        return CGSizeMake(80 *SIZE, 37*SIZE);
-////        NSString *str = _dataArr[indexPath.item][@"param"];
-////        return CGSizeMake(13 *SIZE * str.length + 20 *SIZE * 2, 37*SIZE);
-//    }
+
     
 }
 

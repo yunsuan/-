@@ -40,7 +40,6 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    NSString *str = _dataArr[indexPath.row][@"param"];
     return CGSizeMake(80 *SIZE, 37*SIZE);
 }
 
@@ -101,7 +100,6 @@
     [_tagColl registerClass:[AddTagViewCollCell class] forCellWithReuseIdentifier:@"AddTagViewCollCell"];
     [self addSubview:_tagColl];
     
-//    UILabel *placeL = []
     
 }
 
