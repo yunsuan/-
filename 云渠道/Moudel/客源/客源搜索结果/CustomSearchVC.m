@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         
-        _str = @"str";
+        _str = str;
         self.title = @"搜索结果";
     }
     return self;
@@ -47,7 +47,7 @@
 - (void)RequestMethod{
     
     _searchTable.mj_footer.state = MJRefreshStateIdle;
-    NSDictionary *dic = @{@"search":self.title};
+    NSDictionary *dic = @{@"search":_str};
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);

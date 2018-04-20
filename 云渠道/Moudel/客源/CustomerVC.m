@@ -16,28 +16,47 @@
 #import "PYSearchViewController.h"
 #import "CustomSearchVC.h"
 
-@interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,PYSearchViewControllerDelegate>
+@interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,PYSearchViewControllerDelegate>///UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,>
 {
     
     NSMutableArray *_dataArr;
     NSMutableDictionary *_parameter;
     NSInteger _page;
+    NSString *_type;
+    NSString *_sortType;
+    NSString *_asc;
+    BOOL _is1;
 }
 
 @property (nonatomic, strong) UITableView *customerTable;
 
-@property (nonatomic, strong) UICollectionView *customerColl;
-
-@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+//@property (nonatomic, strong) UICollectionView *customerColl;
+//
+//@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, strong) BoxView *boxView;
 
 @property (nonatomic, strong) UIView *searchBar;
 
+@property (nonatomic, strong) UIButton *typeBtn;
+
+@property (nonatomic, strong) UIButton *areaBtn;
+
+@property (nonatomic, strong) UIButton *intentBtn;
+
+@property (nonatomic, strong) UIButton *urgencyBtn;
+
 
 @end
 
 @implementation CustomerVC
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,7 +75,18 @@
 - (void)RequestMethod{
     
     _customerTable.mj_footer.state = MJRefreshStateIdle;
-    [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
+    NSMutableDictionary *dic = [@{} mutableCopy];
+    if (_sortType.length) {
+        
+        [dic setObject:_sortType forKey:@"sort_type"];
+        [dic setObject:_asc forKey:@"sort"];
+    }
+    if ([_type integerValue]) {
+        
+        [dic setObject:_type forKey:@"property_type"];
+    }
+
+    [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
@@ -66,6 +96,7 @@
                 
                 if ([resposeObject[@"data"][@"current_page"] integerValue] == [resposeObject[@"data"][@"total"] integerValue]) {
                     
+                    [_dataArr removeAllObjects];
                     _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
                 }
                 
@@ -77,16 +108,24 @@
                         
                     }else{
                         
+                        [_dataArr removeAllObjects];
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
                         [self showContent:@"暂无数据"];
                     }
                 }else{
+                    
+                    [_dataArr removeAllObjects];
                     [self showContent:@"暂无数据"];
                 }
             }else{
+                
+                [_dataArr removeAllObjects];
                 [self showContent:@"暂无数据"];
             }
+            [_customerTable reloadData];
         }else{
+            
+//            [_dataArr removeAllObjects];
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
@@ -100,7 +139,19 @@
 - (void)RequestAddMethod{
     
     _page += 1;
-    [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
+    NSDictionary *tempDic = @{@"page":@(_page)};
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
+    if (_sortType.length) {
+        
+        [dic setObject:_sortType forKey:@"sort_type"];
+        [dic setObject:_asc forKey:@"sort"];
+    }
+    if (_type) {
+        
+        [dic setObject:_type forKey:@"property_type"];
+    }
+    [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_footer endRefreshing];
@@ -170,6 +221,93 @@
     [_customerTable reloadData];
 }
 
+#pragma mark -- Method
+
+- (void)ActionTagBtn:(UIButton *)btn{
+    
+    btn.selected = !btn.selected;
+    if (btn.tag < 3) {
+        
+        if (btn.tag == 1) {
+            
+            if (_is1) {
+                
+                _is1 = !_is1;
+                [self.boxView removeFromSuperview];
+            }else{
+                
+                _is1 = YES;
+                _type = @"0";
+                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
+                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (idx == 0) {
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+                    }else{
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+                    }
+                }];
+                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+                [self.boxView.mainTable reloadData];
+                [self.view addSubview:self.boxView];
+            }
+        }else{
+            
+            _is1 = NO;
+            _typeBtn.selected = NO;
+            [self.boxView removeFromSuperview];
+        }
+    }else{
+        
+        _is1 = NO;
+        _typeBtn.selected = NO;
+        _areaBtn.selected = NO;
+        if (btn.tag == 3) {
+            
+            _urgencyBtn.selected = NO;
+            if ([_sortType isEqualToString:@"intent"]) {
+                
+                if ([_asc isEqualToString:@"desc"]) {
+                    
+                    _asc = @"asc";
+                }else{
+                    
+                    _asc = @"desc";
+                }
+            }else{
+                
+                _asc = @"asc";
+            }
+            _sortType = @"intent";
+        }else{
+            
+            _intentBtn.selected = NO;
+            if ([_sortType isEqualToString:@"urgency"]) {
+                
+                
+                if ([_asc isEqualToString:@"desc"]) {
+                    
+                    _asc = @"asc";
+                }else{
+                    
+                    _asc = @"desc";
+                }
+            }else{
+                
+                _asc = @"asc";
+            }
+            _sortType = @"urgency";
+        }
+        [self.boxView removeFromSuperview];
+        [self RequestMethod];
+    }
+}
+
 #pragma mark -- SearchMethod
 
 - (void)ActionSearchBtn:(UIButton *)btn{
@@ -193,35 +331,105 @@
     [self presentViewController:nav  animated:NO completion:nil];
 
 }
+//#pragma mark -- CollectionViewDelegate
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+//
+//    return 4;
+//}
+//
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    CustomerCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CustomerCollCell" forIndexPath:indexPath];
+//    if (!cell) {
+//
+//        cell = [[CustomerCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /4, 40 *SIZE)];
+//    }
+//    switch (indexPath.item) {
+//        case 0:
+//        {
+//            cell.typeL.text = @"需求类型";
+//            break;
+//        }
+//        case 1:
+//        {
+//            cell.typeL.text = @"意向区域";
+//            break;
+//        }
+//        case 2:
+//        {
+//            cell.typeL.text = @"意向度";
+//            break;
+//        }
+//        case 3:
+//        {
+//            cell.typeL.text = @"紧迫度";
+//            break;
+//        }
+//        default:
+//            break;
+//    }
+//    return cell;
+//}
 
-#pragma mark -- CollectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    return 4;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    CustomerCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CustomerCollCell" forIndexPath:indexPath];
-    if (!cell) {
-        
-        cell = [[CustomerCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /4, 40 *SIZE)];
-    }
-    cell.typeL.text = @"需求类型";
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.item < 2) {
-        
-        [[[UIApplication sharedApplication] keyWindow] addSubview:self.boxView];
-    }else{
-        
-        [self.boxView removeFromSuperview];
-        
-    }
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    CustomerCollCell *cell = (CustomerCollCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//    if (indexPath.item < 2) {
+//
+//        if ([self.view.subviews containsObject:self.boxView]) {
+//
+//            [self.boxView removeFromSuperview];
+//        }else{
+//
+//            [[[UIApplication sharedApplication] keyWindow] addSubview:self.boxView];
+//        }
+//
+//    }else{
+//
+//        if (indexPath.item == 2) {
+//
+//            if ([_sortType isEqualToString:@"intent"]) {
+//
+//                if ([_asc isEqualToString:@"desc"]) {
+//
+//                    cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
+//                    _asc = @"asc";
+//                }else{
+//
+//                    cell.dropImg.image = [UIImage imageNamed:@"uparrow1"];
+//                    _asc = @"desc";
+//                }
+//            }else{
+//
+//                cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
+//                _asc = @"asc";
+//            }
+//            _sortType = @"intent";
+//        }else{
+//
+//            if ([_sortType isEqualToString:@"urgency"]) {
+//
+//
+//                if ([_asc isEqualToString:@"desc"]) {
+//
+//                    cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
+//                    _asc = @"asc";
+//                }else{
+//
+//                    cell.dropImg.image = [UIImage imageNamed:@"uparrow1"];
+//                    _asc = @"desc";
+//                }
+//            }else{
+//
+//                cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
+//                _asc = @"asc";
+//            }
+//            _sortType = @"urgency";
+//        }
+//        [self.boxView removeFromSuperview];
+//        [self RequestMethod];
+//    }
+//}
 
 
 #pragma mark -- TableViewDelegate
@@ -296,20 +504,80 @@
     [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_searchBar addSubview:searchBtn];
     
-    
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.minimumLineSpacing = 0;
-    _flowLayout.minimumInteritemSpacing = 0;
-    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 4, 40 *SIZE);
-    
-    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
-    _customerColl.backgroundColor = CH_COLOR_white;
-    _customerColl.delegate = self;
-    _customerColl.dataSource = self;
-    _customerColl.bounces = NO;
-    [_customerColl registerClass:[CustomerCollCell class] forCellWithReuseIdentifier:@"CustomerCollCell"];
-    [self.view addSubview:_customerColl];
+    for (int i = 0; i < 4; i++) {
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(SCREEN_Width / 4 * i, NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width / 4, 40 *SIZE);
+        btn.tag = i + 1;
+        [btn setBackgroundColor:CH_COLOR_white];
+        [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 14 *SIZE, 67 *SIZE, 11 *SIZE)];
+//        label.textColor = YJ86Color;
+//        label.font = [UIFont systemFontOfSize:12 *SIZE];
+//        label.textAlignment = NSTextAlignmentCenter;
+        switch (i) {
+            case 0:
+            {
+                [btn setTitle:@"需求类型" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _typeBtn = btn;
+                [self.view addSubview:_typeBtn];
+                break;
+            }
+            case 1:
+            {
+                [btn setTitle:@"意向区域" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _areaBtn = btn;
+                [self.view addSubview:_areaBtn];
+                break;
+            }
+            case 2:
+            {
+                [btn setTitle:@"意向度" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _intentBtn = btn;
+                [self.view addSubview:_intentBtn];
+                break;
+            }
+            case 3:
+            {
+                [btn setTitle:@"紧迫度" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _urgencyBtn = btn;
+                [self.view addSubview:_urgencyBtn];
+                break;
+            }
+            default:
+                break;
+        }
+    }
+//    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+//    _flowLayout.minimumLineSpacing = 0;
+//    _flowLayout.minimumInteritemSpacing = 0;
+//    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 4, 40 *SIZE);
+//
+//    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
+//    _customerColl.backgroundColor = CH_COLOR_white;
+//    _customerColl.delegate = self;
+//    _customerColl.dataSource = self;
+//    _customerColl.bounces = NO;
+//    [_customerColl registerClass:[CustomerCollCell class] forCellWithReuseIdentifier:@"CustomerCollCell"];
+//    [self.view addSubview:_customerColl];
     
     
     _customerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT - 41 *SIZE - 56 *SIZE) style:UITableViewStylePlain];
@@ -340,7 +608,22 @@
 
 - (BoxView *)boxView{
     if (!_boxView) {
-        _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, 43 *SIZE + NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 43 *SIZE)];
+        _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - (41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE))];
+        WS(weakSelf);
+        _boxView.confirmBtnBlock = ^(NSString *ID) {
+          
+            _is1 = NO;
+            _type = ID;
+            weakSelf.typeBtn.selected = NO;
+            [weakSelf.boxView removeFromSuperview];
+            [weakSelf RequestMethod];
+        };
+        
+        _boxView.cancelBtnBlock = ^{
+          
+            _is1 = NO;
+            weakSelf.typeBtn.selected = NO;
+        };
     }
     return _boxView;
 }

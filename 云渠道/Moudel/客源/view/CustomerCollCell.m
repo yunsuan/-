@@ -29,19 +29,20 @@
     [self.contentView addSubview:_typeL];
     
     _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(70 *SIZE, 17 *SIZE, 10 *SIZE, 10 *SIZE)];
-//    _dropImg.image = [UIImage imageNamed:@"downarrow"];
+    _dropImg.image = [UIImage imageNamed:@"downarrow1"];
     [self.contentView addSubview:_dropImg];
 }
 
-- (void)setSelected:(BOOL)selected{
-    
-    if (selected) {
-        
-//        _dropImg.image = [UIImage imageNamed:@"uparrow"];
-    }else{
-        
-//        _dropImg.image = [UIImage imageNamed:@"downarrow"];
-    }
-}
+//- (void)setSelected:(BOOL)selected{
+//    
+//    selected = !selected;
+//    if (selected) {
+//        
+//        _dropImg.image = [UIImage imageNamed:@"uparrow1"];
+//    }else{
+//        
+//        _dropImg.image = [UIImage imageNamed:@"downarrow1"];
+//    }
+//}
 
 @end

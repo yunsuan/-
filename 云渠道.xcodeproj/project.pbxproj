@@ -55,6 +55,7 @@
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
 		0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7820897F16005609C7 /* AddTagCollFooter.m */; };
 		0CA37B7D2089933B005609C7 /* CustomSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7C2089933B005609C7 /* CustomSearchVC.m */; };
+		0CA37B802089C3C9005609C7 /* BoxViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B7F2089C3C9005609C7 /* BoxViewCell.m */; };
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
@@ -331,6 +332,8 @@
 		0CA37B7820897F16005609C7 /* AddTagCollFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagCollFooter.m; sourceTree = "<group>"; };
 		0CA37B7B2089933B005609C7 /* CustomSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSearchVC.h; sourceTree = "<group>"; };
 		0CA37B7C2089933B005609C7 /* CustomSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSearchVC.m; sourceTree = "<group>"; };
+		0CA37B7E2089C3C9005609C7 /* BoxViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxViewCell.h; sourceTree = "<group>"; };
+		0CA37B7F2089C3C9005609C7 /* BoxViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxViewCell.m; sourceTree = "<group>"; };
 		0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowRecordVC.h; sourceTree = "<group>"; };
 		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CB6BAF32074982000921C75 /* HouseTypeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeDetailVC.h; sourceTree = "<group>"; };
@@ -1387,6 +1390,8 @@
 			children = (
 				0CF7425C206262EC001F926F /* BoxView.h */,
 				0CF7425D206262EC001F926F /* BoxView.m */,
+				0CA37B7E2089C3C9005609C7 /* BoxViewCell.h */,
+				0CA37B7F2089C3C9005609C7 /* BoxViewCell.m */,
 			);
 			path = BoxView;
 			sourceTree = "<group>";
@@ -2369,6 +2374,7 @@
 				0CF7424320622CE6001F926F /* BankCardListVC.m in Sources */,
 				0CF04FA4207CCDF000A45F4A /* MoreViewCollCell.m in Sources */,
 				0CF04F34207B00F900A45F4A /* RecommendCollCell.m in Sources */,
+				0CA37B802089C3C9005609C7 /* BoxViewCell.m in Sources */,
 				10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */,
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
