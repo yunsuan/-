@@ -12,6 +12,9 @@
 #import "AdressChooseView.h"
 #import "CustomerVC.h"
 #import "SinglePickView.h"
+#import "CustomDetailTableCell4.h"
+#import "AddTagVC.h"
+#import "AddTagView.h"
 
 @interface AddRequireMentVC ()<UITextViewDelegate>
 {
@@ -88,7 +91,7 @@
 
 @property (nonatomic, strong) UIView *sectionLine;
 
-@property (nonatomic, strong) UIView *tagView;
+@property (nonatomic, strong) AddTagView *tagView;
 
 @property (nonatomic, strong) UITextView *markTV;
 
@@ -397,6 +400,22 @@
             
             [dic setObject:_markTV.text forKey:@"comment"];
         }
+        
+        NSString *str;
+        for (int i = 0; i < _tagView.dataArr.count; i++) {
+            
+            if (i == 0) {
+                
+                str = _tagView.dataArr[i][@"id"];
+            }else{
+                
+                str = [NSString stringWithFormat:@"%@,%@",str,_tagView.dataArr[i][@"id"]];
+            }
+        }
+        if (str.length) {
+            
+            [dic setObject:str forKey:@"need_tags"];
+        }
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
             NSLog(@"%@",resposeObject);
@@ -493,6 +512,21 @@
         if (_markTV.text.length) {
             
             [dic setObject:_markTV.text forKey:@"comment"];
+        }
+        NSString *str;
+        for (int i = 0; i < _tagView.dataArr.count; i++) {
+            
+            if (i == 0) {
+                
+                str = _tagView.dataArr[i][@"id"];
+            }else{
+                
+                str = [NSString stringWithFormat:@"%@,%@",str,_tagView.dataArr[i][@"id"]];
+            }
+        }
+        if (str.length) {
+            
+            [dic setObject:str forKey:@"need_tags"];
         }
         [BaseRequest POST:UpdateNeed_URL parameters:dic success:^(id resposeObject) {
             
@@ -916,19 +950,39 @@
     }
     
     
-    _tagView = [[UIView alloc] init];
-    _tagView.backgroundColor = CH_COLOR_white;
+    NSArray *arr =  [_model.need_tags componentsSeparatedByString:@","];
+        
+    _tagView = [[AddTagView alloc] initWithFrame:CGRectMake(0, 757 *SIZE, SCREEN_Width, 127 *SIZE)];
+    NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
+    for (int i = 0; i < arr.count; i++) {
+        
+        [tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj[@"id"] integerValue] == [arr[i] integerValue]) {
+                
+                [tagArr1 addObject:obj];
+                *stop = YES;
+            }
+        }];
+    }
+    _tagView.dataArr = [NSMutableArray arrayWithArray:tagArr1];
+    [_tagView reloadInputViews];
+    WS(weak);
+    _tagView.addBtnBlock = ^{
+        
+        AddTagVC *nextVC = [[AddTagVC alloc] initWithArray:arr];
+        
+        nextVC.saveBtnBlock = ^(NSArray *array) {
+            
+            weak.tagView.dataArr = [NSMutableArray arrayWithArray:array];
+            [weak.tagView.tagColl reloadData];
+            [weak.tagView reloadInputViews];
+        };
+        [weak.navigationController pushViewController:nextVC animated:YES];
+
+    };
     [_scrolleView addSubview:_tagView];
-    
-    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(10 *SIZE, 20 *SIZE, 7 *SIZE, 13 *SIZE)];
-    view1.backgroundColor = YJBlueBtnColor;
-    [_tagView addSubview:view1];
-    
-    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(32 *SIZE, 18 *SIZE, 80 *SIZE, 15 *SIZE)];
-    label1.textColor = YJTitleLabColor;
-    label1.font = [UIFont systemFontOfSize:15 *SIZE];
-    label1.text = @"需求标签";
-    [_tagView addSubview:label1];
     
     _markTV = [[UITextView alloc] init];
     _markTV.delegate = self;
@@ -964,44 +1018,44 @@
     NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
                                                        options:NSJSONReadingMutableContainers
                                                          error:&err];
-    NSArray *arr = [_model.region componentsSeparatedByString:@","];
+    NSArray *arrr = [_model.region componentsSeparatedByString:@","];
 
-    if (arr.count) {
+    if (arrr.count) {
         
-        for (int a = 0; a < arr.count; a++) {
+        for (int a = 0; a < arrr.count; a++) {
             
-            NSArray *arr1 = [arr[a] componentsSeparatedByString:@"-"];
+            NSArray *arr1 = [arrr[a] componentsSeparatedByString:@"-"];
             for (int i = 0; i < provice.count; i++) {
                 
-                if([provice[i][@"region"] integerValue] == [arr1[0] integerValue]){
+                if([provice[i][@"code"] integerValue] == [arr1[0] integerValue]){
                     
-                    NSArray *city = provice[i][@"item"];
+                    NSArray *city = provice[i][@"city"];
                     for (int j = 0; j < city.count; j++) {
                         
-                        if([city[j][@"region"] integerValue] == [arr1[1] integerValue]){
+                        if([city[j][@"code"] integerValue] == [arr1[1] integerValue]){
                             
-                            NSArray *area = city[j][@"item"];
+                            NSArray *area = city[j][@"district"];
                             
                             for (int k = 0; k < area.count; k++) {
                                 
-                                if([area[k][@"region"] integerValue] == [arr1[2] integerValue]){
+                                if([area[k][@"code"] integerValue] == [arr1[2] integerValue]){
                                     
                                     if (a == 0) {
                                         
                                         _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                        _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"region"],city[0][@"region"],area[k][@"region"]];
+                                        _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"code"],city[0][@"code"],area[k][@"code"]];
                                     }else{
                                         
                                         if (a == 1) {
                                             
                                             [self ActionAddBtn:_addBtn];
                                             _addressBtn2.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                            _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"region"],city[0][@"region"],area[k][@"region"]];
+                                            _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"code"],city[0][@"code"],area[k][@"code"]];
                                         }else{
                                             
                                             [self ActionAddBtn:_addBtn];
                                             _addressBtn3.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                            _addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"region"],city[0][@"region"],area[k][@"region"]];
+                                            _addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"code"],city[0][@"code"],area[k][@"code"]];
                                         }
                                         
                                     }
@@ -1406,7 +1460,7 @@
         make.top.equalTo(_infoView.mas_bottom).offset(9 *SIZE);
         make.right.equalTo(_scrolleView).offset(0);
         make.width.equalTo(@(SCREEN_Width));
-        make.height.equalTo(@(117 *SIZE));
+        make.height.equalTo(@(127 *SIZE));
         make.bottom.equalTo(_markTV.mas_top).offset(-7 *SIZE);
     }];
 

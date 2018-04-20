@@ -1,26 +1,25 @@
 //
-//  CustomDetailTableCell4.h
+//  AddTagView.h
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/4/19.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "TagView2.h"
+#import "BaseViewController.h"
 
-@class CustomDetailTableCell4;
+@class AddTagView;
 
 typedef void(^AddBtnBlock)(void);
 
-@interface CustomDetailTableCell4 : UITableViewCell
+@interface AddTagView : UIView
 
 @property (nonatomic, copy) AddBtnBlock addBtnBlock;
 
-@property (nonatomic, strong) TagView2 *tagView;
-
 @property (nonatomic, strong) UIButton *addBtn;
 
-- (void)MasonryUI;
+@property (nonatomic, strong) UICollectionView *tagColl;
+
+@property (nonatomic, strong) NSMutableArray *dataArr;
 
 @end

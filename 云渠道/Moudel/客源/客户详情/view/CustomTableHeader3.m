@@ -129,18 +129,18 @@
                                                          error:&err];
     for (int i = 0; i < provice.count; i++) {
         
-        if([provice[i][@"region"] integerValue] == [model.province integerValue]){
+        if([provice[i][@"code"] integerValue] == [model.province integerValue]){
             
-            NSArray *city = provice[i][@"item"];
+            NSArray *city = provice[i][@"city"];
             for (int j = 0; j < city.count; j++) {
                 
-                if([city[j][@"region"] integerValue] == [model.city integerValue]){
+                if([city[j][@"code"] integerValue] == [model.city integerValue]){
                     
-                    NSArray *area = city[j][@"item"];
+                    NSArray *area = city[j][@"district"];
                     
                     for (int k = 0; k < area.count; k++) {
                         
-                        if([area[k][@"region"] integerValue] == [model.district integerValue]){
+                        if([area[k][@"code"] integerValue] == [model.district integerValue]){
                             
                             self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],model.address];
                         }

@@ -8,7 +8,7 @@
 
 #import "CustomDetailTableCell4.h"
 
-@interface CustomDetailTableCell4()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface CustomDetailTableCell4()
 {
     
     NSMutableArray *_dataArr;
@@ -29,6 +29,14 @@
     return self;
 }
 
+- (void)ActionAddBtn:(UIButton *)btn{
+    
+    if (self.addBtnBlock) {
+        
+        self.addBtnBlock();
+    }
+}
+
 - (void)initUI{
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10 *SIZE, 20 *SIZE, 7, 13 *SIZE)];
@@ -40,6 +48,12 @@
     label.font = [UIFont systemFontOfSize:15 *SIZE];
     label.text = @"需求标签";
     [self.contentView addSubview:label];
+    
+    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addBtn.frame = CGRectMake(308 *SIZE, 3 *SIZE, 35 *SIZE, 35 *SIZE);
+    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_addBtn];
     
 //    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 //    layout.itemSize = CGSizeMake(77 *SIZE, 30 *SIZE);

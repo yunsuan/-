@@ -56,18 +56,18 @@
             NSArray *arr1 = [arr[a] componentsSeparatedByString:@"-"];
             for (int i = 0; i < provice.count; i++) {
 
-                if([provice[i][@"region"] integerValue] == [arr1[0] integerValue]){
+                if([provice[i][@"code"] integerValue] == [arr1[0] integerValue]){
                     
-                    NSArray *city = provice[i][@"item"];
+                    NSArray *city = provice[i][@"city"];
                     for (int j = 0; j < city.count; j++) {
                         
-                        if([city[j][@"region"] integerValue] == [arr1[1] integerValue]){
+                        if([city[j][@"code"] integerValue] == [arr1[1] integerValue]){
                             
-                            NSArray *area = city[j][@"item"];
+                            NSArray *area = city[j][@"district"];
                             
                             for (int k = 0; k < area.count; k++) {
                                 
-                                if([area[k][@"region"] integerValue] == [arr1[2] integerValue]){
+                                if([area[k][@"code"] integerValue] == [arr1[2] integerValue]){
                                     
                                     if (a == 0) {
                                         
