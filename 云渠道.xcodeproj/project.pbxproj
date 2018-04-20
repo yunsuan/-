@@ -60,6 +60,8 @@
 		0CA37B8A2089D511005609C7 /* BDDynamicTreeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B842089D510005609C7 /* BDDynamicTreeCell.m */; };
 		0CA37B8B2089D511005609C7 /* BDDynamicTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B862089D510005609C7 /* BDDynamicTree.m */; };
 		0CA37B8C2089D511005609C7 /* BDDynamicTreeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA37B882089D510005609C7 /* BDDynamicTreeCell.xib */; };
+		0CA37B8F2089D7B9005609C7 /* AddressChooseView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B8E2089D7B9005609C7 /* AddressChooseView2.m */; };
+		0CA37B922089DE27005609C7 /* AddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B912089DE27005609C7 /* AddressTableCell.m */; };
 		0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC19D212072172C0007CC5F /* AddRequireMentVC.m */; };
 		0CB6BAF120736D7B00921C75 /* FollowRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */; };
 		0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6BAF42074982000921C75 /* HouseTypeDetailVC.m */; };
@@ -345,6 +347,10 @@
 		0CA37B862089D510005609C7 /* BDDynamicTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicTree.m; sourceTree = "<group>"; };
 		0CA37B872089D510005609C7 /* BDDynamicTreeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicTreeCell.h; sourceTree = "<group>"; };
 		0CA37B882089D510005609C7 /* BDDynamicTreeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BDDynamicTreeCell.xib; sourceTree = "<group>"; };
+		0CA37B8D2089D7B9005609C7 /* AddressChooseView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressChooseView2.h; sourceTree = "<group>"; };
+		0CA37B8E2089D7B9005609C7 /* AddressChooseView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressChooseView2.m; sourceTree = "<group>"; };
+		0CA37B902089DE27005609C7 /* AddressTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressTableCell.h; sourceTree = "<group>"; };
+		0CA37B912089DE27005609C7 /* AddressTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressTableCell.m; sourceTree = "<group>"; };
 		0CB6BAEF20736D7B00921C75 /* FollowRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowRecordVC.h; sourceTree = "<group>"; };
 		0CB6BAF020736D7B00921C75 /* FollowRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowRecordVC.m; sourceTree = "<group>"; };
 		0CB6BAF32074982000921C75 /* HouseTypeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeDetailVC.h; sourceTree = "<group>"; };
@@ -1161,6 +1167,10 @@
 				0CA37B812089D510005609C7 /* BDDynamicTree */,
 				10174BF020720C9A00D00B9A /* AdressChooseView.h */,
 				10174BF120720C9A00D00B9A /* AdressChooseView.m */,
+				0CA37B8D2089D7B9005609C7 /* AddressChooseView2.h */,
+				0CA37B8E2089D7B9005609C7 /* AddressChooseView2.m */,
+				0CA37B902089DE27005609C7 /* AddressTableCell.h */,
+				0CA37B912089DE27005609C7 /* AddressTableCell.m */,
 			);
 			path = "自定义地址选择器";
 			sourceTree = "<group>";
@@ -2254,6 +2264,7 @@
 				0CA37B7020889028005609C7 /* AddTagView.m in Sources */,
 				0CBD859720871B6900E7B183 /* RoomDetailModel.m in Sources */,
 				0C08BF73206CD9C7005BB3B4 /* IDcardAuthenticationVC.m in Sources */,
+				0CA37B8F2089D7B9005609C7 /* AddressChooseView2.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */,
 				0C342FD02080ACD50058406D /* UserInfoModel.m in Sources */,
@@ -2321,6 +2332,7 @@
 				0CBD85A3208835F300E7B183 /* CustomDetailTableCell5.m in Sources */,
 				0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */,
 				0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */,
+				0CA37B922089DE27005609C7 /* AddressTableCell.m in Sources */,
 				0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */,
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,

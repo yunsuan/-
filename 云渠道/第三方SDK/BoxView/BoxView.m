@@ -13,6 +13,7 @@
 {
     
     NSString *_ID;
+    NSString *_str;
 }
 @end
 
@@ -26,7 +27,6 @@
         _dataArr = [[NSMutableArray alloc] init];
         _selectArr = [[NSMutableArray alloc] init];
         [self initUI];
-//        [self.mainTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
     return self;
 }
@@ -40,10 +40,11 @@
             if ([obj integerValue] == 1) {
                 
                 _ID = _dataArr[idx][@"id"];
+                _str = _dataArr[idx][@"param"];
                 *stop = YES;
             }
         }];
-        self.confirmBtnBlock(_ID);
+        self.confirmBtnBlock(_ID,_str);
     }
 }
 

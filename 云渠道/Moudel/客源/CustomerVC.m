@@ -15,24 +15,23 @@
 #import "AddCustomerVC.h"
 #import "PYSearchViewController.h"
 #import "CustomSearchVC.h"
+#import "AddressChooseView2.h"
 
-@interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,PYSearchViewControllerDelegate>///UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,>
+@interface CustomerVC ()<UITableViewDelegate,UITableViewDataSource,PYSearchViewControllerDelegate>
 {
     
     NSMutableArray *_dataArr;
     NSMutableDictionary *_parameter;
     NSInteger _page;
     NSString *_type;
+    NSString *_district;
     NSString *_sortType;
     NSString *_asc;
     BOOL _is1;
+    BOOL _is2;
 }
 
 @property (nonatomic, strong) UITableView *customerTable;
-
-//@property (nonatomic, strong) UICollectionView *customerColl;
-//
-//@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
 @property (nonatomic, strong) BoxView *boxView;
 
@@ -45,6 +44,8 @@
 @property (nonatomic, strong) UIButton *intentBtn;
 
 @property (nonatomic, strong) UIButton *urgencyBtn;
+
+@property (nonatomic, strong) AddressChooseView2 *adressView;
 
 
 @end
@@ -124,8 +125,7 @@
             }
             [_customerTable reloadData];
         }else{
-            
-//            [_dataArr removeAllObjects];
+
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
@@ -230,6 +230,9 @@
         
         if (btn.tag == 1) {
             
+            _is2 = NO;
+            _areaBtn.selected = NO;
+            [self.adressView removeFromSuperview];
             if (_is1) {
                 
                 _is1 = !_is1;
@@ -261,6 +264,15 @@
             _is1 = NO;
             _typeBtn.selected = NO;
             [self.boxView removeFromSuperview];
+            if (_is2) {
+                
+                _is2 = !_is2;
+                [self.adressView removeFromSuperview];
+            }else{
+                
+                _is2 = YES;
+                [self.view addSubview:self.adressView];
+            }
         }
     }else{
         
@@ -331,106 +343,6 @@
     [self presentViewController:nav  animated:NO completion:nil];
 
 }
-//#pragma mark -- CollectionViewDelegate
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-//
-//    return 4;
-//}
-//
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//
-//    CustomerCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CustomerCollCell" forIndexPath:indexPath];
-//    if (!cell) {
-//
-//        cell = [[CustomerCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /4, 40 *SIZE)];
-//    }
-//    switch (indexPath.item) {
-//        case 0:
-//        {
-//            cell.typeL.text = @"需求类型";
-//            break;
-//        }
-//        case 1:
-//        {
-//            cell.typeL.text = @"意向区域";
-//            break;
-//        }
-//        case 2:
-//        {
-//            cell.typeL.text = @"意向度";
-//            break;
-//        }
-//        case 3:
-//        {
-//            cell.typeL.text = @"紧迫度";
-//            break;
-//        }
-//        default:
-//            break;
-//    }
-//    return cell;
-//}
-
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//
-//    CustomerCollCell *cell = (CustomerCollCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    if (indexPath.item < 2) {
-//
-//        if ([self.view.subviews containsObject:self.boxView]) {
-//
-//            [self.boxView removeFromSuperview];
-//        }else{
-//
-//            [[[UIApplication sharedApplication] keyWindow] addSubview:self.boxView];
-//        }
-//
-//    }else{
-//
-//        if (indexPath.item == 2) {
-//
-//            if ([_sortType isEqualToString:@"intent"]) {
-//
-//                if ([_asc isEqualToString:@"desc"]) {
-//
-//                    cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
-//                    _asc = @"asc";
-//                }else{
-//
-//                    cell.dropImg.image = [UIImage imageNamed:@"uparrow1"];
-//                    _asc = @"desc";
-//                }
-//            }else{
-//
-//                cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
-//                _asc = @"asc";
-//            }
-//            _sortType = @"intent";
-//        }else{
-//
-//            if ([_sortType isEqualToString:@"urgency"]) {
-//
-//
-//                if ([_asc isEqualToString:@"desc"]) {
-//
-//                    cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
-//                    _asc = @"asc";
-//                }else{
-//
-//                    cell.dropImg.image = [UIImage imageNamed:@"uparrow1"];
-//                    _asc = @"desc";
-//                }
-//            }else{
-//
-//                cell.dropImg.image = [UIImage imageNamed:@"downarrow1"];
-//                _asc = @"asc";
-//            }
-//            _sortType = @"urgency";
-//        }
-//        [self.boxView removeFromSuperview];
-//        [self RequestMethod];
-//    }
-//}
-
 
 #pragma mark -- TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -511,11 +423,7 @@
         btn.tag = i + 1;
         [btn setBackgroundColor:CH_COLOR_white];
         [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
-        
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 14 *SIZE, 67 *SIZE, 11 *SIZE)];
-//        label.textColor = YJ86Color;
-//        label.font = [UIFont systemFontOfSize:12 *SIZE];
-//        label.textAlignment = NSTextAlignmentCenter;
+
         switch (i) {
             case 0:
             {
@@ -565,21 +473,7 @@
                 break;
         }
     }
-//    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//    _flowLayout.minimumLineSpacing = 0;
-//    _flowLayout.minimumInteritemSpacing = 0;
-//    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 4, 40 *SIZE);
-//
-//    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
-//    _customerColl.backgroundColor = CH_COLOR_white;
-//    _customerColl.delegate = self;
-//    _customerColl.dataSource = self;
-//    _customerColl.bounces = NO;
-//    [_customerColl registerClass:[CustomerCollCell class] forCellWithReuseIdentifier:@"CustomerCollCell"];
-//    [self.view addSubview:_customerColl];
-    
-    
+
     _customerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT - 41 *SIZE - 56 *SIZE) style:UITableViewStylePlain];
     _customerTable.backgroundColor = YJBackColor;
     _customerTable.delegate = self;
@@ -606,12 +500,66 @@
 
 }
 
+- (AddressChooseView2 *)adressView{
+    
+    if (!_adressView) {
+        
+        _adressView = [[AddressChooseView2 alloc]initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - (41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE))];
+        WS(weakSelf);
+//        _adressView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+//
+//            if (proviceid) {
+//
+//
+//            }
+//        };
+        _adressView.confirmAreaBlock = ^(NSString *pro, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+          
+            if (area.length) {
+                
+                _district = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+                [weakSelf.areaBtn setTitle:area forState:UIControlStateNormal];
+            }else if(city.length){
+                
+                _district = [NSString stringWithFormat:@"%@-%@",proviceid,cityid];
+                [weakSelf.areaBtn setTitle:city forState:UIControlStateNormal];
+            }else if (pro.length){
+                
+                _district = [NSString stringWithFormat:@"%@",proviceid];
+                [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
+            }else{
+                
+                _district = @"";
+                [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+            }
+            
+            _is2 = NO;
+            weakSelf.areaBtn.selected = NO;
+            [weakSelf.adressView removeFromSuperview];
+            [weakSelf RequestMethod];
+        };
+        _adressView.cancelBtnBlock = ^{
+            
+            _is2 = NO;
+            weakSelf.areaBtn.selected = NO;
+        };
+    }
+    return _adressView;
+}
+
 - (BoxView *)boxView{
     if (!_boxView) {
         _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - (41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE))];
         WS(weakSelf);
-        _boxView.confirmBtnBlock = ^(NSString *ID) {
+        _boxView.confirmBtnBlock = ^(NSString *ID,NSString *str) {
           
+            if ([str isEqualToString:@"不限"]) {
+                
+                [weakSelf.typeBtn setTitle:@"需求类型" forState:UIControlStateNormal];
+            }else{
+                
+                [weakSelf.typeBtn setTitle:str forState:UIControlStateNormal];
+            }
             _is1 = NO;
             _type = ID;
             weakSelf.typeBtn.selected = NO;

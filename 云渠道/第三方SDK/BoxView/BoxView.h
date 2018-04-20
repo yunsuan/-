@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^ConfirmBtnBlock)(NSString *ID);
+typedef void(^ConfirmBtnBlock)(NSString *ID,NSString *str);
 
 typedef void(^CancelBtnBlock)(void);
 
