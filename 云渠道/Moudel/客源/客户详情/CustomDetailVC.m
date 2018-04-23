@@ -49,14 +49,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
     [super viewWillAppear:animated];
-    
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -144,9 +141,7 @@
 }
 
 - (void)setData:(NSArray *)data{
-    
     for (int i = 0; i < data.count; i++) {
-        
         if ([data[i] isKindOfClass:[NSDictionary class]]) {
             
             NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:data[i]];
@@ -211,6 +206,11 @@
     
     FollowRecordVC *nextVC = [[FollowRecordVC alloc] init];
     nextVC.customername = _customModel.name;
+    nextVC.clint_id =_customModel.client_id;
+    CustomRequireModel *model = _dataArr[0];
+    nextVC.intent = model.intent;
+    nextVC.urgency = model.urgency;
+
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -274,7 +274,7 @@
             
             return 407 *SIZE;
         }else{
-            
+
             return 485 *SIZE;
         }
     }
@@ -293,9 +293,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (!_item) {
-        
+
         if (section == 0) {
-            
             CustomTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CustomTableHeader"];
             if (!header) {
                 

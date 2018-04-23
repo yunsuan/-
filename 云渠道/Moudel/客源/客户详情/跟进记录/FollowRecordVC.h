@@ -10,4 +10,7 @@
 
 @interface FollowRecordVC : BaseViewController
 @property (nonatomic , strong) NSString *customername;
+@property (nonatomic , strong) NSString *clint_id;
+@property (nonatomic , strong) NSString *intent;//意向
+@property (nonatomic , strong) NSString *urgency;//紧迫
 @end

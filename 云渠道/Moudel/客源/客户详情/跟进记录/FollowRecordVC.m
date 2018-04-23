@@ -39,6 +39,8 @@
 
 @property (nonatomic, strong) DropDownBtn *payWayBtn;
 
+@property (nonatomic , strong) NSString *paywayid;
+
 @property (nonatomic, strong) UITextView *followTV;
 
 @property (nonatomic, strong) DropDownBtn *nextTimeBtn;
@@ -80,6 +82,7 @@
     SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:PAY_WAY]];
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         _payWayBtn.content.text = MC;
+        _paywayid = ID;
     };
     [self.view addSubview:view];
 
@@ -106,9 +109,14 @@
     [self.view addSubview:view];
 }
 
-- (void)ActionSliderChange:(UIButton *)btn{
-    
-    
+- (void)ActionSliderChange:(UISlider *)sender{
+    if (sender == _intentionSlider) {
+        _intentionTF.textfield.text = [NSString stringWithFormat:@"%d",(int)_intentionSlider.value];
+    }
+    else
+    {
+        _urgentTF.textfield.text = [NSString stringWithFormat:@"%d",(int)_urgentSlider.value];
+    }
 }
 
 - (void)initUI{
@@ -147,6 +155,7 @@
             _timeL.textColor = YJTitleLabColor;
             _timeL.font = [UIFont systemFontOfSize:13 *SIZE];
             _timeL.userInteractionEnabled = YES;
+            _timeL.text = [self gettime:[NSDate date]];
             [view1 addSubview:_timeL];
             UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(action_time)];
             [_timeL addGestureRecognizer:gesture];
@@ -191,12 +200,14 @@
             case 0:
             {
                 _intentionTF = TF;
+                _intentionTF.textfield.text = [NSString stringWithFormat:@"%@",_intent];
                 [view2 addSubview:_intentionTF];
                 break;
             }
             case 1:
             {
                 _urgentTF = TF;
+                _urgentTF.textfield.text = [NSString stringWithFormat:@"%@",_urgency];
                 [view2 addSubview:_urgentTF];
                 break;
             }
@@ -229,10 +240,12 @@
         if (i == 0) {
             
             _intentionSlider = slider;
+            _intentionSlider.value = [_intent integerValue];
             [view2 addSubview:_intentionSlider];
         }else{
             
             _urgentSlider = slider;
+            _urgentSlider.value = [_urgency integerValue];
             [view2 addSubview:_urgentSlider];
         }
     }
@@ -260,6 +273,9 @@
     }
     
     _payWayBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 236 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
+    NSArray *arr =[self getDetailConfigArrByConfigState:PAY_WAY];
+    _payWayBtn.content.text = arr[0][@"param"];
+    _paywayid =arr[0][@"id"];
     [view2 addSubview:_payWayBtn];
     [_payWayBtn addTarget:self action:@selector(action_pay) forControlEvents:UIControlEventTouchUpInside];
     
@@ -272,6 +288,8 @@
     [view2 addSubview:_followTV];
     
     _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 408 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
+    NSDate * date = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];//两天后
+    _nextTimeBtn.content.text = [self gettime:date];
     [view2 addSubview:_nextTimeBtn];
     
     view2.frame = CGRectMake(0, 136 *SIZE, SCREEN_Width, 408 *SIZE+_chooseview.frame.size.height +70*SIZE);
@@ -283,9 +301,38 @@
     _confirmBtn.layer.cornerRadius = 2 *SIZE;
     _confirmBtn.clipsToBounds = YES;
     [_confirmBtn setTitle:@"下一步" forState:UIControlStateNormal];
+    [_confirmBtn addTarget:self action:@selector(action_sure) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_confirmBtn];
-    
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width, 56.7 *SIZE+view1.frame.size.height+view2.frame.size.height+70*SIZE)];
 }
+
+-(void)action_sure
+{
+    NSDictionary *prameter = @{
+                               @"client_id":_clint_id,
+                               @"follow_type":[_chooseview GetDidID],
+                               @"follow_time":_timeL.text,
+                               @"intent":_intentionTF.textfield.text,
+                               @"urgency":_urgentTF.textfield.text,
+                               @"pay_way":_paywayid,
+                               @"next_follow_time":_nextTimeBtn.content.text,
+                               @"comment":_followTV.text
+                               };
+    [BaseRequest POST:AddRecord_URL parameters:prameter success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            [self showContent:@"添加成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+    }];
+}
+
 
 @end
