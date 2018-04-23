@@ -22,6 +22,7 @@
 #import "CustomMatchListVC.h"
 #import "DistributVC.h"
 #import "RoomDetailModel.h"
+#import "BuildingAlbumVC.h"
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
@@ -29,9 +30,12 @@
 @interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
 {
     
-    NSMutableArray *_dynamicArr;
+    NSMutableDictionary *_dynamicDic;
     NSString *_projectId;
     RoomDetailModel *_model;
+    NSMutableArray *_focusArr;
+    NSString *_dynamicNum;
+    NSMutableArray *_imgArr;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -78,6 +82,10 @@
 
 - (void)initDataSource{
     
+    _dynamicNum = @"";
+    _imgArr = [@[] mutableCopy];
+    _focusArr = [@[] mutableCopy];
+    _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
     [self RequestMethod];
 }
@@ -102,6 +110,7 @@
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
                 [self SetData:resposeObject[@"data"]];
+                
             }else{
                 
                 [self showContent:@"暂时没有数据"];
@@ -116,9 +125,7 @@
 
 - (void)SetData:(NSDictionary *)data{
     
-//    if (data[@"dynamic"] ) {
-//        <#statements#>
-//    }
+
     if ([data[@"project_basic_info"] isKindOfClass:[NSDictionary class]]) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"project_basic_info"]];
@@ -130,6 +137,48 @@
             }
         }];
         _model = [[RoomDetailModel alloc] initWithDictionary:tempDic];
+    }
+    
+    if ([data[@"dynamic"] isKindOfClass:[NSDictionary class]]) {
+        
+        if (![data[@"dynamic"][@"count"] isKindOfClass:[NSNull class]]) {
+            
+            _dynamicNum = data[@"dynamic"][@"count"];
+        }
+        
+        if ([data[@"dynamic"][@"first"] isKindOfClass:[NSDictionary class]]) {
+            
+            _dynamicDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"dynamic"][@"first"]];
+            [_dynamicDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+               
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [_dynamicDic setObject:@"" forKey:key];
+                }
+            }];
+        }
+    }
+    
+    if ([data[@"project_img"] isKindOfClass:[NSDictionary class]]) {
+        
+        if ([data[@"project_img"][@"url"] isKindOfClass:[NSArray class]]) {
+            
+            _imgArr = [[NSMutableArray alloc] initWithArray:data[@"project_img"][@"url"]];
+            
+            [_imgArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSDictionary class]]) {
+                    
+                    if ([obj[@"img_url"] isKindOfClass:[NSNull class]]) {
+                        
+                        [_imgArr replaceObjectAtIndex:idx withObject:@{@"img_url":@""}];
+                    }
+                }else{
+                    
+                    [_imgArr replaceObjectAtIndex:idx withObject:@{@"img_url":@""}];
+                }
+            }];
+        }
     }
     
     [_roomTable reloadData];
@@ -222,12 +271,19 @@
             
             header = [[RoomDetailTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
         }
-        header.titleL.text = @"FUNX自由青年公寓 城北店火爆来袭";
-        header.statusL.text = @"在售";
-        header.attentL.text = @"关注人数：23";
-        header.payL.text = @"交房时间：暂无数据";
-        //        header.priceL.text = @""
-        header.addressL.text = @"高新区-天府五街230号";
+        
+        header.model = _model;
+        header.imgArr = _imgArr;
+        header.imgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
+            
+            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num imgArr:imgArr];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        };
+        
+        header.attentBtnBlock = ^{
+            
+        };
+
         return header;
         
     }else{
@@ -291,10 +347,14 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-            cell.numL.text = @"（共13条）";
-            cell.titleL.text = @"云算公馆参考价格5000元/㎡";
-            cell.timeL.text = @"2017年12月19日   12:43:00";
-            cell.contentL.text = @"2017年11月28日讯：云算公馆现房在售，在售房源建筑面积188㎡只余底层且只余一套，三室..";
+            if (_dynamicDic) {
+                
+                cell.numL.text = [NSString stringWithFormat: @"（共%@条）",_dynamicNum];
+                cell.titleL.text = _dynamicDic[@"title"];
+                cell.timeL.text = _dynamicDic[@"update_time"];
+                cell.contentL.text = _dynamicDic[@"content"];
+            }
+            
             cell.moreBtn.tag = indexPath.section;
             [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
             return cell;

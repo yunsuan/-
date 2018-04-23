@@ -7,10 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RoomDetailModel.h"
+#import "TagView.h"
+
+@class RoomDetailTableHeader;
+
+typedef void(^AttentBtnBlock)(void);
+
+typedef void(^ImgBtnBlock)(NSInteger num,NSArray *imgArr);
 
 @interface RoomDetailTableHeader : UITableViewHeaderFooterView
 
+@property (nonatomic, copy) AttentBtnBlock attentBtnBlock;
+
+@property (nonatomic, copy) ImgBtnBlock imgBtnBlock;
+
 @property (nonatomic, strong) UIScrollView *imgScroll;
+
+@property (nonatomic, strong) UIButton *ImgBtn;
 
 @property (nonatomic, strong) UILabel *titleL;
 
@@ -18,11 +32,23 @@
 
 @property (nonatomic, strong) UILabel *attentL;
 
+@property (nonatomic, strong) UILabel *numL;
+
+@property (nonatomic, strong) UIButton *attentBtn;
+
 @property (nonatomic, strong) UILabel *payL;
 
 @property (nonatomic, strong) UILabel *priceL;
 
 @property (nonatomic, strong) UILabel *addressL;
+
+@property (nonatomic , strong) TagView *tagview;
+
+@property (nonatomic , strong) TagView *wuyeview;
+
+@property (nonatomic, strong) RoomDetailModel *model;
+
+@property (nonatomic, strong) NSMutableArray *imgArr;
 
 
 @end

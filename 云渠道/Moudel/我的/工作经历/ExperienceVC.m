@@ -51,6 +51,7 @@
             
             [self showContent:resposeObject[@"msg"]];
         }
+        [_experienceTable reloadData];
     } failure:^(NSError *error) {
         
         NSLog(@"%@",error);
@@ -60,12 +61,26 @@
 
 - (void)SetData:(NSArray *)data{
     
-    
+    [_dataArr removeAllObjects];
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        
+        [_dataArr addObject:tempDic];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

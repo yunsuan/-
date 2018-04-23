@@ -53,7 +53,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *str = _data[indexPath.row];
-    return CGSizeMake(11*SIZE*str.length + 4.7*SIZE *2, 16.7*SIZE);
+    return CGSizeMake(11*SIZE * str.length + 4.7*SIZE *2, 16.7*SIZE);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

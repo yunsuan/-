@@ -8,7 +8,9 @@
 
 #import "RoomBrokerageVC.h"
 
-@interface RoomBrokerageVC ()
+@interface RoomBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *brokerageTable;
 
 @end
 
@@ -16,22 +18,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self initUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initUI{
+    
+    _brokerageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStylePlain];
+    _brokerageTable.backgroundColor = self.view.backgroundColor;
+    _brokerageTable.delegate = self;
+    _brokerageTable.dataSource = self;
+    _brokerageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_brokerageTable];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
