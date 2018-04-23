@@ -109,6 +109,7 @@
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
 		0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */; };
+		0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */; };
 		0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */; };
 		0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1B2079A4C500A45F4A /* RoomDetailTableHeader6.m */; };
 		0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */; };
@@ -439,6 +440,8 @@
 		0CE47B64206B9D0E001ADD73 /* PersonalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalVC.m; sourceTree = "<group>"; };
 		0CE47B67206B9E33001ADD73 /* PersonalTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTableCell.h; sourceTree = "<group>"; };
 		0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTableCell.m; sourceTree = "<group>"; };
+		0CEC62DD208DDA62006EC0BD /* RoomBrokerageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomBrokerageTableCell.h; sourceTree = "<group>"; };
+		0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageTableCell.m; sourceTree = "<group>"; };
 		0CF04F1720750AC700A45F4A /* BuildingAlbumCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildingAlbumCollCell.h; sourceTree = "<group>"; };
 		0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildingAlbumCollCell.m; sourceTree = "<group>"; };
 		0CF04F1A2079A4C500A45F4A /* RoomDetailTableHeader6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader6.h; sourceTree = "<group>"; };
@@ -1203,6 +1206,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0CEC62DC208DDA51006EC0BD /* 佣金分析View */ = {
+			isa = PBXGroup;
+			children = (
+				0CEC62DD208DDA62006EC0BD /* RoomBrokerageTableCell.h */,
+				0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */,
+			);
+			path = "佣金分析View";
+			sourceTree = "<group>";
+		};
 		0CF04F162075093100A45F4A /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1594,6 +1606,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0CEC62DC208DDA51006EC0BD /* 佣金分析View */,
 				0CBD859420871B5400E7B183 /* model */,
 				10DBB1E2207C7F6500CFE59D /* 楼栋信息 */,
 				0CF04F2E207A141F00A45F4A /* 匹配客户列表 */,
@@ -2403,6 +2416,7 @@
 				0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
+				0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */,
 				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
 				0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */,
 				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,
