@@ -10,4 +10,6 @@
 
 @interface RoomAnalyzeVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end

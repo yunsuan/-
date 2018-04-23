@@ -27,15 +27,18 @@
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
+@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate>
 {
+    CLLocationCoordinate2D _leftBottomPoint;
+    CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
     
     NSMutableDictionary *_dynamicDic;
     NSString *_projectId;
     RoomDetailModel *_model;
-    NSMutableArray *_focusArr;
+    NSMutableDictionary *_focusDic;
     NSString *_dynamicNum;
     NSMutableArray *_imgArr;
+    NSString *_focusId;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -71,20 +74,27 @@
     [self initUI];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    
-//    [super viewWillAppear:animated];
-//    
-//    self.mapView.delegate = nil;
-//    [self.mapView removeFromSuperview];
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    self.mapView.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    
+    self.mapView.delegate = nil;
+    [self.mapView removeFromSuperview];
+}
 
 
 - (void)initDataSource{
     
     _dynamicNum = @"";
     _imgArr = [@[] mutableCopy];
-    _focusArr = [@[] mutableCopy];
+    _focusDic = [@{} mutableCopy];
     _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
     [self RequestMethod];
@@ -181,6 +191,11 @@
         }
     }
     
+    if ([data[@"focus"] isKindOfClass:[NSDictionary class]]) {
+        
+        _focusDic = [NSMutableDictionary dictionaryWithDictionary:data[@"focus"]];
+    }
+    
     [_roomTable reloadData];
 }
 
@@ -274,6 +289,20 @@
         
         header.model = _model;
         header.imgArr = _imgArr;
+        if (_focusDic.count) {
+            
+            header.attentL.text = [NSString stringWithFormat:@"关注人数:%@",_focusDic[@"num"]];
+            if ([_focusDic[@"is_focus"] integerValue]) {
+                
+                [header.attentBtn setImage:[UIImage imageNamed:@"Focus_selected"] forState:UIControlStateNormal];
+            }else{
+                
+                [header.attentBtn setImage:[UIImage imageNamed:@"Focus"] forState:UIControlStateNormal];
+            }
+        }else{
+            
+            [header.attentBtn setImage:[UIImage imageNamed:@"Focus"] forState:UIControlStateNormal];
+        }
         header.imgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
             
             BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num imgArr:imgArr];
@@ -282,6 +311,31 @@
         
         header.attentBtnBlock = ^{
             
+            if (_focusDic.count) {
+                
+                if ([_focusDic[@"is_focus"] integerValue]) {
+                    
+//                    [BaseRequest GET:FocusProject_URL parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
+                }else{
+                    
+                    [BaseRequest GET:FocusProject_URL parameters:@{@"project_id":_model} success:^(id resposeObject) {
+                        
+                        NSLog(@"%@",resposeObject);
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            
+                        }else{
+                            
+                            [self showContent:resposeObject[@"msg"]];
+                        }
+                        [self RequestMethod];
+                    } failure:^(NSError *error) {
+                        
+                        NSLog(@"%@",error);
+                        [self showContent:@"网络错误"];
+                    }];
+                }
+            }
         };
 
         return header;
@@ -506,6 +560,72 @@
         _mapView.isSelectedAnnotationViewFront = YES;
     }
     return _mapView;
+}
+
+- (void)mapViewDidFinishLoading:(BMKMapView *)mapView
+{
+    _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
+    _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
+    //开始搜索
+}
+
+
+
+- (void)beginSearchWithname:(NSString *)name{
+    
+    _poisearch = [[BMKPoiSearch alloc]init];
+    _poisearch.delegate = self;
+    
+    BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
+    boundSearchOption.pageIndex = 0;
+    boundSearchOption.pageCapacity = 40;
+    boundSearchOption.keyword = name;
+    boundSearchOption.leftBottom =_leftBottomPoint;
+    boundSearchOption.rightTop =_rightBottomPoint;
+    
+    BOOL flag = [_poisearch poiSearchInbounds:boundSearchOption];
+    if(flag)
+    {
+        NSLog(@"范围内检索发送成功");
+    }
+    else
+    {
+        NSLog(@"范围内检索发送失败");
+    }
+}
+
+#pragma mark implement BMKSearchDelegate
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult*)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+        [_mapView removeAnnotations:array];
+        array = [NSArray arrayWithArray:_mapView.overlays];
+        [_mapView removeOverlays:array];
+        //在此处理正常结果
+        for (int i = 0; i < result.poiInfoList.count; i++)
+        {
+            BMKPoiInfo* poi = [result.poiInfoList objectAtIndex:i];
+            [self addAnimatedAnnotationWithName:poi.name withAddress:poi.pt];
+        }
+        
+    } else if (error == BMK_SEARCH_AMBIGUOUS_ROURE_ADDR){
+        NSLog(@"起始点有歧义");
+    } else {
+        // 各种情况的判断。。。
+    }
+}
+// 添加动画Annotation
+- (void)addAnimatedAnnotationWithName:(NSString *)name withAddress:(CLLocationCoordinate2D)coor {
+    BMKPointAnnotation*animatedAnnotation = [[BMKPointAnnotation alloc]init];
+    animatedAnnotation.coordinate = coor;
+    animatedAnnotation.title = name;
+    [_mapView addAnnotation:animatedAnnotation];
+}
+- (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
+    _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
 }
 
 @end

@@ -22,6 +22,8 @@
 
 - (void)initUI{
     
+    self.contentView.backgroundColor = YJBackColor;
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 128 *SIZE)];
     view.backgroundColor = CH_COLOR_white;
     [self.contentView addSubview:view];
@@ -35,7 +37,7 @@
         
         if (i < 2) {
             
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(42 *SIZE, 50 *SIZE + i * 35 *SIZE, 65 *SIZE, 13 *SIZE)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(42 *SIZE, 50 *SIZE + i * 35 *SIZE, 80 *SIZE, 13 *SIZE)];
             label.textColor = YJTitleLabColor;
             label.font = [UIFont systemFontOfSize:13 *SIZE];
             if (i == 0) {
@@ -49,7 +51,7 @@
         }
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(114 *SIZE + i * 31 *SIZE, 47 *SIZE, 17 *SIZE, 17 *SIZE)];
-        img.image = [UIImage imageNamed:@"commission_2"];
+        img.image = [UIImage imageNamed:@"star_1"];
         switch (i) {
             case 0:
             {
@@ -86,7 +88,7 @@
         }
         
         UIImageView *img1 = [[UIImageView alloc] initWithFrame:CGRectMake(114 *SIZE + i * 31 *SIZE, 83 *SIZE, 17 *SIZE, 17 *SIZE)];
-        img.image = [UIImage imageNamed:@"star_1"];
+        img1.image = [UIImage imageNamed:@"lightning_1"];
         switch (i) {
             case 0:
             {
@@ -123,7 +125,24 @@
         }
     }
     
-//    _ruleView = 
+    _ruleView = [[RuleView alloc] initWithFrame:CGRectMake(0, 134 *SIZE, SCREEN_Width, 40 *SIZE)];
+    [self.contentView addSubview:_ruleView];
+    [_ruleView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.contentView).offset(0);
+        make.right.equalTo(self.contentView).offset(0);
+        make.top.equalTo(self.contentView).offset(134 *SIZE);
+    }];
+    
+    _standView = [[RuleView alloc] initWithFrame:CGRectMake(0, 180 *SIZE, SCREEN_Width, 40 *SIZE)];
+    [self.contentView addSubview:_standView];
+    [_standView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(0);
+        make.right.equalTo(self.contentView).offset(0);
+        make.top.equalTo(_ruleView.mas_bottom).offset(8 *SIZE);
+        make.bottom.equalTo(self.contentView).offset(0);
+    }];
 }
 
 @end

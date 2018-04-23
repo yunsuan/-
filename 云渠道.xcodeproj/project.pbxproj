@@ -110,6 +110,10 @@
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
 		0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */; };
 		0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */; };
+		0CEC62E2208DDE0C006EC0BD /* RuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62E1208DDE0C006EC0BD /* RuleView.m */; };
+		0CEC62E5208DE786006EC0BD /* RoomBrokerageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62E4208DE786006EC0BD /* RoomBrokerageTableHeader.m */; };
+		0CEC62EB208DEB86006EC0BD /* RoomBrokerageTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */; };
+		0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */; };
 		0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */; };
 		0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1B2079A4C500A45F4A /* RoomDetailTableHeader6.m */; };
 		0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */; };
@@ -442,6 +446,14 @@
 		0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTableCell.m; sourceTree = "<group>"; };
 		0CEC62DD208DDA62006EC0BD /* RoomBrokerageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomBrokerageTableCell.h; sourceTree = "<group>"; };
 		0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageTableCell.m; sourceTree = "<group>"; };
+		0CEC62E0208DDE0C006EC0BD /* RuleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleView.h; sourceTree = "<group>"; };
+		0CEC62E1208DDE0C006EC0BD /* RuleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuleView.m; sourceTree = "<group>"; };
+		0CEC62E3208DE786006EC0BD /* RoomBrokerageTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomBrokerageTableHeader.h; sourceTree = "<group>"; };
+		0CEC62E4208DE786006EC0BD /* RoomBrokerageTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageTableHeader.m; sourceTree = "<group>"; };
+		0CEC62E9208DEB86006EC0BD /* RoomBrokerageTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomBrokerageTableCell2.h; sourceTree = "<group>"; };
+		0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageTableCell2.m; sourceTree = "<group>"; };
+		0CEC62EC208DED26006EC0BD /* AnalyzeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyzeTableCell.h; sourceTree = "<group>"; };
+		0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeTableCell.m; sourceTree = "<group>"; };
 		0CF04F1720750AC700A45F4A /* BuildingAlbumCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildingAlbumCollCell.h; sourceTree = "<group>"; };
 		0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildingAlbumCollCell.m; sourceTree = "<group>"; };
 		0CF04F1A2079A4C500A45F4A /* RoomDetailTableHeader6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader6.h; sourceTree = "<group>"; };
@@ -1211,6 +1223,14 @@
 			children = (
 				0CEC62DD208DDA62006EC0BD /* RoomBrokerageTableCell.h */,
 				0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */,
+				0CEC62E0208DDE0C006EC0BD /* RuleView.h */,
+				0CEC62E1208DDE0C006EC0BD /* RuleView.m */,
+				0CEC62E3208DE786006EC0BD /* RoomBrokerageTableHeader.h */,
+				0CEC62E4208DE786006EC0BD /* RoomBrokerageTableHeader.m */,
+				0CEC62E9208DEB86006EC0BD /* RoomBrokerageTableCell2.h */,
+				0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */,
+				0CEC62EC208DED26006EC0BD /* AnalyzeTableCell.h */,
+				0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */,
 			);
 			path = "佣金分析View";
 			sourceTree = "<group>";
@@ -2318,6 +2338,7 @@
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
+				0CEC62E2208DDE0C006EC0BD /* RuleView.m in Sources */,
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
 				0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
@@ -2386,6 +2407,7 @@
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
+				0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
@@ -2416,6 +2438,7 @@
 				0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
+				0CEC62E5208DE786006EC0BD /* RoomBrokerageTableHeader.m in Sources */,
 				0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */,
 				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
 				0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */,
@@ -2451,6 +2474,7 @@
 				0C08BF66206CBC0B005BB3B4 /* BrokerageDetailTableCell2.m in Sources */,
 				0CB6BAFF2074A82D00921C75 /* HouseTypeTableCell2.m in Sources */,
 				0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */,
+				0CEC62EB208DEB86006EC0BD /* RoomBrokerageTableCell2.m in Sources */,
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				0CF04F91207CAFB000A45F4A /* PYSearchSuggestionViewController.m in Sources */,

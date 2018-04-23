@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RuleView.h"
 
 @interface RoomBrokerageTableCell : UITableViewCell
 
-@property (nonatomic, strong) UIView *ruleView;
+@property (nonatomic, strong) RuleView *ruleView;
 
-@property (nonatomic, strong) UIView *standView;
+@property (nonatomic, strong) RuleView *standView;
 
 @property (nonatomic, strong) UILabel *ruleL;
 

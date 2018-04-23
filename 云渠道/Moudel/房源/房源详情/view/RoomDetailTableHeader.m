@@ -168,7 +168,7 @@
     [_attentBtn setImage:[UIImage imageNamed:@"Focus"] forState:UIControlStateNormal];
     [self.contentView addSubview:_attentBtn];
     
-    _attentL = [[UILabel alloc] initWithFrame:CGRectMake(269 *SIZE, 32 *SIZE + CGRectGetMaxY(_imgScroll.frame), 80 *SIZE, 12 *SIZE)];
+    _attentL = [[UILabel alloc] initWithFrame:CGRectMake(230 *SIZE, 35 *SIZE + CGRectGetMaxY(_imgScroll.frame), 87 *SIZE, 12 *SIZE)];
     _attentL.textColor = YJContentLabColor;
     _attentL.font = [UIFont systemFontOfSize:12 *SIZE];
     _attentL.textAlignment = NSTextAlignmentRight;
