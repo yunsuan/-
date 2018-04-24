@@ -13,9 +13,10 @@
 + (void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
 //        [SVProgressHUD show];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
+
     manager.requestSerializer.timeoutInterval = 10.0f;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    
     [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
     [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];

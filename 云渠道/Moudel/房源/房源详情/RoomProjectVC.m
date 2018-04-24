@@ -107,15 +107,8 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:_projectId forKey:@"project_id"];
-    if ([UserModel defaultModel].Token) {
-        
-        [dic setObject:@1 forKey:@"is_agent"];
-    }else{
-        
-        [dic setObject:@0 forKey:@"is_agent"];
-    }
+    [dic setObject:[UserModelArchiver unarchive].agent_id forKey:@"agent_id"];
     [BaseRequest GET:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
-        
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -492,7 +485,6 @@
                 [cell.contentView addSubview:self.mapView];
 
                 [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-
                     make.left.equalTo(cell.contentView).offset(0);
                     make.top.equalTo(cell.contentView).offset(33 *SIZE);
                     make.right.equalTo(cell.contentView).offset(0);
@@ -501,6 +493,13 @@
                     make.bottom.equalTo(cell.contentView).offset(-59 *SIZE);
                 }];
             }
+            CLLocationCoordinate2D cllocation = CLLocationCoordinate2DMake([_model.latitude floatValue] , [_model.longitude floatValue]);
+            [_mapView setCenterCoordinate:cllocation animated:YES];
+            
+            BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+            annotation.coordinate = cllocation;
+            annotation.title = _model.project_name;
+            [_mapView addAnnotation:annotation];
             cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -552,11 +551,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section == 10) {
+    if (indexPath.section == 3) {
         
-//        DistributVC *nextVC = [[DistributVC alloc] init];
-//        [self.navigationController pushViewController:nextVC animated:YES];
-        
+        DistributVC *nextVC = [[DistributVC alloc] init];
+        nextVC.img_name = _model.total_float_url;
+        [self.navigationController pushViewController:nextVC animated:YES];
     }
 }
 

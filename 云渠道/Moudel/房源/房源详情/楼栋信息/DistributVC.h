@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface DistributVC : BaseViewController
-
+@property (nonatomic , strong) NSString *img_name;
 @end
