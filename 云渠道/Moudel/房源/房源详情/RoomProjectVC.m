@@ -490,6 +490,7 @@
                 cell = [[RoomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell4"];
                 cell.delegate = self;
                 [cell.contentView addSubview:self.mapView];
+
                 [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
 
                     make.left.equalTo(cell.contentView).offset(0);
