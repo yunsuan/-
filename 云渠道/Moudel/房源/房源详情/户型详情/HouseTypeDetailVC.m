@@ -16,7 +16,11 @@
 #import "BuildingAlbumVC.h"
 
 @interface HouseTypeDetailVC ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    
+    NSString *_houseTypeId;
+    NSMutableDictionary *_baseInfoDic;
+}
 @property (nonatomic, strong) UIButton *recommendBtn;
 
 @property (nonatomic, strong) UITableView *houseTable;
@@ -25,11 +29,61 @@
 
 @implementation HouseTypeDetailVC
 
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId
+{
+    self = [super init];
+    if (self) {
+        
+        _houseTypeId = houseTypeId;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 //    [self initDataSource];
     [self initUI];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest GET:HouseTypeDetail_URL parameters:@{@"id":_houseTypeId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                [self SetData:resposeObject[@"data"]];
+            }else{
+                
+                [self showContent:@"暂无信息"];
+            }
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetData:(NSDictionary *)data{
+    
+    if ([data[@"baseInfo"] isKindOfClass:[NSDictionary class]]) {
+        
+        _baseInfoDic = [NSMutableDictionary dictionaryWithDictionary:data[@"baseInfo"]];
+        [_baseInfoDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [_baseInfoDic setObject:@"" forKey:key];
+            }
+        }];
+    }
+    
+    [_houseTable reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -97,11 +151,12 @@
             cell = [[HouseTypeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HouseTypeTableCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        _baseInfoDic[@""];
         cell.typeL.text = @"A型";
         cell.areaL.text = @"建筑面积：95㎡-100㎡";
         cell.houseDisL.text = @"户型分布：1栋、3栋";
         cell.titleL.text = @"户型卖点";
-        cell.contentL.text = @"核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费核心卖点户型介绍经典二室一厅，精装修，面积利用很好，无浪费。";
+        cell.contentL.text = _baseInfoDic[@"sell_point"];
         
         return cell;
     }else{

@@ -467,7 +467,7 @@
             
             cell.collCellBlock = ^(NSInteger index) {
 
-                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:_houseArr[index][@"id"]];
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
 

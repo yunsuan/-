@@ -10,4 +10,6 @@
 
 @interface HouseTypeDetailVC : BaseViewController
 
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId;
+
 @end
