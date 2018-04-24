@@ -130,7 +130,7 @@
         
         if (_imgArr.count) {
             
-            self.imgBtnBlock(_num, _imgArr);
+            self.imgBtnBlock(_nowNum, _imgArr);
         }
     }
 }

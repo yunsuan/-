@@ -149,6 +149,8 @@
         _model = [[RoomDetailModel alloc] initWithDictionary:tempDic];
     }
     
+    
+    
     if ([data[@"dynamic"] isKindOfClass:[NSDictionary class]]) {
         
         if (![data[@"dynamic"][@"count"] isKindOfClass:[NSNull class]]) {
@@ -305,7 +307,7 @@
         }
         header.imgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
             
-            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num imgArr:imgArr];
+            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num projectId:_projectId];
             [self.navigationController pushViewController:nextVC animated:YES];
         };
         
@@ -423,7 +425,14 @@
                 cell = [[RoomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell2"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            [cell.bigImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_model.total_float_url]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+               
+                if (error) {
+                    
+                    [UIImage imageNamed:@""];
+                }
+            }];
+            
             return cell;
             break;
         }

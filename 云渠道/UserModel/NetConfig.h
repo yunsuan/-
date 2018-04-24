@@ -113,3 +113,6 @@ static NSString *const FocusProject_URL = @"user/project/focusProject";
 
 //获取动态列表
 static NSString *const DynamicList_URL = @"user/dynamic/list";
+
+//获取项目图片
+static NSString *const GetImg_URL = @"user/img/get";
