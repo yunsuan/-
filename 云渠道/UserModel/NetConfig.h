@@ -109,10 +109,13 @@ static NSString *const ProjectList_URL = @"user/project/list";
 static NSString *const ProjectDetail_URL = @"user/project/detail";
 
 //关注项目
-static NSString *const FocusProject_URL = @"user/project/focusProject";
+static NSString *const FocusProject_URL = @"agent/personal/focusProject";
 
 //获取动态列表
 static NSString *const DynamicList_URL = @"user/dynamic/list";
 
 //获取项目图片
 static NSString *const GetImg_URL = @"user/img/get";
+
+//获取项目分析
+static NSString *const HouseTypeAnalyse_URL = @"user/houseType/analyse";

@@ -39,6 +39,7 @@
     NSString *_dynamicNum;
     NSMutableArray *_imgArr;
     NSString *_focusId;
+    NSMutableArray *_houseArr;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -97,6 +98,7 @@
     _focusDic = [@{} mutableCopy];
     _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
+    _houseArr = [@[] mutableCopy];
     [self RequestMethod];
 }
 
@@ -135,22 +137,6 @@
 
 - (void)SetData:(NSDictionary *)data{
     
-
-    if ([data[@"project_basic_info"] isKindOfClass:[NSDictionary class]]) {
-        
-        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"project_basic_info"]];
-        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-           
-            if ([obj isKindOfClass:[NSNull class]]) {
-                
-                [tempDic setObject:@"" forKey:key];
-            }
-        }];
-        _model = [[RoomDetailModel alloc] initWithDictionary:tempDic];
-    }
-    
-    
-    
     if ([data[@"dynamic"] isKindOfClass:[NSDictionary class]]) {
         
         if (![data[@"dynamic"][@"count"] isKindOfClass:[NSNull class]]) {
@@ -169,6 +155,29 @@
                 }
             }];
         }
+    }
+    
+    if ([data[@"focus"] isKindOfClass:[NSDictionary class]]) {
+        
+        _focusDic = [NSMutableDictionary dictionaryWithDictionary:data[@"focus"]];
+    }
+    
+    if ([data[@"house_type"] isKindOfClass:[NSArray class]]) {
+        
+        _houseArr = [NSMutableArray arrayWithArray:data[@"house_type"]];
+    }
+    
+    if ([data[@"project_basic_info"] isKindOfClass:[NSDictionary class]]) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"project_basic_info"]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        _model = [[RoomDetailModel alloc] initWithDictionary:tempDic];
     }
     
     if ([data[@"project_img"] isKindOfClass:[NSDictionary class]]) {
@@ -192,11 +201,7 @@
             }];
         }
     }
-    
-    if ([data[@"focus"] isKindOfClass:[NSDictionary class]]) {
-        
-        _focusDic = [NSMutableDictionary dictionaryWithDictionary:data[@"focus"]];
-    }
+
     
     [_roomTable reloadData];
 }
@@ -229,7 +234,8 @@
 
 - (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    NSArray * namearr = @[@"学校",@"医院",@"购物",@"餐饮",@"楼盘"];
+    [self beginSearchWithname:namearr[indexPath.row]];
 }
 
 
@@ -317,15 +323,29 @@
                 
                 if ([_focusDic[@"is_focus"] integerValue]) {
                     
-//                    [BaseRequest GET:FocusProject_URL parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
-                }else{
-                    
-                    [BaseRequest GET:FocusProject_URL parameters:@{@"project_id":_model} success:^(id resposeObject) {
+                    [BaseRequest GET:CancelFocusProject_URL parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
                         
                         NSLog(@"%@",resposeObject);
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
+                            [self RequestMethod];
+                        }else{
                             
+                            [self showContent:resposeObject[@"msg"]];
+                        }
+                    } failure:^(NSError *error) {
+                        
+                        NSLog(@"%@",error);
+                        [self showContent:@"网络错误"];
+                    }];
+                }else{
+                    
+                    [BaseRequest GET:FocusProject_URL parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
+                        
+                        NSLog(@"%@",resposeObject);
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            [self RequestMethod];
                         }else{
                             
                             [self showContent:resposeObject[@"msg"]];
@@ -445,11 +465,17 @@
                 cell = [[RoomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell3"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.num = 10;
+            cell.num = _houseArr.count;
+            if (_houseArr.count) {
+                
+                cell.dataArr = [NSMutableArray arrayWithArray:_houseArr];
+                [cell.cellColl reloadData];
+            }
+            
             cell.collCellBlock = ^(NSInteger index) {
 
-                //                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
-                //                [self.navigationController pushViewController:nextVC animated:YES];
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
             };
 
             return cell;

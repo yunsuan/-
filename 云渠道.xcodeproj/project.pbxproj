@@ -114,6 +114,7 @@
 		0CEC62E5208DE786006EC0BD /* RoomBrokerageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62E4208DE786006EC0BD /* RoomBrokerageTableHeader.m */; };
 		0CEC62EB208DEB86006EC0BD /* RoomBrokerageTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */; };
 		0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */; };
+		0CEC62F1208F0017006EC0BD /* HouseTypeBriefModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62F0208F0017006EC0BD /* HouseTypeBriefModel.m */; };
 		0CF04F1920750AC700A45F4A /* BuildingAlbumCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */; };
 		0CF04F1C2079A4C500A45F4A /* RoomDetailTableHeader6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1B2079A4C500A45F4A /* RoomDetailTableHeader6.m */; };
 		0CF04F1F2079A5F700A45F4A /* RoomDetailTableCell6.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF04F1E2079A5F700A45F4A /* RoomDetailTableCell6.m */; };
@@ -454,6 +455,8 @@
 		0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageTableCell2.m; sourceTree = "<group>"; };
 		0CEC62EC208DED26006EC0BD /* AnalyzeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyzeTableCell.h; sourceTree = "<group>"; };
 		0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeTableCell.m; sourceTree = "<group>"; };
+		0CEC62EF208F0017006EC0BD /* HouseTypeBriefModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseTypeBriefModel.h; sourceTree = "<group>"; };
+		0CEC62F0208F0017006EC0BD /* HouseTypeBriefModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseTypeBriefModel.m; sourceTree = "<group>"; };
 		0CF04F1720750AC700A45F4A /* BuildingAlbumCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildingAlbumCollCell.h; sourceTree = "<group>"; };
 		0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildingAlbumCollCell.m; sourceTree = "<group>"; };
 		0CF04F1A2079A4C500A45F4A /* RoomDetailTableHeader6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableHeader6.h; sourceTree = "<group>"; };
@@ -1073,6 +1076,8 @@
 			children = (
 				0CBD859520871B6900E7B183 /* RoomDetailModel.h */,
 				0CBD859620871B6900E7B183 /* RoomDetailModel.m */,
+				0CEC62EF208F0017006EC0BD /* HouseTypeBriefModel.h */,
+				0CEC62F0208F0017006EC0BD /* HouseTypeBriefModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2440,6 +2445,7 @@
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
 				0CEC62E5208DE786006EC0BD /* RoomBrokerageTableHeader.m in Sources */,
 				0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */,
+				0CEC62F1208F0017006EC0BD /* HouseTypeBriefModel.m in Sources */,
 				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
 				0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */,
 				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,

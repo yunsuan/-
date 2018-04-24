@@ -121,7 +121,10 @@
 
 - (void)ActionAttentBtn:(UIButton *)btn{
     
-    
+    if (self.attentBtnBlock) {
+        
+        self.attentBtnBlock();
+    }
 }
 
 - (void)ActionImgBtn{
