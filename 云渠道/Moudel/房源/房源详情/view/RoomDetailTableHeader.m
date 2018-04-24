@@ -67,8 +67,15 @@
 
 - (void)setModel:(RoomDetailModel *)model{
     
-    _titleL.text = model.absolute_address;
-    _statusL.text = [NSString stringWithFormat:@"%@",model.sale_state];
+    if (model.absolute_address) {
+        
+        _titleL.text = model.absolute_address;
+    }
+    
+    if (model.sale_state) {
+        
+        _statusL.text = [NSString stringWithFormat:@"%@",model.sale_state];
+    }
     
     NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
     NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",11]];
@@ -95,11 +102,21 @@
     
 //    _addressL.text =
     
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 ￥%@/㎡",model.average_price]];
-    [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10 *SIZE] range:NSMakeRange(0, 3)];
-    [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13 *SIZE] range:NSMakeRange(3, 1)];
-    [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, 3)];
-    _priceL.attributedText = attr;
+    if (model.average_price) {
+        
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 ￥%@/㎡",model.average_price]];
+        [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10 *SIZE] range:NSMakeRange(0, 3)];
+        [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13 *SIZE] range:NSMakeRange(3, 1)];
+        [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, 3)];
+        _priceL.attributedText = attr;
+    }else{
+        
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 "]];
+        [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10 *SIZE] range:NSMakeRange(0, 3)];
+        [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, 3)];
+        _priceL.attributedText = attr;
+    }
+    
 }
 
 - (void)ActionAttentBtn:(UIButton *)btn{

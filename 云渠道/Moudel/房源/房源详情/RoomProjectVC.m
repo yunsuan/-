@@ -209,7 +209,7 @@
     
     if (btn.tag == 2) {
         
-        DynamicListVC *next_vc = [[DynamicListVC alloc]init];
+        DynamicListVC *next_vc = [[DynamicListVC alloc]initWithProjectId:_projectId];
         [self.navigationController pushViewController:next_vc animated:YES];
     }
     

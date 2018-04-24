@@ -10,4 +10,6 @@
 
 @interface DynamicListVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end

@@ -10,22 +10,131 @@
 #import "DynamicListTableCell.h"
 
 @interface DynamicListVC ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    
+    NSInteger _page;
+    NSString *_projectId;
+    NSMutableArray *_dataArr;
+}
 @property (nonatomic, strong) UITableView *listTable;
 
 @end
 
 @implementation DynamicListVC
 
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _dataArr = [@[] mutableCopy];
+        _projectId = projectId;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
     [self initUI];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    _listTable.mj_footer.state = MJRefreshStateIdle;
+    [BaseRequest GET:DynamicList_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        [_listTable.mj_header endRefreshing];
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                [self SetData:resposeObject[@"data"][@"data"]];
+            }else{
+                
+                _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+                [self showContent:@"暂无数据"];
+            }
+        }else{
+            
+            _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [_listTable.mj_header endRefreshing];
+        _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)RequestAddMethod{
+    
+    _page += 1;
+    NSDictionary *tempDic = @{@"page":@(_page),
+                              @"project_id":_projectId
+                              };
+    [BaseRequest GET:DynamicList_URL parameters:tempDic success:^(id resposeObject) {
+        
+        [_listTable.mj_footer endRefreshing];
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                [self SetData:resposeObject[@"data"][@"data"]];
+            }else{
+                
+                _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+                [self showContent:@"暂无数据"];
+            }
+            
+            if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                
+                _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+            }
+        }else{
+            
+            _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [_listTable.mj_footer endRefreshing];
+        _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    if (_page == 1) {
+        
+        [_dataArr removeAllObjects];
+    }
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_dataArr addObject:tempDic];
+    }
+    [_listTable reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 2;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -41,9 +150,14 @@
         cell = [[DynamicListTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DynamicListTableCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.titleL.text = @"云算公馆参考价格5000元/㎡";
-    cell.timeL.text = @"2017-02-23   12:45:03";
-    cell.contentL.text = @"2017年11月28日讯：云算公馆现房在售，在售房源建筑面积188㎡只余底层且只余一套，三室一厅一卫。";
+    
+    cell.contentL.text = _dataArr[indexPath.row][@"content"];
+    cell.titleL.text = _dataArr[indexPath.row][@"title"];
+    cell.timeL.text = _dataArr[indexPath.row][@"update_time"];
+    
+//    cell.titleL.text = @"云算公馆参考价格5000元/㎡";
+//    cell.timeL.text = @"2017-02-23   12:45:03";
+//    cell.contentL.text = @"2017年11月28日讯：云算公馆现房在售，在售房源建筑面积188㎡只余底层且只余一套，三室一厅一卫。";
     cell.cellBtnBlock = ^(NSInteger index) {
         
         
@@ -59,6 +173,7 @@
 
 - (void)initUI{
     
+    self.titleLabel.text = @"项目动态";
     self.navBackgroundView.hidden = NO;
     
     _listTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStylePlain];
@@ -68,6 +183,16 @@
     _listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:_listTable];
+    _listTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+       
+        _page = 1;
+        [self RequestMethod];
+    }];
+    
+    _listTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+       
+        [self RequestAddMethod];
+    }];
 }
 
 @end

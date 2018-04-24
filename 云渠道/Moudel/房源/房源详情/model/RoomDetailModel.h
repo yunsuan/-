@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSString *longitude;
 
+@property (nonatomic, strong) NSString *project_id;
+
 @property (nonatomic, strong) NSString *project_name;
 
 @property (nonatomic, strong) NSString *project_tags;
