@@ -155,9 +155,6 @@
     cell.titleL.text = _dataArr[indexPath.row][@"title"];
     cell.timeL.text = _dataArr[indexPath.row][@"update_time"];
     
-//    cell.titleL.text = @"云算公馆参考价格5000元/㎡";
-//    cell.timeL.text = @"2017-02-23   12:45:03";
-//    cell.contentL.text = @"2017年11月28日讯：云算公馆现房在售，在售房源建筑面积188㎡只余底层且只余一套，三室一厅一卫。";
     cell.cellBtnBlock = ^(NSInteger index) {
         
         
