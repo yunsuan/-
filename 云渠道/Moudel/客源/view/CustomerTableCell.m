@@ -25,6 +25,9 @@
     if (model.name) {
         
         _nameL.text = model.name;
+    }else{
+        
+        _nameL.text = @"";
     }
     
     [_nameL mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -37,7 +40,17 @@
     
     if (model.total_price) {
         
-        _priceL.text = [NSString stringWithFormat:@"意向总价：%@",model.total_price];
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",25]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.total_price integerValue]) {
+                
+                _priceL.text = [NSString stringWithFormat:@"意向总价：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
     }else{
         
         _priceL.text = @"意向总价：";
@@ -45,24 +58,42 @@
     
     if (model.house_type) {
         
-        _typeL.text = [NSString stringWithFormat:@"意向户型：%@",model.house_type];
+        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
+        NSArray *typeArr = dic[@"param"];
+        for (int i = 0; i < typeArr.count; i++) {
+            
+            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
+                
+                _typeL.text = [NSString stringWithFormat:@"意向物业：%@",typeArr[i][@"param"]];
+                break;
+            }
+        }
     }else{
         
-        _typeL.text = @"意向户型：";
+        _typeL.text = @"意向物业：";
     }
     
-    if ([_model.region count]) {
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+    
+    NSError *err;
+    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+    
+    _areaL.text = @"意向区域：";
+    if ([model.region count]) {
         
-        _areaL.text = [NSString stringWithFormat:@"意向区域：%@",model.region[0][@"city"]];
+        for (int a = 0; a < [model.region count]; a++) {
+    
+            
+            
+        }
     }else{
-        
+
         _areaL.text = @"意向区域：";
     }
-   
-    
-//    NSMutableAttributedString *matchStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",model.matchRate,@"%"]];
-//    [matchStr addAttribute:NSForegroundColorAttributeName value:COLOR(27, 152, 255, 1) range:NSMakeRange(4, matchStr.length - 4)];
-//    _matchRateL.attributedText = matchStr;
+
     
     _phoneL.text = [NSString stringWithFormat:@"%@",model.tel];
     
@@ -184,8 +215,8 @@
         
         make.left.equalTo(self.contentView.mas_left).offset(10 *SIZE);
         make.top.equalTo(self.contentView.mas_top).offset(75 *SIZE);
-        make.width.equalTo(@(140 *SIZE));
-        make.height.equalTo(@(10 *SIZE));
+        make.width.equalTo(@(230 *SIZE));
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15 *SIZE);
     }];
     
     [_matchRateL mas_makeConstraints:^(MASConstraintMaker *make) {
