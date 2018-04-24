@@ -244,14 +244,40 @@
         [_cityTable reloadData];
         [_cityTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
         
-        [_districtTable reloadData];
-        [_districtTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
         
+        NSMutableArray *selectTemp1 = [NSMutableArray arrayWithArray:self.areaArray];
+        [self.areaArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [selectTemp1 replaceObjectAtIndex:0 withObject:@(1)];
+            }else{
+                
+                [selectTemp1 replaceObjectAtIndex:idx withObject:@(0)];
+            }
+        }];
+        _selectArea = selectTemp1;
+        
+        [_districtTable reloadData];
+        if (_areaArray.count) {
+            
+            [_districtTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        }
+        
+        [tableView reloadData];
         
         self.cityStr = self.cityArray[0][@"name"];
         self.cityid = self.cityArray[0][@"code"];
-        self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"code"];
+        if (_areaArray.count) {
+            
+            self.areaStr = self.areaArray[0][@"name"];
+            self.areaid = self.areaArray[0][@"code"];
+        }else{
+            
+            self.areaStr = @"";
+            self.areaid = @"";
+        }
+        
         
         [_selectPro enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
@@ -269,15 +295,26 @@
         [self getAreaArrayBycity:indexPath.row];
         
         [_districtTable reloadData];
-        [_districtTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+        if (_areaArray.count) {
+            
+            [_districtTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        }
         
         self.cityStr = self.cityArray[indexPath.row][@"name"];
         self.cityid =  self.cityArray[indexPath.row][@"code"];
-        self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"code"];
+        if (_areaArray.count) {
+            
+            self.areaStr = self.areaArray[0][@"name"];
+            self.areaid = self.areaArray[0][@"code"];
+        }else{
+            
+            self.areaStr = @"";
+            self.areaid = @"";
+        }
+//        self.areaStr = self.areaArray[0][@"name"];
+//        self.areaid = self.areaArray[0][@"code"];
         
         NSMutableArray *selectTemp = [NSMutableArray arrayWithArray:self.areaArray];
-//        selectTemp = [NSMutableArray arrayWithArray:self.areaArray];
         [self.areaArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             if (idx == 0) {
@@ -289,6 +326,8 @@
             }
         }];
         _selectArea = selectTemp;
+        [_districtTable reloadData];
+        [_districtTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
         
         [_selectCity enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
@@ -412,7 +451,13 @@
 
 -(void)getAreaArrayBycity:(NSInteger )num
 {
-    _areaArray = [NSMutableArray arrayWithArray:_cityArray[num][@"district"]];
+    if (![_cityArray[num][@"district"] isKindOfClass:[NSNull class]]) {
+        
+        _areaArray = [NSMutableArray arrayWithArray:_cityArray[num][@"district"]];
+    }else{
+        
+        _areaArray = [[NSMutableArray alloc] init];
+    }
 }
 
 
