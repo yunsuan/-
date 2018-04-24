@@ -12,7 +12,8 @@
 @interface RoomAnalyzeVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     
-    NSMutableArray *_dataArr;
+    NSMutableDictionary *_dataDic;
+    NSString *_projectId;
 
 }
 @property (nonatomic, strong) UITableView *analyzeTable;
@@ -20,6 +21,16 @@
 @end
 
 @implementation RoomAnalyzeVC
+
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _projectId = projectId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,12 +41,39 @@
 
 - (void)initDataSource{
     
-    _dataArr = [@[] mutableCopy];
+    _dataDic = [@{} mutableCopy];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest GET:HouseTypeAnalyse_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
+            }else{
+                
+                [self showContent:@"暂无分析"];
+            }
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+        [_analyzeTable reloadData];
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 4;
+    return _dataDic.count ? 4: 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -56,7 +94,17 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    return [[UIView alloc] init];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 39 *SIZE)];
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(10 *SIZE, 13 *SIZE, 7 *SIZE, 13 *SIZE)];
+    view1.backgroundColor = YJBlueBtnColor;
+    [view addSubview:view1];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27 *SIZE, 13 *SIZE, 100 *SIZE, 14 *SIZE)];
+    label.textColor = YJTitleLabColor;
+    label.font = [UIFont systemFontOfSize:15 *SIZE];
+    label.text = @"项目分析";
+    [view addSubview:label];
+    return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -69,40 +117,7 @@
     return [[UIView alloc] init];
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//
-//    if (section == 0) {
-//
-//        return nil;
-//    }
-//    RoomBrokerageTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomBrokerageTableHeader"];
-//    if (!header) {
-//
-//        header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
-//    }
-//    header.titleL.text = @"2017-07-11至2017-08-10";
-//    header.dropBtn.tag = section;
-//    if ([_selectArr[section] integerValue]) {
-//
-//        [header.dropBtn setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
-//    }else{
-//
-//        [header.dropBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
-//    }
-//    header.dropBtnBlock = ^(NSInteger index) {
-//
-//        if ([_selectArr[index] integerValue]) {
-//
-//            [_selectArr replaceObjectAtIndex:index withObject:@0];
-//        }else{
-//
-//            [_selectArr replaceObjectAtIndex:index withObject:@1];
-//        }
-//        [tableView reloadData];
-//    };
-//
-//    return header;
-//}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -112,8 +127,35 @@
         cell = [[AnalyzeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AnalyzeTableCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.titleL.text = @"项目优势";
-    cell.contentL.text = @"房子二梯三户边套，南北通透户型，产证面积89平实用95平，可谈朝南带阳台，厨房朝北带很大生活阳台，一个卧室朝南，二个朝南。非常方正，没有一点浪费空间。";
+    switch (indexPath.section) {
+        case 0:
+        {
+            cell.titleL.text = @"项目优势";
+            cell.contentL.text = _dataDic[@"advantage"];
+            break;
+        }
+        case 1:
+        {
+            cell.titleL.text = @"周边分析";
+            cell.contentL.text = _dataDic[@"rim"];
+            break;
+        }
+        case 2:
+        {
+            cell.titleL.text = @"适合人群";
+            cell.contentL.text = _dataDic[@"fetch"];
+            break;
+        }
+        case 3:
+        {
+            cell.titleL.text = @"升值空间";
+            cell.contentL.text = _dataDic[@"increase_value"];
+            break;
+        }
+        default:
+            break;
+    }
+    
     
     return cell;
 }

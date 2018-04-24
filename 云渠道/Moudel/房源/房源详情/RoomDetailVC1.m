@@ -142,8 +142,8 @@
     
     // 创建控制器
     _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:_projectId];
-    _roomBrokerageVC = [[RoomBrokerageVC alloc] init];
-    _roomAnalyzeVC = [[RoomAnalyzeVC alloc] init];
+    _roomBrokerageVC = [[RoomBrokerageVC alloc] initWithProjectId:_projectId];
+    _roomAnalyzeVC = [[RoomAnalyzeVC alloc] initWithProjectId:_projectId];
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];
     [self addChildViewController:_roomBrokerageVC];

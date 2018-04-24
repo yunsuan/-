@@ -20,4 +20,6 @@ typedef void (^collCellBlock)(NSInteger index);
 
 @property (nonatomic, strong) UICollectionView *cellColl;
 
+@property (nonatomic, strong) NSMutableArray *dataArr;
+
 @end

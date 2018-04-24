@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
-- (instancetype)initWithNum:(NSInteger )num imgArr:(NSArray *)imgArr;
+//- (instancetype)initWithNum:(NSInteger )num imgArr:(NSArray *)imgArr;
+
+- (instancetype)initWithNum:(NSInteger )num projectId:(NSString *)projectId;
 
 @end

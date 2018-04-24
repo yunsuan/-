@@ -16,12 +16,23 @@
     
     NSMutableArray *_dataArr;
     NSMutableArray *_selectArr;
+    NSString *_projectId;
 }
 @property (nonatomic, strong) UITableView *brokerageTable;
 
 @end
 
 @implementation RoomBrokerageVC
+
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _projectId = projectId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
