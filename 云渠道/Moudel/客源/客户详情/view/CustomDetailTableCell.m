@@ -22,14 +22,14 @@
 
 - (void)setModel:(CustomRequireModel *)model{
     
-    if ([model.property_type integerValue]) {
+    if ([model.house_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
         NSArray *typeArr = dic[@"param"];
         for (int i = 0; i < typeArr.count; i++) {
             
-            if ([typeArr[i][@"id"] integerValue] == [model.property_type integerValue]) {
+            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
                 
                 _typeL.text = [NSString stringWithFormat:@"物业类型：%@",typeArr[i][@"param"]];
                 break;
@@ -53,35 +53,7 @@
         
         for (int a = 0; a < arr.count; a++) {
             
-            NSArray *arr1 = [arr[a] componentsSeparatedByString:@"-"];
-            for (int i = 0; i < provice.count; i++) {
-
-                if([provice[i][@"code"] integerValue] == [arr1[0] integerValue]){
-                    
-                    NSArray *city = provice[i][@"city"];
-                    for (int j = 0; j < city.count; j++) {
-                        
-                        if([city[j][@"code"] integerValue] == [arr1[1] integerValue]){
-                            
-                            NSArray *area = city[j][@"district"];
-                            
-                            for (int k = 0; k < area.count; k++) {
-                                
-                                if([area[k][@"code"] integerValue] == [arr1[2] integerValue]){
-                                    
-                                    if (a == 0) {
-                                        
-                                        _addressL.text = [NSString stringWithFormat:@"区域：%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                    }else{
-                                     
-                                        _addressL.text = [NSString stringWithFormat:@"%@,%@-%@-%@",_addressL.text,provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            
         }
     }else{
         
@@ -126,14 +98,14 @@
         _areaL.text = @"面积：";
     }
     
-    if ([model.house_type integerValue]) {
+    if ([model.property_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
         NSArray *typeArr = dic[@"param"];
         for (int i = 0; i < typeArr.count; i++) {
             
-            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
+            if ([typeArr[i][@"id"] integerValue] == [model.property_type integerValue]) {
                 
                 _houseTypeL.text = [NSString stringWithFormat:@"户型：%@",typeArr[i][@"param"]];
                 break;

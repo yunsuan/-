@@ -62,24 +62,24 @@
 
 @implementation RoomVC
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
     [self initDateSouce];
     [self initUI];
-    
 }
 
 -(void)initDateSouce
 {
     
     _dataArr = [@[] mutableCopy];
-    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     _page = 1;
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
-    [self RequestMethod];
+//    [self RequestMethod];
 }
 
 - (void)SetData:(NSArray *)data{
@@ -111,7 +111,20 @@
         self.MainTableView.mj_footer.state = MJRefreshStateIdle;
     }
     
-    NSDictionary *dic = @{@"city":@"510100",@"page":@(_page)};
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
+//    if (_provice.length) {
+//
+//        [dic setObject:_provice forKey:@"province"];
+//    }
+    if (_city.length) {
+        
+        [dic setObject:_city forKey:@"city"];
+    }
+    if (_district.length) {
+        
+        [dic setObject:_district forKey:@"district"];
+    }
+//    NSDictionary *dic = @{@"city":@"510100",@"page":@(_page)};
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
@@ -210,6 +223,11 @@
     
     NSLog(@"address:%@----%@",result.addressDetail,result.address);
     [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
+//    _district = result.addressDetail.adCode;
+    NSInteger disInteger = [result.addressDetail.adCode integerValue];
+    NSInteger cityInteger = disInteger / 100 * 100;
+    _city = [NSString stringWithFormat:@"%ld",cityInteger];
+    [self RequestMethod];
 }
 
 //定位失败
