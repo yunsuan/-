@@ -22,16 +22,23 @@
 #import "CustomMatchListVC.h"
 #import "DistributVC.h"
 #import "RoomDetailModel.h"
+#import "BuildingAlbumVC.h"
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate>
+@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate>
 {
+    CLLocationCoordinate2D _leftBottomPoint;
+    CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
     
-    NSMutableArray *_dynamicArr;
+    NSMutableDictionary *_dynamicDic;
     NSString *_projectId;
     RoomDetailModel *_model;
+    NSMutableDictionary *_focusDic;
+    NSString *_dynamicNum;
+    NSMutableArray *_imgArr;
+    NSString *_focusId;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -67,17 +74,28 @@
     [self initUI];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    
-//    [super viewWillAppear:animated];
-//    
-//    self.mapView.delegate = nil;
-//    [self.mapView removeFromSuperview];
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    self.mapView.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    
+    self.mapView.delegate = nil;
+    [self.mapView removeFromSuperview];
+}
 
 
 - (void)initDataSource{
     
+    _dynamicNum = @"";
+    _imgArr = [@[] mutableCopy];
+    _focusDic = [@{} mutableCopy];
+    _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
     [self RequestMethod];
 }
@@ -102,6 +120,7 @@
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
                 [self SetData:resposeObject[@"data"]];
+                
             }else{
                 
                 [self showContent:@"暂时没有数据"];
@@ -116,9 +135,7 @@
 
 - (void)SetData:(NSDictionary *)data{
     
-//    if (data[@"dynamic"] ) {
-//        <#statements#>
-//    }
+
     if ([data[@"project_basic_info"] isKindOfClass:[NSDictionary class]]) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"project_basic_info"]];
@@ -130,6 +147,53 @@
             }
         }];
         _model = [[RoomDetailModel alloc] initWithDictionary:tempDic];
+    }
+    
+    if ([data[@"dynamic"] isKindOfClass:[NSDictionary class]]) {
+        
+        if (![data[@"dynamic"][@"count"] isKindOfClass:[NSNull class]]) {
+            
+            _dynamicNum = data[@"dynamic"][@"count"];
+        }
+        
+        if ([data[@"dynamic"][@"first"] isKindOfClass:[NSDictionary class]]) {
+            
+            _dynamicDic = [[NSMutableDictionary alloc] initWithDictionary:data[@"dynamic"][@"first"]];
+            [_dynamicDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+               
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [_dynamicDic setObject:@"" forKey:key];
+                }
+            }];
+        }
+    }
+    
+    if ([data[@"project_img"] isKindOfClass:[NSDictionary class]]) {
+        
+        if ([data[@"project_img"][@"url"] isKindOfClass:[NSArray class]]) {
+            
+            _imgArr = [[NSMutableArray alloc] initWithArray:data[@"project_img"][@"url"]];
+            
+            [_imgArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSDictionary class]]) {
+                    
+                    if ([obj[@"img_url"] isKindOfClass:[NSNull class]]) {
+                        
+                        [_imgArr replaceObjectAtIndex:idx withObject:@{@"img_url":@""}];
+                    }
+                }else{
+                    
+                    [_imgArr replaceObjectAtIndex:idx withObject:@{@"img_url":@""}];
+                }
+            }];
+        }
+    }
+    
+    if ([data[@"focus"] isKindOfClass:[NSDictionary class]]) {
+        
+        _focusDic = [NSMutableDictionary dictionaryWithDictionary:data[@"focus"]];
     }
     
     [_roomTable reloadData];
@@ -145,7 +209,7 @@
     
     if (btn.tag == 2) {
         
-        DynamicListVC *next_vc = [[DynamicListVC alloc]init];
+        DynamicListVC *next_vc = [[DynamicListVC alloc]initWithProjectId:_projectId];
         [self.navigationController pushViewController:next_vc animated:YES];
     }
     
@@ -222,12 +286,58 @@
             
             header = [[RoomDetailTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
         }
-        header.titleL.text = @"FUNX自由青年公寓 城北店火爆来袭";
-        header.statusL.text = @"在售";
-        header.attentL.text = @"关注人数：23";
-        header.payL.text = @"交房时间：暂无数据";
-        //        header.priceL.text = @""
-        header.addressL.text = @"高新区-天府五街230号";
+        
+        header.model = _model;
+        header.imgArr = _imgArr;
+        if (_focusDic.count) {
+            
+            header.attentL.text = [NSString stringWithFormat:@"关注人数:%@",_focusDic[@"num"]];
+            if ([_focusDic[@"is_focus"] integerValue]) {
+                
+                [header.attentBtn setImage:[UIImage imageNamed:@"Focus_selected"] forState:UIControlStateNormal];
+            }else{
+                
+                [header.attentBtn setImage:[UIImage imageNamed:@"Focus"] forState:UIControlStateNormal];
+            }
+        }else{
+            
+            [header.attentBtn setImage:[UIImage imageNamed:@"Focus"] forState:UIControlStateNormal];
+        }
+        header.imgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
+            
+            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num imgArr:imgArr];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        };
+        
+        header.attentBtnBlock = ^{
+            
+            if (_focusDic.count) {
+                
+                if ([_focusDic[@"is_focus"] integerValue]) {
+                    
+//                    [BaseRequest GET:FocusProject_URL parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
+                }else{
+                    
+                    [BaseRequest GET:FocusProject_URL parameters:@{@"project_id":_model} success:^(id resposeObject) {
+                        
+                        NSLog(@"%@",resposeObject);
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            
+                        }else{
+                            
+                            [self showContent:resposeObject[@"msg"]];
+                        }
+                        [self RequestMethod];
+                    } failure:^(NSError *error) {
+                        
+                        NSLog(@"%@",error);
+                        [self showContent:@"网络错误"];
+                    }];
+                }
+            }
+        };
+
         return header;
         
     }else{
@@ -291,10 +401,14 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-            cell.numL.text = @"（共13条）";
-            cell.titleL.text = @"云算公馆参考价格5000元/㎡";
-            cell.timeL.text = @"2017年12月19日   12:43:00";
-            cell.contentL.text = @"2017年11月28日讯：云算公馆现房在售，在售房源建筑面积188㎡只余底层且只余一套，三室..";
+            if (_dynamicDic) {
+                
+                cell.numL.text = [NSString stringWithFormat: @"（共%@条）",_dynamicNum];
+                cell.titleL.text = _dynamicDic[@"title"];
+                cell.timeL.text = _dynamicDic[@"update_time"];
+                cell.contentL.text = _dynamicDic[@"content"];
+            }
+            
             cell.moreBtn.tag = indexPath.section;
             [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
@@ -446,6 +560,72 @@
         _mapView.isSelectedAnnotationViewFront = YES;
     }
     return _mapView;
+}
+
+- (void)mapViewDidFinishLoading:(BMKMapView *)mapView
+{
+    _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
+    _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
+    //开始搜索
+}
+
+
+
+- (void)beginSearchWithname:(NSString *)name{
+    
+    _poisearch = [[BMKPoiSearch alloc]init];
+    _poisearch.delegate = self;
+    
+    BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
+    boundSearchOption.pageIndex = 0;
+    boundSearchOption.pageCapacity = 40;
+    boundSearchOption.keyword = name;
+    boundSearchOption.leftBottom =_leftBottomPoint;
+    boundSearchOption.rightTop =_rightBottomPoint;
+    
+    BOOL flag = [_poisearch poiSearchInbounds:boundSearchOption];
+    if(flag)
+    {
+        NSLog(@"范围内检索发送成功");
+    }
+    else
+    {
+        NSLog(@"范围内检索发送失败");
+    }
+}
+
+#pragma mark implement BMKSearchDelegate
+- (void)onGetPoiResult:(BMKPoiSearch *)searcher result:(BMKPoiResult*)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        NSArray* array = [NSArray arrayWithArray:_mapView.annotations];
+        [_mapView removeAnnotations:array];
+        array = [NSArray arrayWithArray:_mapView.overlays];
+        [_mapView removeOverlays:array];
+        //在此处理正常结果
+        for (int i = 0; i < result.poiInfoList.count; i++)
+        {
+            BMKPoiInfo* poi = [result.poiInfoList objectAtIndex:i];
+            [self addAnimatedAnnotationWithName:poi.name withAddress:poi.pt];
+        }
+        
+    } else if (error == BMK_SEARCH_AMBIGUOUS_ROURE_ADDR){
+        NSLog(@"起始点有歧义");
+    } else {
+        // 各种情况的判断。。。
+    }
+}
+// 添加动画Annotation
+- (void)addAnimatedAnnotationWithName:(NSString *)name withAddress:(CLLocationCoordinate2D)coor {
+    BMKPointAnnotation*animatedAnnotation = [[BMKPointAnnotation alloc]init];
+    animatedAnnotation.coordinate = coor;
+    animatedAnnotation.title = name;
+    [_mapView addAnnotation:animatedAnnotation];
+}
+- (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
+    _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
 }
 
 @end

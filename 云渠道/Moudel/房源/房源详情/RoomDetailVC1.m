@@ -89,7 +89,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    [_scrollView setContentOffset:CGPointMake(SCREEN_Width * indexPath.item, 0) animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    NSInteger index = scrollView.contentOffset.x / SCREEN_Width;
+    [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
 }
 
 - (void)initUI{
@@ -115,7 +121,7 @@
     _flowLayout.minimumInteritemSpacing = 0;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(80 *SIZE, STATUS_BAR_HEIGHT, 200 *SIZE, 44) collectionViewLayout:_flowLayout];
+    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(80 *SIZE, STATUS_BAR_HEIGHT, 200 *SIZE, 43) collectionViewLayout:_flowLayout];
     _segmentColl.backgroundColor = CH_COLOR_white;
     _segmentColl.delegate = self;
     _segmentColl.dataSource = self;
@@ -128,7 +134,7 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT)];
     [self.view addSubview:self.scrollView];
     // 设置scrollView的内容
-    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 2, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT);
+    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 3, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT);
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -137,13 +143,16 @@
     // 创建控制器
     _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:_projectId];
     _roomBrokerageVC = [[RoomBrokerageVC alloc] init];
+    _roomAnalyzeVC = [[RoomAnalyzeVC alloc] init];
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];
     [self addChildViewController:_roomBrokerageVC];
     _roomProjectVC.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     _roomBrokerageVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
+    _roomAnalyzeVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 2, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     [self.scrollView addSubview:_roomProjectVC.view];
     [self.scrollView addSubview:_roomBrokerageVC.view];
+    [self.scrollView addSubview:_roomAnalyzeVC.view];
     
     // 设置scrollView的代理
     self.scrollView.delegate = self;

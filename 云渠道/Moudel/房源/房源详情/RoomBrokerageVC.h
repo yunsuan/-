@@ -10,4 +10,6 @@
 
 @interface RoomBrokerageVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end

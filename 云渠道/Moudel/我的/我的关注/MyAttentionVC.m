@@ -174,7 +174,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MyAttentionModel *model = _dataArr[indexPath.row];
-    NSDictionary *dic = @{@"focus_id":model.focus_id};
+    NSDictionary *dic = @{@"project_id":model.project_id};
     [BaseRequest GET:CancelFocusProject_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);

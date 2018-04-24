@@ -16,9 +16,13 @@
 
 @property (nonatomic, strong) NSString *developer_name;
 
+@property (nonatomic, strong) NSString *general_layout_plan_url;
+
 @property (nonatomic, strong) NSString *latitude;
 
 @property (nonatomic, strong) NSString *longitude;
+
+@property (nonatomic, strong) NSString *project_id;
 
 @property (nonatomic, strong) NSString *project_name;
 
@@ -26,6 +30,12 @@
 
 @property (nonatomic, strong) NSString *sale_state;
 
+@property (nonatomic, strong) NSMutableArray *property_type;
+
 @property (nonatomic, strong) NSString *total_float_url;
+
+@property (nonatomic, strong) NSString *yunsuan_id;
+
+@property (nonatomic, strong) NSString *yunsuan_url;
 
 @end

@@ -108,3 +108,8 @@ static NSString *const ProjectList_URL = @"user/project/list";
 //获取项目信息，动态，户型等信息
 static NSString *const ProjectDetail_URL = @"user/project/detail";
 
+//关注项目
+static NSString *const FocusProject_URL = @"user/project/focusProject";
+
+//获取动态列表
+static NSString *const DynamicList_URL = @"user/dynamic/list";
