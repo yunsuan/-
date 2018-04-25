@@ -67,9 +67,14 @@
 
 - (void)setModel:(RoomDetailModel *)model{
     
+    if (model.project_name) {
+        
+        _titleL.text = model.project_name;
+    }
+    
     if (model.absolute_address) {
         
-        _titleL.text = model.absolute_address;
+        _addressL.text = model.absolute_address;
     }
     
     if (model.sale_state) {

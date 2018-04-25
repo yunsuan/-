@@ -1020,62 +1020,47 @@
     
     [self masonryUI];
     
-    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-    
-    NSError *err;
-    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                       options:NSJSONReadingMutableContainers
-                                                         error:&err];
-    NSArray *arrr = [_model.region componentsSeparatedByString:@","];
+    NSArray *arrr = _model.region;
 
     if (arrr.count) {
         
-        for (int a = 0; a < arrr.count; a++) {
+        NSArray *arrr = _model.region;
+        if (arrr.count) {
             
-            NSArray *arr1 = [arrr[a] componentsSeparatedByString:@"-"];
-            for (int i = 0; i < provice.count; i++) {
-                
-                if([provice[i][@"code"] integerValue] == [arr1[0] integerValue]){
-                    
-                    NSArray *city = provice[i][@"city"];
-                    for (int j = 0; j < city.count; j++) {
-                        
-                        if([city[j][@"code"] integerValue] == [arr1[1] integerValue]){
-                            
-                            NSArray *area = city[j][@"district"];
-                            
-                            for (int k = 0; k < area.count; k++) {
-                                
-                                if([area[k][@"code"] integerValue] == [arr1[2] integerValue]){
-                                    
-                                    if (a == 0) {
-                                        
-                                        _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                        _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"code"],city[0][@"code"],area[k][@"code"]];
-                                    }else{
-                                        
-                                        if (a == 1) {
-                                            
-                                            [self ActionAddBtn:_addBtn];
-                                            _addressBtn2.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                            _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"code"],city[0][@"code"],area[k][@"code"]];
-                                        }else{
-                                            
-                                            [self ActionAddBtn:_addBtn];
-                                            _addressBtn3.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                            _addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"code"],city[0][@"code"],area[k][@"code"]];
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
+            switch (arrr.count) {
+                case 1:
+                {
+                    _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province_name"],arrr[0][@"city_name"],arrr[0][@"district_name"]];
+                    _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province"],arrr[0][@"city"],arrr[0][@"district"]];
+                    break;
                 }
+                case 2:
+                {
+                    _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province_name"],arrr[0][@"city_name"],arrr[0][@"district_name"]];
+                    _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province"],arrr[0][@"city"],arrr[0][@"district"]];
+                    
+                    [self ActionAddBtn:_addBtn];
+                    _addressBtn2.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[1][@"province_name"],arrr[1][@"city_name"],arrr[1][@"district_name"]];
+                    _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[1][@"province"],arrr[1][@"city"],arrr[1][@"district"]];
+                    break;
+                }
+                case 3:
+                {
+                    _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province_name"],arrr[0][@"city_name"],arrr[0][@"district_name"]];
+                    _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province"],arrr[0][@"city"],arrr[0][@"district"]];
+                    [self ActionAddBtn:_addBtn];
+                    _addressBtn2.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[1][@"province_name"],arrr[1][@"city_name"],arrr[1][@"district_name"]];
+                    _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[1][@"province"],arrr[1][@"city"],arrr[1][@"district"]];
+                    [self ActionAddBtn:_addBtn];
+                    _addressBtn3.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[2][@"province_name"],arrr[2][@"city_name"],arrr[2][@"district_name"]];
+                    _addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[2][@"province"],arrr[2][@"city"],arrr[2][@"district"]];
+                    break;
+                }
+                default:
+                    break;
             }
         }
     }
-    
     if ([_model.property_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;

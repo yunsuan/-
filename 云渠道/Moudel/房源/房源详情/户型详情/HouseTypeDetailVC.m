@@ -20,6 +20,7 @@
     
     NSString *_houseTypeId;
     NSMutableDictionary *_baseInfoDic;
+    NSMutableArray *_imgArr;
 }
 @property (nonatomic, strong) UIButton *recommendBtn;
 
@@ -35,6 +36,7 @@
     if (self) {
         
         _houseTypeId = houseTypeId;
+        _imgArr = [@[] mutableCopy];
     }
     return self;
 }
@@ -54,7 +56,7 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            if ([resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
                 
                 [self SetData:resposeObject[@"data"]];
             }else{
@@ -81,6 +83,20 @@
                 [_baseInfoDic setObject:@"" forKey:key];
             }
         }];
+    }
+    
+    if ([data[@"imgInfo"] isKindOfClass:[NSArray class]]) {
+        
+        NSArray *arr = data[@"imgInfo"];
+        for ( int i = 0; i < arr.count; i++) {
+            
+            if ([arr[i] isKindOfClass:[NSDictionary class]]) {
+                
+                NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:arr[i]];
+                
+                [_imgArr addObject:tempDic];
+            }
+        }
     }
     
     [_houseTable reloadData];
@@ -119,6 +135,8 @@
             
             header = [[HouseTypeTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 184 *SIZE)];
         }
+//        header.imgArr = [NSMutableArray arrayWithArray:_imgArr];
+        header.imgArr = [NSMutableArray arrayWithArray:_imgArr];
         
         return header;
     }else{

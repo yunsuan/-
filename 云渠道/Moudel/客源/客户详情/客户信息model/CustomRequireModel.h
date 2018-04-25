@@ -44,7 +44,7 @@
 
 @property (nonatomic, strong) NSString *property_type;
 
-@property (nonatomic, strong) NSString *region;
+@property (nonatomic, strong) NSMutableArray *region;
 
 @property (nonatomic, strong) NSString *state;
 

@@ -41,19 +41,45 @@
         _typeL.text = @"物业类型：";
     }
     
-    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-    
-    NSError *err;
-    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                       options:NSJSONReadingMutableContainers
-                                                         error:&err];
-    NSArray *arr = [model.region componentsSeparatedByString:@","];
-    
-    if (arr.count) {
+    if (model.region.count) {
         
-        for (int a = 0; a < arr.count; a++) {
+        for (int i = 0; i < model.region.count; i++) {
             
-            
+            if (i == 0) {
+                
+                if ([model.region[i][@"province_name"] length]) {
+                    
+                    _addressL.text = [NSString stringWithFormat:@"区域：%@",model.region[i][@"province_name"]];
+                    
+                    if ([model.region[i][@"city_name"] length]) {
+                        
+                        _addressL.text = [NSString stringWithFormat:@"%@-%@",_addressL.text,model.region[i][@"city_name"]];
+                        if ([model.region[i][@"district_name"] length]) {
+                            
+                            _addressL.text = [NSString stringWithFormat:@"%@-%@",_addressL.text,model.region[i][@"district_name"]];
+                        }
+                    }
+                }else{
+                    
+                    _addressL.text = @"区域：";
+                }
+                
+            }else{
+                
+                if ([model.region[i][@"province_name"] length]) {
+                    
+                    _addressL.text = [NSString stringWithFormat:@"%@ %@",_addressL.text,model.region[i][@"province_name"]];
+                    
+                    if ([model.region[i][@"city_name"] length]) {
+                        
+                        _addressL.text = [NSString stringWithFormat:@"%@-%@",_addressL.text,model.region[i][@"city_name"]];
+                        if ([model.region[i][@"district_name"] length]) {
+                            
+                            _addressL.text = [NSString stringWithFormat:@"%@-%@",_addressL.text,model.region[i][@"district_name"]];
+                        }
+                    }
+                }
+            }
         }
     }else{
         

@@ -560,11 +560,27 @@
             
             _Customerinfomodel.tel = [NSString stringWithFormat:@"%@,%@,%@",_tel1.textfield.text,_tel2.textfield.text,_tel3.textfield.text];
         }
-        _Customerinfomodel.card_id = _num.textfield.text;
-        _Customerinfomodel.address = _detailadress.text;
+        if (![self isEmpty:_num.textfield.text]) {
+            
+            _Customerinfomodel.card_id = _num.textfield.text;
+        }
+        
+        if (![self isEmpty:_detailadress.text]) {
+            
+            _Customerinfomodel.card_id = _detailadress.text;
+        }
+        
         
         NSMutableDictionary *dic = [_Customerinfomodel modeltodic];
         [dic setObject:_model.client_id forKey:@"client_id"];
+        
+        [dic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([[NSString stringWithFormat:@"%@",obj] isEqualToString:@""]) {
+                
+                [dic removeObjectForKey:key];
+            }
+        }];
         
         [BaseRequest POST:UpdateClient_URL parameters:dic success:^(id resposeObject) {
             NSLog(@"%@",resposeObject);
