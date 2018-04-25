@@ -122,3 +122,12 @@ static NSString *const HouseTypeAnalyse_URL = @"user/houseType/analyse";
 
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
+
+#pragma mark ---  消息  ---
+
+//获取消息未读数量
+static NSString *const InfoList_URL = @"agent/message/getUnread";
+
+static NSString *const SystemInfoList_URL = @"agent/message/system";
+
+static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";

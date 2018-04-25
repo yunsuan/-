@@ -24,8 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _data = @[@[@"systemmessage",@"系统消息",@"未读消息1条"],@[@"worknews",@"工作消息",@"未读消息2条"]];
+    _data = @[@[@"systemmessage",@"系统消息",@"未读消息0条"],@[@"worknews",@"工作消息",@"未读消息0条"]];
+    [self post];
     [self initUI];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -45,9 +47,10 @@
     if (!cell) {
         
         cell = [[MessageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
-        [cell SetCellContentbyimg:_data[indexPath.row][0] title:_data[indexPath.row][1] content:_data[indexPath.row][2]];
+
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell SetCellContentbyimg:_data[indexPath.row][0] title:_data[indexPath.row][1] content:_data[indexPath.row][2]];
     
     return cell;
 }
@@ -75,8 +78,24 @@
     _messageTable.delegate = self;
     _messageTable.dataSource = self;
     _messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    _messageTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self post];
+    }];
     [self.view addSubview:_messageTable];
+}
+
+-(void)post{
+    [BaseRequest GET:InfoList_URL parameters:nil success:^(id resposeObject) {
+        if ([resposeObject[@"code"] integerValue]==200) {
+            _data = @[@[@"systemmessage",@"系统消息",[NSString stringWithFormat:@"未读消息%ld条",[resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue]]],@[@"worknews",@"工作消息",[NSString stringWithFormat:@"未读消息%ld条",[resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]]]];
+            [_messageTable reloadData];
+            [_messageTable.mj_header endRefreshing];
+        }
+        
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+        [_messageTable.mj_header endRefreshing];
+    }];
 }
 
 @end

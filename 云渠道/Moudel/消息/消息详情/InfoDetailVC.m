@@ -31,12 +31,17 @@
     _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
     [self initDataSouce];
     [self initUI];
+    [self post];
 }
 
 -(void)initUI
 {
     [self.view addSubview:self.Maintableview];
     [self.view addSubview:self.toolview];
+}
+
+-(void)post{
+
 }
 
 -(void)initDataSouce
