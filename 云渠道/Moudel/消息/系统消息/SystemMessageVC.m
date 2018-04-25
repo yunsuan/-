@@ -25,6 +25,12 @@
 
 @implementation SystemMessageVC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self post];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
@@ -32,13 +38,15 @@
     self.titleLabel.text = @"系统消息";
     [self initDateSouce];
     [self initUI];
+
     
 }
 
 -(void)post{
-    [BaseRequest GET:Info_URL parameters:nil success:^(id resposeObject) {
+    
+    [BaseRequest GET:SystemInfoList_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
-            
+            dataarr = resposeObject[@"data"];
             [_systemmsgtable reloadData];
         }
         
@@ -49,7 +57,7 @@
 
 -(void)initDateSouce
 {
-
+    dataarr = [[NSMutableArray alloc]init];
 }
 
 -(void)initUI
@@ -65,7 +73,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return dataarr.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -86,7 +94,7 @@
         if (!cell) {
             cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-    [cell SetCellbytitle:@"审核通过" content:@"您于2017-11-23 提交的资料通过审核！" time:@"2017-11-23 12 : 56 : 32" messageimg:0];
+    [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:dataarr[indexPath.row][@"content"] time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"][@"is_read"] boolValue]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
 }
@@ -94,7 +102,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
-    [self.navigationController pushViewController:next_vc animated:YES];
+    next_vc.url = dataarr[indexPath.row][@"api_url"];
+    next_vc.extra_param = dataarr[indexPath.row][@"extra_param"];
+    next_vc.type = dataarr[indexPath.row][@"is_read"][@"type"];
+    [BaseRequest GET:SystemRead_URL parameters:@{
+                                                 @"type":dataarr[indexPath.row][@"is_read"][@"type"],
+                                                 @"message_id":dataarr[indexPath.row][@"is_read"][@"message_id"]
+                                                 }
+             success:^(id resposeObject) {
+                 if ([resposeObject[@"code"] integerValue] == 200) {
+                     [self.navigationController pushViewController:next_vc animated:YES];
+                 }
+                                                 }
+             failure:^(NSError *error) {
+                                                     
+                                                 }];
+    
+    
 }
 
 

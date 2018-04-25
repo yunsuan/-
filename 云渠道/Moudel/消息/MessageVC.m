@@ -85,14 +85,16 @@
 }
 
 -(void)post{
-    [BaseRequest GET:Info_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:InfoList_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
-            _data = @[@[@"systemmessage",@"系统消息",@"未读消息0条"],@[@"worknews",@"工作消息",@"未读消息0条"]];
+            _data = @[@[@"systemmessage",@"系统消息",[NSString stringWithFormat:@"未读消息%ld条",[resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue]]],@[@"worknews",@"工作消息",[NSString stringWithFormat:@"未读消息%ld条",[resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]]]];
             [_messageTable reloadData];
+            [_messageTable.mj_header endRefreshing];
         }
         
     } failure:^(NSError *error) {
         [self showContent:@"网络错误"];
+        [_messageTable.mj_header endRefreshing];
     }];
 }
 

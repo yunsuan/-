@@ -36,7 +36,7 @@
 }
 
 -(void)post{
-    [BaseRequest GET:Info_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:InfoList_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
             
             [_systemmsgtable reloadData];
