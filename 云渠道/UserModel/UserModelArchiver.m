@@ -57,4 +57,12 @@
     
 }
 
++(void)ClearUserInfoModel
+{
+    BOOL flag = [NSKeyedArchiver archiveRootObject:[[UserInfoModel alloc]init] toFile:[self infoArchivePath]];
+    if (!flag) {
+        NSLog(@"清空用户信息失败!");
+    }
+}
+
 @end

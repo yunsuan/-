@@ -31,6 +31,6 @@
 @property (nonatomic, strong) NSString *tel;
 
 + (UserInfoModel *)defaultModel;
-+ (void)clearModel;
+
 
 @end

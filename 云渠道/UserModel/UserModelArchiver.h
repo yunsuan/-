@@ -14,5 +14,5 @@
 + (UserInfoModel *)InfoUnarchive;
 + (void)archive; //归档
 + (void)infoArchive; //归档
-
++ (void)ClearUserInfoModel;
 @end
