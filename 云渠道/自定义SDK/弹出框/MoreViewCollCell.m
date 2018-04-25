@@ -31,19 +31,21 @@
     _titleL.font = [UIFont systemFontOfSize:13 *SIZE];
     _titleL.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_titleL];
-}
-
-- (void)setSelected:(BOOL)selected{
     
-    if (selected) {
-        
-        self.contentView.backgroundColor = COLOR(133, 200, 255, 1);
-        _titleL.textColor = CH_COLOR_white;
-    }else{
-        
-        _titleL.textColor = YJ86Color;
-        self.contentView.backgroundColor = COLOR(238, 238, 238, 1);
-    }
+    self.layer.borderColor = COLOR(133, 200, 255, 1).CGColor;
 }
+//
+//- (void)setSelected:(BOOL)selected{
+//    
+//    if (selected) {
+//        
+//        self.contentView.backgroundColor = COLOR(133, 200, 255, 1);
+//        _titleL.textColor = CH_COLOR_white;
+//    }else{
+//        
+//        _titleL.textColor = YJ86Color;
+//        self.contentView.backgroundColor = COLOR(238, 238, 238, 1);
+//    }
+//}
 
 @end

@@ -12,6 +12,5 @@
 
 @property (nonatomic, strong) UILabel *titleL;
 
-//@property (nonatomic, strong)  *<#class#>;
 
 @end

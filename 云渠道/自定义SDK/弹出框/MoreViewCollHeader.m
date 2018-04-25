@@ -15,11 +15,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 13 *SIZE, SCREEN_Width, 12 *SIZE)];
-        label.textColor = YJ86Color;
-        label.font = [UIFont systemFontOfSize:13 *SIZE];
-        label.text = @"特色";
-        [self addSubview:label];
+        _titleL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 13 *SIZE, SCREEN_Width, 12 *SIZE)];
+        _titleL.textColor = YJ86Color;
+        _titleL.font = [UIFont systemFontOfSize:13 *SIZE];
+        [self addSubview:_titleL];
     }
     return self;
 }
