@@ -26,9 +26,6 @@ static dispatch_once_t onceToken;
     return  model;
 }
 
-+ (void)clearModel{
-
-}
 
 #pragma mark - NSCoding
 //归档

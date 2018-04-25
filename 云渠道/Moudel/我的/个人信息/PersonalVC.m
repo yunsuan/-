@@ -126,6 +126,7 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
         [UserModel defaultModel].Token = @"";
         [UserModelArchiver archive];
+        [UserModelArchiver ClearUserInfoModel];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
         
     }];
