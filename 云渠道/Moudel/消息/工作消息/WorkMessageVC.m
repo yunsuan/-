@@ -11,6 +11,9 @@
 #import "InfoDetailVC.h"
 
 @interface WorkMessageVC ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSMutableArray *dataarr;
+}
 
 @property (nonatomic , strong) UITableView *systemmsgtable;
 
@@ -30,6 +33,18 @@
     [self initDateSouce];
     [self initUI];
     
+}
+
+-(void)post{
+    [BaseRequest GET:Info_URL parameters:nil success:^(id resposeObject) {
+        if ([resposeObject[@"code"] integerValue]==200) {
+            
+            [_systemmsgtable reloadData];
+        }
+        
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+    }];
 }
 
 -(void)initDateSouce
