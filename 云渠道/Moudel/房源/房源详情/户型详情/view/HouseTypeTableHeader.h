@@ -14,12 +14,10 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-@property (nonatomic, strong) UIButton *planBtn;
+@property (nonatomic, strong) UICollectionView *imgColl;
 
-@property (nonatomic, strong) UIButton *effectBtn;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
-@property (nonatomic, strong) UIButton *d3Btn;
-
-@property (nonatomic, strong) UIButton *actionBtn;
+@property (nonatomic, strong) NSMutableArray *imgArr;
 
 @end

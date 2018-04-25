@@ -50,7 +50,7 @@
     
     [self initDataSource];
     [self initUI];
-    [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
+    [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:0];
 }
 
 - (void)initDataSource{
@@ -58,16 +58,6 @@
     _titleArr = @[@"项目",@"佣金",@"分析"];
 }
 
-//- (void)segmentedControlAction:(UISegmentedControl *)sender
-//{
-//    [self.scrollView setContentOffset:CGPointMake(sender.selectedSegmentIndex * self.scrollView.frame.size.width, 0) animated:NO];
-//}
-//
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    NSInteger n = scrollView.contentOffset.x / scrollView.frame.size.width;
-//    self.segmentedControl.selectedSegmentIndex = n;
-//}
 
 #pragma mark -- collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -89,31 +79,22 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    [_scrollView setContentOffset:CGPointMake(SCREEN_Width * indexPath.item, 0) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(SCREEN_Width * indexPath.item, 0) animated:NO];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     NSInteger index = scrollView.contentOffset.x / SCREEN_Width;
-    [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+    [_segmentColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
 }
 
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.hidden = YES;
-//    self.
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-//    self.segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"first", @"second"]];
-//    self.navigationItem.titleView = self.segmentedControl;
-//    [self.segmentedControl addTarget:self action:@selector(segmentedControlAction:) forControlEvents:UIControlEventValueChanged];
-//    self.segmentedControl.selectedSegmentIndex = 0;
-//
-//    self.segmentedControl.frame = CGRectMake(100 *SIZE, 14 *SIZE + STATUS_BAR_HEIGHT, 160 *SIZE, 30 *SIZE);
-//    [self.navBackgroundView addSubview:self.segmentedControl];
-////    self.segmentedControl.frame = cgrectma
+
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.itemSize = CGSizeMake(66 *SIZE, 44);

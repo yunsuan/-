@@ -135,12 +135,14 @@
         if ([obj isKindOfClass:[NSNull class]]) {
             
             [tempDic setObject:@"" forKey:key];
+            
         }
     }];
     _customModel = [[CustomerModel alloc] initWithDictionary:tempDic];
 }
 
 - (void)setData:(NSArray *)data{
+    
     for (int i = 0; i < data.count; i++) {
         if ([data[i] isKindOfClass:[NSDictionary class]]) {
             

@@ -150,7 +150,7 @@
         }];
     }
     [_albumColl reloadData];
-    [_albumColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
+    [_albumColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:0];
 //    [_scrollView setContentOffset:CGPointMake(_num *SCREEN_Width, 0)];
     _allL.text = [NSString stringWithFormat:@"全部1/%ld",_total];
     _currentL.text = [NSString stringWithFormat:@"%@1/%ld",_imgArr[0][@"name"],[_imgArr[0][@"data"] count]];
@@ -169,7 +169,7 @@
             count = count + [_imgArr[i][@"data"] count];
         }else{
             
-            [_albumColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:YES scrollPosition:0];
+            [_albumColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:NO scrollPosition:0];
             _currentL.text = [NSString stringWithFormat:@"%@%d/%d",_imgArr[i][@"name"],_num - count,[_imgArr[i][@"data"] count]];
             break;
         }
@@ -205,7 +205,7 @@
             count = count + [_imgArr[i][@"data"] count];
         }
     }
-    [_scrollView setContentOffset:CGPointMake(count * SCREEN_Width, 0) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(count * SCREEN_Width, 0) animated:NO];
     
     _currentL.text = [NSString stringWithFormat:@"%@1/%d",_imgArr[indexPath.item][@"name"],[_imgArr[indexPath.item][@"data"] count]];
 }
