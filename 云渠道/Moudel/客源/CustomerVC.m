@@ -210,6 +210,14 @@
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
         [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             
+            if ([key isEqualToString:@"region"]) {
+                
+                if (![obj isKindOfClass:[NSArray class]]) {
+                    
+                    [tempDic setObject:@[] forKey:@"region"];
+                }
+            }
+            
             if ([obj isKindOfClass:[NSNull class]]) {
                 
                 if ([key isEqualToString:@"region"]) {
@@ -530,7 +538,6 @@
                 [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
             }else{
                 
-//                _district = @"";
                 [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
             }
             
@@ -562,7 +569,7 @@
                 [weakSelf.typeBtn setTitle:str forState:UIControlStateNormal];
             }
             _is1 = NO;
-            _type = ID;
+            _type = [NSString stringWithFormat:@"ID"];
             weakSelf.typeBtn.selected = NO;
             [weakSelf.boxView removeFromSuperview];
             [weakSelf RequestMethod];

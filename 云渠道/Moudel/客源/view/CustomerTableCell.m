@@ -56,14 +56,14 @@
         _priceL.text = @"意向总价：";
     }
     
-    if (model.house_type) {
+    if (model.property_type) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
         NSArray *typeArr = dic[@"param"];
         for (int i = 0; i < typeArr.count; i++) {
             
-            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
+            if ([typeArr[i][@"id"] integerValue] == [model.property_type integerValue]) {
                 
                 _typeL.text = [NSString stringWithFormat:@"意向物业：%@",typeArr[i][@"param"]];
                 break;
@@ -74,23 +74,49 @@
         _typeL.text = @"意向物业：";
     }
     
-    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-    
-    NSError *err;
-    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                       options:NSJSONReadingMutableContainers
-                                                         error:&err];
-    
     _areaL.text = @"意向区域：";
-    if ([model.region count]) {
+    if (model.region.count) {
         
-        for (int a = 0; a < [model.region count]; a++) {
-    
+        for (int i = 0; i < model.region.count; i++) {
             
-            
+            if (i == 0) {
+                
+                if ([model.region[i][@"province_name"] length]) {
+                    
+                    _areaL.text = [NSString stringWithFormat:@"区域：%@",model.region[i][@"province_name"]];
+                    
+                    if ([model.region[i][@"city_name"] length]) {
+                        
+                        _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"city_name"]];
+                        if ([model.region[i][@"district_name"] length]) {
+                            
+                            _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"district_name"]];
+                        }
+                    }
+                }else{
+                    
+                    _areaL.text = @"意向区域：";
+                }
+                
+//            }else{
+//
+//                if ([model.region[i][@"province_name"] length]) {
+//
+//                    _areaL.text = [NSString stringWithFormat:@"%@ %@",_areaL.text,model.region[i][@"province_name"]];
+//
+//                    if ([model.region[i][@"city_name"] length]) {
+//
+//                        _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"city_name"]];
+//                        if ([model.region[i][@"district_name"] length]) {
+//
+//                            _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"district_name"]];
+//                        }
+//                    }
+//                }
+            }
         }
     }else{
-
+        
         _areaL.text = @"意向区域：";
     }
 

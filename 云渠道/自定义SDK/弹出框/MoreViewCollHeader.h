@@ -10,4 +10,6 @@
 
 @interface MoreViewCollHeader : UICollectionReusableView
 
+@property (nonatomic, strong) UILabel *titleL;
+
 @end

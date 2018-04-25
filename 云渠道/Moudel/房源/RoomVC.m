@@ -28,7 +28,7 @@
 #import<BaiduMapAPI_Search/BMKPoiSearchType.h>
 
 
-@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,PYSearchViewControllerDelegate>
+@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,PYSearchViewControllerDelegate>
 {
     NSArray *_arr;
     BOOL _upAndDown;
@@ -40,6 +40,13 @@
     NSString *_provice;
     NSString *_city;
     NSString *_district;
+    NSString *_price;
+    NSString *_type;
+    NSString *_more;
+    BOOL _is1;
+    BOOL _is2;
+    BOOL _is3;
+    BOOL _is4;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -49,10 +56,24 @@
 
 @property (nonatomic, strong) UIView *searchBar;
 
-@property (nonatomic, strong) UICollectionView *customerColl;
-@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, strong) BoxView *boxView;
+@property (nonatomic, strong) UIButton *areaBtn;
+
+@property (nonatomic, strong) UIButton *priceBtn;
+
+@property (nonatomic, strong) UIButton *typeBtn;
+
+@property (nonatomic, strong) UIButton *moreBtn;
+
+@property (nonatomic, strong) UIButton *sortBtn;
+
+@property (nonatomic, strong) BoxView *areaView;
+
+@property (nonatomic, strong) BoxView *priceView;
+
+@property (nonatomic, strong) BoxView *typeView;
+
 @property (nonatomic, strong) UIImageView *upImg;
+
 @property (nonatomic, strong) MoreView *moreView;
 
 
@@ -74,7 +95,6 @@
 {
     
     _dataArr = [@[] mutableCopy];
-//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     _page = 1;
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     _geocodesearch.delegate = self;
@@ -112,10 +132,6 @@
     }
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
-//    if (_provice.length) {
-//
-//        [dic setObject:_provice forKey:@"province"];
-//    }
     if (_city.length) {
         
         [dic setObject:_city forKey:@"city"];
@@ -124,11 +140,17 @@
         
         [dic setObject:_district forKey:@"district"];
     }
-//    NSDictionary *dic = @{@"city":@"510100",@"page":@(_page)};
+    if (![_price isEqualToString:@"0"] && _price) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_price] forKey:@"average_price"];
+    }
+    if (![_type isEqualToString:@"0"] && _type) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"property_id"];
+    }
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
-//        [self.MainTableView.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -162,6 +184,180 @@
 
 }
 
+#pragma mark -- Method
+
+- (void)ActionTagBtn:(UIButton *)btn{
+    
+    btn.selected = !btn.selected;
+    
+    switch (btn.tag) {
+        case 1:
+        {
+//            _is2 = NO;
+//            _is3 = NO;
+//            _is4 = NO;
+//            _priceBtn.selected = NO;
+//            _typeBtn.selected = NO;
+//            _moreBtn.selected = NO;
+//            [self.priceView removeFromSuperview];
+//            [self.typeView removeFromSuperview];
+//            [self.moreView removeFromSuperview];
+//            if (_is1) {
+//
+//                _is1 = !_is1;
+//                [self.areaView removeFromSuperview];
+//            }else{
+//
+//                _is1 = YES;
+//                _type = @"0";
+//                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
+//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+//                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//                }];
+//                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+//                [self.boxView.mainTable reloadData];
+//                [self.view addSubview:self.boxView];
+//            }
+            break;
+        }
+        case 2:
+        {
+            _is1 = NO;
+            _is3 = NO;
+            _is4 = NO;
+            _areaBtn.selected = NO;
+            _typeBtn.selected = NO;
+            _moreBtn.selected = NO;
+            [self.areaView removeFromSuperview];
+            [self.typeView removeFromSuperview];
+            [self.moreView removeFromSuperview];
+            if (_is2) {
+                
+                _is2 = !_is2;
+                [self.priceView removeFromSuperview];
+            }else{
+                
+                _is2 = YES;
+                _price = @"0";
+                NSArray *array = [self getDetailConfigArrByConfigState:AVERAGE];
+                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+                self.priceView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (idx == 0) {
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+                    }else{
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+                    }
+                }];
+                self.priceView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+                [self.priceView.mainTable reloadData];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.priceView];
+            }
+            break;
+        }
+        case 3:
+        {
+            _is1 = NO;
+            _is2 = NO;
+            _is4 = NO;
+            _areaBtn.selected = NO;
+            _priceBtn.selected = NO;
+            _moreBtn.selected = NO;
+            [self.areaView removeFromSuperview];
+            [self.priceView removeFromSuperview];
+            [self.moreView removeFromSuperview];
+            if (_is3) {
+                
+                _is3 = !_is3;
+                [self.typeView removeFromSuperview];
+            }else{
+                
+                _is3 = YES;
+                _type = @"0";
+                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
+                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+                self.typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (idx == 0) {
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+                    }else{
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+                    }
+                }];
+                self.typeView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+                [self.typeView.mainTable reloadData];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.typeView];
+            }
+            break;
+        }
+        case 4:
+        {
+            _is1 = NO;
+            _is2 = NO;
+            _is3 = NO;
+            _areaBtn.selected = NO;
+            _priceBtn.selected = NO;
+            _typeBtn.selected = NO;
+            [self.areaView removeFromSuperview];
+            [self.priceView removeFromSuperview];
+            [self.typeView removeFromSuperview];
+            if (_is4) {
+                
+                _is4 = !_is4;
+                [self.moreView removeFromSuperview];
+            }else{
+                
+                _is4 = YES;
+                _more = @"0";
+//                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
+//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+//                self.typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//                }];
+//                self.moreView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+                [self.moreView.moreColl reloadData];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.moreView];
+            }
+            break;
+        }
+        case 5:
+        {
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+
+#pragma mark -- 百度SDK
 -(void)startLocation
 
 {
@@ -305,34 +501,6 @@
     return YES;
 }
 
-#pragma mark -- collectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    return 4;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    RoomCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomCollCell" forIndexPath:indexPath];
-    if (!cell) {
-        
-        cell = [[RoomCollCell alloc] initWithFrame:CGRectMake(0, 0, 81 *SIZE, 40 *SIZE)];
-    }
-    cell.typeL.text = @"区域";
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.item < 2) {
-        
-        [[[UIApplication sharedApplication] keyWindow] addSubview:self.moreView];
-    }else{
-        
-        [self.moreView removeFromSuperview];
-        
-    }
-}
 
 #pragma mark  ---  delegate   ---
 
@@ -470,20 +638,72 @@
     [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_searchBar addSubview:searchBtn];
     
-    
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.minimumLineSpacing = 0;
-    _flowLayout.minimumInteritemSpacing = 0;
-    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _flowLayout.itemSize = CGSizeMake(81 *SIZE, 40 *SIZE);
-    
-    _customerColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE, 324 *SIZE, 40 *SIZE) collectionViewLayout:_flowLayout];
-    _customerColl.backgroundColor = CH_COLOR_white;
-    _customerColl.delegate = self;
-    _customerColl.dataSource = self;
-    _customerColl.bounces = NO;
-    [_customerColl registerClass:[RoomCollCell class] forCellWithReuseIdentifier:@"RoomCollCell"];
-    [self.view addSubview:_customerColl];
+    for (int i = 0; i < 5; i++) {
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(80 * i, 62 *SIZE, 80 *SIZE, 40 *SIZE);
+        btn.tag = i + 1;
+        [btn setBackgroundColor:CH_COLOR_white];
+        [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        switch (i) {
+            case 0:
+            {
+                [btn setTitle:@"区域" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _areaBtn = btn;
+                [self.headerView addSubview:_areaBtn];
+                break;
+            }
+            case 1:
+            {
+                [btn setTitle:@"均价" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _priceBtn = btn;
+                [self.headerView addSubview:_priceBtn];
+                break;
+            }
+            case 2:
+            {
+                [btn setTitle:@"类型" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _typeBtn = btn;
+                [self.headerView addSubview:_typeBtn];
+                break;
+            }
+            case 3:
+            {
+                [btn setTitle:@"更多" forState:UIControlStateNormal];
+                [btn setTitleColor:YJ86Color forState:UIControlStateNormal];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12 *SIZE];
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _moreBtn = btn;
+                [self.headerView addSubview:_moreBtn];
+                break;
+            }
+            case 4:
+            {
+                btn.frame = CGRectMake(80 * i, 62 *SIZE, 40 *SIZE, 40 *SIZE);
+                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                _sortBtn = btn;
+                [self.headerView addSubview:_sortBtn];
+                break;
+            }
+            default:
+                break;
+        }
+    }
     
     _upImg = [[UIImageView alloc] initWithFrame:CGRectMake(334 *SIZE, 74 *SIZE, 13 *SIZE, 16 *SIZE)];
     [self.headerView addSubview:_upImg];
@@ -501,7 +721,7 @@
 {
     if(!_MainTableView)
     {
-        _MainTableView =   [[UITableView alloc]initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT+105*SIZE, 360*SIZE, SCREEN_Height-STATUS_BAR_HEIGHT-105*SIZE-TAB_BAR_HEIGHT) style:UITableViewStylePlain];
+        _MainTableView =   [[UITableView alloc]initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 105*SIZE, 360*SIZE, SCREEN_Height-STATUS_BAR_HEIGHT-105*SIZE-TAB_BAR_HEIGHT) style:UITableViewStylePlain];
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
@@ -529,20 +749,73 @@
     return _headerView;
 }
 
-- (BoxView *)boxView{
+- (BoxView *)priceView{
     
-    if (!_boxView) {
+    if (!_priceView) {
         
-        _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 102 *SIZE)];
+        _priceView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+         WS(weakSelf);
+        _priceView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
+          
+            if ([str isEqualToString:@"不限"]) {
+                
+                [weakSelf.priceBtn setTitle:@"均价" forState:UIControlStateNormal];
+            }else{
+                
+                [weakSelf.priceBtn setTitle:str forState:UIControlStateNormal];
+            }
+            _is2 = NO;
+            _price = [NSString stringWithFormat:@"%@",ID];
+            weakSelf.priceBtn.selected = NO;
+            [weakSelf.priceView removeFromSuperview];
+            [weakSelf RequestMethod];
+        };
+        
+        _priceView.cancelBtnBlock = ^{
+            
+            _is2 = NO;
+            weakSelf.priceBtn.selected = NO;
+        };
     }
-    return _boxView;
+    return _priceView;
+}
+
+- (BoxView *)typeView{
+    
+    if (!_typeView) {
+        
+        _typeView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+        WS(weakSelf);
+        _typeView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
+            
+            if ([str isEqualToString:@"不限"]) {
+                
+                [weakSelf.typeBtn setTitle:@"类型" forState:UIControlStateNormal];
+            }else{
+                
+                [weakSelf.typeBtn setTitle:str forState:UIControlStateNormal];
+            }
+            _is3 = NO;
+            _type = [NSString stringWithFormat:@"%@",ID];
+            weakSelf.typeBtn.selected = NO;
+            [weakSelf.typeView removeFromSuperview];
+            [weakSelf RequestMethod];
+        };
+        
+        _typeView.cancelBtnBlock = ^{
+            
+            _is3 = NO;
+            weakSelf.typeBtn.selected = NO;
+        };
+    }
+    return _typeView;
 }
 
 - (MoreView *)moreView{
     
     if (!_moreView) {
         
-        _moreView = [[MoreView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+        _moreView = [[MoreView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 103 *SIZE, SCREEN_Width, SCREEN_Height - 103 *SIZE - STATUS_BAR_HEIGHT - TAB_BAR_MORE)];
     }
     return _moreView;
 }

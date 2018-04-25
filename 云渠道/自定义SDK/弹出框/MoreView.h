@@ -18,4 +18,10 @@
 
 @property (nonatomic, strong) UIButton *confirmBtn;
 
+@property (nonatomic, strong) NSMutableArray *tagSelectArr;
+
+@property (nonatomic, strong) NSMutableArray *houseSelectArr;
+
+@property (nonatomic, strong) NSMutableArray *statusSelectArr;
+
 @end
