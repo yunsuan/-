@@ -13,6 +13,7 @@
 @interface SystemMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *dataarr;
+    int page;
 }
 
 @property (nonatomic , strong) UITableView *systemmsgtable;
@@ -28,7 +29,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self post];
+    [self postWithpage:@"1"];
 }
 
 - (void)viewDidLoad {
@@ -38,26 +39,50 @@
     self.titleLabel.text = @"系统消息";
     [self initDateSouce];
     [self initUI];
-
-    
 }
 
--(void)post{
+-(void)postWithpage:(NSString *)page{
     
-    [BaseRequest GET:SystemInfoList_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:SystemInfoList_URL parameters:@{
+                                                     @"page":page
+                                                     }
+             success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
-            dataarr = resposeObject[@"data"];
-            [_systemmsgtable reloadData];
+            
+            if ([page isEqualToString:@"1"]) {
+                dataarr = resposeObject[@"data"];
+                [_systemmsgtable reloadData];
+                [_systemmsgtable.mj_footer endRefreshing];
+                
+            }
+            else{
+                NSArray *arr =resposeObject[@"data"];
+                if (arr.count ==0) {
+                    [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
+                }
+                else{
+                    [dataarr addObjectsFromArray:arr];
+                    [_systemmsgtable reloadData];
+                    [_systemmsgtable.mj_footer endRefreshing];
+                    
+                }
+
+            }
+            
+            [_systemmsgtable.mj_header endRefreshing];
         }
         
     } failure:^(NSError *error) {
         [self showContent:@"网络错误"];
+        [_systemmsgtable.mj_footer endRefreshing];
+        [_systemmsgtable.mj_header endRefreshing];
     }];
 }
 
 -(void)initDateSouce
 {
     dataarr = [[NSMutableArray alloc]init];
+    page = 1;
 }
 
 -(void)initUI
@@ -115,10 +140,8 @@
                  }
                                                  }
              failure:^(NSError *error) {
-                                                     
+                 [self showContent:@"网络错误"];
                                                  }];
-    
-    
 }
 
 
@@ -132,6 +155,13 @@
         _systemmsgtable.backgroundColor = YJBackColor;
         _systemmsgtable.delegate = self;
         _systemmsgtable.dataSource = self;
+        _systemmsgtable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self postWithpage:@"1"];
+        }];
+        _systemmsgtable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            page++;
+            [self postWithpage:[NSString stringWithFormat:@"%d",page]];
+        }];
         [_systemmsgtable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     return _systemmsgtable;
