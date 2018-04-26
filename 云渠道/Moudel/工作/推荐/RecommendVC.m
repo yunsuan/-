@@ -198,22 +198,22 @@
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     
+//    if (_index == 1) {
+//
+//        confirmDetailVC *nextVC = [[confirmDetailVC alloc] init];
+//        [self.navigationController pushViewController:nextVC animated:YES];
+//    }
     if (_index == 1) {
-        
-        confirmDetailVC *nextVC = [[confirmDetailVC alloc] init];
-        [self.navigationController pushViewController:nextVC animated:YES];
-    }
-    if (_index == 2) {
         
         ValidVC *nextVC = [[ValidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
-    if (_index == 3) {
+    if (_index == 2) {
         
         InvalidVC *nextVC = [[InvalidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
-    if (_index == 4) {
+    if (_index == 3) {
         
         if (indexPath.row == 0) {
             
