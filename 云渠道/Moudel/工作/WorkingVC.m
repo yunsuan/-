@@ -45,7 +45,6 @@
 
 -(void)initUI
 {
-    
     [self.view addSubview:self.MainTableView];
 }
 

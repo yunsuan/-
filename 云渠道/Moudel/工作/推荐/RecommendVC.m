@@ -46,12 +46,20 @@
     self.titleLabel.text = @"推荐";
     [self initDateSouce];
     [self initUI];
+    [self post];
     
+}
+
+-(void)post{
+    [BaseRequest GET:RecommendList_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 -(void)initDateSouce
 {
-    
     _titleArr = @[@"确认中",@"有效",@"无效",@"申诉"];
 }
 
