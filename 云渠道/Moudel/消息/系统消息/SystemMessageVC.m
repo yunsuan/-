@@ -138,7 +138,7 @@
                  if ([resposeObject[@"code"] integerValue] == 200) {
                      [self.navigationController pushViewController:next_vc animated:YES];
                  }
-                                                 }
+                }
              failure:^(NSError *error) {
                  [self showContent:@"网络错误"];
                                                  }];

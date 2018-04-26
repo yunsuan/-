@@ -131,3 +131,7 @@ static NSString *const InfoList_URL = @"agent/message/getUnread";
 static NSString *const SystemInfoList_URL = @"agent/message/system";
 
 static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
+
+#pragma mark ---  工作  ---
+static NSString *const RecommendList_URL = @"user/work/getRecommendList";
+
