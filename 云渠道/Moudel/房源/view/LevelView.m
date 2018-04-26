@@ -24,10 +24,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//
-//        _title = title;
-//        _level = level;
-//        _image = image;
+
+
         [self initUI];
     }
     return self;
@@ -42,6 +40,7 @@
             _level2.image = image;
             _level3.image = image;
             _level4.image = image;
+            _level5.image = image;
             break;
         }
         case 1:
@@ -50,6 +49,7 @@
             _level2.image = image;
             _level3.image = image;
             _level4.image = image;
+            _level5.image = image;
             break;
         }
         case 2:
@@ -58,6 +58,7 @@
             _level2.image = selectImg;
             _level3.image = image;
             _level4.image = image;
+            _level5.image = image;
             break;
         }
         case 3:
@@ -66,6 +67,7 @@
             _level2.image = selectImg;
             _level3.image = selectImg;
             _level4.image = image;
+            _level5.image = image;
             break;
         }
         case 4:
@@ -74,6 +76,16 @@
             _level2.image = selectImg;
             _level3.image = selectImg;
             _level4.image = selectImg;
+            _level5.image = image;
+            break;
+        }
+        case 5:
+        {
+            _level1.image = selectImg;
+            _level2.image = selectImg;
+            _level3.image = selectImg;
+            _level4.image = selectImg;
+            _level5.image = selectImg;
             break;
         }
         default:
@@ -88,7 +100,7 @@
     _titleL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self addSubview:_titleL];
     
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(29 *SIZE + i * 17 *SIZE, 0, 12 *SIZE, 12 *SIZE)];
         switch (i) {
@@ -114,6 +126,12 @@
             {
                 _level4 = imageView;
                 [self addSubview:_level4];
+                break;
+            }
+            case 4:
+            {
+                _level5 = imageView;
+                [self addSubview:_level5];
                 break;
             }
             default:

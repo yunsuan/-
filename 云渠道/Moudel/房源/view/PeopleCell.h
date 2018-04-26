@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TagView.h"
 #import "LevelView.h"
+#import "RankView.h"
 
 @interface PeopleCell : UITableViewCell
 @property (nonatomic , strong) UILabel *titlelab;
@@ -18,7 +19,7 @@
 @property (nonatomic , strong) UILabel *surelab;
 @property (nonatomic , strong) TagView *tagview;
 @property (nonatomic , strong) TagView *wuyeview;
-@property (nonatomic, strong) LevelView *brokerageLevel;
+@property (nonatomic, strong) RankView *rankView;
 @property (nonatomic, strong) LevelView *getLevel;
 
 

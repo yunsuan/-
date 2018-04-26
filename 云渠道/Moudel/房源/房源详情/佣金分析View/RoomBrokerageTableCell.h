@@ -21,15 +21,9 @@
 
 @property (nonatomic, strong) UILabel *timeL;
 
-@property (nonatomic, strong) UIImageView *rankImg1;
+@property (nonatomic, strong) UILabel *rankL;
 
-@property (nonatomic, strong) UIImageView *rankImg2;
-
-@property (nonatomic, strong) UIImageView *rankImg3;
-
-@property (nonatomic, strong) UIImageView *rankImg4;
-
-@property (nonatomic, strong) UIImageView *rankImg5;
+@property (nonatomic, strong) UIImageView *statusImg;
 
 @property (nonatomic, strong) UIImageView *speedImg1;
 

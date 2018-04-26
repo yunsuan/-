@@ -22,6 +22,12 @@
 
 @property (nonatomic, strong) NSMutableArray *statusArr;
 
+@property (nonatomic, strong) NSString *tagId;
+
+@property (nonatomic, strong) NSString *houseId;
+
+@property (nonatomic, strong) NSString *statusId;
+
 @end
 
 @implementation MoreView
@@ -41,7 +47,7 @@
     if (!_tagArr) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",15]];
         _tagArr = [NSMutableArray arrayWithArray:dic[@"param"]];
     }
     return _tagArr;
@@ -52,7 +58,7 @@
     if (!_tagSelectArr) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
+        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",15]];
         _tagSelectArr = [NSMutableArray arrayWithArray:dic[@"param"]];
         [_tagSelectArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
            
@@ -111,6 +117,35 @@
 
 - (void)ActionTagBtn:(UIButton *)btn{
     
+    if (self.moreBtnBlock) {
+
+        __weak __typeof(&*self)weakSelf = self;
+        [_tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([_tagSelectArr[idx] integerValue] == 1) {
+                
+                weakSelf.tagId = _tagArr[idx][@"id"];
+            }
+        }];
+        
+        [_houseTypeArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([_houseSelectArr[idx] integerValue] == 1) {
+                
+                weakSelf.houseId = _houseTypeArr[idx][@"id"];
+            }
+        }];
+        
+        [_statusArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([_statusSelectArr[idx] integerValue] == 1) {
+                
+                weakSelf.statusId = _statusArr[idx][@"id"];
+            }
+        }];
+        
+        self.moreBtnBlock(self.tagId, self.houseId, self.statusId);
+    }
     [self removeFromSuperview];
 }
 
