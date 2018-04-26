@@ -39,7 +39,7 @@
 
 -(void)initDateSouce
 {
-    _namelist = @[@"推荐",@"被推荐的客户"];
+    _namelist = @[@"新房推荐",@"客户报备"];
     _imglist = @[@"recommended",@"client"];
 }
 
@@ -80,7 +80,7 @@
         cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell setTitle:_namelist[indexPath.row] content:@"今日新增 2，有效 21，修改 39" img:_imglist[indexPath.row]];
+    [cell setTitle:_namelist[indexPath.row] content:@"今日新增确认中2，有效21" img:_imglist[indexPath.row]];
     return cell;
     
 }
