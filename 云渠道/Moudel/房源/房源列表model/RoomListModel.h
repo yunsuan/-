@@ -10,6 +10,7 @@
 
 @interface RoomListModel : NSObject
 
+@property (nonatomic, strong) NSString *absolute_address;
 @property (nonatomic , strong) NSString *city;
 @property (nonatomic , strong) NSString *deposit;
 @property (nonatomic , strong) NSString *district;

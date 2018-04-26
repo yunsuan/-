@@ -46,6 +46,7 @@
     NSString *_tag;
     NSString *_houseType;
     NSString *_status;
+    NSMutableArray *_searchArr;
     BOOL _is1;
     BOOL _is2;
     BOOL _is3;
@@ -97,12 +98,37 @@
 -(void)initDateSouce
 {
     
+    _searchArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _page = 1;
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
-//    [self RequestMethod];
+    [self SearchRequest];
+}
+
+- (void)SearchRequest{
+    
+    [BaseRequest GET:@"user/project/hotSearch" parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self SetSearch:resposeObject[@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetSearch:(NSDictionary *)data{
+    
+    [_searchArr removeAllObjects];
+    [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        [_searchArr addObject:key];
+    }];
 }
 
 - (void)SetData:(NSArray *)data{
@@ -446,15 +472,19 @@
     
 }
 
+
+
 - (void)ActionSearchBtn:(UIButton *)btn{
     
     // 1.创建热门搜索
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+//    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    
     // 2. 创建控制器
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
-        [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText] animated:YES];
+        [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText city:_city] animated:YES];
     }];
     // 3. 设置风格
     searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
@@ -465,8 +495,9 @@
     // 5. 跳转到搜索控制器
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     [self presentViewController:nav  animated:NO completion:nil];
-
 }
+
+//- (void)Search:
 
 - (void)ActionCityBtn:(UIButton *)btn{
     

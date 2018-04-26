@@ -10,6 +10,6 @@
 
 @interface HouseSearchVC : BaseViewController
 
-- (instancetype)initWithTitle:(NSString *)str;
+- (instancetype)initWithTitle:(NSString *)str city:(NSString *)city;
 
 @end

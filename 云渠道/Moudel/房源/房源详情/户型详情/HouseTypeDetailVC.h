@@ -10,6 +10,8 @@
 
 @interface HouseTypeDetailVC : BaseViewController
 
-- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId;
+@property (nonatomic, strong) NSMutableArray *dataArr;
+
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId idx:(NSInteger )idx;
 
 @end
