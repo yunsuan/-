@@ -21,6 +21,7 @@
     NSString *_houseTypeId;
     NSMutableDictionary *_baseInfoDic;
     NSMutableArray *_imgArr;
+    NSMutableArray *_houseArr;
 }
 @property (nonatomic, strong) UIButton *recommendBtn;
 
@@ -30,13 +31,22 @@
 
 @implementation HouseTypeDetailVC
 
-- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId idx:(NSInteger)idx
 {
     self = [super init];
     if (self) {
         
         _houseTypeId = houseTypeId;
         _imgArr = [@[] mutableCopy];
+        _houseArr = [NSMutableArray arrayWithArray:self.dataArr];
+        [_houseArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj[@"id"] isEqualToString:houseTypeId]) {
+                
+                [_houseArr removeObjectAtIndex:idx];
+                *stop = YES;
+            }
+        }];
     }
     return self;
 }
@@ -186,10 +196,11 @@
                 cell = [[HouseTypeTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HouseTypeTableCell2"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.num = 3;
+            cell.num = _houseArr.count;
             cell.collCellBlock = ^(NSInteger index) {
               
-                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] init];
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:_houseArr[index][@"id"] idx:index];
+                nextVC.dataArr = _houseArr;
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             
