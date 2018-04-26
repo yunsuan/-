@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MoreView;
+
+typedef void(^MoreBtnBlock)(NSString *tag,NSString *houseType,NSString *status);
 
 @interface MoreView : UIView
+
+@property (nonatomic, copy) MoreBtnBlock moreBtnBlock;
 
 @property (nonatomic, strong) UICollectionView *moreColl;
 

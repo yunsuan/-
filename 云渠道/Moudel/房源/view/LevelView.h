@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) UIImageView *level4;
 
+@property (nonatomic, strong) UIImageView *level5;
+
 //- (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title level:(NSInteger )level image:(UIImage *)image;
 
 - (void)SetImage:(UIImage *)image selectImg:(UIImage *)selectImg num:(NSInteger )num;

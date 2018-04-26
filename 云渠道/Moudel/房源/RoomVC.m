@@ -43,6 +43,9 @@
     NSString *_price;
     NSString *_type;
     NSString *_more;
+    NSString *_tag;
+    NSString *_houseType;
+    NSString *_status;
     BOOL _is1;
     BOOL _is2;
     BOOL _is3;
@@ -148,6 +151,15 @@
         
         [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"property_id"];
     }
+    if (_tag.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"project_tags"];
+    }
+    if (_houseType.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
+    }
+    
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
@@ -544,10 +556,23 @@
             }
         }];
     }
-    NSArray *tempArr1 = @[tempArr,model.project_tags.length ==0?@[]:[model.project_tags componentsSeparatedByString:@","]];
-    [cell settagviewWithdata:tempArr1];
-    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
-    [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
+    
+    NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+    NSMutableArray *tempArr2 = [@[] mutableCopy];
+    for (int i = 0; i < tempArr1.count; i++) {
+        
+        [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                
+                [tempArr2 addObject:obj[@"param"]];
+                *stop = YES;
+            }
+        }];
+    }
+    NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+    [cell settagviewWithdata:tempArr3];
+    [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -816,6 +841,17 @@
     if (!_moreView) {
         
         _moreView = [[MoreView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 103 *SIZE, SCREEN_Width, SCREEN_Height - 103 *SIZE - STATUS_BAR_HEIGHT - TAB_BAR_MORE)];
+
+        WS(weakSelf);
+        _moreView.moreBtnBlock = ^(NSString *tag, NSString *houseType, NSString *status) {
+            
+            _tag = tag;
+            _houseType = houseType;
+            _status = status;
+        
+            [weakSelf RequestMethod];
+        };
+        
     }
     return _moreView;
 }

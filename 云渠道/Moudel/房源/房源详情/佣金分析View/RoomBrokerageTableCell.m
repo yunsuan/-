@@ -50,42 +50,20 @@
             [self.contentView addSubview:label];
         }
         
-        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(114 *SIZE + i * 31 *SIZE, 47 *SIZE, 17 *SIZE, 17 *SIZE)];
-        img.image = [UIImage imageNamed:@"star_1"];
-        switch (i) {
-            case 0:
-            {
-                _rankImg1 = img;
-                [self.contentView addSubview:_rankImg1];
-                break;
-            }
-            case 1:
-            {
-                _rankImg2 = img;
-                [self.contentView addSubview:_rankImg2];
-                break;
-            }
-            case 2:
-            {
-                _rankImg3 = img;
-                [self.contentView addSubview:_rankImg3];
-                break;
-            }
-            case 3:
-            {
-                _rankImg4 = img;
-                [self.contentView addSubview:_rankImg4];
-                break;
-            }
-            case 4:
-            {
-                _rankImg5 = img;
-                [self.contentView addSubview:_rankImg5];
-                break;
-            }
-            default:
-                break;
+        if (i < 1) {
+            
+            UILabel *label = [[UILabel alloc] init];
+            label.textColor = YJTitleLabColor;
+            label.font = [UIFont systemFontOfSize:13 *SIZE];
+            _rankL = label;
+            [self.contentView addSubview:_rankL];
+            
+            UIImageView *img = [[UIImageView alloc] init];
+            img.image = [UIImage imageNamed:@"rising"];
+            _statusImg = img;
+            [self.contentView addSubview:_statusImg];
         }
+        
         
         UIImageView *img1 = [[UIImageView alloc] initWithFrame:CGRectMake(114 *SIZE + i * 31 *SIZE, 83 *SIZE, 17 *SIZE, 17 *SIZE)];
         img1.image = [UIImage imageNamed:@"lightning_1"];
@@ -124,6 +102,22 @@
                 break;
         }
     }
+    
+    [_rankL mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.contentView).offset(114 *SIZE);
+        make.height.equalTo(@(13 *SIZE));
+        make.top.equalTo(self.contentView).offset(50 *SIZE);
+        make.width.equalTo(@(_rankL.mj_textWith + 5 *SIZE));
+    }];
+    
+    [_statusImg mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(_rankL.mas_right).offset(0);
+        make.top.equalTo(self.contentView).offset(50 *SIZE);
+        make.height.equalTo(@(17 *SIZE));
+        make.width.equalTo(@(17 *SIZE));
+    }];
     
     _ruleView = [[RuleView alloc] initWithFrame:CGRectMake(0, 134 *SIZE, SCREEN_Width, 40 *SIZE)];
     [self.contentView addSubview:_ruleView];

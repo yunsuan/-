@@ -27,9 +27,17 @@
         _contentlab.font =[UIFont systemFontOfSize:10.7*SIZE];
         [self.contentView addSubview:_contentlab];
         
-        _brokerageLevel = [[LevelView alloc] initWithFrame:CGRectMake(123 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
-        _brokerageLevel.titleL.text = @"佣金";
-        [self.contentView addSubview:_brokerageLevel];
+        _rankView = [[RankView alloc] initWithFrame:CGRectMake(123 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
+        _rankView.rankL.text = @"佣金:第5名";
+        [_rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(_rankView).offset(0);
+            make.top.equalTo(_rankView).offset(0);
+            make.height.equalTo(@(10 *SIZE));
+            make.width.equalTo(@(_rankView.rankL.mj_textWith + 5 *SIZE));
+        }];
+        _rankView.statusImg.image = [UIImage imageNamed:@"falling"];
+        [self.contentView addSubview:_rankView];
         
         _getLevel = [[LevelView alloc] initWithFrame:CGRectMake(217 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
         _getLevel.titleL.text = @"结佣";

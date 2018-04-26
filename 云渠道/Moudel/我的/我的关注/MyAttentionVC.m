@@ -127,7 +127,7 @@
     }
     NSArray *tempArr1 = @[tempArr,[model.project_tags componentsSeparatedByString:@","]];
     [cell settagviewWithdata:tempArr1];
-    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
+//    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
     [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

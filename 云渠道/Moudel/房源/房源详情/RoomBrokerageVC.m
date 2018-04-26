@@ -116,6 +116,15 @@
             cell = [[RoomBrokerageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomBrokerageTableCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.rankL.text = @"第5名";
+        [cell.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(cell.contentView).offset(114 *SIZE);
+            make.height.equalTo(@(13 *SIZE));
+            make.top.equalTo(cell.contentView).offset(50 *SIZE);
+            make.width.equalTo(@(cell.rankL.mj_textWith + 5 *SIZE));
+        }];
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"佣金规则";
         cell.ruleView.contentL.text = @"1.推荐后，60分钟内等信息被确认有效，收到腿间有效信息后7日内结佣;\n\n2.自行7日内带看客户，填写到访确认单，收到到访有效信息后7日内结佣;\n\n3.客户30日内签订合同，收到成交信息后7日内结佣;";
