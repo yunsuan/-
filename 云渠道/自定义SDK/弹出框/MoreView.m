@@ -99,9 +99,7 @@
     
     if (!_statusArr) {
         
-        NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-        NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
-        _statusArr = [NSMutableArray arrayWithArray:dic[@"param"]];
+        _statusArr = [NSMutableArray arrayWithArray:@[@"1",@"2",@"3"]];
     }
     return _statusArr;
 }

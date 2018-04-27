@@ -121,15 +121,17 @@
     
     _ruleView = [[RuleView alloc] initWithFrame:CGRectMake(0, 134 *SIZE, SCREEN_Width, 40 *SIZE)];
     [self.contentView addSubview:_ruleView];
+    
+    _standView = [[RuleView alloc] init];
+    [self.contentView addSubview:_standView];
     [_ruleView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.contentView).offset(0);
         make.right.equalTo(self.contentView).offset(0);
         make.top.equalTo(self.contentView).offset(134 *SIZE);
+        make.bottom.equalTo(_standView.mas_top).offset(-8 *SIZE);
     }];
     
-    _standView = [[RuleView alloc] initWithFrame:CGRectMake(0, 180 *SIZE, SCREEN_Width, 40 *SIZE)];
-    [self.contentView addSubview:_standView];
     [_standView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(0);
