@@ -94,8 +94,11 @@
                                               }
              success:^(id resposeObject) {
                  NSLog(@"%@",resposeObject);
-                 _datasouce = resposeObject[0][@"content"];
-                    [self initInterFace];
+                 if ([resposeObject[@"code"] integerValue]==200) {
+                     _datasouce = resposeObject[@"data"];
+                     [self initInterFace];
+                 }
+
                                               }
              failure:^(NSError *error) {
                  
