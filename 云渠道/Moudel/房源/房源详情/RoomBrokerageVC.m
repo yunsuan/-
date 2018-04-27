@@ -17,6 +17,7 @@
     NSMutableArray *_dataArr;
     NSMutableArray *_selectArr;
     NSString *_projectId;
+
 }
 @property (nonatomic, strong) UITableView *brokerageTable;
 
@@ -46,6 +47,8 @@
     _selectArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0]];
+
+    
 }
 
 - (void)RequestMethod{
@@ -54,11 +57,8 @@
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
-            
-            if ([resposeObject[@"data"][@"basic"] isKindOfClass:[NSArray class]]) {
-                
-                [self SetData:resposeObject[@"data"][@"basic"]];
-            }
+//            NSLog(@"%@",resposeObject[@"data"][@"basic"][0][@"person"]);
+            _dataArr =resposeObject[@"data"][@"basic"];
         }
     } failure:^(NSError *error) {
         
@@ -67,19 +67,15 @@
     }];
 }
 
-- (void)SetData:(NSArray *)data{
-    
-    _dataArr = [NSMutableArray arrayWithArray:data];
-//    for (int i = 0; i < data.count; i++) {
-//        
-//        
-//    }
-    [_brokerageTable reloadData];
-}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return _dataArr.count;
+    NSInteger count = 0;
+    for (int i= 0; i<_dataArr.count; i++) {
+        NSArray *arr= _dataArr[i][@"person"];
+        count = count+arr.count;
+    }
+    return count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -111,7 +107,8 @@
         
         header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
     }
-//    header.titleL.text = [NSString stringWithFormat:@"%@至%@",_dataArr[section][@"end_time"],_dataArr[section][@"begin_time"]];//@"2017-07-11至2017-08-10";
+    
+    header.titleL.text = [NSString stringWithFormat:@"%@至%@",_dataArr[section][@"end_time"],_dataArr[section][@"begin_time"]];//@"2017-07-11至2017-08-10";
     header.dropBtn.tag = section;
     if ([_selectArr[section] integerValue]) {
         

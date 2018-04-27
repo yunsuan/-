@@ -11,11 +11,13 @@
 #import "RoomBrokerageVC.h"
 #import "RoomDetailCollCell.h"
 
+
 @interface RoomDetailVC1 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
 {
     
     NSArray *_titleArr;
     NSString *_projectId;
+    
 }
 @property (nonatomic, strong) UICollectionView *segmentColl;
 
