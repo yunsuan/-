@@ -135,7 +135,7 @@
 -(UITextField *)Account{
     if (!_Account) {
         _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 219*SIZE, 314*SIZE, 15*SIZE)];
-        _Account.placeholder = @"请输入手机号码/云算编号";
+        _Account.placeholder = @"请输入手机号码/云算号";
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
         [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         _Account.clearButtonMode = UITextFieldViewModeWhileEditing;

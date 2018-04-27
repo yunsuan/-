@@ -129,7 +129,7 @@
     InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
     next_vc.url = dataarr[indexPath.row][@"api_url"];
     next_vc.extra_param = dataarr[indexPath.row][@"extra_param"];
-    next_vc.type = dataarr[indexPath.row][@"is_read"][@"type"];
+    
     [BaseRequest GET:SystemRead_URL parameters:@{
                                                  @"type":dataarr[indexPath.row][@"is_read"][@"type"],
                                                  @"message_id":dataarr[indexPath.row][@"is_read"][@"message_id"]

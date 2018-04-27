@@ -15,6 +15,7 @@
 {
     NSArray *_namelist;
     NSArray *_imglist;
+    NSArray *_countdata;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -32,15 +33,53 @@
     self.leftButton.hidden = YES;
     self.titleLabel.text = @"工作";
      self.leftButton.hidden = YES;
+    [self postWithidentify:@"1"];
     [self initDateSouce];
     [self initUI];
 
 }
 
+-(void)postWithidentify:(NSString *)identify
+{
+    
+    
+    switch ([identify integerValue]) {
+        case 1:
+        {
+            _namelist = @[@"新房推荐",@"客户报备"];
+            _imglist = @[@"recommended",@"client"];
+            [BaseRequest GET:AgentInfoCount_URL parameters:nil success:^(id resposeObject) {
+            _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend"][@"recommend_count"],resposeObject[@"data"][@"recommend"][@"value"],resposeObject[@"data"][@"recommend"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]]];
+                [_MainTableView reloadData];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+            break;
+        case 2:{
+            _namelist = @[@"客户报备"];
+            _imglist = @[@"client"];
+            [BaseRequest GET:Butterinfocount_URL parameters:nil success:^(id resposeObject) {
+                _countdata = @[[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"recommend_count"],resposeObject[@"data"][@"value"],resposeObject[@"data"][@"valueDisabled"]]];
+                [_MainTableView reloadData];
+            } failure:^(NSError *error) {
+                
+            }];
+            
+            break;
+        }
+        default:{
+            break;
+        }
+            
+    }
+
+    
+}
+
 -(void)initDateSouce
 {
-    _namelist = @[@"新房推荐",@"客户报备"];
-    _imglist = @[@"recommended",@"client"];
+
 }
 
 -(void)initUI
@@ -58,7 +97,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return _countdata.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -80,7 +119,7 @@
         cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell setTitle:_namelist[indexPath.row] content:@"今日新增确认中2，有效21" img:_imglist[indexPath.row]];
+    [cell setTitle:_namelist[indexPath.row] content:_countdata[indexPath.row] img:_imglist[indexPath.row]];
     return cell;
     
 }
@@ -89,15 +128,22 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == 0) {
-        
-        RecommendVC *nextVC = [[RecommendVC alloc] init];
-        [self.navigationController pushViewController:nextVC animated:YES];
-    }else{
-        
+    if (_countdata.count ==2) {
+        if (indexPath.row == 0) {
+            
+            RecommendVC *nextVC = [[RecommendVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            NomineeVC *nextVC = [[NomineeVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
+    }
+    else{
         NomineeVC *nextVC = [[NomineeVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
+ 
 }
 
 

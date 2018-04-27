@@ -101,6 +101,8 @@ static NSString *const AddRecord_URL = @"agent/client/addFollow";
 
 //获取客户跟进
 static NSString *const GetRecord_URL = @"agent/client/getFollowList";
+//获取客户以推荐项目
+static NSString *const GetStateList_URL = @"agent/client/getStateList";
 
 
 
@@ -129,6 +131,8 @@ static NSString *const GetRule_URL = @"user/project/getRule";
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
 
+
+
 #pragma mark ---  消息  ---
 
 //获取消息未读数量
@@ -140,4 +144,8 @@ static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
 
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"user/work/getRecommendList";
+
+static NSString *const AgentInfoCount_URL = @"user/work/broker/count";
+
+static NSString *const Butterinfocount_URL = @"user/work/butter/count";
 
