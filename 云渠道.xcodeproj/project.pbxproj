@@ -220,6 +220,7 @@
 		10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAB205A1DFA00E814AC /* WorkingCell.m */; };
 		10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAF205A76FC00E814AC /* MineCell.m */; };
 		10B509772092EE0D004355C4 /* BrokerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B509762092EE0D004355C4 /* BrokerModel.m */; };
+		10B5097B209317C7004355C4 /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B5097A209317C7004355C4 /* SelectView.m */; };
 		10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E4207C805F00CFE59D /* DistributVC.m */; };
 		10DBB1E8207CB39200CFE59D /* HousedistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E7207CB39200CFE59D /* HousedistributVC.m */; };
 		10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1EC207CCACE00CFE59D /* KyoCinameSeatScrollView.m */; };
@@ -666,6 +667,8 @@
 		10B2CAAF205A76FC00E814AC /* MineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineCell.m; sourceTree = "<group>"; };
 		10B509752092EE0D004355C4 /* BrokerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerModel.h; sourceTree = "<group>"; };
 		10B509762092EE0D004355C4 /* BrokerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerModel.m; sourceTree = "<group>"; };
+		10B50979209317C7004355C4 /* SelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectView.h; sourceTree = "<group>"; };
+		10B5097A209317C7004355C4 /* SelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectView.m; sourceTree = "<group>"; };
 		10DBB1E3207C805F00CFE59D /* DistributVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributVC.h; sourceTree = "<group>"; };
 		10DBB1E4207C805F00CFE59D /* DistributVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributVC.m; sourceTree = "<group>"; };
 		10DBB1E6207CB39200CFE59D /* HousedistributVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HousedistributVC.h; sourceTree = "<group>"; };
@@ -2038,6 +2041,8 @@
 		10B5097820931764004355C4 /* selectview */ = {
 			isa = PBXGroup;
 			children = (
+				10B50979209317C7004355C4 /* SelectView.h */,
+				10B5097A209317C7004355C4 /* SelectView.m */,
 			);
 			path = selectview;
 			sourceTree = "<group>";
@@ -2451,6 +2456,7 @@
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */,
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
+				10B5097B209317C7004355C4 /* SelectView.m in Sources */,
 				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
