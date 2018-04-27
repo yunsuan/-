@@ -13,6 +13,7 @@
     
     NSMutableArray *_dataArr;
     NSMutableArray *_tempArr;
+    NSString *_projectId;
 }
 
 @property (nonatomic , strong) UITableView *matchTable;
@@ -23,11 +24,12 @@
 
 @implementation CustomMatchListVC
 
-- (instancetype)initWithDataArr:(NSArray *)dataArr
+- (instancetype)initWithDataArr:(NSArray *)dataArr projectId:(NSString *)projectId
 {
     self = [super init];
     if (self) {
         
+        _projectId = projectId;
         _dataArr = [NSMutableArray arrayWithArray:dataArr];
         _tempArr = [NSMutableArray arrayWithArray:dataArr];
     }
@@ -54,7 +56,23 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = _tempArr[indexPath.row];
-    
+    cell.recommendBtn.tag = indexPath.row;
+    cell.recommendBtnBlock5 = ^(NSInteger index) {
+        
+        CustomMatchModel *model = _tempArr[index];
+        [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                
+            }
+        } failure:^(NSError *error) {
+            
+            NSLog(@"%@",error);
+            [self showContent:@"网络错误"];
+        }];
+    };
     return cell;
 }
 

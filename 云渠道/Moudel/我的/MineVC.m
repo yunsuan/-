@@ -107,6 +107,7 @@
         
         [self.Mytableview.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -274,12 +275,14 @@
     } success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
+//        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             NSDictionary *dic = @{@"head_img":resposeObject[@"data"]};
             [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                 
                 NSLog(@"%@",resposeObject);
+                [self showContent:resposeObject[@"msg"]];
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
                     _headImg.image = img;
@@ -296,7 +299,7 @@
             }];
         }else{
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
         
     } failure:^(NSError *error) {

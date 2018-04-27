@@ -593,7 +593,6 @@
                 
             }
             
-            
         } failure:^(NSError *error) {
             NSLog(@"%@",error);
             [self showContent:@"网络出错"];

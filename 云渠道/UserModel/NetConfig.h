@@ -104,6 +104,9 @@ static NSString *const GetRecord_URL = @"agent/client/getFollowList";
 //获取客户以推荐项目
 static NSString *const GetStateList_URL = @"agent/client/getStateList";
 
+//推荐客户
+static NSString *const RecommendClient_URL = @"agent/client/recommend";
+
 
 
 #pragma mark ---  房源  ---

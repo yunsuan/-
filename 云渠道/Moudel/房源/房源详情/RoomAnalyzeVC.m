@@ -50,6 +50,7 @@
     [BaseRequest GET:HouseTypeAnalyse_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -57,11 +58,11 @@
                 _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
             }else{
                 
-                [self showContent:@"暂无分析"];
+//                [self showContent:@"暂无分析"];
             }
-        }else{
+        }else if([resposeObject[@"code"] integerValue] == 400){
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
         [_analyzeTable reloadData];
     } failure:^(NSError *error) {
@@ -78,13 +79,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    if (section == 0) {
-        
-        return 40 *SIZE;
-    }else{
-        
-        return 0;
-    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

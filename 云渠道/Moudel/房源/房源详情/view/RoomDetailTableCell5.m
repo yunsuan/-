@@ -223,6 +223,7 @@
     [_recommendBtn setBackgroundColor:COLOR(27, 152, 255, 1)];
     [_recommendBtn setTitle:@"推荐" forState:UIControlStateNormal];
     [_recommendBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_recommendBtn];
     
     _line = [[UIView alloc] init];

@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSString *area;
 
-@property (nonatomic, strong) NSString *cliend_id;
+@property (nonatomic, strong) NSString *client_id;
 
 @property (nonatomic, strong) NSString *decorate;
 

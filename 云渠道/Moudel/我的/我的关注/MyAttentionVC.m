@@ -43,6 +43,7 @@
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -52,15 +53,15 @@
                     [self SetData:resposeObject[@"data"][@"data"]];
                 }else{
                     
-                    [self showContent:@"暂无关注"];
+//                    [self showContent:@"暂无关注"];
                 }
             }else{
                 
-                [self showContent:@"暂无关注"];
+//                [self showContent:@"暂无关注"];
             }
         }else{
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -178,13 +179,14 @@
     [BaseRequest GET:CancelFocusProject_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_dataArr removeObjectAtIndex:indexPath.row];
             [tableView reloadData];
         }else{
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        

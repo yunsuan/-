@@ -47,6 +47,7 @@
         
         [_listTable.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -55,12 +56,12 @@
             }else{
                 
                 _listTable.mj_footer.state = MJRefreshStateNoMoreData;
-                [self showContent:@"暂无数据"];
+//                [self showContent:@"暂无数据"];
             }
-        }else{
+        }else if([resposeObject[@"code"] integerValue] == 400){
             
+//            [self showContent:resposeObject[@"msg"]];
             _listTable.mj_footer.state = MJRefreshStateNoMoreData;
-            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -81,6 +82,7 @@
         
         [_listTable.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -89,17 +91,17 @@
             }else{
                 
                 _listTable.mj_footer.state = MJRefreshStateNoMoreData;
-                [self showContent:@"暂无数据"];
+//                [self showContent:@"暂无数据"];
             }
             
             if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
                 _listTable.mj_footer.state = MJRefreshStateNoMoreData;
             }
-        }else{
+        }else if([resposeObject[@"code"] integerValue] == 400){
             
+//            [self showContent:resposeObject[@"msg"]];
             _listTable.mj_footer.state = MJRefreshStateNoMoreData;
-            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

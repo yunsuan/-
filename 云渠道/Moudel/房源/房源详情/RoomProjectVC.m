@@ -372,13 +372,14 @@
                     
                     [BaseRequest GET:CancelFocusProject_URL parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
                         
+                        [self showContent:resposeObject[@"msg"]];
                         NSLog(@"%@",resposeObject);
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
                             [self RequestMethod];
-                        }else{
+                        }else if([resposeObject[@"code"] integerValue] == 400){
                             
-                            [self showContent:resposeObject[@"msg"]];
+//                            [self showContent:resposeObject[@"msg"]];
                         }
                     } failure:^(NSError *error) {
                         
@@ -390,12 +391,13 @@
                     [BaseRequest GET:FocusProject_URL parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
                         
                         NSLog(@"%@",resposeObject);
+                        [self showContent:resposeObject[@"msg"]];
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
                             [self RequestMethod];
-                        }else{
+                        }else if([resposeObject[@"code"] integerValue] == 400){
                             
-                            [self showContent:resposeObject[@"msg"]];
+//                            [self showContent:resposeObject[@"msg"]];
                         }
                         [self RequestMethod];
                     } failure:^(NSError *error) {
@@ -421,7 +423,7 @@
               header.numL.text = [NSString stringWithFormat:@"匹配的客户(%ld)",_peopleArr.count];
               header.moreBtnBlock = ^{
                   
-                  CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr];
+                  CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr projectId:_projectId];
                   [self.navigationController pushViewController:nextVC animated:YES];
               };
               return header;
@@ -576,7 +578,23 @@
             cell.recommendBtn.tag = indexPath.row;
             cell.recommendBtnBlock5 = ^(NSInteger index) {
                 
-//                [BaseRequest POST:<#(NSString *)#> parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
+                CustomMatchModel *model = _peopleArr[index];
+                [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                    
+                    NSLog(@"%@",resposeObject);
+                    [self showContent:resposeObject[@"msg"]];
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+//                        [self showContent:@"推荐成功"];
+                    }else if ([resposeObject[@"code"] integerValue] == 400){
+                        
+//                        [self showContent:resposeObject[@"msg"]];
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                    [self showContent:@"网络错误"];
+                }];
             };
             return cell;
             break;

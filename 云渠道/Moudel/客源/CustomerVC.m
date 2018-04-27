@@ -95,6 +95,7 @@
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -115,22 +116,22 @@
                         
                         [_dataArr removeAllObjects];
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
-                        [self showContent:@"暂无数据"];
+//                        [self showContent:@"暂无数据"];
                     }
                 }else{
                     
                     [_dataArr removeAllObjects];
-                    [self showContent:@"暂无数据"];
+//                    [self showContent:@"暂无数据"];
                 }
             }else{
                 
                 [_dataArr removeAllObjects];
-                [self showContent:@"暂无数据"];
+//                [self showContent:@"暂无数据"];
             }
             [_customerTable reloadData];
         }else{
 
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -163,6 +164,7 @@
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_footer endRefreshing];
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -180,16 +182,16 @@
                     }else{
                         
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
-                        [self showContent:@"暂无数据"];
+//                        [self showContent:@"暂无数据"];
                     }
                 }else{
-                    [self showContent:@"暂无数据"];
+//                    [self showContent:@"暂无数据"];
                 }
             }else{
-                [self showContent:@"暂无数据"];
+//                [self showContent:@"暂无数据"];
             }
         }else{
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

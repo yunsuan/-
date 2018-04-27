@@ -91,13 +91,14 @@
     [BaseRequest GET:GetRecord_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _FollowArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"data"]];
             [_customDetailTable reloadData];
         }else{
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        
@@ -111,6 +112,7 @@
     [BaseRequest GET:GetCliendInfo_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -126,11 +128,11 @@
                 [_customDetailTable reloadData];
             }else{
                 
-                [self showContent:@"暂无客户信息"];
+//                [self showContent:@"暂无客户信息"];
             }
         }else{
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        

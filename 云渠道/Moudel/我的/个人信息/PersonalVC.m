@@ -326,6 +326,7 @@
                 [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                     
                     NSLog(@"%@",resposeObject);
+                    [self showContent:resposeObject[@"msg"]];
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
                         [UserInfoModel defaultModel].sex = @"1";
@@ -333,7 +334,7 @@
                         [_personTable reloadData];
                     }else{
                         
-                        [self showContent:resposeObject[@"msg"]];
+//                        [self showContent:resposeObject[@"msg"]];
                     }
                 } failure:^(NSError *error) {
                    
@@ -348,6 +349,7 @@
                 [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                     
                     NSLog(@"%@",resposeObject);
+                    [self showContent:resposeObject[@"msg"]];
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
                         [UserInfoModel defaultModel].sex = @"2";
@@ -355,7 +357,7 @@
                         [_personTable reloadData];
                     }else{
                         
-                        [self showContent:resposeObject[@"msg"]];
+//                        [self showContent:resposeObject[@"msg"]];
                     }
                 } failure:^(NSError *error) {
                     

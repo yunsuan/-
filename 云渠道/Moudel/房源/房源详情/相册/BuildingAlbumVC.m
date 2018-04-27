@@ -96,6 +96,7 @@
     [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -103,11 +104,11 @@
                 [self SetData:resposeObject[@"data"]];
             }else{
                 
-                [self showContent:@"暂无数据"];
+//                [self showContent:@"暂无数据"];
             }
-        }else{
+        }else if([resposeObject[@"code"] integerValue] == 400){
             
-            [self showContent:resposeObject[@"msg"]];
+//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
