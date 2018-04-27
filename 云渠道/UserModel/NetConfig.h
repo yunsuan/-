@@ -67,6 +67,9 @@ static NSString *const SendCaptcha_URL = @"agent/personal/sendCaptcha";
 
 //获取银行卡信息
 static NSString *const BankCardInfo_URL = @"agent/personal/bankCardInfo";
+
+//意见反馈
+static NSString *const Advice_URL = @"agent/personal/advice";
 #pragma mark ---  客源  ---
 
 
@@ -119,6 +122,9 @@ static NSString *const GetImg_URL = @"user/img/get";
 
 //获取项目分析
 static NSString *const HouseTypeAnalyse_URL = @"user/houseType/analyse";
+
+//获取佣金规则
+static NSString *const GetRule_URL = @"user/project/getRule";
 
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";

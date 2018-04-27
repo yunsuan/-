@@ -41,6 +41,30 @@
 - (void)ActionConfirmBtn:(UIButton *)btn{
     
     
+    if (![self isEmpty:_textView.text]) {
+        
+        _confirmBtn.userInteractionEnabled = NO;
+        [BaseRequest POST:Advice_URL parameters:@{@"content":_textView.text} success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self showContent:@"反馈成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            }
+        } failure:^(NSError *error) {
+            
+            _confirmBtn.userInteractionEnabled = YES;
+            NSLog(@"%@",error);
+            [self showContent:@"网络错误"];
+        }];
+    }else{
+        
+        [self showContent:@"请输入反馈信息"];
+    }
 }
 
 - (void)initUI{

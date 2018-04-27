@@ -39,6 +39,7 @@
     
     [self initDataSource];
     [self initUI];
+    [self RequestMethod];
 }
 
 - (void)initDataSource{
@@ -48,9 +49,38 @@
     _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0]];
 }
 
+- (void)RequestMethod{
+    
+    [BaseRequest GET:GetRule_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"][@"basic"] isKindOfClass:[NSArray class]]) {
+                
+                [self SetData:resposeObject[@"data"][@"basic"]];
+            }
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    _dataArr = [NSMutableArray arrayWithArray:data];
+//    for (int i = 0; i < data.count; i++) {
+//        
+//        
+//    }
+    [_brokerageTable reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 3;
+    return _dataArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -82,7 +112,7 @@
         
         header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
     }
-    header.titleL.text = @"2017-07-11至2017-08-10";
+//    header.titleL.text = [NSString stringWithFormat:@"%@至%@",_dataArr[section][@"end_time"],_dataArr[section][@"begin_time"]];//@"2017-07-11至2017-08-10";
     header.dropBtn.tag = section;
     if ([_selectArr[section] integerValue]) {
         
@@ -127,10 +157,15 @@
         }];
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"佣金规则";
-        cell.ruleView.contentL.text = @"1.推荐后，60分钟内等信息被确认有效，收到腿间有效信息后7日内结佣;\n\n2.自行7日内带看客户，填写到访确认单，收到到访有效信息后7日内结佣;\n\n3.客户30日内签订合同，收到成交信息后7日内结佣;";
+//        cell.ruleView.contentL.text = [NSString stringWithFormat:@"1.推荐后，%@分钟内等信息被确认有效，收到腿间有效信息后%@日内结佣;\n\n2.自行%@日内带看客户，填写到访确认单，收到到访有效信息后%@日内结佣;\n\n3.客户%@日内签订合同，收到成交信息后%@日内结佣",_dataArr[indexPath.section][@"visit_confirm_time"],_dataArr[indexPath.section][@"confirm_settle_commission_time"],_dataArr[indexPath.section][@"valid_visit_time"],_dataArr[indexPath.section][@"visit_settle_commission_time"],_dataArr[indexPath.section][@"make_bargain_time"],_dataArr[indexPath.section][@"region_settle_commission_time"]];
         cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
         cell.standView.titleL.text = @"结佣标准";
-        cell.standView.contentL.text = @"结佣佣金：1000元\n\n到访佣金：售价X2%\n\n成交佣金：住宅 面积X100m2                             别墅 面积X100m2";
+        NSString *_str;
+//        for (int i = 0; i < [_dataArr[indexPath.section][@"person"][@"broker"] count]; i++) {
+//
+//
+//        }
+        cell.standView.contentL.text = _str;
         
         return cell;
     }else{
@@ -143,7 +178,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"佣金规则";
-        cell.ruleView.contentL.text = @"1.推荐后，60分钟内等信息被确认有效，收到腿间有效信息后7日内结佣;\n\n2.自行7日内带看客户，填写到访确认单，收到到访有效信息后7日内结佣;\n\n3.客户30日内签订合同，收到成交信息后7日内结佣;";
+//        cell.ruleView.contentL.text = [NSString stringWithFormat:@"1.推荐后，%@分钟内等信息被确认有效，收到腿间有效信息后%@日内结佣;\n\n2.自行%@日内带看客户，填写到访确认单，收到到访有效信息后%@日内结佣;\n\n3.客户%@日内签订合同，收到成交信息后%@日内结佣",_dataArr[indexPath.section][@"visit_confirm_time"],_dataArr[indexPath.section][@"confirm_settle_commission_time"],_dataArr[indexPath.section][@"valid_visit_time"],_dataArr[indexPath.section][@"visit_settle_commission_time"],_dataArr[indexPath.section][@"make_bargain_time"],_dataArr[indexPath.section][@"region_settle_commission_time"]];
         cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
         cell.standView.titleL.text = @"结佣标准";
         cell.standView.contentL.text = @"结佣佣金：1000元\n\n到访佣金：售价X2%\n\n成交佣金：住宅 面积X100m2                             别墅 面积X100m2";
