@@ -49,7 +49,7 @@
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(95 *SIZE, 16 *SIZE, 180 *SIZE, 13 *SIZE)];
     _nameL.textColor = YJContentLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
-//    _nameL.text = @"运算科技";
+//    _nameL.text = @"云算科技";
     [self.contentView addSubview:_nameL];
     
     _addressL = [[UILabel alloc] initWithFrame:CGRectMake(95 *SIZE, 36 *SIZE, 180 *SIZE, 11 *SIZE)];

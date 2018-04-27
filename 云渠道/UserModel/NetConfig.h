@@ -135,3 +135,7 @@ static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"user/work/getRecommendList";
 
+static NSString *const AgentInfoCount_URL = @"user/work/broker/count";
+
+static NSString *const Butterinfocount_URL = @"user/work/butter/count";
+

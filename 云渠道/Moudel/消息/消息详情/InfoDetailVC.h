@@ -11,5 +11,4 @@
 @interface InfoDetailVC : BaseViewController
 @property (nonatomic , strong)NSString *url;
 @property (nonatomic , strong)NSString *extra_param;
-@property (nonatomic , strong)NSString *type;
 @end
