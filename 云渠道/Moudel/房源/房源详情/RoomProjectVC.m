@@ -20,6 +20,7 @@
 #import "HouseTypeDetailVC.h"
 #import "DynamicListVC.h"
 #import "CustomMatchListVC.h"
+#import "CustomMatchModel.h"
 #import "DistributVC.h"
 #import "RoomDetailModel.h"
 #import "BuildingAlbumVC.h"
@@ -40,6 +41,7 @@
     NSMutableArray *_imgArr;
     NSString *_focusId;
     NSMutableArray *_houseArr;
+    NSMutableArray *_peopleArr;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -99,7 +101,59 @@
     _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
     _houseArr = [@[] mutableCopy];
-    [self RequestMethod];
+    _peopleArr = [@[] mutableCopy];
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
+
+        [self RequestMethod];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self MatchRequest];
+        
+    });
+    
+}
+
+- (void)MatchRequest{
+    
+    [BaseRequest GET:ProjectMatching_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self SetMatchPeople:resposeObject[@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetMatchPeople:(NSArray *)data{
+    
+    for (int i = 0 ; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        CustomMatchModel *model = [[CustomMatchModel alloc] initWithDictionary:tempDic];
+        [_peopleArr addObject:model];
+    }
+    [_roomTable reloadData];
 }
 
 - (void)RequestMethod{
@@ -243,7 +297,7 @@
     
     if (section == 6) {
         
-        return 2;
+        return _peopleArr.count > 2? 2:_peopleArr.count;
     }else{
         
         if (section == 0) {
@@ -364,10 +418,10 @@
                   
                   header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
               }
-              header.numL.text = @"匹配的客户(23)";
+              header.numL.text = [NSString stringWithFormat:@"匹配的客户(%ld)",_peopleArr.count];
               header.moreBtnBlock = ^{
                   
-                  CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] init];
+                  CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr];
                   [self.navigationController pushViewController:nextVC animated:YES];
               };
               return header;
@@ -518,14 +572,12 @@
                 cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.nameL.text = @"张三";
-            cell.priceL.text = @"80 - 100";
-            cell.typeL.text = @"三室一厅";
-            cell.areaL.text = @"郫都区-德源大道";
-            cell.intentionRateL.text = @"23";
-            cell.urgentRateL.text = @"43";
-            cell.matchRateL.text = @"83";
-            cell.phoneL.text = @"13438339177";
+            cell.model = _peopleArr[indexPath.row];
+            cell.recommendBtn.tag = indexPath.row;
+            cell.recommendBtnBlock5 = ^(NSInteger index) {
+                
+//                [BaseRequest POST:<#(NSString *)#> parameters:<#(NSDictionary *)#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
+            };
             return cell;
             break;
         }

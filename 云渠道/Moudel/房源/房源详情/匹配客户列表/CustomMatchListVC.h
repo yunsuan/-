@@ -10,4 +10,6 @@
 
 @interface CustomMatchListVC : BaseViewController
 
+- (instancetype)initWithDataArr:(NSArray *)dataArr;
+
 @end

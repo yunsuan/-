@@ -85,7 +85,7 @@
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _leftButton.center = CGPointMake(25 * SIZE, 20 + 22);
         _leftButton.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
-        _leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT+20);
+        _leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 20);
         _leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
         [_leftButton setImage:IMAGE_WITH_NAME(@"leftarrow.png") forState:UIControlStateNormal];
     }

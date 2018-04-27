@@ -131,7 +131,8 @@ static NSString *const GetRule_URL = @"user/project/getRule";
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
 
-
+//项目匹配客户
+static NSString *const ProjectMatching_URL = @"agent/matching/project";
 
 #pragma mark ---  消息  ---
 

@@ -50,6 +50,7 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
@@ -335,6 +336,8 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0C92194A2092ECFC00EFE75C /* CustomMatchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMatchModel.h; sourceTree = "<group>"; };
+		0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchModel.m; sourceTree = "<group>"; };
 		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
 		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
 		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
@@ -1276,6 +1279,8 @@
 			children = (
 				0CF04F2F207A145B00A45F4A /* CustomMatchListVC.h */,
 				0CF04F30207A145B00A45F4A /* CustomMatchListVC.m */,
+				0C92194A2092ECFC00EFE75C /* CustomMatchModel.h */,
+				0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */,
 			);
 			path = "匹配客户列表";
 			sourceTree = "<group>";
@@ -2418,6 +2423,7 @@
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
+				0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */,
 				0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */,

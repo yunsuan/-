@@ -9,7 +9,11 @@
 #import "CustomMatchListVC.h"
 #import "RoomDetailTableCell5.h"
 
-@interface CustomMatchListVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface CustomMatchListVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
+    
+    NSMutableArray *_dataArr;
+    NSMutableArray *_tempArr;
+}
 
 @property (nonatomic , strong) UITableView *matchTable;
 
@@ -19,6 +23,17 @@
 
 @implementation CustomMatchListVC
 
+- (instancetype)initWithDataArr:(NSArray *)dataArr
+{
+    self = [super init];
+    if (self) {
+        
+        _dataArr = [NSMutableArray arrayWithArray:dataArr];
+        _tempArr = [NSMutableArray arrayWithArray:dataArr];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -27,7 +42,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+    return _tempArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -38,25 +53,47 @@
         cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.nameL.text = @"张三";
-    cell.priceL.text = @"80 - 100";
-    cell.typeL.text = @"三室一厅";
-    cell.areaL.text = @"郫都区-德源大道";
-    cell.intentionRateL.text = @"23";
-    cell.urgentRateL.text = @"43";
-    cell.matchRateL.text = @"83";
-    cell.phoneL.text = @"13438339177";
+    cell.model = _tempArr[indexPath.row];
     
     return cell;
 }
 
+- (void)textFieldDidChange:(NSNotification *)notification{
+    
+    [_tempArr removeAllObjects];
+    UITextField *sender = (UITextField *)[notification object];
+    if (sender.text.length) {
+
+        for (CustomMatchModel *model in _dataArr) {
+
+            if ([model.name containsString:sender.text] ||[model.tel containsString:sender.text]) {
+
+                [_tempArr addObject:model];
+            }
+        }
+    }else{
+
+        _tempArr = [NSMutableArray arrayWithArray:_dataArr];
+    }
+    
+    [_matchTable reloadData];
+}
+
 - (void)initUI{
     
-    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, STATUS_BAR_HEIGHT + 62 *SIZE)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:_searchBar];
+    
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_Width, 62 *SIZE)];
     whiteView.backgroundColor = CH_COLOR_white;
     [self.view addSubview:whiteView];
+    self.leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 15 *SIZE);
+    self.leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
+    self.maskButton.frame = CGRectMake(0, STATUS_BAR_HEIGHT, 60 * sIZE, 44 *SIZE);
     
-    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, 14 *SIZE + STATUS_BAR_HEIGHT, 283 *SIZE, 33 *SIZE)];
+    [whiteView addSubview:self.leftButton];
+    [whiteView addSubview:self.maskButton];
+    
+    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, 14  *SIZE, 283 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
     _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
     //设置显示模式为永远显示(默认不显示)
@@ -65,14 +102,15 @@
     _searchBar.font = [UIFont systemFontOfSize:11 *SIZE];
     _searchBar.returnKeyType = UIReturnKeySearch;
     UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
-    rightImg.backgroundColor = YJGreenColor;
+//    rightImg.backgroundColor = YJGreenColor;
+    rightImg.image = [UIImage imageNamed:@"search_2"];
     _searchBar.rightView = rightImg;
     _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
     _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
     _searchBar.delegate = self;
     [whiteView addSubview:_searchBar];
     
-    _matchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE, SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 62 *SIZE - TAB_BAR_MORE) style:UITableViewStylePlain];;
+    _matchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE , SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 62 *SIZE  - TAB_BAR_MORE) style:UITableViewStylePlain];;
     _matchTable.backgroundColor = self.view.backgroundColor;
     _matchTable.delegate = self;
     _matchTable.dataSource = self;

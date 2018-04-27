@@ -75,6 +75,7 @@
     }
     
     _areaL.text = @"意向区域：";
+    
     if (model.region.count) {
         
         for (int i = 0; i < model.region.count; i++) {
@@ -95,29 +96,29 @@
                     }
                 }else{
                     
-                    _areaL.text = @"意向区域：";
+                    _areaL.text = @"区域：";
                 }
                 
-//            }else{
-//
-//                if ([model.region[i][@"province_name"] length]) {
-//
-//                    _areaL.text = [NSString stringWithFormat:@"%@ %@",_areaL.text,model.region[i][@"province_name"]];
-//
-//                    if ([model.region[i][@"city_name"] length]) {
-//
-//                        _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"city_name"]];
-//                        if ([model.region[i][@"district_name"] length]) {
-//
-//                            _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"district_name"]];
-//                        }
-//                    }
-//                }
+            }else{
+                
+                if ([model.region[i][@"province_name"] length]) {
+                    
+                    _areaL.text = [NSString stringWithFormat:@"%@ %@",_areaL.text,model.region[i][@"province_name"]];
+                    
+                    if ([model.region[i][@"city_name"] length]) {
+                        
+                        _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"city_name"]];
+                        if ([model.region[i][@"district_name"] length]) {
+                            
+                            _areaL.text = [NSString stringWithFormat:@"%@-%@",_areaL.text,model.region[i][@"district_name"]];
+                        }
+                    }
+                }
             }
         }
     }else{
         
-        _areaL.text = @"意向区域：";
+        _areaL.text = @"区域：";
     }
 
     

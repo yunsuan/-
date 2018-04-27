@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomMatchModel.h"
+
+@class RoomDetailTableCell5;
+
+typedef void(^RecommendBtnBlock5)(NSInteger index);
 
 @interface RoomDetailTableCell5 : UITableViewCell
+
+@property (nonatomic, copy) RecommendBtnBlock5 recommendBtnBlock5;
 
 @property (nonatomic, strong) UIImageView *gender; //头像
 
@@ -31,5 +38,7 @@
 @property (nonatomic, strong) UIView *line;
 
 @property (nonatomic, strong) UIButton *recommendBtn;
+
+@property (nonatomic, strong) CustomMatchModel *model;
 
 @end
