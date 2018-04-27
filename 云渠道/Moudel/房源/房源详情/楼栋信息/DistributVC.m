@@ -10,6 +10,9 @@
 #import "HousedistributVC.h"
 
 @interface DistributVC ()
+{
+    NSArray *_dylist;
+}
 @property (nonatomic , strong) UIImageView *backimg;
 @property (nonatomic , strong) UIButton *leftbutton;
 @property (nonatomic , strong) UIButton *openbtn;
@@ -30,7 +33,25 @@
     self.navBackgroundView.hidden = NO;
     [self initDataSouce];
     [self initUI];
+    [self post];
     
+}
+-(void)post{
+    [BaseRequest GET:GetBuilding_URL parameters:@{
+                                                  @"project_id":_projiect_id
+                                                  
+                                                  }
+             success:^(id resposeObject) {
+                 NSLog(@"%@",resposeObject);
+                 
+                 if ([resposeObject[@"code"] integerValue] ==200) {
+                     _dylist = resposeObject[@"data"][@"rows"];
+                     [self setItemforchoosebuildingviewbyarr:_dylist];
+                 }
+                                                  }
+             failure:^(NSError *error) {
+                 
+             }];
 }
 
 -(void)initUI
@@ -41,8 +62,6 @@
     [self.view addSubview:self.drawerview];
     [self.drawerview addSubview:self.closebtn];
     [self.drawerview addSubview:self.choosebuildingview];
-    [self setItemforchoosebuildingviewbynum:20];
-    
     UISwipeGestureRecognizer * right=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(action_close)];
     right.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:right];
@@ -50,19 +69,25 @@
     UISwipeGestureRecognizer * left=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(action_open)];
     left.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:left];
-    
+ 
 }
 
 -(void)initDataSouce
 {
-    
+  
 }
 
 -(void)action_buildingchoose:(UIButton *)sender
 {
     NSLog(@"%ld",sender.tag);
+    NSArray *arr=_dylist[sender.tag-1000][@"DYLIST"];
+    if (arr.count>0) {
+        
+    }
+    else{
     HousedistributVC *next_vc = [[HousedistributVC alloc]init];
     [self.navigationController pushViewController:next_vc animated:YES];
+    }
     
 }
 
@@ -178,16 +203,16 @@
     return _choosebuildingview;
 }
 
--(void)setItemforchoosebuildingviewbynum:(NSInteger )num
+-(void)setItemforchoosebuildingviewbyarr:(NSArray *)arr
 {
-    _choosebuildingview.contentSize = CGSizeMake(67*SIZE, 35*SIZE+57*SIZE*num);
-    for (int i= 0; i<num; i++) {
+    _choosebuildingview.contentSize = CGSizeMake(67*SIZE, 35*SIZE+57*SIZE*arr.count);
+    for (int i= 0; i<arr.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.backgroundColor = COLOR(240, 240, 240, 1);
         btn.frame = CGRectMake(0, i*57*SIZE, 67*SIZE, 33*SIZE);
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 2*SIZE;
-        [btn setTitle:@"1栋" forState:UIControlStateNormal];
+        [btn setTitle:arr[i][@"LDMC"] forState:UIControlStateNormal];
         [btn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:13*SIZE];
         btn.tag = 1000+i;

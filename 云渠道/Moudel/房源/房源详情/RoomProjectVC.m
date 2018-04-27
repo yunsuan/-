@@ -556,6 +556,7 @@
         
         DistributVC *nextVC = [[DistributVC alloc] init];
         nextVC.img_name = _model.total_float_url;
+        nextVC.projiect_id = _projectId;
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

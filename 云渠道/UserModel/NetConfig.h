@@ -131,6 +131,11 @@ static NSString *const GetRule_URL = @"user/project/getRule";
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
 
+//获取楼栋
+static NSString *const GetBuilding_URL = @"user/yunsuan/build";
+
+//获取单元
+static NSString *const GetUnit_URL = @"user/yunsuan/unit";
 
 
 #pragma mark ---  消息  ---

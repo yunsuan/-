@@ -1966,6 +1966,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				10B5097820931764004355C4 /* selectview */,
 				101624582088638B00AD53DE /* 自定义选择页面 */,
 				10DBB1E9207CCACE00CFE59D /* 选房 */,
 				0CF04F60207C4C8900A45F4A /* 弹出框 */,
@@ -2032,6 +2033,13 @@
 				10B2CAAF205A76FC00E814AC /* MineCell.m */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		10B5097820931764004355C4 /* selectview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = selectview;
 			sourceTree = "<group>";
 		};
 		10DBB1E2207C7F6500CFE59D /* 楼栋信息 */ = {
