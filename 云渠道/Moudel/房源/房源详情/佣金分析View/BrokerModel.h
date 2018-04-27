@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface BrokerModel : NSObject
+@property (nonatomic , strong) NSMutableArray *dataarr;
+@property (nonatomic , strong) NSMutableArray *bsicarr;
 
-
+-(instancetype)initWithdata:(NSArray *)data;
+-(NSMutableArray *)getbreakinfo;
 @end

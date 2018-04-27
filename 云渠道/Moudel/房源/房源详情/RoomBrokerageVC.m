@@ -10,6 +10,7 @@
 #import "RoomBrokerageTableCell.h"
 #import "RoomBrokerageTableCell2.h"
 #import "RoomBrokerageTableHeader.h"
+#import "BrokerModel.h"
 
 @interface RoomBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -17,6 +18,7 @@
     NSMutableArray *_dataArr;
     NSMutableArray *_selectArr;
     NSString *_projectId;
+    BrokerModel *_model;
 
 }
 @property (nonatomic, strong) UITableView *brokerageTable;
@@ -46,7 +48,7 @@
     
     _selectArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
-    _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0]];
+    _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
 
     
 }
@@ -57,8 +59,10 @@
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
-//            NSLog(@"%@",resposeObject[@"data"][@"basic"][0][@"person"]);
-            _dataArr =resposeObject[@"data"][@"basic"];
+
+            _model = [[BrokerModel alloc]initWithdata:resposeObject[@"data"][@"basic"]];
+            [_brokerageTable reloadData];
+            
         }
     } failure:^(NSError *error) {
         
@@ -70,12 +74,8 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSInteger count = 0;
-    for (int i= 0; i<_dataArr.count; i++) {
-        NSArray *arr= _dataArr[i][@"person"];
-        count = count+arr.count;
-    }
-    return count;
+  
+    return _model.dataarr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -108,7 +108,7 @@
         header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
     }
     
-    header.titleL.text = [NSString stringWithFormat:@"%@至%@",_dataArr[section][@"end_time"],_dataArr[section][@"begin_time"]];//@"2017-07-11至2017-08-10";
+    header.titleL.text = [NSString stringWithFormat:@"%@至%@",_model.dataarr[section][@"act_start"],_model.dataarr[section][@"act_end"]];//@"2017-07-11至2017-08-10";
     header.dropBtn.tag = section;
     if ([_selectArr[section] integerValue]) {
         
@@ -153,16 +153,11 @@
         }];
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"佣金规则";
-//        cell.ruleView.contentL.text = [NSString stringWithFormat:@"1.推荐后，%@分钟内等信息被确认有效，收到腿间有效信息后%@日内结佣;\n\n2.自行%@日内带看客户，填写到访确认单，收到到访有效信息后%@日内结佣;\n\n3.客户%@日内签订合同，收到成交信息后%@日内结佣",_dataArr[indexPath.section][@"visit_confirm_time"],_dataArr[indexPath.section][@"confirm_settle_commission_time"],_dataArr[indexPath.section][@"valid_visit_time"],_dataArr[indexPath.section][@"visit_settle_commission_time"],_dataArr[indexPath.section][@"make_bargain_time"],_dataArr[indexPath.section][@"region_settle_commission_time"]];
+        cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
         cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
         cell.standView.titleL.text = @"结佣标准";
-        NSString *_str;
-//        for (int i = 0; i < [_dataArr[indexPath.section][@"person"][@"broker"] count]; i++) {
-//
-//
-//        }
-        cell.standView.contentL.text = _str;
-        
+        NSMutableArray *arr = [_model getbreakinfo];
+        cell.standView.contentL.text = arr[indexPath.section];
         return cell;
     }else{
         
@@ -174,10 +169,11 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"佣金规则";
-//        cell.ruleView.contentL.text = [NSString stringWithFormat:@"1.推荐后，%@分钟内等信息被确认有效，收到腿间有效信息后%@日内结佣;\n\n2.自行%@日内带看客户，填写到访确认单，收到到访有效信息后%@日内结佣;\n\n3.客户%@日内签订合同，收到成交信息后%@日内结佣",_dataArr[indexPath.section][@"visit_confirm_time"],_dataArr[indexPath.section][@"confirm_settle_commission_time"],_dataArr[indexPath.section][@"valid_visit_time"],_dataArr[indexPath.section][@"visit_settle_commission_time"],_dataArr[indexPath.section][@"make_bargain_time"],_dataArr[indexPath.section][@"region_settle_commission_time"]];
+        cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
         cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
         cell.standView.titleL.text = @"结佣标准";
-        cell.standView.contentL.text = @"结佣佣金：1000元\n\n到访佣金：售价X2%\n\n成交佣金：住宅 面积X100m2                             别墅 面积X100m2";
+        NSMutableArray *arr = [_model getbreakinfo];
+        cell.standView.contentL.text = arr[indexPath.section];
         
         return cell;
     }
