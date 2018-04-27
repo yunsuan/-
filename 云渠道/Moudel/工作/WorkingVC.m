@@ -33,7 +33,7 @@
     self.leftButton.hidden = YES;
     self.titleLabel.text = @"工作";
      self.leftButton.hidden = YES;
-    [self postWithidentify:@"2"];
+    [self postWithidentify:@"1"];
     [self initDateSouce];
     [self initUI];
 

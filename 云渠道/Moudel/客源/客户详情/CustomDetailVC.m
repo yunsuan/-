@@ -63,6 +63,7 @@
     
     [self initDataSource];
     [self initUI];
+    [self GetCustomRequestMethod];
 }
 
 - (void)initDataSource{
@@ -72,6 +73,17 @@
     _FollowArr = [@[] mutableCopy];
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     [self RequestMethod];
+}
+
+-(void)GetCustomRequestMethod
+{
+    [BaseRequest GET:GetStateList_URL parameters:@{
+                                                   @"client_id":[UserModelArchiver unarchive].agent_id
+                                                   } success:^(id resposeObject) {
+                                                       
+                                                   } failure:^(NSError *error) {
+                                                       
+                                                   }];
 }
 
 - (void)GetFollowRequestMethod{
