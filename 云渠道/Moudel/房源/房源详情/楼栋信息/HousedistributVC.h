@@ -15,6 +15,10 @@
 
 @property (nonatomic , strong)NSMutableArray *myarr;
 @property (nonatomic , strong)NSMutableArray *LDinfo;
+@property (nonatomic , strong)NSString *project_id;
+@property (nonatomic , strong)NSString *build_id;
+@property (nonatomic , strong)NSString *unit_id;
+
 
 //status 0 有返回按钮
 @property(nonatomic,strong)NSString * statusStr;

@@ -10,12 +10,11 @@
 
 @implementation SelectView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(void)SetNumberOfItem:(NSInteger)num
+{
+    self.frame = CGRectMake(0, 0, 212*SIZE, 49*SIZE*num+49*SIZE);
+    
 }
-*/
+
 
 @end
