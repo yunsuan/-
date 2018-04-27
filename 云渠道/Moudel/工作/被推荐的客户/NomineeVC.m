@@ -7,15 +7,19 @@
 //
 
 #import "NomineeVC.h"
-#import "NomineeCollCell.h"
+//#import "NomineeCollCell.h"
+#import "RecommendCollCell.h"
 #import "NomineeCell.h"
 #import "NomineeCell2.h"
 #import "NomineeCell3.h"
+#import "RecommendCell5.h"
 #import "UnconfirmDetailVC.h"
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
 #import "NoInvalidVC.h"
 #import "ValidVC.h"
+#import "ComplaintCompleteVC.h"
+#import "ComplaintUnCompleteVC.h"
 
 @interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -48,7 +52,7 @@
 -(void)initDateSouce
 {
     
-    _titleArr = @[@"待确认",@"有效",@"无效"];
+    _titleArr = @[@"待确认",@"有效",@"无效",@"申诉"];
 }
 
 -(void)initUI
@@ -62,14 +66,14 @@
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 3, 40 *SIZE);
+    _flowLayout.itemSize = CGSizeMake(SCREEN_Width / 4, 40 *SIZE);
     
     _nomineeColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
     _nomineeColl.backgroundColor = CH_COLOR_white;
     _nomineeColl.delegate = self;
     _nomineeColl.dataSource = self;
     _nomineeColl.bounces = NO;
-    [_nomineeColl registerClass:[NomineeCollCell class] forCellWithReuseIdentifier:@"NomineeCollCell"];
+    [_nomineeColl registerClass:[RecommendCollCell class] forCellWithReuseIdentifier:@"RecommendCollCell"];
     [self.view addSubview:_nomineeColl];
     [_nomineeColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
     
@@ -88,15 +92,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 3;
+    return 4;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NomineeCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NomineeCollCell" forIndexPath:indexPath];
+    RecommendCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RecommendCollCell" forIndexPath:indexPath];
     if (!cell) {
         
-        cell = [[NomineeCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width /3, 40 *SIZE)];
+        cell = [[RecommendCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width / 4, 40 *SIZE)];
     }
     cell.titleL.text = _titleArr[indexPath.item];
     return cell;
@@ -195,7 +199,7 @@
         };
         
         return cell;
-    }else{
+    }else if(_index == 2){
         
         static NSString *CellIdentifier = @"NomineeCell3";
         
@@ -221,6 +225,25 @@
             
         };
         return cell;
+    }else{
+        
+        static NSString *CellIdentifier = @"RecommendCell5";
+        
+        RecommendCell5 *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[RecommendCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.nameL.text = @"张三";
+        cell.codeL.text = @"推荐编号：456522312";
+        cell.confirmL.text = @"到访确认人：李四";
+        //        cell.phoneL.text = @"联系电话：18789455612";
+        cell.statusL.text = @"处理完成";
+        cell.recomTimeL.text = @"推荐日期：2017-12-15";
+        cell.timeL.text = @"申诉日期：2017-12-15  13:00:00";
+        
+        return cell;
     }
 }
 
@@ -236,10 +259,21 @@
         
         ValidVC *nextVC = [[ValidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
-    }else{
+    }else if(_index == 2){
         
         NoInvalidVC *nextVC = [[NoInvalidVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        if (indexPath.row == 0) {
+            
+            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
     }
 }
 
