@@ -220,6 +220,8 @@
 		10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAA6205A0D1300E814AC /* FindPassWordVC.m */; };
 		10B2CAAC205A1DFA00E814AC /* WorkingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAB205A1DFA00E814AC /* WorkingCell.m */; };
 		10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B2CAAF205A76FC00E814AC /* MineCell.m */; };
+		10B509772092EE0D004355C4 /* BrokerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B509762092EE0D004355C4 /* BrokerModel.m */; };
+		10B5097B209317C7004355C4 /* SelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B5097A209317C7004355C4 /* SelectView.m */; };
 		10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E4207C805F00CFE59D /* DistributVC.m */; };
 		10DBB1E8207CB39200CFE59D /* HousedistributVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1E7207CB39200CFE59D /* HousedistributVC.m */; };
 		10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1EC207CCACE00CFE59D /* KyoCinameSeatScrollView.m */; };
@@ -666,6 +668,10 @@
 		10B2CAAB205A1DFA00E814AC /* WorkingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkingCell.m; sourceTree = "<group>"; };
 		10B2CAAE205A76FC00E814AC /* MineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineCell.h; sourceTree = "<group>"; };
 		10B2CAAF205A76FC00E814AC /* MineCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineCell.m; sourceTree = "<group>"; };
+		10B509752092EE0D004355C4 /* BrokerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerModel.h; sourceTree = "<group>"; };
+		10B509762092EE0D004355C4 /* BrokerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerModel.m; sourceTree = "<group>"; };
+		10B50979209317C7004355C4 /* SelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectView.h; sourceTree = "<group>"; };
+		10B5097A209317C7004355C4 /* SelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectView.m; sourceTree = "<group>"; };
 		10DBB1E3207C805F00CFE59D /* DistributVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistributVC.h; sourceTree = "<group>"; };
 		10DBB1E4207C805F00CFE59D /* DistributVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistributVC.m; sourceTree = "<group>"; };
 		10DBB1E6207CB39200CFE59D /* HousedistributVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HousedistributVC.h; sourceTree = "<group>"; };
@@ -1242,6 +1248,8 @@
 				0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */,
 				0CEC62EC208DED26006EC0BD /* AnalyzeTableCell.h */,
 				0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */,
+				10B509752092EE0D004355C4 /* BrokerModel.h */,
+				10B509762092EE0D004355C4 /* BrokerModel.m */,
 			);
 			path = "佣金分析View";
 			sourceTree = "<group>";
@@ -1966,6 +1974,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				10B5097820931764004355C4 /* selectview */,
 				101624582088638B00AD53DE /* 自定义选择页面 */,
 				10DBB1E9207CCACE00CFE59D /* 选房 */,
 				0CF04F60207C4C8900A45F4A /* 弹出框 */,
@@ -2032,6 +2041,15 @@
 				10B2CAAF205A76FC00E814AC /* MineCell.m */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		10B5097820931764004355C4 /* selectview */ = {
+			isa = PBXGroup;
+			children = (
+				10B50979209317C7004355C4 /* SelectView.h */,
+				10B5097A209317C7004355C4 /* SelectView.m */,
+			);
+			path = selectview;
 			sourceTree = "<group>";
 		};
 		10DBB1E2207C7F6500CFE59D /* 楼栋信息 */ = {
@@ -2361,6 +2379,7 @@
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
 				0CBD85AD2088842100E7B183 /* AddTagVC.m in Sources */,
+				10B509772092EE0D004355C4 /* BrokerModel.m in Sources */,
 				0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
@@ -2443,6 +2462,7 @@
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */,
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
+				10B5097B209317C7004355C4 /* SelectView.m in Sources */,
 				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
 				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,

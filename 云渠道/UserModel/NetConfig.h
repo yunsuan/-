@@ -134,6 +134,12 @@ static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
 //项目匹配客户
 static NSString *const ProjectMatching_URL = @"agent/matching/project";
 
+//获取楼栋
+static NSString *const GetBuilding_URL = @"user/yunsuan/build";
+
+//获取单元
+static NSString *const GetUnit_URL = @"user/yunsuan/unit";
+
 #pragma mark ---  消息  ---
 
 //获取消息未读数量
