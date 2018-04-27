@@ -87,22 +87,35 @@
 }
 
 -(void)post{
-    _datasouce = [NSMutableArray arrayWithArray: @[
-  @{@"FLOORNUM" : @"17",
-     @"LIST" :@[@{@"DYMC":@"一单元",
-                @"FJID" : @"1019",},
-               @{@"DYMC":@"一单元",
-                 @"FJID" : @"1019",
-                }]
-    },
-    @{@"FLOORNUM" : @"17",
-         @"LIST" :@[@{@"DYMC":@"一单元",
-                    @"FJID" : @"1019",},
-                     @{@"DYMC":@"一单元",
-                    @"FJID" : @"1019",}]
-     }
-                   ]];
-    [self initInterFace];
+    [BaseRequest GET:GetUnit_URL parameters:@{
+                                              @"project_id":_project_id,
+                                              @"build_id":_build_id,
+                                              @"unit_id":_unit_id
+                                              }
+             success:^(id resposeObject) {
+                 NSLog(@"%@",resposeObject);
+                 _datasouce = resposeObject[0][@"content"];
+                    [self initInterFace];
+                                              }
+             failure:^(NSError *error) {
+                 
+             }];
+//    _datasouce = [NSMutableArray arrayWithArray: @[
+//  @{@"FLOORNUM" : @"17",
+//     @"LIST" :@[@{@"DYMC":@"一单元",
+//                @"FJID" : @"1019",},
+//               @{@"DYMC":@"一单元",
+//                 @"FJID" : @"1019",
+//                }]
+//    },
+//    @{@"FLOORNUM" : @"17",
+//         @"LIST" :@[@{@"DYMC":@"一单元",
+//                    @"FJID" : @"1019",},
+//                     @{@"DYMC":@"一单元",
+//                    @"FJID" : @"1019",}]
+//     }
+//                   ]];
+ 
 }
 
 

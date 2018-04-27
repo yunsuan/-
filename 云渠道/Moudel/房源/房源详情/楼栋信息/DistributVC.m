@@ -8,10 +8,12 @@
 
 #import "DistributVC.h"
 #import "HousedistributVC.h"
+#import "SelectView.h"
 
 @interface DistributVC ()
 {
     NSArray *_dylist;
+    NSDictionary *_lddic;
 }
 @property (nonatomic , strong) UIImageView *backimg;
 @property (nonatomic , strong) UIButton *leftbutton;
@@ -19,6 +21,8 @@
 @property (nonatomic , strong) UIView * drawerview;
 @property (nonatomic , strong) UIButton *closebtn;
 @property (nonatomic , strong) UIScrollView *choosebuildingview;
+@property (nonatomic , strong)SelectView *selectView;
+@property ( nonatomic , strong )UIView *maskView;
 
 -(void)initUI;
 -(void)initDataSouce;
@@ -81,14 +85,51 @@
 {
     NSLog(@"%ld",sender.tag);
     NSArray *arr=_dylist[sender.tag-1000][@"DYLIST"];
+    _lddic =_dylist[sender.tag-1000];
     if (arr.count>0) {
-        
+        [self.selectView SetNumberOfItem:arr.count];
+        self.selectView.frame = CGRectMake(75*SIZE, 174*SIZE, 212*SIZE, 49*SIZE*arr.count+49*SIZE);
+        UILabel * lab = [[UILabel alloc]initWithFrame:CGRectMake(0,0 , 212*SIZE, 49*SIZE)];
+        lab.text = [NSString stringWithFormat:@"%@单元选择",_dylist[sender.tag-1000][@"LDMC"]];
+        lab.font = [UIFont systemFontOfSize:20*SIZE];
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.textColor = COLOR(68, 68, 68, 1);
+        [self.selectView addSubview:lab];
+        for (int i = 0; i<arr.count; i++) {
+            UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setTitle:[NSString stringWithFormat:@"%@",arr[i][@"DYMC"]] forState:UIControlStateNormal];
+            btn.titleLabel.font =[UIFont systemFontOfSize:17*SIZE];
+            btn.tag = 100+i;
+            btn.frame = CGRectMake(0, 49*SIZE+i*49*SIZE, 212*SIZE, 49*SIZE);
+            [btn addTarget:self action:@selector(action_btn:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTitleColor:COLOR(68, 68, 68, 1) forState:UIControlStateNormal];
+            [self.selectView addSubview:btn];
+            UIView * lane = [[UIView alloc]initWithFrame:CGRectMake(0, 49*SIZE*i+48.5*SIZE, 212*SIZE, 1*SIZE)];
+            lane.backgroundColor = COLOR(200, 200, 200, 1);
+            [self.selectView addSubview:lane];
+        }
+        [self.view addSubview:self.maskView];
+        [self.view addSubview:self.selectView];
     }
     else{
     HousedistributVC *next_vc = [[HousedistributVC alloc]init];
+        next_vc.project_id = _projiect_id;
+        next_vc.build_id = _dylist[sender.tag-1000][@"LDID"];
+        next_vc.unit_id =@"0";
     [self.navigationController pushViewController:next_vc animated:YES];
     }
     
+}
+
+-(void)action_btn:(UIButton *)sender
+
+{
+    [self maskViewTap];
+    HousedistributVC *next_vc = [[HousedistributVC alloc]init];
+    next_vc.project_id = _projiect_id;
+    next_vc.build_id = _lddic[@"LDID"];
+    next_vc.unit_id =_lddic[@"DYLIST"][sender.tag-100][@"DYID"];
+    [self.navigationController pushViewController:next_vc animated:YES];
 }
 
 -(void)action_open
@@ -219,6 +260,38 @@
         [btn addTarget:self action:@selector(action_buildingchoose:) forControlEvents:UIControlEventTouchUpInside];
         [_choosebuildingview addSubview:btn];
     }
+}
+
+-(SelectView *)selectView
+{
+    if (!_selectView) {
+        _selectView = [[SelectView alloc]init];
+        _selectView.backgroundColor = [UIColor whiteColor];
+        _selectView.layer.masksToBounds = YES;
+        _selectView.layer.cornerRadius = 4*SIZE;
+    }
+    return _selectView;
+}
+
+
+- (UIView *)maskView {
+    if (!_maskView) {
+        _maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        _maskView.backgroundColor = [UIColor blackColor];
+        _maskView.alpha = 0.5;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maskViewTap)];
+        [_maskView addGestureRecognizer:tap];
+    }
+    return _maskView;
+}
+
+- (void)maskViewTap {
+    for(UIView *view in [self.selectView subviews])
+    {
+        [view removeFromSuperview];
+    }
+    [self.selectView removeFromSuperview];
+    [self.maskView removeFromSuperview];
 }
 
 @end
