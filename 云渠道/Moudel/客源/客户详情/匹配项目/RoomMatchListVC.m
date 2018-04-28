@@ -17,6 +17,7 @@
     NSArray *_arr;
     BOOL _upAndDown;
     NSMutableArray *_dataArr;
+    NSString *_clientId;
 }
 
 @property (nonatomic , strong) UITableView *matchListTable;
@@ -35,12 +36,23 @@
 
 @implementation RoomMatchListVC
 
+- (instancetype)initWithClientId:(NSString *)clientId
+{
+    self = [super init];
+    if (self) {
+        
+        _clientId = clientId;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
     [self initDateSouce];
     [self initUI];
+    
     
 }
 

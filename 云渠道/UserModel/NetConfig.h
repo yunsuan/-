@@ -101,13 +101,15 @@ static NSString *const AddRecord_URL = @"agent/client/addFollow";
 
 //获取客户跟进
 static NSString *const GetRecord_URL = @"agent/client/getFollowList";
+
 //获取客户以推荐项目
 static NSString *const GetStateList_URL = @"agent/client/getStateList";
 
 //推荐客户
 static NSString *const RecommendClient_URL = @"agent/client/recommend";
 
-
+//客户匹配项目
+static NSString *const ClientMatching_URL = @"agent/matching/client";
 
 #pragma mark ---  房源  ---
 //获取项目列表

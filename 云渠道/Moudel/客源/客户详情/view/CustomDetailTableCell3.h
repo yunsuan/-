@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TagView.h"
 
+@class CustomDetailTableCell3;
+
+typedef void(^RecommendBtnBlock3)(NSInteger index);
+
 @interface CustomDetailTableCell3 : UITableViewCell
+
+@property (nonatomic, copy) RecommendBtnBlock3 recommendBtnBlock3;
 
 @property (nonatomic , strong) UILabel *titleL;
 
@@ -24,6 +30,8 @@
 @property (nonatomic , strong) TagView *tagview;
 
 @property (nonatomic , strong) TagView *wuyeview;
+
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
 
 - (void)settagviewWithdata:(NSArray *)data;
 
