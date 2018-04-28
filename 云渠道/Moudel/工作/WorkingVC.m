@@ -30,7 +30,7 @@
 {
     [super viewWillAppear:animated];
     [self postWithidentify:@"1"];
-    [self refresh];//更新数据
+//    [self refresh];//更新数据
     
 }
 
