@@ -624,6 +624,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
     static NSString *CellIdentifier = @"PeopleCell";
     
     PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

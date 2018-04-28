@@ -21,22 +21,9 @@
 }
 
 - (void)settagviewWithdata:(NSArray *)data{
-    
-    _wuyeview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 66.7*SIZE, 150*SIZE, 16.7*SIZE) DataSouce:data[0] type:@"0"];
-    [self.contentView addSubview:_wuyeview];
-    
-    _tagview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 88*SIZE, 150*SIZE, 16.7*SIZE) DataSouce:data[1] type:@"1"];
-    [self.contentView addSubview:_tagview];
-    
-    [_tagview mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.contentView).offset(125 *SIZE);
-        make.top.equalTo(self.contentView).offset(88 *SIZE);
-        make.width.equalTo(@(150 *SIZE));
-        make.height.equalTo(@(17 *SIZE));
-        make.bottom.equalTo(self.contentView).offset(-16 *SIZE);
-        
-    }];
+    [_wuyeview setData:data[0]];
+    [_tagview setData:data[1]];
+   
 }
 
 - (void)setDataDic:(NSMutableDictionary *)dataDic{
@@ -87,6 +74,22 @@
     [self.contentView addSubview:_recommentBtn];
 //    [_recommentBtn setTitleColor:COLOR(<#_R#>, <#_G#>, <#_B#>, <#_A#>) forState:UIControlStateNormal];
 
+    
+    _wuyeview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 66.7*SIZE, 150*SIZE, 16.7*SIZE)  type:@"0"];
+    [self.contentView addSubview:_wuyeview];
+    
+    _tagview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 88*SIZE, 150*SIZE, 16.7*SIZE)  type:@"1"];
+    [self.contentView addSubview:_tagview];
+    
+    [_tagview mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView).offset(125 *SIZE);
+        make.top.equalTo(self.contentView).offset(88 *SIZE);
+        make.width.equalTo(@(150 *SIZE));
+        make.height.equalTo(@(17 *SIZE));
+        make.bottom.equalTo(self.contentView).offset(-16 *SIZE);
+        
+    }];
     UIView *lane = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE, 119*SIZE, 360*SIZE, 1*SIZE)];
     lane.backgroundColor = YJBackColor;
     [self.contentView addSubview:lane];

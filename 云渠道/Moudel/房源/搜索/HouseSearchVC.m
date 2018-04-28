@@ -180,6 +180,7 @@
     }
     NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
     [cell settagviewWithdata:tempArr3];
+    [cell.tagview reloadInputViews];
     [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

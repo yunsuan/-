@@ -10,6 +10,8 @@
 
 @interface TagView : UIView
 -(instancetype)initWithFrame:(CGRect)frame
-                   DataSouce:(NSArray *)datasouce
                         type:(NSString *)type;//type   1物业类型   2标签
+
+-(void)setData:(NSArray *)datasouse;
+
 @end
