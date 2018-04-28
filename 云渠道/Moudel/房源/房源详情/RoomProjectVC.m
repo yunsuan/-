@@ -32,7 +32,6 @@
 {
     CLLocationCoordinate2D _leftBottomPoint;
     CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
-    
     NSMutableDictionary *_dynamicDic;
     NSString *_projectId;
     RoomDetailModel *_model;
@@ -77,20 +76,20 @@
     [self initUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    self.mapView.delegate = self;
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    
-    [super viewWillDisappear:animated];
-    
-    self.mapView.delegate = nil;
-    [self.mapView removeFromSuperview];
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//
+//    [super viewWillAppear:animated];
+//
+//    self.mapView.delegate = self;
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated{
+//
+//    [super viewWillDisappear:animated];
+//
+//    self.mapView.delegate = nil;
+//    [self.mapView removeFromSuperview];
+//}
 
 
 - (void)initDataSource{
@@ -161,7 +160,8 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:_projectId forKey:@"project_id"];
-    [dic setObject:[UserModelArchiver unarchive].agent_id forKey:@"agent_id"];
+
+     [dic setObject:[UserModelArchiver unarchive].agent_id forKey:@"agent_id"];
     [BaseRequest GET:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -680,9 +680,7 @@
 
 - (void)beginSearchWithname:(NSString *)name{
     
-    _poisearch = [[BMKPoiSearch alloc]init];
-    _poisearch.delegate = self;
-    
+    _poisearch = [self poisearch];
     BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
     boundSearchOption.pageIndex = 0;
     boundSearchOption.pageCapacity = 40;
@@ -733,6 +731,15 @@
     
     _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
     _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
+}
+
+-(BMKPoiSearch *)poisearch
+{
+    if (!_poisearch) {
+        _poisearch =[[BMKPoiSearch alloc]init];
+        _poisearch.delegate = self;
+    }
+    return _poisearch;
 }
 
 @end

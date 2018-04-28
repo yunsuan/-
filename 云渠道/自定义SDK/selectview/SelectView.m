@@ -13,7 +13,6 @@
 -(void)SetNumberOfItem:(NSInteger)num
 {
     self.frame = CGRectMake(0, 0, 212*SIZE, 49*SIZE*num+49*SIZE);
-    
 }
 
 

@@ -186,3 +186,5 @@ static NSString *const BrokerAppeal_URL = @"user/work/broker/appeal";
 static NSString *const BrokerAppealDetail_URL = @"user/work/broker/appealDetail";
 
 
+static NSString *const RefreshData_URL = @"user/work/flushDate";
+

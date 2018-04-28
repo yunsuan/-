@@ -396,7 +396,6 @@
                         
                         [tempArr replaceObjectAtIndex:idx withObject:@(1)];
                     }else{
-                        
                         [tempArr replaceObjectAtIndex:idx withObject:@(0)];
                     }
                 }];
