@@ -70,13 +70,33 @@
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            [_unComfirmArr removeAllObjects];
+            [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
         }
     } failure:^(NSError *error) {
         
         [self showContent:@"网络错误"];
         NSLog(@"%@",error);
     }];
+}
+
+- (void)SetUnComfirmArr:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_unComfirmArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
 }
 
 - (void)ValidRequest{
@@ -159,7 +179,8 @@
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            [_appealArr removeAllObjects];
+            [self SetApealArr:resposeObject[@"data"][@"data"]];
         }
     } failure:^(NSError *error) {
         
@@ -168,6 +189,24 @@
     }];
 }
 
+- (void)SetApealArr:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_appealArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
+}
 
 -(void)initUI
 {
@@ -211,16 +250,41 @@
     [self.MainTableView reloadData];
     if (_index == 0) {
         
-        [self UnComfirmRequest];
+        if (_unComfirmArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self UnComfirmRequest];
+        }
+        
     }else if (_index == 1){
         
-        [self ValidRequest];
+        if (_validArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self ValidRequest];
+        }
     }else if (_index == 2){
         
-        [self InValidRequest];
+        if (_inValidArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self InValidRequest];
+        }
     }else{
         
-        [self ApealRequest];
+        if (_appealArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+           [self ApealRequest];
+        }
     }
 }
 
@@ -271,14 +335,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.dataDic = _validArr[indexPath.row];
-//        cell.nameL.text
-//        cell.nameL.text = @"张三";
-//        cell.projectL.text = @"推荐项目：云算公馆";
-//        cell.codeL.text = @"推荐编号：456522312";
-//        cell.confirmL.text = @"到访确认人：李四";
-//        cell.addressL.text = @"项目地址：四川-成都-郫都区";
-//        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
+        cell.dataDic = _unComfirmArr[indexPath.row];
         
         return cell;
     }else if (_index < 3){
@@ -299,13 +356,6 @@
             cell.inValidDic = _inValidArr[indexPath.row];
         }
         
-//        cell.nameL.text = @"张三";
-//        cell.codeL.text = @"推荐编号：456522312";
-//        cell.projectL.text = @"推荐项目：云算公馆";
-//        cell.confirmL.text = @"到访确认人：李四";
-//        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
-////        cell.phoneL.text = @"18725455623";
-//        cell.statusL.text = @"已来访";
         
         return cell;
     }else{
@@ -318,14 +368,15 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.confirmL.text = @"到访确认人：李四";
-        cell.projectL.text = @"推荐项目：云算公馆";
-//        cell.phoneL.text = @"联系电话：18789455612";
-        cell.statusL.text = @"处理完成";
-        cell.recomTimeL.text = @"推荐日期：2017-12-15";
-        cell.timeL.text = @"申诉日期：2017-12-15  13:00:00";
+        cell.dataDic = _appealArr[indexPath.row];
+//        cell.nameL.text = @"张三";
+//        cell.codeL.text = @"推荐编号：456522312";
+//        cell.confirmL.text = @"到访确认人：李四";
+//        cell.projectL.text = @"推荐项目：云算公馆";
+////        cell.phoneL.text = @"联系电话：18789455612";
+//        cell.statusL.text = @"处理完成";
+//        cell.recomTimeL.text = @"推荐日期：2017-12-15";
+//        cell.timeL.text = @"申诉日期：2017-12-15  13:00:00";
         
         return cell;
     }

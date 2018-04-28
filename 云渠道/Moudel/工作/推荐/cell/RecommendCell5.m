@@ -20,6 +20,24 @@
     return self;
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"project_client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project_name"]];
+    _confirmL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"project_client_id"]];
+    _recomTimeL.text = [NSString stringWithFormat:@"推荐日期：%@",dataDic[@"recommend_time"]];
+    _timeL.text = [NSString stringWithFormat:@"申诉日期：%@",dataDic[@"create_time"]];
+    _statusL.text = dataDic[@"state"];
+    if ([_statusL.text isEqualToString:@"处理完成"]) {
+        
+        _statusL.textColor = YJBlueBtnColor;
+    }else{
+        
+        _statusL.textColor = COLOR(255, 88, 88, 1);
+    }
+}
+
 - (void)initUI{
     
     

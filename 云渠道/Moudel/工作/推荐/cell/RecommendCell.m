@@ -23,11 +23,14 @@
 - (void)setDataDic:(NSMutableDictionary *)dataDic{
     
     _nameL.text = dataDic[@"name"];
-    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@""]];
-    _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"client_id"]];
-    _confirmL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"property_advicer_real"]];
-    _timeL.text = [NSString stringWithFormat:@"到访时间：%@",dataDic[@"allot_time"]];
-    
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project_name"]];
+    _confirmL.text = [NSString stringWithFormat:@"到访确认人：%@",dataDic[@"butter_name"]];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间：%@",dataDic[@"create_time"]]];
+    [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
+    _timeL.attributedText = attr;
+//    _timeL.text = [NSString stringWithFormat:@"失效时间：%@",dataDic[@"create_time"]];
+    _addressL.text = dataDic[@"absolute_address"];
 }
 
 - (void)initUI{
@@ -37,7 +40,7 @@
     _nameL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_nameL];
     
-    _codeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 49 *SIZE, 200 *SIZE, 11 *SIZE)];
+    _codeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 44 *SIZE, 200 *SIZE, 11 *SIZE)];
     _codeL.textColor = YJ86Color;
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
@@ -54,7 +57,7 @@
     [self.contentView addSubview:_timeL];
     
     _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 107 *SIZE, 170 *SIZE, 10 *SIZE)];
-    _confirmL.textColor = YJContentLabColor;
+    _confirmL.textColor = YJ170Color;
     _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_confirmL];
 
@@ -64,7 +67,7 @@
     [self.contentView addSubview:_statusImg];
     
     _addressL = [[UILabel alloc] initWithFrame:CGRectMake(180 *SIZE, 107 *SIZE, 170 *SIZE, 10 *SIZE)];
-    _addressL.textColor = YJContentLabColor;
+    _addressL.textColor = YJ170Color;
     _addressL.font = [UIFont systemFontOfSize:11 *SIZE];
     _addressL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_addressL];
