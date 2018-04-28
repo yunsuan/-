@@ -18,12 +18,10 @@
 @implementation TagView
 
 -(instancetype)initWithFrame:(CGRect)frame
-                   DataSouce:(NSArray *)datasouce
                         type:(NSString *)type
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _data = datasouce;
         _type = type;
         self.clipsToBounds = YES;
         [self addSubview:self.collectionview];
@@ -31,6 +29,13 @@
     return self;
 }
 
+-(void)setData:(NSArray *)datasouse
+{
+    _data = datasouse;
+//    [_collectionview reloadData];
+    
+
+}
 
 -(UICollectionView *)collectionview
 {
@@ -53,7 +58,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *str = _data[indexPath.row];
-    return CGSizeMake(11*SIZE * str.length + 4.7*SIZE *2, 16.7*SIZE);
+    return CGSizeMake(12*SIZE * str.length + 4.7*SIZE *2, 16.7*SIZE);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

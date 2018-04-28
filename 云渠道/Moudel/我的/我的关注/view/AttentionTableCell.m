@@ -79,7 +79,8 @@
     [self.contentView addSubview:_timeL];
     
 //    _tagView =
-    
+    _tagView = [[TagView alloc]initWithFrame:CGRectMake(123 *SIZE, 87 *SIZE, 200*SIZE, 16.7*SIZE)  type:@"1"];
+    [self.contentView addSubview:_tagView];
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 140 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
@@ -87,8 +88,7 @@
 
 -(void)settagviewWithdata:(NSArray *)data
 {
-    _tagView = [[TagView alloc]initWithFrame:CGRectMake(123 *SIZE, 87 *SIZE, 200*SIZE, 16.7*SIZE) DataSouce:data[0] type:@"1"];
-    [self.contentView addSubview:_tagView];
+    [_tagView setData:data[0]];
 
 }
 
