@@ -26,6 +26,14 @@
 
 @implementation WorkingVC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self postWithidentify:@"1"];
+    [self refresh];//更新数据
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
@@ -33,16 +41,21 @@
     self.leftButton.hidden = YES;
     self.titleLabel.text = @"工作";
      self.leftButton.hidden = YES;
-    [self postWithidentify:@"1"];
     [self initDateSouce];
     [self initUI];
 
 }
 
+-(void)refresh{
+    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 -(void)postWithidentify:(NSString *)identify
 {
-    
-    
     switch ([identify integerValue]) {
         case 1:
         {

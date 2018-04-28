@@ -38,6 +38,10 @@
     } failure:^(NSError *error) {
         
     }];
+    if (![UserModelArchiver unarchive].agent_id) {
+         [UserModel defaultModel].agent_id = @"0";
+        [UserModelArchiver archive];
+    }
     //注册通知，退出登陆时回到首页
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(comeBackLoginVC) name:@"goLoginVC" object:nil];
     

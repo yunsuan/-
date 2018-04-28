@@ -159,3 +159,5 @@ static NSString *const AgentInfoCount_URL = @"user/work/broker/count";
 
 static NSString *const Butterinfocount_URL = @"user/work/butter/count";
 
+static NSString *const RefreshData_URL = @"user/work/flushDate";
+
