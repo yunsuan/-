@@ -10,4 +10,6 @@
 
 @interface RoomMatchListVC : BaseViewController
 
+- (instancetype)initWithClientId:(NSString *)clientId;
+
 @end

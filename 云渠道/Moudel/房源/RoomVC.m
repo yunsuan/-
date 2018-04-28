@@ -204,23 +204,82 @@
                     }
                 }else{
                     
-//                    [self showContent:@"暂无数据"];
                 }
             }else{
                 
-//                [self showContent:resposeObject[@"msg"]];
             }
         }else{
             
-//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
         [self.MainTableView.mj_header endRefreshing];
-        [self.MainTableView.mj_footer endRefreshing];
+        [self showContent:@"网路错误"];
         NSLog(@"%@",error.localizedDescription);
     }];
 
+}
+
+- (void)RequestAddMethod{
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
+    if (_city.length) {
+        
+        [dic setObject:_city forKey:@"city"];
+    }
+    if (_district.length) {
+        
+        [dic setObject:_district forKey:@"district"];
+    }
+    if (![_price isEqualToString:@"0"] && _price) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_price] forKey:@"average_price"];
+    }
+    if (![_type isEqualToString:@"0"] && _type) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"property_id"];
+    }
+    if (_tag.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"project_tags"];
+    }
+    if (_houseType.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
+    }
+    
+    [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
+        
+        [self.MainTableView.mj_footer endRefreshing];
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    [self SetData:resposeObject[@"data"][@"data"]];
+                    if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                        
+                        self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                    }
+                }else{
+                    
+                }
+            }else{
+                
+            }
+        }else{
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网路错误"];
+        [self.MainTableView.mj_footer endRefreshing];
+        NSLog(@"%@",error.localizedDescription);
+    }];
+    
 }
 
 #pragma mark -- Method

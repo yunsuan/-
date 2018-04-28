@@ -31,6 +31,7 @@
     CustomerModel *_customModel;//客户信息
     NSMutableArray *_dataArr;//需求信息
     NSMutableArray *_FollowArr;
+    NSMutableArray *_projectArr;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
 
@@ -63,7 +64,7 @@
     
     [self initDataSource];
     [self initUI];
-    [self GetCustomRequestMethod];
+//    [self GetCustomRequestMethod];
 }
 
 - (void)initDataSource{
@@ -71,19 +72,67 @@
     _customModel = [[CustomerModel alloc] init];
     _dataArr = [@[] mutableCopy];
     _FollowArr = [@[] mutableCopy];
+    _projectArr = [@[] mutableCopy];
     _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     [self RequestMethod];
 }
 
+- (void)MatchRequest{
+    
+    [BaseRequest GET:ClientMatching_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+        
+       
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self SetProjectList:resposeObject[@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetProjectList:(NSArray *)data{
+    
+    [_projectArr removeAllObjects];
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([key isEqualToString:@"property_tags"]) {
+                
+                if (![obj isKindOfClass:[NSArray class]]) {
+                    
+                    [tempDic setObject:@[] forKey:key];
+                }
+            }else{
+                
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [tempDic setObject:@"" forKey:key];
+                }
+            }
+        }];
+        
+        [_projectArr addObject:tempDic];
+    }
+    [_customDetailTable reloadData];
+}
+
 -(void)GetCustomRequestMethod
 {
-    [BaseRequest GET:GetStateList_URL parameters:@{
-                                                   @"client_id":[UserModelArchiver unarchive].agent_id
-                                                   } success:^(id resposeObject) {
-                                                       
-                                                   } failure:^(NSError *error) {
-                                                       
-                                                   }];
+    
+    [BaseRequest GET:GetStateList_URL parameters:@{@"client_id":[UserModelArchiver unarchive].agent_id} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+
 }
 
 - (void)GetFollowRequestMethod{
@@ -98,7 +147,7 @@
             [_customDetailTable reloadData];
         }else{
             
-//            [self showContent:resposeObject[@"msg"]];
+
         }
     } failure:^(NSError *error) {
        
@@ -191,6 +240,16 @@
             [self GetFollowRequestMethod];
         }
     }
+    if (_item == 2) {
+        
+        if (_FollowArr.count) {
+            
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self MatchRequest];
+        }
+    }
     NSLog(@"%@",indexPath);
 }
 
@@ -198,16 +257,28 @@
     
     _item = indexPath.item;
     [_customDetailTable reloadData];
-//    if (_item == 1) {
-//
-//        if (_FollowArr.count) {
-//
-//            [_customDetailTable reloadData];
-//        }else{
-//
-//            [self GetFollowRequestMethod];
-//        }
-//    }
+    _item = indexPath.item;
+    [_customDetailTable reloadData];
+    if (_item == 1) {
+        
+        if (_FollowArr.count) {
+            
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self GetFollowRequestMethod];
+        }
+    }
+    if (_item == 2) {
+        
+        if (_FollowArr.count) {
+            
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self MatchRequest];
+        }
+    }
     
     NSLog(@"%@",indexPath);
 }
@@ -243,7 +314,28 @@
     
     _item = indexPath.item;
     [_customDetailTable reloadData];
-    NSLog(@"%@",indexPath);
+    _item = indexPath.item;
+    [_customDetailTable reloadData];
+    if (_item == 1) {
+        
+        if (_FollowArr.count) {
+            
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self GetFollowRequestMethod];
+        }
+    }
+    if (_item == 2) {
+        
+        if (_FollowArr.count) {
+            
+            [_customDetailTable reloadData];
+        }else{
+            
+            [self MatchRequest];
+        }
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -263,8 +355,10 @@
     }else if (_item == 1){
         
         return _FollowArr.count;
+    }else{
+        
+        return _projectArr.count < 3? _projectArr.count : 3;
     }
-    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -291,7 +385,7 @@
             return 407 *SIZE;
         }else{
 
-            return 485 *SIZE;
+            return 435 *SIZE;
         }
     }
 }
@@ -364,12 +458,12 @@
 
             header.model = _customModel;
             
-            header.numListL.text = @"匹配项目列表(3)";
+            header.numListL.text = [NSString stringWithFormat:@"匹配项目列表(%ld)",_projectArr.count];
             header.recommendListL.text = @"已推荐项目数(2)";
             
             header.moreBtnBlock = ^{
                 
-                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] init];
+                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId];
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             
@@ -500,11 +594,58 @@
                 cell = [[CustomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell settagviewWithdata:_arr[indexPath.row]];
-            cell.headImg.backgroundColor = YJGreenColor;
-            cell.titleL.text = @"新希望国际大厦";
-            cell.rateL.text = @"匹配度：80%";
-            cell.addressL.text = @"高新区-天府三街";
+            cell.tag = indexPath.row;
+            [cell setDataDic:_projectArr[indexPath.row]];
+            
+            NSMutableArray *tempArr = [@[] mutableCopy];
+            for (int i = 0; i < [_projectArr[indexPath.row][@"property_tags"] count]; i++) {
+                
+                [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ([obj[@"id"] integerValue] == [_projectArr[indexPath.row][@"property_tags"][i] integerValue]) {
+                        
+                        [tempArr addObject:obj[@"param"]];
+                        *stop = YES;
+                    }
+                }];
+            }
+            
+            NSArray *tempArr1 = [_projectArr[indexPath.row][@"project_tags"]  componentsSeparatedByString:@","];
+            NSMutableArray *tempArr2 = [@[] mutableCopy];
+            for (int i = 0; i < tempArr1.count; i++) {
+                
+                [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                        
+                        [tempArr2 addObject:obj[@"param"]];
+                        *stop = YES;
+                    }
+                }];
+            }
+            NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+            [cell settagviewWithdata:tempArr3];
+            
+            cell.recommendBtnBlock3 = ^(NSInteger index) {
+                
+                if (_dataArr.count) {
+                    
+                    CustomRequireModel *model = _dataArr[0];
+                    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectArr[index][@"project_id"],@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                        
+                        NSLog(@"%@",resposeObject);
+                        [self showContent:resposeObject[@"msg"]];
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            
+                        }
+                    } failure:^(NSError *error) {
+                        
+                        NSLog(@"%@",error);
+                        [self showContent:@"网络错误"];
+                    }];
+                }
+            };
             
             return cell;
         }

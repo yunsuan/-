@@ -39,6 +39,24 @@
     }];
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _titleL.text = dataDic[@"project_name"];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",dataDic[@"score"],@"%"]];
+    [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 4)];
+    _rateL.attributedText = attr;
+//    NSArray *arr = [dataDic[@"project_tags"] componentsSeparatedByString:@","];
+//    self settagviewWithdata:<#(NSArray *)#>
+}
+
+- (void)ActionRecommendBtn:(UIButton *)btn{
+    
+    if (self.recommendBtnBlock3) {
+        
+        self.recommendBtnBlock3(self.tag);
+    }
+}
+
 - (void)initUI{
     
     _headImg = [[UIImageView alloc]initWithFrame:CGRectMake(11.7*SIZE,16.3*SIZE, 100*SIZE, 88.3*SIZE)];
@@ -54,7 +72,7 @@
     _addressL.font =[UIFont systemFontOfSize:10.7*SIZE];
     [self.contentView addSubview:_addressL];
     
-    _rateL = [[UILabel alloc]initWithFrame:CGRectMake(270 *SIZE, 15.7*SIZE, 77*SIZE, 13*SIZE)];
+    _rateL = [[UILabel alloc]initWithFrame:CGRectMake(247 *SIZE, 15.7*SIZE, 100*SIZE, 13*SIZE)];
     _rateL.textColor = COLOR(27, 152, 255, 1);
     _rateL.font = [UIFont systemFontOfSize:12*SIZE];
     _rateL.textAlignment = NSTextAlignmentRight;
@@ -63,7 +81,7 @@
     _recommentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _recommentBtn.frame = CGRectMake(281 *SIZE, 67 *SIZE, 67 *SIZE, 30 *SIZE);
     _recommentBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-//    [_recommentBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_recommentBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_recommentBtn setTitle:@"推荐" forState:UIControlStateNormal];
     [_recommentBtn setBackgroundColor:YJBlueBtnColor];
     [self.contentView addSubview:_recommentBtn];
