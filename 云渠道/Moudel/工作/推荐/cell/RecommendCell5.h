@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UILabel *codeL;
 
+@property (nonatomic, strong) UILabel *projectL;
+
 @property (nonatomic, strong) UILabel *confirmL;
 
 @property (nonatomic, strong) UILabel *recomTimeL;

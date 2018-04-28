@@ -28,6 +28,29 @@
     }
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project_name"]];
+    _confirmL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"property_advicer_real"]];
+    _timeL.text = [NSString stringWithFormat:@"到访时间：%@",dataDic[@"allot_time"]];
+    _statusL.text = dataDic[@"current_state"];
+    _statusL.textColor = YJBlueBtnColor;
+}
+
+- (void)setInValidDic:(NSMutableDictionary *)inValidDic{
+    
+    _nameL.text = inValidDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",inValidDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",inValidDic[@"project_name"]];
+    _confirmL.text = [NSString stringWithFormat:@"置业顾问：%@",inValidDic[@"property_advicer_real"]];
+    _timeL.text = [NSString stringWithFormat:@"失效时间：%@",inValidDic[@"state_change_time"]];
+    _statusL.text = inValidDic[@"current_state"];
+    
+    _statusL.textColor = YJ170Color;
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 17 *SIZE, 50 *SIZE, 14 *SIZE)];
@@ -35,18 +58,23 @@
     _nameL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_nameL];
     
-    _codeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 44 *SIZE, 200 *SIZE, 11 *SIZE)];
+    _codeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 42 *SIZE, 200 *SIZE, 11 *SIZE)];
     _codeL.textColor = YJ86Color;
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
     
-    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 65 *SIZE, 200 *SIZE, 10 *SIZE)];
+    _projectL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 61 *SIZE, 200 *SIZE, 11 *SIZE)];
+    _projectL.textColor = YJ86Color;
+    _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
+    [self.contentView addSubview:_projectL];
+    
+    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 82 *SIZE, 200 *SIZE, 10 *SIZE)];
     _confirmL.textColor = YJ86Color;
     _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_confirmL];
     
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 86 *SIZE, 300 *SIZE, 10 *SIZE)];
-    _timeL.textColor = YJ86Color;
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 102 *SIZE, 300 *SIZE, 10 *SIZE)];
+    _timeL.textColor = YJ170Color;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_timeL];
     
@@ -62,7 +90,7 @@
     _statusL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_statusL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 112 *SIZE, SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 126 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

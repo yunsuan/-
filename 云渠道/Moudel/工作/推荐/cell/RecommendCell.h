@@ -24,5 +24,7 @@
 
 @property (nonatomic, strong) UILabel *addressL;
 
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
 
 @end

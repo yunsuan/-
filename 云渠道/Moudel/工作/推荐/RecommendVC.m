@@ -25,6 +25,10 @@
     
     NSInteger _index;
     NSArray *_titleArr;
+    NSMutableArray *_unComfirmArr;
+    NSMutableArray *_validArr;
+    NSMutableArray *_inValidArr;
+    NSMutableArray *_appealArr;
 }
 @property (nonatomic , strong) UITableView *MainTableView;
 
@@ -46,22 +50,124 @@
     self.titleLabel.text = @"推荐";
     [self initDateSouce];
     [self initUI];
-    [self post];
+    [self UnComfirmRequest];
     
-}
-
--(void)post{
-    [BaseRequest GET:RecommendList_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-    } failure:^(NSError *error) {
-        
-    }];
 }
 
 -(void)initDateSouce
 {
     _titleArr = @[@"确认中",@"有效",@"无效",@"申诉"];
+    _unComfirmArr = [@[] mutableCopy];
+    _validArr = [@[] mutableCopy];
+    _inValidArr = [@[] mutableCopy];
+    _appealArr = [@[] mutableCopy];
 }
+
+-(void)UnComfirmRequest{
+    
+    [BaseRequest GET:BrokerWaitConfirm_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)ValidRequest{
+    
+    [BaseRequest GET:BrokerValue_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_validArr removeAllObjects];
+            [self SetValidArr:resposeObject[@"data"][@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetValidArr:(NSArray *)data{
+    
+//    [_validArr removeAllObjects];
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_validArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
+}
+
+- (void)InValidRequest{
+    
+    [BaseRequest GET:BrokerDisabled_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_inValidArr removeAllObjects];
+            [self SetInValidArr:resposeObject[@"data"][@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetInValidArr:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_inValidArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
+}
+
+- (void)ApealRequest{
+    
+    [BaseRequest GET:BrokerAppeal_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
 
 -(void)initUI
 {
@@ -103,6 +209,19 @@
     
     _index = indexPath.item;
     [self.MainTableView reloadData];
+    if (_index == 0) {
+        
+        [self UnComfirmRequest];
+    }else if (_index == 1){
+        
+        [self ValidRequest];
+    }else if (_index == 2){
+        
+        [self InValidRequest];
+    }else{
+        
+        [self ApealRequest];
+    }
 }
 
 
@@ -110,21 +229,33 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (_index == 0) {
+        
+        return _unComfirmArr.count;
+    }else if (_index == 1){
+        
+        return _validArr.count;
+    }else if (_index == 2){
+        
+        return _inValidArr.count;
+    }else{
+        
+        return _appealArr.count;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (_index == 0) {
         
-        return 127*SIZE;
+        return 132 *SIZE;
         
     }else if (_index < 3){
         
-        return 113 *SIZE;
+        return 127 *SIZE;
     }else{
         
-        return 108 *SIZE;
+        return 126 *SIZE;
     }
 }
 
@@ -140,12 +271,14 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.projectL.text = @"推荐项目：云算公馆";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.confirmL.text = @"到访确认人：李四";
-        cell.addressL.text = @"项目地址：四川-成都-郫都区";
-        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
+        cell.dataDic = _validArr[indexPath.row];
+//        cell.nameL.text
+//        cell.nameL.text = @"张三";
+//        cell.projectL.text = @"推荐项目：云算公馆";
+//        cell.codeL.text = @"推荐编号：456522312";
+//        cell.confirmL.text = @"到访确认人：李四";
+//        cell.addressL.text = @"项目地址：四川-成都-郫都区";
+//        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
         
         return cell;
     }else if (_index < 3){
@@ -158,12 +291,21 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.confirmL.text = @"到访确认人：李四";
-        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
-//        cell.phoneL.text = @"18725455623";
-        cell.statusL.text = @"已来访";
+        if (_index == 1) {
+            
+            cell.dataDic = _validArr[indexPath.row];
+        }else{
+            
+            cell.inValidDic = _inValidArr[indexPath.row];
+        }
+        
+//        cell.nameL.text = @"张三";
+//        cell.codeL.text = @"推荐编号：456522312";
+//        cell.projectL.text = @"推荐项目：云算公馆";
+//        cell.confirmL.text = @"到访确认人：李四";
+//        cell.timeL.text = @"失效截止时间：2017-12-15  13:00:00";
+////        cell.phoneL.text = @"18725455623";
+//        cell.statusL.text = @"已来访";
         
         return cell;
     }else{
@@ -179,6 +321,7 @@
         cell.nameL.text = @"张三";
         cell.codeL.text = @"推荐编号：456522312";
         cell.confirmL.text = @"到访确认人：李四";
+        cell.projectL.text = @"推荐项目：云算公馆";
 //        cell.phoneL.text = @"联系电话：18789455612";
         cell.statusL.text = @"处理完成";
         cell.recomTimeL.text = @"推荐日期：2017-12-15";

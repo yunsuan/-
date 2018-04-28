@@ -17,6 +17,8 @@ typedef void(^phoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *nameL;
 
+@property (nonatomic, strong) UILabel *projectL;
+
 @property (nonatomic, strong) UILabel *codeL;
 
 @property (nonatomic, strong) UILabel *confirmL;
@@ -26,5 +28,9 @@ typedef void(^phoneBtnBlock)(NSInteger index);
 @property (nonatomic, strong) UILabel *statusL;
 
 @property (nonatomic, strong) UIButton *phoneBtn;
+
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
+@property (nonatomic, strong) NSMutableDictionary *inValidDic;
 
 @end

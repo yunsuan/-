@@ -161,3 +161,28 @@ static NSString *const AgentInfoCount_URL = @"user/work/broker/count";
 
 static NSString *const Butterinfocount_URL = @"user/work/butter/count";
 
+//更新数据
+static NSString *const FlushDate_URL = @"user/work/flushDate";
+
+//经纪人信息统计
+static NSString *const BrokerCount_URL = @"user/work/broker/count";
+
+//对接人信息统计
+static NSString *const ButterCount_URL = @"user/work/butter/count";
+
+//经纪人待确认客户列表
+static NSString *const BrokerWaitConfirm_URL = @"user/work/broker/waitConfirm";
+
+//经纪人有效到访客户列表
+static NSString *const BrokerValue_URL = @"user/work/broker/value";
+
+//经纪人无效列表
+static NSString *const BrokerDisabled_URL = @"user/work/broker/disabled";
+
+//经纪人申诉列表
+static NSString *const BrokerAppeal_URL = @"user/work/broker/appeal";
+
+//经纪人申诉详情
+static NSString *const BrokerAppealDetail_URL = @"user/work/broker/appealDetail";
+
+
