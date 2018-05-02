@@ -386,6 +386,12 @@
 
     
     CustomerTableModel *model = _dataArr[indexPath.row];
+    cell.customerTableCellPhoneTapBlock = ^(NSString *phone) {
+      
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+        //调用系统方法拨号
+        [[UIApplication sharedApplication] openURL:url];
+    };
     cell.model = model;
     
     return cell;

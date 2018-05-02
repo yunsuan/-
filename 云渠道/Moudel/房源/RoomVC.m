@@ -179,7 +179,7 @@
     }
     if (_tag.length) {
         
-        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"project_tags"];
+        [dic setObject:[NSString stringWithFormat:@"%@",_tag] forKey:@"project_tags"];
     }
     if (_houseType.length) {
         
@@ -936,9 +936,20 @@
         WS(weakSelf);
         _moreView.moreBtnBlock = ^(NSString *tag, NSString *houseType, NSString *status) {
             
-            _tag = tag;
-            _houseType = houseType;
-            _status = status;
+            if (tag) {
+                
+                _tag = [NSString stringWithFormat:@"%@",tag];
+            }
+            
+            if (houseType) {
+                
+                _houseType = [NSString stringWithFormat:@"%@",houseType];
+            }
+            
+            if (status) {
+                
+                _status = [NSString stringWithFormat:@"%@",status];
+            }
         
             [weakSelf RequestMethod];
         };

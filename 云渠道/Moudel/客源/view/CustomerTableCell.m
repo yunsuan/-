@@ -125,7 +125,16 @@
     if (model.tel) {
         
         NSArray *arr = [model.tel componentsSeparatedByString:@","];
-        _phoneL.text = [NSString stringWithFormat:@"%@",arr[0]];
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:arr[0]];
+        NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+        [attr addAttributes:attribtDic range:NSMakeRange(0, attr.length)];
+        [attr addAttribute:NSForegroundColorAttributeName value:YJBlueBtnColor range:NSMakeRange(0, attr.length)];
+        _phoneL.attributedText = attr;
+        _phoneL.userInteractionEnabled = YES;
+//        添加手势，可以点击号码拨打电话
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+//
+//        [_phoneL addGestureRecognizer:tap];
     }else{
         
         _phoneL.text = [NSString stringWithFormat:@"%@",model.tel];
@@ -150,6 +159,20 @@
     }else{
         
         _gender.image = [UIImage imageNamed:@"girl"];
+    }
+}
+
+-(void)tapGesture:(UITapGestureRecognizer *)sender{
+    
+    if (_phoneL.text.length) {
+        
+        if (self.customerTableCellPhoneTapBlock) {
+            
+            self.customerTableCellPhoneTapBlock(_phoneL.text);
+        }
+    }else{
+        
+        NSLog(@"没有电话号码");
     }
 }
 
@@ -192,6 +215,8 @@
     _phoneL.textColor = YJContentLabColor;
     _phoneL.font = [UIFont systemFontOfSize:11 *SIZE];
     _phoneL.textAlignment = NSTextAlignmentRight;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+    [_phoneL addGestureRecognizer:tap];
     [self.contentView addSubview:_phoneL];
     
     _intentionRateL = [[UILabel alloc] init];

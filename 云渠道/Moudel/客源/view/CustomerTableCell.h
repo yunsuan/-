@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CustomerTableModel.h"
 
+@class CustomerTableCell;
+
+typedef void(^CustomerTableCellPhoneTapBlock)(NSString *phone);
+
 @interface CustomerTableCell : UITableViewCell
+
+@property (nonatomic, copy) CustomerTableCellPhoneTapBlock customerTableCellPhoneTapBlock;
 
 @property (nonatomic, strong) UIImageView *gender; //头像
 
