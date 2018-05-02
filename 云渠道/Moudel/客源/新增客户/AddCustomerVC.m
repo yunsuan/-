@@ -251,22 +251,14 @@
     _tel2 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 196*SIZE, 257.7*SIZE, 33.3*SIZE)];
     _tel2.hidden = YES;
     _tel2.textfield.keyboardType = UIKeyboardTypePhonePad;
-    if (telArr.count > 1) {
-        
-        [self ActionAddBtn:_addBtn];
-        _tel2.textfield.text = telArr[1];
-    }
     [_scrollview addSubview:_tel2];
+    
 
     _tel3 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 246*SIZE, 257.7*SIZE, 33.3*SIZE)];
     _tel3.hidden = YES;
     _tel3.textfield.keyboardType = UIKeyboardTypePhonePad;
-    if (telArr.count > 2) {
-        
-        [self ActionAddBtn:_addBtn];
-        _tel3.textfield.text = telArr[2];
-    }
     [_scrollview addSubview:_tel3];
+    
     
     //证件类型
     _numclasslab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 306*SIZE, 100*SIZE, 14*SIZE)];
@@ -377,6 +369,18 @@
     [_scrollview addSubview:self.surebtn];
     
     [self masonryUI];
+    
+    if (telArr.count > 1) {
+        
+        [self ActionAddBtn:_addBtn];
+        _tel2.textfield.text = telArr[1];
+    }
+    
+    if (telArr.count > 2) {
+        
+        [self ActionAddBtn:_addBtn];
+        _tel3.textfield.text = telArr[2];
+    }
 }
 
 - (void)masonryUI{
