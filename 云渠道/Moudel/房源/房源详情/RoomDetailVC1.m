@@ -60,6 +60,11 @@
     _titleArr = @[@"项目",@"佣金",@"分析"];
 }
 
+- (void)ActionLeftBtn:(UIButton *)btn{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"mapViewDismiss" object:nil];
+}
+
 
 #pragma mark -- collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -96,6 +101,8 @@
     self.titleLabel.hidden = YES;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self.maskButton addTarget:self action:@selector(ActionLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
 
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];

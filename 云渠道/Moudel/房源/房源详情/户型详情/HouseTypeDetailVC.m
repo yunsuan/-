@@ -131,7 +131,7 @@
     
     if (section == 0) {
         
-        return 183 *SIZE;
+        return 366 *SIZE;
     }
     return 33 *SIZE;
 }
@@ -143,7 +143,7 @@
         HouseTypeTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HouseTypeTableHeader"];
         if (!header) {
             
-            header = [[HouseTypeTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 184 *SIZE)];
+            header = [[HouseTypeTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 366 *SIZE)];
         }
 //        header.imgArr = [NSMutableArray arrayWithArray:_imgArr];
         header.imgArr = [NSMutableArray arrayWithArray:_imgArr];

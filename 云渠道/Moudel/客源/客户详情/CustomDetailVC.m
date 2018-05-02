@@ -73,7 +73,7 @@
     _dataArr = [@[] mutableCopy];
     _FollowArr = [@[] mutableCopy];
     _projectArr = [@[] mutableCopy];
-    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     [self RequestMethod];
 }
 
@@ -200,6 +200,7 @@
             [tempDic setObject:@"" forKey:key];
             
         }
+        
     }];
     _customModel = [[CustomerModel alloc] initWithDictionary:tempDic];
 }
@@ -212,9 +213,21 @@
             NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:data[i]];
             [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 
-                if ([obj isKindOfClass:[NSNull class]]) {
+                if ([key isEqualToString:@"region"]) {
                     
-                    [tempDic setObject:@"" forKey:key];
+                    if ([obj isKindOfClass:[NSArray class]]) {
+                        
+                        
+                    }else{
+                        
+                        [tempDic setObject:@[] forKey:key];
+                    }
+                }else{
+                    
+                    if ([obj isKindOfClass:[NSNull class]]) {
+                        
+                        [tempDic setObject:@"" forKey:key];
+                    }
                 }
             }];
             
@@ -385,7 +398,7 @@
             return 407 *SIZE;
         }else{
 
-            return 435 *SIZE;
+            return 485 *SIZE;
         }
     }
 }
