@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class RecommendVC;
+
+typedef void(^confirmBtnBlock)(NSInteger index);
+
 @interface RecommendCell : UITableViewCell
+
+
+@property (nonatomic, copy) confirmBtnBlock confirmBtnBlock;
+
+@property (nonatomic, strong) UIButton *confirmBtn;
 
 @property (nonatomic, strong) UILabel *nameL;
 
@@ -25,6 +35,7 @@
 @property (nonatomic, strong) UILabel *addressL;
 
 @property (nonatomic, strong) NSMutableDictionary *dataDic;
+
 
 
 @end

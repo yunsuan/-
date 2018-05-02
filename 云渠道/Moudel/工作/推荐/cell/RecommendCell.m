@@ -20,6 +20,14 @@
     return self;
 }
 
+- (void)ActionComfirmBtn:(UIButton *)btn{
+    
+    if (self.confirmBtnBlock) {
+        
+        self.confirmBtnBlock(self.tag);
+    }
+}
+
 - (void)setDataDic:(NSMutableDictionary *)dataDic{
     
     _nameL.text = dataDic[@"name"];
@@ -76,8 +84,21 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 132 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
+    
+    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _confirmBtn.frame = CGRectMake(273 *SIZE, 61 *SIZE, 77 *SIZE, 30 *SIZE);
+    _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_confirmBtn addTarget:self action:@selector(ActionComfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_confirmBtn setBackgroundColor:COLOR(255, 165, 29, 1)];
+    _confirmBtn.layer.cornerRadius = 2 *SIZE;
+    _confirmBtn.clipsToBounds = YES;
+    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.contentView addSubview:_confirmBtn];
 
 }
+
+
 
 
 @end

@@ -81,6 +81,12 @@
     [self.mapView removeFromSuperview];
 }
 
+- (void)ActionMaskBtn:(UIButton *)btn{
+
+    [self.navigationController popViewControllerAnimated:YES];
+    [self MapViewPopMethod];
+}
+
 - (void)initDataSource{
 
     _titleArr = @[@"楼盘",@"分析",@"佣金",@"动态",@"楼栋",@"户型"];

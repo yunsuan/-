@@ -167,6 +167,7 @@
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
 		0CF7425E206262EC001F926F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7425D206262EC001F926F /* BoxView.m */; };
 		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
+		100FD892209960CC00D02EAC /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 100FD891209960CC00D02EAC /* MapVC.m */; };
 		1016245B208863BB00AD53DE /* YJChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245A208863BB00AD53DE /* YJChooseView.m */; };
 		1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245D2088640300AD53DE /* YJChooseViewCell.m */; };
 		10174BEF2071D82000D00B9A /* DateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10174BEE2071D82000D00B9A /* DateChooseView.m */; };
@@ -565,6 +566,8 @@
 		0CF7425D206262EC001F926F /* BoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		0CF7425F20626756001F926F /* CustomerCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerCollCell.h; sourceTree = "<group>"; };
 		0CF7426020626756001F926F /* CustomerCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerCollCell.m; sourceTree = "<group>"; };
+		100FD890209960CC00D02EAC /* MapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
+		100FD891209960CC00D02EAC /* MapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		10162459208863BB00AD53DE /* YJChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJChooseView.h; sourceTree = "<group>"; };
 		1016245A208863BB00AD53DE /* YJChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YJChooseView.m; sourceTree = "<group>"; };
 		1016245C2088640300AD53DE /* YJChooseViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJChooseViewCell.h; sourceTree = "<group>"; };
@@ -1506,6 +1509,8 @@
 		100FD88F2099606900D02EAC /* 地图页面 */ = {
 			isa = PBXGroup;
 			children = (
+				100FD890209960CC00D02EAC /* MapVC.h */,
+				100FD891209960CC00D02EAC /* MapVC.m */,
 			);
 			path = "地图页面";
 			sourceTree = "<group>";
@@ -2346,6 +2351,7 @@
 				0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */,
 				0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */,
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
+				100FD892209960CC00D02EAC /* MapVC.m in Sources */,
 				0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */,
 				0C08BF5F206CB7CD005BB3B4 /* BrokerageDetailVC.m in Sources */,
 				0CC19D112071D5B10007CC5F /* CustomTableHeader4.m in Sources */,
