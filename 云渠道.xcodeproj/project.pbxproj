@@ -1503,6 +1503,13 @@
 			path = BoxView;
 			sourceTree = "<group>";
 		};
+		100FD88F2099606900D02EAC /* 地图页面 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "地图页面";
+			sourceTree = "<group>";
+		};
 		101624582088638B00AD53DE /* 自定义选择页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1667,6 +1674,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				100FD88F2099606900D02EAC /* 地图页面 */,
 				0CEC62DC208DDA51006EC0BD /* 佣金分析View */,
 				0CBD859420871B5400E7B183 /* model */,
 				10DBB1E2207C7F6500CFE59D /* 楼栋信息 */,

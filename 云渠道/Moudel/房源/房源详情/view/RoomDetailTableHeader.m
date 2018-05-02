@@ -240,7 +240,6 @@
 -(void)action_map
 {
     CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake(_latitude, _longitude);
-    
     MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
     MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:endCoor addressDictionary:nil]];
     toLocation.name = _addressL.text;
