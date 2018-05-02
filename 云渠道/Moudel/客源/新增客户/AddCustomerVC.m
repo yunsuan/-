@@ -186,11 +186,12 @@
     
     //姓名
     UILabel *namelab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 56*SIZE, 100*SIZE, 14*SIZE)];
-    namelab.text = @"*姓名:";
+    namelab.text = @"姓名:";
     namelab.font = [UIFont systemFontOfSize:13.3*SIZE];
     namelab.textColor = YJTitleLabColor;
     [_scrollview addSubview:namelab];
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
+    _name.textfield.placeholder = @"必填";
     _name.textfield.text = _model.name;
     [_scrollview addSubview:_name];
     
@@ -230,11 +231,12 @@
     NSArray *telArr = [_model.tel componentsSeparatedByString:@","];
     //电话
     UILabel *tellab1 = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 169*SIZE, 100*SIZE, 14*SIZE)];
-    tellab1.text = @"*联系号码:";
+    tellab1.text = @"联系号码:";
     tellab1.font = [UIFont systemFontOfSize:13.3*SIZE];
     tellab1.textColor = YJTitleLabColor;
     [_scrollview addSubview:tellab1];
     _tel1 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 146*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    _tel1.textfield.placeholder = @"必填";
     if (telArr.count) {
         
         _tel1.textfield.text = telArr[0];
@@ -249,12 +251,14 @@
     [_scrollview addSubview:_addBtn];
     
     _tel2 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 196*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    _tel2.textfield.placeholder = @"选填";
     _tel2.hidden = YES;
     _tel2.textfield.keyboardType = UIKeyboardTypePhonePad;
     [_scrollview addSubview:_tel2];
     
 
     _tel3 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 246*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    _tel3.textfield.placeholder = @"选填";
     _tel3.hidden = YES;
     _tel3.textfield.keyboardType = UIKeyboardTypePhonePad;
     [_scrollview addSubview:_tel3];
@@ -288,12 +292,14 @@
     
     //证件号
     _numlab = [[UILabel alloc]initWithFrame:CGRectMake(10*SIZE, 356*SIZE, 100*SIZE, 14*SIZE)];
+    
     _numlab.text = @"证件号:";
     _numlab.font = [UIFont systemFontOfSize:13.3*SIZE];
     _numlab.textColor = YJTitleLabColor;
     [_scrollview addSubview:_numlab];
     
     _num = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 346*SIZE, 257.7*SIZE, 33.3*SIZE)];
+    
     _num.textfield.keyboardType = UIKeyboardTypeDefault;
     if (_model.card_id) {
         

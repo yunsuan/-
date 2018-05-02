@@ -52,7 +52,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"推荐";
+    self.titleLabel.text = @"新房推荐";
     [self initDateSouce];
     [self initUI];
     [self UnComfirmRequest];
@@ -355,11 +355,12 @@
             UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
+                nextVC.client_id = _unComfirmArr[indexPath.row][@"client_id"];
                 [self.navigationController pushViewController:nextVC animated:YES];
             }];
             
             UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
+                self.invalidView.client_id = _unComfirmArr[indexPath.row][@"client_id"];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
             }];
             

@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 //#import "BorderTF.h"
 #import "DropDownBtn.h"
+#import "SinglePickView.h"
+#import "DateChooseView.h"
 
 @interface InvalidView : UIView
+
+@property (nonatomic , strong) NSString *client_id;
+
+@property (nonatomic , strong) NSString *type_id;
 
 @property (nonatomic, strong) DropDownBtn *timeBtn;
 

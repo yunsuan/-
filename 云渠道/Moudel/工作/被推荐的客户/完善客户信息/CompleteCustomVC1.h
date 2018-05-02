@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface CompleteCustomVC1 : BaseViewController
-
+@property (nonatomic , strong) NSString *client_id;
 @end

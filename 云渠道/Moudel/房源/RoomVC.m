@@ -543,6 +543,7 @@
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
+     
         [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText city:_city] animated:YES];
     }];
     // 3. 设置风格
@@ -556,7 +557,11 @@
     [self presentViewController:nav  animated:NO completion:nil];
 }
 
-//- (void)Search:
+//-(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText
+//{
+//
+//}
+
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
