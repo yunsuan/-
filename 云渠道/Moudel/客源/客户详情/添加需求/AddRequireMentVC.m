@@ -927,7 +927,7 @@
         
         if (i < 2) {
             
-            UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 327 *SIZE, 5 *SIZE)];
+            UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 300 *SIZE, 5 *SIZE)];
             slider.userInteractionEnabled = YES;
             slider.minimumValue = 0.0;
             slider.maximumValue = 100.0;
@@ -1434,17 +1434,17 @@
     
     [_intentionSlider mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(_infoView).offset(10 *SIZE);
+        make.left.equalTo(_infoView).offset(30 *SIZE);
         make.top.equalTo(_intentionTF.mas_bottom).offset(24 *SIZE);
-        make.width.equalTo(@(327 *SIZE));
+        make.width.equalTo(@(300 *SIZE));
         make.height.equalTo(@(5 *SIZE));
     }];
     
     [_urgentSlider mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(_infoView).offset(10 *SIZE);
+        make.left.equalTo(_infoView).offset(30 *SIZE);
         make.top.equalTo(_urgentTF.mas_bottom).offset(24 *SIZE);
-        make.width.equalTo(@(327 *SIZE));
+        make.width.equalTo(@(300 *SIZE));
         make.height.equalTo(@(5 *SIZE));
     }];
     

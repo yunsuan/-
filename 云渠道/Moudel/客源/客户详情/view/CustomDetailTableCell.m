@@ -22,14 +22,14 @@
 
 - (void)setModel:(CustomRequireModel *)model{
     
-    if ([model.house_type integerValue]) {
+    if ([model.property_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
         NSArray *typeArr = dic[@"param"];
         for (int i = 0; i < typeArr.count; i++) {
             
-            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
+            if ([typeArr[i][@"id"] integerValue] == [model.property_type integerValue]) {
                 
                 _typeL.text = [NSString stringWithFormat:@"物业类型：%@",typeArr[i][@"param"]];
                 break;
@@ -124,14 +124,14 @@
         _areaL.text = @"面积：";
     }
     
-    if ([model.property_type integerValue]) {
+    if ([model.house_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
         NSArray *typeArr = dic[@"param"];
         for (int i = 0; i < typeArr.count; i++) {
             
-            if ([typeArr[i][@"id"] integerValue] == [model.property_type integerValue]) {
+            if ([typeArr[i][@"id"] integerValue] == [model.house_type integerValue]) {
                 
                 _houseTypeL.text = [NSString stringWithFormat:@"户型：%@",typeArr[i][@"param"]];
                 break;
@@ -216,7 +216,7 @@
     
     if ([model.intent integerValue]) {
         
-        _intentionL.text = [NSString stringWithFormat:@"购房意向度：%@",model.urgency];
+        _intentionL.text = [NSString stringWithFormat:@"购房意向度：%@",model.intent];
     }else{
         
         _intentionL.text = @"购房意向度：";

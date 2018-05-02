@@ -293,24 +293,21 @@
     _numListL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_numListL];
     
-    _recommendListL = [[UILabel alloc] initWithFrame:CGRectMake(250 *SIZE, 92 *SIZE + CGRectGetMaxY(_headerColl.frame), 98 *SIZE, 16 *SIZE)];
+    _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _moreBtn.frame = CGRectMake(6 *SIZE, 71 *SIZE + CGRectGetMaxY(_headerColl.frame), 160 *SIZE, 26 *SIZE);
+    [_moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_moreBtn];
+    
+    _recommendListL = [[UILabel alloc] initWithFrame:CGRectMake(250 *SIZE, 78 *SIZE + CGRectGetMaxY(_headerColl.frame), 98 *SIZE, 16 *SIZE)];
     _recommendListL.textColor = YJBlueBtnColor;
     _recommendListL.textAlignment = NSTextAlignmentRight;
     _recommendListL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_recommendListL];
     
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _recommendBtn.frame = CGRectMake(245 *SIZE, 87 *SIZE + CGRectGetMaxY(_headerColl.frame), 108 *SIZE, 26 *SIZE);
+    _recommendBtn.frame = CGRectMake(245 *SIZE, 73 *SIZE + CGRectGetMaxY(_headerColl.frame), 108 *SIZE, 26 *SIZE);
     [_recommendBtn addTarget:self action:@selector(ActionStatusBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_recommendBtn];
-    
-    _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _moreBtn.frame = CGRectMake(287 *SIZE, 65 *SIZE + CGRectGetMaxY(_headerColl.frame), 70 *SIZE, 20 *SIZE);
-    _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
-    [_moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_moreBtn setTitle:@"产看全部 》" forState:UIControlStateNormal];
-    [_moreBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
-    [self.contentView addSubview:_moreBtn];
     
     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 117 *SIZE + CGRectGetMaxY(_headerColl.frame), SCREEN_Width, SIZE)];
     line2.backgroundColor = YJBackColor;

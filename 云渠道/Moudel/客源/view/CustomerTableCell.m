@@ -38,7 +38,7 @@
         make.height.equalTo(@(14 *SIZE));
     }];
     
-    if (model.total_price) {
+    if ([model.total_price integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",25]];
@@ -56,7 +56,7 @@
         _priceL.text = @"意向总价：";
     }
     
-    if (model.property_type) {
+    if ([model.property_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",16]];
@@ -131,10 +131,6 @@
         [attr addAttribute:NSForegroundColorAttributeName value:YJBlueBtnColor range:NSMakeRange(0, attr.length)];
         _phoneL.attributedText = attr;
         _phoneL.userInteractionEnabled = YES;
-//        添加手势，可以点击号码拨打电话
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
-//
-//        [_phoneL addGestureRecognizer:tap];
     }else{
         
         _phoneL.text = [NSString stringWithFormat:@"%@",model.tel];
