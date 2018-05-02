@@ -11,6 +11,7 @@
 #import "BorderTF.h"
 #import "AuthenCollCell.h"
 #import "CompleteCustomVC2.h"
+#import "SinglePickView.h"
 
 @interface CompleteCustomVC1 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
@@ -20,6 +21,9 @@
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
     NSInteger _index;
+    NSString *_clientId;
+    NSString *_cardType;
+    NSString *_name;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -28,7 +32,7 @@
 
 @property (nonatomic, strong) UILabel *nameL;
 
-@property (nonatomic, strong) DropDownBtn *nameBtn;
+@property (nonatomic, strong) BorderTF *nameTF;
 
 @property (nonatomic, strong) UILabel *intentionL;
 
@@ -72,6 +76,17 @@
 
 @implementation CompleteCustomVC1
 
+- (instancetype)initWithClientID:(NSString *)clientId name:(NSString *)name
+{
+    self = [super init];
+    if (self) {
+        
+        _name = name;
+        _clientId = clientId;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -86,17 +101,116 @@
     _imagePickerController.delegate = self;
 }
 
+- (void)ActionTagNumBtn:(UIButton *)btn{
+    
+    if (btn.tag == 0) {
+        
+        
+    }else{
+        
+        SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:CARD_TYPE]];
+        
+        view.selectedBlock = ^(NSString *MC, NSString *ID) {
+            
+            _identifyBtn.content.text = [NSString stringWithFormat:@"%@",MC];
+            _cardType = [NSString stringWithFormat:@"%@",ID];
+        };
+        [self.view addSubview:view];
+    }
+}
+
 - (void)ActionNextBtn:(UIButton *)btn{
     
-    CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] init];
+    if (!_intentionTF.textfield.text.length) {
+        
+        [self showContent:@"请输入购房意向度"];
+        return;
+    }
+    if (!_urgentTF.textfield.text.length) {
+        
+        [self showContent:@"请输入购房紧迫度"];
+        return;
+    }
+    
+    NSString *tel;
+    if (_num == 0) {
+        
+        if (![self checkTel:_phoneTF1.textfield.text]) {
+            
+            [self showContent:@"请填写正确的电话号码"];
+            return;
+        }else{
+            
+            tel = _phoneTF1.textfield.text;
+        }
+    }else if (_num == 1) {
+        
+        if (_phoneTF2.textfield.text.length) {
+            
+            if (![self checkTel:_phoneTF2.textfield.text]) {
+                
+                [self showContent:@"请填写正确的电话号码"];
+                return;
+            }else{
+                
+                tel = [NSString stringWithFormat:@"%@,%@",tel,_phoneTF2.textfield.text];
+            }
+        }
+    }else{
+        
+        if (_phoneTF3.textfield.text.length) {
+            
+            if (![self checkTel:_phoneTF3.textfield.text]) {
+                
+                [self showContent:@"请填写正确的电话号码"];
+                return;
+            }else{
+                
+                tel = [NSString stringWithFormat:@"%@,%@",tel,_phoneTF3.textfield.text];
+            }
+        }
+    }
+    
+    if (!_cardType.length) {
+        
+        [self showContent:@"请选择证件类型"];
+        return;
+    }
+    
+    if (!_codeTF.textfield.text.length) {
+        
+        [self showContent:@"请填写证件号"];
+        return;
+    }
+    
+    if (!_imgArr.count) {
+        
+        [self showContent:@"请上传身份证照片"];
+        return;
+    }
+    
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:_clientId forKey:@"client_id"];
+    [dic setObject:_nameTF.textfield.text forKey:@"client_name"];
+    [dic setObject:tel forKey:@"client_tel"];
+    [dic setObject:_cardType forKey:@"card_type"];
+    [dic setObject:_codeTF.textfield.text forKey:@"card_num"];
+    [dic setObject:_imgArr forKey:@"verify_img_url"];
+    CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)ActionSliderChange:(UISlider *)slider{
     
-    
+    if (slider == _intentionSlider) {
+        
+        _intentionTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
+    }else{
+        
+        _urgentTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
+    }
 }
-
 - (void)ActionAddBtn:(UIButton *)btn{
     
     _num += 1;
@@ -395,11 +509,16 @@
         if (i < 2) {
             
             DropDownBtn *btn = [[DropDownBtn alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
+            btn.tag = i;
+            [btn addTarget:self action:@selector(ActionTagNumBtn:) forControlEvents:UIControlEventTouchUpInside];
             switch (i) {
                 case 0:
                 {
-                    _nameBtn = btn;
-                    [_infoView addSubview:_nameBtn];
+                    BorderTF *TF = [[BorderTF alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
+                    TF.textfield.text = _name;
+                    _nameTF = TF;
+//                    _nameBtn = btn;
+                    [_infoView addSubview:_nameTF];
                     break;
                 }
                 case 1:
@@ -420,18 +539,21 @@
                 case 0:
                 {
                     _intentionTF = TF;
+                    _intentionTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_intentionTF];
                     break;
                 }
                 case 1:
                 {
                     _urgentTF = TF;
+                    _urgentTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_urgentTF];
                     break;
                 }
                 case 2:
                 {
                     _phoneTF1 = TF;
+                    _phoneTF1.textfield.keyboardType = UIKeyboardTypePhonePad;
                     _phoneTF1.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
                     [_infoView addSubview:_phoneTF1];
                     break;
@@ -439,6 +561,7 @@
                 case 3:
                 {
                     _phoneTF2 = TF;
+                    _phoneTF2.textfield.keyboardType = UIKeyboardTypePhonePad;
                     _phoneTF2.hidden = YES;
                     [_infoView addSubview:_phoneTF2];
                     break;
@@ -446,6 +569,7 @@
                 case 4:
                 {
                     _phoneTF3 = TF;
+                    _phoneTF3.textfield.keyboardType = UIKeyboardTypePhonePad;
                     _phoneTF3.hidden = YES;
                     [_infoView addSubview:_phoneTF3];
                     break;
@@ -453,6 +577,7 @@
                 case 5:
                 {
                     _codeTF = TF;
+                    _codeTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
                     [_infoView addSubview:_codeTF];
                     break;
                 }
@@ -539,7 +664,7 @@
         make.height.equalTo(@(12 *SIZE));
     }];
     
-    [_nameBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_nameTF mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(81 *SIZE);
         make.top.equalTo(_infoView).offset(21 *SIZE);
@@ -550,7 +675,7 @@
     [_intentionL mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_nameBtn.mas_bottom).offset(40 *SIZE);
+        make.top.equalTo(_nameTF.mas_bottom).offset(40 *SIZE);
         make.width.equalTo(@(70 *SIZE));
         make.height.equalTo(@(12 *SIZE));
     }];
@@ -558,7 +683,7 @@
     [_intentionTF mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(81 *SIZE);
-        make.top.equalTo(_nameBtn.mas_bottom).offset(29 *SIZE);
+        make.top.equalTo(_nameTF.mas_bottom).offset(29 *SIZE);
         make.width.equalTo(@(258 *SIZE));
         make.height.equalTo(@(33 *SIZE));
         make.bottom.equalTo(_intentionSlider.mas_top).offset(-24 *SIZE);

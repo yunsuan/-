@@ -10,4 +10,6 @@
 
 @interface CompleteCustomVC1 : BaseViewController
 
+- (instancetype)initWithClientID:(NSString *)clientId name:(NSString *)name;
+
 @end
