@@ -43,8 +43,6 @@
         
         _numL.text = @"0/0";
     }
-    
-    
     [_imgScroll setContentSize:CGSizeMake(imgArr.count *SCREEN_Width, 183 *SIZE)];
     for (UIView *view in _imgScroll.subviews) {
         
@@ -153,6 +151,7 @@
         if (_imgArr.count) {
             
             self.imgBtnBlock(_nowNum, _imgArr);
+            
         }
     }
 }

@@ -18,6 +18,9 @@
 #import "ComplaintUnCompleteVC.h"
 #import "ComplaintCompleteVC.h"
 #import "confirmDetailVC.h"
+#import "CompleteCustomVC1.h"
+#import "InvalidView.h"
+
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -35,6 +38,8 @@
 @property (nonatomic, strong) UICollectionView *recommendColl;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+@property (nonatomic, strong) InvalidView *invalidView;
 
 -(void)initUI;
 -(void)initDateSouce;
@@ -337,6 +342,35 @@
         
         cell.dataDic = _unComfirmArr[indexPath.row];
         
+        cell.tag = indexPath.row;
+        
+        cell.confirmBtnBlock = ^(NSInteger index) {
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认到访" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            }];
+            
+            UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
+            }];
+            
+            [alert addAction:valid];
+            [alert addAction:invalid];
+            [alert addAction:cancel];
+            [self.navigationController presentViewController:alert animated:YES completion:^{
+                
+            }];
+        };
+        
         return cell;
     }else if (_index < 3){
         
@@ -438,6 +472,15 @@
     return _MainTableView;
 }
 
+
+- (InvalidView *)invalidView{
+    
+    if (!_invalidView) {
+        
+        _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    }
+    return _invalidView;
+}
 
 
 @end
