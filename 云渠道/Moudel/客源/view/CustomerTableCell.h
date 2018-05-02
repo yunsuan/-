@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong) UILabel *urgentRateL;//紧迫度
 
+@property (nonatomic, strong) UILabel *line;
+
 @property (nonatomic, strong) CustomerTableModel *model;
 
 @end

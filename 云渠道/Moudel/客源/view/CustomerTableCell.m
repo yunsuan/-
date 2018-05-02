@@ -122,7 +122,16 @@
     }
 
     
-    _phoneL.text = [NSString stringWithFormat:@"%@",model.tel];
+    if (model.tel) {
+        
+        NSArray *arr = [model.tel componentsSeparatedByString:@","];
+        _phoneL.text = [NSString stringWithFormat:@"%@",arr[0]];
+    }else{
+        
+        _phoneL.text = [NSString stringWithFormat:@"%@",model.tel];
+    }
+    
+    
     
     NSMutableAttributedString *intentionStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"购买意向度：%@%%",model.intent]];
     [intentionStr addAttribute:NSForegroundColorAttributeName value:COLOR(255, 165, 29, 1) range:NSMakeRange(6, intentionStr.length - 6)];
@@ -169,6 +178,7 @@
     
     _areaL = [[UILabel alloc] init];
     _areaL.textColor = YJContentLabColor;
+    _areaL.numberOfLines = 0;
     _areaL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_areaL];
     
@@ -196,9 +206,9 @@
     _urgentRateL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_urgentRateL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 110 *SIZE - 2 *SIZE, SCREEN_Width, 2 *SIZE)];
-    line.backgroundColor = YJBackColor;
-    [self.contentView addSubview:line];
+    _line = [[UIView alloc] init];//WithFrame:CGRectMake(0, 110 *SIZE - 2 *SIZE, SCREEN_Width, 2 *SIZE)];
+    _line.backgroundColor = YJBackColor;
+    [self.contentView addSubview:_line];
     
     [self MasonryUI];
 }
@@ -276,6 +286,17 @@
         make.top.equalTo(self.contentView.mas_top).offset(80 *SIZE);
         make.width.equalTo(@(100 *SIZE));
         make.height.equalTo(@(10 *SIZE));
+    }];
+    
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+//        CGRectMake(0, 110 *SIZE - 2 *SIZE, SCREEN_Width, 2 *SIZE)
+        
+        make.left.equalTo(self.contentView.mas_left).offset(0 *SIZE);
+        make.top.equalTo(_areaL.mas_bottom).offset(13 *SIZE);
+        make.width.equalTo(@(SCREEN_Width));
+        make.height.equalTo(@(2 *SIZE));
+//        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15 *SIZE);
     }];
 }
 

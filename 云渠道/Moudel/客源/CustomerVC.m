@@ -369,10 +369,10 @@
     return _dataArr.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 110 *SIZE;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    return 110 *SIZE;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -493,6 +493,9 @@
         }
     }
 
+    _customerTable.rowHeight = UITableViewAutomaticDimension;
+    _customerTable.estimatedRowHeight = 110 *SIZE;
+    
     _customerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT - 41 *SIZE - 56 *SIZE) style:UITableViewStylePlain];
     _customerTable.backgroundColor = YJBackColor;
     _customerTable.delegate = self;
