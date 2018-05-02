@@ -7,12 +7,15 @@
 //
 
 #import "RoomDetailTableHeader.h"
+#import <MapKit/MapKit.h>
 
 @interface RoomDetailTableHeader()<UIScrollViewDelegate>
 {
     
     NSInteger _num;
     NSInteger _nowNum;
+    float _longitude;
+    float _latitude;
 }
 
 @end
@@ -66,6 +69,14 @@
 }
 
 - (void)setModel:(RoomDetailModel *)model{
+    
+    if (model.latitude) {
+        _latitude = [model.latitude floatValue];
+    }
+    
+    if (model.longitude) {
+        _longitude = [model.longitude floatValue];
+    }
     
     if (model.project_name) {
         
@@ -220,7 +231,18 @@
     _addressL.textColor = YJContentLabColor;
     _addressL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_addressL];
+    _addressL.userInteractionEnabled = YES;
+    [_addressL addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action_map)]];
     
 }
 
+-(void)action_map
+{
+    CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake(_latitude, _longitude);
+    
+    MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+    MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:endCoor addressDictionary:nil]];
+    toLocation.name = _addressL.text;
+    [MKMapItem openMapsWithItems:@[currentLocation, toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
+}
 @end
