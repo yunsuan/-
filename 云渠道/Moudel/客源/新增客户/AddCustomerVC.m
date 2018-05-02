@@ -316,28 +316,30 @@
     
     _adress = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 396*SIZE, 257.7*SIZE, 33.3*SIZE)];
     [_adress addTarget:self action:@selector(action_address) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+    
+    NSError *err;
+    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+    
     if (_model.province && _model.city && _model.district) {
         
-        NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-        
-        NSError *err;
-        NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                           options:NSJSONReadingMutableContainers
-                                                             error:&err];
         for (int i = 0; i < provice.count; i++) {
             
-            if([provice[i][@"region"] integerValue] == [_model.province integerValue]){
+            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
                 
-                NSArray *city = provice[i][@"item"];
+                NSArray *city = provice[i][@"city"];
                 for (int j = 0; j < city.count; j++) {
                     
-                    if([city[j][@"region"] integerValue] == [_model.city integerValue]){
+                    if([city[j][@"code"] integerValue] == [_model.city integerValue]){
                         
-                        NSArray *area = city[j][@"item"];
+                        NSArray *area = city[j][@"district"];
                         
                         for (int k = 0; k < area.count; k++) {
                             
-                            if([area[k][@"region"] integerValue] == [_model.district integerValue]){
+                            if([area[k][@"code"] integerValue] == [_model.district integerValue]){
                                 
                                 _adress.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[j][@"name"],area[k][@"name"]];
                                 _Customerinfomodel.province = _model.province;
@@ -349,15 +351,40 @@
                 }
             }
         }
+    }else if (_model.province && _model.city){
+        
+        for (int i = 0; i < provice.count; i++) {
+            
+            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
+                
+                NSArray *city = provice[i][@"city"];
+                for (int j = 0; j < city.count; j++) {
+                    
+                    if([city[j][@"code"] integerValue] == [_model.city integerValue]){
+                        
+                        _adress.content.text = [NSString stringWithFormat:@"%@-%@",provice[i][@"name"],city[j][@"name"]];
+                        _Customerinfomodel.province = _model.province;
+                        _Customerinfomodel.city = _model.city;
+                    }
+                }
+            }
+        }
+    }else if (_model.province){
+        
+        for (int i = 0; i < provice.count; i++) {
+            
+            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
+                
+                _adress.content.text = [NSString stringWithFormat:@"%@",provice[i][@"name"]];
+                _Customerinfomodel.province = _model.province;
+            }
+        }
+    }else{
+        
+        
     }
     [_scrollview addSubview:_adress];
-    
-//     UIView * detailadressview = [[UIView alloc]initWithFrame:CGRectMake(80.3*SIZE, 446*SIZE, 257.7*SIZE, 86.7*SIZE)];
-//    detailadressview.layer.masksToBounds = YES;
-//    detailadressview.layer.cornerRadius = 5*SIZE;
-//    detailadressview.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
-//    detailadressview.layer.borderWidth = 1*SIZE;
-//    [_scrollview addSubview:detailadressview];
+
     
     _detailadress = [[UITextView alloc]initWithFrame:CGRectMake(90.3*SIZE,456*SIZE, 237.7*SIZE, 66.7*SIZE)];
     _detailadress.textColor = YJTitleLabColor;
@@ -577,7 +604,7 @@
         
         if (![self isEmpty:_detailadress.text]) {
             
-            _Customerinfomodel.card_id = _detailadress.text;
+            _Customerinfomodel.address = _detailadress.text;
         }
         
         

@@ -66,20 +66,6 @@
         
         self.phoneL.text = @"联系电话：";
     }
-//    NSArray *telArr = [model.tel componentsSeparatedByString:@","];
-//    if (telArr.count == 0) {
-//
-//        self.phoneL.text = @"联系电话：";
-//        self.phone2L.text = @"联系电话：";
-//    }else if (telArr.count == 1){
-//
-//        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
-//        self.phone2L.text = @"联系电话：";
-//    }else{
-//
-//        self.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",telArr[0]];
-//        self.phone2L.text = [NSString stringWithFormat:@"联系电话：%@",telArr[1]];
-//    }
     
     NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
     NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",2]];
