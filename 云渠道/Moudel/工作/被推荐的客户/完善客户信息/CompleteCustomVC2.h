@@ -10,4 +10,6 @@
 
 @interface CompleteCustomVC2 : BaseViewController
 
+- (instancetype)initWithData:(NSDictionary *)dic;
+
 @end

@@ -10,16 +10,20 @@
 #import "DropDownBtn.h"
 #import "BorderTF.h"
 #import "AuthenCollCell.h"
+#import "SinglePickView.h"
 
 @interface CompleteCustomVC2 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 {
     
     NSInteger _num;
+    BOOL _isOne;
+    NSInteger _index;
     NSMutableArray *_imgArr1;
     NSMutableArray *_imgArr2;
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
-    NSInteger _index;
+    NSMutableDictionary *_dic;
+    NSMutableArray *_peopleArr;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -30,7 +34,7 @@
 
 @property (nonatomic, strong) DropDownBtn *purposeBtn;
 
-@property (nonatomic, strong) DropDownBtn *adviserBtn;
+@property (nonatomic, strong) BorderTF *adviserTF;
 
 @property (nonatomic, strong) UIButton *addBtn;
 
@@ -67,6 +71,16 @@
 
 @implementation CompleteCustomVC2
 
+- (instancetype)initWithData:(NSDictionary *)dic
+{
+    self = [super init];
+    if (self) {
+        
+        _dic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -76,6 +90,12 @@
 
 - (void)initDataSource{
     
+    _peopleArr = [[NSMutableArray alloc] init];
+    for (int i = 1; i < 5; i++) {
+        
+        NSString *str = [NSString stringWithFormat:@"%d人",i];
+        [_peopleArr addObject:@{@"id":@(i),@"param":str}];
+    }
     _imgArr1 = [@[] mutableCopy];
     _imgArr2 = [@[] mutableCopy];
     _imagePickerController = [[UIImagePickerController alloc] init];
@@ -167,10 +187,78 @@
     }
 }
 
+- (void)ActionTagNumBtn:(UIButton *)btn{
+    
+    switch (btn.tag) {
+        case 0:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_peopleArr];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.numBtn.content.text = MC;
+                weakself.numBtn.str = [NSString stringWithFormat:@"%@",ID];
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 1:
+        {
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BUY_TYPE]];
+            WS(weakself);
+            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                
+                weakself.purposeBtn.content.text = MC;
+                weakself.purposeBtn.str = [NSString stringWithFormat:@"%@",ID];
+            };
+            [self.view addSubview:view];
+            break;
+        }
+        case 2:
+        {
+//            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BUY_TYPE]];
+//            WS(weakself);
+//            view.selectedBlock = ^(NSString *MC, NSString *ID) {
+//
+//                weakself.purposeBtn.content.text = MC;
+//                weakself.purposeBtn.str = [NSString stringWithFormat:@"%@",ID];
+//            };
+//            [self.view addSubview:view];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)ActionConfirmBtn:(UIButton *)btn{
+    
+    
+//    [BaseRequest Updateimg:UploadFile_URL parameters:<#(NSDictionary *)#> constructionBody:<#^(id<AFMultipartFormData> formData)blocks#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
+//    [BaseRequest POST:ConfirmValueClient_URL parameters:_dic success:^(id resposeObject) {
+//
+//        [self showContent:resposeObject[@"msg"]];
+//        if ([resposeObject[@"code"] integerValue] == 200) {
+//
+//
+//        }
+//    } failure:^(NSError *error) {
+//
+//        [self showContent:@"网络错误"];
+//        NSLog(@"%@",error);
+//    }];
+}
+
 #pragma mark --coll代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _imgArr1.count < 3? _imgArr1.count + 1: 3;
+    if (collectionView == _authenColl1) {
+        
+        return _imgArr1.count < 3? _imgArr1.count + 1: 3;
+    }else{
+        
+        return _imgArr2.count < 3? _imgArr2.count + 1: 3;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -219,13 +307,19 @@
         }
     }
     
-    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     _index = indexPath.item;
+    if (collectionView == _authenColl1) {
+        
+        _isOne = YES;
+    }else{
+        
+        _isOne = NO;
+    }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择照片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *photo = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -310,31 +404,53 @@
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             
             _image = info[UIImagePickerControllerOriginalImage];;
-            
-//            if (_index < _imgArr.count - 1) {
-//
-//                [_imgArr replaceObjectAtIndex:_index withObject:_image];
-//            }else{
-//
-//                [_imgArr addObject:_image];
-//            }
+            if (_isOne) {
+                
+                if (_index < _imgArr1.count - 1) {
+                    
+                    [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
+                }else{
+                    
+                    [_imgArr1 addObject:_image];
+                }
+            }else{
+                
+                if (_index < _imgArr1.count - 1) {
+                    
+                    [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
+                }else{
+                    
+                    [_imgArr1 addObject:_image];
+                }
+            }
         }
     }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         
         _image = info[UIImagePickerControllerOriginalImage];
-        
-//        if (_index < _imgArr.count) {
-//
-//            [_imgArr replaceObjectAtIndex:_index withObject:_image];
-//        }else{
-//
-//            [_imgArr addObject:_image];
-//        }
+        if (_isOne) {
+            
+            if (_index < _imgArr2.count) {
+                
+                [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
+            }else{
+                
+                [_imgArr2 addObject:_image];
+            }
+        }else{
+            
+            if (_index < _imgArr2.count) {
+                
+                [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
+            }else{
+                
+                [_imgArr2 addObject:_image];
+            }
+        }
     }
     [self dismissViewControllerAnimated:YES completion:^{
         
-//        [self.authenColl1 reloadData];
-        
+        [_authenColl1 reloadData];
+        [_authenColl2 reloadData];
     }];
 }
 
@@ -415,6 +531,8 @@
         if (i < 3) {
             
             DropDownBtn *btn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
+            btn.tag = i;
+            [btn addTarget:self action:@selector(ActionTagNumBtn:) forControlEvents:UIControlEventTouchUpInside];
             switch (i) {
                 case 0:
                 {
@@ -430,8 +548,9 @@
                 }
                 case 2:
                 {
-                    _adviserBtn = btn;
-                    [_infoView addSubview:_adviserBtn];
+                    BorderTF *borderTF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
+                    _adviserTF = borderTF;
+                    [_infoView addSubview:_adviserTF];
                     break;
                 }
                 default:
@@ -525,6 +644,7 @@
     _confirmBtn.layer.cornerRadius = 2 *SIZE;
     _confirmBtn.clipsToBounds = YES;
     [_confirmBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [_confirmBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_scrolleView addSubview:_confirmBtn];
     
     [self masonryUI];

@@ -353,9 +353,9 @@
             }];
             
             UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
-                nextVC.client_id = _unComfirmArr[indexPath.row][@"client_id"];
+
+                NSDictionary *dic = _unComfirmArr[index];
+                CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] initWithClientID:dic[@"client_id"] name:dic[@"name"]];
                 [self.navigationController pushViewController:nextVC animated:YES];
             }];
             

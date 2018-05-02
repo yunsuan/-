@@ -23,14 +23,14 @@
 - (void)initUI{
     
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 3 *SIZE, 100 *SIZE, 83 *SIZE)];
-    _imageView.image =[UIImage imageNamed:@"uploadphotos"];
+    _imageView.image =[UIImage imageNamed:@"add_3"];
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_imageView];
     
     _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_cancelBtn setBackgroundColor:YJGreenColor];
+//    [_cancelBtn setBackgroundColor:YJGreenColor];
     _cancelBtn.frame = CGRectMake(95 *sIZE, 0, 20 *sIZE, 20 *sIZE);
-    [_cancelBtn setImage:[UIImage imageNamed:@"btn_1_34 shanchu"] forState:UIControlStateNormal];
+    [_cancelBtn setImage:[UIImage imageNamed:@"fork"] forState:UIControlStateNormal];
     [self.contentView addSubview:_cancelBtn];
 }
 
