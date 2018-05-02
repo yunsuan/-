@@ -151,32 +151,8 @@
             
             
         };
-        cell.confirmBtnBlock = ^(NSInteger index) {
-            
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认到访" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-            
-            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            
-            UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
-                [self.navigationController pushViewController:nextVC animated:YES];
-            }];
-            
-            UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
-            }];
-            
-            [alert addAction:valid];
-            [alert addAction:invalid];
-            [alert addAction:cancel];
-            [self.navigationController presentViewController:alert animated:YES completion:^{
-                
-            }];
-        };
+        
+       
         return cell;
     }else if (_index == 1){
         

@@ -660,7 +660,7 @@
         
         make.left.equalTo(_infoView).offset(10 *SIZE);
         make.top.equalTo(_infoView).offset(31 *SIZE);
-        make.width.equalTo(@(70 *SIZE));
+        make.width.equalTo(@(90 *SIZE));
         make.height.equalTo(@(12 *SIZE));
     }];
     
@@ -701,7 +701,7 @@
         
         make.left.equalTo(_infoView).offset(10 *SIZE);
         make.top.equalTo(_intentionSlider.mas_bottom).offset(44 *SIZE);
-        make.width.equalTo(@(70 *SIZE));
+        make.width.equalTo(@(90 *SIZE));
         make.height.equalTo(@(11 *SIZE));
     }];
 
@@ -774,7 +774,7 @@
         
         make.left.equalTo(_infoView).offset(10 *SIZE);
         make.top.equalTo(_codeTF.mas_bottom).offset(29 *SIZE);
-        make.width.equalTo(@(70 *SIZE));
+        make.width.equalTo(@(90 *SIZE));
         make.height.equalTo(@(13 *SIZE));
     }];
     

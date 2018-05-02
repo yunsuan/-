@@ -21,14 +21,54 @@
 }
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
+
+    NSDictionary *param = @{
+                            @"client_id":_client_id,
+                            @"visit_time":_timeBtn.content.text,
+                            @"disabled_state":_type_id,
+                            @"comment":_reasonTV.text
+                            };
+    [BaseRequest POST:ConfirmDisabled_URL parameters:param success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue]==200) {
+                [self removeFromSuperview];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
-    [self removeFromSuperview];
+
+}
+
+
+
+-(void)action_time
+{
+    DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    view.dateblock = ^(NSDate *date) {
+        
+        _timeBtn.content.text = [self gettime:date];
+    };
+    [self addSubview:view];
+    
+}
+
+-(void)action_type
+{
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.frame WithData:[UserModelArchiver unarchive].Configdic[@"24"][@"param"]];
+    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+        _typeBtn.content.text = MC;
+        _type_id = ID;
+    };
+    [self addSubview:view];
 }
 
 - (void)ActionCancelBtn:(UIButton *)btn{
     
     [self removeFromSuperview];
 }
+
+
 
 - (void)initUI{
     
@@ -80,10 +120,12 @@
             if (i == 0) {
                 
                 _timeBtn = btn;
+                [_timeBtn addTarget:self action:@selector(action_time) forControlEvents:UIControlEventTouchUpInside];
                 [whiteView addSubview:btn];
             }else{
                 
                 _typeBtn = btn;
+                [_typeBtn addTarget:self action:@selector(action_type) forControlEvents:UIControlEventTouchUpInside];
                 [whiteView addSubview:btn];
             }
         }else{
@@ -107,5 +149,15 @@
     [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [whiteView addSubview:_confirmBtn];
 }
+
+
+-(NSString * _Nonnull)gettime:(NSDate * _Nonnull)date//nsdate转字符转
+{
+    NSDateFormatter*dateFormatter = [[NSDateFormatter  alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString*currentDateStr = [dateFormatter stringFromDate:date];
+    return currentDateStr;
+}
+
 
 @end

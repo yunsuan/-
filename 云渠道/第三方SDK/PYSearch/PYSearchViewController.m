@@ -908,10 +908,14 @@
     // 如果代理实现了代理方法则调用代理方法
     if ([self.delegate respondsToSelector:@selector(searchViewController:didSearchWithsearchBar:searchText:)]) {
         [self.delegate searchViewController:self didSearchWithsearchBar:searchBar searchText:searchBar.text];
+        
+          
         return;
     }
     // 如果有block则调用
     if (self.didSearchBlock) self.didSearchBlock(self, searchBar, searchBar.text);
+    [self saveSearchCacheAndRefreshView];
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText

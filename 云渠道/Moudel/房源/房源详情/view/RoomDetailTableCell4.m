@@ -25,6 +25,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         namearr = @[@"学校",@"医院",@"购物",@"餐饮",@"楼盘"];
+        self.backgroundColor = [UIColor whiteColor];
         [self initUI];
     }
     return self;
@@ -60,7 +61,7 @@
 
 - (void)initUI{
     
-    self.backgroundColor = YJBackColor;
+//    self.backgroundColor = YJBackColor;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 9 *SIZE, 80 *SIZE, 15 *SIZE)];
     label.textColor = YJTitleLabColor;

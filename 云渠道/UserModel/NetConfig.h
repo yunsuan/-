@@ -193,3 +193,11 @@ static NSString *const confirmDisabledClient_URL = @"agent/client/confirmDisable
 
 static NSString *const RefreshData_URL = @"user/work/flushDate";
 
+
+//对接经纪人判断为有效到访
+static NSString *const ConfirmValue_URL = @"agent/client/confirmValue";
+
+
+//对接经纪人判断为无效
+static NSString *const ConfirmDisabled_URL = @"agent/client/confirmDisabled";
+
