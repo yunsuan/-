@@ -7,11 +7,11 @@
 //
 
 #import "RoomDetailTableHeader.h"
+#import "MapVC.h"
 #import <MapKit/MapKit.h>
 
 @interface RoomDetailTableHeader()<UIScrollViewDelegate>
 {
-    
     NSInteger _num;
     NSInteger _nowNum;
     float _longitude;
@@ -239,10 +239,23 @@
 
 -(void)action_map
 {
+//
+//    MapVC *next_vc = [[MapVC alloc]init];
+//    [[self viewController].navigationController pushViewController:next_vc animated:YES];
     CLLocationCoordinate2D endCoor = CLLocationCoordinate2DMake(_latitude, _longitude);
     MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
     MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:endCoor addressDictionary:nil]];
     toLocation.name = _addressL.text;
     [MKMapItem openMapsWithItems:@[currentLocation, toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
+}
+
+- (UIViewController *)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 @end
