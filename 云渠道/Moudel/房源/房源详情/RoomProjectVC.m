@@ -24,6 +24,7 @@
 #import "DistributVC.h"
 #import "RoomDetailModel.h"
 #import "BuildingAlbumVC.h"
+#import "AddCustomerVC.h"
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
@@ -41,6 +42,7 @@
     NSString *_focusId;
     NSMutableArray *_houseArr;
     NSMutableArray *_peopleArr;
+    NSString *_phone;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -91,8 +93,16 @@
 //    [self.mapView removeFromSuperview];
 //}
 
+- (void)MapViewDismissNoti:(NSNotification *)noti{
+    
+    self.mapView.delegate = nil;
+    [self.mapView removeFromSuperview];
+}
+
 
 - (void)initDataSource{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MapViewDismissNoti:) name:@"mapViewDismiss" object:nil];
     
     _dynamicNum = @"";
     _imgArr = [@[] mutableCopy];
@@ -184,6 +194,12 @@
 
 - (void)SetData:(NSDictionary *)data{
     
+    if (data[@"butter_tel"]) {
+        
+        _phone = [NSString stringWithFormat:@"%@",data[@"butter_tel"]];
+    }
+    
+    
     if ([data[@"dynamic"] isKindOfClass:[NSDictionary class]]) {
         
         if (![data[@"dynamic"][@"count"] isKindOfClass:[NSNull class]]) {
@@ -267,6 +283,26 @@
         [self.navigationController pushViewController:next_vc animated:YES];
     }
     
+}
+
+- (void)ActionRecommendBtn:(UIButton *)btn{
+    
+    AddCustomerVC *nextVC = [[AddCustomerVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+- (void)ActionCounselBtn:(UIButton *)btn{
+    
+    if (_phone.length) {
+        
+        //获取目标号码字符串,转换成URL
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",_phone]];
+        //调用系统方法拨号
+        [[UIApplication sharedApplication] openURL:url];
+    }else{
+        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+    }
 }
 
 #pragma mark -- BMKMap
@@ -646,14 +682,21 @@
     [self.view addSubview:_roomTable];
     
     _counselBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _counselBtn.frame = CGRectMake(0, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE, SCREEN_Width, 47 *SIZE + TAB_BAR_MORE);
+    _counselBtn.frame = CGRectMake(0, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE, 119 *SIZE, 47 *SIZE + TAB_BAR_MORE);
     _counselBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    //    [_counselBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_counselBtn addTarget:self action:@selector(ActionCounselBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_counselBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
     [_counselBtn setBackgroundColor:COLOR(255, 188, 88, 1)];
     [_counselBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_counselBtn];
 
+    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _recommendBtn.frame = CGRectMake(120 *SIZE, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE, 240 *SIZE, 47 *SIZE + TAB_BAR_MORE);
+    _recommendBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_recommendBtn setTitle:@"快速推荐" forState:UIControlStateNormal];
+    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
+    [self.view addSubview:_recommendBtn];
 }
 
 

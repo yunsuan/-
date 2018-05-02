@@ -56,6 +56,7 @@
     for (int i = 0; i < _total; i++) {
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, _scrollView.frame.size.height)];
+        img.backgroundColor = YJTitleLabColor;
         img.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:img];
         [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_allArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -139,14 +140,14 @@
     
     self.contentView.backgroundColor = CH_COLOR_white;
     
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 183 *SIZE)];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 366 *SIZE)];
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;
     _scrollView.delegate = self;
     [self.contentView addSubview:_scrollView];
 
     
-    UIView *alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, 143 *SIZE, SCREEN_Width, 40 *SIZE)];
+    UIView *alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, 326 *SIZE, SCREEN_Width, 40 *SIZE)];
     alphaView.backgroundColor = [UIColor blackColor];
     alphaView.alpha = 0.2;
     [self.contentView addSubview:alphaView];
@@ -157,7 +158,7 @@
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
 
-    _imgColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 143 *SIZE , SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
+    _imgColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 326 *SIZE , SCREEN_Width, 40 *SIZE) collectionViewLayout:_flowLayout];
     _imgColl.backgroundColor = [UIColor clearColor];
     _imgColl.delegate = self;
     _imgColl.dataSource = self;

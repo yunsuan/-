@@ -246,14 +246,17 @@
         if (i < 2) {
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(280 *SIZE + i * 47 *SIZE, 5 *SIZE, 29 *SIZE, 29 *SIZE);
+            btn.frame = CGRectMake(316 *SIZE, 16 *SIZE, 36 *SIZE, 22 *SIZE);
+            
             if (i == 0) {
                 
                 
             }else{
                 
+                btn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+                [btn setTitle:@"编辑" forState:UIControlStateNormal];
+                [btn setTitleColor:COLOR(27, 152, 255, 1) forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(ActionEditBtn:) forControlEvents:UIControlEventTouchUpInside];
-                [btn setImage:[UIImage imageNamed:@"eidt"] forState:UIControlStateNormal];
                 _editBtn = btn;
                 [self addSubview:_editBtn];
             }

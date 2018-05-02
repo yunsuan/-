@@ -52,6 +52,7 @@
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
 		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0C921951209472FC00EFE75C /* RecommendedStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C921950209472FC00EFE75C /* RecommendedStatusVC.m */; };
+		0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219532094791E00EFE75C /* ReStatusTableCell.m */; };
 		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
@@ -343,6 +344,8 @@
 		0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchModel.m; sourceTree = "<group>"; };
 		0C92194F209472FC00EFE75C /* RecommendedStatusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendedStatusVC.h; sourceTree = "<group>"; };
 		0C921950209472FC00EFE75C /* RecommendedStatusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendedStatusVC.m; sourceTree = "<group>"; };
+		0C9219522094791E00EFE75C /* ReStatusTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReStatusTableCell.h; sourceTree = "<group>"; };
+		0C9219532094791E00EFE75C /* ReStatusTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReStatusTableCell.m; sourceTree = "<group>"; };
 		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
 		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
 		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
@@ -1014,6 +1017,8 @@
 			children = (
 				0C92194F209472FC00EFE75C /* RecommendedStatusVC.h */,
 				0C921950209472FC00EFE75C /* RecommendedStatusVC.m */,
+				0C9219522094791E00EFE75C /* ReStatusTableCell.h */,
+				0C9219532094791E00EFE75C /* ReStatusTableCell.m */,
 			);
 			path = "已推荐项目状态";
 			sourceTree = "<group>";
@@ -2428,6 +2433,7 @@
 				0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
 				0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */,
+				0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */,
 				1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */,
 				0CF04F73207C899D00A45F4A /* AuditStatusVC.m in Sources */,
 				0CF04F2D207A0DA300A45F4A /* DynamicListTableCell.m in Sources */,

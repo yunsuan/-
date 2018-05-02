@@ -427,13 +427,15 @@
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
             NSLog(@"%@",resposeObject);
+            [self showContent:resposeObject[@"msg"]];
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                [self showContent:@"添加成功"];
-                for (UIViewController *vc in self.childViewControllers) {
+//                [self showContent:@"添加成功"];
+                for (UIViewController *vc in self.navigationController.viewControllers) {
                     
                     if ([vc isKindOfClass:[CustomerVC class]]) {
                         
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
                         [self.navigationController popToViewController:vc animated:YES];
                     }
                 }
