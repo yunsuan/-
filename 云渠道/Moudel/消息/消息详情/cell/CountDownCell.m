@@ -132,15 +132,17 @@
 
 -(void)setcountdownbyendtime:(NSString *)endtime
 {
-    NSTimeInterval time=[endtime doubleValue]+28800;//因为时差问题要加8小时 == 28800 sec
-    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
-    NSLog(@"date:%@",[detaildate description]);
-    //实例化一个NSDateFormatter对象
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //设定时间格式,这里可以设置成自己需要的格式
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+    //获得当前时间
+    NSDate *now = [NSDate date];
+    NSTimeInterval time=[endtime doubleValue];
+    NSTimeInterval oldTime = [now timeIntervalSince1970];
+    NSInteger timeDifference = time-oldTime;
+    _day =  (int)timeDifference /(3600*24);
+    _hour =(int)((timeDifference-_day*24*3600)/3600);
+    _min = (int)(timeDifference-_day*24*3600-_hour*3600)/60;
+    _sec = timeDifference - _day*24*3600 - _hour*3600 - _min*60;
+//     修改倒计时标签及显示内容
+
     _dayL.text = [NSString stringWithFormat:@"%ld天",_day];
     _hourL.text = [NSString stringWithFormat:@"%ld",_hour];
     _minL.text = [NSString stringWithFormat:@"%ld",_min];
@@ -190,6 +192,8 @@
                 }
                 else
                 {
+                    
+                  
                     [_timer invalidate];
                     _timer = nil;
                 }

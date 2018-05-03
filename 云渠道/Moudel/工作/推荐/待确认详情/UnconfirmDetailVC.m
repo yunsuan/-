@@ -17,6 +17,7 @@
     NSArray *_data;
     NSArray *_titleArr;
     NSString *_str;
+    NSString *_endtime;
 }
 @property (nonatomic , strong) UITableView *Maintableview;
 @property (nonatomic , strong) UIButton *confirmBtn;
@@ -65,6 +66,7 @@
                       adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"],adress];
                       
                       _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],@""],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"委托人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
+                      _endtime = resposeObject[@"data"][@"timeLimit"];
                       [self initUI];
                   }
                                                          }
@@ -158,7 +160,8 @@
         if (!cell) {
             cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
+//        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
+        [cell setcountdownbyendtime:_endtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
