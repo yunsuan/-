@@ -204,6 +204,9 @@ static NSString *const DisabledDetail_URL = @"agent/work/broker/disabledDetail";
 //获取申诉信息
 static NSString *const AppealGetOne_URL = @"agent/appeal/getOne";
 
+//取消申诉
+static NSString *const AppealCancel_URL = @"agent/client/appealCancel";
+
 //经纪人有效到访客户详细
 static NSString *const ValueDetail_URL = @"agent/work/broker/valueDetail";
 

@@ -82,7 +82,21 @@
 
 - (void)ActionCancelBtn:(UIButton *)btn{
     
-    
+    [BaseRequest POST:AppealCancel_URL parameters:@{@"appeal_id":_appealId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+         
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 #pragma mark    -----  delegate   ------
