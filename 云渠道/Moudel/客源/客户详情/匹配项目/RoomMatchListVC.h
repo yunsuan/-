@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "CustomRequireModel.h"
 
 @interface RoomMatchListVC : BaseViewController
 
-- (instancetype)initWithClientId:(NSString *)clientId;
+- (instancetype)initWithClientId:(NSString *)clientId dataArr:(NSArray *)dataArr model:(CustomRequireModel *)model;
 
 @end

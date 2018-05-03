@@ -20,7 +20,9 @@
     BOOL _isOne;
     NSInteger _index;
     NSMutableArray *_imgArr1;
+    NSMutableArray *_imgUrl1;
     NSMutableArray *_imgArr2;
+    NSMutableArray *_imgUrl2;
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
     NSMutableDictionary *_dic;
@@ -107,6 +109,8 @@
     [_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     _imgArr1 = [@[] mutableCopy];
     _imgArr2 = [@[] mutableCopy];
+    _imgUrl1 = [@[] mutableCopy];
+    _imgUrl2 = [@[] mutableCopy];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 }
@@ -246,60 +250,109 @@
 }
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
+
+    if (!_numBtn.content.text) {
+        
+        [self showContent:@"请选择到访人数"];
+        return;
+    }
     
+    if (!_purposeBtn.content.text) {
+        
+        [self showContent:@"请选择置业目的"];
+        return;
+    }
     
-//    NSData *data = [self resetSizeOfImageData:img maxSize:150];
-//    
-//    [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"headimg"
-//                                                       }
-//          constructionBody:^(id<AFMultipartFormData> formData) {
-//              [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
-//          } success:^(id resposeObject) {
-//              NSLog(@"%@",resposeObject);
-//              
-//              //        [self showContent:resposeObject[@"msg"]];
-//              if ([resposeObject[@"code"] integerValue] == 200) {
-//                  
-//                  NSDictionary *dic = @{@"head_img":resposeObject[@"data"]};
-//                  [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
-//                      
-//                      NSLog(@"%@",resposeObject);
-//                      [self showContent:resposeObject[@"msg"]];
-//                      if ([resposeObject[@"code"] integerValue] == 200) {
-//                          
-//                          _headImg.image = img;
-//                          [UserInfoModel defaultModel].head_img = dic[@"head_img"];
-//                          [UserModelArchiver infoArchive];
-//                      }else{
-//                          
-//                          //                    [self showContent:resposeObject[@"msg"]];
-//                      }
-//                  } failure:^(NSError *error) {
-//                      
-//                      NSLog(@"%@",error);
-//                      [self showContent:@"网络错误"];
-//                  }];
-//              }else{
-//                  
-//                  //            [self showContent:resposeObject[@"msg"]];
-//              }
-//              
-//          } failure:^(NSError *error) {
-//              NSLog(@"%@",error);
-//              [self showContent:@"网络错误"];
-//          }];
-//    [BaseRequest POST:ConfirmValueClient_URL parameters:_dic success:^(id resposeObject) {
-//
-//        [self showContent:resposeObject[@"msg"]];
-//        if ([resposeObject[@"code"] integerValue] == 200) {
-//
-//
-//        }
-//    } failure:^(NSError *error) {
-//
-//        [self showContent:@"网络错误"];
-//        NSLog(@"%@",error);
-//    }];
+    if (!_adviserTF.textfield.text) {
+        
+        [self showContent:@"请输入置业顾问"];
+        return;
+    }
+    
+    if (!_signTF1.textfield.text) {
+        
+        [self showContent:@"请输入签字人姓名"];
+        return;
+    }
+    
+    if (!_imgArr1.count) {
+        
+        [self showContent:@"请选择到访照片"];
+        return;
+
+    }
+    
+    if (!_imgArr2.count) {
+        
+        [self showContent:@"请选择确认单图片"];
+        return;
+        
+    }
+    if (!_timeL.text) {
+        
+        [self showContent:@"请选择到访时间"];
+        return;
+    }
+    
+    if (!_markView.text) {
+        
+        [self showContent:@"请填写备注"];
+        return;
+    }
+    
+    NSString *sign;
+    if (_num == 0) {
+        
+        if (_signTF1.textfield.text.length) {
+            
+            sign = _signTF1.textfield.text;
+        }
+    }else if (_num == 1) {
+        
+        if (_signTF2.textfield.text.length) {
+            
+            sign = [NSString stringWithFormat:@"%@,%@",_signTF1.textfield.text,_signTF2.textfield.text];
+        }
+    }else if (_num == 2) {
+        
+        if (_signTF3.textfield.text.length) {
+            
+            sign = [NSString stringWithFormat:@"%@,%@,%@",_signTF1.textfield.text,_signTF2.textfield.text,_signTF3.textfield.text];
+        }
+    }else if (_num == 3) {
+        
+        if (_signTF4.textfield.text.length) {
+            
+            sign = [NSString stringWithFormat:@"%@,%@,%@,%@",_signTF1.textfield.text,_signTF2.textfield.text,_signTF3.textfield.text,_signTF4.textfield.text];
+        }
+    }else{
+        
+        if (_signTF5.textfield.text.length) {
+            
+            sign = [NSString stringWithFormat:@"%@,%@,%@,%@,%@",_signTF1.textfield.text,_signTF2.textfield.text,_signTF3.textfield.text,_signTF4.textfield.text,_signTF5.textfield.text];
+        }
+    }
+    
+    [_dic setObject:_numBtn.str forKey:@"visit_num"];
+    [_dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
+    [_dic setObject:_adviserTF.textfield.text forKey:@"property_advicer_real"];
+    [_dic setObject:sign forKey:@"signatory"];
+    [_dic setObject:[_imgUrl1 componentsJoinedByString:@","] forKey:@"visit_img_url"];
+    [_dic setObject:[_imgUrl2 componentsJoinedByString:@","] forKey:@"verify_img_url"];
+    [_dic setObject:_markView.text forKey:@"comment"];
+    [_dic setObject:_timeL.text forKey:@"visit_time"];
+    [BaseRequest POST:ConfirmValue_URL parameters:_dic success:^(id resposeObject) {
+
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+
+
+        }
+    } failure:^(NSError *error) {
+
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -469,48 +522,104 @@
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             
             _image = info[UIImagePickerControllerOriginalImage];;
-            if (_isOne) {
-                
-                if (_index < _imgArr1.count - 1) {
+            NSData *data = [self resetSizeOfImageData:_image maxSize:150];
+            
+            [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"verify"
+                                                               }
+                  constructionBody:^(id<AFMultipartFormData> formData) {
+                      [formData appendPartWithFileData:data name:@"verify" fileName:@"verify.jpg" mimeType:@"image/jpg"];
+                  } success:^(id resposeObject) {
+                      NSLog(@"%@",resposeObject);
+                      
+                      
+                      if ([resposeObject[@"code"] integerValue] == 200) {
+                          
+                          if (_isOne) {
+                              
+                              if (_index < _imgArr1.count) {
+                                  
+                                  [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
+                                  [_imgUrl1 replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                              }else{
+                                  
+                                  [_imgArr1 addObject:_image];
+                                  [_imgUrl1 addObject:resposeObject[@"data"]];
+                              }
+                              [self.authenColl1 reloadData];
+                          }else{
+                              
+                              if (_index < _imgArr2.count) {
+                                  
+                                  [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
+                                  [_imgUrl2 replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                              }else{
+                                  
+                                  [_imgArr2 addObject:_image];
+                                  [_imgUrl2 addObject:resposeObject[@"data"]];
+                              }
+                              [self.authenColl2 reloadData];
+                          }
+                      }else{
+                          
+                          [self showContent:resposeObject[@"msg"]];
+                      }
+                      
                     
-                    [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
-                }else{
-                    
-                    [_imgArr1 addObject:_image];
-                }
-            }else{
-                
-                if (_index < _imgArr2.count - 1) {
-                    
-                    [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
-                }else{
-                    
-                    [_imgArr2 addObject:_image];
-                }
-            }
+                  } failure:^(NSError *error) {
+                      NSLog(@"%@",error);
+                      [self showContent:@"网络错误"];
+                  }];
         }
     }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         
         _image = info[UIImagePickerControllerOriginalImage];
-        if (_isOne) {
-            
-            if (_index < _imgArr1.count) {
-                
-                [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
-            }else{
-                
-                [_imgArr1 addObject:_image];
-            }
-        }else{
-            
-            if (_index < _imgArr2.count) {
-                
-                [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
-            }else{
-                
-                [_imgArr2 addObject:_image];
-            }
-        }
+        NSData *data = [self resetSizeOfImageData:_image maxSize:150];
+        
+        [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"verify"
+                                                           }
+              constructionBody:^(id<AFMultipartFormData> formData) {
+                  [formData appendPartWithFileData:data name:@"verify" fileName:@"verify.jpg" mimeType:@"image/jpg"];
+              } success:^(id resposeObject) {
+                  NSLog(@"%@",resposeObject);
+                  
+                  
+                  if ([resposeObject[@"code"] integerValue] == 200) {
+                      
+                      if (_isOne) {
+                          
+                          if (_index < _imgArr1.count) {
+                              
+                              [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
+                              [_imgUrl1 replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                          }else{
+                              
+                              [_imgArr1 addObject:_image];
+                              [_imgUrl1 addObject:resposeObject[@"data"]];
+                          }
+                          [self.authenColl1 reloadData];
+                      }else{
+                          
+                          if (_index < _imgArr2.count) {
+                              
+                              [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
+                              [_imgUrl2 replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                          }else{
+                              
+                              [_imgArr2 addObject:_image];
+                              [_imgUrl2 addObject:resposeObject[@"data"]];
+                          }
+                          [self.authenColl2 reloadData];
+                      }
+                  }else{
+                      
+                      [self showContent:resposeObject[@"msg"]];
+                  }
+                  
+                  
+              } failure:^(NSError *error) {
+                  NSLog(@"%@",error);
+                  [self showContent:@"网络错误"];
+              }];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         

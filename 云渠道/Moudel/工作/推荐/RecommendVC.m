@@ -321,7 +321,7 @@
         
     }else if (_index < 3){
         
-        return 127 *SIZE;
+        return 107 *SIZE;
     }else{
         
         return 126 *SIZE;

@@ -64,7 +64,7 @@
     
     [self initDataSource];
     [self initUI];
-//    [self GetCustomRequestMethod];
+
 }
 
 - (void)initDataSource{
@@ -73,7 +73,7 @@
     _dataArr = [@[] mutableCopy];
     _FollowArr = [@[] mutableCopy];
     _projectArr = [@[] mutableCopy];
-//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+
     [self RequestMethod];
 }
 
@@ -255,7 +255,7 @@
     }
     if (_item == 2) {
         
-        if (_FollowArr.count) {
+        if (_projectArr.count) {
             
             [_customDetailTable reloadData];
         }else{
@@ -284,7 +284,7 @@
     }
     if (_item == 2) {
         
-        if (_FollowArr.count) {
+        if (_projectArr.count) {
             
             [_customDetailTable reloadData];
         }else{
@@ -476,7 +476,9 @@
             
             header.moreBtnBlock = ^{
                 
-                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId];
+//                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId];
+                CustomRequireModel *model = _dataArr[0];
+                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId dataArr:_projectArr model:model];
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             

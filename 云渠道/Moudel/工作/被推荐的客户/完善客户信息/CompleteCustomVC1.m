@@ -18,6 +18,7 @@
     
     NSInteger _num;
     NSMutableArray *_imgArr;
+    NSMutableArray *_imgUrl;
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
     NSInteger _index;
@@ -34,17 +35,17 @@
 
 @property (nonatomic, strong) BorderTF *nameTF;
 
-@property (nonatomic, strong) UILabel *intentionL;
+//@property (nonatomic, strong) UILabel *intentionL;
+//
+//@property (nonatomic, strong) BorderTF *intentionTF;
 
-@property (nonatomic, strong) BorderTF *intentionTF;
+//@property (nonatomic, strong) UILabel *urgentL;
+//
+//@property (nonatomic, strong) BorderTF *urgentTF;
 
-@property (nonatomic, strong) UILabel *urgentL;
-
-@property (nonatomic, strong) BorderTF *urgentTF;
-
-@property (nonatomic, strong) UISlider *intentionSlider;
-
-@property (nonatomic, strong) UISlider *urgentSlider;
+//@property (nonatomic, strong) UISlider *intentionSlider;
+//
+//@property (nonatomic, strong) UISlider *urgentSlider;
 
 @property (nonatomic, strong) UIButton *addBtn;
 
@@ -97,6 +98,7 @@
 - (void)initDataSource{
     
     _imgArr = [@[] mutableCopy];
+    _imgUrl = [@[] mutableCopy];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 }
@@ -121,16 +123,16 @@
 
 - (void)ActionNextBtn:(UIButton *)btn{
     
-    if (!_intentionTF.textfield.text.length) {
-        
-        [self showContent:@"请输入购房意向度"];
-        return;
-    }
-    if (!_urgentTF.textfield.text.length) {
-        
-        [self showContent:@"请输入购房紧迫度"];
-        return;
-    }
+//    if (!_intentionTF.textfield.text.length) {
+//
+//        [self showContent:@"请输入购房意向度"];
+//        return;
+//    }
+//    if (!_urgentTF.textfield.text.length) {
+//
+//        [self showContent:@"请输入购房紧迫度"];
+//        return;
+//    }
     
     NSString *tel;
     if (_num == 0) {
@@ -153,7 +155,7 @@
                 return;
             }else{
                 
-                tel = [NSString stringWithFormat:@"%@,%@",tel,_phoneTF2.textfield.text];
+                tel = [NSString stringWithFormat:@"%@,%@",_phoneTF1.textfield.text,_phoneTF2.textfield.text];
             }
         }
     }else{
@@ -166,7 +168,7 @@
                 return;
             }else{
                 
-                tel = [NSString stringWithFormat:@"%@,%@",tel,_phoneTF3.textfield.text];
+                tel = [NSString stringWithFormat:@"%@,%@,%@",_phoneTF1.textfield.text,_phoneTF2.textfield.text,_phoneTF3.textfield.text];
             }
         }
     }
@@ -189,27 +191,28 @@
         return;
     }
     
-    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//    [dic setObject:_clientId forKey:@"client_id"];
+//    [dic setObject:_clientId forKey:@"client_id"];
     [dic setObject:_clientId forKey:@"client_id"];
     [dic setObject:_nameTF.textfield.text forKey:@"client_name"];
     [dic setObject:tel forKey:@"client_tel"];
     [dic setObject:_cardType forKey:@"card_type"];
     [dic setObject:_codeTF.textfield.text forKey:@"card_num"];
-    [dic setObject:_imgArr forKey:@"verify_img_url"];
+    [dic setObject:[_imgUrl componentsJoinedByString:@","] forKey:@"card_img_url"];
     CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)ActionSliderChange:(UISlider *)slider{
     
-    if (slider == _intentionSlider) {
-        
-        _intentionTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
-    }else{
-        
-        _urgentTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
-    }
+//    if (slider == _intentionSlider) {
+//
+//        _intentionTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
+//    }else{
+//
+//        _urgentTF.textfield.text = [NSString stringWithFormat:@"%.0f",slider.value];
+//    }
 }
 - (void)ActionAddBtn:(UIButton *)btn{
     
@@ -393,25 +396,71 @@
             
             _image = info[UIImagePickerControllerOriginalImage];;
             
-            if (_index < _imgArr.count - 1) {
-                
-                [_imgArr replaceObjectAtIndex:_index withObject:_image];
-            }else{
-                
-                [_imgArr addObject:_image];
-            }
+            NSData *data = [self resetSizeOfImageData:_image maxSize:150];
+            
+            [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"id_card"
+                                                               }
+                  constructionBody:^(id<AFMultipartFormData> formData) {
+                      [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
+                  } success:^(id resposeObject) {
+                      NSLog(@"%@",resposeObject);
+                      
+                     
+                      if ([resposeObject[@"code"] integerValue] == 200) {
+                          
+                          if (_index < _imgArr.count) {
+                              
+                              [_imgArr replaceObjectAtIndex:_index withObject:_image];
+                              [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                          }else{
+                              
+                              [_imgArr addObject:_image];
+                              [_imgUrl addObject:resposeObject[@"data"]];
+                          }
+                      }else{
+                          
+                           [self showContent:resposeObject[@"msg"]];
+                      }
+                      [self.authenColl reloadData];
+                  } failure:^(NSError *error) {
+                      NSLog(@"%@",error);
+                      [self showContent:@"网络错误"];
+            }];
         }
     }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         
         _image = info[UIImagePickerControllerOriginalImage];
         
-        if (_index < _imgArr.count) {
-            
-            [_imgArr replaceObjectAtIndex:_index withObject:_image];
-        }else{
-            
-            [_imgArr addObject:_image];
-        }
+        NSData *data = [self resetSizeOfImageData:_image maxSize:150];
+        
+        [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"id_card"
+                                                           }
+              constructionBody:^(id<AFMultipartFormData> formData) {
+                  [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
+              } success:^(id resposeObject) {
+                  NSLog(@"%@",resposeObject);
+                  
+                  
+                  if ([resposeObject[@"code"] integerValue] == 200) {
+                      
+                      if (_index < _imgArr.count) {
+                          
+                          [_imgArr replaceObjectAtIndex:_index withObject:_image];
+                          [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                      }else{
+                          
+                          [_imgArr addObject:_image];
+                          [_imgUrl addObject:resposeObject[@"data"]];
+                      }
+                  }else{
+                      
+                      [self showContent:resposeObject[@"msg"]];
+                  }
+                  [self.authenColl reloadData];
+              } failure:^(NSError *error) {
+                  NSLog(@"%@",error);
+                  [self showContent:@"网络错误"];
+              }];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -442,7 +491,7 @@
     [_scrolleView addSubview:_infoView];
     
     _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addBtn.frame = CGRectMake(313 *SIZE, 289 *SIZE, 25 *SIZE, 25 *SIZE);
+    _addBtn.frame = CGRectMake(313 *SIZE, 87 *SIZE, 25 *SIZE, 25 *SIZE);
     [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
     [_infoView addSubview:_addBtn];
@@ -462,16 +511,16 @@
             }
             case 1:
             {
-                _intentionL = label;
-                _intentionL.text = @"购房意向度:";
-                [_infoView addSubview:_intentionL];
+//                _intentionL = label;
+//                _intentionL.text = @"购房意向度:";
+//                [_infoView addSubview:_intentionL];
                 break;
             }
             case 2:
             {
-                _urgentL = label;
-                _urgentL.text = @"购房紧迫度:";
-                [_infoView addSubview:_urgentL];
+//                _urgentL = label;
+//                _urgentL.text = @"购房紧迫度:";
+//                [_infoView addSubview:_urgentL];
                 break;
             }
             case 3:
@@ -538,16 +587,16 @@
             switch (i) {
                 case 0:
                 {
-                    _intentionTF = TF;
-                    _intentionTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
-                    [_infoView addSubview:_intentionTF];
+//                    _intentionTF = TF;
+//                    _intentionTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
+//                    [_infoView addSubview:_intentionTF];
                     break;
                 }
                 case 1:
                 {
-                    _urgentTF = TF;
-                    _urgentTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
-                    [_infoView addSubview:_urgentTF];
+//                    _urgentTF = TF;
+//                    _urgentTF.textfield.keyboardType = UIKeyboardTypeNumberPad;
+//                    [_infoView addSubview:_urgentTF];
                     break;
                 }
                 case 2:
@@ -586,28 +635,28 @@
             }
         }
         
-        if (i < 2) {
-            
-            UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 327 *SIZE, 5 *SIZE)];
-            slider.userInteractionEnabled = YES;
-            slider.minimumValue = 0.0;
-            slider.maximumValue = 100.0;
-            slider.maximumTrackTintColor = YJBackColor;
-            slider.minimumTrackTintColor = COLOR(255, 224, 177, 1);
-            slider.thumbTintColor = COLOR(255, 224, 177, 1);
-            [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
-            [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateHighlighted];
-            [slider addTarget:self action:@selector(ActionSliderChange:) forControlEvents:UIControlEventValueChanged];
-            if (i == 0) {
-                
-                _intentionSlider = slider;
-                [_infoView addSubview:_intentionSlider];
-            }else{
-                
-                _urgentSlider = slider;
-                [_infoView addSubview:_urgentSlider];
-            }
-        }
+//        if (i < 2) {
+//
+//            UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 327 *SIZE, 5 *SIZE)];
+//            slider.userInteractionEnabled = YES;
+//            slider.minimumValue = 0.0;
+//            slider.maximumValue = 100.0;
+//            slider.maximumTrackTintColor = YJBackColor;
+//            slider.minimumTrackTintColor = COLOR(255, 224, 177, 1);
+//            slider.thumbTintColor = COLOR(255, 224, 177, 1);
+//            [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateNormal];
+//            [slider setThumbImage:[UIImage imageNamed:@"point"] forState:UIControlStateHighlighted];
+//            [slider addTarget:self action:@selector(ActionSliderChange:) forControlEvents:UIControlEventValueChanged];
+//            if (i == 0) {
+//
+//                _intentionSlider = slider;
+//                [_infoView addSubview:_intentionSlider];
+//            }else{
+//
+//                _urgentSlider = slider;
+//                [_infoView addSubview:_urgentSlider];
+//            }
+//        }
     }
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -672,59 +721,60 @@
         make.height.equalTo(@(33 *SIZE));
     }];
     
-    [_intentionL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_nameTF.mas_bottom).offset(40 *SIZE);
-        make.width.equalTo(@(70 *SIZE));
-        make.height.equalTo(@(12 *SIZE));
-    }];
+//    [_intentionL mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(10 *SIZE);
+//        make.top.equalTo(_nameTF.mas_bottom).offset(40 *SIZE);
+//        make.width.equalTo(@(70 *SIZE));
+//        make.height.equalTo(@(12 *SIZE));
+//    }];
     
-    [_intentionTF mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_infoView).offset(81 *SIZE);
-        make.top.equalTo(_nameTF.mas_bottom).offset(29 *SIZE);
-        make.width.equalTo(@(258 *SIZE));
-        make.height.equalTo(@(33 *SIZE));
-        make.bottom.equalTo(_intentionSlider.mas_top).offset(-24 *SIZE);
-    }];
+//    [_intentionTF mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(81 *SIZE);
+//        make.top.equalTo(_nameTF.mas_bottom).offset(29 *SIZE);
+//        make.width.equalTo(@(258 *SIZE));
+//        make.height.equalTo(@(33 *SIZE));
+//        make.bottom.equalTo(_intentionSlider.mas_top).offset(-24 *SIZE);
+//    }];
+//
+//    [_intentionSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(10 *SIZE);
+//        make.top.equalTo(_intentionTF.mas_bottom).offset(24 *SIZE);
+//        make.width.equalTo(@(327 *SIZE));
+//        make.height.equalTo(@(5 *SIZE));
+//    }];
     
-    [_intentionSlider mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_intentionTF.mas_bottom).offset(24 *SIZE);
-        make.width.equalTo(@(327 *SIZE));
-        make.height.equalTo(@(5 *SIZE));
-    }];
-    
-    [_urgentL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_intentionSlider.mas_bottom).offset(44 *SIZE);
-        make.width.equalTo(@(90 *SIZE));
-        make.height.equalTo(@(11 *SIZE));
-    }];
+//    [_urgentL mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(10 *SIZE);
+//        make.top.equalTo(_intentionSlider.mas_bottom).offset(44 *SIZE);
+//        make.width.equalTo(@(90 *SIZE));
+//        make.height.equalTo(@(11 *SIZE));
+//    }];
 
-    [_urgentTF mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_infoView).offset(81 *SIZE);
-        make.top.equalTo(_intentionSlider.mas_bottom).offset(33 *SIZE);
-        make.width.equalTo(@(258 *SIZE));
-        make.height.equalTo(@(33 *SIZE));
-    }];
+//    [_urgentTF mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(81 *SIZE);
+//        make.top.equalTo(_intentionSlider.mas_bottom).offset(33 *SIZE);
+//        make.width.equalTo(@(258 *SIZE));
+//        make.height.equalTo(@(33 *SIZE));
+//    }];
     
-    [_urgentSlider mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_urgentTF.mas_bottom).offset(28 *SIZE);
-        make.width.equalTo(@(327 *SIZE));
-        make.height.equalTo(@(5 *SIZE));
-    }];
+//    [_urgentSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(10 *SIZE);
+//        make.top.equalTo(_urgentTF.mas_bottom).offset(28 *SIZE);
+//        make.width.equalTo(@(327 *SIZE));
+//        make.height.equalTo(@(5 *SIZE));
+//    }];
     
     [_phoneL mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(10 *SIZE);
-        make.top.equalTo(_urgentSlider.mas_bottom).offset(50 *SIZE);
+//        make.top.equalTo(_urgentSlider.mas_bottom).offset(50 *SIZE);;
+        make.top.equalTo(_nameTF.mas_bottom).offset(40 *SIZE);
         make.width.equalTo(@(70 *SIZE));
         make.height.equalTo(@(13 *SIZE));
     }];
@@ -732,7 +782,7 @@
     [_phoneTF1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(81 *SIZE);
-        make.top.equalTo(_urgentSlider.mas_bottom).offset(40 *SIZE);
+        make.top.equalTo(_nameTF.mas_bottom).offset(29 *SIZE);
         make.width.equalTo(@(217 *SIZE));
         make.height.equalTo(@(33 *SIZE));
     }];
