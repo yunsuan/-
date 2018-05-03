@@ -58,7 +58,6 @@
         maohao.text = @":";
         [self.contentView addSubview:maohao];
     }
- 
     _hourL= [[UILabel alloc]init];
     _hourL.textColor = [UIColor whiteColor];
     _hourL.textAlignment = NSTextAlignmentCenter;
@@ -131,6 +130,31 @@
     }
 }
 
+-(void)setcountdownbyendtime:(NSString *)endtime
+{
+    //获得当前时间
+    NSDate *now = [NSDate date];
+    NSTimeInterval time=[endtime doubleValue];
+    NSTimeInterval oldTime = [now timeIntervalSince1970];
+    NSInteger timeDifference = time-oldTime;
+    _day =  (int)timeDifference /(3600*24);
+    _hour =(int)((timeDifference-_day*24*3600)/3600);
+    _min = (int)(timeDifference-_day*24*3600-_hour*3600)/60;
+    _sec = timeDifference - _day*24*3600 - _hour*3600 - _min*60;
+//     修改倒计时标签及显示内容
+
+    _dayL.text = [NSString stringWithFormat:@"%ld天",_day];
+    _hourL.text = [NSString stringWithFormat:@"%ld",_hour];
+    _minL.text = [NSString stringWithFormat:@"%ld",_min];
+    _secL.text = [NSString stringWithFormat:@"%ld",_sec];
+    _timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    [_timer fire];
+    
+}
+
+
+
 -(void)timerUpdate
 {
     if (_sec >0) {
@@ -168,6 +192,8 @@
                 }
                 else
                 {
+                    
+                  
                     [_timer invalidate];
                     _timer = nil;
                 }

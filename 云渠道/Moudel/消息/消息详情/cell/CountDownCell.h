@@ -16,5 +16,7 @@
                      min:(NSInteger )min
                      sec:(NSInteger )sec;
 
+-(void)setcountdownbyendtime:(NSString *)endtime;
+
 
 @end
