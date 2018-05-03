@@ -15,6 +15,8 @@
 {
     NSArray *_data;
     NSArray *_titleArr;
+    NSString *_clientId;
+    NSMutableDictionary *_dataDic;
 }
 @property (nonatomic , strong) UITableView *unCompleteTable;
 
@@ -23,6 +25,16 @@
 @end
 
 @implementation ComplaintUnCompleteVC
+
+- (instancetype)initWithClientId:(NSString *)clientId
+{
+    self = [super init];
+    if (self) {
+        
+        _clientId = clientId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +49,33 @@
     
     _titleArr = @[@"推荐编号",@"处理信息",@"申诉信息",@"失效信息",@"委托人信息"];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
+    
+    [self AppealRequestMethod];
+}
+
+- (void)AppealRequestMethod{
+    
+    [BaseRequest GET:AppealGetOne_URL parameters:@{@"project_client_id":_clientId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
+            [_dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [_dataDic setObject:@"" forKey:key];
+                }
+            }];
+            [_unCompleteTable reloadData];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (void)ActionCancelBtn:(UIButton *)btn{

@@ -7,9 +7,15 @@
 //
 
 #import "ComplaintVC.h"
+#import "SinglePickView.h"
+#import "RecommendVC.h"
 
 @interface ComplaintVC ()<UITextViewDelegate>
-
+{
+    
+    NSString *_type;
+    NSString *_projectId;
+}
 @property (nonatomic, strong) UIButton *confirmBtn;
 
 @property (nonatomic, strong) UIButton *selectBtn;
@@ -20,9 +26,21 @@
 
 @property (nonatomic, strong) UILabel *placeL;
 
+@property (nonatomic, strong) SinglePickView *typeView;
+
 @end
 
 @implementation ComplaintVC
+
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _projectId = projectId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +50,51 @@
 
 - (void)ActionComfirmBtn:(UIButton *)btn{
     
+    if (!_type.length) {
+        
+        [self showContent:@"请选择申诉类型"];
+        return;
+    }
     
+    if (!_feedbackTV.text.length) {
+        
+        [self showContent:@"请填写申诉内容"];
+        return;
+    }
+    
+    [BaseRequest POST:ClientAppeal_URL parameters:@{@"project_client_id":_projectId,@"type":_type,@"comment":_feedbackTV.text} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            for (UIViewController *vc in self.navigationController.viewControllers) {
+                
+                if ([vc isKindOfClass:[RecommendVC class]]) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
+                    [self.navigationController popToViewController:vc animated:YES];
+                }
+            }
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)ActionSelectBtn:(UIButton *)btn{
+    
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:COMPLAINT_TYPE]];
+    
+    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+        
+        _statusL.text = MC;
+        _type = [NSString stringWithFormat:@"%@",ID];
+    };
+    [self.view addSubview:view];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -65,7 +127,7 @@
     _statusL.textColor = YJTitleLabColor;
     _statusL.font = [UIFont systemFontOfSize:13 *SIZE];
     _statusL.textAlignment = NSTextAlignmentRight;
-    _statusL.text = @"佣金未到账";
+//    _statusL.text = @"佣金未到账";
     [whiteView1 addSubview:_statusL];
     
     UIImageView *dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(336 *SIZE, 17 *SIZE, 12 *SIZE, 12 *SIZE)];
@@ -74,7 +136,7 @@
     
     _selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _selectBtn.frame = CGRectMake(0, 0, SCREEN_Width, 43 *SIZE);
-//    [<#UIButton#> addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_selectBtn addTarget:self action:@selector(ActionSelectBtn:) forControlEvents:UIControlEventTouchUpInside];
     [whiteView1 addSubview:_selectBtn];
     
     UIView *whiteView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 53 * SIZE +  NAVIGATION_BAR_HEIGHT, SCREEN_Width, 150 *SIZE)];

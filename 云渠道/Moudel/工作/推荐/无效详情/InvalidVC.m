@@ -95,7 +95,7 @@
 
 - (void)ActionComplaintBtn:(UIButton *)btn{
     
-    ComplaintVC *nextVC = [[ComplaintVC alloc] init];
+    ComplaintVC *nextVC = [[ComplaintVC alloc] initWithProjectId:_clientId];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

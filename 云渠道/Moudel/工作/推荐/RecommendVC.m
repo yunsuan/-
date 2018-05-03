@@ -61,6 +61,8 @@
 
 -(void)initDateSouce
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InValidRequest) name:@"inValidReload" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ApealRequest) name:@"appealReload" object:nil];
     _titleArr = @[@"确认中",@"有效",@"无效",@"申诉"];
     _unComfirmArr = [@[] mutableCopy];
     _validArr = [@[] mutableCopy];
@@ -446,13 +448,13 @@
     }
     if (_index == 3) {
         
-        if (indexPath.row == 0) {
+        if ([_appealArr[indexPath.row][@"state"] isEqualToString:@"处理完成"]) {
             
-            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] init];
+            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithClientId:_appealArr[indexPath.row][@"project_client_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] init];
+            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithClientId:_appealArr[indexPath.row][@"project_client_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }
     }

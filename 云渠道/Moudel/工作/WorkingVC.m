@@ -47,11 +47,12 @@
 }
 
 -(void)refresh{
-    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+    
+//    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
 }
 
 -(void)postWithidentify:(NSString *)identify

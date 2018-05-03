@@ -179,15 +179,14 @@ static NSString *const BrokerValue_URL = @"agent/work/broker/value";
 //经纪人无效列表
 static NSString *const BrokerDisabled_URL = @"agent/work/broker/disabled";
 
+//申诉
+static NSString *const ClientAppeal_URL = @"agent/client/appeal";
+
 //经纪人申诉列表
 static NSString *const BrokerAppeal_URL = @"agent/work/broker/appeal";
 
 //经纪人申诉详情
 static NSString *const BrokerAppealDetail_URL = @"agent/work/broker/appealDetail";
-
-
-static NSString *const RefreshData_URL = @"agent/work/flushDate";
-
 
 //对接经纪人判断为有效到访
 static NSString *const ConfirmValue_URL = @"agent/client/confirmValue";
@@ -202,6 +201,6 @@ static NSString *const WaitConfirmDetail_URL = @"agent/work/broker/waitConfirmDe
 //经纪人无效客户详细
 static NSString *const DisabledDetail_URL = @"agent/work/broker/disabledDetail";
 
-//经纪人申述详细
-static NSString *const AppealDetail_URL = @"agent/client/confirmDisabled";
+//获取申诉信息
+static NSString *const AppealGetOne_URL = @"agent/appeal/getOne";
 
