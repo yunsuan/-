@@ -668,7 +668,26 @@
     }
     NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
     [cell settagviewWithdata:tempArr3];
-    [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
+    
+    cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",model.sort];
+    [cell.rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(cell.rankView).offset(0);
+        make.top.equalTo(cell.rankView).offset(0);
+        make.height.equalTo(@(10 *SIZE));
+        make.width.equalTo(@(cell.rankView.rankL.mj_textWith + 5 *SIZE));
+    }];
+    if ([model.brokerSortCompare integerValue] == 0) {
+        
+        cell.rankView.statusImg.image = [UIImage imageNamed:@""];
+    }else if ([model.brokerSortCompare integerValue] == 1){
+        
+        cell.rankView.statusImg.image = [UIImage imageNamed:@"rising"];
+    }else if ([model.brokerSortCompare integerValue] == 2){
+        
+        cell.rankView.statusImg.image = [UIImage imageNamed:@"falling"];
+    }
+    [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:[model.cycle integerValue]];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
