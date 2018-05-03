@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TagView.h"
+#import "LevelView.h"
+#import "RankView.h"
 
 @class CustomDetailTableCell3;
 
@@ -32,6 +34,10 @@ typedef void(^RecommendBtnBlock3)(NSInteger index);
 @property (nonatomic , strong) TagView *wuyeview;
 
 @property (nonatomic, strong) NSMutableDictionary *dataDic;
+
+@property (nonatomic, strong) RankView *rankView;
+
+@property (nonatomic, strong) LevelView *getLevel;
 
 - (void)settagviewWithdata:(NSArray *)data;
 

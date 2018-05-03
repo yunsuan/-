@@ -637,7 +637,7 @@
         cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     RoomListModel *model = _dataArr[indexPath.row];
-    [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
+    [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
     
     
     NSMutableArray *tempArr = [@[] mutableCopy];

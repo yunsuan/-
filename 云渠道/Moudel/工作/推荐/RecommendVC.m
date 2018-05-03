@@ -440,7 +440,8 @@
     }
     if (_index == 2) {
         
-        InvalidVC *nextVC = [[InvalidVC alloc] init];
+        
+        InvalidVC *nextVC = [[InvalidVC alloc] initWithClientId:_inValidArr[indexPath.row][@"client_id"]];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     if (_index == 3) {

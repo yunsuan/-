@@ -32,6 +32,37 @@
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"匹配度：%@%@",dataDic[@"score"],@"%"]];
     [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 4)];
     _rateL.attributedText = attr;
+    
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+       
+        if (error) {
+            
+            _headImg.image = [UIImage imageNamed:@""];
+        }
+        
+    }];
+    
+    _addressL.text = [NSString stringWithFormat:@"%@-%@",dataDic[@"district_name"],dataDic[@"absolute_address"]];
+    
+    _rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",dataDic[@"sort"]];
+    [_rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_rankView).offset(0);
+        make.top.equalTo(_rankView).offset(0);
+        make.height.equalTo(@(10 *SIZE));
+        make.width.equalTo(@(_rankView.rankL.mj_textWith + 5 *SIZE));
+    }];
+    if ([dataDic[@"brokerSortCompare"] integerValue] == 0) {
+        
+        _rankView.statusImg.image = [UIImage imageNamed:@""];
+    }else if ([dataDic[@"brokerSortCompare"] integerValue] == 1){
+        
+        _rankView.statusImg.image = [UIImage imageNamed:@"rising"];
+    }else if ([dataDic[@"brokerSortCompare"] integerValue] == 2){
+        
+        _rankView.statusImg.image = [UIImage imageNamed:@"falling"];
+    }
+    [_getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:[dataDic[@"cycle"] integerValue]];
 //    NSArray *arr = [dataDic[@"project_tags"] componentsSeparatedByString:@","];
 //    self settagviewWithdata:<#(NSArray *)#>
 }
@@ -73,7 +104,14 @@
     [_recommentBtn setBackgroundColor:YJBlueBtnColor];
     [self.contentView addSubview:_recommentBtn];
 //    [_recommentBtn setTitleColor:COLOR(<#_R#>, <#_G#>, <#_B#>, <#_A#>) forState:UIControlStateNormal];
-
+    
+    
+    _rankView = [[RankView alloc] initWithFrame:CGRectMake(123 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
+    [self.contentView addSubview:_rankView];
+    
+    _getLevel = [[LevelView alloc] initWithFrame:CGRectMake(217 *SIZE, 36 *SIZE, 80 *SIZE, 12 *SIZE)];
+    _getLevel.titleL.text = @"结佣";
+    [self.contentView addSubview:_getLevel];
     
     _wuyeview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 66.7*SIZE, 150*SIZE, 16.7*SIZE)  type:@"0"];
     [self.contentView addSubview:_wuyeview];

@@ -12,9 +12,13 @@
 
 typedef void(^tranmitBtnBlock)(void);
 
+typedef void(^RecommendViewConfirmBlock)(void);
+
 @interface RecommendView : UIView
 
 @property (nonatomic, copy) tranmitBtnBlock tranmitBtnBlock;
+
+@property (nonatomic, copy) RecommendViewConfirmBlock recommendViewConfirmBlock;
 
 @property (nonatomic, strong) UIView *whiteView;
 
