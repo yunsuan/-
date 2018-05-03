@@ -183,6 +183,7 @@
 		102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF9782057A1DD00E1859C /* CustomerVC.m */; };
 		102DF97C2057A20100E1859C /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF97B2057A20100E1859C /* LoginVC.m */; };
 		102DF97F2057A21300E1859C /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 102DF97E2057A21300E1859C /* MineVC.m */; };
+		1044B3F12099C3E5002D9BAE /* WebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3F02099C3E5002D9BAE /* WebViewVC.m */; };
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
 		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
@@ -598,6 +599,8 @@
 		102DF97B2057A20100E1859C /* LoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		102DF97D2057A21300E1859C /* MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineVC.h; sourceTree = "<group>"; };
 		102DF97E2057A21300E1859C /* MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
+		1044B3EF2099C3E5002D9BAE /* WebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewVC.h; sourceTree = "<group>"; };
+		1044B3F02099C3E5002D9BAE /* WebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewVC.m; sourceTree = "<group>"; };
 		105E18892060E1F50031558D /* CompanyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
 		105E188A2060E1F50031558D /* CompanyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		105E188C2060E21C0031558D /* PeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
@@ -1631,6 +1634,7 @@
 		102DF96D2057A0A200E1859C /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				1044B3EE2099C3C3002D9BAE /* webview */,
 				0C08BF74206CE901005BB3B4 /* 我的关注 */,
 				0C0B82552065018E00238D4F /* 意见反馈 */,
 				0C0B821C20649C0600238D4F /* 工作经历 */,
@@ -1642,6 +1646,15 @@
 				102DF97E2057A21300E1859C /* MineVC.m */,
 			);
 			path = "我的";
+			sourceTree = "<group>";
+		};
+		1044B3EE2099C3C3002D9BAE /* webview */ = {
+			isa = PBXGroup;
+			children = (
+				1044B3EF2099C3E5002D9BAE /* WebViewVC.h */,
+				1044B3F02099C3E5002D9BAE /* WebViewVC.m */,
+			);
+			path = webview;
 			sourceTree = "<group>";
 		};
 		105E18882060E1970031558D /* view */ = {
@@ -2414,6 +2427,7 @@
 				0CBD85AD2088842100E7B183 /* AddTagVC.m in Sources */,
 				10B509772092EE0D004355C4 /* BrokerModel.m in Sources */,
 				0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */,
+				1044B3F12099C3E5002D9BAE /* WebViewVC.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,

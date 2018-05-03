@@ -14,6 +14,7 @@
 #import "MyAttentionVC.h"
 #import "FeedbackVC.h"
 #import "ExperienceVC.h"
+#import "WebViewVC.h"
 
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -418,7 +419,8 @@
             
         }else{
             
-            
+            WebViewVC *next_vc = [[WebViewVC alloc]init];
+            [self.navigationController pushViewController:next_vc animated:YES];
         }
         
     }
