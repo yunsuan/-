@@ -721,13 +721,7 @@
         make.height.equalTo(@(33 *SIZE));
     }];
     
-//    [_intentionL mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(_infoView).offset(10 *SIZE);
-//        make.top.equalTo(_nameTF.mas_bottom).offset(40 *SIZE);
-//        make.width.equalTo(@(70 *SIZE));
-//        make.height.equalTo(@(12 *SIZE));
-//    }];
+
     
 //    [_intentionTF mas_makeConstraints:^(MASConstraintMaker *make) {
 //

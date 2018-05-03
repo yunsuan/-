@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface ValidVC : BaseViewController
+-(instancetype)initWithClientId:(NSString *)ClientID;
 
 @end

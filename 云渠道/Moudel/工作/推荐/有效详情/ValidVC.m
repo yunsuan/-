@@ -15,6 +15,7 @@
 {
     NSArray *_data;
     NSArray *_titleArr;
+    NSString *_clientid;
 }
 @property (nonatomic , strong) UITableView *validTable;
 
@@ -24,11 +25,34 @@
 
 @implementation ValidVC
 
+-(instancetype)initWithClientId:(NSString *)ClientID
+{
+    self =[super init];
+    if (self) {
+        _clientid = ClientID;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self post];
     [self initDataSouce];
     [self initUI];
+}
+
+-(void)post{
+    [BaseRequest GET:ValueDetail_URL
+          parameters:@{
+                                        @"client_id":_clientid
+                                                        }
+             success:^(id resposeObject) {
+                 NSLog(@"%@",resposeObject);
+                
+             }
+             failure:^(NSError *error) {
+                 
+             }];
 }
 
 
@@ -135,8 +159,6 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"有效到访详情";
-    
-    
     _validTable.rowHeight = 150 *SIZE;
     _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
     

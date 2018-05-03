@@ -437,7 +437,7 @@
 //    }
     if (_index == 1) {
         
-        ValidVC *nextVC = [[ValidVC alloc] init];
+        ValidVC *nextVC = [[ValidVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     if (_index == 2) {

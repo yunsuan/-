@@ -18,6 +18,7 @@
     NSArray *_titleArr;
     NSString *_str;
     NSString *_endtime;
+    NSString *_name;
 }
 @property (nonatomic , strong) UITableView *Maintableview;
 @property (nonatomic , strong) UIButton *confirmBtn;
@@ -54,6 +55,7 @@
                       {
                           sex =@"客户性别：女";
                       }
+                      _name = resposeObject[@"data"][@"city_name"];
                       NSString *tel = resposeObject[@"data"][@"tel"];
                       NSArray *arr = [tel componentsSeparatedByString:@","];
                       if (arr.count>0) {
@@ -98,12 +100,14 @@
     
     UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] init];
+        CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] initWithClientID:_str name:_name];
+        
         [self.navigationController pushViewController:nextVC animated:YES];
     }];
     
     UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        self.invalidView.client_id = _str;
         [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
     }];
     
@@ -162,6 +166,9 @@
         }
 //        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         [cell setcountdownbyendtime:_endtime];
+        cell.countdownblock = ^{
+            [self refresh];
+        };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
@@ -211,5 +218,13 @@
         _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     }
     return _invalidView;
+}
+
+-(void)refresh{
+    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 @end
