@@ -58,7 +58,6 @@
         maohao.text = @":";
         [self.contentView addSubview:maohao];
     }
- 
     _hourL= [[UILabel alloc]init];
     _hourL.textColor = [UIColor whiteColor];
     _hourL.textAlignment = NSTextAlignmentCenter;
@@ -130,6 +129,29 @@
         [_timer fire];
     }
 }
+
+-(void)setcountdownbyendtime:(NSString *)endtime
+{
+    NSTimeInterval time=[endtime doubleValue]+28800;//因为时差问题要加8小时 == 28800 sec
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
+    NSLog(@"date:%@",[detaildate description]);
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+    _dayL.text = [NSString stringWithFormat:@"%ld天",_day];
+    _hourL.text = [NSString stringWithFormat:@"%ld",_hour];
+    _minL.text = [NSString stringWithFormat:@"%ld",_min];
+    _secL.text = [NSString stringWithFormat:@"%ld",_sec];
+    _timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    [_timer fire];
+    
+}
+
+
 
 -(void)timerUpdate
 {
