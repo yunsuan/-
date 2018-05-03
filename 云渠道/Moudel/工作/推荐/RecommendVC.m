@@ -450,11 +450,11 @@
         
         if ([_appealArr[indexPath.row][@"state"] isEqualToString:@"处理完成"]) {
             
-            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithClientId:_appealArr[indexPath.row][@"project_client_id"]];
+            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithClientId:_appealArr[indexPath.row][@"project_client_id"]];
+            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }
     }
