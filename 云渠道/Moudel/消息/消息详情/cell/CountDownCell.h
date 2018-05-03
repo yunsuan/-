@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CountDownCell : UITableViewCell
 
+@class CountDownCell;
+
+typedef void(^countdown)(void);
+
+
+@interface CountDownCell : UITableViewCell
+@property (nonatomic , strong) countdown countdownblock;
 
 -(void)setcountdownbyday:(NSInteger )day
                    hours:(NSInteger )hours

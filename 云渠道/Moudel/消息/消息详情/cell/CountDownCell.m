@@ -193,9 +193,12 @@
                 else
                 {
                     
-                  
                     [_timer invalidate];
                     _timer = nil;
+                    if (self.countdownblock) {
+                        self.countdownblock();
+                    }
+                    
                 }
             }
             

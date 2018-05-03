@@ -205,3 +205,7 @@ static NSString *const DisabledDetail_URL = @"agent/work/broker/disabledDetail";
 //经纪人申述详细
 static NSString *const AppealDetail_URL = @"agent/client/confirmDisabled";
 
+//经纪人有效到访客户详细
+static NSString *const ValueDetail_URL = @"agent/work/broker/valueDetail";
+
+
