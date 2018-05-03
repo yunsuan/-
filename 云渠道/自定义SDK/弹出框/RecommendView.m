@@ -30,6 +30,10 @@
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
     
+    if (self.recommendViewConfirmBlock) {
+        
+        self.recommendViewConfirmBlock();
+    }
     [self removeFromSuperview];
 }
 
@@ -97,6 +101,7 @@
             case 6:
             {
                 _timeL = label;
+                _timeL.textColor = COLOR(255, 165, 29, 1);
                 [_whiteView addSubview:_timeL];
                 break;
             }

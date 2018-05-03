@@ -101,17 +101,21 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:_searchBar];
     
-    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_Width, 62 *SIZE)];
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 62 *SIZE + STATUS_BAR_HEIGHT)];
     whiteView.backgroundColor = CH_COLOR_white;
     [self.view addSubview:whiteView];
-    self.leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 15 *SIZE);
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 61 *SIZE, SCREEN_Width, SIZE)];
+    line.backgroundColor = YJBackColor;
+    [whiteView addSubview:line];
+    
+    self.leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 30 *SIZE);
     self.leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
     self.maskButton.frame = CGRectMake(0, STATUS_BAR_HEIGHT, 60 * sIZE, 44 *SIZE);
     
     [whiteView addSubview:self.leftButton];
     [whiteView addSubview:self.maskButton];
     
-    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, 14  *SIZE, 283 *SIZE, 33 *SIZE)];
+    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, STATUS_BAR_HEIGHT + 14  *SIZE, 283 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
     _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
     //设置显示模式为永远显示(默认不显示)

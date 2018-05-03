@@ -321,7 +321,7 @@
         
     }else if (_index < 3){
         
-        return 127 *SIZE;
+        return 107 *SIZE;
     }else{
         
         return 126 *SIZE;
@@ -440,7 +440,8 @@
     }
     if (_index == 2) {
         
-        InvalidVC *nextVC = [[InvalidVC alloc] init];
+        
+        InvalidVC *nextVC = [[InvalidVC alloc] initWithClientId:_inValidArr[indexPath.row][@"client_id"]];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     if (_index == 3) {

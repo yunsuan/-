@@ -116,13 +116,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/RoomVC.m"
-            timestampString = "547007448.6230249"
+            timestampString = "547031150.563326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "973"
             endingLineNumber = "973"
             landmarkName = "-moreView"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x88ab;&#x63a8;&#x8350;&#x7684;&#x5ba2;&#x6237;/&#x5b8c;&#x5584;&#x5ba2;&#x6237;&#x4fe1;&#x606f;/CompleteCustomVC2.m"
+            timestampString = "547031150.5634"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "-ActionConfirmBtn:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CompleteCustomVC2 ActionConfirmBtn:]"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E8%A2%AB%E6%8E%A8%E8%8D%90%E7%9A%84%E5%AE%A2%E6%88%B7/%E5%AE%8C%E5%96%84%E5%AE%A2%E6%88%B7%E4%BF%A1%E6%81%AF/CompleteCustomVC2.m"
+                  timestampString = "547031150.692579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "344"
+                  endingLineNumber = "344"
+                  offsetFromSymbolStart = "5360">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[CompleteCustomVC2 ActionConfirmBtn:]_block_invoke"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E8%A2%AB%E6%8E%A8%E8%8D%90%E7%9A%84%E5%AE%A2%E6%88%B7/%E5%AE%8C%E5%96%84%E5%AE%A2%E6%88%B7%E4%BF%A1%E6%81%AF/CompleteCustomVC2.m"
+                  timestampString = "547031150.694541"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "344"
+                  endingLineNumber = "344"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.315"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E8%A2%AB%E6%8E%A8%E8%8D%90%E7%9A%84%E5%AE%A2%E6%88%B7/%E5%AE%8C%E5%96%84%E5%AE%A2%E6%88%B7%E4%BF%A1%E6%81%AF/CompleteCustomVC2.m"
+                  timestampString = "547031150.696533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "344"
+                  endingLineNumber = "344"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
