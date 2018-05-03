@@ -423,7 +423,8 @@
    
     if (_index == 0) {
         
-        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommend"];
+        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:_unComfirmArr[indexPath.row][@"client_id"]];
+    
         [self.navigationController pushViewController:nextVC animated:YES];
     }
     

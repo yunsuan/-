@@ -155,38 +155,38 @@ static NSString *const SystemInfoList_URL = @"agent/message/system";
 static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
 
 #pragma mark ---  工作  ---
-static NSString *const RecommendList_URL = @"user/work/getRecommendList";
+static NSString *const RecommendList_URL = @"agent/work/getRecommendList";
 
-static NSString *const AgentInfoCount_URL = @"user/work/broker/count";
+static NSString *const AgentInfoCount_URL = @"agent/work/broker/count";
 
-static NSString *const Butterinfocount_URL = @"user/work/butter/count";
+static NSString *const Butterinfocount_URL = @"agent/work/butter/count";
 
 //更新数据
-static NSString *const FlushDate_URL = @"user/work/flushDate";
+static NSString *const FlushDate_URL = @"agent/work/flushDate";
 
 //经纪人信息统计
-static NSString *const BrokerCount_URL = @"user/work/broker/count";
+static NSString *const BrokerCount_URL = @"agent/work/broker/count";
 
 //对接人信息统计
-static NSString *const ButterCount_URL = @"user/work/butter/count";
+static NSString *const ButterCount_URL = @"agent/work/butter/count";
 
 //经纪人待确认客户列表
-static NSString *const BrokerWaitConfirm_URL = @"user/work/broker/waitConfirm";
+static NSString *const BrokerWaitConfirm_URL = @"agent/work/broker/waitConfirm";
 
 //经纪人有效到访客户列表
-static NSString *const BrokerValue_URL = @"user/work/broker/value";
+static NSString *const BrokerValue_URL = @"agent/work/broker/value";
 
 //经纪人无效列表
-static NSString *const BrokerDisabled_URL = @"user/work/broker/disabled";
+static NSString *const BrokerDisabled_URL = @"agent/work/broker/disabled";
 
 //经纪人申诉列表
-static NSString *const BrokerAppeal_URL = @"user/work/broker/appeal";
+static NSString *const BrokerAppeal_URL = @"agent/work/broker/appeal";
 
 //经纪人申诉详情
-static NSString *const BrokerAppealDetail_URL = @"user/work/broker/appealDetail";
+static NSString *const BrokerAppealDetail_URL = @"agent/work/broker/appealDetail";
 
 
-static NSString *const RefreshData_URL = @"user/work/flushDate";
+static NSString *const RefreshData_URL = @"agent/work/flushDate";
 
 
 //对接经纪人判断为有效到访
@@ -197,10 +197,10 @@ static NSString *const ConfirmValue_URL = @"agent/client/confirmValue";
 static NSString *const ConfirmDisabled_URL = @"agent/client/confirmDisabled";
 
 //经纪人待确认客户详细
-static NSString *const WaitConfirmDetail_URL = @"agent/client/confirmDisabled";
+static NSString *const WaitConfirmDetail_URL = @"agent/work/broker/waitConfirmDetail";
 
 //经纪人无效客户详细
-static NSString *const DisabledDetail_URL = @"agent/client/confirmDisabled";
+static NSString *const DisabledDetail_URL = @"agent/work/broker/disabledDetail";
 
 //经纪人申述详细
 static NSString *const AppealDetail_URL = @"agent/client/confirmDisabled";

@@ -32,13 +32,26 @@
     if (self) {
         
         _str = str;
+        
     }
     return self;
 }
 
+-(void)post{
+    [BaseRequest POST:WaitConfirmDetail_URL parameters:@{
+                                                         @"client_id":_str
+                                                         }
+              success:^(id resposeObject) {
+                  NSLog(@"%@",resposeObject);
+                                                         }
+              failure:^(NSError *error) {
+                                                             
+                                                         }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self post];
     [self initDataSouce];
     [self initUI];
 }
@@ -159,14 +172,9 @@
     [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
     [_confirmBtn setBackgroundColor:YJBlueBtnColor];
     [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    if ([_str isEqualToString:@"recommended"]) {
-     
-        [self.view addSubview:_confirmBtn];
+    [self.view addSubview:_confirmBtn];
         
-    }else{
-        
-        _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
-    }
+
 }
 
 - (InvalidView *)invalidView{
