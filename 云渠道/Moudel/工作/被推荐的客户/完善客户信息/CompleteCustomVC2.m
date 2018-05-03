@@ -11,6 +11,7 @@
 #import "BorderTF.h"
 #import "AuthenCollCell.h"
 #import "SinglePickView.h"
+#import "DateChooseView.h"
 
 @interface CompleteCustomVC2 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 {
@@ -24,6 +25,7 @@
     UIImage *_image;
     NSMutableDictionary *_dic;
     NSMutableArray *_peopleArr;
+    NSDate *_date;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -58,6 +60,8 @@
 
 @property (nonatomic, strong) UIView *timeView;
 
+@property (nonatomic, strong) UILabel *timeL;
+
 @property (nonatomic, strong) UICollectionView *authenColl1;
 
 @property (nonatomic, strong) UICollectionView *authenColl2;
@@ -66,6 +70,9 @@
 
 @property (nonatomic, strong) UIButton *confirmBtn;
 
+@property (nonatomic, strong) DateChooseView *dateView;
+
+@property (nonatomic, strong) NSDateFormatter *formatter;
 
 @end
 
@@ -96,6 +103,8 @@
         NSString *str = [NSString stringWithFormat:@"%d人",i];
         [_peopleArr addObject:@{@"id":@(i),@"param":str}];
     }
+    _formatter = [[NSDateFormatter alloc] init];
+    [_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     _imgArr1 = [@[] mutableCopy];
     _imgArr2 = [@[] mutableCopy];
     _imagePickerController = [[UIImagePickerController alloc] init];
@@ -187,6 +196,11 @@
     }
 }
 
+- (void)ActionTimeTap:(UITapGestureRecognizer *)sender{
+    
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self.dateView];
+}
+
 - (void)ActionTagNumBtn:(UIButton *)btn{
     
     switch (btn.tag) {
@@ -234,7 +248,46 @@
 - (void)ActionConfirmBtn:(UIButton *)btn{
     
     
-//    [BaseRequest Updateimg:UploadFile_URL parameters:<#(NSDictionary *)#> constructionBody:<#^(id<AFMultipartFormData> formData)blocks#> success:<#^(id resposeObject)success#> failure:<#^(NSError *error)failure#>]
+//    NSData *data = [self resetSizeOfImageData:img maxSize:150];
+//    
+//    [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"headimg"
+//                                                       }
+//          constructionBody:^(id<AFMultipartFormData> formData) {
+//              [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
+//          } success:^(id resposeObject) {
+//              NSLog(@"%@",resposeObject);
+//              
+//              //        [self showContent:resposeObject[@"msg"]];
+//              if ([resposeObject[@"code"] integerValue] == 200) {
+//                  
+//                  NSDictionary *dic = @{@"head_img":resposeObject[@"data"]};
+//                  [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
+//                      
+//                      NSLog(@"%@",resposeObject);
+//                      [self showContent:resposeObject[@"msg"]];
+//                      if ([resposeObject[@"code"] integerValue] == 200) {
+//                          
+//                          _headImg.image = img;
+//                          [UserInfoModel defaultModel].head_img = dic[@"head_img"];
+//                          [UserModelArchiver infoArchive];
+//                      }else{
+//                          
+//                          //                    [self showContent:resposeObject[@"msg"]];
+//                      }
+//                  } failure:^(NSError *error) {
+//                      
+//                      NSLog(@"%@",error);
+//                      [self showContent:@"网络错误"];
+//                  }];
+//              }else{
+//                  
+//                  //            [self showContent:resposeObject[@"msg"]];
+//              }
+//              
+//          } failure:^(NSError *error) {
+//              NSLog(@"%@",error);
+//              [self showContent:@"网络错误"];
+//          }];
 //    [BaseRequest POST:ConfirmValueClient_URL parameters:_dic success:^(id resposeObject) {
 //
 //        [self showContent:resposeObject[@"msg"]];
@@ -248,6 +301,18 @@
 //        NSLog(@"%@",error);
 //    }];
 }
+
+- (void)textViewDidChange:(UITextView *)textView{
+    
+    if (textView.text.length) {
+        
+        _placeL.hidden = YES;
+    }else{
+        
+        _placeL.hidden = NO;
+    }
+}
+
 
 #pragma mark --coll代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -415,12 +480,12 @@
                 }
             }else{
                 
-                if (_index < _imgArr1.count - 1) {
+                if (_index < _imgArr2.count - 1) {
                     
-                    [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
+                    [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
                 }else{
                     
-                    [_imgArr1 addObject:_image];
+                    [_imgArr2 addObject:_image];
                 }
             }
         }
@@ -429,12 +494,12 @@
         _image = info[UIImagePickerControllerOriginalImage];
         if (_isOne) {
             
-            if (_index < _imgArr2.count) {
+            if (_index < _imgArr1.count) {
                 
-                [_imgArr2 replaceObjectAtIndex:_index withObject:_image];
+                [_imgArr1 replaceObjectAtIndex:_index withObject:_image];
             }else{
                 
-                [_imgArr2 addObject:_image];
+                [_imgArr1 addObject:_image];
             }
         }else{
             
@@ -639,6 +704,21 @@
     _timeView.backgroundColor = CH_COLOR_white;
     [_scrolleView addSubview:_timeView];
     
+    UILabel *arriveL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 19 *SIZE, 70 *SIZE, 13 *SIZE)];
+    arriveL.textColor = YJTitleLabColor;
+    arriveL.font = [UIFont systemFontOfSize:13 *SIZE];
+    arriveL.text = @"到访时间:";
+    [_timeView addSubview:arriveL];
+    
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(75 *SIZE, 20 *SIZE, 200 *SIZE, 12 *SIZE)];
+    _timeL.textColor = YJContentLabColor;
+    _timeL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [_timeView addSubview:_timeL];
+    
+    _timeView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionTimeTap:)];
+    [_timeView addGestureRecognizer:tap];
+    
     _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_confirmBtn setBackgroundColor:YJBlueBtnColor];
     _confirmBtn.layer.cornerRadius = 2 *SIZE;
@@ -738,6 +818,21 @@
         make.height.equalTo(@(40 *SIZE));
         make.bottom.equalTo(_scrolleView.mas_bottom).offset(-40 *SIZE);
     }];
+}
+
+- (DateChooseView *)dateView{
+    
+    if (!_dateView) {
+        
+        _dateView = [[DateChooseView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        __weak __typeof(&*self)weakSelf = self;
+        _dateView.dateblock = ^(NSDate *date) {
+            
+            _date = date;
+            weakSelf.timeL.text = [weakSelf.formatter stringFromDate:date];
+        };
+    }
+    return _dateView;
 }
 
 @end
