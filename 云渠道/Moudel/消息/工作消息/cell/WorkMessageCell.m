@@ -60,7 +60,7 @@
     _titlelab.text = title;
     _numlab.text = num;
     _namelab.text =name;
-    _projectlab.text = time;
+    _projectlab.text = project;
     _timelab.text = time;
     if (isopen == 0) {
         _messageimg.image = [UIImage imageNamed:@"news_unread"];
