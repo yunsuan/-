@@ -218,6 +218,9 @@ static NSString *const ValueDetail_URL = @"agent/work/broker/valueDetail";
 //项目待确认列表
 static NSString *const ProjectWaitConfirm_URL = @"agent/work/project/waitConfirm";
 
+//项目待确认详情
+static NSString *const ProjectWaitConfirmDetail_URL = @"agent/work/project/waitConfirmDetail";
+
 //项目有效列表
 static NSString *const ProjectValue_URL = @"agent/work/project/value";
 

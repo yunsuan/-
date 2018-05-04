@@ -677,7 +677,7 @@
     
     if (_index == 0) {
         
-        confirmDetailVC *nextVC = [[confirmDetailVC alloc] init];
+        confirmDetailVC *nextVC = [[confirmDetailVC alloc] initWithClientId:_unComfirmArr[indexPath.row][@"client_id"]];
         [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 1) {
         

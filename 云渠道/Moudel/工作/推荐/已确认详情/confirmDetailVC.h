@@ -10,4 +10,6 @@
 
 @interface confirmDetailVC : BaseViewController
 
+- (instancetype)initWithClientId:(NSString *)clientId;
+
 @end
