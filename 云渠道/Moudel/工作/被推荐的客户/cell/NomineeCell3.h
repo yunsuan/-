@@ -35,4 +35,6 @@ typedef void(^phoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *statusL;
 
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
 @end

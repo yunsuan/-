@@ -36,6 +36,18 @@
     }
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"项目名称：%@",dataDic[@"project_name"]];
+    _reportTimeL.text = [NSString stringWithFormat:@"报备日期：%@",dataDic[@"allot_time"]];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间：%@",dataDic[@"state_change_time"]]];
+    [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
+    _timeL.attributedText = attr;
+    _statusL.text = dataDic[@"disabled_state"];
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 18 *SIZE, 50 *SIZE, 14 *SIZE)];

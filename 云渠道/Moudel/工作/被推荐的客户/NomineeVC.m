@@ -139,7 +139,7 @@
 
 - (void)InValidRequest{
     
-    [BaseRequest GET:BrokerDisabled_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDisabled_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -406,20 +406,21 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.projectL.text = @"项目名称：云算公馆";
-        cell.reportTimeL.text = @"报备日期：2017-12-12  12:00:00";
-        cell.timeL.text = @"失效时间：2017-12-15  13:00:00";
-        cell.statusL.text = @"未到访失效";
+        cell.dataDic = _inValidArr[indexPath.row];
         cell.tag = indexPath.row;
-        cell.messBtnBlock = ^(NSInteger index) {
-            
-            
-        };
         cell.phoneBtnBlock = ^(NSInteger index) {
             
-            
+            NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+                
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
         };
         return cell;
     }else{
