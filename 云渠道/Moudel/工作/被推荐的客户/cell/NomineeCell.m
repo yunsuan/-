@@ -44,6 +44,17 @@
     }
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"项目名称：%@",dataDic[@"project_name"]];
+    _reportTimeL.text = [NSString stringWithFormat:@"报备日期：%@",dataDic[@"create_time"]];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间：%@",dataDic[@"timsLimit"]]];
+    [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
+    _timeL.attributedText = attr;
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 15 *SIZE, 50 *SIZE, 13 *SIZE)];
@@ -55,15 +66,20 @@
     _codeL.textColor = YJ86Color;
     _codeL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_codeL];
+    
+    _projectL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 61 *SIZE, 200 *SIZE, 13 *SIZE)];
+    _projectL.textColor = YJ86Color;
+    _projectL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.contentView addSubview:_projectL];
 
-    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 61 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
     _reportTimeL.textColor = YJ86Color;
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
 //    _reportTimeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_reportTimeL];
     
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
-    _timeL.textColor = YJ86Color;
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 101 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _timeL.textColor = COLOR(255, 165, 29, 1);
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
 //    _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
@@ -91,7 +107,7 @@
 //    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
 //    [self.contentView addSubview:_confirmBtn];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 107 *SIZE, SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 127 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

@@ -13,7 +13,8 @@
 #import "NomineeCell2.h"
 #import "NomineeCell3.h"
 #import "RecommendCell5.h"
-#import "UnconfirmDetailVC.h"
+//#import "UnconfirmDetailVC.h"
+#import "confirmDetailVC.h"
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
 #import "NoInvalidVC.h"
@@ -26,6 +27,10 @@
     
     NSInteger _index;
     NSArray *_titleArr;
+    NSMutableArray *_unComfirmArr;
+    NSMutableArray *_validArr;
+    NSMutableArray *_inValidArr;
+    NSMutableArray *_appealArr;
 }
 @property (nonatomic , strong) UITableView *MainTableView;
 
@@ -46,13 +51,162 @@
     
     [self initDateSouce];
     [self initUI];
-    
+    [self UnComfirmRequest];
 }
 
 -(void)initDateSouce
 {
     
     _titleArr = @[@"待确认",@"有效",@"无效",@"申诉"];
+    _unComfirmArr = [@[] mutableCopy];
+    _validArr = [@[] mutableCopy];
+    _inValidArr = [@[] mutableCopy];
+    _appealArr = [@[] mutableCopy];
+}
+
+-(void)UnComfirmRequest{
+    
+    [BaseRequest GET:ProjectWaitConfirm_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_unComfirmArr removeAllObjects];
+            [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetUnComfirmArr:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_unComfirmArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
+}
+
+- (void)ValidRequest{
+    
+    [BaseRequest GET:BrokerValue_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_validArr removeAllObjects];
+            [self SetValidArr:resposeObject[@"data"][@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetValidArr:(NSArray *)data{
+    
+    //    [_validArr removeAllObjects];
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_validArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
+}
+
+- (void)InValidRequest{
+    
+    [BaseRequest GET:BrokerDisabled_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_inValidArr removeAllObjects];
+            [self SetInValidArr:resposeObject[@"data"][@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetInValidArr:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_inValidArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
+}
+
+- (void)ApealRequest{
+    
+    [BaseRequest GET:BrokerAppeal_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [_appealArr removeAllObjects];
+            [self SetApealArr:resposeObject[@"data"][@"data"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetApealArr:(NSArray *)data{
+    
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        [_appealArr addObject:tempDic];
+    }
+    
+    [_MainTableView reloadData];
 }
 
 -(void)initUI
@@ -110,6 +264,44 @@
     
     _index = indexPath.item;
     [self.MainTableView reloadData];
+    if (_index == 0) {
+        
+        if (_unComfirmArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self UnComfirmRequest];
+        }
+        
+    }else if (_index == 1){
+        
+        if (_validArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self ValidRequest];
+        }
+    }else if (_index == 2){
+        
+        if (_inValidArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self InValidRequest];
+        }
+    }else{
+        
+        if (_appealArr.count) {
+            
+            [_MainTableView reloadData];
+        }else{
+            
+            [self ApealRequest];
+        }
+    }
 }
 
 
@@ -117,7 +309,19 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (_index == 0) {
+        
+        return _unComfirmArr.count;
+    }else if (_index == 1){
+        
+        return _validArr.count;
+    }else if (_index == 2){
+        
+        return _inValidArr.count;
+    }else{
+        
+        return _appealArr.count;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,7 +333,7 @@
         
         return 103 *SIZE;
     }
-    return 108 *SIZE;
+    return 128 *SIZE;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,14 +349,25 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.reportTimeL.text = @"报备日期：2017-12-12";
-        cell.timeL.text = @"失效时间：2017-12-15";
+//        cell.nameL.text =
+//        cell.codeL.text = @"推荐编号：456522312";
+//        cell.reportTimeL.text = @"报备日期：2017-12-12";
+//        cell.timeL.text = @"失效时间：2017-12-15";
+        cell.dataDic = _unComfirmArr[indexPath.row];
         cell.tag = indexPath.row;
         cell.phoneBtnBlock = ^(NSInteger index) {
             
-            
+            NSString *phone = [_unComfirmArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+                
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
         };
         
        
@@ -232,7 +447,7 @@
     
     if (_index == 0) {
         
-        UnconfirmDetailVC *nextVC = [[UnconfirmDetailVC alloc] initWithString:@"recommended"];
+        confirmDetailVC *nextVC = [[confirmDetailVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 1) {
         

@@ -28,6 +28,8 @@ typedef void(^confirmBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *codeL;
 
+@property (nonatomic, strong) UILabel *projectL;
+
 @property (nonatomic, strong) UILabel *reportTimeL;
 
 @property (nonatomic, strong) UILabel *timeL;
@@ -37,5 +39,7 @@ typedef void(^confirmBtnBlock)(NSInteger index);
 @property (nonatomic, strong) UIButton *phoneBtn;
 
 @property (nonatomic, strong) UIButton *confirmBtn;
+
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
 
 @end

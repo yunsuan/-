@@ -100,7 +100,7 @@
 {
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"已确认详情";
+    self.titleLabel.text = @"待确认详情";
     
     _confirmTable.rowHeight = 150 *SIZE;
     _confirmTable.estimatedRowHeight = UITableViewAutomaticDimension;
