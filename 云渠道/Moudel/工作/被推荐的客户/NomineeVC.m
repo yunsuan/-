@@ -685,7 +685,7 @@
         [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 2){
         
-        NoInvalidVC *nextVC = [[NoInvalidVC alloc] init];
+        NoInvalidVC *nextVC = [[NoInvalidVC alloc] initWithClientId:_inValidArr[indexPath.row][@"client_id"]];
         [self.navigationController pushViewController:nextVC animated:YES];
     }else{
         

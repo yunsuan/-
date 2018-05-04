@@ -10,4 +10,6 @@
 
 @interface NoInvalidVC : BaseViewController
 
+- (instancetype)initWithClientId:(NSString *)clientId;
+
 @end
