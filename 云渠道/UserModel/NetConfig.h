@@ -224,8 +224,14 @@ static NSString *const ProjectWaitConfirmDetail_URL = @"agent/work/project/waitC
 //项目有效列表
 static NSString *const ProjectValue_URL = @"agent/work/project/value";
 
+//项目有效详情
+static NSString *const ProjectValueDetail_URL = @"agent/work/project/valueDetail";
+
 //项目失效列表
 static NSString *const ProjectDisabled_URL = @"agent/work/project/disabled";
+
+//项目失效详情
+static NSString *const ProjectDisabledDetail_URL = @"agent/work/project/disabledDetail";
 
 //项目申诉列表
 static NSString *const ProjectAppealList_URL = @"agent/work/project/appealList";

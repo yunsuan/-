@@ -1,16 +1,16 @@
 //
-//  confirmDetailVC.m
+//  NoValidVC.m
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/4/9.
+//  Created by 谷治墙 on 2018/5/4.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "confirmDetailVC.h"
+#import "NoValidVC.h"
 #import "InfoDetailCell.h"
 #import "CountDownCell.h"
 
-@interface confirmDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface NoValidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     
     NSArray *_data;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation confirmDetailVC
+@implementation NoValidVC
 
 - (instancetype)initWithClientId:(NSString *)clientId
 {
@@ -48,12 +48,12 @@
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
     _titleArr = @[@"客户信息",@"项目信息",@"推荐人信息"];
     _dataDic = [@{} mutableCopy];
-    [self WaitConfirmRequest];
+    [self ValueRequest];
 }
 
-- (void)WaitConfirmRequest{
+- (void)ValueRequest{
     
-    [BaseRequest GET:ProjectWaitConfirmDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectValueDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
@@ -78,7 +78,7 @@
         return 2;
     }
     return 3;
-
+    
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -98,7 +98,7 @@
         
         title.text = _titleArr[section - 1];
     }
-//    title.text = _titleArr[section];
+    //    title.text = _titleArr[section];
     [backview addSubview:title];
     return backview;
 }
@@ -140,7 +140,7 @@
         if (!cell) {
             cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-//                [cell setcountdownbyday:0 hours:0 min:0 sec:30];
+        //                [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         [cell setcountdownbyendtime:_dataDic[@"timeLimit"]];
         cell.countdownblock = ^{
             
@@ -154,7 +154,7 @@
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-//        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
+        //        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.section == 0) {
             
@@ -212,7 +212,7 @@
 {
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"待确认详情";
+    self.titleLabel.text = @"有效到访详情";
     
     _confirmTable.rowHeight = 150 *SIZE;
     _confirmTable.estimatedRowHeight = UITableViewAutomaticDimension;
@@ -232,4 +232,5 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
 @end

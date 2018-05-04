@@ -53,6 +53,10 @@
 		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0C921951209472FC00EFE75C /* RecommendedStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C921950209472FC00EFE75C /* RecommendedStatusVC.m */; };
 		0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219532094791E00EFE75C /* ReStatusTableCell.m */; };
+		0C96D9F7209C52E100B6A8B8 /* NoValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9F6209C52E100B6A8B8 /* NoValidVC.m */; };
+		0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9F9209C5DB900B6A8B8 /* NoPassCell.m */; };
+		0C96D9FD209C61CF00B6A8B8 /* PassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9FC209C61CF00B6A8B8 /* PassCell.m */; };
+		0C96DA01209C6A6700B6A8B8 /* QuickAddCustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */; };
 		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
@@ -348,6 +352,14 @@
 		0C921950209472FC00EFE75C /* RecommendedStatusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendedStatusVC.m; sourceTree = "<group>"; };
 		0C9219522094791E00EFE75C /* ReStatusTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReStatusTableCell.h; sourceTree = "<group>"; };
 		0C9219532094791E00EFE75C /* ReStatusTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReStatusTableCell.m; sourceTree = "<group>"; };
+		0C96D9F5209C52E100B6A8B8 /* NoValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoValidVC.h; sourceTree = "<group>"; };
+		0C96D9F6209C52E100B6A8B8 /* NoValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoValidVC.m; sourceTree = "<group>"; };
+		0C96D9F8209C5DB900B6A8B8 /* NoPassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoPassCell.h; sourceTree = "<group>"; };
+		0C96D9F9209C5DB900B6A8B8 /* NoPassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoPassCell.m; sourceTree = "<group>"; };
+		0C96D9FB209C61CF00B6A8B8 /* PassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassCell.h; sourceTree = "<group>"; };
+		0C96D9FC209C61CF00B6A8B8 /* PassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassCell.m; sourceTree = "<group>"; };
+		0C96D9FF209C6A6700B6A8B8 /* QuickAddCustomVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickAddCustomVC.h; sourceTree = "<group>"; };
+		0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickAddCustomVC.m; sourceTree = "<group>"; };
 		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
 		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
 		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
@@ -1029,6 +1041,24 @@
 			path = "已推荐项目状态";
 			sourceTree = "<group>";
 		};
+		0C96D9F4209C52CF00B6A8B8 /* 报备有效详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0C96D9F5209C52E100B6A8B8 /* NoValidVC.h */,
+				0C96D9F6209C52E100B6A8B8 /* NoValidVC.m */,
+			);
+			path = "报备有效详情";
+			sourceTree = "<group>";
+		};
+		0C96D9FE209C6A3700B6A8B8 /* 快速推荐客源 */ = {
+			isa = PBXGroup;
+			children = (
+				0C96D9FF209C6A6700B6A8B8 /* QuickAddCustomVC.h */,
+				0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */,
+			);
+			path = "快速推荐客源";
+			sourceTree = "<group>";
+		};
 		0CA37B7A20899329005609C7 /* 客源搜索结果 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1692,6 +1722,7 @@
 		105E189C206234E90031558D /* 房源详情 */ = {
 			isa = PBXGroup;
 			children = (
+				0C96D9FE209C6A3700B6A8B8 /* 快速推荐客源 */,
 				100FD88F2099606900D02EAC /* 地图页面 */,
 				0CEC62DC208DDA51006EC0BD /* 佣金分析View */,
 				0CBD859420871B5400E7B183 /* model */,
@@ -1763,6 +1794,10 @@
 				105E18D62068C6000031558D /* InfoDetailCell.m */,
 				105E18D82069E3AB0031558D /* CountDownCell.h */,
 				105E18D92069E3AB0031558D /* CountDownCell.m */,
+				0C96D9F8209C5DB900B6A8B8 /* NoPassCell.h */,
+				0C96D9F9209C5DB900B6A8B8 /* NoPassCell.m */,
+				0C96D9FB209C61CF00B6A8B8 /* PassCell.h */,
+				0C96D9FC209C61CF00B6A8B8 /* PassCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1779,6 +1814,7 @@
 		105E18E3206B65E90031558D /* 被推荐的客户 */ = {
 			isa = PBXGroup;
 			children = (
+				0C96D9F4209C52CF00B6A8B8 /* 报备有效详情 */,
 				0CF04F6D207C82F700A45F4A /* 被推荐失效详情 */,
 				0CF04F59207B5B7500A45F4A /* 完善客户信息 */,
 				105E18EC206B6B490031558D /* cell */,
@@ -2416,8 +2452,11 @@
 				0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
+				0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
+				0C96DA01209C6A6700B6A8B8 /* QuickAddCustomVC.m in Sources */,
 				0CEC62E2208DDE0C006EC0BD /* RuleView.m in Sources */,
+				0C96D9FD209C61CF00B6A8B8 /* PassCell.m in Sources */,
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
 				0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
@@ -2545,6 +2584,7 @@
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				10174C082072175800D00B9A /* BuildinginfoCell.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
+				0C96D9F7209C52E100B6A8B8 /* NoValidVC.m in Sources */,
 				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				10174C18207C4EF600D00B9A /* CustomerInfoModel.m in Sources */,
