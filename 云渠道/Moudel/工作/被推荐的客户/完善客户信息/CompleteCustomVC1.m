@@ -136,57 +136,57 @@
     
     NSString *tel;
     if (_num == 0) {
-        
+
         if (![self checkTel:_phoneTF1.textfield.text]) {
-            
+
             [self showContent:@"请填写正确的电话号码"];
             return;
         }else{
-            
+
             tel = _phoneTF1.textfield.text;
         }
     }else if (_num == 1) {
-        
+
         if (_phoneTF2.textfield.text.length) {
-            
+
             if (![self checkTel:_phoneTF2.textfield.text]) {
-                
+
                 [self showContent:@"请填写正确的电话号码"];
                 return;
             }else{
-                
+
                 tel = [NSString stringWithFormat:@"%@,%@",_phoneTF1.textfield.text,_phoneTF2.textfield.text];
             }
         }
     }else{
-        
+
         if (_phoneTF3.textfield.text.length) {
-            
+
             if (![self checkTel:_phoneTF3.textfield.text]) {
-                
+
                 [self showContent:@"请填写正确的电话号码"];
                 return;
             }else{
-                
+
                 tel = [NSString stringWithFormat:@"%@,%@,%@",_phoneTF1.textfield.text,_phoneTF2.textfield.text,_phoneTF3.textfield.text];
             }
         }
     }
-    
+
     if (!_cardType.length) {
-        
+
         [self showContent:@"请选择证件类型"];
         return;
     }
-    
+
     if (!_codeTF.textfield.text.length) {
-        
+
         [self showContent:@"请填写证件号"];
         return;
     }
-    
+
     if (!_imgArr.count) {
-        
+
         [self showContent:@"请上传身份证照片"];
         return;
     }
