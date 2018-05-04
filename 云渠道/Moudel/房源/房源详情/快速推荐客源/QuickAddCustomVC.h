@@ -10,4 +10,6 @@
 
 @interface QuickAddCustomVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end
