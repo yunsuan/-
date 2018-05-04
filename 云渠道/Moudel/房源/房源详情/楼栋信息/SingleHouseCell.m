@@ -10,26 +10,32 @@
 
 @implementation SingleHouseCell
 
-- (instancetype)initWithFrame:(CGRect)frame
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        _title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70*SIZE, 13 *SIZE)];
+        _title.textColor = YJContentLabColor;
+        _title.font = [UIFont systemFontOfSize:12 *SIZE];
+        _title.textAlignment = NSTextAlignmentRight;
+        [self.contentView addSubview:_title];
         
-        [self initUI];
+        _content =[[UILabel alloc] initWithFrame:CGRectMake(85*SIZE, 0, 170*SIZE, 13 *SIZE)];
+        _content.textColor = YJContentLabColor;
+        _content.font = [UIFont systemFontOfSize:12 *SIZE];
+        _content.textAlignment = NSTextAlignmentLeft;
+        [self.contentView addSubview:_content];
     }
     return self;
 }
 
-- (void)initUI{
-    
-    _title = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 66 *SIZE, 14 *SIZE)];
-    _title.textColor = YJTitleLabColor;
-    _title.font = [UIFont systemFontOfSize:15 *SIZE];
-    _title.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:_title];
-    
 
-   
+
+-(void)setcelltitle:(NSString *)title content:(NSString *)content
+{
+    _title.text = title;
+    _content.text = content;
 }
 
 
