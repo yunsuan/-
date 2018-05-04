@@ -145,6 +145,9 @@ static NSString *const GetBuilding_URL = @"user/yunsuan/build";
 //获取单元
 static NSString *const GetUnit_URL = @"user/yunsuan/unit";
 
+//添加客户并且推荐到项目上
+static NSString *const AddAndRecommend_URL = @"project/client/addAndRecommend";
+
 #pragma mark ---  消息  ---
 
 //获取消息未读数量

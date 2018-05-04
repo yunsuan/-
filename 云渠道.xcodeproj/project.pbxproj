@@ -57,6 +57,7 @@
 		0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9F9209C5DB900B6A8B8 /* NoPassCell.m */; };
 		0C96D9FD209C61CF00B6A8B8 /* PassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9FC209C61CF00B6A8B8 /* PassCell.m */; };
 		0C96DA01209C6A6700B6A8B8 /* QuickAddCustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */; };
+		0C96DA04209C6C0B00B6A8B8 /* QuickAddRequireVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96DA03209C6C0B00B6A8B8 /* QuickAddRequireVC.m */; };
 		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
@@ -361,6 +362,8 @@
 		0C96D9FC209C61CF00B6A8B8 /* PassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassCell.m; sourceTree = "<group>"; };
 		0C96D9FF209C6A6700B6A8B8 /* QuickAddCustomVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickAddCustomVC.h; sourceTree = "<group>"; };
 		0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickAddCustomVC.m; sourceTree = "<group>"; };
+		0C96DA02209C6C0B00B6A8B8 /* QuickAddRequireVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickAddRequireVC.h; sourceTree = "<group>"; };
+		0C96DA03209C6C0B00B6A8B8 /* QuickAddRequireVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickAddRequireVC.m; sourceTree = "<group>"; };
 		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
 		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
 		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
@@ -1058,6 +1061,8 @@
 			children = (
 				0C96D9FF209C6A6700B6A8B8 /* QuickAddCustomVC.h */,
 				0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */,
+				0C96DA02209C6C0B00B6A8B8 /* QuickAddRequireVC.h */,
+				0C96DA03209C6C0B00B6A8B8 /* QuickAddRequireVC.m */,
 			);
 			path = "快速推荐客源";
 			sourceTree = "<group>";
@@ -2548,6 +2553,7 @@
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
 				0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */,
 				0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */,
+				0C96DA04209C6C0B00B6A8B8 /* QuickAddRequireVC.m in Sources */,
 				0CF04FA7207CD1A100A45F4A /* MoreViewCollHeader.m in Sources */,
 				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
