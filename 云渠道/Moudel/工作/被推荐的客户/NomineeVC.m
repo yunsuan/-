@@ -18,7 +18,7 @@
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
 #import "NoInvalidVC.h"
-#import "ValidVC.h"
+#import "NoValidVC.h"
 #import "ComplaintCompleteVC.h"
 #import "ComplaintUnCompleteVC.h"
 
@@ -681,7 +681,7 @@
         [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 1) {
         
-        ValidVC *nextVC = [[ValidVC alloc] init];
+        NoValidVC *nextVC = [[NoValidVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];
         [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 2){
         

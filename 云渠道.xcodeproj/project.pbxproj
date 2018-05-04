@@ -53,6 +53,7 @@
 		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0C921951209472FC00EFE75C /* RecommendedStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C921950209472FC00EFE75C /* RecommendedStatusVC.m */; };
 		0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219532094791E00EFE75C /* ReStatusTableCell.m */; };
+		0C96D9F7209C52E100B6A8B8 /* NoValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9F6209C52E100B6A8B8 /* NoValidVC.m */; };
 		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
@@ -348,6 +349,8 @@
 		0C921950209472FC00EFE75C /* RecommendedStatusVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendedStatusVC.m; sourceTree = "<group>"; };
 		0C9219522094791E00EFE75C /* ReStatusTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReStatusTableCell.h; sourceTree = "<group>"; };
 		0C9219532094791E00EFE75C /* ReStatusTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReStatusTableCell.m; sourceTree = "<group>"; };
+		0C96D9F5209C52E100B6A8B8 /* NoValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoValidVC.h; sourceTree = "<group>"; };
+		0C96D9F6209C52E100B6A8B8 /* NoValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoValidVC.m; sourceTree = "<group>"; };
 		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
 		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
 		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
@@ -1027,6 +1030,15 @@
 				0C9219532094791E00EFE75C /* ReStatusTableCell.m */,
 			);
 			path = "已推荐项目状态";
+			sourceTree = "<group>";
+		};
+		0C96D9F4209C52CF00B6A8B8 /* 报备有效详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0C96D9F5209C52E100B6A8B8 /* NoValidVC.h */,
+				0C96D9F6209C52E100B6A8B8 /* NoValidVC.m */,
+			);
+			path = "报备有效详情";
 			sourceTree = "<group>";
 		};
 		0CA37B7A20899329005609C7 /* 客源搜索结果 */ = {
@@ -1779,6 +1791,7 @@
 		105E18E3206B65E90031558D /* 被推荐的客户 */ = {
 			isa = PBXGroup;
 			children = (
+				0C96D9F4209C52CF00B6A8B8 /* 报备有效详情 */,
 				0CF04F6D207C82F700A45F4A /* 被推荐失效详情 */,
 				0CF04F59207B5B7500A45F4A /* 完善客户信息 */,
 				105E18EC206B6B490031558D /* cell */,
@@ -2545,6 +2558,7 @@
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				10174C082072175800D00B9A /* BuildinginfoCell.m in Sources */,
 				102DF9762057A1AE00E1859C /* RoomVC.m in Sources */,
+				0C96D9F7209C52E100B6A8B8 /* NoValidVC.m in Sources */,
 				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				10174C18207C4EF600D00B9A /* CustomerInfoModel.m in Sources */,
