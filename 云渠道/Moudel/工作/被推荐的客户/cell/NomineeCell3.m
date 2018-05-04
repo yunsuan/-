@@ -36,6 +36,18 @@
     }
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"项目名称：%@",dataDic[@"project_name"]];
+    _reportTimeL.text = [NSString stringWithFormat:@"报备日期：%@",dataDic[@"allot_time"]];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间：%@",dataDic[@"state_change_time"]]];
+    [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
+    _timeL.attributedText = attr;
+    _statusL.text = dataDic[@"disabled_state"];
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 18 *SIZE, 50 *SIZE, 14 *SIZE)];
@@ -53,15 +65,15 @@
     _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_projectL];
     
-    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(200 *SIZE, 91 *SIZE, 150 *SIZE, 10 *SIZE)];
-    _reportTimeL.textColor = YJContentLabColor;
-    _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    [self.contentView addSubview:_reportTimeL];
-    
     _timeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 92 *SIZE, 180 *SIZE, 10 *SIZE)];
-    _timeL.textColor = YJ86Color;
+    _timeL.textColor = YJBlueBtnColor;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_timeL];
+    
+    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 112 *SIZE, 180 *SIZE, 10 *SIZE)];
+    _reportTimeL.textColor = YJ170Color;
+    _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
+    [self.contentView addSubview:_reportTimeL];
     
 //    _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    _messBtn.frame = CGRectMake(296 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
@@ -81,7 +93,7 @@
     _statusL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_statusL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 119 *SIZE, SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 132 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

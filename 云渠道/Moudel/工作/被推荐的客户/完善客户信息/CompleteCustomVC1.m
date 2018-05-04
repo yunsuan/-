@@ -25,6 +25,7 @@
     NSString *_clientId;
     NSString *_cardType;
     NSString *_name;
+    NSDictionary *_dataDic;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -77,13 +78,14 @@
 
 @implementation CompleteCustomVC1
 
-- (instancetype)initWithClientID:(NSString *)clientId name:(NSString *)name
+- (instancetype)initWithClientID:(NSString *)clientId name:(NSString *)name dataDic:(NSDictionary *)dataDic
 {
     self = [super init];
     if (self) {
         
         _name = name;
         _clientId = clientId;
+        _dataDic = dataDic;
     }
     return self;
 }
@@ -604,6 +606,7 @@
                     _phoneTF1 = TF;
                     _phoneTF1.textfield.keyboardType = UIKeyboardTypePhonePad;
                     _phoneTF1.frame = CGRectMake(0, 0, 217 *SIZE, 33 *SIZE);
+                    _phoneTF1.textfield.text = [_dataDic[@"tel"] componentsSeparatedByString:@","][0];
                     [_infoView addSubview:_phoneTF1];
                     break;
                 }

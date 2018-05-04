@@ -215,4 +215,12 @@ static NSString *const AppealCancel_URL = @"agent/client/appealCancel";
 //经纪人有效到访客户详细
 static NSString *const ValueDetail_URL = @"agent/work/broker/valueDetail";
 
+//项目待确认列表
+static NSString *const ProjectWaitConfirm_URL = @"agent/work/project/waitConfirm";
+
+//项目有效列表
+static NSString *const ProjectValue_URL = @"agent/work/project/value";
+
+//项目失效列表
+static NSString *const ProjectDisabled_URL = @"agent/work/project/disabled";
 
