@@ -19,6 +19,7 @@
     NSString *_str;
     NSString *_endtime;
     NSString *_name;
+    NSMutableDictionary *_dataDic;
 }
 @property (nonatomic , strong) UITableView *Maintableview;
 @property (nonatomic , strong) UIButton *confirmBtn;
@@ -46,6 +47,7 @@
               success:^(id resposeObject) {
                   NSLog(@"%@",resposeObject);
                   if ([resposeObject[@"code"] integerValue]==200) {
+                      _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
                       _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_str],@"客户信息",@"项目信息",@"委托人信息"];
                       NSString *sex = @"客户性别：无";
                       if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
@@ -100,7 +102,7 @@
     
     UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] initWithClientID:_str name:_name];
+        CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] initWithClientID:_str name:_name dataDic:_dataDic];
         
         [self.navigationController pushViewController:nextVC animated:YES];
     }];

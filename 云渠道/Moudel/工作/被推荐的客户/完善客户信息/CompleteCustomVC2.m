@@ -106,7 +106,7 @@
         [_peopleArr addObject:@{@"id":@(i),@"param":str}];
     }
     _formatter = [[NSDateFormatter alloc] init];
-    [_formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [_formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     _imgArr1 = [@[] mutableCopy];
     _imgArr2 = [@[] mutableCopy];
     _imgUrl1 = [@[] mutableCopy];
@@ -825,6 +825,8 @@
     _timeL.textColor = YJContentLabColor;
     _timeL.font = [UIFont systemFontOfSize:13 *SIZE];
     [_timeView addSubview:_timeL];
+    _date = [NSDate date];
+    _timeL.text = [_formatter stringFromDate:_date];
     
     _timeView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionTimeTap:)];

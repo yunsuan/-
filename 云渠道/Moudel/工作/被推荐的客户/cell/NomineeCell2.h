@@ -18,6 +18,8 @@ typedef void(^phoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *codeL;
 
+@property (nonatomic, strong) UILabel *projectL;
+
 @property (nonatomic, strong) UILabel *contactL;
 
 @property (nonatomic, strong) UILabel *reportTimeL;
@@ -25,5 +27,7 @@ typedef void(^phoneBtnBlock)(NSInteger index);
 @property (nonatomic, strong) UIButton *phoneBtn;
 
 @property (nonatomic, strong) UILabel *statusL;
+
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
 
 @end

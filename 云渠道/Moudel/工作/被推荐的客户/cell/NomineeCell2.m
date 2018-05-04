@@ -28,6 +28,16 @@
     }
 }
 
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _projectL.text = [NSString stringWithFormat:@"项目名称：%@",dataDic[@"project_name"]];
+    _contactL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"property_advicer_real"]];
+    _reportTimeL.text = [NSString stringWithFormat:@"报备日期：%@",dataDic[@"allot_time"]];
+    _statusL.text = dataDic[@"current_state"];
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 14 *SIZE, 50 *SIZE, 14 *SIZE)];
@@ -40,13 +50,18 @@
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
     
-    _contactL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 62 *SIZE, 170 *SIZE, 11 *SIZE)];
+    _projectL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 62 *SIZE, 200 *SIZE, 11 *SIZE)];
+    _projectL.textColor = YJ86Color;
+    _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
+    [self.contentView addSubview:_projectL];
+    
+    _contactL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 82 *SIZE, 170 *SIZE, 11 *SIZE)];
     _contactL.textColor = YJ86Color;
     _contactL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_contactL];
     
-    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 83 *SIZE, 150 *SIZE, 10 *SIZE)];
-    _reportTimeL.textColor = YJContentLabColor;
+    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 103 *SIZE, 200 *SIZE, 10 *SIZE)];
+    _reportTimeL.textColor = YJ170Color;
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_reportTimeL];
     
@@ -56,13 +71,13 @@
     [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
     [self.contentView addSubview:_phoneBtn];
     
-    _statusL = [[UILabel alloc] initWithFrame:CGRectMake(230 *SIZE, 36 *SIZE, 110 *SIZE, 10 *SIZE)];
+    _statusL = [[UILabel alloc] initWithFrame:CGRectMake(230 *SIZE, 36 *SIZE, 119 *SIZE, 10 *SIZE)];
     _statusL.textColor = YJBlueBtnColor;
     _statusL.font = [UIFont systemFontOfSize:11 *SIZE];
     _statusL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_statusL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 107 *SIZE, SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 127 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

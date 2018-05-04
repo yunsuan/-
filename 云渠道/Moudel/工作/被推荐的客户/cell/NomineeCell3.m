@@ -53,15 +53,15 @@
     _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_projectL];
     
-    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(200 *SIZE, 91 *SIZE, 150 *SIZE, 10 *SIZE)];
-    _reportTimeL.textColor = YJContentLabColor;
-    _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
-    [self.contentView addSubview:_reportTimeL];
-    
     _timeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 92 *SIZE, 180 *SIZE, 10 *SIZE)];
-    _timeL.textColor = YJ86Color;
+    _timeL.textColor = YJBlueBtnColor;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_timeL];
+    
+    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 112 *SIZE, 180 *SIZE, 10 *SIZE)];
+    _reportTimeL.textColor = YJ170Color;
+    _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
+    [self.contentView addSubview:_reportTimeL];
     
 //    _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    _messBtn.frame = CGRectMake(296 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
@@ -81,7 +81,7 @@
     _statusL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_statusL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 119 *SIZE, SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 132 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

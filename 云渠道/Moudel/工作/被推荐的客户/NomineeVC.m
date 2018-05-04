@@ -102,7 +102,7 @@
 
 - (void)ValidRequest{
     
-    [BaseRequest GET:BrokerValue_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:ProjectValue_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -328,7 +328,7 @@
     
     if (_index == 2) {
         
-        return 120 *SIZE;
+        return 133 *SIZE;
     }else if (_index == 3){
         
         return 103 *SIZE;
@@ -349,10 +349,6 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-//        cell.nameL.text =
-//        cell.codeL.text = @"推荐编号：456522312";
-//        cell.reportTimeL.text = @"报备日期：2017-12-12";
-//        cell.timeL.text = @"失效时间：2017-12-15";
         cell.dataDic = _unComfirmArr[indexPath.row];
         cell.tag = indexPath.row;
         cell.phoneBtnBlock = ^(NSInteger index) {
@@ -382,14 +378,21 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.nameL.text = @"张三";
-        cell.codeL.text = @"推荐编号：456522312";
-        cell.contactL.text = @"置业顾问：丽萨";
-        cell.reportTimeL.text = @"报备日期：2017-12-12";
+        cell.dataDic = _validArr[indexPath.row];
         cell.tag = indexPath.row;
         cell.phoneBtnBlock = ^(NSInteger index) {
             
-            
+            NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+                
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
         };
         
         return cell;
