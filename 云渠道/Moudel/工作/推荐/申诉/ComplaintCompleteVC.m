@@ -14,7 +14,10 @@
 @interface ComplaintCompleteVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_data;
-    NSArray *_titleArr;
+    NSMutableArray *_titleArr;
+    NSString *_clientId;
+    NSString *_appealId;
+    NSMutableDictionary *_dataDic;
 }
 @property (nonatomic , strong) UITableView *completeTable;
 
@@ -23,6 +26,17 @@
 @end
 
 @implementation ComplaintCompleteVC
+
+- (instancetype)initWithAppealId:(NSString *)appealId
+{
+    self = [super init];
+    if (self) {
+        
+//        _clientId = clientId;
+        _appealId = appealId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,8 +49,34 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"处理信息",@"申诉信息",@"失效信息",@"委托人信息"];
+    _titleArr = [NSMutableArray arrayWithArray:@[@"推荐编号",@"处理信息",@"申诉信息",@"失效信息",@"委托人信息"]];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
+    [self AppealRequestMethod];
+}
+
+- (void)AppealRequestMethod{
+    
+    [BaseRequest GET:BrokerAppealDetail_URL parameters:@{@"appeal_id":_appealId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
+            [_dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [_dataDic setObject:@"" forKey:key];
+                }
+            }];
+            [_completeTable reloadData];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (void)ActionContinueBtn:(UIButton *)btn{
@@ -51,8 +91,19 @@
     if (section == 4) {
         
         return 6;
+    }else if (section == 0){
+        
+        return 1;
+    }else if (section == 1){
+        
+        return 2;
+    }else if (section == 2){
+        
+        return 2;
+    }else{
+        
+        return 3;
     }
-    return 3;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -77,24 +128,65 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
     
+    if (_dataDic.count) {
+        
+        return 5;
+    }else{
+        
+        return 0;
+    }
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section ==0 && indexPath.row ==2) {
-        static NSString *CellIdentifier = @"CountDownCell";
-        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else if(indexPath.section == 4 && indexPath.row > 2){
+//    if (indexPath.section == 0 && indexPath.row ==2) {
+//        static NSString *CellIdentifier = @"CountDownCell";
+//        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }else if(indexPath.section == 4 && indexPath.row > 2){
+//
+//        BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
+//        if (!cell) {
+//
+//            cell = [[BrokerageDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell3"];
+//        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
+//        if (indexPath.row == 3) {
+//
+//            cell.upLine.hidden = YES;
+//        }else{
+//
+//            cell.upLine.hidden = NO;
+//        }
+//        if (indexPath.row == 5) {
+//
+//            cell.downLine.hidden = YES;
+//        }else{
+//
+//            cell.downLine.hidden = NO;
+//        }
+//        return cell;
+//    }else{
+//        static NSString *CellIdentifier = @"InfoDetailCell";
+//        InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if (!cell) {
+//            cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        }
+//        [cell SetCellContentbystring:_data[indexPath.row]];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
+    if (indexPath.section == 4 && indexPath.row > 2) {
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
@@ -103,7 +195,9 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
+//        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
+        NSArray *arr = _dataDic[@"process"];
+        cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
         if (indexPath.row == 3) {
             
             cell.upLine.hidden = YES;
@@ -119,13 +213,64 @@
             cell.downLine.hidden = NO;
         }
         return cell;
+
     }else{
+        
         static NSString *CellIdentifier = @"InfoDetailCell";
         InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell SetCellContentbystring:_data[indexPath.row]];
+//        [cell SetCellContentbystring:_data[indexPath.row]];
+        if (indexPath.section == 0) {
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"recommend_time"]]];
+        }else if (indexPath.section == 1){
+            
+            if (indexPath.row == 0) {
+                
+                NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"状态：%@",_dataDic[@"state"]]];
+                [attr addAttribute:NSFontAttributeName value:YJBlueBtnColor range:NSMakeRange(3, attr.length - 3)];
+//                cell.contentlab.attributedText = attr;
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"状态：%@",_dataDic[@"state"]]];
+            }else{
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"处理描述：%@",_dataDic[@"solve_info"]]];
+            }
+        }else if (indexPath.section == 2){
+            
+            if (indexPath.row == 0) {
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"申诉类型：%@",_dataDic[@"type"]]];
+            }else{
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"申诉描述：%@",_dataDic[@"comment"]]];
+            }
+        }else if (indexPath.section == 3){
+            
+            if (indexPath.row == 0) {
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效类型：%@",_dataDic[@"disabled_state"]]];
+            }else if (indexPath.row == 1){
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
+            }else{
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间：%@",_dataDic[@"recommend_time"]]];
+            }
+        }else if (indexPath.section == 4){
+            
+            if (indexPath.row == 0) {
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"recommend_time"]]];
+            }else if (indexPath.row == 1){
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"recommend_time"]]];
+            }else if (indexPath.row == 2){
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"visit_time"]]];
+            }
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -140,21 +285,13 @@
     _completeTable.rowHeight = 150 *SIZE;
     _completeTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
-    _completeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _completeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _completeTable.backgroundColor = YJBackColor;
     _completeTable.delegate = self;
     _completeTable.dataSource = self;
     [_completeTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_completeTable];
     
-    _continueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _continueBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
-    _continueBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_continueBtn addTarget:self action:@selector(ActionContinueBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_continueBtn setTitle:@"继续申诉" forState:UIControlStateNormal];
-    [_continueBtn setBackgroundColor:YJBlueBtnColor];
-    [_continueBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-    [self.view addSubview:_continueBtn];
     
 }
 

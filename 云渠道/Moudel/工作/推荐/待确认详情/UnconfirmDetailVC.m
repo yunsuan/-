@@ -221,10 +221,11 @@
 }
 
 -(void)refresh{
-    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError *error) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    
+//    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    } failure:^(NSError *error) {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
 }
 @end

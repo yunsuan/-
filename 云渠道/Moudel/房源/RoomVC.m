@@ -156,7 +156,6 @@
 
     if (_page == 1) {
         
-        [_dataArr removeAllObjects];
         self.MainTableView.mj_footer.state = MJRefreshStateIdle;
     }
     
@@ -197,6 +196,7 @@
                 
                 if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
                     
+                    [_dataArr removeAllObjects];
                     [self SetData:resposeObject[@"data"][@"data"]];
                     if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
                         

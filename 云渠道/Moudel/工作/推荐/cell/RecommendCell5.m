@@ -56,12 +56,12 @@
     _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_projectL];
     
-    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 150 *SIZE, 10 *SIZE)];
-    _confirmL.textColor = YJ86Color;
-    _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
-    [self.contentView addSubview:_confirmL];
+//    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 150 *SIZE, 10 *SIZE)];
+//    _confirmL.textColor = YJ86Color;
+//    _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
+//    [self.contentView addSubview:_confirmL];
     
-    _recomTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 104 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _recomTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
     _recomTimeL.textColor = YJContentLabColor;
     _recomTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
 //    _recomTimeL.textAlignment = NSTextAlignmentRight;
@@ -73,13 +73,13 @@
     _statusL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_statusL];
     
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(180 *SIZE, 104 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(180 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
     _timeL.textColor = YJContentLabColor;
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     _timeL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeL];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 126 *SIZE, SCREEN_Width, SIZE)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 103 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

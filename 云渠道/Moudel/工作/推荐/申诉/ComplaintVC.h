@@ -10,4 +10,6 @@
 
 @interface ComplaintVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end

@@ -24,6 +24,7 @@
     
     _titleL = [[UILabel alloc] initWithFrame:CGRectMake(57 *SIZE, 23 *SIZE, 250 *SIZE, 12 *SIZE)];
     _titleL.textColor = YJTitleLabColor;
+//    _titleL.numberOfLines = 0;
     _titleL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_titleL];
     

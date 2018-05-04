@@ -10,4 +10,6 @@
 
 @interface ComplaintCompleteVC : BaseViewController
 
+- (instancetype)initWithAppealId:(NSString *)appealId;
+
 @end

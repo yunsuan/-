@@ -125,6 +125,9 @@
     if (_index == 2) {
         
         return 120 *SIZE;
+    }else if (_index == 3){
+        
+        return 103 *SIZE;
     }
     return 108 *SIZE;
 }
