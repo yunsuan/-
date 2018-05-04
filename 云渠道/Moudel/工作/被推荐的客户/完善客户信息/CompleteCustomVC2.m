@@ -256,83 +256,83 @@
         [self showContent:@"请选择到访人数"];
         return;
     }
-    
+
     if (!_purposeBtn.content.text) {
-        
+
         [self showContent:@"请选择置业目的"];
         return;
     }
-    
+
     if (!_adviserTF.textfield.text) {
-        
+
         [self showContent:@"请输入置业顾问"];
         return;
     }
-    
+
     if (!_signTF1.textfield.text) {
-        
+
         [self showContent:@"请输入签字人姓名"];
         return;
     }
-    
+
     if (!_imgArr1.count) {
-        
+
         [self showContent:@"请选择到访照片"];
         return;
 
     }
-    
+
     if (!_imgArr2.count) {
-        
+
         [self showContent:@"请选择确认单图片"];
         return;
-        
+
     }
     if (!_timeL.text) {
-        
+
         [self showContent:@"请选择到访时间"];
         return;
     }
-    
+
     if (!_markView.text) {
-        
+
         [self showContent:@"请填写备注"];
         return;
     }
-    
+
     NSString *sign;
     if (_num == 0) {
-        
+
         if (_signTF1.textfield.text.length) {
-            
+
             sign = _signTF1.textfield.text;
         }
     }else if (_num == 1) {
-        
+
         if (_signTF2.textfield.text.length) {
-            
+
             sign = [NSString stringWithFormat:@"%@,%@",_signTF1.textfield.text,_signTF2.textfield.text];
         }
     }else if (_num == 2) {
-        
+
         if (_signTF3.textfield.text.length) {
-            
+
             sign = [NSString stringWithFormat:@"%@,%@,%@",_signTF1.textfield.text,_signTF2.textfield.text,_signTF3.textfield.text];
         }
     }else if (_num == 3) {
-        
+
         if (_signTF4.textfield.text.length) {
-            
+
             sign = [NSString stringWithFormat:@"%@,%@,%@,%@",_signTF1.textfield.text,_signTF2.textfield.text,_signTF3.textfield.text,_signTF4.textfield.text];
         }
     }else{
-        
+
         if (_signTF5.textfield.text.length) {
-            
+
             sign = [NSString stringWithFormat:@"%@,%@,%@,%@,%@",_signTF1.textfield.text,_signTF2.textfield.text,_signTF3.textfield.text,_signTF4.textfield.text,_signTF5.textfield.text];
         }
     }
-    
+
     [_dic setObject:_numBtn.str forKey:@"visit_num"];
     [_dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
     [_dic setObject:_adviserTF.textfield.text forKey:@"property_advicer_real"];
@@ -341,6 +341,8 @@
     [_dic setObject:[_imgUrl2 componentsJoinedByString:@","] forKey:@"verify_img_url"];
     [_dic setObject:_markView.text forKey:@"comment"];
     [_dic setObject:_timeL.text forKey:@"visit_time"];
+    
+
     [BaseRequest POST:ConfirmValue_URL parameters:_dic success:^(id resposeObject) {
 
         [self showContent:resposeObject[@"msg"]];
