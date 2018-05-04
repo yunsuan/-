@@ -20,7 +20,12 @@
 #define KyishouColor COLOR(244, 117, 100, 1)
 
 
-@interface HousedistributVC ()<SMCinameSeatScrollViewDelegate,UIScrollViewDelegate>
+@interface HousedistributVC ()<SMCinameSeatScrollViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+{
+    NSArray *_headarr;
+    NSArray *_titlearr;
+    NSArray *_contentarr;
+}
 
 @property (nonatomic , strong)NSMutableArray *datasouce;
 @property (nonatomic , strong)NSDictionary *fjxx;
@@ -59,9 +64,11 @@
 @property (strong, nonatomic) NSMutableDictionary *dictSeatState;
 
 
-@property ( nonatomic , strong )UIView *maskView;
-@property ( nonatomic , strong )UIView *tanchuanView;
-@property (nonatomic , strong) UIButton *dropbtn;
+@property ( nonatomic , strong ) UIView *maskView;
+@property ( nonatomic , strong ) UIView *tanchuanView;
+@property ( nonatomic , strong ) UIView *detailView;
+@property ( nonatomic , strong ) UIButton *dropbtn;
+@property ( nonatomic , strong ) UITableView *tableview;
 
 
 -(void)initDataSouce;
@@ -553,6 +560,41 @@
     return _dropbtn;
 }
 
+-(UIView *)detailView
+{
+    if (!_detailView) {
+        _detailView = [[UIView alloc]initWithFrame:CGRectMake(46.7*SIZE, 96*SIZE, 266.7*SIZE, 477.3*SIZE)];
+        _detailView.backgroundColor = [UIColor whiteColor];
+        _detailView.layer.masksToBounds = YES;
+        _detailView.layer.cornerRadius = 3.3*SIZE;
+        
+
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 266.7*SIZE, 17.7*SIZE)];
+        lab.textColor = YJTitleLabColor;
+        lab.text = @"云算公馆";
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.font = [UIFont boldSystemFontOfSize:15.3*SIZE];
+        [_detailView addSubview:lab];
+        
+
+        
+    
+        
+        _headarr = @[@"房源",@"价格",[NSString stringWithFormat:@"物业 %@",_fjxx[@"WYMC"]]];
+        _titlearr = @[@[@"房号：",@"楼栋：",@"单元：",@"楼层："],@[@"计价规则：",@"单价：",@"总价："],@[@"建筑面积：",@"套内面积：",@"户型信息："]];
+        _contentarr = @[@[_fjxx[@"FJMC"],_fjxx[@"LDMC"],_fjxx[@"DYMC"],_fjxx[@"FLOORNUM"]],@[_fjxx[@"JJGZ"],_fjxx[@"JZDJ"],_fjxx[@"FJZJ"]],@[_fjxx[@"JZMJ"],_fjxx[@"TNMJ"],_fjxx[@"HXMC"]]];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(241*SIZE, 17*SIZE, 16*SIZE, 16*SIZE);
+        [btn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
+        [_detailView addSubview:btn];
+        [_detailView addSubview:self.tableview];
+    }
+    return _detailView;
+}
+
+
+
 -(UIView *)tanchuanView
 {
     if (!_tanchuanView) {
@@ -602,8 +644,71 @@
 - (void)maskViewTap {
     self.tanchuanView.hidden = YES;
     self.maskView.hidden = YES;
+    [self.detailView removeFromSuperview];
+    _detailView = nil;
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return _titlearr.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSArray *arr = _titlearr[section];
+    return arr.count;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 266.7*SIZE, 40*SIZE)];
+    backview.backgroundColor = [UIColor whiteColor];
+    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE , 13.7*SIZE, 6.7*SIZE, 13.3*SIZE)];
+    header.backgroundColor = YJBlueBtnColor;
+    [backview addSubview:header];
+    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
+    title.font = [UIFont systemFontOfSize:15.3*SIZE];
+    title.textColor = YJTitleLabColor;
+    title.text = _headarr[section];
+    [backview addSubview:title];
+    return backview;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40*SIZE;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 26.3 *SIZE;
+}
+
+-(UITableView *)tableview
+{
+    if (!_tableview) {
+        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 50.3*SIZE, 266.7*SIZE,427.3*SIZE) style:UITableViewStylePlain];
+                _tableview.delegate = self;
+        _tableview.dataSource = self;
+        _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _tableview;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *Identifier = @"MessageTableCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+//    if (!cell) {
+//
+//        cell = [[MessageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+//
+//    }
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    [cell SetCellContentbyimg:_data[indexPath.row][0] title:_data[indexPath.row][1] content:_data[indexPath.row][2]];
+    
+    return cell;
+}
 
 
 @end

@@ -48,7 +48,7 @@
     [_dayL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(96.7*SIZE);
         make.top.equalTo(self.contentView).offset(30*SIZE);
-        make.width.mas_equalTo(30*SIZE);
+        make.width.mas_equalTo(33*SIZE);
         make.height.mas_equalTo(30*SIZE);
         make.bottom.equalTo(self.contentView).offset(-15*SIZE);
     }];
@@ -69,7 +69,7 @@
     [_hourL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(140.7*SIZE);
         make.top.equalTo(self.contentView).offset(30*SIZE);
-        make.width.mas_equalTo(30*SIZE);
+        make.width.mas_equalTo(33*SIZE);
         make.height.mas_equalTo(30*SIZE);
         make.bottom.equalTo(self.contentView).offset(-15*SIZE);
     }];
@@ -85,7 +85,7 @@
     [_minL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(184.7*SIZE);
         make.top.equalTo(self.contentView).offset(30*SIZE);
-        make.width.mas_equalTo(30*SIZE);
+        make.width.mas_equalTo(33*SIZE);
         make.height.mas_equalTo(30*SIZE);
         make.bottom.equalTo(self.contentView).offset(-15*SIZE);
     }];
@@ -100,7 +100,7 @@
     [_secL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(228.7*SIZE);
         make.top.equalTo(self.contentView).offset(30*SIZE);
-        make.width.mas_equalTo(30*SIZE);
+        make.width.mas_equalTo(33*SIZE);
         make.height.mas_equalTo(30*SIZE);
         make.bottom.equalTo(self.contentView).offset(-15*SIZE);
     }];
@@ -134,13 +134,13 @@
 {
     //获得当前时间
     NSDate *now = [NSDate date];
-    NSTimeInterval time=[endtime doubleValue];
+    NSTimeInterval time=[endtime doubleValue]+8*3600;
     NSTimeInterval oldTime = [now timeIntervalSince1970];
     NSInteger timeDifference = time-oldTime;
-    _day =  (int)timeDifference /(3600*24);
-    _hour =(int)((timeDifference-_day*24*3600)/3600);
-    _min = (int)(timeDifference-_day*24*3600-_hour*3600)/60;
-    _sec = timeDifference - _day*24*3600 - _hour*3600 - _min*60;
+    _day =  (int)timeDifference /86400;
+    _hour =(int)timeDifference%86400/3600;
+    _min = (int)timeDifference%86400%3600/60;
+    _sec = (int)timeDifference%86400%3600%60;
 //     修改倒计时标签及显示内容
 
     _dayL.text = [NSString stringWithFormat:@"%ld天",_day];
