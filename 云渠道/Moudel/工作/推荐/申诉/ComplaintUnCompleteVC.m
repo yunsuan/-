@@ -131,7 +131,14 @@
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    title.text = _titleArr[section];
+//    title.text = _titleArr[section];
+    if (section == 0) {
+        
+        title.text = [NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]];
+    }else{
+        
+        title.text = _titleArr[section];
+    }
     [backview addSubview:title];
     return backview;
 }

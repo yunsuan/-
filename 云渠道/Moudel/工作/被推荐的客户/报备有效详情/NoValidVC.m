@@ -48,12 +48,12 @@
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
     _titleArr = @[@"客户信息",@"项目信息",@"推荐人信息"];
     _dataDic = [@{} mutableCopy];
-    [self WaitConfirmRequest];
+    [self ValueRequest];
 }
 
-- (void)WaitConfirmRequest{
+- (void)ValueRequest{
     
-    [BaseRequest GET:ProjectWaitConfirmDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectValueDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];

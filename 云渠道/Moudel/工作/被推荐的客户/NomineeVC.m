@@ -689,13 +689,13 @@
         [self.navigationController pushViewController:nextVC animated:YES];
     }else{
         
-        if (indexPath.row == 0) {
+        if ([_appealArr[indexPath.row][@"state"] isEqualToString:@"处理完成"]) {
             
-            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] init];
+            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] init];
+            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }
     }
