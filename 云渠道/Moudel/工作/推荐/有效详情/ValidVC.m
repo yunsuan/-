@@ -16,6 +16,9 @@
     NSArray *_data;
     NSArray *_titleArr;
     NSString *_clientid;
+    NSString *_endtime;
+    NSString *_name;
+    NSArray *_Pace;
 }
 @property (nonatomic , strong) UITableView *validTable;
 
@@ -44,14 +47,44 @@
 -(void)post{
     [BaseRequest GET:ValueDetail_URL
           parameters:@{
-                                        @"client_id":_clientid
-                                                        }
+                @"client_id":_clientid
+                        }
              success:^(id resposeObject) {
                  NSLog(@"%@",resposeObject);
+                 if ([resposeObject[@"code"] integerValue] ==200) {
+                     _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"客户信息",@"项目信息",@"委托人信息"];
+                     
+                     NSString *sex = @"客户性别：无";
+                     if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
+                         sex = @"客户性别：男";
+                     }
+                     if([resposeObject[@"data"][@"sex"] integerValue] == 2)
+                     {
+                         sex =@"客户性别：女";
+                     }
+                     _name = resposeObject[@"data"][@"city_name"];
+                     NSString *tel = resposeObject[@"data"][@"tel"];
+                     NSArray *arr = [tel componentsSeparatedByString:@","];
+                     if (arr.count>0) {
+                         tel = [NSString stringWithFormat:@"联系方式：%@",arr[0]];
+                     }
+                     else{
+                         tel = @"联系方式：无";
+                     }
+                     NSString *adress = resposeObject[@"data"][@"absolute_address"];
+                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"],adress];
+                     
+                     _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"委托人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
+                     _endtime = resposeObject[@"data"][@"timeLimit"];
+                     _Pace = resposeObject[@"data"][@"process"];
+                     [_validTable reloadData];
+                     
+                 }
+                
                 
              }
              failure:^(NSError *error) {
-                 
+                 [self showContent:@"网络错误"];
              }];
 }
 
@@ -60,7 +93,7 @@
 {
     
     _titleArr = @[@"推荐编号",@"客户信息",@"项目信息",@"委托人信息"];
-    _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
+    _data = @[];
 }
 
 - (void)ActionPrintBtn:(UIButton *)btn{
@@ -71,12 +104,16 @@
 #pragma mark    -----  delegate   ------
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+{     NSArray *arr = _data[section];
     if (section == 3) {
-        
-        return 7;
+   
+        return arr.count+_Pace.count;
     }
-    return 3;
+    else
+    {
+        return arr.count;
+    }
+
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -101,33 +138,22 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return _data.count;
     
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section ==0 && indexPath.row ==2) {
-        static NSString *CellIdentifier = @"CountDownCell";
-        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else if(indexPath.section == 3 && indexPath.row > 1){
+    if(indexPath.section == 3 && indexPath.row > 1){
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
-            
             cell = [[BrokerageDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell3"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
+        cell.titleL.text = [NSString stringWithFormat:@"%@时间：%@",_Pace[indexPath.row-2][@"process_name"],_Pace[indexPath.row-2][@"time"]];
         if (indexPath.row == 2) {
             
             cell.upLine.hidden = YES;
@@ -135,7 +161,7 @@
             
             cell.upLine.hidden = NO;
         }
-        if (indexPath.row == 6) {
+        if (indexPath.row == _Pace.count+1) {
             
             cell.downLine.hidden = YES;
         }else{
@@ -149,7 +175,7 @@
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell SetCellContentbystring:_data[indexPath.row]];
+        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }

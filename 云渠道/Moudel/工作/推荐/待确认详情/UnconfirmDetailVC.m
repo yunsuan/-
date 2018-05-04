@@ -71,7 +71,8 @@
                       
                       _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],@""],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"委托人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
                       _endtime = resposeObject[@"data"][@"timeLimit"];
-                      [self initUI];
+                      [_Maintableview reloadData];
+                      
                   }
                                                          }
               failure:^(NSError *error) {
@@ -81,6 +82,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initDataSouce];
+    [self initUI];
     [self post];
 
 }
@@ -88,8 +91,8 @@
 
 -(void)initDataSouce
 {
-    
-
+    _titleArr = @[];
+    _data =@[];
 }
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
@@ -170,6 +173,7 @@
         [cell setcountdownbyendtime:_endtime];
         cell.countdownblock = ^{
             [self refresh];
+            
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -224,10 +228,10 @@
 
 -(void)refresh{
     
-//    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    } failure:^(NSError *error) {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
+    [BaseRequest GET:FlushDate_URL parameters:nil success:^(id resposeObject) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 @end
