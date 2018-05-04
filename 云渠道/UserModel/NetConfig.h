@@ -219,3 +219,5 @@ static NSString *const ProjectValue_URL = @"agent/work/project/value";
 //项目失效列表
 static NSString *const ProjectDisabled_URL = @"agent/work/project/disabled";
 
+//项目申诉列表
+static NSString *const ProjectAppealList_URL = @"agent/work/project/appealList";
