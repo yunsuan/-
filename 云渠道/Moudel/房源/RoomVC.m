@@ -250,7 +250,6 @@
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
-        [self.MainTableView.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -266,12 +265,15 @@
                     }
                 }else{
                     
+                    self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 }
             }else{
                 
+                [self.MainTableView.mj_footer endRefreshing];
             }
         }else{
             
+            [self.MainTableView.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {
         

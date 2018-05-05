@@ -82,7 +82,6 @@
                 
                 [_dataArr removeAllObjects];
             }
-            [_customerTable reloadData];
         }else{
             
         }
@@ -104,22 +103,22 @@
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [_customerTable.mj_footer endRefreshing];
+
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
-                    
-                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
-                }
+                
                 if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
                         [self SetData:resposeObject[@"data"][@"data"]];
-                        
+                        if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                            
+                            _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                        }
                     }else{
                         
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -130,11 +129,11 @@
                 }
             }else{
                 
-                _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                [_customerTable.mj_footer endRefreshing];
             }
         }else{
 
-            _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+            [_customerTable.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {
         
