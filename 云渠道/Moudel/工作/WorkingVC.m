@@ -89,7 +89,7 @@
 
 -(void)initDateSouce
 {
-
+    _countdata  = @[@"",@""];
 }
 
 -(void)initUI
@@ -103,7 +103,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _countdata.count;
+    return 2;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

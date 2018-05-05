@@ -50,7 +50,7 @@
         if ([resposeObject[@"code"] integerValue]==200) {
             
             if ([page isEqualToString:@"1"]) {
-                dataarr = resposeObject[@"data"];
+                dataarr = [resposeObject[@"data"] mutableCopy];
                 [_systemmsgtable reloadData];
                 [_systemmsgtable.mj_footer endRefreshing];
                 
@@ -61,7 +61,7 @@
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
                 }
                 else{
-                    [dataarr addObjectsFromArray:arr];
+                    [dataarr addObjectsFromArray:[arr mutableCopy]];
                     [_systemmsgtable reloadData];
                     [_systemmsgtable.mj_footer endRefreshing];
                     
@@ -129,19 +129,8 @@
     InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
     next_vc.url = dataarr[indexPath.row][@"api_url"];
     next_vc.extra_param = dataarr[indexPath.row][@"extra_param"];
+    [self.navigationController pushViewController:next_vc animated:YES];
     
-    [BaseRequest GET:SystemRead_URL parameters:@{
-                                                 @"type":dataarr[indexPath.row][@"is_read"][@"type"],
-                                                 @"message_id":dataarr[indexPath.row][@"is_read"][@"message_id"]
-                                                 }
-             success:^(id resposeObject) {
-                 if ([resposeObject[@"code"] integerValue] == 200) {
-                     [self.navigationController pushViewController:next_vc animated:YES];
-                 }
-                }
-             failure:^(NSError *error) {
-                 [self showContent:@"网络错误"];
-                                                 }];
 }
 
 

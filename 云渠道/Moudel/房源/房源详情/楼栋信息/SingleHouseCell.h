@@ -11,4 +11,7 @@
 @interface SingleHouseCell : UITableViewCell
 @property (nonatomic , strong) UILabel *title;
 @property (nonatomic , strong) UILabel *content;
+
+-(void)setcelltitle:(NSString *)title
+            content:(NSString *)content;
 @end

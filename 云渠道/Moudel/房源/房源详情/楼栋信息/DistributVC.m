@@ -206,7 +206,7 @@
 {
     if (!_openbtn) {
         _openbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _openbtn.frame  = CGRectMake(304*SIZE, 303*SIZE, 56*SIZE, 33*SIZE);
+        _openbtn.frame  = CGRectMake(305*SIZE, 303*SIZE, 60*SIZE, 33*SIZE);
         [_openbtn setImage:[UIImage imageNamed:@"an"] forState:UIControlStateNormal];
         [_openbtn addTarget:self action:@selector(action_open) forControlEvents:UIControlEventTouchUpInside];
     }
