@@ -10,6 +10,7 @@
 #import "CustomerTableModel.h"
 #import "CustomDetailVC.h"
 #import "RoomDetailTableCell5.h"
+#import "QuickAddCustomVC.h"
 
 @interface CustomListVC() <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     
@@ -48,7 +49,7 @@
     
     _customerTable.mj_footer.state = MJRefreshStateIdle;
     
-    [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:FastRecommendList_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
@@ -82,7 +83,6 @@
                 
                 [_dataArr removeAllObjects];
             }
-            [_customerTable reloadData];
         }else{
             
         }
@@ -101,25 +101,25 @@
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
 
-    [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
+    [BaseRequest GET:FastRecommendList_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [_customerTable.mj_footer endRefreshing];
+
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
-                    
-                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
-                }
+                
                 if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
                         [self SetData:resposeObject[@"data"][@"data"]];
-                        
+                        if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                            
+                            _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                        }
                     }else{
                         
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -130,11 +130,11 @@
                 }
             }else{
                 
-                _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                [_customerTable.mj_footer endRefreshing];
             }
         }else{
 
-            _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+            [_customerTable.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {
         
@@ -178,18 +178,29 @@
         CustomMatchModel *model = [[CustomMatchModel alloc] init];
         model.client_id = tempDic[@"client_id"];
         model.name = tempDic[@"name"];
-        model.price = tempDic[@"total_price"];
+        model.price = tempDic[@"price"];
         model.sex = tempDic[@"sex"];
         model.tel = tempDic[@"tel"];
         model.house_type = tempDic[@"house_type"];
         model.intent = tempDic[@"intent"];
         model.urgency = tempDic[@"urgency"];
+        model.need_id = tempDic[@"client_id"];
         model.region = [NSMutableArray arrayWithArray:tempDic[@"region"]];
-//        CustomerTableModel *model = [[CustomerTableModel alloc] initWithDictionary:tempDic];
         
         [_dataArr addObject:model];
     }
     [_customerTable reloadData];
+}
+
+
+
+
+//action
+-(void)action_add
+{
+    QuickAddCustomVC *next_vc = [[QuickAddCustomVC alloc]initWithProjectId:_projectId];
+    [self.navigationController pushViewController:next_vc animated:YES];
+    
 }
 
 #pragma mark -- TableViewDelegate
@@ -252,6 +263,13 @@
     self.leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
     self.maskButton.frame = CGRectMake(0, STATUS_BAR_HEIGHT, 60 * sIZE, 44 *SIZE);
     
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setImage:[UIImage imageNamed:@"add_3"] forState:UIControlStateNormal];
+    self.rightBtn.center = CGPointMake(SCREEN_Width - 25 * SIZE, STATUS_BAR_HEIGHT + 30 *SIZE);
+    self.rightBtn.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
+    [self.rightBtn addTarget:self action:@selector(action_add) forControlEvents:UIControlEventTouchUpInside];
+    
+    [whiteView addSubview:self.rightBtn];
     [whiteView addSubview:self.leftButton];
     [whiteView addSubview:self.maskButton];
     

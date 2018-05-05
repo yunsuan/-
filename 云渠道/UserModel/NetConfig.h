@@ -150,6 +150,8 @@ static NSString *const GetUnit_URL = @"user/yunsuan/unit";
 //添加客户并且推荐到项目上
 static NSString *const AddAndRecommend_URL = @"project/client/addAndRecommend";
 
+//获取客源列表用于推荐
+static NSString *const FastRecommendList_URL = @"agent/matching/fastRecommendList";
 #pragma mark ---  消息  ---
 
 //获取消息未读数量

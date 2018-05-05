@@ -164,37 +164,38 @@
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [_customerTable.mj_footer endRefreshing];
+        
         [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
-                    
-                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
-                }
                 if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
                         [self SetData:resposeObject[@"data"][@"data"]];
-                        
+                        if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                            
+                            _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                        }
                     }else{
                         
                         _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
-//                        [self showContent:@"暂无数据"];
                     }
                 }else{
-//                    [self showContent:@"暂无数据"];
+                    
+                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
                 }
             }else{
-//                [self showContent:@"暂无数据"];
+
+                [_customerTable.mj_footer endRefreshing];
             }
         }else{
-//            [self showContent:resposeObject[@"msg"]];
+
+            [_customerTable.mj_footer endRefreshing];
         }
-        [_customerTable reloadData];
     } failure:^(NSError *error) {
         
         [_customerTable.mj_footer endRefreshing];

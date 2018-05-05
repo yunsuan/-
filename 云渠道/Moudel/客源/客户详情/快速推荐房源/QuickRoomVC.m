@@ -1,39 +1,29 @@
 //
-//  RoomVC.m
+//  QuickRoomVC.m
 //  云渠道
 //
-//  Created by xiaoq on 2018/3/13.
+//  Created by 谷治墙 on 2018/5/5.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "RoomVC.h"
-#import "RoomDetailVC.h"
+#import "QuickRoomVC.h"
 #import "RoomDetailVC1.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
 #import "BoxView.h"
 #import "RoomCollCell.h"
-#import "HouseSearchVC.h"
+#import "QuickSearchVC.h"
 #import "PYSearchViewController.h"
 #import "MoreView.h"
 #import "RoomListModel.h"
 #import "AdressChooseView.h"
+#import "CustomDetailVC.h"
 
-#import<BaiduMapAPI_Location/BMKLocationService.h>
-
-#import<BaiduMapAPI_Search/BMKGeocodeSearch.h>
-
-#import<BaiduMapAPI_Map/BMKMapComponent.h>
-
-#import<BaiduMapAPI_Search/BMKPoiSearchType.h>
-
-
-@interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,PYSearchViewControllerDelegate>
+@interface QuickRoomVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BMKLocationServiceDelegate,PYSearchViewControllerDelegate>
 {
+    CustomRequireModel *_model;
     NSArray *_arr;
     BOOL _upAndDown;
-    BMKLocationService *_locService;  //定位
-    BMKGeoCodeSearch *_geocodesearch; //地理编码主类，用来查询、返回结果信息
     NSInteger _page;
     NSMutableDictionary *_parameter;
     NSMutableArray *_dataArr;
@@ -80,12 +70,21 @@
 
 @property (nonatomic, strong) MoreView *moreView;
 
-
--(void)initUI;
--(void)initDateSouce;
 @end
 
-@implementation RoomVC
+@implementation QuickRoomVC
+
+- (instancetype)initWithModel:(CustomRequireModel *)model
+{
+    self = [super init];
+    if (self) {
+        
+        _city = @"510100";
+        _model = model;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -95,16 +94,18 @@
     [self initUI];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
+}
+
 -(void)initDateSouce
 {
     
     _searchArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _page = 1;
-    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
-    _geocodesearch.delegate = self;
-    [self startLocation];//开始定位方法
-    [self SearchRequest];
+    [self RequestMethod];
 }
 
 - (void)SearchRequest{
@@ -114,10 +115,8 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
-                [self SetSearch:resposeObject[@"data"]];
-            }
+            
+            [self SetSearch:resposeObject[@"data"]];
         }
     } failure:^(NSError *error) {
         
@@ -129,7 +128,7 @@
     
     [_searchArr removeAllObjects];
     [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-       
+        
         [_searchArr addObject:key];
     }];
 }
@@ -140,7 +139,7 @@
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
         [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-           
+            
             if ([obj isKindOfClass:[NSNull class]]) {
                 
                 [tempDic setObject:@"" forKey:key];
@@ -156,7 +155,7 @@
 }
 
 - (void)RequestMethod{
-
+    
     if (_page == 1) {
         
         self.MainTableView.mj_footer.state = MJRefreshStateIdle;
@@ -220,7 +219,7 @@
         [self showContent:@"网路错误"];
         NSLog(@"%@",error.localizedDescription);
     }];
-
+    
 }
 
 - (void)RequestAddMethod{
@@ -296,41 +295,41 @@
     switch (btn.tag) {
         case 1:
         {
-//            _is2 = NO;
-//            _is3 = NO;
-//            _is4 = NO;
-//            _priceBtn.selected = NO;
-//            _typeBtn.selected = NO;
-//            _moreBtn.selected = NO;
-//            [self.priceView removeFromSuperview];
-//            [self.typeView removeFromSuperview];
-//            [self.moreView removeFromSuperview];
-//            if (_is1) {
-//
-//                _is1 = !_is1;
-//                [self.areaView removeFromSuperview];
-//            }else{
-//
-//                _is1 = YES;
-//                _type = @"0";
-//                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
-//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-//                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//                    if (idx == 0) {
-//
-//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-//                    }else{
-//
-//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-//                    }
-//                }];
-//                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-//                [self.boxView.mainTable reloadData];
-//                [self.view addSubview:self.boxView];
-//            }
+            //            _is2 = NO;
+            //            _is3 = NO;
+            //            _is4 = NO;
+            //            _priceBtn.selected = NO;
+            //            _typeBtn.selected = NO;
+            //            _moreBtn.selected = NO;
+            //            [self.priceView removeFromSuperview];
+            //            [self.typeView removeFromSuperview];
+            //            [self.moreView removeFromSuperview];
+            //            if (_is1) {
+            //
+            //                _is1 = !_is1;
+            //                [self.areaView removeFromSuperview];
+            //            }else{
+            //
+            //                _is1 = YES;
+            //                _type = @"0";
+            //                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
+            //                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+            //                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+            //                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+            //                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            //
+            //                    if (idx == 0) {
+            //
+            //                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            //                    }else{
+            //
+            //                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            //                    }
+            //                }];
+            //                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+            //                [self.boxView.mainTable reloadData];
+            //                [self.view addSubview:self.boxView];
+            //            }
             break;
         }
         case 2:
@@ -429,7 +428,7 @@
                 
                 _is4 = YES;
                 _more = @"0";
-
+                
                 [self.moreView.moreColl reloadData];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.moreView];
             }
@@ -445,96 +444,18 @@
 }
 
 
-#pragma mark -- 百度SDK
--(void)startLocation
-
-{
-    
-    //初始化BMKLocationService
-    
-    _locService = [[BMKLocationService alloc]init];
-    
-    _locService.delegate = self;
-    
-    _locService.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    
-    //启动LocationService
-    
-    [_locService startUserLocationService];
-    
-}
-
-- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-
-{
-    
-    NSLog(@"heading is %@",userLocation.heading);
-    
-}
-
-//处理位置坐标更新
-
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    //地理反编码
-    
-    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
-    
-    reverseGeocodeSearchOption.reverseGeoPoint = userLocation.location.coordinate;
-    
-    BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
-    
-    if(flag){
-        
-        NSLog(@"反geo检索发送成功");
-        
-        [_locService stopUserLocationService];
-        
-    }else{
-        
-        NSLog(@"反geo检索发送失败");
-        
-    }
-    
-}
-
-#pragma mark -------------地理反编码的delegate---------------
-
--(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
-
-{
-    
-    NSLog(@"address:%@----%@",result.addressDetail,result.address);
-    [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
-    NSInteger disInteger = [result.addressDetail.adCode integerValue];
-    NSInteger cityInteger = disInteger / 100 * 100;
-    _city = [NSString stringWithFormat:@"%ld",cityInteger];
-    [self RequestMethod];
-}
-
-//定位失败
-
-- (void)didFailToLocateUserWithError:(NSError *)error{
-    
-    NSLog(@"error:%@",error);
-    
-}
-
-
-
 - (void)ActionSearchBtn:(UIButton *)btn{
     
     // 1.创建热门搜索
-//    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    //    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
     
     // 2. 创建控制器
-
+    
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
-     
-        [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText city:_city] animated:YES];
+        
+        [searchViewController.navigationController pushViewController:[[QuickSearchVC alloc] initWithTitle:searchText city:_city model:_model] animated:YES];
     }];
     // 3. 设置风格
     searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
@@ -545,6 +466,8 @@
     // 5. 跳转到搜索控制器
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     [self presentViewController:nav  animated:NO completion:nil];
+//    [self.navigationController presentViewController:nav animated:NO completion:nil];
+//    [self.navigationController pushViewController:nav animated:NO];
 }
 
 
@@ -567,7 +490,7 @@
                 [_cityBtn setTitle:province forState:UIControlStateNormal];
             }
         }
-
+        
     };
 }
 
@@ -669,59 +592,68 @@
         cell.rankView.statusImg.image = [UIImage imageNamed:@"falling"];
     }
     [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:[model.cycle integerValue]];
-
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-
-//    if (indexPath.row == 1) {
-//        static NSString *CellIdentifier = @"CompanyCell";
-//
-//        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-//        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-//        [cell settagviewWithdata:_arr[indexPath.row]];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }else
+    
+    //    if (indexPath.row == 1) {
+    //        static NSString *CellIdentifier = @"CompanyCell";
+    //
+    //        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //        if (!cell) {
+    //            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    //        }
+    //        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+    //        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
+    //        [cell settagviewWithdata:_arr[indexPath.row]];
+    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        return cell;
+    //    }else
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RoomListModel *model = _dataArr[indexPath.row];
-    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithProjectId:[NSString stringWithFormat:@"%@",model.project_id]];
-    nextVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:nextVC animated:YES];
-
-        switch (indexPath.row) {
-            case 0:
-            {
+    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            for (UIViewController *vc in self.navigationController.viewControllers) {
                 
-                
+                if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [self.navigationController popToViewController:vc animated:YES];
+                    });
+                }
             }
-                break;
-            case 1:
-            {
-                NSLog(@"");
-            }
-
-            default:
-                break;
         }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 -(void)initUI
 {
     [self.view addSubview:self.headerView];
     
-    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _cityBtn.frame = CGRectMake(0, 19 *SIZE, 50 *SIZE, 21 *SIZE);
-    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
-    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
-    [self.headerView addSubview:_cityBtn];
+//    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _cityBtn.frame = CGRectMake(0, 19 *SIZE, 50 *SIZE, 21 *SIZE);
+//    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
+//    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+//    [self.headerView addSubview:_cityBtn];
+    self.leftButton.center = CGPointMake(25 * sIZE,  30 *SIZE);
+    self.leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
+    self.maskButton.frame = CGRectMake(0, 0, 60 * sIZE, 44 *SIZE);
+    
+    [self.headerView addSubview:self.leftButton];
+    [self.headerView addSubview:self.maskButton];
     
     _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
@@ -825,7 +757,7 @@
 {
     if(!_MainTableView)
     {
-        _MainTableView =   [[UITableView alloc]initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 105*SIZE, 360*SIZE, SCREEN_Height-STATUS_BAR_HEIGHT-105*SIZE-TAB_BAR_HEIGHT) style:UITableViewStylePlain];
+        _MainTableView =   [[UITableView alloc]initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 105*SIZE, 360*SIZE, SCREEN_Height-STATUS_BAR_HEIGHT-105*SIZE) style:UITableViewStylePlain];
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
@@ -858,9 +790,9 @@
     if (!_priceView) {
         
         _priceView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
-         WS(weakSelf);
+        WS(weakSelf);
         _priceView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
-          
+            
             if ([str isEqualToString:@"不限"]) {
                 
                 [weakSelf.priceBtn setTitle:@"均价" forState:UIControlStateNormal];
@@ -920,7 +852,7 @@
     if (!_moreView) {
         
         _moreView = [[MoreView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 103 *SIZE, SCREEN_Width, SCREEN_Height - 103 *SIZE - STATUS_BAR_HEIGHT - TAB_BAR_MORE)];
-
+        
         WS(weakSelf);
         _moreView.moreBtnBlock = ^(NSString *tag, NSString *houseType, NSString *status) {
             
@@ -938,7 +870,7 @@
                 
                 _status = [NSString stringWithFormat:@"%@",status];
             }
-        
+            
             [weakSelf RequestMethod];
         };
         
