@@ -198,7 +198,7 @@
                     
                     [_dataArr removeAllObjects];
                     [self SetData:resposeObject[@"data"][@"data"]];
-                    if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                    if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                         
                         self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     }

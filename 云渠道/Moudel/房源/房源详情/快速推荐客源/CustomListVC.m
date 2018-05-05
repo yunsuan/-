@@ -1,0 +1,293 @@
+//
+//  CustomListVC.m
+//  云渠道
+//
+//  Created by 谷治墙 on 2018/5/5.
+//  Copyright © 2018年 xiaoq. All rights reserved.
+//
+
+#import "CustomListVC.h"
+#import "CustomerTableModel.h"
+#import "CustomDetailVC.h"
+#import "RoomDetailTableCell5.h"
+
+@interface CustomListVC() <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
+    
+    NSMutableArray *_dataArr;
+    NSMutableArray *_tempArr;
+    NSString *_projectId;
+    NSInteger _page;
+}
+
+@property (nonatomic , strong) UITableView *customerTable;
+
+@end
+
+@implementation CustomListVC
+
+- (instancetype)initWithProjectId:(NSString *)projectId
+{
+    self = [super init];
+    if (self) {
+        
+        _page = 1;
+        _projectId = projectId;
+        _dataArr = [@[] mutableCopy];
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self initUI];
+    [self RequestMethod];
+}
+
+- (void)RequestMethod{
+    
+    _customerTable.mj_footer.state = MJRefreshStateIdle;
+    
+    [BaseRequest GET:ListClient_URL parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [_customerTable.mj_header endRefreshing];
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                    
+                    [_dataArr removeAllObjects];
+                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    if ([resposeObject[@"data"][@"data"] count]) {
+                        
+                        [self SetData:resposeObject[@"data"][@"data"]];
+                        
+                    }else{
+                        
+                        [_dataArr removeAllObjects];
+                        _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                    }
+                }else{
+                    
+                    [_dataArr removeAllObjects];
+                }
+            }else{
+                
+                [_dataArr removeAllObjects];
+            }
+            [_customerTable reloadData];
+        }else{
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [_customerTable.mj_header endRefreshing];
+        NSLog(@"%@",error.localizedDescription);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)RequestAddMethod{
+    
+    _page += 1;
+    NSDictionary *tempDic = @{@"page":@(_page)};
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
+
+    [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [_customerTable.mj_footer endRefreshing];
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                    
+                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    if ([resposeObject[@"data"][@"data"] count]) {
+                        
+                        [self SetData:resposeObject[@"data"][@"data"]];
+                        
+                    }else{
+                        
+                        _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                    }
+                }else{
+                    
+                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+            }else{
+                
+                _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+            }
+        }else{
+
+            _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+        }
+    } failure:^(NSError *error) {
+        
+        [_customerTable.mj_footer endRefreshing];
+        NSLog(@"%@",error.localizedDescription);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SetData:(NSArray *)data{
+    
+    if (_page == 1) {
+        
+        [_dataArr removeAllObjects];
+    }
+    for (int i = 0; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([key isEqualToString:@"region"]) {
+                
+                if (![obj isKindOfClass:[NSArray class]]) {
+                    
+                    [tempDic setObject:@[] forKey:@"region"];
+                }
+            }
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                if ([key isEqualToString:@"region"]) {
+                    
+                    [tempDic setObject:@[] forKey:@"region"];
+                }else{
+                    
+                    [tempDic setObject:@"" forKey:key];
+                }
+            }
+        }];
+        
+        CustomMatchModel *model = [[CustomMatchModel alloc] init];
+        model.client_id = tempDic[@"client_id"];
+        model.name = tempDic[@"name"];
+        model.price = tempDic[@"total_price"];
+        model.sex = tempDic[@"sex"];
+        model.tel = tempDic[@"tel"];
+        model.house_type = tempDic[@"house_type"];
+        model.intent = tempDic[@"intent"];
+        model.urgency = tempDic[@"urgency"];
+        model.region = [NSMutableArray arrayWithArray:tempDic[@"region"]];
+//        CustomerTableModel *model = [[CustomerTableModel alloc] initWithDictionary:tempDic];
+        
+        [_dataArr addObject:model];
+    }
+    [_customerTable reloadData];
+}
+
+#pragma mark -- TableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return _dataArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    RoomDetailTableCell5 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell5"];
+    if (!cell) {
+        
+        cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = _dataArr[indexPath.row];
+    
+    cell.recommendBtn.tag = indexPath.row;
+    cell.recommendBtnBlock5 = ^(NSInteger index) {
+        
+        CustomMatchModel *model = _dataArr[index];
+        [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            [self showContent:resposeObject[@"msg"]];
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                //                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(NSError *error) {
+            
+            NSLog(@"%@",error);
+            [self showContent:@"网络错误"];
+        }];
+    };
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CustomerTableModel *model = _dataArr[indexPath.row];
+    CustomDetailVC *nextVC = [[CustomDetailVC alloc] initWithClientId:model.client_id];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+- (void)initUI{
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:_searchBar];
+    
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 62 *SIZE + STATUS_BAR_HEIGHT)];
+    whiteView.backgroundColor = CH_COLOR_white;
+    [self.view addSubview:whiteView];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 61 *SIZE, SCREEN_Width, SIZE)];
+    line.backgroundColor = YJBackColor;
+    [whiteView addSubview:line];
+    
+    self.leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 30 *SIZE);
+    self.leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
+    self.maskButton.frame = CGRectMake(0, STATUS_BAR_HEIGHT, 60 * sIZE, 44 *SIZE);
+    
+    [whiteView addSubview:self.leftButton];
+    [whiteView addSubview:self.maskButton];
+    
+//    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, STATUS_BAR_HEIGHT + 14  *SIZE, 283 *SIZE, 33 *SIZE)];
+//    _searchBar.backgroundColor = YJBackColor;
+//    _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
+//    //设置显示模式为永远显示(默认不显示)
+//    _searchBar.leftViewMode = UITextFieldViewModeAlways;
+//    _searchBar.placeholder = @"客户姓名/电话";
+//    _searchBar.font = [UIFont systemFontOfSize:11 *SIZE];
+//    _searchBar.returnKeyType = UIReturnKeySearch;
+//    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+//    //    rightImg.backgroundColor = YJGreenColor;
+//    rightImg.image = [UIImage imageNamed:@"search_2"];
+//    _searchBar.rightView = rightImg;
+//    _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
+//    _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
+//    _searchBar.delegate = self;
+//    [whiteView addSubview:_searchBar];
+    
+    _customerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE , SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 62 *SIZE  - TAB_BAR_MORE) style:UITableViewStylePlain];;
+    _customerTable.backgroundColor = self.view.backgroundColor;
+    _customerTable.delegate = self;
+    _customerTable.dataSource = self;
+    _customerTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_customerTable];
+    _customerTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        _page = 1;
+        [self RequestMethod];
+    }];
+    
+    _customerTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+        [self RequestAddMethod];
+    }];
+}
+
+@end

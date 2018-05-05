@@ -24,8 +24,8 @@
 #import "DistributVC.h"
 #import "RoomDetailModel.h"
 #import "BuildingAlbumVC.h"
-//#import "AddCustomerVC.h"
-#import "QuickAddCustomVC.h"
+//#import "QuickAddCustomVC.h"
+#import "CustomListVC.h"
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
@@ -273,7 +273,7 @@
 
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
-    QuickAddCustomVC *nextVC = [[QuickAddCustomVC alloc] initWithProjectId:_projectId];
+    CustomListVC *nextVC = [[CustomListVC alloc] initWithProjectId:_projectId];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

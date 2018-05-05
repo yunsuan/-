@@ -63,9 +63,10 @@
         [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
+            [self showContent:resposeObject[@"msg"]];
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                
+//                [self.navigationController popViewControllerAnimated:YES];
             }
         } failure:^(NSError *error) {
             
