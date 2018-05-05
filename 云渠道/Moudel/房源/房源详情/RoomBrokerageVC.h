@@ -7,9 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "RoomListModel.h"
 
 @interface RoomBrokerageVC : BaseViewController
 
-- (instancetype)initWithProjectId:(NSString *)projectId;
+//@property (nonatomic, strong) RoomListModel *model;
+
+- (instancetype)initWithModel:(RoomListModel *)model;
+
 
 @end

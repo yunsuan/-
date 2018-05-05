@@ -8,9 +8,10 @@
 
 #import "BaseViewController.h"
 #import "RoomProjectVC.h"
+#import "RoomListModel.h"
 
 @interface RoomDetailVC1 : BaseViewController
 
-- (instancetype)initWithProjectId:(NSString *)projectId;
+- (instancetype)initWithModel:(RoomListModel *)model;
 
 @end

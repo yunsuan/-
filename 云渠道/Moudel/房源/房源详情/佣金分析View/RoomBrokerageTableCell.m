@@ -20,6 +20,73 @@
     return self;
 }
 
+- (void)SetLevel:(NSInteger)level{
+    
+    switch (level) {
+        case 0:
+        {
+            _speedImg1.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning_1"];
+            break;
+        }
+        case 1:
+        {
+            _speedImg1.image = [UIImage imageNamed:@"lightning"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning_1"];
+            break;
+        }
+        case 2:
+        {
+            _speedImg1.image = [UIImage imageNamed:@"lightning"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning_1"];
+            break;
+        }
+        case 3:
+        {
+            _speedImg1.image = [UIImage imageNamed:@"lightning"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning_1"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning_1"];
+            break;
+        }
+        case 4:
+        {
+            _speedImg1.image = [UIImage imageNamed:@"lightning"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning_1"];
+            break;
+        }
+        case 5:
+        {
+            _speedImg1.image = [UIImage imageNamed:@"lightning"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning"];
+            break;
+        }
+        default:
+            _speedImg1.image = [UIImage imageNamed:@"lightning"];
+            _speedImg2.image = [UIImage imageNamed:@"lightning"];
+            _speedImg3.image = [UIImage imageNamed:@"lightning"];
+            _speedImg4.image = [UIImage imageNamed:@"lightning"];
+            _speedImg5.image = [UIImage imageNamed:@"lightning"];
+            break;
+    }
+}
+
 - (void)initUI{
     
     self.contentView.backgroundColor = YJBackColor;

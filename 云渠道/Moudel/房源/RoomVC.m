@@ -691,7 +691,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RoomListModel *model = _dataArr[indexPath.row];
-    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithProjectId:[NSString stringWithFormat:@"%@",model.project_id]];
+    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
 

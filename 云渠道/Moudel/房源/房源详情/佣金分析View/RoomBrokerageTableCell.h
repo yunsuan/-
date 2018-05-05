@@ -35,4 +35,6 @@
 
 @property (nonatomic, strong) UIImageView *speedImg5;
 
+- (void)SetLevel:(NSInteger )level;
+
 @end

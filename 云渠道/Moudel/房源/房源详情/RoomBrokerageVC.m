@@ -17,8 +17,9 @@
     
     NSMutableArray *_dataArr;
     NSMutableArray *_selectArr;
-    NSString *_projectId;
+    RoomListModel *_roomModel;
     BrokerModel *_model;
+    
 
 }
 @property (nonatomic, strong) UITableView *brokerageTable;
@@ -27,12 +28,12 @@
 
 @implementation RoomBrokerageVC
 
-- (instancetype)initWithProjectId:(NSString *)projectId
+- (instancetype)initWithModel:(RoomListModel *)model
 {
     self = [super init];
     if (self) {
         
-        _projectId = projectId;
+        _roomModel = model;
     }
     return self;
 }
@@ -55,7 +56,7 @@
 
 - (void)RequestMethod{
     
-    [BaseRequest GET:GetRule_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+    [BaseRequest GET:GetRule_URL parameters:@{@"project_id":_roomModel.project_id} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -143,7 +144,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.rankL.text = @"第5名";
+        cell.rankL.text = [NSString stringWithFormat:@"第%@名",_roomModel.sort];
         [cell.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(cell.contentView).offset(114 *SIZE);
@@ -151,6 +152,7 @@
             make.top.equalTo(cell.contentView).offset(50 *SIZE);
             make.width.equalTo(@(cell.rankL.mj_textWith + 5 *SIZE));
         }];
+        [cell SetLevel:[_roomModel.cycle integerValue]];
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"佣金规则";
         cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
