@@ -20,6 +20,7 @@
 #import "FollowRecordVC.h"
 #import "AddCustomerVC.h"
 #import "RoomMatchListVC.h"
+#import "QuickRoomVC.h"
 #import "AddTagVC.h"
 #import "RecommendedStatusVC.h"
 
@@ -89,8 +90,11 @@
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            [self SetProjectList:resposeObject[@"data"][@"list"]];
-            _statusArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"recommend_project"]];
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                [self SetProjectList:resposeObject[@"data"][@"list"]];
+                _statusArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"recommend_project"]];
+            }
         }
     } failure:^(NSError *error) {
         
@@ -493,6 +497,8 @@
             };
             header.addBtnBlock = ^{
                 
+                QuickRoomVC  *nextVC = [[QuickRoomVC alloc] initWithModel:_dataArr[0]];
+                [self.navigationController pushViewController:nextVC animated:YES];
             };
             header.statusBtnBlock = ^{
                 

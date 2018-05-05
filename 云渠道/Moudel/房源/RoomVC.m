@@ -114,7 +114,10 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            [self SetSearch:resposeObject[@"data"]];
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                [self SetSearch:resposeObject[@"data"]];
+            }
         }
     } failure:^(NSError *error) {
         
