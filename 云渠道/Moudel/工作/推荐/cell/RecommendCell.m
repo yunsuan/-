@@ -37,7 +37,7 @@
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间：%@",dataDic[@"create_time"]]];
     [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
     _timeL.attributedText = attr;
-//    _timeL.text = [NSString stringWithFormat:@"失效时间：%@",dataDic[@"create_time"]];
+
     _addressL.text = dataDic[@"absolute_address"];
 }
 
@@ -56,7 +56,6 @@
     _projectL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 65 *SIZE, 200 *SIZE, 11 *SIZE)];
     _projectL.textColor = YJ86Color;
     _projectL.font = [UIFont systemFontOfSize:11 *SIZE];
-//    _projectL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_projectL];
     
     _timeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 86 *SIZE, 300 *SIZE, 10 *SIZE)];

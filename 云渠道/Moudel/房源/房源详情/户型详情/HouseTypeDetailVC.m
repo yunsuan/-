@@ -31,17 +31,18 @@
 
 @implementation HouseTypeDetailVC
 
-- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId idx:(NSInteger)idx
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId index:(NSInteger)index dataArr:(NSArray *)dataArr
 {
     self = [super init];
     if (self) {
         
         _houseTypeId = houseTypeId;
         _imgArr = [@[] mutableCopy];
+        self.dataArr = [NSMutableArray arrayWithArray:dataArr];
         _houseArr = [NSMutableArray arrayWithArray:self.dataArr];
         [_houseArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ([obj[@"id"] isEqualToString:houseTypeId]) {
+            if ([[NSString stringWithFormat:@"%@",obj[@"id"]] isEqualToString:houseTypeId]) {
                 
                 [_houseArr removeObjectAtIndex:idx];
                 *stop = YES;
@@ -53,8 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [self initDataSource];
+
     [self initUI];
     [self RequestMethod];
 }
@@ -145,7 +145,6 @@
             
             header = [[HouseTypeTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 366 *SIZE)];
         }
-//        header.imgArr = [NSMutableArray arrayWithArray:_imgArr];
         header.imgArr = [NSMutableArray arrayWithArray:_imgArr];
         
         return header;
@@ -179,7 +178,6 @@
             cell = [[HouseTypeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HouseTypeTableCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        _baseInfoDic[@""];
         cell.typeL.text = _baseInfoDic[@"house_type_name"];
         cell.areaL.text = [NSString stringWithFormat:@"建筑面积：%@㎡-%@㎡",_baseInfoDic[@"property_area_min"],_baseInfoDic[@"property_area_max"]];
         cell.houseDisL.text = @"户型分布：1栋、3栋";
@@ -197,10 +195,15 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.num = _houseArr.count;
+            if (_houseArr.count) {
+                
+                cell.dataArr = [NSMutableArray arrayWithArray:_houseArr];
+                [cell.cellColl reloadData];
+            }
             cell.collCellBlock = ^(NSInteger index) {
               
-                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:_houseArr[index][@"id"] idx:index];
-                nextVC.dataArr = _houseArr;
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:self.dataArr];
+//                nextVC.dataArr = _houseArr;
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             

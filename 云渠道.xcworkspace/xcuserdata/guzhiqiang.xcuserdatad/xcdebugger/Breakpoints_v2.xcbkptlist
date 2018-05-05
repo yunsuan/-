@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/RoomVC.m"
-            timestampString = "547046533.571262"
+            timestampString = "547190363.940191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "973"
-            endingLineNumber = "973"
+            startingLineNumber = "932"
+            endingLineNumber = "932"
             landmarkName = "-moreView"
             landmarkType = "7">
          </BreakpointContent>

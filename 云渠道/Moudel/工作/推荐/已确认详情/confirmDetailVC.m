@@ -154,7 +154,6 @@
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-//        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.section == 0) {
             

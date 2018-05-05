@@ -234,14 +234,7 @@
         }
         case 2:
         {
-//            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BUY_TYPE]];
-//            WS(weakself);
-//            view.selectedBlock = ^(NSString *MC, NSString *ID) {
-//
-//                weakself.purposeBtn.content.text = MC;
-//                weakself.purposeBtn.str = [NSString stringWithFormat:@"%@",ID];
-//            };
-//            [self.view addSubview:view];
+
             break;
         }
         default:
@@ -860,7 +853,6 @@
         make.top.equalTo(_scrolleView).offset(0);
         make.right.equalTo(_scrolleView).offset(0);
         make.width.equalTo(@(SCREEN_Width));
-//        make.bottom.equalTo(_markView.mas_top).offset(-6 *SIZE);
     }];
     
     [_signTF1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -885,7 +877,6 @@
         make.top.equalTo(_visitL.mas_bottom).offset(1 *SIZE);
         make.width.equalTo(@(SCREEN_Width));
         make.height.equalTo(@(91 *SIZE));
-//        make.bottom.equalTo(_infoView.mas_bottom).offset(-32 *SIZE);
     }];
     
     [_confirmL mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -911,7 +902,6 @@
         make.top.equalTo(_infoView.mas_bottom).offset(6 *SIZE);
         make.width.equalTo(@(SCREEN_Width));
         make.height.equalTo(@(117 *SIZE));
-//        make.bottom.equalTo(_confirmBtn.mas_top).offset(-40 *SIZE);
     }];
     
     [_timeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -920,7 +910,6 @@
         make.top.equalTo(_markView.mas_bottom).offset(3 *SIZE);
         make.width.equalTo(@(SCREEN_Width));
         make.height.equalTo(@(50 *SIZE));
-        //        make.bottom.equalTo(_confirmBtn.mas_top).offset(-40 *SIZE);
     }];
     
     [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {

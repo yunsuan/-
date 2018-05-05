@@ -195,15 +195,6 @@
     [_validTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_validTable];
     
-    _printBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _printBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
-    _printBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-    [_printBtn addTarget:self action:@selector(ActionPrintBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_printBtn setTitle:@"打印" forState:UIControlStateNormal];
-    [_printBtn setBackgroundColor:YJBlueBtnColor];
-    [_printBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-//    [self.view addSubview:_printBtn];
-    
 }
 
 @end

@@ -42,7 +42,6 @@
     
     _page = 1;
     _dataArr = [@[] mutableCopy];
-//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     [self initUI];
     [self RequestMethod];
 }
@@ -81,11 +80,9 @@
                     }
                 }else{
                     
-//                    [self showContent:@"暂无数据"];
                 }
             }else{
                 
-//                [self showContent:resposeObject[@"msg"]];
             }
         }else{
             

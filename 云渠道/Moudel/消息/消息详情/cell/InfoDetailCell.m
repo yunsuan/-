@@ -29,7 +29,7 @@
 //    [_contentlab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     _contentlab.textColor = YJContentLabColor;
     [self.contentView addSubview:_contentlab];
-//    __weak typeof(self)weakSelf=self;
+
     [_contentlab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(28.3*SIZE);
         make.top.equalTo(self.contentView);

@@ -93,7 +93,7 @@
     }
     
     NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-    NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",11]];
+    NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",15]];
     NSArray *tempArr = dic[@"param"];
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     NSArray *subArr = [model.project_tags componentsSeparatedByString:@","];
@@ -117,7 +117,6 @@
     [_tagview setData:arr];
     [self.contentView addSubview:_tagview];
     
-//    _addressL.text =
     
     if (model.average_price) {
         

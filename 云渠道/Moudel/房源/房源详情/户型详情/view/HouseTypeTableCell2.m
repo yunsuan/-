@@ -39,10 +39,17 @@
         
         cell = [[RoomCellCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 220 *SIZE)];
     }
-    cell.letterL.text = @"A型";
-    cell.areaL.text = @"102m";
-    cell.typeL.text = @"3室1厅1卫";
-    cell.statusL.text = @"在售";
+    [cell.typeImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,self.dataArr[indexPath.item][@"img_url"]]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+        if (error) {
+            
+            cell.typeImg.image = [UIImage imageNamed:@""];
+        }
+    }];
+    cell.letterL.text = self.dataArr[indexPath.item][@"house_type_name"];
+    cell.areaL.text = [NSString stringWithFormat:@"%@㎡",self.dataArr[indexPath.item][@"property_area_min"]];
+    cell.typeL.text = self.dataArr[indexPath.item][@"house_type"];
+    cell.statusL.text = self.dataArr[indexPath.item][@"sale_state"];
     
     return cell;
 }

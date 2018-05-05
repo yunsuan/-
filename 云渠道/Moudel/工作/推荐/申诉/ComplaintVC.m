@@ -127,7 +127,6 @@
     _statusL.textColor = YJTitleLabColor;
     _statusL.font = [UIFont systemFontOfSize:13 *SIZE];
     _statusL.textAlignment = NSTextAlignmentRight;
-//    _statusL.text = @"佣金未到账";
     [whiteView1 addSubview:_statusL];
     
     UIImageView *dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(336 *SIZE, 17 *SIZE, 12 *SIZE, 12 *SIZE)];

@@ -20,7 +20,7 @@
 
 @implementation LevelView
 
-- (instancetype)initWithFrame:(CGRect)frame //title:(NSString *)title level:(NSInteger)level image:(UIImage *)image
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {

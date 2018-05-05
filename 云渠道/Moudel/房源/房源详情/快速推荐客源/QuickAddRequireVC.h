@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-//#import "CustomRequireModel.h"
 #import "CustomerInfoModel.h"
 
 @interface QuickAddRequireVC : BaseViewController

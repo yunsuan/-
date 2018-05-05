@@ -21,6 +21,7 @@
 #import "AddCustomerVC.h"
 #import "RoomMatchListVC.h"
 #import "AddTagVC.h"
+#import "RecommendedStatusVC.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
@@ -32,6 +33,7 @@
     NSMutableArray *_dataArr;//需求信息
     NSMutableArray *_FollowArr;
     NSMutableArray *_projectArr;
+    NSMutableArray *_statusArr;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
 
@@ -73,7 +75,8 @@
     _dataArr = [@[] mutableCopy];
     _FollowArr = [@[] mutableCopy];
     _projectArr = [@[] mutableCopy];
-
+    _statusArr = [@[] mutableCopy];
+    
     [self RequestMethod];
 }
 
@@ -86,7 +89,8 @@
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            [self SetProjectList:resposeObject[@"data"]];
+            [self SetProjectList:resposeObject[@"data"][@"list"]];
+            _statusArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"recommend_project"]];
         }
     } failure:^(NSError *error) {
         
@@ -472,7 +476,7 @@
             header.model = _customModel;
             
             header.numListL.text = [NSString stringWithFormat:@"匹配项目列表(%ld)",_projectArr.count];
-            header.recommendListL.text = @"已推荐项目数(2)";
+            header.recommendListL.text = [NSString stringWithFormat:@"已推荐项目数(%ld)",_statusArr.count];
             
             header.moreBtnBlock = ^{
                 
@@ -492,6 +496,8 @@
             };
             header.statusBtnBlock = ^{
                 
+                RecommendedStatusVC *nextVC = [[RecommendedStatusVC alloc] initWithData:_statusArr];
+                [self.navigationController pushViewController:nextVC animated:YES];
             };
             return header;
         }

@@ -85,7 +85,7 @@
     _titleL.font = [UIFont boldSystemFontOfSize:13.3*SIZE];
     [self.contentView addSubview:_titleL];
     
-    _addressL = [[UILabel alloc]initWithFrame:CGRectMake(124.3*SIZE, 37*SIZE, 200*SIZE, 11*SIZE)];
+    _addressL = [[UILabel alloc]initWithFrame:CGRectMake(124.3*SIZE, 52.7*SIZE, 200*SIZE, 11*SIZE)];
     _addressL.textColor = YJContentLabColor;
     _addressL.font =[UIFont systemFontOfSize:10.7*SIZE];
     [self.contentView addSubview:_addressL];

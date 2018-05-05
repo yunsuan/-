@@ -23,7 +23,6 @@
     
     NSMutableArray *_stairArr;
     NSInteger _num;
-//    CustomRequireModel *_model;
     NSInteger _btnNum;
     NSString *_projectId;
 }
@@ -48,8 +47,6 @@
 
 @property (nonatomic, strong) DropDownBtn *typeBtn;
 
-//@property (nonatomic, strong) DropDownBtn *faceBtn;
-
 @property (nonatomic, strong) DropDownBtn *purposeBtn;
 
 @property (nonatomic, strong) DropDownBtn *payWayBtn;
@@ -63,8 +60,6 @@
 @property (nonatomic, strong) UILabel *areaL;
 
 @property (nonatomic, strong) UILabel *typeL;
-
-//@property (nonatomic, strong) UILabel *faceL;
 
 @property (nonatomic, strong) UILabel *floorL;
 
@@ -135,7 +130,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //    [self.navigationController setNavigationBarHidden:NO animated:YES];
     // 开启返回手势
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
@@ -975,24 +969,7 @@
         make.height.equalTo(@(33 *SIZE));
         make.bottom.equalTo(_floorTF1.mas_top).offset(-19 *SIZE);
     }];
-    
-    //    [_faceL mas_makeConstraints:^(MASConstraintMaker *make) {
-    //
-    //        make.left.equalTo(_infoView).offset(10 *SIZE);
-    //        make.top.equalTo(_typeBtn.mas_bottom).offset(29 *SIZE);
-    //        make.width.equalTo(@(70 *SIZE));
-    //        make.height.equalTo(@(13 *SIZE));
-    ////        make.bottom.equalTo(_floorL.mas_top).offset(-39 *SIZE);
-    //    }];
-    //
-    //    [_faceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    //
-    //        make.left.equalTo(_infoView).offset(81 *SIZE);
-    //        make.top.equalTo(_typeBtn.mas_bottom).offset(19 *SIZE);
-    //        make.width.equalTo(@(258 *SIZE));
-    //        make.height.equalTo(@(33 *SIZE));
-    //        make.bottom.equalTo(_floorTF1.mas_top).offset(-19 *SIZE);
-    //    }];
+
     
     [_floorL mas_makeConstraints:^(MASConstraintMaker *make) {
         

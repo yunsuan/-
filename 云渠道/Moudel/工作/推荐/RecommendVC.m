@@ -213,7 +213,6 @@
 
 - (void)SetValidArr:(NSArray *)data{
     
-//    [_validArr removeAllObjects];
     for (int i = 0; i < data.count; i++) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
@@ -598,14 +597,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.dataDic = _appealArr[indexPath.row];
-//        cell.nameL.text = @"张三";
-//        cell.codeL.text = @"推荐编号：456522312";
-//        cell.confirmL.text = @"到访确认人：李四";
-//        cell.projectL.text = @"推荐项目：云算公馆";
-////        cell.phoneL.text = @"联系电话：18789455612";
-//        cell.statusL.text = @"处理完成";
-//        cell.recomTimeL.text = @"推荐日期：2017-12-15";
-//        cell.timeL.text = @"申诉日期：2017-12-15  13:00:00";
         
         return cell;
     }
@@ -659,7 +650,7 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        //        _MainTableView.scrollEnabled = NO;
+
         _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             
             if (_index == 0) {

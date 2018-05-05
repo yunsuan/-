@@ -79,21 +79,6 @@
     [self initUI];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//
-//    [super viewWillAppear:animated];
-//
-//    self.mapView.delegate = self;
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated{
-//
-//    [super viewWillDisappear:animated];
-//
-//    self.mapView.delegate = nil;
-//    [self.mapView removeFromSuperview];
-//}
-
 - (void)MapViewDismissNoti:(NSNotification *)noti{
     
     self.mapView.delegate = nil;
@@ -560,8 +545,8 @@
             
             cell.collCellBlock = ^(NSInteger index) {
 
-                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:_houseArr[index][@"id"] idx:index];
-                nextVC.dataArr = [NSMutableArray arrayWithArray:_houseArr];
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:_houseArr];
+//                nextVC.dataArr = [NSMutableArray arrayWithArray:_houseArr];
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
 
@@ -622,10 +607,10 @@
                     [self showContent:resposeObject[@"msg"]];
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
-//                        [self showContent:@"推荐成功"];
+
                     }else if ([resposeObject[@"code"] integerValue] == 400){
                         
-//                        [self showContent:resposeObject[@"msg"]];
+                        
                     }
                 } failure:^(NSError *error) {
                     
@@ -643,14 +628,6 @@
                 cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.nameL.text = @"张三";
-            cell.priceL.text = @"80 - 100";
-            cell.typeL.text = @"三室一厅";
-            cell.areaL.text = @"郫都区-德源大道";
-            cell.intentionRateL.text = @"23";
-            cell.urgentRateL.text = @"43";
-            cell.matchRateL.text = @"83";
-            cell.phoneL.text = @"13438339177";
             return cell;
             break;
         }

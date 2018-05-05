@@ -30,7 +30,7 @@
 {
     [super viewWillAppear:animated];
     [self postWithidentify:@"1"];
-//    [self refresh];//更新数据
+
     
 }
 
@@ -48,11 +48,7 @@
 
 -(void)refresh{
     
-//    [BaseRequest GET:RefreshData_URL parameters:nil success:^(id resposeObject) {
-//        
-//    } failure:^(NSError *error) {
-//        
-//    }];
+
 }
 
 -(void)postWithidentify:(NSString *)identify
@@ -101,10 +97,6 @@
     [self.view addSubview:self.MainTableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 #pragma mark  ---  delegate   ---
@@ -172,7 +164,6 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//        _MainTableView.scrollEnabled = NO;
     }
     return _MainTableView;
 }

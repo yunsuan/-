@@ -7,13 +7,11 @@
 //
 
 #import "NomineeVC.h"
-//#import "NomineeCollCell.h"
 #import "RecommendCollCell.h"
 #import "NomineeCell.h"
 #import "NomineeCell2.h"
 #import "NomineeCell3.h"
 #import "RecommendCell5.h"
-//#import "UnconfirmDetailVC.h"
 #import "confirmDetailVC.h"
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
@@ -208,7 +206,6 @@
 
 - (void)SetValidArr:(NSArray *)data{
     
-    //    [_validArr removeAllObjects];
     for (int i = 0; i < data.count; i++) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];

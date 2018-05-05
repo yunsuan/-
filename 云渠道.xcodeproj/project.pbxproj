@@ -1407,8 +1407,8 @@
 		0CF04F59207B5B7500A45F4A /* 完善客户信息 */ = {
 			isa = PBXGroup;
 			children = (
-				0CF04F5A207B5B9D00A45F4A /* CompleteCustomVC1.h */,
 				0CF04F5B207B5B9D00A45F4A /* CompleteCustomVC1.m */,
+				0CF04F5A207B5B9D00A45F4A /* CompleteCustomVC1.h */,
 				0CF04F5D207B5BA900A45F4A /* CompleteCustomVC2.h */,
 				0CF04F5E207B5BA900A45F4A /* CompleteCustomVC2.m */,
 			);

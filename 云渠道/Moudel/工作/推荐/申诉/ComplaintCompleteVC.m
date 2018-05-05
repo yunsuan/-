@@ -32,7 +32,6 @@
     self = [super init];
     if (self) {
         
-//        _clientId = clientId;
         _appealId = appealId;
     }
     return self;
@@ -148,50 +147,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-//    if (indexPath.section == 0 && indexPath.row ==2) {
-//        static NSString *CellIdentifier = @"CountDownCell";
-//        CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }else if(indexPath.section == 4 && indexPath.row > 2){
-//
-//        BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
-//        if (!cell) {
-//
-//            cell = [[BrokerageDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell3"];
-//        }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
-//        if (indexPath.row == 3) {
-//
-//            cell.upLine.hidden = YES;
-//        }else{
-//
-//            cell.upLine.hidden = NO;
-//        }
-//        if (indexPath.row == 5) {
-//
-//            cell.downLine.hidden = YES;
-//        }else{
-//
-//            cell.downLine.hidden = NO;
-//        }
-//        return cell;
-//    }else{
-//        static NSString *CellIdentifier = @"InfoDetailCell";
-//        InfoDetailCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        [cell SetCellContentbystring:_data[indexPath.row]];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }
+
     if (indexPath.section == 4 && indexPath.row > 2) {
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
@@ -201,7 +157,6 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-//        cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
         NSArray *arr = _dataDic[@"process"];
         cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
         if (indexPath.row == 3) {
@@ -227,7 +182,6 @@
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-//        [cell SetCellContentbystring:_data[indexPath.row]];
         if (indexPath.section == 0) {
             
             [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"recommend_time"]]];
@@ -237,7 +191,6 @@
                 
                 NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"状态：%@",_dataDic[@"state"]]];
                 [attr addAttribute:NSFontAttributeName value:YJBlueBtnColor range:NSMakeRange(3, attr.length - 3)];
-//                cell.contentlab.attributedText = attr;
                 [cell SetCellContentbystring:[NSString stringWithFormat:@"状态：%@",_dataDic[@"state"]]];
             }else{
                 

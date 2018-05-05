@@ -20,21 +20,37 @@
 
 @implementation RecommendedStatusVC
 
+- (instancetype)initWithData:(NSArray *)dataArr
+{
+    self = [super init];
+    if (self) {
+        
+        _dataArr = [NSMutableArray arrayWithArray:dataArr];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initDataSource];
+//    [self initDataSource];
     [self initUI];
 }
 
-- (void)initDataSource{
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    _dataArr = [@[] mutableCopy];
+    return _dataArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return _dataArr.count;
+//    return _dataArr.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -45,6 +61,10 @@
         cell = [[ReStatusTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ReStatusTableCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    cell.dataDic = _dataArr[indexPath.row];
+//    cell.titleL.text = _dataArr[indexPath.row][@"project_name"];
+    
     
     return cell;
 }
@@ -54,11 +74,12 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"已推荐项目状态";
     
-    _reStatusTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+    _reStatusTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
 //    _reStatusTable.direc
     _reStatusTable.backgroundColor = self.view.backgroundColor;
     _reStatusTable.delegate = self;
     _reStatusTable.dataSource = self;
+    _reStatusTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_reStatusTable];
 }
 

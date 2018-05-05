@@ -75,12 +75,6 @@
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_reportTimeL];
     
-//    _messBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _messBtn.frame = CGRectMake(296 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
-//    [_messBtn addTarget:self action:@selector(ActionMessBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    [_messBtn setBackgroundImage:[UIImage imageNamed:@"note"] forState:UIControlStateNormal];
-//    [self.contentView addSubview:_messBtn];
-    
     _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _phoneBtn.frame = CGRectMake(335 *SIZE, 19 *SIZE, 19 *SIZE, 19 *SIZE);
     [_phoneBtn addTarget:self action:@selector(ActionPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];

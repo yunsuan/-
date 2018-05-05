@@ -49,12 +49,12 @@
         _priceL.text = @"意向总价：";
     }
     
+    _typeL.text = @"";
     if (model.house_type) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
         NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
         NSArray *tempArr = dic[@"param"];
-//        NSMutableArray * arr = [[NSMutableArray alloc] init];
         
         [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
@@ -63,6 +63,10 @@
                 _typeL.text = [NSString stringWithFormat:@"意向户型：%@",obj[@"param"]];
             }
         }];
+        if (!_typeL.text.length) {
+         
+            _typeL.text = @"意向户型：";
+        }
     }else{
         
         _typeL.text = @"意向户型：";
@@ -274,8 +278,7 @@
         make.top.equalTo(self.contentView.mas_top).offset(80 *SIZE);
         make.width.equalTo(@(230 *SIZE));
         make.bottom.equalTo(_intentionRateL.mas_top).offset(-11 *SIZE);
-//        make.height.equalTo
-//        make.height.equalTo(@(10 *SIZE));
+
     }];
     
     [_matchRateL mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -31,7 +31,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     int page = scrollView.contentOffset.x / scrollView.frame.size.width;
-    //    NSLog(@"%d", page);
     
     // 设置页码
     _pageControl.currentPage = page;

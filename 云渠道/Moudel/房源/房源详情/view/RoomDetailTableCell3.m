@@ -48,20 +48,8 @@
         }
     }];
     cell.letterL.text = self.dataArr[indexPath.item][@"house_type_name"];
-    cell.areaL.text = [NSString stringWithFormat:@"%@-%@",self.dataArr[indexPath.item][@"property_area_min"],self.dataArr[indexPath.item][@"property_area_max"]];
-    
-    NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;
-    NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",9]];
-    NSArray *typeArr = dic[@"param"];
-//    cell.typeL.text = @"证件类型：";
-    for (int i = 0; i < typeArr.count; i++) {
-        
-        if ([typeArr[i][@"id"] integerValue] == [self.dataArr[indexPath.item][@"house_type"] integerValue]) {
-            
-            cell.typeL.text = [NSString stringWithFormat:@"证件类型：%@",typeArr[i][@"param"]];
-            break;
-        }
-    }
+    cell.areaL.text = [NSString stringWithFormat:@"%@㎡",self.dataArr[indexPath.item][@"property_area_min"]];
+    cell.typeL.text = self.dataArr[indexPath.item][@"house_type"];
     cell.statusL.text = self.dataArr[indexPath.item][@"sale_state"];
 //    cell.letterL.text = @"A型";
 //    cell.areaL.text = @"102m";

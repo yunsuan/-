@@ -62,7 +62,6 @@
     _formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-//    _titleArr = [NSMutableArray arrayWithArray:];
     _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_clientId],@"无效信息",@"客户信息",@"项目信息",@"委托人信息"];
     _dataDic = [@{} mutableCopy];
     [self InValidRequestMethod];
@@ -116,7 +115,6 @@
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间:%@",@"asd"]];
             [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, 5)];
             self.recommendView.timeL.attributedText = attr;
-//            self.recommendView.timeL.text = @"失效时间：6:30:56";
             [[UIApplication sharedApplication].keyWindow addSubview:self.recommendView];
         }else{
             
@@ -130,7 +128,6 @@
         self.failView.timeL.text = [_formatter stringFromDate:[NSDate date]];
         [[UIApplication sharedApplication].keyWindow addSubview:self.failView];
         NSLog(@"%@",error);
-//        [self showContent:@"网络错误"];
     }];
 }
 

@@ -424,21 +424,7 @@
                 
                 _is4 = YES;
                 _more = @"0";
-//                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
-//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-//                self.typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//                    if (idx == 0) {
-//
-//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-//                    }else{
-//
-//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-//                    }
-//                }];
-//                self.moreView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+
                 [self.moreView.moreColl reloadData];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.moreView];
             }
@@ -516,7 +502,6 @@
     
     NSLog(@"address:%@----%@",result.addressDetail,result.address);
     [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
-//    _district = result.addressDetail.adCode;
     NSInteger disInteger = [result.addressDetail.adCode integerValue];
     NSInteger cityInteger = disInteger / 100 * 100;
     _city = [NSString stringWithFormat:@"%ld",cityInteger];
@@ -557,11 +542,6 @@
     [self presentViewController:nav  animated:NO completion:nil];
 }
 
-//-(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText
-//{
-//
-//}
-
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
@@ -582,11 +562,7 @@
                 [_cityBtn setTitle:province forState:UIControlStateNormal];
             }
         }
-        
-//        _provinceId = proviceid;
-//        _cityId = cityid;
-//        _areaId = areaid;
-//        _addressL.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+
     };
 }
 
@@ -705,32 +681,15 @@
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //        return cell;
 //    }else
-//    {
-//        static NSString *CellIdentifier = @"PeopleCell";
-//
-//        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        if (!cell) {
-//            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        }
-//        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-//        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-//        [cell settagviewWithdata:_arr[indexPath.row]];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RoomListModel *model = _dataArr[indexPath.row];
     RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithProjectId:[NSString stringWithFormat:@"%@",model.project_id]];
-//    nextVC.navigationController
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
-    
-//    RoomDetailVC *nextVC = [[RoomDetailVC alloc] init];
-//    nextVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:nextVC animated:YES];
+
         switch (indexPath.row) {
             case 0:
             {

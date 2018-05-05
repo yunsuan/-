@@ -101,7 +101,7 @@
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                if ([resposeObject[@"data"][@"current_page"] integerValue] == [resposeObject[@"data"][@"total"] integerValue]) {
+                if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     [_dataArr removeAllObjects];
                     _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -170,7 +170,7 @@
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                 
-                if ([resposeObject[@"data"][@"current_page"] integerValue] == [resposeObject[@"data"][@"total"] integerValue]) {
+                if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
                 }

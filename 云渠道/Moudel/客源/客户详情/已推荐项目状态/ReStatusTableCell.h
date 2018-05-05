@@ -44,4 +44,6 @@
 
 @property (nonatomic, strong) UIView *line4;
 
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
 @end

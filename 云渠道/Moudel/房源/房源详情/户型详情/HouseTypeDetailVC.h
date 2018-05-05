@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
 
-- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId idx:(NSInteger )idx;
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId index:(NSInteger )index dataArr:(NSArray *)dataArr;
 
 @end
