@@ -424,10 +424,13 @@
             
             [dic setObject:str forKey:@"need_tags"];
         }
+        
+        _nextBtn.userInteractionEnabled = NO;
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
             NSLog(@"%@",resposeObject);
             [self showContent:resposeObject[@"msg"]];
+            _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
 //                [self showContent:@"添加成功"];
@@ -441,7 +444,7 @@
                 }
             }
         } failure:^(NSError *error) {
-            
+            _nextBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
             NSLog(@"%@",error);
         }];
@@ -538,9 +541,11 @@
             
             [dic setObject:str forKey:@"need_tags"];
         }
+        _nextBtn.userInteractionEnabled = NO;
         [BaseRequest POST:UpdateNeed_URL parameters:dic success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
+            _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self showContent:@"修改成功"];
@@ -553,7 +558,7 @@
                 }
             }
         } failure:^(NSError *error) {
-            
+            _nextBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
             NSLog(@"%@",error);
         }];
