@@ -54,6 +54,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self GetFollowRequestMethod];
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 

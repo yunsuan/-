@@ -300,8 +300,8 @@
 //
     
     _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 420 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
-    NSDate * date = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];//两天后
-    _nextTimeBtn.content.text = [self gettime:date];
+//    NSDate * date = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];//两天后
+//    _nextTimeBtn.content.text = [self gettime:date];
     [view2 addSubview:_nextTimeBtn];
     
     view2.frame = CGRectMake(0, 136 *SIZE, SCREEN_Width, 408 *SIZE+_chooseview.frame.size.height +70*SIZE);
@@ -325,6 +325,17 @@
 
 -(void)action_sure
 {
+    
+    
+    if (_followTF.text.length == 0) {
+        [self showContent:@"请填写跟进记录"];
+        return;
+    }
+    
+    if (_nextTimeBtn.content.text.length ==0) {
+        [self showContent:@"请选择下次回访时间"];
+        return;
+    }
     NSDictionary *prameter = @{
                                @"client_id":_clint_id,
                                @"follow_type":[_chooseview GetDidID],
