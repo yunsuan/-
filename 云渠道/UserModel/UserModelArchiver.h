@@ -13,6 +13,6 @@
 + (UserModel *)unarchive; //解码
 + (UserInfoModel *)InfoUnarchive;
 + (void)archive; //归档
-+ (void)infoArchive; //归档
++ (void)infoArchive; //iofo归档
 + (void)ClearUserInfoModel;
 @end

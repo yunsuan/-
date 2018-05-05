@@ -45,7 +45,8 @@
              success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
             if ([page isEqualToString:@"1"]) {
-                _data = resposeObject[@"data"][@"data"];
+          
+                _data = [resposeObject[@"data"][@"data"] mutableCopy];
                 [_systemmsgtable reloadData];
                 [_systemmsgtable.mj_footer endRefreshing];
                 
@@ -56,7 +57,7 @@
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
                 }
                 else{
-                    [_data addObjectsFromArray:arr];
+                    [_data addObjectsFromArray:[arr mutableCopy]];
                     [_systemmsgtable reloadData];
                     [_systemmsgtable.mj_footer endRefreshing];
                     
@@ -112,14 +113,7 @@
     if (!cell) {
         cell = [[WorkMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    if ([_data[indexPath.row][@"attribute"][@"is_read"] integerValue] == 0) {
-        
-        [cell SetCellbytitle:_data[indexPath.row][@"title"] num:[NSString stringWithFormat:@"推荐编号：%@",_data[indexPath.row][@"client_id"]]  name:[NSString stringWithFormat:@"姓名：%@",_data[indexPath.row][@"name"]] project:[NSString stringWithFormat:@"项目：%@",_data[indexPath.row][@"project_name"]] time: _data[indexPath.row][@"create_time"] messageimg:0];
-    }else{
-        
-        [cell SetCellbytitle:_data[indexPath.row][@"title"] num:[NSString stringWithFormat:@"推荐编号：%@",_data[indexPath.row][@"client_id"]]  name:[NSString stringWithFormat:@"姓名：%@",_data[indexPath.row][@"name"]] project:[NSString stringWithFormat:@"项目：%@",_data[indexPath.row][@"project_name"]] time: _data[indexPath.row][@"create_time"] messageimg:0];
-    }
+    [cell SetCellbytitle:_data[indexPath.row][@"title"] num:[NSString stringWithFormat:@"推荐编号：%@",_data[indexPath.row][@"client_id"]]  name:[NSString stringWithFormat:@"姓名：%@",_data[indexPath.row][@"name"]] project:[NSString stringWithFormat:@"项目：%@",_data[indexPath.row][@"project_name"]] time: _data[indexPath.row][@"create_time"] messageimg:[_data[indexPath.row][@"attribute"][@"is_read"] boolValue]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -127,7 +121,11 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
+//    next_vcx.url = _data[indexPath.row][@"api_url"];
+//    next_vc.extra_param = _data[indexPath.row][@"extra_param"];
     [self.navigationController pushViewController:next_vc animated:YES];
+   
+
 }
 
 

@@ -148,9 +148,9 @@
     }
     [_whiteView addSubview:_addressL];
     
-    _addressL.userInteractionEnabled = YES;
+    _whiteView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action_address)];
-    [_addressL addGestureRecognizer:tap];
+    [_whiteView addGestureRecognizer:tap];
     
     _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(342 *SIZE, 23 *SIZE, 8 *SIZE, 8 *SIZE)];
     _dropImg.image = [UIImage imageNamed:@"downarrow1"];

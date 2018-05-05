@@ -81,8 +81,8 @@
 
 -(void)dealloc
 {
-    self.items = nil;
     _previousBarButton = nil;
+    self.items = nil;
     _nextBarButton = nil;
     _titleBarButton = nil;
     _doneBarButton = nil;

@@ -46,6 +46,11 @@
 @property (nonatomic, strong) DropDownBtn *nextTimeBtn;
 
 @property (nonatomic, strong) UIButton *confirmBtn;
+
+@property (nonatomic , strong) UIView *voiceView;
+
+//@property (nonatomic , strong)
+
 @end
 
 @implementation FollowRecordVC
@@ -265,7 +270,7 @@
             label.text = @"跟进内容:";
         }else{
             
-            label.frame = CGRectMake(9 *SIZE, 420*SIZE+_chooseview.frame.size.height , 72 *SIZE, 10 *SIZE);
+            label.frame = CGRectMake(9 *SIZE, 432*SIZE+_chooseview.frame.size.height , 72 *SIZE, 10 *SIZE);
             label.font = [UIFont systemFontOfSize:10.5 *SIZE];
             label.text = @"下次回访时间:";
         }
@@ -287,7 +292,14 @@
     _followTV.clipsToBounds = YES;
     [view2 addSubview:_followTV];
     
-    _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 408 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
+//    UIButton *voicebtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [voicebtn setTitle:@"语音录入" forState:UIControlStateNormal];
+//    voicebtn.frame = CGRectMake(80*SIZE, 384 *SIZE+_chooseview.frame.size.height, 30*SIZE, 22*SIZE);
+//    [voicebtn addTarget:self action:@selector(action_voice) forControlEvents:UIControlEventTouchUpInside];
+//    [view2 addSubview:voicebtn];
+//
+    
+    _nextTimeBtn = [[DropDownBtn alloc] initWithFrame:CGRectMake(80 *SIZE, 420 *SIZE+_chooseview.frame.size.height, 258 *SIZE, 33 *SIZE)];
     NSDate * date = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];//两天后
     _nextTimeBtn.content.text = [self gettime:date];
     [view2 addSubview:_nextTimeBtn];
@@ -304,6 +316,11 @@
     [_confirmBtn addTarget:self action:@selector(action_sure) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_confirmBtn];
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width, 56.7 *SIZE+view1.frame.size.height+view2.frame.size.height+70*SIZE)];
+}
+
+-(void)action_voice
+{
+    [self.view addSubview:self.voiceView];
 }
 
 -(void)action_sure
@@ -336,5 +353,13 @@
     }];
 }
 
-
+-(UIView *)voiceView
+{
+    if (!_voiceView) {
+        _voiceView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_Height-167*SIZE, 360*SIZE, 167*SIZE)];
+        _voiceView.backgroundColor = [UIColor whiteColor];
+        
+    }
+    return _voiceView;
+}
 @end

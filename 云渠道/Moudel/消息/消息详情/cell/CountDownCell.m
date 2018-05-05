@@ -134,7 +134,7 @@
 {
     //获得当前时间
     NSDate *now = [NSDate date];
-    NSTimeInterval time=[endtime doubleValue]+8*3600;
+    NSTimeInterval time=[endtime doubleValue];
     NSTimeInterval oldTime = [now timeIntervalSince1970];
     NSInteger timeDifference = time-oldTime;
     _day =  (int)timeDifference /86400;
