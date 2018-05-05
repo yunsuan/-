@@ -303,7 +303,7 @@
 
 - (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSArray * namearr = @[@"学校",@"医院",@"购物",@"餐饮",@"楼盘"];
+    NSArray * namearr = @[@"教育",@"交通",@"医院",@"购物",@"餐饮"];
     [self beginSearchWithname:namearr[indexPath.row]];
 }
 

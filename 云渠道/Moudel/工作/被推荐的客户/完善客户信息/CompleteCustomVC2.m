@@ -28,6 +28,8 @@
     NSMutableDictionary *_dic;
     NSMutableArray *_peopleArr;
     NSDate *_date;
+    NSString *_agentname;
+    NSString *_agentid;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -37,6 +39,8 @@
 @property (nonatomic, strong) DropDownBtn *numBtn;
 
 @property (nonatomic, strong) DropDownBtn *purposeBtn;
+
+@property (nonatomic, strong) DropDownBtn *agentbtn;
 
 @property (nonatomic, strong) BorderTF *adviserTF;
 
@@ -113,6 +117,8 @@
     _imgUrl2 = [@[] mutableCopy];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
+    _agentname =@"";
+    _agentid = @"0";
 }
 
 - (void)ActionAddBtn:(UIButton *)btn{
@@ -205,6 +211,21 @@
     [[[UIApplication sharedApplication] keyWindow] addSubview:self.dateView];
 }
 
+-(void)action_agent
+{
+    SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_peopleArr];
+    WS(weakself);
+    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+        
+        weakself.agentbtn.content.text = MC;
+        weakself.agentbtn.str = [NSString stringWithFormat:@"%@",ID];
+        _agentid = ID;
+        _agentname = MC;
+    };
+    [self.view addSubview:view];
+   
+}
+
 - (void)ActionTagNumBtn:(UIButton *)btn{
     
     switch (btn.tag) {
@@ -244,30 +265,8 @@
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
 
-    if (!_numBtn.content.text) {
-        
-        [self showContent:@"请选择到访人数"];
-        return;
-    }
 
-    if (!_purposeBtn.content.text) {
-
-        [self showContent:@"请选择置业目的"];
-        return;
-    }
-
-    if (!_adviserTF.textfield.text) {
-
-        [self showContent:@"请输入置业顾问"];
-        return;
-    }
-
-    if (!_signTF1.textfield.text) {
-
-        [self showContent:@"请输入签字人姓名"];
-        return;
-    }
-
+  
     if (!_imgArr1.count) {
 
         [self showContent:@"请选择到访照片"];
@@ -281,17 +280,7 @@
         return;
 
     }
-    if (!_timeL.text) {
-
-        [self showContent:@"请选择到访时间"];
-        return;
-    }
-
-    if (!_markView.text) {
-
-        [self showContent:@"请填写备注"];
-        return;
-    }
+ 
 
     NSString *sign;
     if (_num == 0) {
@@ -326,9 +315,15 @@
         }
     }
 
+    if (!(_datadic[@"yunsuan_id"]&&_datadic[@"yunsuan_url"]))
+    {
+        _agentname = _adviserTF.textfield.text;
+    }
+    
     [_dic setObject:_numBtn.str forKey:@"visit_num"];
     [_dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
-    [_dic setObject:_adviserTF.textfield.text forKey:@"property_advicer_real"];
+    [_dic setObject:_agentid forKey:@"property_advicer_wish_id"];
+    [_dic setObject:_agentname forKey:@"property_advicer_wish"];
     [_dic setObject:sign forKey:@"signatory"];
     [_dic setObject:[_imgUrl1 componentsJoinedByString:@","] forKey:@"visit_img_url"];
     [_dic setObject:[_imgUrl2 componentsJoinedByString:@","] forKey:@"verify_img_url"];
@@ -631,7 +626,7 @@
 
 - (void)initUI{
     
-    self.titleLabel.text = @"完善客户信息";
+    self.titleLabel.text = @"确认到访信息";
     self.navBackgroundView.hidden = NO;
     
     _scrolleView = [[UIScrollView alloc] init];
@@ -717,9 +712,16 @@
                 }
                 case 2:
                 {
+                    if (_datadic[@"yunsuan_id"]&&_datadic[@"yunsuan_url"]) {
+                        _agentbtn = [[DropDownBtn alloc]initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
+                        [_agentbtn addTarget:self action:@selector(action_agent) forControlEvents:UIControlEventTouchUpInside];
+                        [_infoView addSubview:_agentbtn];
+                    }
+                    else{
                     BorderTF *borderTF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
                     _adviserTF = borderTF;
                     [_infoView addSubview:_adviserTF];
+                    }
                     break;
                 }
                 default:

@@ -89,6 +89,7 @@
     
     _imgArr = [@[] mutableCopy];
     _imgUrl = [@[] mutableCopy];
+    _cardType =@"";
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 }
@@ -152,17 +153,7 @@
         }
     }
 
-    if (!_cardType.length) {
-
-        [self showContent:@"请选择证件类型"];
-        return;
-    }
-
-    if (!_codeTF.textfield.text.length) {
-
-        [self showContent:@"请填写证件号"];
-        return;
-    }
+ 
 
     if (!_imgArr.count) {
 
@@ -179,6 +170,7 @@
     [dic setObject:_codeTF.textfield.text forKey:@"card_num"];
     [dic setObject:[_imgUrl componentsJoinedByString:@","] forKey:@"card_img_url"];
     CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
+    nextVC.datadic = _dataDic;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -449,7 +441,7 @@
 
 - (void)initUI{
     
-    self.titleLabel.text = @"完善客户信息";
+    self.titleLabel.text = @"确认到访信息";
     self.navBackgroundView.hidden = NO;
     
     _scrolleView = [[UIScrollView alloc] init];
