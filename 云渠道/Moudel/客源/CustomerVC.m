@@ -194,6 +194,7 @@
         }else{
 //            [self showContent:resposeObject[@"msg"]];
         }
+        [_customerTable reloadData];
     } failure:^(NSError *error) {
         
         [_customerTable.mj_footer endRefreshing];

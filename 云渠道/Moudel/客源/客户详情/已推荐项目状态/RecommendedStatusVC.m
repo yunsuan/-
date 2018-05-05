@@ -62,7 +62,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    cell.dataDic = _dataArr[indexPath.row];
+    cell.dataDic = _dataArr[indexPath.section];
 //    cell.titleL.text = _dataArr[indexPath.row][@"project_name"];
     
     
