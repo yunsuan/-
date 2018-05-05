@@ -15,6 +15,8 @@
 #import "CustomDetailTableCell4.h"
 #import "AddTagVC.h"
 #import "AddTagView.h"
+#import "RoomProjectVC.h"
+#import "RoomDetailVC1.h"
 
 @interface QuickAddRequireVC ()
 
@@ -424,10 +426,14 @@
             
             for (UIViewController *vc in self.navigationController.viewControllers) {
                 
-                if ([vc isKindOfClass:[CustomerVC class]]) {
+                if ([vc isKindOfClass:[RoomDetailVC1 class]]) {
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
-                    [self.navigationController popToViewController:vc animated:YES];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        [self.navigationController popToViewController:vc animated:YES];
+                    });
+                    
                 }
             }
         }
