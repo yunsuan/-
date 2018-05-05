@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 @interface CompleteCustomVC2 : BaseViewController
+@property (nonatomic , strong) NSDictionary *datadic;
 
 - (instancetype)initWithData:(NSDictionary *)dic;
 
