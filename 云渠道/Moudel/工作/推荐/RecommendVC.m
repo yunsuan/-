@@ -58,12 +58,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActionRecommendReload) name:@"recommendReload" object:nil];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"新房推荐";
     [self initDateSouce];
     [self initUI];
     [self UnComfirmRequest];
+}
+
+- (void)ActionRecommendReload{
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
+        
+        [self UnComfirmRequest];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self ValidRequest];
+        
+    });
 }
 
 -(void)initDateSouce

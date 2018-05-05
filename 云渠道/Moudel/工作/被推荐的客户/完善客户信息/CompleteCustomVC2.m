@@ -12,6 +12,7 @@
 #import "AuthenCollCell.h"
 #import "SinglePickView.h"
 #import "DateChooseView.h"
+#import "RecommendVC.h"
 
 @interface CompleteCustomVC2 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 {
@@ -361,7 +362,15 @@
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
 
-
+            for (UIViewController *vc in self.navigationController.viewControllers) {
+                
+                if ([vc isKindOfClass:[RecommendVC class]]) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                    [self.navigationController popToViewController:vc animated:YES];
+                }
+                
+            }
         }
     } failure:^(NSError *error) {
 
