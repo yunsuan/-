@@ -24,7 +24,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        namearr = @[@"学校",@"医院",@"购物",@"餐饮",@"楼盘"];
+        namearr = @[@"教育",@"交通",@"医院",@"购物",@"餐饮"];;
         self.backgroundColor = [UIColor whiteColor];
         [self initUI];
     }

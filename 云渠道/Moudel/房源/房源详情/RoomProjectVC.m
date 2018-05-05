@@ -303,7 +303,7 @@
 
 - (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSArray * namearr = @[@"教育",@"交通",@"医院",@"购物",@"餐饮"];
+    NSArray * namearr = @[@"教育",@"公交站",@"医院",@"购物",@"餐饮"];
     [self beginSearchWithname:namearr[indexPath.row]];
 }
 
@@ -701,6 +701,8 @@
 
 - (void)beginSearchWithname:(NSString *)name{
     
+    
+  
     _poisearch = [self poisearch];
     BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
     boundSearchOption.pageIndex = 0;
@@ -718,6 +720,7 @@
     {
         NSLog(@"范围内检索发送失败");
     }
+    
 }
 
 #pragma mark implement BMKSearchDelegate

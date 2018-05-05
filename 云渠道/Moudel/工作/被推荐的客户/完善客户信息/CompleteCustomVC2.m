@@ -213,16 +213,41 @@
 
 -(void)action_agent
 {
-    SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_peopleArr];
-    WS(weakself);
-    view.selectedBlock = ^(NSString *MC, NSString *ID) {
+    
+    [BaseRequest GET:Advicer_URL parameters:@{
+                                              @"project_id":_datadic[@"project_id"]
+                                      }
+             success:^(id resposeObject) {
+                 
+                 if ([resposeObject[@"code"] integerValue]==200) {
+                     NSArray *data = resposeObject[@"data"][@"rows"];
+                     NSMutableArray * agent = [[NSMutableArray alloc]init];
+                     for (int i =0; i<data.count; i++) {
+                         NSDictionary *dic = @{
+                                               @"param":data[i][@"RYXM"],
+                                               @"id":data[i][@"ID"]
+                                               };
+                         [agent addObject:dic];
+                     }
+                     
+                     SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:agent];
+                     WS(weakself);
+                     view.selectedBlock = ^(NSString *MC, NSString *ID) {
+                         
+                         weakself.agentbtn.content.text = MC;
+                         weakself.agentbtn.str = [NSString stringWithFormat:@"%@",ID];
+                         _agentid = ID;
+                         _agentname = MC;
+                     };
+                     [self.view addSubview:view];
+                     
+                 }
+                 
         
-        weakself.agentbtn.content.text = MC;
-        weakself.agentbtn.str = [NSString stringWithFormat:@"%@",ID];
-        _agentid = ID;
-        _agentname = MC;
-    };
-    [self.view addSubview:view];
+    } failure:^(NSError *error) {
+        
+    }];
+
    
 }
 

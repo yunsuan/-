@@ -19,6 +19,8 @@ static NSString *const Base_Net = @"http://120.27.21.136:2798/";
 //配置文件
 static NSString *const Config_URL = @"config";
 
+static NSString *const Advicer_URL = @"user/yunsuan/advicer";
+
 #pragma mark ---  登录注册  ---
 //1登录
 static NSString *const Login_URL = @"agent/user/login";
