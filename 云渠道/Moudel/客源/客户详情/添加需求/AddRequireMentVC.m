@@ -190,7 +190,7 @@
         }else if (_btnNum == 2){
             
             weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            weakself.addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
         }else{
             
             weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
@@ -494,10 +494,6 @@
             
             [dic setObject:_floorTF2.str forKey:@"floor_max"];
         }
-        //        if (_houseTypeBtn.str.length) {
-        //
-        //            [dic setObject:_houseTypeBtn.str forKey:@"ladder_ratio"];
-        //        }
         if (_standardTF.str.length) {
             
             [dic setObject:_standardTF.str forKey:@"decorate"];
@@ -553,6 +549,7 @@
                     
                     if ([vc isKindOfClass:[CustomerVC class]]) {
                         
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
                         [self.navigationController popToViewController:vc animated:YES];
                     }
                 }
