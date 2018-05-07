@@ -9,6 +9,7 @@
 #import "WorkMessageVC.h"
 #import "WorkMessageCell.h"
 #import "InfoDetailVC.h"
+#import "TypeOneVC.h"
 
 @interface WorkMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -30,7 +31,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"工作消息";
+    self.titleLabel.text = @"推荐成功";
     [self postWithpage:@"1"];
     [self initDateSouce];
     [self initUI];
@@ -120,11 +121,32 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
-//    next_vcx.url = _data[indexPath.row][@"api_url"];
-//    next_vc.extra_param = _data[indexPath.row][@"extra_param"];
-    [self.navigationController pushViewController:next_vc animated:YES];
-   
+    NSInteger i = [_data[indexPath.row][@"message_type"] integerValue];
+    switch (i) {
+        case 1:
+        {
+            TypeOneVC *next_vc = [[TypeOneVC alloc]init];
+            next_vc.client_id = _data[indexPath.row][@"client_id"];
+            next_vc.message_id = _data[indexPath.row][@"message_id"];
+            next_vc.titleinfo = _data[indexPath.row][@"title"];
+            [self.navigationController pushViewController:next_vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+
 
 }
 

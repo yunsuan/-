@@ -137,10 +137,20 @@
     NSTimeInterval time=[endtime doubleValue];
     NSTimeInterval oldTime = [now timeIntervalSince1970];
     NSInteger timeDifference = time-oldTime;
-    _day =  (int)timeDifference /86400;
-    _hour =(int)timeDifference%86400/3600;
-    _min = (int)timeDifference%86400%3600/60;
-    _sec = (int)timeDifference%86400%3600%60;
+    
+    if (time - oldTime>0) {
+        _day =  (int)timeDifference /86400;
+        _hour =(int)timeDifference%86400/3600;
+        _min = (int)timeDifference%86400%3600/60;
+        _sec = (int)timeDifference%86400%3600%60;
+    }
+    else{
+        _day =  0;
+        _hour =0;
+        _min = 0;
+        _sec = 0;
+    }
+
 //     修改倒计时标签及显示内容
 
     _dayL.text = [NSString stringWithFormat:@"%ld天",_day];
