@@ -30,7 +30,7 @@
     [self.contentView addSubview:label];
     
     _bigImg = [[UIImageView alloc] init];
-    _bigImg.backgroundColor = YJGreenColor;
+    _bigImg.backgroundColor = [UIColor whiteColor];
     _bigImg.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_bigImg];
     

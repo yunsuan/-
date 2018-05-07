@@ -43,7 +43,7 @@
 
 - (void)initUI{
     
-    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 21 *SIZE, 50 *SIZE, 14 *SIZE)];
+    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 21 *SIZE, 100 *SIZE, 14 *SIZE)];
     _nameL.textColor = YJTitleLabColor;
     _nameL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_nameL];

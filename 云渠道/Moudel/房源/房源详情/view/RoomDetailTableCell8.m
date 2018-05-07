@@ -23,7 +23,7 @@
 - (void)initUI{
     
     _headImg = [[UIImageView alloc] init];
-    _headImg.backgroundColor = YJGreenColor;
+    _headImg.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_headImg];
     [_headImg mas_makeConstraints:^(MASConstraintMaker *make) {
         

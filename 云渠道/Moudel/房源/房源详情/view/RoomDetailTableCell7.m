@@ -41,7 +41,7 @@
     for (int i = 0; i < 3; i++) {
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(28 *SIZE, 50 *SIZE + i * 69 *SIZE, 22 *SIZE, 22 *SIZE)];
-        img.backgroundColor = YJGreenColor;
+        img.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:img];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(69 *SIZE, 54 *SIZE + i * 70 *SIZE, 280 *SIZE, 13 *SIZE)];
