@@ -78,6 +78,12 @@
 #define LOGINSUCCESS @"logInSuccessdentifier"
 #define HUANPASSWORD @"1111"
 
+#define UmengAppkey @"5ac9debcb27b0a2147000050"
+#define QQAPPID @"1106811849"
+#define QQAppkey @"Yik2oC5WcDQ5IOrpc"
+#define WechatAppkey @""
+#define WechatSecret
+
 #define __KPropretyLaebl(key) @property(nonatomic,copy) UILabel *key;
 #define __KPropretyImageView(key) @property(nonatomic,copy) UIImageView *key;
 #define __KPropretyButton(key) @property(nonatomic,copy) UIButton *key;
