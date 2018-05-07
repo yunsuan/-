@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface UserModel : NSObject
 @property (nonatomic , strong) NSString *Token;
 @property (nonatomic , strong) NSString *Account;
