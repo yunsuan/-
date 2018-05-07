@@ -53,7 +53,7 @@
     [self.view addSubview:_whiteView];
     
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(100 *SIZE, 24 *SIZE, 67 *SIZE, 67 *SIZE)];
-    _headImg.backgroundColor = YJGreenColor;
+    _headImg.backgroundColor = [UIColor whiteColor];
     _headImg.layer.cornerRadius = 33.5 *SIZE;
     _headImg.clipsToBounds = YES;
     _headImg.contentMode = UIViewContentModeScaleAspectFit;

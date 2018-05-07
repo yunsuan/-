@@ -180,7 +180,7 @@
     _searchBar.returnKeyType = UIReturnKeySearch;
     
     UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
-    rightImg.backgroundColor = YJGreenColor;
+    rightImg.backgroundColor = [UIColor whiteColor];
     _searchBar.rightView = rightImg;
     _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
     _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;

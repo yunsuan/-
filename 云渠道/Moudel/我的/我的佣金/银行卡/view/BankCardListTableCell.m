@@ -25,7 +25,7 @@
     _backImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 15 *SIZE, 340 *SIZE, 117 *SIZE)];
     _backImg.layer.cornerRadius = 3 *SIZE;
     _backImg.clipsToBounds = YES;
-    _backImg.backgroundColor = YJGreenColor;
+    _backImg.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_backImg];
     
     _logoImg = [[UIImageView alloc] initWithFrame:CGRectMake(23 *SIZE, 31 *SIZE, 28 *SIZE, 28 *SIZE)];

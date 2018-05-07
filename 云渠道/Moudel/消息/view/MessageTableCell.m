@@ -25,7 +25,7 @@
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 17 *SIZE, 50 *SIZE, 50 *SIZE)];
     _headImg.layer.cornerRadius = 3 *SIZE;
     _headImg.clipsToBounds = YES;
-    _headImg.backgroundColor = YJGreenColor;
+    _headImg.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_headImg];
     
     _titleL = [[UILabel alloc] initWithFrame:CGRectMake(77 *SIZE, 25 *SIZE, 200 *SIZE, 14 *SIZE)];

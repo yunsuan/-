@@ -170,7 +170,7 @@
     _imgScroll.delegate = self;
     _imgScroll.showsVerticalScrollIndicator = NO;
     _imgScroll.showsHorizontalScrollIndicator = NO;
-    _imgScroll.backgroundColor = YJGreenColor;
+    _imgScroll.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_imgScroll];
     
 //    _ImgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
