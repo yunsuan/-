@@ -12,6 +12,7 @@
 #import "UnpaidBrokerageVC.h"
 #import "BrokerageRecordVC.h"
 #import "IDcardAuthenticationVC.h"
+#import "IdentifyingVC.h"
 
 @interface MyBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -54,6 +55,8 @@
         }
         case 1:
         {
+            IdentifyingVC *nextVC = [[IdentifyingVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 2:

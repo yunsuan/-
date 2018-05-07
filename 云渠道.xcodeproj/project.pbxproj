@@ -44,6 +44,9 @@
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
 		0C342FD02080ACD50058406D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FCF2080ACD50058406D /* UserInfoModel.m */; };
+		0C382E6D20A037D6005472CD /* IdentifyingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C382E6C20A037D6005472CD /* IdentifyingVC.m */; };
+		0C382E7020A03A01005472CD /* IdentifyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C382E6F20A03A01005472CD /* IdentifyTableCell.m */; };
+		0C382E7320A03C7B005472CD /* IdentifyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C382E7220A03C7B005472CD /* IdentifyHeader.m */; };
 		0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */; };
 		0C3AD5592068EF750059CE02 /* RoomDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5582068EF750059CE02 /* RoomDetailTableCell.m */; };
 		0C3AD55C2069DA980059CE02 /* RoomDetailTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD55B2069DA980059CE02 /* RoomDetailTableHeader.m */; };
@@ -341,6 +344,12 @@
 		0C342FB9207E01510058406D /* CustomRequireModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomRequireModel.m; sourceTree = "<group>"; };
 		0C342FCE2080ACD50058406D /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		0C342FCF2080ACD50058406D /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		0C382E6B20A037D6005472CD /* IdentifyingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentifyingVC.h; sourceTree = "<group>"; };
+		0C382E6C20A037D6005472CD /* IdentifyingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentifyingVC.m; sourceTree = "<group>"; };
+		0C382E6E20A03A01005472CD /* IdentifyTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentifyTableCell.h; sourceTree = "<group>"; };
+		0C382E6F20A03A01005472CD /* IdentifyTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentifyTableCell.m; sourceTree = "<group>"; };
+		0C382E7120A03C7B005472CD /* IdentifyHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentifyHeader.h; sourceTree = "<group>"; };
+		0C382E7220A03C7B005472CD /* IdentifyHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdentifyHeader.m; sourceTree = "<group>"; };
 		0C3AD5542068E5C30059CE02 /* RoomDetailCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailCollCell.h; sourceTree = "<group>"; };
 		0C3AD5552068E5C30059CE02 /* RoomDetailCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailCollCell.m; sourceTree = "<group>"; };
 		0C3AD5572068EF750059CE02 /* RoomDetailTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell.h; sourceTree = "<group>"; };
@@ -863,6 +872,12 @@
 			children = (
 				0C08BF71206CD9C7005BB3B4 /* IDcardAuthenticationVC.h */,
 				0C08BF72206CD9C7005BB3B4 /* IDcardAuthenticationVC.m */,
+				0C382E6B20A037D6005472CD /* IdentifyingVC.h */,
+				0C382E6C20A037D6005472CD /* IdentifyingVC.m */,
+				0C382E6E20A03A01005472CD /* IdentifyTableCell.h */,
+				0C382E6F20A03A01005472CD /* IdentifyTableCell.m */,
+				0C382E7120A03C7B005472CD /* IdentifyHeader.h */,
+				0C382E7220A03C7B005472CD /* IdentifyHeader.m */,
 			);
 			path = "身份证认证";
 			sourceTree = "<group>";
@@ -2461,6 +2476,7 @@
 				0C342FD02080ACD50058406D /* UserInfoModel.m in Sources */,
 				0C06B1F7209D7DBB00F11993 /* CustomListVC.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
+				0C382E6D20A037D6005472CD /* IdentifyingVC.m in Sources */,
 				0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */,
@@ -2483,6 +2499,7 @@
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
+				0C382E7020A03A01005472CD /* IdentifyTableCell.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
@@ -2646,6 +2663,7 @@
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */,
 				0C08BF66206CBC0B005BB3B4 /* BrokerageDetailTableCell2.m in Sources */,
+				0C382E7320A03C7B005472CD /* IdentifyHeader.m in Sources */,
 				0CB6BAFF2074A82D00921C75 /* HouseTypeTableCell2.m in Sources */,
 				0CF04F6C207C62D800A45F4A /* NomineeCell3.m in Sources */,
 				0CEC62EB208DEB86006EC0BD /* RoomBrokerageTableCell2.m in Sources */,

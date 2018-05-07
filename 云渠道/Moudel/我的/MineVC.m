@@ -76,7 +76,10 @@
     _nameL.textColor = YJContentLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
 
-    if ([UserInfoModel defaultModel].account) {
+    if ([UserInfoModel defaultModel].name) {
+        
+        _nameL.text = [UserInfoModel defaultModel].name;
+    }else{
         
         _nameL.text = [UserInfoModel defaultModel].account;
     }

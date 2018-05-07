@@ -39,6 +39,7 @@
 
 - (void)initUI{
     
+    self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"我的二维码";
     self.rightBtn.hidden = NO;
     [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
@@ -53,24 +54,48 @@
     [self.view addSubview:_whiteView];
     
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(100 *SIZE, 24 *SIZE, 67 *SIZE, 67 *SIZE)];
-    _headImg.backgroundColor = [UIColor whiteColor];
+    _headImg.backgroundColor = [UIColor greenColor];
     _headImg.layer.cornerRadius = 33.5 *SIZE;
     _headImg.clipsToBounds = YES;
-    _headImg.contentMode = UIViewContentModeScaleAspectFit;
+    _headImg.contentMode = UIViewContentModeScaleAspectFill;
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+
+        if (error) {
+
+            _headImg.image = [UIImage imageNamed:@""];
+        }
+    }];
     [_whiteView addSubview:_headImg];
     
     
     _tagImg = [[UIImageView alloc] initWithFrame:CGRectMake(90 *SIZE, 101 *SIZE, 88 *SIZE, 34 *SIZE)];
-    _tagImg.image = [UIImage imageNamed:@""];
+    _tagImg.image = [UIImage imageNamed:@"label"];
     [_whiteView addSubview:_tagImg];
     
     _genderImg = [[UIImageView alloc] initWithFrame:CGRectMake(19 *SIZE, 11 *SIZE, 12 *SIZE, 12 *SIZE)];
-    _genderImg.image = [UIImage imageNamed:@"man"];
+//    _genderImg.image = [UIImage imageNamed:@"man"];
+    if ([[UserInfoModel defaultModel].sex integerValue] == 1) {
+        
+        _genderImg.image = [UIImage imageNamed:@"man_2"];
+    }else if ([[UserInfoModel defaultModel].sex integerValue] == 2){
+        
+        _genderImg.image = [UIImage imageNamed:@"girl_2"];
+    }else{
+        
+        _genderImg.image = [UIImage imageNamed:@""];
+    }
     [_tagImg addSubview:_genderImg];
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(36 *SIZE, 11 *SIZE, 50 *SIZE, 12 *SIZE)];
     _nameL.textColor = CH_COLOR_white;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
+    if ([UserInfoModel defaultModel].name) {
+        
+        _nameL.text = [UserInfoModel defaultModel].name;
+    }else{
+        
+        _nameL.text = [UserInfoModel defaultModel].account;
+    }
     [_tagImg addSubview:_nameL];
     
     _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(50 *SIZE, 148 *SIZE, 167 *SIZE, 167 *SIZE)];
