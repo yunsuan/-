@@ -10,6 +10,8 @@
 #import "CYLTabBarControllerConfig.h"
 #import "RegisterVC.h"
 #import "FindPassWordVC.h"
+#import <UMSocialQQHandler.h>
+#import <UMSocialWechatHandler.h>
 
 @interface LoginVC ()
 @property (nonatomic , strong) UITextField *Account;
@@ -48,7 +50,17 @@
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
         line.backgroundColor = COLOR(130, 130, 130, 1);
         [self.view addSubview:line];
+        
+        UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
+        line2.backgroundColor = YJ170Color;
+        [self.view addSubview:line2];
     }
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
+    label.textColor = YJ170Color;
+    label.font = [UIFont systemFontOfSize:13 *SIZE];
+    label.text = @"第三方账号登录";
+    [self.view addSubview:label];
 }
 
 -(void)Register
@@ -65,12 +77,89 @@
     [self.navigationController pushViewController:next_vc animated:YES];
 }
 
+- (void)ActionQQBtn:(UIButton *)btn{
+    
+    [self getUserInfoForPlatform:UMSocialPlatformType_QQ];
+}
+
+- (void)ActionWechatBtn:(UIButton *)btn{
+    
+    [self getUserInfoForPlatform:UMSocialPlatformType_WechatSession];
+}
+
+- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
+{
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:nil completion:^(id result, NSError *error) {
+        UMSocialUserInfoResponse *resp = result;
+        // 第三方登录数据(为空表示平台未提供)
+        // 授权数据
+        NSLog(@" uid: %@", resp.uid);
+        NSLog(@" openid: %@", resp.openid);
+        NSLog(@" accessToken: %@", resp.accessToken);
+        NSLog(@" refreshToken: %@", resp.refreshToken);
+        NSLog(@" expiration: %@", resp.expiration);
+        // 用户数据
+        NSLog(@" name: %@", resp.name);
+        NSLog(@" iconurl: %@", resp.iconurl);
+        NSLog(@" gender: %@", resp.unionGender);
+        // 第三方平台SDK原始数据
+        NSLog(@" originalResponse: %@", resp.originalResponse);
+    }];
+}
+
+- (void)getAuthWithUserInfoFromQQ
+{
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            // 授权信息
+            NSLog(@"QQ uid: %@", resp.uid);
+            NSLog(@"QQ openid: %@", resp.openid);
+            NSLog(@"QQ unionid: %@", resp.unionId);
+            NSLog(@"QQ accessToken: %@", resp.accessToken);
+            NSLog(@"QQ expiration: %@", resp.expiration);
+            // 用户信息
+            NSLog(@"QQ name: %@", resp.name);
+            NSLog(@"QQ iconurl: %@", resp.iconurl);
+            NSLog(@"QQ gender: %@", resp.unionGender);
+            // 第三方平台SDK源数据
+            NSLog(@"QQ originalResponse: %@", resp.originalResponse);
+        }
+    }];
+}
+
+// 在需要进行获取用户信息的UIViewController中加入如下代码
+#import <UMShare/UMShare.h>
+- (void)getAuthWithUserInfoFromWechat
+{
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            // 授权信息
+            NSLog(@"Wechat uid: %@", resp.uid);
+            NSLog(@"Wechat openid: %@", resp.openid);
+            NSLog(@"Wechat unionid: %@", resp.unionId);
+            NSLog(@"Wechat accessToken: %@", resp.accessToken);
+            NSLog(@"Wechat refreshToken: %@", resp.refreshToken);
+            NSLog(@"Wechat expiration: %@", resp.expiration);
+            // 用户信息
+            NSLog(@"Wechat name: %@", resp.name);
+            NSLog(@"Wechat iconurl: %@", resp.iconurl);
+            NSLog(@"Wechat gender: %@", resp.unionGender);
+            // 第三方平台SDK源数据
+            NSLog(@"Wechat originalResponse: %@", resp.originalResponse);
+        }
+    }];
+}
+
 -(UIImageView *)Headerimg
 {
     if (!_Headerimg) {
         _Headerimg = [[UIImageView alloc]initWithFrame:CGRectMake(142*SIZE, 82*SIZE, 78*SIZE, 58*SIZE)];
-        _Headerimg.backgroundColor =[UIColor redColor];
-        
+//        _Headerimg.backgroundColor =[UIColor redColor];
+        _Headerimg.image = [UIImage imageNamed:@"logo_2"];
     }
     return _Headerimg;
 }
@@ -135,7 +224,7 @@
 -(UITextField *)Account{
     if (!_Account) {
         _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 219*SIZE, 314*SIZE, 15*SIZE)];
-        _Account.placeholder = @"请输入手机号码/云算号";
+        _Account.placeholder = @"请输入手机号";
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
         [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         _Account.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -180,8 +269,10 @@
 -(UIButton *)QQBtn{
     if (!_QQBtn) {
         _QQBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _QQBtn.frame = CGRectMake(106.7*SIZE, 456.3*SIZE+NAVIGATION_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-        _QQBtn.backgroundColor = YJBlueBtnColor;
+        _QQBtn.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+//        _QQBtn.backgroundColor = YJBlueBtnColor;
+        [_QQBtn addTarget:self action:@selector(ActionQQBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_QQBtn setBackgroundImage:[UIImage imageNamed:@"qq_2"] forState:UIControlStateNormal];
     }
     return _QQBtn;
 }
@@ -191,8 +282,10 @@
 {
     if (!_WEIBOBTN) {
         _WEIBOBTN = [UIButton buttonWithType:UIButtonTypeCustom];
-        _WEIBOBTN.frame = CGRectMake(213.3*SIZE, 456.3*SIZE+NAVIGATION_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-        _WEIBOBTN.backgroundColor = YJBlueBtnColor;
+        _WEIBOBTN.frame = CGRectMake(213.3*SIZE, 544*SIZE + STATUS_BAR_HEIGHT , 40*SIZE, 40*SIZE);
+//        _WEIBOBTN.backgroundColor = YJBlueBtnColor;
+        [_WEIBOBTN addTarget:self action:@selector(ActionWechatBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_WEIBOBTN setBackgroundImage:[UIImage imageNamed:@"wechat_2"] forState:UIControlStateNormal];
     }
     return _WEIBOBTN;
     

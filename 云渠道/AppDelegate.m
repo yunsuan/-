@@ -19,6 +19,8 @@
 // 如果需要使用idfa功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
 
+#import <UMShare/UMShare.h>
+
 @interface AppDelegate ()<JPUSHRegisterDelegate,BMKMapViewDelegate>
 {
     
@@ -53,12 +55,26 @@
     if (!ret) {
         NSLog(@"manager start failed!");
     }
-//    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
+    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
     BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:@"Guided"];
     if (flag == YES) {
 
-        CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
-        _window.rootViewController = tabBarControllerConfig.tabBarController;
+        if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
+            
+            
+            CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
+            _window.rootViewController = tabBarControllerConfig.tabBarController;
+        }else {
+            
+            //未登录
+            LoginVC *mainLogin_vc = [[LoginVC alloc] init];
+            UINavigationController *mainLogin_nav = [[UINavigationController alloc] initWithRootViewController:mainLogin_vc];
+            mainLogin_nav.navigationBarHidden = YES;
+            _window.rootViewController = mainLogin_nav;
+        }
+
+//        CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
+//        _window.rootViewController = tabBarControllerConfig.tabBarController;
 //        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Guided"];
 //        [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
@@ -97,22 +113,38 @@
                           channel:@"appstore"
                  apsForProduction:@"NO"
             advertisingIdentifier:nil];
-    
-//    if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
-//
-//
-//
-//    }else {
-//
-//        //未登录
-//        LoginVC *mainLogin_vc = [[LoginVC alloc] init];
-//        UINavigationController *mainLogin_nav = [[UINavigationController alloc] initWithRootViewController:mainLogin_vc];
-//        mainLogin_nav.navigationBarHidden = YES;
-//        _window.rootViewController = mainLogin_nav;
-//    }
+
+    [self configUSharePlatforms];
+    [self confitUShareSettings];
     
     
     return YES;
+}
+
+- (void)confitUShareSettings
+{
+    /*
+     * 打开图片水印
+     */
+    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    //[UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+}
+- (void)configUSharePlatforms
+{
+    [[UMSocialManager defaultManager] setUmSocialAppkey:UmengAppkey];
+    /* 设置微信的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxdc1e388c3822c80b" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQAPPID/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+    /* 设置新浪的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
 }
 
 - (void)comeBackLoginVC {
@@ -133,6 +165,39 @@
     CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
     _window.rootViewController = tabBarControllerConfig.tabBarController;
 }
+
+
+//U盟回调
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager]  handleOpenURL:url options:options];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+
 
 
 //极光方法
