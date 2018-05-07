@@ -55,6 +55,9 @@ typedef NS_OPTIONS(NSUInteger, ConfigState){
 
 @property (nonatomic, strong) UIView *line;
 
+//返回按钮；
+- (void)ActionMaskBtn:(UIButton *)btn;
+
 //弹出框
 - (void)alertControllerWithNsstring:(NSString *)str And:(NSString *)str1 WithCancelBlack:(void(^)(void))CancelBlack WithDefaultBlack:(void(^)(void))defaultBlack;
 

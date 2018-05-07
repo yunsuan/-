@@ -55,7 +55,6 @@
     
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
 - (void)viewDidLoad {

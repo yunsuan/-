@@ -23,6 +23,8 @@
 #import "QuickRoomVC.h"
 #import "AddTagVC.h"
 #import "RecommendedStatusVC.h"
+#import "CustomSearchVC.h"
+#import "CustomerVC.h"
 
 @interface CustomDetailVC ()<UITableViewDelegate,UITableViewDataSource,CustomTableHeaderDelegate,CustomTableHeader2Delegate,CustomTableHeader3Delegate>
 {
@@ -58,9 +60,26 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
+- (void)ActionMaskBtn:(UIButton *)btn{
+    
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        
+        if ([vc isKindOfClass:[CustomSearchVC class]]) {
+            
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [self.navigationController popToViewController:vc animated:YES];
+        }else{
+            
+            if ([vc isKindOfClass:[CustomerVC class]]) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {

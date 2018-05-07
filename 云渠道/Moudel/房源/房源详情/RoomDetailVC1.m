@@ -10,7 +10,8 @@
 #import "RoomAnalyzeVC.h"
 #import "RoomBrokerageVC.h"
 #import "RoomDetailCollCell.h"
-
+#import "HouseSearchVC.h"
+#import "RoomVC.h"
 
 @interface RoomDetailVC1 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
 {
@@ -53,9 +54,27 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
+- (void)ActionMaskBtn:(UIButton *)btn{
+    
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        
+        if ([vc isKindOfClass:[HouseSearchVC class]]) {
+            
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [self.navigationController popToViewController:vc animated:YES];
+        }else{
+            
+            if ([vc isKindOfClass:[RoomVC class]]) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
