@@ -22,6 +22,10 @@
 
 - (void)ActionTagBtn:(UIButton *)btn{
     
+    if (self.transmitTagBtnBlock) {
+        
+        self.transmitTagBtnBlock(btn.tag);
+    }
     [self removeFromSuperview];
 }
 
@@ -57,6 +61,7 @@
         btn.frame = CGRectMake(40 *SIZE + i * 73 *SIZE, 28 *SIZE, 50 *SIZE, 71 *SIZE);
 //        btn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
         [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+        btn.tag = i;
 //        [btn setTitleEdgeInsets:UIEdgeInsetsMake(34 *sIZE, -25 *sIZE, 5 *sIZE, 25 *sIZE)];
         [btn setImage:[UIImage imageNamed:imgArr[i]] forState:UIControlStateNormal];
 //        [btn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
