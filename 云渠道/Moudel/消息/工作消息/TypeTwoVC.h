@@ -9,5 +9,7 @@
 #import "BaseViewController.h"
 
 @interface TypeTwoVC : BaseViewController
-
+@property (nonatomic , strong) NSString *client_id;
+@property (nonatomic , strong) NSString *message_id;
+@property (nonatomic , strong) NSString *titleinfo;
 @end

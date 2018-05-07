@@ -10,6 +10,7 @@
 #import "WorkMessageCell.h"
 #import "InfoDetailVC.h"
 #import "TypeOneVC.h"
+#import "TypeTwoVC.h"
 
 @interface WorkMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -27,12 +28,18 @@
 
 @implementation WorkMessageVC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self postWithpage:@"1"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"推荐成功";
-    [self postWithpage:@"1"];
+    
     [self initDateSouce];
     [self initUI];
     
@@ -134,7 +141,11 @@
             break;
         case 2:
         {
-            
+            TypeTwoVC *next_vc = [[TypeTwoVC alloc]init];
+            next_vc.client_id = _data[indexPath.row][@"client_id"];
+            next_vc.message_id = _data[indexPath.row][@"message_id"];
+            next_vc.titleinfo = _data[indexPath.row][@"title"];
+            [self.navigationController pushViewController:next_vc animated:YES];
         }
             break;
         case 3:

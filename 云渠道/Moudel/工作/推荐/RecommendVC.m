@@ -47,7 +47,7 @@
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 
-@property (nonatomic, strong) InvalidView *invalidView;
+//@property (nonatomic, strong) InvalidView *invalidView;
 
 -(void)initUI;
 -(void)initDateSouce;
@@ -573,8 +573,9 @@
             }];
             
             UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                self.invalidView.client_id = _unComfirmArr[indexPath.row][@"client_id"];
-                [[UIApplication sharedApplication].keyWindow addSubview:self.invalidView];
+                InvalidView * invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+                invalidView.client_id = _unComfirmArr[indexPath.row][@"client_id"];
+                [[UIApplication sharedApplication].keyWindow addSubview:invalidView];
             }];
             
             [alert addAction:valid];
@@ -713,14 +714,14 @@
 }
 
 
-- (InvalidView *)invalidView{
-    
-    if (!_invalidView) {
-        
-        _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-    }
-    return _invalidView;
-}
+//- (InvalidView *)invalidView{
+//
+//    if (!_invalidView) {
+//
+//        _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+//    }
+//    return _invalidView;
+//}
 
 
 @end

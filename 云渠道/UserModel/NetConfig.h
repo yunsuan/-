@@ -166,6 +166,12 @@ static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
 //工作消息列表
 static NSString *const WorkingInfoList_URL = @"agent/message/work/list";
 
+//经纪人待确认客户消息
+static NSString *const WaitConfirminfo_URL = @"agent/message/work/waitConfirmDetail";
+
+//经纪人有效到访客户详细
+static NSString *const Valueinfo_URL = @"agent/message/work/confirmDetail";
+
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"agent/work/getRecommendList";
 

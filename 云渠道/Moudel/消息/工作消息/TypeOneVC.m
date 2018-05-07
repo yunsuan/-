@@ -31,7 +31,7 @@
 
 
 -(void)post{
-    [BaseRequest GET:WaitConfirmDetail_URL parameters:@{
+    [BaseRequest GET:WaitConfirminfo_URL parameters:@{
                                                         @"client_id":_client_id,
                                                         @"message_id":_message_id
                                                         }

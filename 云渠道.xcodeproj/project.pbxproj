@@ -195,6 +195,7 @@
 		1044B3F4209C6BA1002D9BAE /* SingleHouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3F3209C6BA1002D9BAE /* SingleHouseCell.m */; };
 		1044B3FB20A03654002D9BAE /* TypeOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FA20A03654002D9BAE /* TypeOneVC.m */; };
 		1044B3FE20A04227002D9BAE /* TypeTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FD20A04227002D9BAE /* TypeTwoVC.m */; };
+		1044B40120A04FD7002D9BAE /* TypeThreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40020A04FD7002D9BAE /* TypeThreeVC.m */; };
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
 		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
@@ -633,6 +634,8 @@
 		1044B3FA20A03654002D9BAE /* TypeOneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeOneVC.m; sourceTree = "<group>"; };
 		1044B3FC20A04227002D9BAE /* TypeTwoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeTwoVC.h; sourceTree = "<group>"; };
 		1044B3FD20A04227002D9BAE /* TypeTwoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeTwoVC.m; sourceTree = "<group>"; };
+		1044B3FF20A04FD7002D9BAE /* TypeThreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeThreeVC.h; sourceTree = "<group>"; };
+		1044B40020A04FD7002D9BAE /* TypeThreeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeThreeVC.m; sourceTree = "<group>"; };
 		105E18892060E1F50031558D /* CompanyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
 		105E188A2060E1F50031558D /* CompanyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		105E188C2060E21C0031558D /* PeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
@@ -995,6 +998,8 @@
 				1044B3FA20A03654002D9BAE /* TypeOneVC.m */,
 				1044B3FC20A04227002D9BAE /* TypeTwoVC.h */,
 				1044B3FD20A04227002D9BAE /* TypeTwoVC.m */,
+				1044B3FF20A04FD7002D9BAE /* TypeThreeVC.h */,
+				1044B40020A04FD7002D9BAE /* TypeThreeVC.m */,
 			);
 			path = "工作消息";
 			sourceTree = "<group>";
@@ -2652,6 +2657,7 @@
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
+				1044B40120A04FD7002D9BAE /* TypeThreeVC.m in Sources */,
 				1044B3F4209C6BA1002D9BAE /* SingleHouseCell.m in Sources */,
 				0C08BF7B206DCEEB005BB3B4 /* AttentionTableCell.m in Sources */,
 				0CBD85A7208863C200E7B183 /* TagView2.m in Sources */,
