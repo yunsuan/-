@@ -9,8 +9,8 @@
 #import "HouseSearchVC.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
-#import "RoomDetailVC.h"
 #import "RoomListModel.h"
+#import "RoomDetailVC1.h"
 
 @interface HouseSearchVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -187,7 +187,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    RoomDetailVC *nextVC = [[RoomDetailVC alloc] init];
+    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:_dataArr[indexPath.row]];
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
     switch (indexPath.row) {

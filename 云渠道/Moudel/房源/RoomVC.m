@@ -7,7 +7,6 @@
 //
 
 #import "RoomVC.h"
-#import "RoomDetailVC.h"
 #import "RoomDetailVC1.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
@@ -93,6 +92,13 @@
     self.navBackgroundView.hidden = NO;
     [self initDateSouce];
     [self initUI];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
 -(void)initDateSouce

@@ -33,6 +33,13 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
+}
+
 -(void)initUI
 {
     [self.view addSubview:self.Mytableview];

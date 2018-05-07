@@ -51,6 +51,13 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
  
@@ -59,11 +66,6 @@
 //    [self setNeedsStatusBarAppearanceUpdate];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-}
 
 - (void)viewDidAppear:(BOOL)animated{
     

@@ -9,7 +9,6 @@
 #import "QuickSearchVC.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
-#import "RoomDetailVC.h"
 #import "RoomListModel.h"
 #import "CustomDetailVC.h"
 

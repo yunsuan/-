@@ -36,6 +36,13 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
