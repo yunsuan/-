@@ -58,11 +58,10 @@
                 _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
             }else{
                 
-//                [self showContent:@"暂无分析"];
+                
             }
         }else if([resposeObject[@"code"] integerValue] == 400){
             
-//            [self showContent:resposeObject[@"msg"]];
         }
         [_analyzeTable reloadData];
     } failure:^(NSError *error) {

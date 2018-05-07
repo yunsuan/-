@@ -33,6 +33,12 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+}
+
 -(void)initUI
 {
     [self.view addSubview:self.Mytableview];

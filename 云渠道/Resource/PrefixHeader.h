@@ -82,7 +82,7 @@
 #define QQAPPID @"1106811849"
 #define QQAppkey @"Yik2oC5WcDQ5IOrpc"
 #define WechatAppkey @""
-#define WechatSecret
+#define WechatSecret @""
 
 #define __KPropretyLaebl(key) @property(nonatomic,copy) UILabel *key;
 #define __KPropretyImageView(key) @property(nonatomic,copy) UIImageView *key;

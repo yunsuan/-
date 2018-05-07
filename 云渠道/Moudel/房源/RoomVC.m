@@ -7,7 +7,6 @@
 //
 
 #import "RoomVC.h"
-#import "RoomDetailVC.h"
 #import "RoomDetailVC1.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
@@ -93,6 +92,12 @@
     self.navBackgroundView.hidden = NO;
     [self initDateSouce];
     [self initUI];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
 }
 
 -(void)initDateSouce
@@ -534,7 +539,9 @@
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
      
-        [searchViewController.navigationController pushViewController:[[HouseSearchVC alloc] initWithTitle:searchText city:_city] animated:YES];
+        HouseSearchVC *nextVC = [[HouseSearchVC alloc] initWithTitle:searchText city:_city];
+//        nextVC.hidesBottomBarWhenPushed = YES;
+        [searchViewController.navigationController pushViewController:nextVC animated:YES];
     }];
     // 3. 设置风格
     searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
@@ -543,8 +550,11 @@
     // 4. 设置代理
     searchViewController.delegate = self;
     // 5. 跳转到搜索控制器
+//    [self.navigationController pushViewController:searchViewController animated:YES];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    [self presentViewController:nav  animated:NO completion:nil];
+////    nav.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:nav animated:YES];
+    [self.navigationController presentViewController:nav  animated:NO completion:nil];
 }
 
 
