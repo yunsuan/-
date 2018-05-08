@@ -216,35 +216,162 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //添加处理APNs通知回调方法
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
-    // Required
+    
+    
     NSDictionary * userInfo = notification.request.content.userInfo;
+    UNNotificationRequest *request = notification.request; // 收到推送的请求
+    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    
+    NSNumber *badge = content.badge;  // 推送消息的角标
+    NSString *body = content.body;    // 推送消息体
+    UNNotificationSound *sound = content.sound;  // 推送消息的声音
+    NSString *subtitle = content.subtitle;  // 推送消息的副标题
+    NSString *title = content.title;  // 推送消息的标题
+    NSLog(@"%@",userInfo);
+    
+    
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        
     }
-    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+    else {
+        // 判断为本地通知
+        NSLog(@"iOS10 前台收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
+    }
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
 }
 
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
-    // Required
+    
     NSDictionary * userInfo = response.notification.request.content.userInfo;
+    UNNotificationRequest *request = response.notification.request; // 收到推送的请求
+    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    
+    NSNumber *badge = content.badge;  // 推送消息的角标
+    NSString *body = content.body;    // 推送消息体
+    UNNotificationSound *sound = content.sound;  // 推送消息的声音
+    NSString *subtitle = content.subtitle;  // 推送消息的副标题
+    NSString *title = content.title;  // 推送消息的标题
+    NSLog(@"%@",userInfo);
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        
+        
+//        UserModel *model = [UserModel defaultModel];
+//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
+//        if (model.isLogin) {
+//            MessageVC *next_vc = [[MessageVC alloc] init];
+//            next_vc.hidesBottomBarWhenPushed = YES;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+//            nav.navigationBar.hidden = YES;
+//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+//
+//            }];
+//        }
     }
+    else {
+        // 判断为本地通知
+        NSLog(@"iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
+    }
+    
+    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:[badge integerValue]];
+    
     completionHandler();  // 系统要求执行这个方法
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    
+    [JPUSHService showLocalNotificationAtFront:notification identifierKey:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
+    //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     completionHandler(UIBackgroundFetchResultNewData);
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        
+//        UserModel *model = [UserModel defaultModel];
+//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
+//        if (model.isLogin) {
+//            MessageVC *next_vc = [[MessageVC alloc] init];
+//            next_vc.hidesBottomBarWhenPushed = YES;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+//            nav.navigationBar.hidden = YES;
+//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+//
+//            }];
+//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
+//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
+//            [application cancelAllLocalNotifications];
+//
+//        }
+        
+    }
+    else//杀死状态下，直接跳转到跳转页面。
+    {
+//        UserModel *model = [UserModel defaultModel];
+//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
+//        if (model.isLogin) {
+//            MessageVC *next_vc = [[MessageVC alloc] init];
+//            next_vc.hidesBottomBarWhenPushed = YES;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+//            nav.navigationBar.hidden = YES;
+//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+//
+//            }];
+//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
+//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
+//            [application cancelAllLocalNotifications];
+//
+//        }
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
+    NSLog(@"%@",userInfo);
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        
+//        UserModel *model = [UserModel defaultModel];
+//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
+//        if (model.isLogin) {
+//            MessageVC *next_vc = [[MessageVC alloc] init];
+//            next_vc.hidesBottomBarWhenPushed = YES;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+//            nav.navigationBar.hidden = YES;
+//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+//                
+//            }];
+//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
+//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
+//            [application cancelAllLocalNotifications];
+//            
+//        }
+    }
+    else//杀死状态下，直接跳转到跳转页面。
+    {
+//        UserModel *model = [UserModel defaultModel];
+//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
+//        if (model.isLogin) {
+//            MessageVC *next_vc = [[MessageVC alloc] init];
+//            next_vc.hidesBottomBarWhenPushed = YES;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+//            nav.navigationBar.hidden = YES;
+//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+//
+//            }];
+//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
+//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
+//            [application cancelAllLocalNotifications];
+//
+//        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
