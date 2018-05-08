@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _titlelab = [[UILabel alloc]initWithFrame:CGRectMake(9.7*SIZE, 14*SIZE  , 80*SIZE, 14*SIZE)];
-        _titlelab.textColor = YJTitleLabColor;
+        _titlelab.textColor = YJContentLabColor;
         _titlelab.font = [UIFont systemFontOfSize:13.3*SIZE];
         [self.contentView addSubview:_titlelab];
         _contentlab = [[UILabel alloc]init];
@@ -23,7 +23,7 @@
         _contentlab.numberOfLines = 0;
         _contentlab.lineBreakMode = NSLineBreakByCharWrapping;
         //    [_contentlab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        _contentlab.textColor = YJContentLabColor;
+        _contentlab.textColor = YJTitleLabColor;
         [self.contentView addSubview:_contentlab];
         //    __weak typeof(self)weakSelf=self;
         [_contentlab mas_makeConstraints:^(MASConstraintMaker *make) {

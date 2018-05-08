@@ -43,6 +43,7 @@
     NSString *_focusId;
     NSMutableArray *_houseArr;
     NSMutableArray *_peopleArr;
+    NSMutableDictionary *_buildDic;
     NSString *_phone;
 }
 
@@ -97,6 +98,7 @@
     _model = [[RoomDetailModel alloc] init];
     _houseArr = [@[] mutableCopy];
     _peopleArr = [@[] mutableCopy];
+    _buildDic = [@{} mutableCopy];
     
     dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
     
@@ -185,6 +187,10 @@
         _phone = [NSString stringWithFormat:@"%@",data[@"butter_tel"]];
     }
     
+    if ([data[@"build_info"] isKindOfClass:[NSDictionary class]]) {
+        
+        _buildDic = [NSMutableDictionary dictionaryWithDictionary:data[@"build_info"]];
+    }
     
     if ([data[@"dynamic"] isKindOfClass:[NSDictionary class]]) {
         
@@ -259,7 +265,7 @@
     
     NSLog(@"%ld",btn.tag);
     if (btn.tag == 1) {
-        BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]init];
+        BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]initWithProjectId:_projectId];
         [self.navigationController pushViewController:next_vc animated:YES];
     }
     
@@ -475,10 +481,17 @@
                 cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.developL.text = @"阳光物业公司";
-            cell.openL.text = @"2017年02月20日";
-            cell.payL.text = @"2019年02月";
+//            cell.developL.text = @"阳光物业公司";
+//            cell.openL.text = @"2017年02月20日";
+//            cell.payL.text = @"2019年02月";
             cell.timeL.text = @"70年";
+            if (_model.developer_name) {
+
+                cell.developL.text = _model.developer_name;
+            }
+            cell.openL.text = _buildDic[@"open_time"];
+            cell.payL.text = _buildDic[@"handing_room_time"];
+            
             cell.moreBtn.tag = indexPath.section;
             [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
             return cell;

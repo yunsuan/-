@@ -30,7 +30,7 @@
         _contentlab.numberOfLines = 0;
         _contentlab.lineBreakMode = NSLineBreakByCharWrapping;
         //    [_contentlab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        _contentlab.textColor = YJContentLabColor;
+        _contentlab.textColor = YJTitleLabColor;
         [self.contentView addSubview:_contentlab];
 //            __weak typeof(self)weakSelf=self;
         [_contentlab mas_makeConstraints:^(MASConstraintMaker *make) {

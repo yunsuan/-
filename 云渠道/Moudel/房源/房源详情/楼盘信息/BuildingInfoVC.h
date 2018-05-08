@@ -10,4 +10,6 @@
 
 @interface BuildingInfoVC : BaseViewController
 
+- (instancetype)initWithProjectId:(NSString *)projectId;
+
 @end
