@@ -47,6 +47,7 @@
 		0C0BED2320A18F7A005A16A1 /* ComplaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2220A18F7A005A16A1 /* ComplaintCell.m */; };
 		0C0BED2720A191FF005A16A1 /* DealedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2620A191FF005A16A1 /* DealedVC.m */; };
 		0C0BED2B20A193E9005A16A1 /* UnDealVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2A20A193E9005A16A1 /* UnDealVC.m */; };
+		0C0BED2F20A197C4005A16A1 /* FailedDealVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2E20A197C4005A16A1 /* FailedDealVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -356,6 +357,8 @@
 		0C0BED2620A191FF005A16A1 /* DealedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DealedVC.m; sourceTree = "<group>"; };
 		0C0BED2920A193E9005A16A1 /* UnDealVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnDealVC.h; sourceTree = "<group>"; };
 		0C0BED2A20A193E9005A16A1 /* UnDealVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnDealVC.m; sourceTree = "<group>"; };
+		0C0BED2D20A197C4005A16A1 /* FailedDealVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FailedDealVC.h; sourceTree = "<group>"; };
+		0C0BED2E20A197C4005A16A1 /* FailedDealVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FailedDealVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1076,6 +1079,7 @@
 		0C0BED1320A17DAA005A16A1 /* 客源成交 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0BED2C20A197AE005A16A1 /* 未成交详情 */,
 				0C0BED2820A193D7005A16A1 /* 待成交详情 */,
 				0C0BED2420A191EB005A16A1 /* 成交详情 */,
 				0C0BED1720A184C8005A16A1 /* view */,
@@ -1116,6 +1120,15 @@
 				0C0BED2A20A193E9005A16A1 /* UnDealVC.m */,
 			);
 			path = "待成交详情";
+			sourceTree = "<group>";
+		};
+		0C0BED2C20A197AE005A16A1 /* 未成交详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BED2D20A197C4005A16A1 /* FailedDealVC.h */,
+				0C0BED2E20A197C4005A16A1 /* FailedDealVC.m */,
+			);
+			path = "未成交详情";
 			sourceTree = "<group>";
 		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
@@ -2750,6 +2763,7 @@
 				0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */,
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				0CF04F91207CAFB000A45F4A /* PYSearchSuggestionViewController.m in Sources */,
+				0C0BED2F20A197C4005A16A1 /* FailedDealVC.m in Sources */,
 				0CBD859D2087365100E7B183 /* RoomMatchListVC.m in Sources */,
 				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
