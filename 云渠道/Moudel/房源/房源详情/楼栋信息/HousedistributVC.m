@@ -47,24 +47,18 @@
 @property (strong, nonatomic)  UIImage *imgSeatLoversRightNormal;
 @property (strong, nonatomic)  UIImage *imgSeatLoversRightHadBuy;
 @property (strong, nonatomic)  UIImage *imgSeatLoversRightSelected;
-
 @property (assign, nonatomic)  BOOL showCenterLine;
 @property (assign, nonatomic)  BOOL showRowIndex;
 @property (assign, nonatomic)  BOOL rowIndexStick;  /**< 是否让showIndexView粘着左边 */
 @property (strong, nonatomic)  UIColor *rowIndexViewColor;
 @property (assign, nonatomic)  NSInteger rowIndexType; //座位左边行号提示样式
 @property (strong, nonatomic)  NSMutableArray *arrayRowIndex; //座位号左边行号提示（用它则忽略
-
 @property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) KyoRowIndexView *rowIndexView;
 @property (strong, nonatomic) KyoCenterLineView *centerLineView;
-
 @property (strong, nonatomic) NSMutableDictionary *dictSeat;
-
 @property (retain, nonatomic) SMScrollView *myScrollView;
 @property (strong, nonatomic) NSMutableDictionary *dictSeatState;
-
-
 @property ( nonatomic , strong ) UIView *maskView;
 @property ( nonatomic , strong ) UIView *maskView1;
 @property ( nonatomic , strong ) UIView *tanchuanView;
@@ -84,7 +78,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = COLOR(243, 243, 243, 1);
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"1栋1单元详情";
+    self.titleLabel.text = _titleinfo;
     [self post];
     
     
@@ -378,7 +372,7 @@
         return;
     }
     _fjxx = _datasouce[row][@"LIST"][column];
-    _headarr = @[@"房源",@"价格",[NSString stringWithFormat:@"物业 %@",_fjxx[@"WYMC"]]];
+    _headarr = @[@"房源",@"价格",[NSString stringWithFormat:@"物业：%@",_fjxx[@"WYMC"]]];
     _titlearr = @[@[@"房号：",@"楼栋：",@"单元：",@"楼层："],@[@"计价规则：",@"单价：",@"总价："],@[@"建筑面积：",@"套内面积：",@"户型信息："]];
     _contentarr = @[@[_fjxx[@"FJMC"],_fjxx[@"LDMC"],_fjxx[@"DYMC"],_fjxx[@"FLOORNUM"]],@[_fjxx[@"JJGZ"],_fjxx[@"JZDJ"],_fjxx[@"FJZJ"]],@[_fjxx[@"JZMJ"],_fjxx[@"TNMJ"],_fjxx[@"HXMC"]]];
 
@@ -573,14 +567,15 @@
 -(UIView *)tanchuanView
 {
     if (!_tanchuanView) {
-        _tanchuanView = [[UIView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE,158*SIZE)];
+        _tanchuanView = [[UIView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE,123.3*SIZE)];
         _tanchuanView.backgroundColor = COLOR(240, 240, 240, 1);
         _tanchuanView.hidden =YES;
 
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0,1, 360*SIZE, 123*SIZE)];
         view.backgroundColor = [UIColor whiteColor];
-        NSArray *arr =  @[@[@"单元个数：2",@"单元个数：2"],@[@"单元个数：2",@"单元个数：2"],@[@"单元个数：2",@"单元个数：2"],@[@"单元个数：2",@"单元个数：2"]];
-        for (int i=0; i<4; i++) {
+        
+        NSArray *arr =  @[@[[NSString stringWithFormat:@"总户数：%@",_LDdic[@"build_info"][@"total_house_num"]],[NSString stringWithFormat:@"开盘方式：%@",_LDdic[@"build_info"][@"open_way"]]],@[[NSString stringWithFormat:@"楼上层数：%@",_LDdic[@"build_info"][@"uppper_floor_num"]],[NSString stringWithFormat:@"楼下层数：%@",_LDdic[@"build_info"][@"down_floor_num"]]],@[[NSString stringWithFormat:@"开盘时间：%@",_LDdic[@"build_info"][@"open_time"]],[NSString stringWithFormat:@"交房时间：%@",_LDdic[@"build_info"][@"handing_room_time"]]]];
+        for (int i=0; i<3; i++) {
             for (int j=0; j<2; j++) {
                 UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(9.7*SIZE+j*200*SIZE, 13.3*SIZE+i*27.7*SIZE, 180*SIZE, 13*SIZE)];
                 lab.text = arr[i][j];
@@ -592,7 +587,7 @@
         [_tanchuanView addSubview:view];
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 123.3*SIZE, 360*SIZE, 33.3*SIZE);
+        btn.frame = CGRectMake(0, 90*SIZE, 360*SIZE, 33.3*SIZE);
         btn.backgroundColor = [UIColor whiteColor];
         UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"shang"]];
         img.frame = CGRectMake(171*SIZE, 10.7*SIZE, 18.7*SIZE, 12*SIZE);
@@ -650,9 +645,9 @@
     UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 266.7*SIZE, 40*SIZE)];
     backview.backgroundColor = [UIColor whiteColor];
     
-    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE , 0*SIZE, 266.7*SIZE, 0.5*SIZE)];
-    line.backgroundColor = YJTitleLabColor;
-    [backview addSubview:line];
+//    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE , 1*SIZE, 266.7*SIZE, 0.5*SIZE)];
+//    line.backgroundColor = YJ170Color;
+//    [backview addSubview:line];
     
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(0*SIZE , 13.7*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;

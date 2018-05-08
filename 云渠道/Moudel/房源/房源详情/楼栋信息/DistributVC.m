@@ -49,7 +49,7 @@
                  NSLog(@"%@",resposeObject);
                  
                  if ([resposeObject[@"code"] integerValue] ==200) {
-                     _dylist = resposeObject[@"data"][@"rows"];
+                     _dylist = resposeObject[@"data"];
                      [self setItemforchoosebuildingviewbyarr:_dylist];
                  }
                                                   }
@@ -90,7 +90,7 @@
         [self.selectView SetNumberOfItem:arr.count];
         self.selectView.frame = CGRectMake(75*SIZE, 174*SIZE, 212*SIZE, 49*SIZE*arr.count+49*SIZE);
         UILabel * lab = [[UILabel alloc]initWithFrame:CGRectMake(0,0 , 212*SIZE, 49*SIZE)];
-        lab.text = [NSString stringWithFormat:@"%@单元选择",_dylist[sender.tag-1000][@"LDMC"]];
+        lab.text = [NSString stringWithFormat:@"%@单元选择",_lddic[@"build_info"][@"build_name"]];
         lab.font = [UIFont systemFontOfSize:20*SIZE];
         lab.textAlignment = NSTextAlignmentCenter;
         lab.textColor = COLOR(68, 68, 68, 1);
@@ -129,6 +129,8 @@
     next_vc.project_id = _projiect_id;
     next_vc.build_id = _lddic[@"LDID"];
     next_vc.unit_id =_lddic[@"DYLIST"][sender.tag-100][@"DYID"];
+    next_vc.LDdic = _lddic;
+    next_vc.titleinfo = [NSString stringWithFormat:@"%@%@详情",_lddic[@"build_info"][@"build_name"],_lddic[@"DYLIST"][sender.tag-100][@"DYMC"]];
     [self.navigationController pushViewController:next_vc animated:YES];
 }
 
@@ -253,7 +255,7 @@
         btn.frame = CGRectMake(0, i*57*SIZE, 67*SIZE, 33*SIZE);
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 2*SIZE;
-        [btn setTitle:arr[i][@"LDMC"] forState:UIControlStateNormal];
+        [btn setTitle:arr[i][@"build_info"][@"build_name"] forState:UIControlStateNormal];
         [btn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:13*SIZE];
         btn.tag = 1000+i;

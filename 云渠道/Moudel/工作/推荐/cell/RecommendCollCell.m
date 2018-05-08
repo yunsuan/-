@@ -38,10 +38,11 @@
 - (void)setSelected:(BOOL)selected{
     
     if (selected) {
-        
+
         _titleL.textColor = YJTitleLabColor;
         _titleL.font = [UIFont systemFontOfSize:14 *SIZE];
         _line.hidden = NO;
+        
     }else{
         
         _titleL.textColor = YJ86Color;

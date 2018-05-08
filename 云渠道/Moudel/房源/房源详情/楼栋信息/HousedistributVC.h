@@ -18,7 +18,8 @@
 @property (nonatomic , strong)NSString *project_id;
 @property (nonatomic , strong)NSString *build_id;
 @property (nonatomic , strong)NSString *unit_id;
-
+@property (nonatomic , strong)NSDictionary *LDdic;
+@property (nonatomic , strong)NSString *titleinfo;
 
 //status 0 有返回按钮
 @property(nonatomic,strong)NSString * statusStr;
