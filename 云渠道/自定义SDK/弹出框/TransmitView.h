@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TransmitView;
+
+typedef void(^TransmitTagBtnBlock)(NSInteger index);
+
 @interface TransmitView : UIView
 
-
+@property (nonatomic, copy) TransmitTagBtnBlock transmitTagBtnBlock;
 
 @end

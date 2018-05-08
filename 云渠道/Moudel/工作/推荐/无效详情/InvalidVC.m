@@ -13,6 +13,7 @@
 #import "RecommendView.h"
 #import "TransmitView.h"
 #import "FailView.h"
+#import <UMShare/UMShare.h>
 
 @interface InvalidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -343,8 +344,39 @@
     if (!_transmitView) {
         
         _transmitView = [[TransmitView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        WS(weakSelf);
+        _transmitView.transmitTagBtnBlock = ^(NSInteger index) {
+          
+            if (index == 0) {
+                
+                [weakSelf shareImageAndTextToPlatformType:UMSocialPlatformType_QQ];
+            }
+        };
     }
     return _transmitView;
 }
 
+//
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"分享标题" descr:@"分享内容描述" thumImage:[UIImage imageNamed:@"icon"]];
+    //设置网页地址
+    shareObject.webpageUrl =@"http://mobile.umeng.com/social";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+        }
+    }];
+}
 @end
