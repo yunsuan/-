@@ -48,6 +48,8 @@
 		0C0BED2720A191FF005A16A1 /* DealedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2620A191FF005A16A1 /* DealedVC.m */; };
 		0C0BED2B20A193E9005A16A1 /* UnDealVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2A20A193E9005A16A1 /* UnDealVC.m */; };
 		0C0BED2F20A197C4005A16A1 /* FailedDealVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED2E20A197C4005A16A1 /* FailedDealVC.m */; };
+		0C0BED3320A1A222005A16A1 /* DealComplaintingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3220A1A222005A16A1 /* DealComplaintingVC.m */; };
+		0C0BED3620A1A23F005A16A1 /* DealComplaintResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3520A1A23F005A16A1 /* DealComplaintResultVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -359,6 +361,10 @@
 		0C0BED2A20A193E9005A16A1 /* UnDealVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnDealVC.m; sourceTree = "<group>"; };
 		0C0BED2D20A197C4005A16A1 /* FailedDealVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FailedDealVC.h; sourceTree = "<group>"; };
 		0C0BED2E20A197C4005A16A1 /* FailedDealVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FailedDealVC.m; sourceTree = "<group>"; };
+		0C0BED3120A1A221005A16A1 /* DealComplaintingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DealComplaintingVC.h; sourceTree = "<group>"; };
+		0C0BED3220A1A222005A16A1 /* DealComplaintingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DealComplaintingVC.m; sourceTree = "<group>"; };
+		0C0BED3420A1A23F005A16A1 /* DealComplaintResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DealComplaintResultVC.h; sourceTree = "<group>"; };
+		0C0BED3520A1A23F005A16A1 /* DealComplaintResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DealComplaintResultVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1079,6 +1085,7 @@
 		0C0BED1320A17DAA005A16A1 /* 客源成交 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0BED3020A1A1FF005A16A1 /* 申述详情 */,
 				0C0BED2C20A197AE005A16A1 /* 未成交详情 */,
 				0C0BED2820A193D7005A16A1 /* 待成交详情 */,
 				0C0BED2420A191EB005A16A1 /* 成交详情 */,
@@ -1129,6 +1136,17 @@
 				0C0BED2E20A197C4005A16A1 /* FailedDealVC.m */,
 			);
 			path = "未成交详情";
+			sourceTree = "<group>";
+		};
+		0C0BED3020A1A1FF005A16A1 /* 申述详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BED3120A1A221005A16A1 /* DealComplaintingVC.h */,
+				0C0BED3220A1A222005A16A1 /* DealComplaintingVC.m */,
+				0C0BED3420A1A23F005A16A1 /* DealComplaintResultVC.h */,
+				0C0BED3520A1A23F005A16A1 /* DealComplaintResultVC.m */,
+			);
+			path = "申述详情";
 			sourceTree = "<group>";
 		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
@@ -2589,6 +2607,7 @@
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
 				0C382E7020A03A01005472CD /* IdentifyTableCell.m in Sources */,
+				0C0BED3320A1A222005A16A1 /* DealComplaintingVC.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
@@ -2694,6 +2713,7 @@
 				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
 				10DBB1E5207C805F00CFE59D /* DistributVC.m in Sources */,
 				0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */,
+				0C0BED3620A1A23F005A16A1 /* DealComplaintResultVC.m in Sources */,
 				105E18B620637D310031558D /* UnpaidCell.m in Sources */,
 				0CF04F3E207B0F2900A45F4A /* UnconfirmDetailVC.m in Sources */,
 				0CB6BAFC2074A1BE00921C75 /* HouseTypeTableCell.m in Sources */,

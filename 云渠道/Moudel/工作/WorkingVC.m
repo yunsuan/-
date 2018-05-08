@@ -10,6 +10,7 @@
 #import "WorkingCell.h"
 #import "RecommendVC.h"
 #import "NomineeVC.h"
+#import "BarginVC.h"
 
 @interface WorkingVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -146,8 +147,19 @@
         }
     }
     else{
-        NomineeVC *nextVC = [[NomineeVC alloc] init];
-        [self.navigationController pushViewController:nextVC animated:YES];
+        if (indexPath.row == 0) {
+            
+            RecommendVC *nextVC = [[RecommendVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else if(indexPath.row == 1){
+            
+            NomineeVC *nextVC = [[NomineeVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            BarginVC *nextVC = [[BarginVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
     }
  
 }
