@@ -10,4 +10,6 @@
 
 @interface DealComplaintingVC : BaseViewController
 
+- (instancetype)initWithAppealId:(NSString *)appealId;
+
 @end
