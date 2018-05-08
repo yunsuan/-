@@ -190,7 +190,7 @@
         model.house_type = tempDic[@"house_type"];
         model.intent = tempDic[@"intent"];
         model.urgency = tempDic[@"urgency"];
-        model.need_id = tempDic[@"client_id"];
+        model.need_id = tempDic[@"need_id"];
         model.region = [NSMutableArray arrayWithArray:tempDic[@"region"]];
         
         [_dataArr addObject:model];
