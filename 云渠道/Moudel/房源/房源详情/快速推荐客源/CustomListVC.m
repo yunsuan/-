@@ -248,10 +248,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CustomerTableModel *model = _dataArr[indexPath.row];
-    CustomDetailVC *nextVC = [[CustomDetailVC alloc] initWithClientId:model.client_id];
-    nextVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:nextVC animated:YES];
+//    CustomerTableModel *model = _dataArr[indexPath.row];
+//    CustomDetailVC *nextVC = [[CustomDetailVC alloc] initWithClientId:model.client_id];
+//    nextVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)initUI{

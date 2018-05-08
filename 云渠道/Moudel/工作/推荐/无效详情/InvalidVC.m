@@ -210,13 +210,13 @@
             
             if (indexPath.row == 0) {
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效类型：%@",_dataDic[@"disabled_state"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]]];
             }else if (indexPath.row == 1){
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效原因：%@",_dataDic[@"disabled_reason"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效原因：%@",_dataDic[@"disabled_reason"]]];
             }else{
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间：%@",_dataDic[@"state_change_time"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"state_change_time"]]];
             }
             break;
         }
