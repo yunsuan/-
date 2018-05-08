@@ -169,9 +169,11 @@ static NSString *const WorkingInfoList_URL = @"agent/message/work/list";
 //经纪人待确认客户消息
 static NSString *const WaitConfirminfo_URL = @"agent/message/work/waitConfirmDetail";
 
-//经纪人有效到访客户详细
+//经纪人有效到访客户消息
 static NSString *const Valueinfo_URL = @"agent/message/work/confirmDetail";
 
+//经纪人无效客户消息
+static NSString *const Disabledinfo_URL = @"agent/message/work/disabledDetail";
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"agent/work/getRecommendList";
 

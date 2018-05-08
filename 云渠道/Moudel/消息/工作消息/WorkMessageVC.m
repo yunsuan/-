@@ -9,6 +9,7 @@
 #import "WorkMessageVC.h"
 #import "WorkMessageCell.h"
 #import "InfoDetailVC.h"
+#import "TypeZeroVC.h"
 #import "TypeOneVC.h"
 #import "TypeTwoVC.h"
 
@@ -68,11 +69,8 @@
                     [_data addObjectsFromArray:[arr mutableCopy]];
                     [_systemmsgtable reloadData];
                     [_systemmsgtable.mj_footer endRefreshing];
-                    
                 }
-                
             }
-            
             [_systemmsgtable.mj_header endRefreshing];
         }
     } failure:^(NSError *error) {
@@ -130,6 +128,15 @@
 {
     NSInteger i = [_data[indexPath.row][@"message_type"] integerValue];
     switch (i) {
+        case 0:
+        {
+            TypeZeroVC *next_vc = [[TypeZeroVC alloc]init];
+            next_vc.client_id = _data[indexPath.row][@"client_id"];
+            next_vc.message_id = _data[indexPath.row][@"message_id"];
+            next_vc.titleinfo = _data[indexPath.row][@"title"];
+            [self.navigationController pushViewController:next_vc animated:YES];
+        }
+            break;
         case 1:
         {
             TypeOneVC *next_vc = [[TypeOneVC alloc]init];
