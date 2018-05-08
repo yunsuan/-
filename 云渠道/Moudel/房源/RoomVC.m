@@ -560,25 +560,34 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
-    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
-    [[UIApplication sharedApplication].keyWindow addSubview:view];
-    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+    
+    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
         
-        if (![area isEqualToString:@"市辖区"]) {
-            
-            [_cityBtn setTitle:area forState:UIControlStateNormal];
-        }else{
-            
-            if (![city isEqualToString:@"市辖区"]) {
-                
-                [_cityBtn setTitle:city forState:UIControlStateNormal];
-            }else{
-                
-                [_cityBtn setTitle:province forState:UIControlStateNormal];
-            }
-        }
-
-    };
+        NSLog(@"%@",resposeObject);
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+//    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+//    [[UIApplication sharedApplication].keyWindow addSubview:view];
+//    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+//
+//        if (![area isEqualToString:@"市辖区"]) {
+//
+//            [_cityBtn setTitle:area forState:UIControlStateNormal];
+//        }else{
+//
+//            if (![city isEqualToString:@"市辖区"]) {
+//
+//                [_cityBtn setTitle:city forState:UIControlStateNormal];
+//            }else{
+//
+//                [_cityBtn setTitle:province forState:UIControlStateNormal];
+//            }
+//        }
+//
+//    };
 }
 
 - (void)ActionUpAndDownBtn:(UIButton *)btn{

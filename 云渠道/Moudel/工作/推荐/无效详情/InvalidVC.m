@@ -349,7 +349,7 @@
           
             if (index == 0) {
                 
-                [weakSelf shareImageAndTextToPlatformType:UMSocialPlatformType_QQ];
+                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
             }
         };
     }
@@ -376,6 +376,9 @@
             NSLog(@"************Share fail with error %@*********",error);
         }else{
             NSLog(@"response data is %@",data);
+            [self showContent:@"分享成功"];
+            [self.transmitView removeFromSuperview];
+            [self.recommendView removeFromSuperview];
         }
     }];
 }

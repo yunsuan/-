@@ -114,6 +114,9 @@ static NSString *const RecommendClient_URL = @"agent/client/recommend";
 static NSString *const ClientMatching_URL = @"agent/matching/client";
 
 #pragma mark ---  房源  ---
+//获取开放区域
+static NSString *const OpenCity_URL = @"user/project/openCity";
+
 //获取项目列表
 static NSString *const ProjectList_URL = @"user/project/list";
 
