@@ -8,6 +8,10 @@
 
 #import "BarginVC.h"
 #import "RecommendCollCell.h"
+#import "UnDealCell.h"
+#import "DealedCell.h"
+#import "FailedDealCell.h"
+#import "ComplaintCell.h"
 
 @interface BarginVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -356,6 +360,264 @@
     }
     
     [_MainTableView reloadData];
+}
+
+
+
+
+#pragma mark  ---  delegate   ---
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return 4;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    RecommendCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RecommendCollCell" forIndexPath:indexPath];
+    if (!cell) {
+        
+        cell = [[RecommendCollCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width / 4, 40 *SIZE)];
+    }
+    cell.titleL.text = _titleArr[indexPath.item];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    _index = indexPath.item;
+    [self.MainTableView reloadData];
+    if (_index == 0) {
+        
+        if (_unComfirmArr.count) {
+            
+            [_MainTableView reloadData];
+            if (_isLast1) {
+                
+                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }else{
+                
+                _MainTableView.mj_footer.state = MJRefreshStateIdle;
+            }
+        }else{
+            
+            [self UnComfirmRequest];
+        }
+        
+    }else if (_index == 1){
+        
+        if (_validArr.count) {
+            
+            [_MainTableView reloadData];
+            if (_isLast2) {
+                
+                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }else{
+                
+                _MainTableView.mj_footer.state = MJRefreshStateIdle;
+            }
+        }else{
+            
+            [self ValidRequest];
+        }
+    }else if (_index == 2){
+        
+        if (_inValidArr.count) {
+            
+            [_MainTableView reloadData];
+            if (_isLast3) {
+                
+                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }else{
+                
+                _MainTableView.mj_footer.state = MJRefreshStateIdle;
+            }
+        }else{
+            
+            [self InValidRequest];
+        }
+    }else{
+        
+        if (_appealArr.count) {
+            
+            [_MainTableView reloadData];
+            if (_isLast4) {
+                
+                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }else{
+                
+                _MainTableView.mj_footer.state = MJRefreshStateIdle;
+            }
+        }else{
+            
+            [self ApealRequest];
+        }
+    }
+}
+
+
+#pragma mark  ---  delegate   ---
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (_index == 0) {
+        
+        return _unComfirmArr.count;
+    }else if (_index == 1){
+        
+        return _validArr.count;
+    }else if (_index == 2){
+        
+        return _inValidArr.count;
+    }else{
+        
+        return _appealArr.count;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (_index == 2) {
+        
+        return 133 *SIZE;
+    }else if (_index == 3){
+        
+        return 94 *SIZE;
+    }
+    return 113 *SIZE;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (_index == 0) {
+    
+        static NSString *CellIdentifier = @"UnDealCell";
+        
+        UnDealCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[UnDealCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+//        cell.dataDic = _unComfirmArr[indexPath.row];
+        cell.tag = indexPath.row;
+        cell.unDealCellPhoneBtnBlock = ^(NSInteger index) {
+            
+            NSString *phone = [_unComfirmArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+                
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
+        };
+        
+        
+        return cell;
+    }else if (_index == 1){
+
+        static NSString *CellIdentifier = @"DealedCell";
+
+        DealedCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[DealedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+//        cell.dataDic = _validArr[indexPath.row];
+        cell.tag = indexPath.row;
+        cell.dealedCellPhoneBtnBlock = ^(NSInteger index) {
+
+            NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
+        };
+
+        return cell;
+    }else if(_index == 2){
+//
+        static NSString *CellIdentifier = @"FailedDealCell";
+
+        FailedDealCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[FailedDealCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+//        cell.dataDic = _inValidArr[indexPath.row];
+        cell.tag = indexPath.row;
+        cell.failedDealCellPhoneBtnBlock = ^(NSInteger index) {
+
+            NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
+        };
+        return cell;
+    }else{
+
+        static NSString *CellIdentifier = @"ComplaintCell";
+
+        ComplaintCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[ComplaintCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+//        cell.dataDic = _appealArr[indexPath.row];
+
+        return cell;
+    }
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (_index == 0) {
+        
+//        confirmDetailVC *nextVC = [[confirmDetailVC alloc] initWithClientId:_unComfirmArr[indexPath.row][@"client_id"]];
+//        [self.navigationController pushViewController:nextVC animated:YES];
+    }else if(_index == 1) {
+        
+//        NoValidVC *nextVC = [[NoValidVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];
+//        [self.navigationController pushViewController:nextVC animated:YES];
+    }else if(_index == 2){
+        
+//        NoInvalidVC *nextVC = [[NoInvalidVC alloc] initWithClientId:_inValidArr[indexPath.row][@"client_id"]];
+//        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        if ([_appealArr[indexPath.row][@"state"] isEqualToString:@"处理完成"]) {
+            
+//            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
+//            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+//            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
+//            [self.navigationController pushViewController:nextVC animated:YES];
+        }
+    }
 }
 
 

@@ -1,14 +1,14 @@
 //
-//  UnDealCell.m
+//  FailedDealCell.m
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/5/8.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "UnDealCell.h"
+#import "FailedDealCell.h"
 
-@implementation UnDealCell
+@implementation FailedDealCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,17 +32,22 @@
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
     
-    _recommendTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 66 *SIZE, 300 *SIZE, 11 *SIZE)];
+    _projectL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 65 *SIZE, 300 *SIZE, 11 *SIZE)];
+    _projectL.textColor = YJ86Color;
+    _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
+    [self.contentView addSubview:_projectL];
+    
+    _recommendTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 84 *SIZE, 300 *SIZE, 11 *SIZE)];
     _recommendTimeL.textColor = YJ86Color;
     _recommendTimeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_recommendTimeL];
     
-    _invalidTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 87 *SIZE, 300 *SIZE, 11 *SIZE)];
+    _invalidTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 105 *SIZE, 300 *SIZE, 11 *SIZE)];
     _invalidTimeL.textColor = YJBlueBtnColor;
     _invalidTimeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_invalidTimeL];
-
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 112 *SIZE, SCREEN_Width, SIZE)];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 132 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;
     [self.contentView addSubview:line];
 }

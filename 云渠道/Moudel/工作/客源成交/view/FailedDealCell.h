@@ -1,5 +1,5 @@
 //
-//  UnDealCell.h
+//  FailedDealCell.h
 //  云渠道
 //
 //  Created by 谷治墙 on 2018/5/8.
@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class UnDealCell;
+@class FailedDealCell;
 
-typedef void(^UnDealCellPhoneBtnBlock)(NSInteger index);
+typedef void(^FailedDealCellPhoneBtnBlock)(NSInteger index);
 
-@interface UnDealCell : UITableViewCell
+@interface FailedDealCell : UITableViewCell
 
-@property (nonatomic, copy) UnDealCellPhoneBtnBlock unDealCellPhoneBtnBlock;
+@property (nonatomic, copy) FailedDealCellPhoneBtnBlock failedDealCellPhoneBtnBlock;
 
 @property (nonatomic, strong) UILabel *nameL;
 
 @property (nonatomic, strong) UILabel *codeL;
+
+@property (nonatomic, strong) UILabel *projectL;
 
 @property (nonatomic, strong) UILabel *recommendTimeL;
 
