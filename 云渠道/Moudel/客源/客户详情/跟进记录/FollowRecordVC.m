@@ -325,7 +325,7 @@
 {
     
     
-    if (_followTF.text.length == 0) {
+    if (_followTV.text.length == 0) {
         [self showContent:@"请填写跟进记录"];
         return;
     }

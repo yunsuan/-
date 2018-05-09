@@ -3004,6 +3004,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = "云渠道Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.---Tests";
@@ -3019,6 +3020,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				INFOPLIST_FILE = "云渠道Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.---Tests";
@@ -3033,6 +3035,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
+				GCC_PREFIX_HEADER = "/Users/wjq/Documents/yunqudao/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道UITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.---UITests";
@@ -3047,6 +3050,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
+				GCC_PREFIX_HEADER = "/Users/wjq/Documents/yunqudao/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道UITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.---UITests";

@@ -272,7 +272,8 @@
 {
     NSData *data = [self resetSizeOfImageData:img maxSize:150];
     
-    [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"headimg"
+    [BaseRequest Updateimg:UploadFile_URL parameters:@{
+                                                @"file_name":@"headimg"
                                                     }
           constructionBody:^(id<AFMultipartFormData> formData) {
               [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
