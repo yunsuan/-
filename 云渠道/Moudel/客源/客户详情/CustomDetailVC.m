@@ -56,6 +56,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self RequestMethod];
     [self GetFollowRequestMethod];
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
@@ -98,7 +99,6 @@
     _projectArr = [@[] mutableCopy];
     _statusArr = [@[] mutableCopy];
     
-    [self RequestMethod];
 }
 
 - (void)MatchRequest{

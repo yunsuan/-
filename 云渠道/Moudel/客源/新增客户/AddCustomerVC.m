@@ -622,7 +622,8 @@
             [self showContent:resposeObject[@"msg"]];
             if ([resposeObject[@"code"] integerValue] ==200) {
                 
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             else{
                 

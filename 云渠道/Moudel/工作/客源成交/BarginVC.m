@@ -9,6 +9,7 @@
 #import "BarginVC.h"
 #import "RecommendCollCell.h"
 #import "UnDealCell.h"
+#import "UnDealVC.h"
 #import "DealedCell.h"
 #import "FailedDealCell.h"
 #import "ComplaintCell.h"
@@ -108,6 +109,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast1 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -183,6 +187,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast2 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -258,6 +265,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast3 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -333,6 +343,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast4 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -596,8 +609,8 @@
     
     if (_index == 0) {
         
-//        confirmDetailVC *nextVC = [[confirmDetailVC alloc] initWithClientId:_unComfirmArr[indexPath.row][@"client_id"]];
-//        [self.navigationController pushViewController:nextVC animated:YES];
+        UnDealVC *nextVC = [[UnDealVC alloc] initWithString:_unComfirmArr[indexPath.row][@"client_id"]];
+        [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 1) {
         
 //        NoValidVC *nextVC = [[NoValidVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];

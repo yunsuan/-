@@ -9,6 +9,8 @@
 #import "CYLTabBarControllerConfig.h"
 #import "LoginVC.h"
 #import "GuideVC.h"
+#import "SystemMessageVC.h"
+#import "WorkMessageVC.h"
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -113,6 +115,16 @@
                           channel:@"appstore"
                  apsForProduction:@"NO"
             advertisingIdentifier:nil];
+    //2.1.9版本新增获取registration id block接口。
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        if(resCode == 0){
+            NSLog(@"registrationID获取成功：%@",registrationID);
+            [self SetTagsAndAlias];
+        }
+        else{
+            NSLog(@"registrationID获取失败，code：%d",resCode);
+        }
+    }];
 
     [self configUSharePlatforms];
     [self confitUShareSettings];
@@ -143,6 +155,27 @@
     /* 设置微信的appKey和appSecret */
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxdc1e388c3822c80b" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQAPPID/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+}
+
+- (void)SetTagsAndAlias{
+    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
+    if (logIndentifier) {
+        NSSet *tags;
+//        tags =[NSSet setWithObjects:[NSString stringWithFormat:@"prt_s%@",[UserModel defaultModel].schoolId],[NSString stringWithFormat:@"prt_c%@",[UserModel defaultModel].classId], nil];
+//        NSLog(@"%@",tags);
+        [JPUSHService setAlias:[NSString stringWithFormat:@"agent_%@",[UserModel defaultModel].agent_id] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+            
+            NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , iAlias);;
+        } seq:0];
+//        [JPUSHService setTags:tags alias:[NSString stringWithFormat:@"prt_%@",[UserModel defaultModel].uid] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    }
+}
+
+-(void)tagsAliasCallback:(int)iResCode
+                    tags:(NSSet*)tags
+                   alias:(NSString*)alias
+{
+    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
 }
 
 - (void)comeBackLoginVC {
@@ -227,12 +260,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     UNNotificationSound *sound = content.sound;  // 推送消息的声音
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
-    NSLog(@"%@",userInfo);
+    NSLog(@"22222222%@",userInfo);
     
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
+        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
+        next_vc.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+        nav.navigationBar.hidden = YES;
+        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+            
+        }];
     }
     else {
         // 判断为本地通知
@@ -253,22 +293,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     UNNotificationSound *sound = content.sound;  // 推送消息的声音
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
-    NSLog(@"%@",userInfo);
+    NSLog(@"1111111%@",userInfo);
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
-        
-//        UserModel *model = [UserModel defaultModel];
-//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
-//        if (model.isLogin) {
-//            MessageVC *next_vc = [[MessageVC alloc] init];
-//            next_vc.hidesBottomBarWhenPushed = YES;
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-//            nav.navigationBar.hidden = YES;
-//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//        }
+//        SystemMessageVC *next_vc = [[SystemMessageVC alloc]init];
+//        [self.navigationController pushViewController:next_vc  animated:YES];
+        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
+        next_vc.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+        nav.navigationBar.hidden = YES;
+        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+            
+        }];
     }
     else {
         // 判断为本地通知
@@ -294,6 +331,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (application.applicationState == UIApplicationStateActive) {
         
+        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
+        next_vc.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+        nav.navigationBar.hidden = YES;
+        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+            
+        }];
 //        UserModel *model = [UserModel defaultModel];
 //        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
 //        if (model.isLogin) {
@@ -313,6 +357,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     else//杀死状态下，直接跳转到跳转页面。
     {
+        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
+        next_vc.hidesBottomBarWhenPushed = YES;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+        nav.navigationBar.hidden = YES;
+        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+            
+        }];
 //        UserModel *model = [UserModel defaultModel];
 //        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
 //        if (model.isLogin) {

@@ -41,7 +41,7 @@
 }
 
 -(void)post{
-    [BaseRequest GET:WaitConfirmDetail_URL parameters:@{
+    [BaseRequest GET:ProjectWaitDealDetail_URL parameters:@{
                                                         @"client_id":_str
                                                         }
              success:^(id resposeObject) {

@@ -11,6 +11,7 @@
 #import "BorderTF.h"
 #import "AdressChooseView.h"
 #import "CustomerVC.h"
+#import "CustomDetailVC.h"
 #import "SinglePickView.h"
 #import "CustomDetailTableCell4.h"
 #import "AddTagVC.h"
@@ -413,7 +414,7 @@
             
             if (i == 0) {
                 
-                str = _tagView.dataArr[i][@"id"];
+                str = [NSString stringWithFormat:@"%@",_tagView.dataArr[i][@"id"]];
             }else{
                 
                 str = [NSString stringWithFormat:@"%@,%@",str,_tagView.dataArr[i][@"id"]];
@@ -546,9 +547,9 @@
                 [self showContent:@"修改成功"];
                 for (UIViewController *vc in self.navigationController.viewControllers) {
                     
-                    if ([vc isKindOfClass:[CustomerVC class]]) {
+                    if ([vc isKindOfClass:[CustomDetailVC class]]) {
                         
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
+//                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
                         [self.navigationController popToViewController:vc animated:YES];
                     }
                 }
