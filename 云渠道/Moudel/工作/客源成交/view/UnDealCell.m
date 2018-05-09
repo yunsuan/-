@@ -20,6 +20,26 @@
     return self;
 }
 
+- (void)ActionPhoneBtn:(UIButton *)btn{
+    
+    if (self.unDealCellPhoneBtnBlock) {
+        
+        self.unDealCellPhoneBtnBlock(self.tag);
+    }
+}
+
+- (void)setDataDic:(NSMutableDictionary *)dataDic{
+    
+    _nameL.text = dataDic[@"name"];
+    _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
+    _recommendTimeL.text = [NSString stringWithFormat:@"推荐时间：%@",dataDic[@"create_time"]];
+    NSString *str = [NSString stringWithFormat:@"无效时间：%@",dataDic[@"timsLimit"]];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:str];
+    [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
+    _invalidTimeL.attributedText = attr;
+    
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 16 *SIZE, 100 *SIZE, 14 *SIZE)];
@@ -31,6 +51,12 @@
     _codeL.textColor = YJ86Color;
     _codeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_codeL];
+    
+    _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _phoneBtn.frame = CGRectMake(335 *SIZE, 16 *SIZE, 19 *SIZE, 19 *SIZE);
+    [_phoneBtn addTarget:self action:@selector(ActionPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_phoneBtn];
     
     _recommendTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 66 *SIZE, 300 *SIZE, 11 *SIZE)];
     _recommendTimeL.textColor = YJ86Color;

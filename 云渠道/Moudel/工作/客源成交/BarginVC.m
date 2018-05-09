@@ -67,7 +67,7 @@
     
     _isLast1 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
-    [BaseRequest GET:ProjectWaitConfirm_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:ProjectWaitDeal_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_header endRefreshing];
@@ -500,7 +500,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-//        cell.dataDic = _unComfirmArr[indexPath.row];
+        cell.dataDic = _unComfirmArr[indexPath.row];
         cell.tag = indexPath.row;
         cell.unDealCellPhoneBtnBlock = ^(NSInteger index) {
             

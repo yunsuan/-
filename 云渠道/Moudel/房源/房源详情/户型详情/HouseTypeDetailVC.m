@@ -22,6 +22,7 @@
     NSMutableDictionary *_baseInfoDic;
     NSMutableArray *_imgArr;
     NSMutableArray *_houseArr;
+    NSString *_projectId;
 }
 @property (nonatomic, strong) UIButton *recommendBtn;
 
@@ -31,11 +32,12 @@
 
 @implementation HouseTypeDetailVC
 
-- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId index:(NSInteger)index dataArr:(NSArray *)dataArr
+- (instancetype)initWithHouseTypeId:(NSString *)houseTypeId index:(NSInteger)index dataArr:(NSArray *)dataArr projectId:(NSString *)projectId
 {
     self = [super init];
     if (self) {
         
+        _projectId = projectId;
         _houseTypeId = houseTypeId;
         _imgArr = [@[] mutableCopy];
         self.dataArr = [NSMutableArray arrayWithArray:dataArr];
@@ -62,7 +64,21 @@
     [super viewDidLoad];
 
     [self initUI];
-    [self RequestMethod];
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.houseType.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
+        
+        [self RequestMethod];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self MatchListRequest];
+        
+    });
 }
 
 - (void)RequestMethod{
@@ -116,6 +132,25 @@
     }
     
     [_houseTable reloadData];
+}
+
+- (void)MatchListRequest{
+    
+    [BaseRequest GET:HouseTypeMatching_URL parameters:@{@"project_id":_projectId,@"house_type_id":_houseTypeId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+       
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -208,7 +243,7 @@
             }
             cell.collCellBlock = ^(NSInteger index) {
               
-                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:self.dataArr];
+                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:self.dataArr projectId:_projectId];
 //                nextVC.dataArr = _houseArr;
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
