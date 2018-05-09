@@ -413,7 +413,7 @@
             
             if (i == 0) {
                 
-                str = _tagView.dataArr[i][@"id"];
+                str = [NSString stringWithFormat:@"%@",_tagView.dataArr[i][@"id"]];
             }else{
                 
                 str = [NSString stringWithFormat:@"%@,%@",str,_tagView.dataArr[i][@"id"]];

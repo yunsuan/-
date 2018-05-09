@@ -56,6 +56,7 @@
         _priceL.text = @"意向总价：";
     }
     
+    _typeL.text = @"意向物业：";
     if ([model.property_type integerValue]) {
         
         NSDictionary *configdic = [UserModelArchiver unarchive].Configdic;

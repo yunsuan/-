@@ -146,6 +146,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast1 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -221,6 +224,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast2 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -295,6 +301,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast3 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
@@ -369,6 +378,9 @@
                 
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast4 = YES;
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
             }
         }
     } failure:^(NSError *error) {
