@@ -135,7 +135,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (_countdata.count ==2) {
+    if (_countdata.count ==3) {
         if (indexPath.row == 0) {
             
             RecommendVC *nextVC = [[RecommendVC alloc] init];

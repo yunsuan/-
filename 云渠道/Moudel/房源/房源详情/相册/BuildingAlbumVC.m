@@ -172,7 +172,7 @@
         }else{
             
             [_albumColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:NO scrollPosition:0];
-            _currentL.text = [NSString stringWithFormat:@"%@%d/%d",_imgArr[i][@"name"],_num - count,[_imgArr[i][@"data"] count]];
+            _currentL.text = [NSString stringWithFormat:@"%@%ld/%lu",_imgArr[i][@"name"],_num - count,[_imgArr[i][@"data"] count]];
             break;
         }
     }
@@ -253,7 +253,6 @@
     
     [_albumColl registerClass:[BuildingAlbumCollCell class] forCellWithReuseIdentifier:@"BuildingAlbumCollCell"];
     [self.view addSubview:_albumColl];
-    
     
 }
 
