@@ -9,6 +9,7 @@
 #import "BarginVC.h"
 #import "RecommendCollCell.h"
 #import "UnDealCell.h"
+#import "UnDealVC.h"
 #import "DealedCell.h"
 #import "FailedDealCell.h"
 #import "ComplaintCell.h"
@@ -596,8 +597,8 @@
     
     if (_index == 0) {
         
-//        confirmDetailVC *nextVC = [[confirmDetailVC alloc] initWithClientId:_unComfirmArr[indexPath.row][@"client_id"]];
-//        [self.navigationController pushViewController:nextVC animated:YES];
+        UnDealVC *nextVC = [[UnDealVC alloc] initWithString:_unComfirmArr[indexPath.row][@"client_id"]];
+        [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 1) {
         
 //        NoValidVC *nextVC = [[NoValidVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];

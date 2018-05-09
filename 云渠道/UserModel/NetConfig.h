@@ -262,3 +262,6 @@ static NSString *const ProjectAppealList_URL = @"agent/work/project/appealList";
 
 //经纪人待成交列表
 static NSString *const ProjectWaitDeal_URL = @"agent/work/project/waitDeal";
+
+//经纪人待成交详细
+static NSString *const ProjectWaitDealDetail_URL = @"agent/work/project/waitDealDetail";
