@@ -144,6 +144,9 @@ static NSString *const GetRule_URL = @"user/project/getRule";
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
 
+//项目户型匹配
+static NSString *const HouseTypeMatching_URL = @"agent/matching/houseType";
+
 //项目匹配客户
 static NSString *const ProjectMatching_URL = @"agent/matching/project";
 
@@ -256,3 +259,6 @@ static NSString *const ProjectDisabledDetail_URL = @"agent/work/project/disabled
 
 //项目申诉列表
 static NSString *const ProjectAppealList_URL = @"agent/work/project/appealList";
+
+//经纪人待成交列表
+static NSString *const ProjectWaitDeal_URL = @"agent/work/project/waitDeal";
