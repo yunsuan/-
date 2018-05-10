@@ -41,6 +41,13 @@
     [self initUI];
 }
 
+- (void)ActionDismiss{
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 -(void)postWithpage:(NSString *)page{
     
     [BaseRequest GET:SystemInfoList_URL parameters:@{
@@ -94,6 +101,7 @@
 {
     [self.view addSubview:self.systemmsgtable];
     
+    [self.maskButton addTarget:self action:@selector(ActionDismiss) forControlEvents:UIControlEventTouchUpInside];
 }
 
 

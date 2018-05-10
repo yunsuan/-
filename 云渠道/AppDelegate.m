@@ -102,9 +102,12 @@
         // 可以添加自定义categories
         // NSSet<UNNotificationCategory *> *categories for iOS10 or later
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+    }else{
+        
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-    
     
     // Required
     // init Push
@@ -113,7 +116,7 @@
 //    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     [JPUSHService setupWithOption:launchOptions appKey:JpushAppKey
                           channel:@"appstore"
-                 apsForProduction:@"NO"
+                 apsForProduction:YES
             advertisingIdentifier:nil];
     //2.1.9版本新增获取registration id block接口。
     [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
@@ -125,12 +128,33 @@
             NSLog(@"registrationID获取失败，code：%d",resCode);
         }
     }];
-
+    if (launchOptions) {
+        
+        NSDictionary *remote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        
+        if (remote) {
+            
+            [self GotoMessVC];
+        }
+    }
+    
+    
     [self configUSharePlatforms];
     [self confitUShareSettings];
     
     
     return YES;
+}
+
+- (void)GotoMessVC{
+    
+    SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
+    next_vc.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+    nav.navigationBar.hidden = YES;
+    [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 - (void)confitUShareSettings
@@ -161,13 +185,11 @@
     NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
     if (logIndentifier) {
         NSSet *tags;
-//        tags =[NSSet setWithObjects:[NSString stringWithFormat:@"prt_s%@",[UserModel defaultModel].schoolId],[NSString stringWithFormat:@"prt_c%@",[UserModel defaultModel].classId], nil];
-//        NSLog(@"%@",tags);
+
         [JPUSHService setAlias:[NSString stringWithFormat:@"agent_%@",[UserModel defaultModel].agent_id] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
             
-            NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , iAlias);;
+            NSLog(@"rescode: %ld, \ntags: %@, \nalias: %@\n", (long)iResCode, tags , iAlias);;
         } seq:0];
-//        [JPUSHService setTags:tags alias:[NSString stringWithFormat:@"prt_%@",[UserModel defaultModel].uid] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     }
 }
 
@@ -232,6 +254,13 @@
 
 
 //极光方法
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    
+    [application registerForRemoteNotifications];
+}
+
+
 //注册APNs成功并上报DeviceToken
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -266,13 +295,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
-        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
-        next_vc.hidesBottomBarWhenPushed = YES;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-        nav.navigationBar.hidden = YES;
-        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-            
-        }];
     }
     else {
         // 判断为本地通知
@@ -297,15 +319,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
-//        SystemMessageVC *next_vc = [[SystemMessageVC alloc]init];
-//        [self.navigationController pushViewController:next_vc  animated:YES];
-        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
-        next_vc.hidesBottomBarWhenPushed = YES;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-        nav.navigationBar.hidden = YES;
-        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-            
-        }];
+        [self GotoMessVC];
     }
     else {
         // 判断为本地通知
@@ -316,6 +330,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     completionHandler();  // 系统要求执行这个方法
 }
+
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     
@@ -331,54 +346,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (application.applicationState == UIApplicationStateActive) {
         
-//        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
-//        next_vc.hidesBottomBarWhenPushed = YES;
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-//        nav.navigationBar.hidden = YES;
-//        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-//            
-//        }];
-//        UserModel *model = [UserModel defaultModel];
-//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
-//        if (model.isLogin) {
-//            MessageVC *next_vc = [[MessageVC alloc] init];
-//            next_vc.hidesBottomBarWhenPushed = YES;
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-//            nav.navigationBar.hidden = YES;
-//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
-//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
-//            [application cancelAllLocalNotifications];
-//
-//        }
         
-    }
-    else//杀死状态下，直接跳转到跳转页面。
-    {
-        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
-        next_vc.hidesBottomBarWhenPushed = YES;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-        nav.navigationBar.hidden = YES;
-        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-            
-        }];
-//        UserModel *model = [UserModel defaultModel];
-//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
-//        if (model.isLogin) {
-//            MessageVC *next_vc = [[MessageVC alloc] init];
-//            next_vc.hidesBottomBarWhenPushed = YES;
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-//            nav.navigationBar.hidden = YES;
-//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
-//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
-//            [application cancelAllLocalNotifications];
-//
-//        }
+    }else{
+        
+        [self GotoMessVC];
     }
 }
 
@@ -389,41 +360,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (application.applicationState == UIApplicationStateActive) {
         
-//        UserModel *model = [UserModel defaultModel];
-//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
-//        if (model.isLogin) {
-//            MessageVC *next_vc = [[MessageVC alloc] init];
-//            next_vc.hidesBottomBarWhenPushed = YES;
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-//            nav.navigationBar.hidden = YES;
-//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-//                
-//            }];
-//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
-//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
-//            [application cancelAllLocalNotifications];
-//            
-//        }
-    }
-    else//杀死状态下，直接跳转到跳转页面。
-    {
-//        UserModel *model = [UserModel defaultModel];
-//        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
-//        if (model.isLogin) {
-//            MessageVC *next_vc = [[MessageVC alloc] init];
-//            next_vc.hidesBottomBarWhenPushed = YES;
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-//            nav.navigationBar.hidden = YES;
-//            [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-//
-//            }];
-//            [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
-//            [application setApplicationIconBadgeNumber:0];//小红点清0操作
-//            [application cancelAllLocalNotifications];
-//
-//        }
+        
+    }else{
+        
+        [self GotoMessVC];
     }
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
