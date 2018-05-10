@@ -167,7 +167,7 @@
                 
                 if ([_dataDic[@"sex"] integerValue] == 0) {
                     
-                    [cell SetCellContentbystring:[NSString stringWithFormat:@"客户性别：%@",@""]];
+                    [cell SetCellContentbystring:@"客户性别："];
                 }else if ([_dataDic[@"sex"] integerValue] == 1) {
                     
                     [cell SetCellContentbystring:[NSString stringWithFormat:@"客户性别：%@",@"男"]];
@@ -190,7 +190,9 @@
                 [cell SetCellContentbystring:[NSString stringWithFormat:@"项目地址：%@-%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],_dataDic[@"absolute_address"]]];
             }else{
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@",_dataDic[@"property_type"]]];
+                NSArray *arr = _dataDic[@"property_type"];
+               
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@", [arr componentsJoinedByString:@","]]];
             }
         }else{
             
