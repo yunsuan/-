@@ -175,12 +175,12 @@
         NSArray *arr = _dataDic[@"process"];
         if (arr.count == 3) {
             
-            cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
+            cell.titleL.text = [NSString stringWithFormat:@"%@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
         }else{
             
             if (indexPath.row < 5) {
                 
-                cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
+                cell.titleL.text = [NSString stringWithFormat:@"%@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
             }else{
                 
                 cell.titleL.text = @"处理完成";
