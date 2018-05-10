@@ -50,14 +50,14 @@
     _formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_clientId],@"未成交信息",@"有效信息",@"客户信息",@"项目信息",@"推荐人信息"];
+    _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_clientId],@"未成交信息",@"客户信息",@"项目信息"];
     _dataDic = [@{} mutableCopy];
     [self InValidRequestMethod];
 }
 
 - (void)InValidRequestMethod{
     
-    [BaseRequest GET:DisabledDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDeailDisableDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
@@ -87,12 +87,6 @@
 {
     if (section == 0) {
         
-        return 1;
-    }else if (section == 4){
-        
-        return 4;
-    }else if(section == 5){
-     
         return 2;
     }else{
         
@@ -135,7 +129,7 @@
     
     if (_dataDic.count) {
         
-        return 6;
+        return 4;
     }else{
         
         return 0;
@@ -155,20 +149,26 @@
     switch (indexPath.section) {
         case 0:
         {
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]]];
+            if (indexPath.row == 0) {
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]]];
+            }else{
+                
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"visit_time"]]];
+            }
             break;
         }
         case 1:{
             
             if (indexPath.row == 0) {
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效类型：%@",_dataDic[@"disabled_state"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]]];
             }else if (indexPath.row == 1){
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效原因：%@",_dataDic[@"disabled_reason"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效原因：%@",_dataDic[@"disabled_reason"]]];
             }else{
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间：%@",_dataDic[@"state_change_time"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"state_change_time"]]];
             }
             break;
         }
@@ -206,17 +206,6 @@
             }else{
                 
                 [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@",_dataDic[@"state_change_time"]]];
-            }
-            break;
-        }
-        case 4:{
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]]];
-            }else if (indexPath.row == 1){
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"butter_tel"]]];
             }
             break;
         }

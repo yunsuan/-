@@ -11,8 +11,12 @@
 #import "UnDealCell.h"
 #import "UnDealVC.h"
 #import "DealedCell.h"
+#import "DealedVC.h"
 #import "FailedDealCell.h"
+#import "FailedDealVC.h"
 #import "ComplaintCell.h"
+#import "DealComplaintingVC.h"
+#import "DealComplaintResultVC.h"
 
 @interface BarginVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -96,7 +100,7 @@
 - (void)UnComfirmRequestAdd{
     
     _page1 += 1;
-    [BaseRequest GET:ProjectWaitConfirm_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectWaitDeal_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
@@ -146,7 +150,7 @@
     
     _isLast2 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
-    [BaseRequest GET:ProjectValue_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDealList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         
@@ -174,7 +178,7 @@
 - (void)ValidRequestAdd{
     
     _page2 += 1;
-    [BaseRequest GET:BrokerValue_URL parameters:@{@"page":@(_page2)} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDealList_URL parameters:@{@"page":@(_page2)} success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
@@ -224,7 +228,7 @@
     
     _isLast3 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
-    [BaseRequest GET:ProjectDisabled_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDealDisableList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         
@@ -252,7 +256,7 @@
 - (void)InValidRequestAdd{
     
     _page3 += 1;
-    [BaseRequest GET:BrokerDisabled_URL parameters:@{@"page":@(_page3)} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDealDisableList_URL parameters:@{@"page":@(_page3)} success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
@@ -490,9 +494,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_index == 2) {
+//    if (_index == 2) {
+//
+//        return 133 *SIZE;
+//    }else if (_index == 3){
+//
+//        return 94 *SIZE;
+//    }
+//    return 113 *SIZE;
+    if (_index == 0 || _index == 2) {
         
-        return 133 *SIZE;
+        return 133;
     }else if (_index == 3){
         
         return 94 *SIZE;
@@ -542,7 +554,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-//        cell.dataDic = _validArr[indexPath.row];
+        cell.dataDic = _validArr[indexPath.row];
         cell.tag = indexPath.row;
         cell.dealedCellPhoneBtnBlock = ^(NSInteger index) {
 
@@ -570,7 +582,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-//        cell.dataDic = _inValidArr[indexPath.row];
+        cell.dataDic = _inValidArr[indexPath.row];
         cell.tag = indexPath.row;
         cell.failedDealCellPhoneBtnBlock = ^(NSInteger index) {
 
@@ -613,22 +625,22 @@
         [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 1) {
         
-//        NoValidVC *nextVC = [[NoValidVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];
-//        [self.navigationController pushViewController:nextVC animated:YES];
+        DealedVC *nextVC = [[DealedVC alloc] initWithClientId:_validArr[indexPath.row][@"client_id"]];
+        [self.navigationController pushViewController:nextVC animated:YES];
     }else if(_index == 2){
         
-//        NoInvalidVC *nextVC = [[NoInvalidVC alloc] initWithClientId:_inValidArr[indexPath.row][@"client_id"]];
-//        [self.navigationController pushViewController:nextVC animated:YES];
+        FailedDealVC *nextVC = [[FailedDealVC alloc] initWithClientId:_inValidArr[indexPath.row][@"client_id"]];
+        [self.navigationController pushViewController:nextVC animated:YES];
     }else{
         
         if ([_appealArr[indexPath.row][@"state"] isEqualToString:@"处理完成"]) {
             
-//            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
-//            [self.navigationController pushViewController:nextVC animated:YES];
+            DealComplaintResultVC *nextVC = [[DealComplaintResultVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
+            [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-//            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
-//            [self.navigationController pushViewController:nextVC animated:YES];
+            DealComplaintingVC *nextVC = [[DealComplaintingVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
+            [self.navigationController pushViewController:nextVC animated:YES];
         }
     }
 }

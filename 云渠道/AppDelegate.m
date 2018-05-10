@@ -331,13 +331,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (application.applicationState == UIApplicationStateActive) {
         
-        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
-        next_vc.hidesBottomBarWhenPushed = YES;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
-        nav.navigationBar.hidden = YES;
-        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
-            
-        }];
+//        SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
+//        next_vc.hidesBottomBarWhenPushed = YES;
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+//        nav.navigationBar.hidden = YES;
+//        [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+//            
+//        }];
 //        UserModel *model = [UserModel defaultModel];
 //        model.isLogin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] boolValue];
 //        if (model.isLogin) {

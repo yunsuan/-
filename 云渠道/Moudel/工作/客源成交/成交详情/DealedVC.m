@@ -45,14 +45,15 @@
 }
 
 -(void)post{
-    [BaseRequest GET:ValueDetail_URL
+    [BaseRequest GET:ProjectDealDetail_URL
           parameters:@{
                        @"client_id":_clientid
                        }
              success:^(id resposeObject) {
                  NSLog(@"%@",resposeObject);
                  if ([resposeObject[@"code"] integerValue] ==200) {
-                     _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"客户信息",@"项目信息",@"委托人信息"];
+                     
+                     _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"成交信息",@"客户信息",@"项目信息"];
                      
                      NSString *sex = @"客户性别：无";
                      if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
@@ -72,9 +73,9 @@
                          tel = @"联系方式：无";
                      }
                      NSString *adress = resposeObject[@"data"][@"absolute_address"];
-                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"],adress];
+                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"]];
                      
-                     _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"委托人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
+                     _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],[NSString stringWithFormat:@"到访时间：%@",resposeObject[@"data"][@"visit_time"]]],@[[NSString stringWithFormat:@"合同编号：%@",resposeObject[@"data"][@"contract_num"]],[NSString stringWithFormat:@"成交总价：%@元",resposeObject[@"data"][@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",resposeObject[@"data"][@"inner_area"]],[NSString stringWithFormat:@"成交时间：%@",resposeObject[@"data"][@"state_change_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]]];
                      _endtime = resposeObject[@"data"][@"timeLimit"];
                      _Pace = resposeObject[@"data"][@"process"];
                      [_dealTable reloadData];
@@ -84,6 +85,7 @@
                  
              }
              failure:^(NSError *error) {
+                 
                  [self showContent:@"网络错误"];
              }];
 }
@@ -92,7 +94,7 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"成交信息",@"有效信息",@"客户信息",@"项目信息",@"推荐人信息"];
+    _titleArr = @[@"推荐编号",@"成交信息",@"客户信息",@"项目信息"];
     _data = @[];
 }
 
@@ -105,13 +107,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *arr = _data[section];
-    
-    if (section == 6) {
+    if (section < 4) {
+        
+        NSArray *arr = _data[section];
+        return arr.count;
+    }else{
         
         return _Pace.count;
     }
-    return arr.count;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -124,7 +127,7 @@
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section < 6) {
+    if (section < 4) {
         
         title.text = _titleArr[section];
     }
@@ -134,7 +137,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section < 6) {
+    if (section < 4) {
         
         return 53*SIZE;
     }
@@ -144,14 +147,15 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return _data.count;
+    return _data.count ? _Pace.count?_data.count+1:_data.count:0;
+//    return _Pace.count ? _data.count + 1: _data.count;
     
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 6){
+    if(indexPath.section == 4){
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
@@ -159,15 +163,15 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.titleL.text = [NSString stringWithFormat:@"%@时间：%@",_Pace[indexPath.row-2][@"process_name"],_Pace[indexPath.row-2][@"time"]];
-        if (indexPath.row == 2) {
+        cell.titleL.text = [NSString stringWithFormat:@"%@时间：%@",_Pace[indexPath.row][@"process_name"],_Pace[indexPath.row][@"time"]];
+        if (indexPath.row == 0) {
             
             cell.upLine.hidden = YES;
         }else{
             
             cell.upLine.hidden = NO;
         }
-        if (indexPath.row == _Pace.count+1) {
+        if (indexPath.row == _Pace.count - 1) {
             
             cell.downLine.hidden = YES;
         }else{
@@ -190,7 +194,7 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"有效到访详情";
+    self.titleLabel.text = @"成交详情";
     _dealTable.rowHeight = 150 *SIZE;
     _dealTable.estimatedRowHeight = UITableViewAutomaticDimension;
     

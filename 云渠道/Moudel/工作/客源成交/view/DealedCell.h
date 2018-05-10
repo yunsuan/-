@@ -20,9 +20,12 @@ typedef void(^DealedCellPhoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *codeL;
 
-@property (nonatomic, strong) UILabel *contactL;
+@property (nonatomic, strong) UILabel *projectL;
 
 @property (nonatomic, strong) UILabel *dealTimeL;
 
 @property (nonatomic, strong) UIButton *phoneBtn;
+
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
 @end
