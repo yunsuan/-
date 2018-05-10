@@ -50,10 +50,15 @@
         if ([resposeObject[@"code"] integerValue]==200) {
             
             if ([page isEqualToString:@"1"]) {
-                dataarr = [resposeObject[@"data"] mutableCopy];
-                [_systemmsgtable reloadData];
-                [_systemmsgtable.mj_footer endRefreshing];
                 
+                [_systemmsgtable.mj_footer endRefreshing];
+                dataarr = [resposeObject[@"data"] mutableCopy];
+                
+                if (dataarr.count < 15) {
+                    
+                    _systemmsgtable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+                [_systemmsgtable reloadData];
             }
             else{
                 NSArray *arr =resposeObject[@"data"];

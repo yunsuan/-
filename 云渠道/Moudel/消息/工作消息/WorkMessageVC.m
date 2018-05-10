@@ -55,10 +55,13 @@
         if ([resposeObject[@"code"] integerValue]==200) {
             if ([page isEqualToString:@"1"]) {
           
-                _data = [resposeObject[@"data"][@"data"] mutableCopy];
-                [_systemmsgtable reloadData];
                 [_systemmsgtable.mj_footer endRefreshing];
-                
+                _data = [resposeObject[@"data"][@"data"] mutableCopy];
+                if (_data.count < 15) {
+                    
+                    _systemmsgtable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+                [_systemmsgtable reloadData];
             }
             else{
                 NSArray *arr =resposeObject[@"data"][@"data"];
