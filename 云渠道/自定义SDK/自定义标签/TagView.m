@@ -32,7 +32,7 @@
 -(void)setData:(NSArray *)datasouse
 {
     _data = datasouse;
-//    [_collectionview reloadData];
+    [_collectionview reloadData];
     
 
 }
