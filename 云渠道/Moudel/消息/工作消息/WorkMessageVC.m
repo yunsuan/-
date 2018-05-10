@@ -88,7 +88,6 @@
 -(void)initUI
 {
     [self.view addSubview:self.systemmsgtable];
-    
 }
 
 
@@ -108,13 +107,15 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return 127*SIZE;
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"WorkMessageCell";
     
+    static NSString *CellIdentifier = @"WorkMessageCell";
     WorkMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[WorkMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];

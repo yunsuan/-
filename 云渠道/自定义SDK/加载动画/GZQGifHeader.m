@@ -16,7 +16,7 @@
     // 设置普通状态的动画图片
     NSMutableArray *idleImages = [NSMutableArray array];
     for (NSUInteger i = 1; i <= 1; i++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"1"]];
+        UIImage *image = [UIImage imageNamed:@"1"];
         [idleImages addObject:image];
     }
     [self setImages:idleImages forState:MJRefreshStateIdle];
