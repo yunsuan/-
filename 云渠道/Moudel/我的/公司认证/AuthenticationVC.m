@@ -12,7 +12,7 @@
 #import "SelectCompanyVC.h"
 #import "AuditStatusVC.h"
 
-@interface AuthenticationVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface AuthenticationVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     
     NSArray *_titleArr;
@@ -22,7 +22,6 @@
     UIImage *_image;
     NSInteger _index;
 }
-@property (nonatomic, strong) UITableView *authenTable;
 
 @property (nonatomic, strong) UICollectionView *authenColl;
 
@@ -31,6 +30,20 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) UIButton *commitBtn;
+
+@property (nonatomic, strong) UITextField *numTextField;
+
+@property (nonatomic, strong) UILabel *companyL;
+
+@property (nonatomic, strong) UILabel *roleL;
+
+@property (nonatomic, strong) UILabel *projectL;
+
+@property (nonatomic, strong) UILabel *departL;
+
+@property (nonatomic, strong) UILabel *positionL;
+
+@property (nonatomic, strong) UILabel *timeL;
 
 @end
 
@@ -65,41 +78,20 @@
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
-#pragma mark --table代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (void)ActionTagBtn:(UIButton *)btn{
     
-    return 7;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 51 *SIZE;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSString * Identifier = @"AuthenTableCell";
-    AuthenTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
-    if (!cell) {
-        
-        cell = [[AuthenTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.titleL.text = _titleArr[indexPath.row];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    if (!indexPath.row) {
-        
-        SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
-        [self.navigationController pushViewController:nextVC animated:YES];
+    [_numTextField endEditing:YES];
+    switch (btn.tag) {
+        case 0:
+        {
+            SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+            break;
+        }
+        default:
+            break;
     }
 }
-
 
 #pragma mark --coll代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -268,16 +260,88 @@
     _scrollView.bounces = NO;
     [self.view addSubview:_scrollView];
     
-    _authenTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 361 *SIZE) style:UITableViewStylePlain];
-    _authenTable.backgroundColor = self.view.backgroundColor;
-    _authenTable.delegate = self;
-    _authenTable.dataSource = self;
-    _authenTable.bounces = NO;
-    _authenTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    _authenTable.tableFooterView = [[UIView alloc] init];
-    [_scrollView addSubview:_authenTable];
+    UIView *whiteView11 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 361 *SIZE)];
+    whiteView11.backgroundColor = CH_COLOR_white;
+    [_scrollView addSubview:whiteView11];
     
-    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_authenTable.frame), SCREEN_Width, 174 *SIZE)];
+    for (int i = 0; i < 7; i++) {
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 16 *SIZE + i * 50 *SIZE, 100 *SIZE, 12 *SIZE)];
+        label.textColor = YJContentLabColor;
+        label.font = [UIFont systemFontOfSize:13 *SIZE];
+        label.text = _titleArr[i];
+        [whiteView11 addSubview:label];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 49 *SIZE * (i + 1), SCREEN_Width, SIZE)];
+        line.backgroundColor = YJBackColor;
+        [whiteView11 addSubview:line];
+        
+        
+        if (i == 1) {
+            
+            UITextField *textFiled = [[UITextField alloc] initWithFrame:CGRectMake(100 *SIZE, 50 *SIZE * i, 230 *SIZE, 49 *SIZE)];
+            textFiled.textAlignment = NSTextAlignmentRight;
+            _numTextField = textFiled;
+            [whiteView11 addSubview:_numTextField];
+        }else{
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100 *SIZE, 18 *SIZE + i * 50 *SIZE, 230 *SIZE, 12 *SIZE)];
+            label.textColor = YJContentLabColor;
+            label.font = [UIFont systemFontOfSize:13 *SIZE];
+            
+            UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(343 *SIZE, 19 *SIZE + i * 50*SIZE, 12 *SIZE, 12 *SIZE)];
+            img.image = [UIImage imageNamed:@"rightarrow"];
+            [whiteView11 addSubview:img];
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(0, i * 50 *SIZE, SCREEN_Width, 50 *SIZE);
+            [button addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+            button.tag = i;
+            switch (i) {
+                case 0:
+                {
+                    _companyL = label;
+                    [whiteView11 addSubview:_companyL];
+                    break;
+                }
+                case 2:
+                {
+                    _roleL = label;
+                    [whiteView11 addSubview:_roleL];
+                    break;
+                }
+                case 3:
+                {
+                    _projectL = label;
+                    [whiteView11 addSubview:_projectL];
+                    break;
+                }
+                case 4:
+                {
+                    _departL = label;
+                    [whiteView11 addSubview:_departL];
+                    break;
+                }
+                case 5:
+                {
+                    _positionL = label;
+                    [whiteView11 addSubview:_positionL];
+                    break;
+                }
+                case 6:
+                {
+                    _timeL = label;
+                    [whiteView11 addSubview:_timeL];
+                    break;
+                }
+                default:
+                    break;
+            }
+            [whiteView11 addSubview:button];
+        }
+    }
+    
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(whiteView11.frame), SCREEN_Width, 174 *SIZE)];
     whiteView.backgroundColor = CH_COLOR_white;
     [_scrollView addSubview:whiteView];
     

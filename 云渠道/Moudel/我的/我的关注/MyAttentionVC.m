@@ -117,6 +117,7 @@
     [cell settagviewWithdata:tempArr1];
 //    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
 //    [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
+    cell.getLevel.hidden = YES;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -185,6 +186,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return @"取消关注";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
 }
 
 - (void)initUI{
