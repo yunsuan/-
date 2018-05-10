@@ -20,6 +20,8 @@ typedef void(^UnDealCellPhoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *codeL;
 
+@property (nonatomic, strong) UILabel *projectL;
+
 @property (nonatomic, strong) UILabel *recommendTimeL;
 
 @property (nonatomic, strong) UILabel *invalidTimeL;

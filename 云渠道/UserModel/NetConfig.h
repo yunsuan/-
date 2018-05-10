@@ -265,3 +265,15 @@ static NSString *const ProjectWaitDeal_URL = @"agent/work/project/waitDeal";
 
 //经纪人待成交详细
 static NSString *const ProjectWaitDealDetail_URL = @"agent/work/project/waitDealDetail";
+
+//经纪人成交列表
+static NSString *const ProjectDealList_URL = @"agent/work/project/deal";
+
+//经纪人成交详情
+static NSString *const ProjectDealDetail_URL = @"agent/work/project/dealDetail";
+
+//经纪人成交失效列表
+static NSString *const ProjectDealDisableList_URL = @"agent/work/project/dealDisabled";
+
+//经纪人成交失效详情
+static NSString *const ProjectDeailDisableDetail_URL = @"agent/work/project/dealDisabledDetail";

@@ -28,4 +28,6 @@ typedef void(^FailedDealCellPhoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UIButton *phoneBtn;
 
+@property (nonatomic, strong) NSMutableDictionary *dataDic;
+
 @end
