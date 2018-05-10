@@ -22,6 +22,8 @@
 
 @property (nonatomic , strong) UITableView *invalidTable;
 
+@property (nonatomic , strong) UIButton *complaintBtn;
+
 @property (nonatomic, strong) NSDateFormatter *formatter;
 
 @end
@@ -218,6 +220,12 @@
     
 }
 
+- (void)ActionComplaintBtn:(UIButton *)btn{
+    
+    ComplaintVC *nextVC = [[ComplaintVC alloc] initWithProjectId:_clientId];
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
 -(void)initUI
 {
     
@@ -226,12 +234,21 @@
     
     _invalidTable.rowHeight = 150 *SIZE;
     _invalidTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _invalidTable.backgroundColor = YJBackColor;
     _invalidTable.delegate = self;
     _invalidTable.dataSource = self;
     [_invalidTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_invalidTable];
+    
+    _complaintBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _complaintBtn.frame = CGRectMake(0, SCREEN_Height - 47 *SIZE - TAB_BAR_MORE, 360 *SIZE, 47 *SIZE + TAB_BAR_MORE);
+    _complaintBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_complaintBtn addTarget:self action:@selector(ActionComplaintBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_complaintBtn setTitle:@"申诉" forState:UIControlStateNormal];
+    [_complaintBtn setBackgroundColor:COLOR(191, 191, 191, 1)];
+    [_complaintBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    [self.view addSubview:_complaintBtn];
 
 }
 

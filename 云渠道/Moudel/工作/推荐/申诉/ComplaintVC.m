@@ -9,6 +9,8 @@
 #import "ComplaintVC.h"
 #import "SinglePickView.h"
 #import "RecommendVC.h"
+#import "BarginVC.h"
+#import "NomineeVC.h"
 
 @interface ComplaintVC ()<UITextViewDelegate>
 {
@@ -71,6 +73,20 @@
             for (UIViewController *vc in self.navigationController.viewControllers) {
                 
                 if ([vc isKindOfClass:[RecommendVC class]]) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
+                    [self.navigationController popToViewController:vc animated:YES];
+                }
+                
+                if ([vc isKindOfClass:[NomineeVC class]]) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
+                    [self.navigationController popToViewController:vc animated:YES];
+                }
+                
+                if ([vc isKindOfClass:[BarginVC class]]) {
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];

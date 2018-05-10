@@ -55,9 +55,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActionNomineeReload) name:@"recommendReload" object:nil];
+    
     [self initDateSouce];
     [self initUI];
     [self UnComfirmRequest];
+}
+
+- (void)ActionNomineeReload{
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
+        
+        [self UnComfirmRequest];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self ValidRequest];
+        
+    });
 }
 
 -(void)initDateSouce

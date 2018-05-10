@@ -28,6 +28,14 @@
     _dealTimeL.text = [NSString stringWithFormat:@"成交时间：%@",dataDic[@"state_change_time"]];
 }
 
+- (void)ActionPhoneBtn:(UIButton *)btn{
+    
+    if (self.dealedCellPhoneBtnBlock) {
+        
+        self.dealedCellPhoneBtnBlock(self.tag);
+    }
+}
+
 - (void)initUI{
     
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 16 *SIZE, 100 *SIZE, 14 *SIZE)];
@@ -44,6 +52,12 @@
     _projectL.textColor = YJ86Color;
     _projectL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_projectL];
+    
+    _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _phoneBtn.frame = CGRectMake(335 *SIZE, 16 *SIZE, 19 *SIZE, 19 *SIZE);
+    [_phoneBtn addTarget:self action:@selector(ActionPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"phone"] forState:UIControlStateNormal];
+    [self.contentView addSubview:_phoneBtn];
     
     _dealTimeL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 87 *SIZE, 300 *SIZE, 11 *SIZE)];
     _dealTimeL.textColor = YJBlueBtnColor;
