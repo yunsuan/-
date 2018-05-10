@@ -19,6 +19,8 @@
     NSInteger _num;
     NSMutableArray *_imgArr;
     NSMutableArray *_imgUrl;
+    NSString *_imgStr1;
+    NSString *_imgStr2;
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
     NSInteger _index;
@@ -59,6 +61,14 @@
 @property (nonatomic, strong) UICollectionView *authenColl;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+@property (nonatomic, strong) UIButton *posBtn;
+
+@property (nonatomic, strong) UILabel *posL;
+
+@property (nonatomic, strong) UIButton *backBtn;
+
+@property (nonatomic, strong) UILabel *backL;
 
 @property (nonatomic, strong) UIButton *nextBtn;
 
@@ -155,8 +165,10 @@
 
  
 
-    if (!_imgArr.count) {
-
+    if (_imgStr1.length && _imgStr2.length) {
+        
+    }else{
+        
         [self showContent:@"请上传身份证照片"];
         return;
     }
@@ -168,7 +180,8 @@
     [dic setObject:tel forKey:@"client_tel"];
     [dic setObject:_cardType forKey:@"card_type"];
     [dic setObject:_codeTF.textfield.text forKey:@"card_num"];
-    [dic setObject:[_imgUrl componentsJoinedByString:@","] forKey:@"card_img_url"];
+    [dic setObject:[NSString stringWithFormat:@"%@,%@",_imgStr1,_imgStr2] forKey:@"card_img_url"];
+//    [dic setObject:[_imgUrl componentsJoinedByString:@","] forKey:@"card_img_url"];
     CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
     nextVC.datadic = _dataDic;
     [self.navigationController pushViewController:nextVC animated:YES];
@@ -236,44 +249,9 @@
     }
 }
 
-#pragma mark --coll代理
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (void)ActionTagBtn:(UIButton *)btn{
     
-    return _imgArr.count < 2? _imgArr.count + 1: 2;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    AuthenCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AuthenCollCell" forIndexPath:indexPath];
-    if (!cell) {
-        
-        cell = [[AuthenCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 91 *SIZE)];
-    }
-    cell.cancelBtn.tag = indexPath.item;
-    cell.cancelBtn.hidden = NO;
-    [cell.cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    if (_imgArr.count) {
-        
-        if (indexPath.item < _imgArr.count) {
-            
-            cell.imageView.image = _imgArr[indexPath.item];
-        }else{
-            
-            cell.imageView.image = [UIImage imageNamed:@"add"];
-            cell.cancelBtn.hidden = YES;
-        }
-    }else{
-        
-        cell.imageView.image = [UIImage imageNamed:@"add"];
-        cell.cancelBtn.hidden = YES;
-    }
-    
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    _index = indexPath.item;
+    _index = btn.tag;
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择照片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *photo = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -371,14 +349,18 @@
                      
                       if ([resposeObject[@"code"] integerValue] == 200) {
                           
-                          if (_index < _imgArr.count) {
+                          if (_index == 0) {
                               
-                              [_imgArr replaceObjectAtIndex:_index withObject:_image];
-                              [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                              [_posBtn setImage:_image forState:UIControlStateNormal];
+                              _imgStr1 = resposeObject[@"data"];
+//                              [_imgArr replaceObjectAtIndex:_index withObject:_image];
+//                              [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
                           }else{
                               
-                              [_imgArr addObject:_image];
-                              [_imgUrl addObject:resposeObject[@"data"]];
+                              [_backBtn setImage:_image forState:UIControlStateNormal];
+                              _imgStr2 = resposeObject[@"data"];
+//                              [_imgArr addObject:_image];
+//                              [_imgUrl addObject:resposeObject[@"data"]];
                           }
                       }else{
                           
@@ -406,14 +388,18 @@
                   
                   if ([resposeObject[@"code"] integerValue] == 200) {
                       
-                      if (_index < _imgArr.count) {
+                      if (_index == 0) {
                           
-                          [_imgArr replaceObjectAtIndex:_index withObject:_image];
-                          [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
+                          [_posBtn setImage:_image forState:UIControlStateNormal];
+                          _imgStr1 = resposeObject[@"data"];
+//                          [_imgArr replaceObjectAtIndex:_index withObject:_image];
+//                          [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
                       }else{
                           
-                          [_imgArr addObject:_image];
-                          [_imgUrl addObject:resposeObject[@"data"]];
+                          [_backBtn setImage:_image forState:UIControlStateNormal];
+                          _imgStr2 = resposeObject[@"data"];
+//                          [_imgArr addObject:_image];
+//                          [_imgUrl addObject:resposeObject[@"data"]];
                       }
                   }else{
                       
@@ -591,18 +577,50 @@
         }
     }
     
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(120 *SIZE, 91 *SIZE);
-    _flowLayout.minimumLineSpacing = 0;
-    _flowLayout.minimumInteritemSpacing = 0;
+//    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+//    _flowLayout.itemSize = CGSizeMake(120 *SIZE, 91 *SIZE);
+//    _flowLayout.minimumLineSpacing = 0;
+//    _flowLayout.minimumInteritemSpacing = 0;
+//
+//    _authenColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 50 *SIZE, SCREEN_Width, 91 *SIZE) collectionViewLayout:_flowLayout];
+//    _authenColl.backgroundColor = CH_COLOR_white;
+//    _authenColl.delegate = self;
+//    _authenColl.dataSource = self;
+//
+//    [_authenColl registerClass:[AuthenCollCell class] forCellWithReuseIdentifier:@"AuthenCollCell"];
+//    [_infoView addSubview:_authenColl];
     
-    _authenColl = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 50 *SIZE, SCREEN_Width, 91 *SIZE) collectionViewLayout:_flowLayout];
-    _authenColl.backgroundColor = CH_COLOR_white;
-    _authenColl.delegate = self;
-    _authenColl.dataSource = self;
-    
-    [_authenColl registerClass:[AuthenCollCell class] forCellWithReuseIdentifier:@"AuthenCollCell"];
-    [_infoView addSubview:_authenColl];
+    for (int i = 0; i < 2; i++) {
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(10 *SIZE + i * 123 *SIZE, 50 *SIZE, 83 *SIZE, 83 *SIZE);
+        btn.tag = i;
+        [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.textColor = YJ170Color;
+        label.font = [UIFont systemFontOfSize:11 *SIZE];
+        if (i == 0) {
+            
+            [btn setImage:[UIImage imageNamed:@"positive"] forState:UIControlStateNormal];
+            _posBtn = btn;
+            [_infoView addSubview:_posBtn];
+            
+            _posL = label;
+            _posL.text = @"上传正面人像页";
+            [_infoView addSubview:_posL];
+        }else{
+            
+            [btn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+            _backBtn = btn;
+            [_infoView addSubview:_backBtn];
+            
+            _backL = label;
+            _backL.text = @"上传背面国徽页";
+            [_infoView addSubview:_backL];
+        }
+        
+    }
     
     
     _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -710,14 +728,49 @@
         make.height.equalTo(@(13 *SIZE));
     }];
     
-    [_authenColl mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [_authenColl mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(_infoView).offset(0 *SIZE);
+//        make.top.equalTo(_codeTF.mas_bottom).offset(58 *SIZE);
+//        make.width.equalTo(@(SCREEN_Width));
+//        make.height.equalTo(@(91 *SIZE));
+//        make.bottom.equalTo(_infoView.mas_bottom).offset( -32 *SIZE);
+//    }];
+    
+    [_posBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(_infoView).offset(0 *SIZE);
+        make.left.equalTo(_infoView).offset(10 *SIZE);
         make.top.equalTo(_codeTF.mas_bottom).offset(58 *SIZE);
-        make.width.equalTo(@(SCREEN_Width));
-        make.height.equalTo(@(91 *SIZE));
+        make.width.equalTo(@(83 *SIZE));
+        make.height.equalTo(@(83 *SIZE));
         make.bottom.equalTo(_infoView.mas_bottom).offset( -32 *SIZE);
     }];
+    
+    [_posL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_infoView).offset(13 *SIZE);
+        make.top.equalTo(_posBtn.mas_bottom).offset(5 *SIZE);
+        make.width.equalTo(@(100 *SIZE));
+        make.height.equalTo(@(10 *SIZE));
+    }];
+    
+    [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_infoView).offset(133 *SIZE);
+        make.top.equalTo(_codeTF.mas_bottom).offset(58 *SIZE);
+        make.width.equalTo(@(83 *SIZE));
+        make.height.equalTo(@(83 *SIZE));
+        make.bottom.equalTo(_infoView.mas_bottom).offset( -32 *SIZE);
+    }];
+    
+    [_backL mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_infoView).offset(135 *SIZE);
+        make.top.equalTo(_backBtn.mas_bottom).offset(5 *SIZE);
+        make.width.equalTo(@(100 *SIZE));
+        make.height.equalTo(@(10 *SIZE));
+    }];
+    
     
     [_nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         

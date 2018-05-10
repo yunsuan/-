@@ -190,8 +190,7 @@
                 [cell SetCellContentbystring:[NSString stringWithFormat:@"项目地址：%@-%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],_dataDic[@"absolute_address"]]];
             }else{
                 
-         
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@",_dataDic[@"property_type"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@", _dataDic[@"property_type"]]];
             }
         }else{
             
