@@ -396,10 +396,12 @@
     
     if (collectionView == _authenColl1) {
         
-        return _imgArr1.count < 3? _imgArr1.count + 1: 3;
+        return 1;
+//        return _imgArr1.count < 3? _imgArr1.count + 1: 3;
     }else{
         
-        return _imgArr2.count < 3? _imgArr2.count + 1: 3;
+        return 1;
+//        return _imgArr2.count < 3? _imgArr2.count + 1: 3;
     }
 }
 
@@ -411,8 +413,8 @@
         cell = [[AuthenCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 91 *SIZE)];
     }
     cell.cancelBtn.tag = indexPath.item;
-    cell.cancelBtn.hidden = NO;
-    [cell.cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
+    cell.cancelBtn.hidden = YES;
+//    [cell.cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
     if (collectionView == _authenColl1) {
         
         if (_imgArr1.count) {
