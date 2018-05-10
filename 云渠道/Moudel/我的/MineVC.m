@@ -440,7 +440,7 @@
         _Mytableview.delegate = self;
         _Mytableview.dataSource = self;
         [_Mytableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        _Mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _Mytableview.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
            
             [self RequestMethod];
         }];

@@ -221,13 +221,13 @@
     _searchTable.dataSource = self;
     _searchTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_searchTable];
-    _searchTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _searchTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
         
         _page = 1;
         [self RequestMethod];
     }];
     
-    _searchTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    _searchTable.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
         
         [self RequestAddMethod];
     }];

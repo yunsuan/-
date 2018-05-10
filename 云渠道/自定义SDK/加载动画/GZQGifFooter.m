@@ -1,14 +1,14 @@
 //
-//  GZQGifHeader.m
+//  GZQGifFooter.m
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/5/9.
+//  Created by 谷治墙 on 2018/5/10.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "GZQGifHeader.h"
+#import "GZQGifFooter.h"
 
-@implementation GZQGifHeader
+@implementation GZQGifFooter
 
 - (void)prepare{
     [super prepare];
@@ -32,10 +32,11 @@
     // 设置正在刷新状态的动画图片
     [self setImages:refreshingImages forState:MJRefreshStateRefreshing];
     
+    [self setTitle:@"—— 已经到底了 ——" forState:MJRefreshStateNoMoreData];
     //隐藏时间
-    self.lastUpdatedTimeLabel.hidden = YES;
+//    self.lastUpdatedTimeLabel.hidden = YES;
     //隐藏状态
-    self.stateLabel.hidden = YES;
+    self.stateLabel.hidden = NO;
 }
 
 @end

@@ -103,7 +103,7 @@
 
 - (void)ActionSelectBtn:(UIButton *)btn{
     
-    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:COMPLAINT_TYPE]];
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:APPEAL_TYPE]];
     
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         

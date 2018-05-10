@@ -41,6 +41,7 @@
 #import "UserModelArchiver.h"
 #import "BaseRequest.h"
 #import "GZQGifHeader.h"
+#import "GZQGifFooter.h"
 
 
 

@@ -188,13 +188,13 @@
     _listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:_listTable];
-    _listTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _listTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
        
         _page = 1;
         [self RequestMethod];
     }];
     
-    _listTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    _listTable.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
        
         [self RequestAddMethod];
     }];

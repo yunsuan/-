@@ -52,6 +52,7 @@
 		0C0BED3620A1A23F005A16A1 /* DealComplaintResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3520A1A23F005A16A1 /* DealComplaintResultVC.m */; };
 		0C0BED3A20A2CF74005A16A1 /* GZQGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3920A2CF74005A16A1 /* GZQGifHeader.m */; };
 		0C0BED3D20A2D0C7005A16A1 /* GZQAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3C20A2D0C7005A16A1 /* GZQAnimation.m */; };
+		0C0BED4020A40E42005A16A1 /* GZQGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -371,6 +372,8 @@
 		0C0BED3920A2CF74005A16A1 /* GZQGifHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZQGifHeader.m; sourceTree = "<group>"; };
 		0C0BED3B20A2D0C7005A16A1 /* GZQAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZQAnimation.h; sourceTree = "<group>"; };
 		0C0BED3C20A2D0C7005A16A1 /* GZQAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZQAnimation.m; sourceTree = "<group>"; };
+		0C0BED3E20A40E42005A16A1 /* GZQGifFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZQGifFooter.h; sourceTree = "<group>"; };
+		0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZQGifFooter.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1162,6 +1165,8 @@
 				0C0BED3920A2CF74005A16A1 /* GZQGifHeader.m */,
 				0C0BED3B20A2D0C7005A16A1 /* GZQAnimation.h */,
 				0C0BED3C20A2D0C7005A16A1 /* GZQAnimation.m */,
+				0C0BED3E20A40E42005A16A1 /* GZQGifFooter.h */,
+				0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */,
 			);
 			path = "加载动画";
 			sourceTree = "<group>";
@@ -2775,6 +2780,7 @@
 				0CF04F34207B00F900A45F4A /* RecommendCollCell.m in Sources */,
 				0CA37B802089C3C9005609C7 /* BoxViewCell.m in Sources */,
 				10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */,
+				0C0BED4020A40E42005A16A1 /* GZQGifFooter.m in Sources */,
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				0C0BED1D20A18D94005A16A1 /* FailedDealCell.m in Sources */,

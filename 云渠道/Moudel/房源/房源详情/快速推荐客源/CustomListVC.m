@@ -302,13 +302,13 @@
     _customerTable.dataSource = self;
     _customerTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_customerTable];
-    _customerTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _customerTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
         
         _page = 1;
         [self RequestMethod];
     }];
     
-    _customerTable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    _customerTable.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
         
         [self RequestAddMethod];
     }];

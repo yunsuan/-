@@ -196,7 +196,7 @@
     _complaintBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
     [_complaintBtn addTarget:self action:@selector(ActionComplaintBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_complaintBtn setTitle:@"申诉" forState:UIControlStateNormal];
-    [_complaintBtn setBackgroundColor:YJBlueBtnColor];
+    [_complaintBtn setBackgroundColor:COLOR(191, 191, 191, 1)];
     [_complaintBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_complaintBtn];
     

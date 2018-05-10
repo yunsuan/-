@@ -684,7 +684,7 @@
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
-        _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
             
             if (_index == 0) {
                 
@@ -703,7 +703,7 @@
             }
         }];
         
-        _MainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
             
             if (_index == 0) {
                 
