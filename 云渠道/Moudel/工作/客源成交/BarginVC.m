@@ -49,10 +49,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ActionBarginReload) name:@"recommendReload" object:nil];
+    
     [self initDateSouce];
     [self initUI];
     [self UnComfirmRequest];
 }
+
+- (void)ActionBarginReload{
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
+        
+        [self UnComfirmRequest];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self ValidRequest];
+        
+    });
+}
+
 
 -(void)initDateSouce
 {
@@ -306,7 +327,7 @@
     
     _isLast4 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
-    [BaseRequest GET:ProjectAppealList_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDealAppealList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         
@@ -334,7 +355,7 @@
 - (void)ApealRequestAdd{
     
     _page4 += 1;
-    [BaseRequest GET:BrokerAppeal_URL parameters:@{@"page":@(_page4)} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectDealAppealList_URL parameters:@{@"page":@(_page4)} success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
@@ -494,20 +515,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    if (_index == 2) {
-//
-//        return 133 *SIZE;
-//    }else if (_index == 3){
-//
-//        return 94 *SIZE;
-//    }
-//    return 113 *SIZE;
     if (_index == 0 || _index == 2) {
         
         return 133;
-    }else if (_index == 3){
-        
-        return 94 *SIZE;
     }
     return 113 *SIZE;
 }
@@ -608,9 +618,22 @@
             cell = [[ComplaintCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-//        cell.dataDic = _appealArr[indexPath.row];
-
+        cell.tag = indexPath.row;
+        cell.dataDic = _appealArr[indexPath.row];
+        cell.complaintCellCellPhoneBtnBlock = ^(NSInteger index) {
+            
+            NSString *phone = [_appealArr[index][@"tel"] componentsSeparatedByString:@","][0];
+            if (phone.length) {
+                
+                //获取目标号码字符串,转换成URL
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                //调用系统方法拨号
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+            }
+        };
         return cell;
     }
 }
@@ -674,7 +697,7 @@
     _MainTableView.dataSource = self;
     [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_MainTableView];
-    _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
         
         if (_index == 0) {
             
@@ -693,7 +716,7 @@
         }
     }];
     
-    _MainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
         
         if (_index == 0) {
             

@@ -78,7 +78,7 @@
     _messageTable.delegate = self;
     _messageTable.dataSource = self;
     _messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _messageTable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _messageTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
         [self post];
     }];
     [self.view addSubview:_messageTable];

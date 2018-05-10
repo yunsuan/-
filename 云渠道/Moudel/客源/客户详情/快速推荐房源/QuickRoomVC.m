@@ -761,13 +761,13 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
             
             _page = 1;
             [self RequestMethod];
         }];
         
-        _MainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
             
             [self RequestMethod];
         }];

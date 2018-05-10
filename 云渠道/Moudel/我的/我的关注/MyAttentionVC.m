@@ -113,23 +113,11 @@
     MyAttentionModel *model = _dataArr[indexPath.row];
     [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
     
-    
-    NSMutableArray *tempArr = [@[] mutableCopy];
-    for (int i = 0; i < model.property_tags.count; i++) {
-        
-        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
-                
-                [tempArr addObject:obj[@"param"]];
-                *stop = YES;
-            }
-        }];
-    }
-    NSArray *tempArr1 = @[tempArr,[model.project_tags componentsSeparatedByString:@","]];
+    NSArray *tempArr1 = @[model.property_tags,model.project_tags_name];
     [cell settagviewWithdata:tempArr1];
 //    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
-    [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
+//    [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
+    cell.getLevel.hidden = YES;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -198,6 +186,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return @"取消关注";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
 }
 
 - (void)initUI{

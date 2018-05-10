@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *focus_id;
 
+@property (nonatomic, strong) NSMutableArray *project_tags_name;
+
 @end

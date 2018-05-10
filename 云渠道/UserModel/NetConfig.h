@@ -277,3 +277,6 @@ static NSString *const ProjectDealDisableList_URL = @"agent/work/project/dealDis
 
 //经纪人成交失效详情
 static NSString *const ProjectDeailDisableDetail_URL = @"agent/work/project/dealDisabledDetail";
+
+//经纪人成交申诉列表
+static NSString *const ProjectDealAppealList_URL = @"agent/work/project/dealAppealList";

@@ -860,8 +860,8 @@
             [self RequestMethod];
         }];
         
-        _MainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            
+        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
+
             [self RequestMethod];
         }];
     }

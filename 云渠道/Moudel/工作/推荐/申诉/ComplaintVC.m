@@ -9,6 +9,8 @@
 #import "ComplaintVC.h"
 #import "SinglePickView.h"
 #import "RecommendVC.h"
+#import "BarginVC.h"
+#import "NomineeVC.h"
 
 @interface ComplaintVC ()<UITextViewDelegate>
 {
@@ -76,6 +78,20 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
                     [self.navigationController popToViewController:vc animated:YES];
                 }
+                
+                if ([vc isKindOfClass:[NomineeVC class]]) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
+                    [self.navigationController popToViewController:vc animated:YES];
+                }
+                
+                if ([vc isKindOfClass:[BarginVC class]]) {
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
+                    [self.navigationController popToViewController:vc animated:YES];
+                }
             }
         }
     } failure:^(NSError *error) {
@@ -87,7 +103,7 @@
 
 - (void)ActionSelectBtn:(UIButton *)btn{
     
-    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:COMPLAINT_TYPE]];
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:APPEAL_TYPE]];
     
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         

@@ -44,7 +44,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self InitDataSouce];
     [self InitUI];
-    
+    [self RequestMethod];
 }
 
 -(void)InitUI{
@@ -101,8 +101,7 @@
     _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
-    
-    [self RequestMethod];
+
 }
 
 - (void)RequestMethod{
@@ -441,7 +440,7 @@
         _Mytableview.delegate = self;
         _Mytableview.dataSource = self;
         [_Mytableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        _Mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _Mytableview.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
            
             [self RequestMethod];
         }];

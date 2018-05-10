@@ -144,10 +144,10 @@
         _systemmsgtable.backgroundColor = YJBackColor;
         _systemmsgtable.delegate = self;
         _systemmsgtable.dataSource = self;
-        _systemmsgtable.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _systemmsgtable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
             [self postWithpage:@"1"];
         }];
-        _systemmsgtable.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _systemmsgtable.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
             page++;
             [self postWithpage:[NSString stringWithFormat:@"%d",page]];
         }];
