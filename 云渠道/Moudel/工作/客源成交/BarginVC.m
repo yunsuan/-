@@ -100,7 +100,7 @@
 - (void)UnComfirmRequestAdd{
     
     _page1 += 1;
-    [BaseRequest GET:ProjectWaitConfirm_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectWaitDeal_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
