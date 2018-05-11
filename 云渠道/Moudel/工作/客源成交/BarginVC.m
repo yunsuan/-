@@ -99,7 +99,7 @@
         [_MainTableView.mj_header endRefreshing];
         
         _page1 = 1;
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_unComfirmArr removeAllObjects];
@@ -109,6 +109,9 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast1 = YES;
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -126,7 +129,7 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
+       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
@@ -138,6 +141,10 @@
                 
                 [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else
+        {
+             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -173,7 +180,7 @@
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDealList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -187,6 +194,10 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast2 = YES;
             }
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -204,7 +215,7 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetValidArr:resposeObject[@"data"][@"data"]];
@@ -216,6 +227,10 @@
                 
                 [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -251,7 +266,7 @@
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDealDisableList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -265,6 +280,9 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast3 = YES;
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -282,7 +300,7 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetInValidArr:resposeObject[@"data"][@"data"]];
@@ -294,6 +312,10 @@
                 
                 [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -329,7 +351,7 @@
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDealAppealList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -343,6 +365,10 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast4 = YES;
             }
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -360,7 +386,7 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetApealArr:resposeObject[@"data"][@"data"]];
@@ -372,6 +398,10 @@
                 
                 [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

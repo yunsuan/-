@@ -62,7 +62,7 @@
     [BaseRequest GET:ProjectDeailDisableDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -74,6 +74,10 @@
                 }
             }];
             [_invalidTable reloadData];
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

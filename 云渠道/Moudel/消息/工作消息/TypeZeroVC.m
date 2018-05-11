@@ -65,7 +65,7 @@
                                                      } success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -78,6 +78,11 @@
             }];
             [_invalidTable reloadData];
         }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
+        }
+                                                         
     } failure:^(NSError *error) {
         
         NSLog(@"%@",error);
@@ -96,7 +101,7 @@
     [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_client_id} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             self.recommendView.codeL.text = [NSString stringWithFormat:@"推荐编号:%@",_client_id];
@@ -110,7 +115,7 @@
             self.recommendView.timeL.attributedText = attr;
             [[UIApplication sharedApplication].keyWindow addSubview:self.recommendView];
         }else{
-            
+//            [self showContent:resposeObject[@"msg"]];
             self.failView.reasonL.text = resposeObject[@"msg"];
             self.failView.timeL.text = [_formatter stringFromDate:[NSDate date]];
             [[UIApplication sharedApplication].keyWindow addSubview:self.failView];

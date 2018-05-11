@@ -59,7 +59,7 @@
     [BaseRequest GET:BrokerAppealDetail_URL parameters:@{@"appeal_id":_appealId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -71,6 +71,10 @@
                 }
             }];
             [_unCompleteTable reloadData];
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -84,12 +88,16 @@
     [BaseRequest POST:AppealCancel_URL parameters:@{@"appeal_id":_appealId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
