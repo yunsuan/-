@@ -15,7 +15,7 @@ static AFHTTPSessionManager *updatemanager ;
 
 + (void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
 //        [SVProgressHUD show];
-    
+    [WaitAnimation startAnimation];
       AFHTTPSessionManager *htttmanger  =   [BaseRequest sharedHttpSessionManager];
 
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
@@ -24,7 +24,7 @@ static AFHTTPSessionManager *updatemanager ;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        [SVProgressHUD dismiss];
-       
+        [WaitAnimation stopAnimation];
         if (success) {
             NSArray * arr = [url componentsSeparatedByString:@"/"];
             if ([arr[0] isEqualToString:@"agent"]&&![arr[1] isEqualToString:@"user"]) {
@@ -68,6 +68,7 @@ static AFHTTPSessionManager *updatemanager ;
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //        [SVProgressHUD dismiss];
+        [WaitAnimation stopAnimation];
         if (failure) {
             failure(error);
            
@@ -76,12 +77,14 @@ static AFHTTPSessionManager *updatemanager ;
 }
 
 + (void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
+    [WaitAnimation startAnimation];
     AFHTTPSessionManager *htttmanger  =   [BaseRequest sharedHttpSessionManager];
 
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     [htttmanger POST:str parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [WaitAnimation stopAnimation];
         if (success) {
             NSArray * arr = [url componentsSeparatedByString:@"/"];
             if ([arr[0] isEqualToString:@"agent"]&&![arr[1] isEqualToString:@"user"]) {
@@ -126,6 +129,7 @@ static AFHTTPSessionManager *updatemanager ;
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [WaitAnimation stopAnimation];
         if (failure) {
             failure(error);
         }
@@ -134,7 +138,7 @@ static AFHTTPSessionManager *updatemanager ;
 
 
 + (void)Updateimg:(NSString *)url parameters:(NSDictionary *)parameters constructionBody:(void (^)(id<AFMultipartFormData>))blocks success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    
+    [WaitAnimation startAnimation];
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:str]];
   
@@ -151,11 +155,11 @@ static AFHTTPSessionManager *updatemanager ;
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        [WaitAnimation stopAnimation];
         success(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [WaitAnimation stopAnimation];
         failure(error);
     }];
 }
