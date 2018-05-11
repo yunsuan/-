@@ -7,38 +7,57 @@
 //
 
 #import "WebViewVC.h"
+#import <WebKit/WebKit.h>
 
-@interface WebViewVC ()<UIWebViewDelegate>
-
+@interface WebViewVC ()<WKNavigationDelegate>
+@property (nonatomic , strong) WKWebView *webwivw;
 @end
 
 @implementation WebViewVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
-    webView.delegate = self;
-    [self.view addSubview:webView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    NSURL *url = [NSURL URLWithString:@"https://img360.fang.com/2018/04/19/bj/720/5c5ee6ee7285410a9f87db339f7c375d/html/index.html?type=quanjing&channel=newhouse&p=110"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    //[webView loadData:data MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:nil];
-    [webView loadData:data MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:url];
+    self.view.backgroundColor = YJBackColor;
+    self.navBackgroundView.hidden = NO;
+    self.titleLabel.text = @"新房推荐";
+    //2.创建URL
+    NSURL *URL = [NSURL URLWithString:@"https://www.baidu.com"];
+    //3.创建Request
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    //4.加载Request
+    [self.webwivw loadRequest:request];
+    [self.view addSubview:self.webwivw];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark - WKNavigationDelegate
+// 页面开始加载时调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    
+}
+// 当内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+    
+}
+// 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    
+}
+// 页面加载失败时调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
+    [self showContent:@"网络错误"];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(WKWebView *)webwivw
+{
+    if (!_webwivw) {
+        _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
+        _webwivw.navigationDelegate = self;
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    return _webwivw;
 }
-*/
 
 @end
