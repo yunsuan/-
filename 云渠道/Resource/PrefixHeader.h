@@ -42,6 +42,7 @@
 #import "BaseRequest.h"
 #import "GZQGifHeader.h"
 #import "GZQGifFooter.h"
+#import "WaitAnimation.h"
 
 
 

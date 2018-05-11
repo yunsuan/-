@@ -10,4 +10,7 @@
 
 @interface WaitAnimation : UIView
 
++(void)startAnimation;
++(void)stopAnimation;
+
 @end
