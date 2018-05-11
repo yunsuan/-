@@ -33,6 +33,7 @@
     [self setImages:refreshingImages forState:MJRefreshStateRefreshing];
     
     [self setTitle:@"—— 已经到底了 ——" forState:MJRefreshStateNoMoreData];
+    self.stateLabel.textColor = YJContentLabColor;
     //隐藏时间
 //    self.lastUpdatedTimeLabel.hidden = YES;
     //隐藏状态

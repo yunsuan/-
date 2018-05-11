@@ -72,12 +72,12 @@
     _projectL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_projectL];
 
-    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _reportTimeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 81 *SIZE, 200 *SIZE, 10 *SIZE)];
     _reportTimeL.textColor = YJ86Color;
     _reportTimeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_reportTimeL];
     
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 101 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 101 *SIZE, 200 *SIZE, 10 *SIZE)];
     _timeL.textColor = COLOR(255, 165, 29, 1);
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_timeL];
