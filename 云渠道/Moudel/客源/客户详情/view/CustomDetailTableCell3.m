@@ -33,11 +33,11 @@
     [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 4)];
     _rateL.attributedText = attr;
     
-    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_1"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
        
         if (error) {
             
-            _headImg.image = [UIImage imageNamed:@""];
+            _headImg.image = [UIImage imageNamed:@"default_1"];
         }
         
     }];
@@ -78,6 +78,7 @@
 - (void)initUI{
     
     _headImg = [[UIImageView alloc]initWithFrame:CGRectMake(11.7*SIZE,16.3*SIZE, 100*SIZE, 88.3*SIZE)];
+    _headImg.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_headImg];
     
     _titleL = [[UILabel alloc]initWithFrame:CGRectMake(123.3*SIZE, 16*SIZE, 140*SIZE, 14*SIZE)];
