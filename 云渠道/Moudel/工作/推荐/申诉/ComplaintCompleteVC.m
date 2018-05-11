@@ -158,7 +158,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         NSArray *arr = _dataDic[@"process"];
-        cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
+        cell.titleL.text = [NSString stringWithFormat:@"%@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
         if (indexPath.row == 3) {
             
             cell.upLine.hidden = YES;

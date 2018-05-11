@@ -11,9 +11,13 @@
 
 typedef void(^MoreBtnBlock)(NSString *tag,NSString *houseType,NSString *status);
 
+typedef void(^MoreViewClearBlock)(void);
+
 @interface MoreView : UIView
 
 @property (nonatomic, copy) MoreBtnBlock moreBtnBlock;
+
+@property (nonatomic, copy) MoreViewClearBlock moreViewClearBlock;
 
 @property (nonatomic, strong) UICollectionView *moreColl;
 

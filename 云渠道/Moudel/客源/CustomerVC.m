@@ -299,6 +299,7 @@
         }
     }else{
         
+        _page = 1;
         _is1 = NO;
         _typeBtn.selected = NO;
         _areaBtn.selected = NO;
@@ -340,6 +341,7 @@
         }
         [self.boxView removeFromSuperview];
         [self RequestMethod];
+        [_customerTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
 }
 

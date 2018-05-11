@@ -149,6 +149,10 @@
 
 - (void)ActionCancelBtn:(UIButton *)btn{
     
+    if (self.moreViewClearBlock) {
+        
+        self.moreViewClearBlock();
+    }
     [self removeFromSuperview];
 }
 
