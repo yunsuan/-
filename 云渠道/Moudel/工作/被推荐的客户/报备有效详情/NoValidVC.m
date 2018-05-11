@@ -44,7 +44,7 @@
 }
 
 -(void)post{
-    [BaseRequest GET:ValueDetail_URL
+    [BaseRequest GET:ProjectValueDetail_URL
           parameters:@{
                        @"client_id":_clientid
                        }
@@ -73,7 +73,7 @@
                      NSString *adress = resposeObject[@"data"][@"absolute_address"];
                      adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"],adress];
                      
-                     _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"委托人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
+                     _data = @[@[[NSString stringWithFormat:@"有效到访时间：%@",resposeObject[@"data"][@"allot_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"委托人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
                      _endtime = resposeObject[@"data"][@"timeLimit"];
                      _Pace = resposeObject[@"data"][@"process"];
                      [_validTable reloadData];
