@@ -35,7 +35,12 @@
     //隐藏时间
     self.lastUpdatedTimeLabel.hidden = YES;
     //隐藏状态
-    self.stateLabel.hidden = YES;
+//    self.stateLabel.hidden = YES;
+    self.stateLabel.font = [UIFont systemFontOfSize:11 *SIZE];
+    self.stateLabel.textColor = YJContentLabColor;
+    [self setTitle:@"人算不如云算" forState:1];
+    [self setTitle:@"人算不如云算" forState:2];
+    [self setTitle:@"人算不如云算" forState:3];
 }
 
 @end
