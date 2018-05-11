@@ -213,6 +213,7 @@
 		1044B3FE20A04227002D9BAE /* TypeTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FD20A04227002D9BAE /* TypeTwoVC.m */; };
 		1044B40120A04FD7002D9BAE /* TypeThreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40020A04FD7002D9BAE /* TypeThreeVC.m */; };
 		1044B40420A05179002D9BAE /* TypeZeroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40320A05179002D9BAE /* TypeZeroVC.m */; };
+		1044B40720A56857002D9BAE /* WaitAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40620A56857002D9BAE /* WaitAnimation.m */; };
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
 		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
@@ -687,6 +688,8 @@
 		1044B40020A04FD7002D9BAE /* TypeThreeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeThreeVC.m; sourceTree = "<group>"; };
 		1044B40220A05179002D9BAE /* TypeZeroVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeZeroVC.h; sourceTree = "<group>"; };
 		1044B40320A05179002D9BAE /* TypeZeroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeZeroVC.m; sourceTree = "<group>"; };
+		1044B40520A56857002D9BAE /* WaitAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitAnimation.h; sourceTree = "<group>"; };
+		1044B40620A56857002D9BAE /* WaitAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitAnimation.m; sourceTree = "<group>"; };
 		105E18892060E1F50031558D /* CompanyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
 		105E188A2060E1F50031558D /* CompanyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		105E188C2060E21C0031558D /* PeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
@@ -1167,6 +1170,8 @@
 				0C0BED3C20A2D0C7005A16A1 /* GZQAnimation.m */,
 				0C0BED3E20A40E42005A16A1 /* GZQGifFooter.h */,
 				0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */,
+				1044B40520A56857002D9BAE /* WaitAnimation.h */,
+				1044B40620A56857002D9BAE /* WaitAnimation.m */,
 			);
 			path = "加载动画";
 			sourceTree = "<group>";
@@ -2611,6 +2616,7 @@
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */,
 				0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */,
+				1044B40720A56857002D9BAE /* WaitAnimation.m in Sources */,
 				0CBD85802085EA7E00E7B183 /* NomineeCell2.m in Sources */,
 				0C0BED1A20A184E0005A16A1 /* UnDealCell.m in Sources */,
 				105E189B20622C870031558D /* singleviewCell.m in Sources */,
