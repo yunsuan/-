@@ -293,12 +293,12 @@
 
 
   
-    if (!_imgArr1.count) {
-
-        [self showContent:@"请选择到访照片"];
-        return;
-
-    }
+//    if (!_imgArr1.count) {
+//
+//        [self showContent:@"请选择到访照片"];
+//        return;
+//
+//    }
 
     if (!_imgArr2.count) {
 
@@ -346,15 +346,48 @@
         _agentname = _adviserTF.textfield.text;
     }
     
-    [_dic setObject:_numBtn.str forKey:@"visit_num"];
-    [_dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
-    [_dic setObject:_agentid forKey:@"property_advicer_wish_id"];
-    [_dic setObject:_agentname forKey:@"property_advicer_wish"];
-    [_dic setObject:sign forKey:@"signatory"];
-    [_dic setObject:[_imgUrl1 componentsJoinedByString:@","] forKey:@"visit_img_url"];
+    if (_numBtn.str) {
+        
+        [_dic setObject:_numBtn.str forKey:@"visit_num"];
+    }
+    
+    if (_purposeBtn.str) {
+        
+        [_dic setObject:_purposeBtn.str forKey:@"buy_purpose"];
+    }
+    
+    if (_agentid) {
+        
+        [_dic setObject:_agentid forKey:@"property_advicer_wish_id"];
+    }
+    
+    if (_agentname) {
+        
+        [_dic setObject:_agentname forKey:@"property_advicer_wish"];
+    }
+
+    if (sign) {
+        
+        [_dic setObject:sign forKey:@"signatory"];
+    }
+    
+    if (_imgUrl1) {
+        
+         [_dic setObject:[_imgUrl1 componentsJoinedByString:@","] forKey:@"visit_img_url"];
+    }
+   
     [_dic setObject:[_imgUrl2 componentsJoinedByString:@","] forKey:@"verify_img_url"];
-    [_dic setObject:_markView.text forKey:@"comment"];
-    [_dic setObject:_timeL.text forKey:@"visit_time"];
+    
+    if (_markView.text) {
+        
+        [_dic setObject:_markView.text forKey:@"comment"];
+    }
+    
+    if (_timeL.text) {
+        
+        [_dic setObject:_timeL.text forKey:@"visit_time"];
+    }
+    
     
 
     [BaseRequest POST:ConfirmValue_URL parameters:_dic success:^(id resposeObject) {
