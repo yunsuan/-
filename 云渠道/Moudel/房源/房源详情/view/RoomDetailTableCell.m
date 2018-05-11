@@ -43,7 +43,11 @@
         label.textColor = YJContentLabColor;
         label.font = [UIFont systemFontOfSize:12 *SIZE];
         label.text = titleArr[i];
-        [self.contentView addSubview:label];
+        if (i != 3) {
+            
+            [self.contentView addSubview:label];
+        }
+        
         
         UILabel *label2 = [[UILabel alloc] init];
         label2.textColor = YJTitleLabColor;
