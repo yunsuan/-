@@ -163,24 +163,31 @@
         }
     }
 
- 
-
-    if (_imgStr1.length && _imgStr2.length) {
-        
-    }else{
-        
-        [self showContent:@"请上传身份证照片"];
-        return;
-    }
-    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 
     [dic setObject:_clientId forKey:@"client_id"];
     [dic setObject:_nameTF.textfield.text forKey:@"client_name"];
     [dic setObject:tel forKey:@"client_tel"];
-    [dic setObject:_cardType forKey:@"card_type"];
-    [dic setObject:_codeTF.textfield.text forKey:@"card_num"];
-    [dic setObject:[NSString stringWithFormat:@"%@,%@",_imgStr1,_imgStr2] forKey:@"card_img_url"];
+    if (_cardType) {
+        
+        [dic setObject:_cardType forKey:@"card_type"];
+    }
+    if (_codeTF.textfield.text) {
+        
+        [dic setObject:_codeTF.textfield.text forKey:@"card_num"];
+    }
+    
+    if (_imgStr1.length && _imgStr2.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@,%@",_imgStr1,_imgStr2] forKey:@"card_img_url"];
+    }else if (_imgStr1.length && !_imgStr2.length){
+        
+        [dic setObject:_imgStr1 forKey:@"card_img_url"];
+    }else if (!_imgStr1.length && _imgStr2.length){
+        
+        [dic setObject:_imgStr2 forKey:@"card_img_url"];
+    }
+    
 //    [dic setObject:[_imgUrl componentsJoinedByString:@","] forKey:@"card_img_url"];
     CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
     nextVC.datadic = _dataDic;
