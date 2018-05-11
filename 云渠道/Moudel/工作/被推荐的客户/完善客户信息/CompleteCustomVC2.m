@@ -424,12 +424,12 @@
                 cell.imageView.image = _imgArr1[indexPath.item];
             }else{
                 
-                cell.imageView.image = [UIImage imageNamed:@"add"];
+                cell.imageView.image = [UIImage imageNamed:@"uploadphotos"];
                 cell.cancelBtn.hidden = YES;
             }
         }else{
             
-            cell.imageView.image = [UIImage imageNamed:@"add"];
+            cell.imageView.image = [UIImage imageNamed:@"uploadphotos"];
             cell.cancelBtn.hidden = YES;
         }
     }else{
@@ -441,12 +441,12 @@
                 cell.imageView.image = _imgArr2[indexPath.item];
             }else{
                 
-                cell.imageView.image = [UIImage imageNamed:@"add"];
+                cell.imageView.image = [UIImage imageNamed:@"uploadphotos"];
                 cell.cancelBtn.hidden = YES;
             }
         }else{
             
-            cell.imageView.image = [UIImage imageNamed:@"add"];
+            cell.imageView.image = [UIImage imageNamed:@"uploadphotos"];
             cell.cancelBtn.hidden = YES;
         }
     }

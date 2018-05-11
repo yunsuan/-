@@ -10,6 +10,15 @@
 
 @implementation GZQGifHeader
 
+- (void)placeSubviews{
+    
+    [super placeSubviews];
+    
+//    self.stateLabel.mas_bottom = self.gifView.mas_bottom;
+    self.stateLabel.mj_y += 6 ;
+//    self.stateLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+}
+
 - (void)prepare{
     [super prepare];
     
