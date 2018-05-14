@@ -54,6 +54,7 @@
 		0C0BED3D20A2D0C7005A16A1 /* GZQAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3C20A2D0C7005A16A1 /* GZQAnimation.m */; };
 		0C0BED4020A40E42005A16A1 /* GZQGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */; };
 		0C0BED4F20A93C01005A16A1 /* BoxAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED4E20A93C01005A16A1 /* BoxAddressView.m */; };
+		0C0BED5320A98841005A16A1 /* CityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5220A98841005A16A1 /* CityVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -378,6 +379,8 @@
 		0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZQGifFooter.m; sourceTree = "<group>"; };
 		0C0BED4D20A93C01005A16A1 /* BoxAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxAddressView.h; sourceTree = "<group>"; };
 		0C0BED4E20A93C01005A16A1 /* BoxAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxAddressView.m; sourceTree = "<group>"; };
+		0C0BED5120A98841005A16A1 /* CityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityVC.h; sourceTree = "<group>"; };
+		0C0BED5220A98841005A16A1 /* CityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1179,6 +1182,15 @@
 			path = "加载动画";
 			sourceTree = "<group>";
 		};
+		0C0BED5020A9882A005A16A1 /* 城市 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BED5120A98841005A16A1 /* CityVC.h */,
+				0C0BED5220A98841005A16A1 /* CityVC.m */,
+			);
+			path = "城市";
+			sourceTree = "<group>";
+		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1817,6 +1829,7 @@
 		102DF96A2057A0A200E1859C /* 房源 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0BED5020A9882A005A16A1 /* 城市 */,
 				0C0606A6207DB2F50045E3C1 /* 房源列表model */,
 				0CF04F7E207C9C7A00A45F4A /* 搜索 */,
 				105E18882060E1970031558D /* view */,
@@ -2609,6 +2622,7 @@
 				0CA37B8F2089D7B9005609C7 /* AddressChooseView2.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */,
+				0C0BED5320A98841005A16A1 /* CityVC.m in Sources */,
 				0C342FD02080ACD50058406D /* UserInfoModel.m in Sources */,
 				0C06B1F7209D7DBB00F11993 /* CustomListVC.m in Sources */,
 				0C07BFC52060D88C007F31EC /* UserModelArchiver.m in Sources */,
