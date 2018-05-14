@@ -59,6 +59,7 @@
         {
             _namelist = @[@"新房推荐",@"客户报备",@"成交客户"];
             _imglist = @[@"recommended",@"client",@"Clinchadeal"];
+             _countdata  = @[@"",@"",@""];
             [BaseRequest GET:AgentInfoCount_URL parameters:nil success:^(id resposeObject) {
             _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend"][@"recommend_count"],resposeObject[@"data"][@"recommend"][@"value"],resposeObject[@"data"][@"recommend"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]],[NSString stringWithFormat:@"累计人数%@，成交%@，为成交%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]]];
                 [_MainTableView reloadData];
@@ -91,7 +92,7 @@
 
 -(void)initDateSouce
 {
-    _countdata  = @[@""];
+   
 }
 
 -(void)initUI
@@ -105,7 +106,13 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _countdata.count;
+    if ([[UserModelArchiver unarchive].agent_identity integerValue]==1) {
+        return 3;
+    }
+    else{
+         return 1;
+    }
+   
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
