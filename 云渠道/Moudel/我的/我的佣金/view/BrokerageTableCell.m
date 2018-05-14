@@ -42,13 +42,13 @@
     UILabel *numL = [[UILabel alloc] initWithFrame:CGRectMake(24 *SIZE, 98 *SIZE, 50 *SIZE, 11 *SIZE)];
     numL.textColor = CH_COLOR_white;
     numL.font = [UIFont systemFontOfSize:12 *SIZE];
-    numL.text = @"未结条数";
+    numL.text = @"条数";
     [_backImg addSubview:numL];
     
     UILabel *statusL = [[UILabel alloc] initWithFrame:CGRectMake(267 *SIZE, 98 *SIZE, 40 *SIZE, 11 *SIZE)];
     statusL.textColor = CH_COLOR_white;
     statusL.font = [UIFont systemFontOfSize:12 *SIZE];
-    statusL.text = @"已结";
+    statusL.text = @"累计";
     [_backImg addSubview:statusL];
 }
 @end

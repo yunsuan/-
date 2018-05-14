@@ -61,6 +61,12 @@
     _timeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_timeL];
     
+    _priceL = [[UILabel alloc] initWithFrame:CGRectMake(250 *SIZE, 38 *SIZE, 100 *SIZE, 14 *SIZE)];
+    _priceL.textColor = COLOR(255, 70, 70, 1);
+    _priceL.font = [UIFont systemFontOfSize:13 *SIZE];
+    _priceL.textAlignment = NSTextAlignmentRight;
+    [self.contentView addSubview:_priceL];
+    
     _expediteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _expediteBtn.frame = CGRectMake(273 *SIZE, 65 *SIZE, 77 *SIZE, 30 *SIZE);
     _expediteBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];

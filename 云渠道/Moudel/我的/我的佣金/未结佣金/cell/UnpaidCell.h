@@ -25,6 +25,8 @@ typedef void (^moneybtnblook)(NSInteger index);
 
 @property (nonatomic, strong) UILabel *timeL;
 
+@property (nonatomic, strong) UILabel *priceL;
+
 @property (nonatomic, strong) UIButton *expediteBtn;
 
 @end

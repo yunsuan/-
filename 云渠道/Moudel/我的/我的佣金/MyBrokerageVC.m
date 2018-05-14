@@ -19,6 +19,7 @@
     
     NSArray *_imageArr;
     NSArray *_titleArr;
+    NSArray *_brokerCount;
 }
 @property (nonatomic, strong) UITableView *brokerTable;
 
@@ -28,19 +29,41 @@
 
 @implementation MyBrokerageVC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self post];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initDataSource];
     [self initUI];
+   
 }
 
 - (void)initDataSource{
     
     _imageArr = @[@"id",@"totalcommission",@"bankcard"];
     _titleArr = @[@"身份证认证",@"累计佣金",@"银行卡"];
+    _brokerCount = @[@[@"0",@"￥0"],@[@"0",@"￥0"]];
 }
 
+
+-(void)post{
+    [BaseRequest GET:BrokerInfo_URL parameters:nil success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue]==200) {
+            _priceL.text = [NSString stringWithFormat:@"￥%@",resposeObject[@"data"][@"total"]];
+            _brokerCount = @[@[[NSString stringWithFormat:@"%@",resposeObject[@"data"][@"un_pay"][@"total"]],[NSString stringWithFormat:@"￥%@",resposeObject[@"data"][@"un_pay"][@"count"]]],@[[NSString stringWithFormat:@"%@",resposeObject[@"data"][@"is_pay"][@"total"]],[NSString stringWithFormat:@"￥%@",resposeObject[@"data"][@"is_pay"][@"count"]]]];
+            [_brokerTable reloadData];
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 
 #pragma mark -- action
 
@@ -92,8 +115,8 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.numL.text = @"23";
-    cell.priceL.text = @"￥2800";
+    cell.numL.text = _brokerCount[indexPath.row][0];
+    cell.priceL.text = _brokerCount[indexPath.row][1];
     if (indexPath.row == 0) {
         
         cell.backImg.image = [UIImage imageNamed:@"bg_1-1"];

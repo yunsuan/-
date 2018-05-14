@@ -46,6 +46,7 @@ static NSString *const GetFocusProjectList_URL = @"agent/personal/getFocusProjec
 //获取个人信息
 static NSString *const GetPersonalBaseInfo_URL = @"agent/personal/getBaseInfo";
 
+
 //修改个人信息
 static NSString *const UpdatePersonal_URL = @"agent/personal/update";
 
@@ -72,6 +73,15 @@ static NSString *const BankCardInfo_URL = @"agent/personal/bankCardInfo";
 
 //意见反馈
 static NSString *const Advice_URL = @"agent/personal/advice";
+
+//佣金概况
+static NSString *const BrokerInfo_URL = @"agent/personal/brokerInfo";
+
+//未接佣金
+static NSString *const UnPayList_URL = @"agent/personal/unPayList";
+
+//已结佣金列表
+static NSString *const IsPayList_URL = @"agent/personal/isPayList";
 #pragma mark ---  客源  ---
 
 
@@ -280,3 +290,5 @@ static NSString *const ProjectDeailDisableDetail_URL = @"agent/work/project/deal
 
 //经纪人成交申诉列表
 static NSString *const ProjectDealAppealList_URL = @"agent/work/project/dealAppealList";
+
+
