@@ -688,6 +688,10 @@
     [_counselBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
     [_counselBtn setBackgroundColor:COLOR(255, 188, 88, 1)];
     [_counselBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    if ([[UserModel defaultModel].agent_identity integerValue] == 2) {
+        
+        _counselBtn.frame = CGRectMake(0, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE, SCREEN_Width, 47 *SIZE + TAB_BAR_MORE);
+    }
     [self.view addSubview:_counselBtn];
 
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -696,7 +700,11 @@
     [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_recommendBtn setTitle:@"快速推荐" forState:UIControlStateNormal];
     [_recommendBtn setBackgroundColor:YJBlueBtnColor];
-    [self.view addSubview:_recommendBtn];
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+        
+        [self.view addSubview:_recommendBtn];
+    }
+    
 }
 
 

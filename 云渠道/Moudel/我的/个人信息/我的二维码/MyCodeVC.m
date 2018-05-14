@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) UIView *whiteView;
 
+@property (nonatomic, strong) TransmitView *transmitView;
+
 @end
 
 @implementation MyCodeVC
@@ -34,7 +36,7 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
 }
 
 - (void)initUI{
@@ -101,6 +103,50 @@
     _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(50 *SIZE, 148 *SIZE, 167 *SIZE, 167 *SIZE)];
     _codeImg.backgroundColor = [UIColor blackColor];
     [_whiteView addSubview:_codeImg];
+}
+
+
+- (TransmitView *)transmitView{
+    
+    if (!_transmitView) {
+        
+        _transmitView = [[TransmitView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        WS(weakSelf);
+        _transmitView.transmitTagBtnBlock = ^(NSInteger index) {
+            
+            if (index == 0) {
+                
+                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+            }
+        };
+    }
+    return _transmitView;
+}
+
+//
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"分享标题" descr:@"分享内容描述" thumImage:[UIImage imageNamed:@"icon"]];
+    //设置网页地址
+    shareObject.webpageUrl =@"http://mobile.umeng.com/social";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+            [self showContent:@"分享成功"];
+            [self.transmitView removeFromSuperview];
+        }
+    }];
 }
 
 @end

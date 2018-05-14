@@ -612,29 +612,35 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoomListModel *model = _dataArr[indexPath.row];
-    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
         
-        NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
-        if ([resposeObject[@"code"] integerValue] == 200) {
+        RoomListModel *model = _dataArr[indexPath.row];
+        [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
             
-            for (UIViewController *vc in self.navigationController.viewControllers) {
+            NSLog(@"%@",resposeObject);
+            [self showContent:resposeObject[@"msg"]];
+            if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                for (UIViewController *vc in self.navigationController.viewControllers) {
                     
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if ([vc isKindOfClass:[CustomDetailVC class]]) {
                         
-                        [self.navigationController popToViewController:vc animated:YES];
-                    });
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            [self.navigationController popToViewController:vc animated:YES];
+                        });
+                    }
                 }
             }
-        }
-    } failure:^(NSError *error) {
+        } failure:^(NSError *error) {
+            
+            NSLog(@"%@",error);
+            [self showContent:@"网络错误"];
+        }];
+    }else{
         
-        NSLog(@"%@",error);
-        [self showContent:@"网络错误"];
-    }];
+        
+    }
 }
 
 -(void)initUI

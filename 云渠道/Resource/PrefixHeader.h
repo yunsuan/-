@@ -43,6 +43,8 @@
 #import "GZQGifHeader.h"
 #import "GZQGifFooter.h"
 #import "WaitAnimation.h"
+#import <UMShare/UMShare.h>
+#import "TransmitView.h"
 
 
 

@@ -23,10 +23,13 @@
     NSMutableArray *_imgArr;
     NSMutableArray *_houseArr;
     NSString *_projectId;
+    NSMutableArray *_matchList;
 }
 @property (nonatomic, strong) UIButton *recommendBtn;
 
 @property (nonatomic, strong) UITableView *houseTable;
+
+@property (nonatomic, strong) TransmitView *transmitView;
 
 @end
 
@@ -40,6 +43,7 @@
         _projectId = projectId;
         _houseTypeId = houseTypeId;
         _imgArr = [@[] mutableCopy];
+        _matchList = [@[] mutableCopy];
         self.dataArr = [NSMutableArray arrayWithArray:dataArr];
         _houseArr = [NSMutableArray arrayWithArray:self.dataArr];
         [_houseArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -141,7 +145,7 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            [self SetMatchPeople:resposeObject[@"data"]];
         }else{
             
             [self showContent:resposeObject[@"msg"]];
@@ -153,6 +157,33 @@
     }];
 }
 
+- (void)SetMatchPeople:(NSArray *)data{
+    
+    for (int i = 0 ; i < data.count; i++) {
+        
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+        
+        CustomMatchModel *model = [[CustomMatchModel alloc] initWithDictionary:tempDic];
+        [_matchList addObject:model];
+    }
+    [_houseTable reloadData];
+}
+
+
+
+- (void)ActionRecommendBtn:(UIButton *)btn{
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 3;
@@ -160,6 +191,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    if (section == 2) {
+        
+        return _matchList.count;
+    }
     return 1;
 }
 
@@ -203,7 +238,7 @@
         }else{
             
             header.titleL.font = [UIFont systemFontOfSize:13 *SIZE];
-            header.titleL.text = @"匹配的客户(23)";
+            header.titleL.text = [NSString stringWithFormat:@"匹配的客户(%ld)",_matchList.count];
         }
         return header;
     }
@@ -257,14 +292,29 @@
                 cell = [[RoomDetailTableCell5 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell5"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.nameL.text = @"张三";
-            cell.priceL.text = @"80 - 100";
-            cell.typeL.text = @"三室一厅";
-            cell.areaL.text = @"郫都区-德源大道";
-            cell.intentionRateL.text = @"23";
-            cell.urgentRateL.text = @"43";
-            cell.matchRateL.text = @"83";
-            cell.phoneL.text = @"13438339177";
+            cell.model = _matchList[indexPath.row];
+            cell.recommendBtn.tag = indexPath.row;
+            cell.recommendBtnBlock5 = ^(NSInteger index) {
+                
+                CustomMatchModel *model = _matchList[index];
+                [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                    
+                    NSLog(@"%@",resposeObject);
+                    [self showContent:resposeObject[@"msg"]];
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        
+                    }else if ([resposeObject[@"code"] integerValue] == 400){
+                        
+                        
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                    [self showContent:@"网络错误"];
+                }];
+            };
+            return cell;
             return cell;
         }
     }
@@ -290,8 +340,8 @@
 
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
-    //    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
-    //    [_recommendBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+//    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
+    [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_recommendBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [self.view addSubview:self.recommendBtn];
     [self.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -300,8 +350,6 @@
         make.size.mas_offset(CGSizeMake(22, 22));
     }];
     
-//    _houseTable.estimatedRowHeight = 172 *SIZE;
-//    _houseTable.rowHeight = UITableViewAutomaticDimension;
     _houseTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _houseTable.backgroundColor = self.view.backgroundColor;
     _houseTable.delegate = self;
@@ -309,5 +357,48 @@
     _houseTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_houseTable];
     
+}
+
+- (TransmitView *)transmitView{
+    
+    if (!_transmitView) {
+        
+        _transmitView = [[TransmitView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        WS(weakSelf);
+        _transmitView.transmitTagBtnBlock = ^(NSInteger index) {
+            
+            if (index == 0) {
+                
+                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+            }
+        };
+    }
+    return _transmitView;
+}
+
+//
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"分享标题" descr:@"分享内容描述" thumImage:[UIImage imageNamed:@"icon"]];
+    //设置网页地址
+    shareObject.webpageUrl = @"http://mobile.umeng.com/social";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+            [self showContent:@"分享成功"];
+            [self.transmitView removeFromSuperview];
+        }
+    }];
 }
 @end

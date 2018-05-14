@@ -10,6 +10,7 @@
 #import "RoomDetailVC1.h"
 #import "CompanyCell.h"
 #import "PeopleCell.h"
+#import "BoxAddressView.h"
 #import "BoxView.h"
 #import "RoomCollCell.h"
 #import "HouseSearchVC.h"
@@ -71,7 +72,7 @@
 
 @property (nonatomic, strong) UIButton *sortBtn;
 
-@property (nonatomic, strong) BoxView *areaView;
+@property (nonatomic, strong) BoxAddressView *areaView;
 
 @property (nonatomic, strong) BoxView *priceView;
 
@@ -174,7 +175,7 @@
         
         [dic setObject:_city forKey:@"city"];
     }
-    if (_district.length) {
+    if (![_district isEqualToString:@"0"] && _district) {
         
         [dic setObject:_district forKey:@"district"];
     }
@@ -303,41 +304,59 @@
     switch (btn.tag) {
         case 1:
         {
-//            _is2 = NO;
-//            _is3 = NO;
-//            _is4 = NO;
-//            _priceBtn.selected = NO;
-//            _typeBtn.selected = NO;
-//            _moreBtn.selected = NO;
-//            [self.priceView removeFromSuperview];
-//            [self.typeView removeFromSuperview];
-//            [self.moreView removeFromSuperview];
-//            if (_is1) {
-//
-//                _is1 = !_is1;
-//                [self.areaView removeFromSuperview];
-//            }else{
-//
-//                _is1 = YES;
-//                _type = @"0";
-//                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
-//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-//                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//                    if (idx == 0) {
-//
-//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-//                    }else{
-//
-//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-//                    }
-//                }];
-//                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-//                [self.boxView.mainTable reloadData];
-//                [self.view addSubview:self.boxView];
-//            }
+            _is2 = NO;
+            _is3 = NO;
+            _is4 = NO;
+            _priceBtn.selected = NO;
+            _typeBtn.selected = NO;
+            _moreBtn.selected = NO;
+            [self.priceView removeFromSuperview];
+            [self.typeView removeFromSuperview];
+            [self.moreView removeFromSuperview];
+            if (_is1) {
+
+                _is1 = !_is1;
+                [_areaView removeFromSuperview];
+            }else{
+
+                _is1 = YES;
+                _district = @"0";
+
+                NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+                
+                NSError *err;
+                NSArray *pro = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                              options:NSJSONReadingMutableContainers
+                                                                error:&err];
+                NSMutableArray * tempArr;
+                for (NSDictionary *proDic in pro) {
+                    
+                    for (NSDictionary *cityDic in proDic[@"city"]) {
+                        
+                        if ([cityDic[@"code"] integerValue] == [_city integerValue]) {
+                            
+                            tempArr = [NSMutableArray arrayWithArray:cityDic[@"district"]];
+                            break;
+                        }
+                    }
+                }
+                [tempArr insertObject:@{@"code":@"0",@"name":@"不限"} atIndex:0];
+                self.areaView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                   
+                    if (idx == 0) {
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+                    }else{
+                        
+                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+                    }
+
+                }];
+                self.areaView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+                [self.areaView.mainTable reloadData];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.areaView];
+            }
             break;
         }
         case 2:
@@ -895,6 +914,37 @@
         _headerView.backgroundColor = [UIColor whiteColor];
     }
     return _headerView;
+}
+
+- (BoxAddressView *)areaView{
+    
+    if (!_areaView) {
+        
+        _areaView = [[BoxAddressView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+        WS(weakSelf);
+        _areaView.boxAddressComfirmBlock = ^(NSString *ID, NSString *str, NSInteger index) {
+            
+            if ([str isEqualToString:@"不限"]) {
+                
+                [weakSelf.areaBtn setTitle:@"区域" forState:UIControlStateNormal];
+            }else{
+                
+                [weakSelf.areaBtn setTitle:str forState:UIControlStateNormal];
+            }
+            _is1 = YES;
+            _district = [NSString stringWithFormat:@"%@",ID];
+            weakSelf.areaBtn.selected = NO;
+            [weakSelf.areaView removeFromSuperview];
+            [weakSelf RequestMethod];
+        };
+        
+        _areaView.boxAddressCancelBlock = ^{
+            
+            _is1 = NO;
+            weakSelf.areaBtn.selected = NO;
+        };
+    }
+    return _areaView;
 }
 
 - (BoxView *)priceView{
