@@ -216,6 +216,12 @@
 
 - (void)goHome{
     
+    NSSet *tags;
+    
+    [JPUSHService setAlias:[NSString stringWithFormat:@"agent_%@",[UserModel defaultModel].agent_id] completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        
+        NSLog(@"rescode: %ld, \ntags: %@, \nalias: %@\n", (long)iResCode, tags , iAlias);;
+    } seq:0];
     CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
     _window.rootViewController = tabBarControllerConfig.tabBarController;
 }

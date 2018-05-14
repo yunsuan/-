@@ -300,11 +300,24 @@
 //
 //    }
 
-    if (!_imgArr2.count) {
-
-        [self showContent:@"请选择确认单图片"];
+//    if (!_imgArr2.count) {
+//
+//        [self showContent:@"请选择确认单图片"];
+//        return;
+//
+//    }
+    
+    if (!_numBtn.str) {
+        
+        [self showContent:@"请选择到访人数"];
         return;
 
+    }
+    
+    if (!_agentname) {
+        
+        [self showContent:@"请选择置业顾问"];
+        return;
     }
  
 
@@ -945,7 +958,7 @@
     [_authenColl1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(0 *SIZE);
-        make.top.equalTo(_visitL.mas_bottom).offset(1 *SIZE);
+        make.top.equalTo(_visitL.mas_bottom).offset(21 *SIZE);
         make.width.equalTo(@(SCREEN_Width));
         make.height.equalTo(@(91 *SIZE));
     }];
@@ -961,7 +974,7 @@
     [_authenColl2 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_infoView).offset(0 *SIZE);
-        make.top.equalTo(_confirmL.mas_bottom).offset(54 *SIZE);
+        make.top.equalTo(_confirmL.mas_bottom).offset(21 *SIZE);
         make.width.equalTo(@(SCREEN_Width));
         make.height.equalTo(@(91 *SIZE));
         make.bottom.equalTo(_infoView.mas_bottom).offset(-32 *SIZE);

@@ -22,17 +22,16 @@
 
 - (void)setModel:(CompanyModel *)model{
     
-    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,model.logo]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,model.logo]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
        
         if (error) {
             
-            _headImg.image = [UIImage imageNamed:@""];
+            _headImg.image = [UIImage imageNamed:@"default_3"];
         }
     }];
     
     _nameL.text = model.company_name;
     _addressL.text = model.absolute_address;
-//    _codeL.text = model
     _phoneL.text = [NSString stringWithFormat:@"联系方式：%@",model.contact_tel];
     _contactL.text = [NSString stringWithFormat:@"负责人：%@",model.contact];
 }
@@ -40,8 +39,6 @@
 - (void)initUI{
     
     _headImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 17 *SIZE, 67 *SIZE, 67 *SIZE)];
-//    _headImg.backgroundColor = YJGreenColor;
-//    _headImg.image = []
     _headImg.contentMode = UIViewContentModeScaleAspectFill;
     _headImg.clipsToBounds = YES;
     [self.contentView addSubview:_headImg];

@@ -187,8 +187,9 @@
             [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
             CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
             [UserModelArchiver archive];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"goHome" object:nil];
 //            [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];
-            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarControllerConfig.tabBarController;
+//            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarControllerConfig.tabBarController;
         }
         [self showContent:resposeObject[@"msg"]];
         

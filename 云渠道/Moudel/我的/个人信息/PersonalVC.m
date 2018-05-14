@@ -127,7 +127,7 @@
         [UserModel defaultModel].Token = @"";
         [UserModelArchiver archive];
         [UserModelArchiver ClearUserInfoModel];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"goLoginVC" object:nil];
         
     }];
 }
