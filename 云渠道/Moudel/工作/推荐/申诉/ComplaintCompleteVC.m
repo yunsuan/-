@@ -48,7 +48,7 @@
 -(void)initDataSouce
 {
     
-    _titleArr = [NSMutableArray arrayWithArray:@[@"推荐编号",@"处理信息",@"申诉信息",@"失效信息",@"委托人信息"]];
+    _titleArr = [NSMutableArray arrayWithArray:@[@"推荐编号",@"处理信息",@"申诉信息",@"失效信息",@"到访确认人信息"]];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
     [self AppealRequestMethod];
 }
