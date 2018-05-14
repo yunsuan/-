@@ -17,6 +17,7 @@
 #import "MoreView.h"
 #import "RoomListModel.h"
 #import "AdressChooseView.h"
+#import "CityVC.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -560,15 +561,18 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
-    
-    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-        
-    } failure:^(NSError *error) {
-        
-        NSLog(@"%@",error);
-    }];
+    CityVC *nextVC = [[CityVC alloc] init];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
+//
+//    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
+//
+//        NSLog(@"%@",resposeObject);
+//
+//    } failure:^(NSError *error) {
+//
+//        NSLog(@"%@",error);
+//    }];
 //    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
 //    [[UIApplication sharedApplication].keyWindow addSubview:view];
 //    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
