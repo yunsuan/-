@@ -86,6 +86,7 @@
 #define QQAppkey @"Yik2oC5WcDQ5IOrpc"
 #define WechatAppkey @""
 #define WechatSecret @""
+#define redirectUrl @"http://www.ccsoft.com.cn/"
 
 #define __KPropretyLaebl(key) @property(nonatomic,copy) UILabel *key;
 #define __KPropretyImageView(key) @property(nonatomic,copy) UIImageView *key;

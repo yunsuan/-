@@ -91,6 +91,7 @@
     
             [_messageTable reloadData];
             [_messageTable.mj_header endRefreshing];
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue])];
         }
         
     } failure:^(NSError *error) {
