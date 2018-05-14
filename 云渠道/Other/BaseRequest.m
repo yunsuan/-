@@ -17,6 +17,8 @@ static AFHTTPSessionManager *updatemanager ;
 //        [SVProgressHUD show];
     [WaitAnimation startAnimation];
       AFHTTPSessionManager *htttmanger  =   [BaseRequest sharedHttpSessionManager];
+    [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
+    [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
 
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     
@@ -79,6 +81,8 @@ static AFHTTPSessionManager *updatemanager ;
 + (void)POST:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
     [WaitAnimation startAnimation];
     AFHTTPSessionManager *htttmanger  =   [BaseRequest sharedHttpSessionManager];
+    [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
+    [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
 
     NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
     [htttmanger POST:str parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -143,6 +147,8 @@ static AFHTTPSessionManager *updatemanager ;
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:str]];
   
     AFHTTPSessionManager *htttmanger = [self sharedHttpSessionUpdateManager];
+    [updatemanager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
+    [updatemanager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
     
     if (blocks) {
         
@@ -227,8 +233,7 @@ static AFHTTPSessionManager *updatemanager ;
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-        [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
-        [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
+
     });
     return manager;
 }
@@ -244,8 +249,7 @@ static AFHTTPSessionManager *updatemanager ;
    
         //3.设置允许请求的类别
         updatemanager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/json",@"application/json",@"text/javascript",@"text/html", @"application/javascript", @"text/js", nil];
-        [updatemanager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
-        [updatemanager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
+
         updatemanager.requestSerializer.timeoutInterval = 30;
     });
     return updatemanager;

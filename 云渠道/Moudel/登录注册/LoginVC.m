@@ -183,7 +183,8 @@
             [UserModel defaultModel].Token = resposeObject[@"data"][@"token"];
             [UserModel defaultModel].Account = _Account.text;
             [UserModel defaultModel].Password = _PassWord.text;
-            [UserModel defaultModel].agent_id = resposeObject[@"data"][@"agent_id"];
+            [UserModel defaultModel].agent_id =resposeObject[@"data"][@"agent_id"];
+            [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
             CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
             [UserModelArchiver archive];
 //            [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];
