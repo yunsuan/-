@@ -94,7 +94,14 @@
     _confirmBtn.clipsToBounds = YES;
     [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.contentView addSubview:_confirmBtn];
-
+    
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+        
+        _confirmBtn.hidden = YES;
+    }else{
+        
+        _confirmBtn.hidden = NO;
+    }
 }
 
 

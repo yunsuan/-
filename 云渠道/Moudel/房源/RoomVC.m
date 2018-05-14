@@ -17,6 +17,7 @@
 #import "MoreView.h"
 #import "RoomListModel.h"
 #import "AdressChooseView.h"
+#import "CityVC.h"
 
 #import<BaiduMapAPI_Location/BMKLocationService.h>
 
@@ -38,6 +39,7 @@
     NSMutableArray *_dataArr;
     NSString *_provice;
     NSString *_city;
+    NSString *_cityName;
     NSString *_district;
     NSString *_price;
     NSString *_type;
@@ -222,7 +224,7 @@
     } failure:^(NSError *error) {
         
         [self.MainTableView.mj_header endRefreshing];
-        [self showContent:@"网路错误"];
+        [self showContent:@"网络错误"];
         NSLog(@"%@",error.localizedDescription);
     }];
 
@@ -515,6 +517,7 @@
     NSInteger disInteger = [result.addressDetail.adCode integerValue];
     NSInteger cityInteger = disInteger / 100 * 100;
     _city = [NSString stringWithFormat:@"%ld",cityInteger];
+    _cityName = result.addressDetail.city;
     [self RequestMethod];
 }
 
@@ -560,15 +563,30 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
-    
-    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
+    if (_city) {
         
-        NSLog(@"%@",resposeObject);
+        CityVC *nextVC = [[CityVC alloc] initWithLabel:_cityName];
+        nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+            
+            [_cityBtn setTitle:city forState:UIControlStateNormal];
+            _city = [NSString stringWithFormat:@"%@",code];
+            [self RequestMethod];
+        };
+        nextVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
         
-    } failure:^(NSError *error) {
-        
-        NSLog(@"%@",error);
-    }];
+        [self showContent:@"正在定位中,请稍后"];
+    }
+//
+//    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
+//
+//        NSLog(@"%@",resposeObject);
+//
+//    } failure:^(NSError *error) {
+//
+//        NSLog(@"%@",error);
+//    }];
 //    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
 //    [[UIApplication sharedApplication].keyWindow addSubview:view];
 //    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
@@ -741,6 +759,7 @@
     _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
     [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+    [_cityBtn setTitle:@"定位中" forState:UIControlStateNormal];
     [self.headerView addSubview:_cityBtn];
     
     _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];

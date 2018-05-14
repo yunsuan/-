@@ -16,6 +16,8 @@
 @property (nonatomic , strong) NSString *agent_id;
 @property (nonatomic , strong) NSString *agent_identity;
 @property (nonatomic , strong) NSDictionary *Configdic;
+@property (nonatomic, strong) NSMutableArray *cityArr;
+@property (nonatomic, strong) NSMutableArray *groupArr;
 
 + (UserModel *)defaultModel;
 

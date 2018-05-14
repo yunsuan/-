@@ -148,6 +148,7 @@
 
 - (void)GotoMessVC{
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
     SystemMessageVC *next_vc = [[SystemMessageVC alloc] init];
     next_vc.hidesBottomBarWhenPushed = YES;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
@@ -302,6 +303,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
+        
     }
     else {
         // 判断为本地通知
@@ -364,6 +366,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"%@",userInfo);
+    application.applicationIconBadgeNumber += 1;
     
     if (application.applicationState == UIApplicationStateActive) {
         
