@@ -30,7 +30,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self postWithidentify:@"1"];
+    [self postWithidentify:[UserModelArchiver unarchive].agent_identity];
 
     
 }
@@ -68,17 +68,18 @@
         }
             break;
         case 2:{
-//            _namelist = @[@"客户报备"];
-//            _imglist = @[@"client"];
-//            [BaseRequest GET:Butterinfocount_URL parameters:nil success:^(id resposeObject) {
-//                _countdata = @[[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"recommend_count"],resposeObject[@"data"][@"value"],resposeObject[@"data"][@"valueDisabled"]]];
-//                [_MainTableView reloadData];
-//            } failure:^(NSError *error) {
-//
-//            }];
-            
-            break;
+            _namelist = @[@"客户报备"];
+            _imglist = @[@"client"];
+            _countdata  = @[@""];
+            [BaseRequest GET:Butterinfocount_URL parameters:nil success:^(id resposeObject) {
+                _countdata = @[[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"recommend_count"],resposeObject[@"data"][@"value"],resposeObject[@"data"][@"valueDisabled"]]];
+                [_MainTableView reloadData];
+            } failure:^(NSError *error) {
+
+            }];
         }
+            break;
+        
         default:{
             break;
         }
@@ -90,7 +91,7 @@
 
 -(void)initDateSouce
 {
-    _countdata  = @[@"",@"",@""];
+    _countdata  = @[@""];
 }
 
 -(void)initUI
@@ -104,7 +105,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _countdata.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

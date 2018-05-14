@@ -53,7 +53,7 @@
     _formatter = [[NSDateFormatter alloc] init];
     [_formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_client_id],@"无效信息",@"客户信息",@"项目信息",@"委托人信息"];
+    _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_client_id],@"无效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
     _dataDic = [@{} mutableCopy];
     [self InValidRequestMethod];
 }
