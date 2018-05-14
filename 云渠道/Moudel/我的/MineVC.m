@@ -97,8 +97,11 @@
 -(void)InitDataSouce
 {
     _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于云算",@"操作指南"]];
+//    _namelist = @[@"个人资料",@"公司认证",@"工作经历",@"我的佣金",@"我的关注",@"意见反馈",@"关于云算",@"操作指南"];
     _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
+//    _imageList = @[@"personaldata",@"certification",@"work",@"commission",@"focus",@"opinion",@"about",@"operation"];
     _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
+//    _contentList = @[@"",@"",@"",@"",@"",@" ",@"V1.0",@""];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 
@@ -366,6 +369,20 @@
         cell = [[MineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:_imageList[indexPath.section][indexPath.row] contentlab:_contentList[indexPath.section][indexPath.row]];
+//    if (indexPath.section == 0) {
+//
+//        [cell SetTitle:_namelist[indexPath.row] icon:_imageList[indexPath.row] contentlab:_contentList[indexPath.row]];
+//    }else{
+//
+//        if (indexPath.section == 1) {
+//
+//            [cell SetTitle:_namelist[indexPath.row + 3] icon:_imageList[indexPath.row + 3] contentlab:_contentList[indexPath.row + 3]];
+//        }else{
+//
+//            [cell SetTitle:_namelist[indexPath.row + 5] icon:_imageList[indexPath.row + 5] contentlab:_contentList[indexPath.row + 5]];
+//        }
+//    }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

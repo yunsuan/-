@@ -373,6 +373,14 @@
         
         header.model = _model;
         header.imgArr = _imgArr;
+        if (_buildDic[@"handing_room_time"]) {
+            
+            header.payL.text = [NSString stringWithFormat:@"交房时间：%@",_buildDic[@"handing_room_time"]];
+        }else{
+            
+            header.payL.text = [NSString stringWithFormat:@"交房时间：暂无数据"];
+        }
+        
         if (_focusDic.count) {
             
             header.attentL.text = [NSString stringWithFormat:@"关注人数:%@",_focusDic[@"num"]];
@@ -485,7 +493,7 @@
 //            cell.developL.text = @"阳光物业公司";
 //            cell.openL.text = @"2017年02月20日";
 //            cell.payL.text = @"2019年02月";
-            cell.timeL.text = @"70年";
+//            cell.timeL.text = @"70年";
             if (_model.developer_name) {
 
                 cell.developL.text = _model.developer_name;
