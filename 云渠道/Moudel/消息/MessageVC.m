@@ -24,10 +24,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(post) name:@"reloadMessList" object:nil];
+    
     _data = @[@[@"systemmessage",@"系统消息",@"未读消息0条"],@[@"worknews",@"工作消息",@"未读消息0条"]];
-    [self post];
+    
     [self initUI];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [self post];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -91,7 +101,17 @@
     
             [_messageTable reloadData];
             [_messageTable.mj_header endRefreshing];
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue])];
+
+            if (([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]) == 0) {
+                
+                
+                [[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setBadgeValue:nil];
+            }else{
+                
+                [[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%ld",([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue])]];
+            }
+            
+            [UIApplication sharedApplication].applicationIconBadgeNumber = [resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue];
         }
         
     } failure:^(NSError *error) {

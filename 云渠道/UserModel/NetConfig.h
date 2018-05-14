@@ -280,3 +280,12 @@ static NSString *const ProjectDeailDisableDetail_URL = @"agent/work/project/deal
 
 //经纪人成交申诉列表
 static NSString *const ProjectDealAppealList_URL = @"agent/work/project/dealAppealList";
+
+//对接人待确认列表
+static NSString *const ButterWaitConfirm_URL = @"agent/work/butter/waitConfirm";
+
+//对接人有效列表
+static NSString *const ButterValue_URL = @"agent/work/butter/value";
+
+//对接人无效客户列表
+static NSString *const ButterDisabled_URL = @"agent/work/butter/disabled";
