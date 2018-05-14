@@ -55,6 +55,7 @@
 		0C0BED4020A40E42005A16A1 /* GZQGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED3F20A40E42005A16A1 /* GZQGifFooter.m */; };
 		0C0BED4F20A93C01005A16A1 /* BoxAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED4E20A93C01005A16A1 /* BoxAddressView.m */; };
 		0C0BED5320A98841005A16A1 /* CityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5220A98841005A16A1 /* CityVC.m */; };
+		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -381,6 +382,8 @@
 		0C0BED4E20A93C01005A16A1 /* BoxAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxAddressView.m; sourceTree = "<group>"; };
 		0C0BED5120A98841005A16A1 /* CityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityVC.h; sourceTree = "<group>"; };
 		0C0BED5220A98841005A16A1 /* CityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityVC.m; sourceTree = "<group>"; };
+		0C0BED5520A992E1005A16A1 /* BMChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMChineseSort.h; sourceTree = "<group>"; };
+		0C0BED5620A992E1005A16A1 /* BMChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMChineseSort.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1189,6 +1192,15 @@
 				0C0BED5220A98841005A16A1 /* CityVC.m */,
 			);
 			path = "城市";
+			sourceTree = "<group>";
+		};
+		0C0BED5420A992E1005A16A1 /* BMChineseStringSort */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BED5520A992E1005A16A1 /* BMChineseSort.h */,
+				0C0BED5620A992E1005A16A1 /* BMChineseSort.m */,
+			);
+			path = BMChineseStringSort;
 			sourceTree = "<group>";
 		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
@@ -2134,6 +2146,7 @@
 		106900032057974200E11F52 /* 第三方SDK */ = {
 			isa = PBXGroup;
 			children = (
+				0C0BED5420A992E1005A16A1 /* BMChineseStringSort */,
 				0CF04F82207CAFAF00A45F4A /* PYSearch */,
 				0CF7425B206262DF001F926F /* BoxView */,
 				106900042057974200E11F52 /* CYLTabBarController */,
@@ -2817,6 +2830,7 @@
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */,
 				0CF04F5C207B5B9D00A45F4A /* CompleteCustomVC1.m in Sources */,
+				0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */,
 				105E18982060EE710031558D /* TagView.m in Sources */,
 				10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */,
 				0CF04F4B207B36C100A45F4A /* ValidVC.m in Sources */,

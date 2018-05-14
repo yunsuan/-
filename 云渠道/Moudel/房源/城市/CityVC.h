@@ -8,6 +8,14 @@
 
 #import "BaseViewController.h"
 
+@class CityVC;
+
+typedef void(^CityVCSaveBlock)(NSString *code, NSString *city);
+
 @interface CityVC : BaseViewController
+
+@property (nonatomic, copy) CityVCSaveBlock cityVCSaveBlock;
+
+- (instancetype)initWithLabel:(NSString *)label;
 
 @end
