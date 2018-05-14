@@ -11,7 +11,8 @@
 
 @interface UnpaidBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSArray *_arr;
+    NSMutableArray *_data;
+    int page;
 }
 @property (nonatomic , strong) UITableView *MainTableView;
 
@@ -23,6 +24,13 @@
 @end
 
 @implementation UnpaidBrokerageVC
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self postWithPage:@"1"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
@@ -30,18 +38,53 @@
     [self.leftButton addTarget:self action:@selector(action_back) forControlEvents:UIControlEventTouchUpInside];
     self.titleLabel.text = @"未结列表";
     [self initDateSouce];
-    [self initUI];
-    
+    [self initUI];    
+}
+
+-(void)postWithPage:(NSString *)page{
+
+    [BaseRequest GET:UnPayList_URL parameters:@{
+                                                      @"page":page
+                                                      }
+             success:^(id resposeObject) {
+                 if ([resposeObject[@"code"] integerValue]==200) {
+                     if ([page isEqualToString:@"1"]) {
+                         
+                         [_MainTableView.mj_footer endRefreshing];
+                         _data = [resposeObject[@"data"][@"data"] mutableCopy];
+                         if (_data.count < 15) {
+                             
+                             _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                         }
+                         [_MainTableView reloadData];
+                     }
+                     else{
+                         NSArray *arr =resposeObject[@"data"][@"data"];
+                         if (arr.count ==0) {
+                             [_MainTableView.mj_footer setState:MJRefreshStateNoMoreData];
+                         }
+                         else{
+                             [_data addObjectsFromArray:[arr mutableCopy]];
+                             [_MainTableView reloadData];
+                             [_MainTableView.mj_footer endRefreshing];
+                         }
+                     }
+                     [_MainTableView.mj_header endRefreshing];
+                 }
+             } failure:^(NSError *error) {
+                 [self showContent:@"网络错误"];
+                 [_MainTableView.mj_footer endRefreshing];
+                 [_MainTableView.mj_header endRefreshing];
+             }];
 }
 
 -(void)initDateSouce
 {
-    _arr = @[@[@"学区房",@"投资房"],@[@"简单的",@"送礼物",@"欧美风"],@[@"简单的",@"送礼物",@"欧美风"]];
+    _data = [NSMutableArray array];
 }
 
 -(void)initUI
 {
- 
     [self.view addSubview:self.MainTableView];
 }
 
@@ -54,7 +97,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _data.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -79,13 +122,14 @@
         cell = [[UnpaidCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    cell.nameL.text = @"冷月英";
-    cell.phoneL.text = @"18745564512";
-    cell.unitL.text = @"云算公馆  1批次 - 1栋 -1单元 -102";
-    cell.codeL.text = @"推荐编号：TJBHNO1";
-    cell.typeL.text = @"类型：推荐佣金";
-    cell.timeL.text = @"推荐时间：2018-02-10";
+    cell.nameL.text = _data[indexPath.row][@"name"];
+    cell.phoneL.text = _data[indexPath.row][@"tel"];
+    cell.unitL.text =  _data[indexPath.row][@"project_name"];
+    cell.codeL.text = [NSString stringWithFormat:@"推荐编号：%@",_data[indexPath.row][@"client_id"]];
+    cell.typeL.text =  [NSString stringWithFormat:@"类型：%@",_data[indexPath.row][@"broker_type"]];
+    cell.timeL.text = [NSString stringWithFormat:@"推荐时间：%@",_data[indexPath.row][@"create_time"]];
     cell.expediteBtn.tag = indexPath.row;
+    cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"broker_num"]];
     cell.moneybtnBlook = ^(NSInteger index) {
       
         NSLog(@"%ld",index);
@@ -123,6 +167,13 @@
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
+        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+            [self postWithPage:@"1"];
+        }];
+        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
+            page++;
+            [self postWithPage:[NSString stringWithFormat:@"%d",page]];
+        }];
 //        _MainTableView.
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }

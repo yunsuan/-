@@ -58,7 +58,7 @@
     _timeL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_timeL];
     
-    _endTimeL = [[UILabel alloc] initWithFrame:CGRectMake(215 *SIZE, 109 *SIZE, 135 *SIZE, 11 *SIZE)];
+    _endTimeL = [[UILabel alloc] initWithFrame:CGRectMake(190 *SIZE, 109 *SIZE, 155 *SIZE, 11 *SIZE)];
     _endTimeL.textColor = COLOR(86, 86, 86, 1);
     _endTimeL.font = [UIFont systemFontOfSize:12 *SIZE];
     _endTimeL.textAlignment = NSTextAlignmentRight;
