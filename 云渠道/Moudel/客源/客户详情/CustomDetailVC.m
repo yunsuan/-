@@ -705,10 +705,13 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"客户详情";
 
+    
+    
+    _customDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    
     _customDetailTable.estimatedRowHeight = 367 *SIZE;
     _customDetailTable.rowHeight = UITableViewAutomaticDimension;
     
-    _customDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _customDetailTable.backgroundColor = YJBackColor;
     _customDetailTable.delegate = self;
     _customDetailTable.dataSource = self;

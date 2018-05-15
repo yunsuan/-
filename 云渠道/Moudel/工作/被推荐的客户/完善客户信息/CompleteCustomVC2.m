@@ -415,7 +415,6 @@
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
                     [self.navigationController popToViewController:vc animated:YES];
                 }
-                
             }
         }
     } failure:^(NSError *error) {

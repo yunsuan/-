@@ -134,7 +134,7 @@
         
         if (remote) {
             
-            [self GotoMessVC];
+//            [self GotoMessVC];
         }
     }
     
@@ -156,6 +156,23 @@
     [self.window.rootViewController presentViewController:nav animated:YES completion:^{
         
     }];
+}
+
+- (void)GotoSystemVC{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
+    WorkMessageVC *next_vc = [[WorkMessageVC alloc] init];
+    next_vc.hidesBottomBarWhenPushed = YES;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:next_vc];
+    nav.navigationBar.hidden = YES;
+    [self.window.rootViewController presentViewController:nav animated:YES completion:^{
+        
+    }];
+}
+
+- (void)GotoHome{
+    
+    [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
 }
 
 - (void)confitUShareSettings
@@ -328,7 +345,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
-        [self GotoMessVC];
+//        [self GotoMessVC];
+        [self GotoHome];
     }
     else {
         // 判断为本地通知
@@ -358,7 +376,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         
     }else{
         
-        [self GotoMessVC];
+//        [self GotoMessVC];
+        [self GotoHome];
     }
 }
 
@@ -373,7 +392,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         
     }else{
         
-        [self GotoMessVC];
+//        [self GotoMessVC];
+        [self GotoHome];
     }
 }
 

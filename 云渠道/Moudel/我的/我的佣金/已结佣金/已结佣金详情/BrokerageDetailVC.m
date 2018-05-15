@@ -215,8 +215,7 @@
         self.titleLabel.text = @"未结佣金详情";
     }
     
-    _brokerTable.rowHeight = 397 *SIZE;
-    _brokerTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    
     if ([_type isEqualToString:@"1"]) {
             _brokerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     }else{
@@ -227,7 +226,8 @@
         }
         [self.view addSubview:self.moneybtn];
     }
-
+    _brokerTable.rowHeight = 397 *SIZE;
+    _brokerTable.estimatedRowHeight = UITableViewAutomaticDimension;
     _brokerTable.backgroundColor = self.view.backgroundColor;
     _brokerTable.delegate = self;
     _brokerTable.dataSource = self;

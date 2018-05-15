@@ -12,15 +12,6 @@
             symbolName = "-[NSException raise]"
             moduleName = "">
             <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NSException raise]"
-                  moduleName = "CoreFoundation"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -33,15 +24,6 @@
             symbolName = "objc_exception_throw"
             moduleName = "">
             <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "objc_exception_throw"
-                  moduleName = "libobjc.A.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -115,24 +97,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x88ab;&#x63a8;&#x8350;&#x7684;&#x5ba2;&#x6237;/&#x5b8c;&#x5584;&#x5ba2;&#x6237;&#x4fe1;&#x606f;/CompleteCustomVC2.m"
-            timestampString = "547991609.172796"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "-ActionConfirmBtn:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x6211;&#x7684;&#x4f63;&#x91d1;/&#x94f6;&#x884c;&#x5361;/&#x6dfb;&#x52a0;&#x94f6;&#x884c;&#x5361;/AddBankCardVC.m"
-            timestampString = "548072748.995989"
+            timestampString = "548078898.758085"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
@@ -148,12 +114,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E6%88%91%E7%9A%84%E4%BD%A3%E9%87%91/%E9%93%B6%E8%A1%8C%E5%8D%A1/%E6%B7%BB%E5%8A%A0%E9%93%B6%E8%A1%8C%E5%8D%A1/AddBankCardVC.m"
-                  timestampString = "548072749.214479"
+                  timestampString = "548078899.374584"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "1320">
+                  offsetFromSymbolStart = "1228">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -163,12 +129,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E6%88%91%E7%9A%84%E4%BD%A3%E9%87%91/%E9%93%B6%E8%A1%8C%E5%8D%A1/%E6%B7%BB%E5%8A%A0%E9%93%B6%E8%A1%8C%E5%8D%A1/AddBankCardVC.m"
-                  timestampString = "548072749.218492"
+                  timestampString = "548078899.380174"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -178,12 +144,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E6%88%91%E7%9A%84%E4%BD%A3%E9%87%91/%E9%93%B6%E8%A1%8C%E5%8D%A1/%E6%B7%BB%E5%8A%A0%E9%93%B6%E8%A1%8C%E5%8D%A1/AddBankCardVC.m"
-                  timestampString = "548072749.220618"
+                  timestampString = "548078899.38808"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>

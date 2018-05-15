@@ -128,10 +128,11 @@
     self.titleLabel.text = @"审核状态";
     
     
-    _statusTable.rowHeight = 150 *SIZE;
-    _statusTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    
     
     _statusTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _statusTable.rowHeight = 150 *SIZE;
+    _statusTable.estimatedRowHeight = UITableViewAutomaticDimension;
     _statusTable.backgroundColor = YJBackColor;
     _statusTable.delegate = self;
     _statusTable.dataSource = self;
