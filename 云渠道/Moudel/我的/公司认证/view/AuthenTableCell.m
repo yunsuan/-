@@ -34,9 +34,9 @@
     _contentL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_contentL];
     
-    UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(343 *SIZE, 16 *SIZE, 7 *SIZE, 12 *SIZE)];
-    rightView.image = [UIImage imageNamed:@"rightarrow"];
-    [self.contentView addSubview:rightView];
+    _rightView = [[UIImageView alloc] initWithFrame:CGRectMake(343 *SIZE, 16 *SIZE, 7 *SIZE, 12 *SIZE)];
+    _rightView.image = [UIImage imageNamed:@"rightarrow"];
+    [self.contentView addSubview:_rightView];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 50 *SIZE, SCREEN_Width, SIZE)];
     line.backgroundColor = YJBackColor;

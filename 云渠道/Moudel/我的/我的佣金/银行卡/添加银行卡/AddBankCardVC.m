@@ -91,11 +91,6 @@
         [self showContent:@"请输入银行卡账号"];
         return;
     }
-//    if ([self isEmpty:_cardTypeTF.text]) {
-//
-//        [self showContent:@"请输入持卡人姓名"];
-//        return;
-//    }
     if (!_cardType.length) {
         
         [self showContent:@"请选择卡类型"];
@@ -124,9 +119,6 @@
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             
-        }else{
-            
-//            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        
@@ -251,7 +243,6 @@
             }
             case 2:
             {
-                
                 _cardTypeTF = [[DropDownBtn alloc] initWithFrame:textField.frame];
                 _cardTypeTF.dropimg.hidden = YES;
                 _cardTypeTF.layer.borderWidth = 0;
@@ -263,6 +254,8 @@
             {
                 _phoneTF = textField;
                 _phoneTF.keyboardType = UIKeyboardTypePhonePad;
+                _phoneTF.text = [UserModel defaultModel].Account;
+                _phoneTF.userInteractionEnabled = NO;
                 [view addSubview:_phoneTF];
                 
                 _GetCodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];

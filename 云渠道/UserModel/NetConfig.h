@@ -77,6 +77,9 @@ static NSString *const SendCaptcha_URL = @"agent/personal/sendCaptcha";
 //获取银行卡信息
 static NSString *const BankCardInfo_URL = @"agent/personal/bankCardInfo";
 
+//解绑银行卡
+static NSString *const DeleteBankCard_URL = @"agent/personal/deleteBankCard";
+
 //意见反馈
 static NSString *const Advice_URL = @"agent/personal/advice";
 
@@ -88,7 +91,6 @@ static NSString *const UnPayList_URL = @"agent/personal/unPayList";
 
 //已结佣金列表
 static NSString *const IsPayList_URL = @"agent/personal/isPayList";
-
 
 //佣金详情
 static NSString *const PayDetail_URL = @"agent/personal/unPayDetail";
@@ -104,6 +106,9 @@ static NSString *const GetAgentAuthInfo_URL = @"agent/personal/getAgentAuthInfo"
 
 //获取认证信息
 static NSString *const GetAuthInfo_URL = @"agent/personal/getAuthInfo";
+
+//取消公司认证
+static NSString *const CancelAuth_URL = @"agent/personal/cancelAuth";
 
 #pragma mark ---  客源  ---
 

@@ -78,11 +78,25 @@
     
     if (_dataArr.count) {
         
-        NSString *str = [NSString stringWithFormat:@"%@，您好！有且仅能绑定一张银行卡，如欲绑定其他银行卡请先将当前银行卡解除绑定。",@"温先生"];
+        NSString *str = [NSString stringWithFormat:@"您好！有且仅能绑定一张银行卡，如欲绑定其他银行卡请先将当前银行卡解除绑定。"];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:str preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"解除绑定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
+            [BaseRequest POST:DeleteBankCard_URL parameters:nil success:^(id resposeObject) {
+                
+                NSLog(@"%@",resposeObject);
+                [self showContent:resposeObject[@"msg"]];
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    [_dataArr removeAllObjects];
+                    [_bankTable reloadData];
+                }
+            } failure:^(NSError *error) {
+                
+                [self showContent:@"网络错误"];
+                NSLog(@"%@",error);
+            } ];
         }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -96,11 +110,14 @@
     }
 }
     
-    
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    if (_dataArr.count) {
+        
+        return 1;
+    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -120,7 +137,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_dataArr.count) {
+    if ([_dataArr[indexPath.section][@"bank_card"] length]) {
         
         NSString *Identifier = @"BankCardListTableCell";
         BankCardListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
@@ -160,7 +177,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (!_dataArr.count) {
+    if (![_dataArr[indexPath.section][@"bank_card"] length]) {
         
         AddBankCardVC *nextVC = [[AddBankCardVC alloc] init];
         [self.navigationController pushViewController:nextVC animated:YES];

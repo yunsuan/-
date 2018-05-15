@@ -103,8 +103,8 @@
         }
         case 1:
         {
-            IdentifyingVC *nextVC = [[IdentifyingVC alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
+//            IdentifyingVC *nextVC = [[IdentifyingVC alloc] init];
+//            [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
         case 2:

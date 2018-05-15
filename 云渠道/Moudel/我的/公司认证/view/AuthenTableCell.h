@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) UILabel *contentL;
 
+@property (nonatomic, strong) UIImageView *rightView;
+
 @end
