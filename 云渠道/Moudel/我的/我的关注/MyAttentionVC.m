@@ -111,12 +111,10 @@
         cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     MyAttentionModel *model = _dataArr[indexPath.row];
-    [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
+    [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
     
     NSArray *tempArr1 = @[model.property_tags,model.project_tags_name];
     [cell settagviewWithdata:tempArr1];
-//    [cell.brokerageLevel SetImage:[UIImage imageNamed:@"commission_2"] selectImg:[UIImage imageNamed:@"commission_1"] num:3];
-//    [cell.getLevel SetImage:[UIImage imageNamed:@"star"] selectImg:[UIImage imageNamed:@"star"] num:3];
     cell.getLevel.hidden = YES;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

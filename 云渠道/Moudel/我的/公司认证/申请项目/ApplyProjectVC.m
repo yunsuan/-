@@ -8,7 +8,8 @@
 
 #import "ApplyProjectVC.h"
 #import "PeopleCell.h"
-#import "RoomListModel.h"
+//#import "RoomListModel.h"
+#import "MyAttentionModel.h"
 
 @interface ApplyProjectVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -187,7 +188,7 @@
             }
         }];
 
-        RoomListModel *model = [[RoomListModel alloc] initWithDictionary:tempDic];
+       MyAttentionModel *model = [[MyAttentionModel alloc] initWithDictionary:tempDic];
 
         [_dataArr addObject:model];
     }
@@ -223,38 +224,12 @@
     if (!cell) {
         cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    RoomListModel *model = _dataArr[indexPath.row];
+    MyAttentionModel *model = _dataArr[indexPath.row];
     [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
     
-    
-    NSMutableArray *tempArr = [@[] mutableCopy];
-    for (int i = 0; i < model.property_tags.count; i++) {
-        
-        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
-                
-                [tempArr addObject:obj[@"param"]];
-                *stop = YES;
-            }
-        }];
-    }
-    
-    NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
-    NSMutableArray *tempArr2 = [@[] mutableCopy];
-    for (int i = 0; i < tempArr1.count; i++) {
-        
-        [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
-                
-                [tempArr2 addObject:obj[@"param"]];
-                *stop = YES;
-            }
-        }];
-    }
-    NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
-    [cell settagviewWithdata:tempArr3];
+    NSArray *tempArr1 = @[model.property_tags,model.project_tags_name];
+    [cell settagviewWithdata:tempArr1];
+    cell.getLevel.hidden = YES;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

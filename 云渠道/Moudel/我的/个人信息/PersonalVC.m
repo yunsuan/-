@@ -255,14 +255,7 @@
                                     
                                     if([area[k][@"region"] integerValue] == [[UserInfoModel defaultModel].district integerValue]){
                                         
-                                        if ([UserInfoModel defaultModel].absolute_address.length) {
-                                            
-                                            cell.contentL.text = [NSString stringWithFormat:@"%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],[UserInfoModel defaultModel].absolute_address];
-
-                                        }else{
-                                            
-                                            cell.contentL.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
-                                        }
+                                        cell.contentL.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
                                     }
                                 }
                             }
