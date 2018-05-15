@@ -8,7 +8,13 @@
 
 #import "BaseViewController.h"
 
+@class ApplyProjectVC;
+
+typedef void(^ApplyProjectVCBlock)(NSString *projectId, NSString *name);
+
 @interface ApplyProjectVC : BaseViewController
+
+@property (nonatomic, copy) ApplyProjectVCBlock applyProjectVCBlock;
 
 - (instancetype)initWithCompanyId:(NSString *)companyId;
 

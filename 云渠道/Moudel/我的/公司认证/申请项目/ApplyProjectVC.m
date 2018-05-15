@@ -50,18 +50,18 @@
 {
     
     _dataArr = [@[] mutableCopy];
-//    [self RequestMethod];
+    [self RequestMethod];
 }
 
 
 
-//- (void)RequestMethod{
-//
+- (void)RequestMethod{
+
 //    if (_page == 1) {
 //
 //        self.MainTableView.mj_footer.state = MJRefreshStateIdle;
 //    }
-//
+
 //    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
 //    if (_city.length) {
 //
@@ -87,41 +87,27 @@
 //
 //        [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
 //    }
-//
-//    [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
-//
+    NSDictionary *dic = @{@"company_id":_companyId};
+
+    [BaseRequest GET:GetCompanyProject_URL parameters:dic success:^(id resposeObject) {
+
 //        [self.MainTableView.mj_header endRefreshing];
-//        NSLog(@"%@",resposeObject);
-//        [self showContent:resposeObject[@"msg"]];
-//        if ([resposeObject[@"code"] integerValue] == 200) {
-//
-//            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-//
-//                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
-//
-//                    [_dataArr removeAllObjects];
-//                    [self SetData:resposeObject[@"data"][@"data"]];
-//                    if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
-//
-//                        self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-//                    }
-//                }else{
-//
-//                }
-//            }else{
-//
-//            }
-//        }else{
-//
-//        }
-//    } failure:^(NSError *error) {
-//
-//        [self.MainTableView.mj_header endRefreshing];
-//        [self showContent:@"网路错误"];
-//        NSLog(@"%@",error.localizedDescription);
-//    }];
-//
-//}
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+
+            [self SetData:resposeObject[@"data"]];
+        }else{
+
+        }
+    } failure:^(NSError *error) {
+
+        [self.MainTableView.mj_header endRefreshing];
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error.localizedDescription);
+    }];
+
+}
 //
 //- (void)RequestAddMethod{
 //
@@ -188,26 +174,26 @@
 //}
 
 //
-//- (void)SetData:(NSArray *)data{
-//
-//    for (int i = 0; i < data.count; i++) {
-//
-//        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
-//        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-//
-//            if ([obj isKindOfClass:[NSNull class]]) {
-//
-//                [tempDic setObject:@"" forKey:key];
-//            }
-//        }];
-//
-//        RoomListModel *model = [[RoomListModel alloc] initWithDictionary:tempDic];
-//
-//        [_dataArr addObject:model];
-//    }
-//
-//    [_MainTableView reloadData];
-//}
+- (void)SetData:(NSArray *)data{
+
+    for (int i = 0; i < data.count; i++) {
+
+        NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+        [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+
+            if ([obj isKindOfClass:[NSNull class]]) {
+
+                [tempDic setObject:@"" forKey:key];
+            }
+        }];
+
+        RoomListModel *model = [[RoomListModel alloc] initWithDictionary:tempDic];
+
+        [_dataArr addObject:model];
+    }
+
+    [_MainTableView reloadData];
+}
 
 
 #pragma mark  ---  delegate   ---
@@ -270,26 +256,6 @@
     NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
     [cell settagviewWithdata:tempArr3];
     
-    cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",model.sort];
-    [cell.rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(cell.rankView).offset(0);
-        make.top.equalTo(cell.rankView).offset(0);
-        make.height.equalTo(@(10 *SIZE));
-        make.width.equalTo(@(cell.rankView.rankL.mj_textWith + 5 *SIZE));
-    }];
-    if ([model.brokerSortCompare integerValue] == 0) {
-        
-        cell.rankView.statusImg.image = [UIImage imageNamed:@""];
-    }else if ([model.brokerSortCompare integerValue] == 1){
-        
-        cell.rankView.statusImg.image = [UIImage imageNamed:@"rising"];
-    }else if ([model.brokerSortCompare integerValue] == 2){
-        
-        cell.rankView.statusImg.image = [UIImage imageNamed:@"falling"];
-    }
-    [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:[model.cycle integerValue]];
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -310,15 +276,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
+    if (self.applyProjectVCBlock) {
+        
+        RoomListModel *model = _dataArr[indexPath.row];
+        self.applyProjectVCBlock(model.project_id, model.project_name);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(void)initUI
 {
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.textAlignment = @"选择项目";
+    self.titleLabel.text = @"选择项目";
     
     [self.view addSubview:self.MainTableView];
 }
@@ -333,16 +303,16 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
-            
-//            _page = 1;
-//            [self RequestMethod];
-        }];
-        
-        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
-            
-//            [self RequestMethod];
-        }];
+//        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+//            
+////            _page = 1;
+////            [self RequestMethod];
+//        }];
+//        
+//        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
+//            
+////            [self RequestMethod];
+//        }];
     }
     return _MainTableView;
 }

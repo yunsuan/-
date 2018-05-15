@@ -8,6 +8,12 @@
 
 #import "BaseViewController.h"
 
+@class SelectCompanyVC;
+
+typedef void(^SelectCompanyVCBlock)(NSString *companyId, NSString *name);
+
 @interface SelectCompanyVC : BaseViewController
+
+@property (nonatomic, copy) SelectCompanyVCBlock selectCompanyVCBlock;
 
 @end

@@ -487,6 +487,13 @@
     
     CompanyModel *model = _dataArr[indexPath.row];
     CompanyDetailVC *nextVC = [[CompanyDetailVC alloc] initWithModel:model];
+    nextVC.companyDetailVCBlock = ^(NSString *companyId, NSString *name) {
+        
+        if (self.selectCompanyVCBlock) {
+            
+            self.selectCompanyVCBlock(companyId, name);
+        }
+    };
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
 }

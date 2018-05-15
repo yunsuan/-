@@ -7,6 +7,7 @@
 //
 
 #import "CompanyDetailVC.h"
+#import "AuthenticationVC.h"
 
 @interface CompanyDetailVC ()
 {
@@ -41,7 +42,18 @@
 
 - (void)ActionSelectBtn:(UIButton *)btn{
     
-    
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        
+        if ([vc isKindOfClass:[AuthenticationVC class]]) {
+            
+            if (self.companyDetailVCBlock) {
+                
+                self.companyDetailVCBlock(_model.company_id, _model.company_name);
+                [self.navigationController popToViewController:vc animated:YES];
+            }
+            
+        }
+    }
 }
 
 - (void)initUI{
@@ -59,9 +71,14 @@
     
     UIImageView *headImg = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 17 *SIZE, 67 *SIZE, 67 *SIZE)];
     [topView addSubview:headImg];
-    [headImg sd_setImageWithURL:[NSURL URLWithString:_model.logo] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [headImg sd_setImageWithURL:[NSURL URLWithString:_model.logo] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
+        if (error) {
+            
+            headImg.image = [UIImage imageNamed:@"default_3"];
+        }
     }];
+    
     UILabel *nameL = [[UILabel alloc] initWithFrame:CGRectMake(88 *SIZE, 12 *SIZE, 300 *SIZE, 13 *SIZE)];
     nameL.textColor = YJTitleLabColor;
     nameL.font = [UIFont systemFontOfSize:13 *SIZE];

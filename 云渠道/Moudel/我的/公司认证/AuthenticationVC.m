@@ -11,13 +11,16 @@
 #import "AuthenCollCell.h"
 #import "SelectCompanyVC.h"
 #import "AuditStatusVC.h"
+#import "ApplyProjectVC.h"
+#import "DateChooseView.h"
 
 @interface AuthenticationVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     
     NSArray *_titleArr;
     NSMutableArray *_contentArr;
-    NSMutableArray *_imgArr;
+//    NSMutableArray *_imgArr;
+//    NSString *_imgUrl;
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
     NSInteger _index;
@@ -47,11 +50,15 @@
 
 @property (nonatomic, strong) UILabel *projectL;
 
-@property (nonatomic, strong) UILabel *departL;
+@property (nonatomic, strong) UITextField *departTextField;
 
-@property (nonatomic, strong) UILabel *positionL;
+@property (nonatomic, strong) UITextField *positionTextField;
 
 @property (nonatomic, strong) UILabel *timeL;
+
+@property (nonatomic, strong) DateChooseView *dateView;
+
+@property (nonatomic, strong) NSDateFormatter *formatter;
 
 @end
 
@@ -66,8 +73,10 @@
 
 - (void)initDataSource{
     
+    _formatter = [[NSDateFormatter alloc] init];
+    [_formatter setDateFormat:@"yyyy-MM-dd"];
     _contentArr = [[NSMutableArray alloc] init];
-    _imgArr = [[NSMutableArray alloc] init];
+//    _imgArr = [[NSMutableArray alloc] init];
     _titleArr = @[@"所属公司",@"工号",@"角色",@"申请项目",@"所属部门",@"职位",@"入职/申请时间"];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
@@ -76,7 +85,7 @@
 
 
 - (void)ActionCancelBtn:(UIButton *)btn{
-    [_imgArr removeObjectAtIndex:btn.tag];
+//    [_imgArr removeObjectAtIndex:btn.tag];
     [self.authenColl reloadData];
 }
 
@@ -89,7 +98,7 @@
         return;
     }
     
-    if (!_workCode) {
+    if (!_numTextField.text) {
         
         [self showContent:@"请输入工号"];
         return;
@@ -97,45 +106,63 @@
     
     if (!_role) {
         
+        [self showContent:@"请选择角色"];
         return;
     }
     
-    if (!_projectId) {
+    if ([_role isEqualToString:@"确认人"]) {
         
+        if (!_projectId) {
+            
+            [self showContent:@"请选择申请项目"];
+            return;
+        }
+    }
+    
+    if (!_departTextField.text) {
+        
+        [self showContent:@"请输入所属部门"];
         return;
     }
     
-    if (!_department) {
+    if (!_positionTextField.text) {
         
+        [self showContent:@"请输入职位"];
         return;
     }
     
-    if (!_position) {
+    if (!_timeL.text) {
         
-        return;
-    }
-    
-    if (!_entryTime) {
-        
+        [self showContent:@"请选择入职时间"];
         return;
     }
     
     if (!_imgUrl) {
         
+        [self showContent:@"请选择工牌照片"];
         return;
     }
     
     [dic setObject:_companyId forKey:@"company_id"];
     [dic setObject:_role forKey:@"role"];
+    [dic setObject:_numTextField.text forKey:@"work_code"];
+    if ([_role isEqualToString:@"确认人"]) {
+        
+        [dic setObject:_projectId forKey:@"project_id"];
+    }
+    [dic setObject:_departTextField.text forKey:@"department"];
+    [dic setObject:_positionTextField.text forKey:@"position"];
+    [dic setObject:_timeL.text forKey:@"entry_time"];
+    [dic setObject:_imgUrl forKey:@"img_url"];
 
     
-    [BaseRequest GET:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
+    [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            [self.navigationController popViewControllerAnimated:YES];
         }
     } failure:^(NSError *error) {
         
@@ -153,6 +180,11 @@
         case 0:
         {
             SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
+            nextVC.selectCompanyVCBlock = ^(NSString *companyId, NSString *name) {
+                
+                _companyId = companyId;
+                _companyL.text = name;
+            };
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
@@ -196,7 +228,13 @@
                 
                 if (_companyId) {
                     
-                    
+                    ApplyProjectVC *nextVC = [[ApplyProjectVC alloc] initWithCompanyId:_companyId];
+                    nextVC.applyProjectVCBlock = ^(NSString *projectId, NSString *name) {
+                      
+                        _projectL.text = name;
+                        _projectId = projectId;
+                    };
+                    [self.navigationController pushViewController:nextVC animated:YES];
                 }else{
                     
                     [self showContent:@"请先选择公司"];
@@ -207,22 +245,21 @@
             }
             break;
         }
-        case 4:
-        {
-            SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
-            break;
-        }
-        case 5:
-        {
-            SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
-            break;
-        }
+//        case 4:
+//        {
+//            SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
+//            [self.navigationController pushViewController:nextVC animated:YES];
+//            break;
+//        }
+//        case 5:
+//        {
+////            SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
+////            [self.navigationController pushViewController:nextVC animated:YES];
+//            break;
+//        }
         case 6:
         {
-            SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
+            [[[UIApplication sharedApplication] keyWindow] addSubview:self.dateView];
             break;
         }
         default:
@@ -244,22 +281,16 @@
         cell = [[AuthenCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 91 *SIZE)];
     }
     cell.cancelBtn.tag = indexPath.item;
-    cell.cancelBtn.hidden = NO;
-    [cell.cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
-    if (_imgArr.count) {
+    cell.cancelBtn.hidden = YES;
+//    [cell.cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
+    if (_imgUrl) {
         
-        if (indexPath.item < _imgArr.count) {
-            
-            cell.imageView.image = _imgArr[indexPath.item];
-        }else{
-            
-            cell.imageView.image =[UIImage imageNamed:@"uploadphotos"];
-            cell.cancelBtn.hidden = YES;
-        }
+        cell.imageView.image = _image;
+//        cell.cancelBtn.hidden = YES;
     }else{
         
         cell.imageView.image =[UIImage imageNamed:@"uploadphotos"];
-        cell.cancelBtn.hidden = YES;
+//        cell.cancelBtn.hidden = YES;
     }
     
     return cell;
@@ -353,25 +384,53 @@
             
             _image = info[UIImagePickerControllerOriginalImage];;
             
-            if (_index < _imgArr.count - 1) {
-                
-                [_imgArr replaceObjectAtIndex:_index withObject:_image];
-            }else{
-                
-                [_imgArr addObject:_image];
-            }
+            NSData *data = [self resetSizeOfImageData:_image maxSize:150];
+            
+            [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"id_card"
+                                                               }
+                  constructionBody:^(id<AFMultipartFormData> formData) {
+                      [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
+                  } success:^(id resposeObject) {
+                      NSLog(@"%@",resposeObject);
+                      
+                      if ([resposeObject[@"code"] integerValue] == 200) {
+                          
+                          _imgUrl = resposeObject[@"data"];
+                      }else{
+                          
+                          [self showContent:resposeObject[@"msg"]];
+                      }
+                      [self.authenColl reloadData];
+                  } failure:^(NSError *error) {
+                      NSLog(@"%@",error);
+                      [self showContent:@"网络错误"];
+            }];
+
         }
     }else if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         
         _image = info[UIImagePickerControllerOriginalImage];
+        NSData *data = [self resetSizeOfImageData:_image maxSize:150];
         
-        if (_index < _imgArr.count) {
-            
-            [_imgArr replaceObjectAtIndex:_index withObject:_image];
-        }else{
-            
-            [_imgArr addObject:_image];
-        }
+        [BaseRequest Updateimg:UploadFile_URL parameters:@{@"file_name":@"id_card"
+                                                           }
+              constructionBody:^(id<AFMultipartFormData> formData) {
+                  [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
+              } success:^(id resposeObject) {
+                  NSLog(@"%@",resposeObject);
+                  
+                  if ([resposeObject[@"code"] integerValue] == 200) {
+                      
+                      _imgUrl = resposeObject[@"data"];
+                  }else{
+                      
+                      [self showContent:resposeObject[@"msg"]];
+                  }
+                  [self.authenColl reloadData];
+              } failure:^(NSError *error) {
+                  NSLog(@"%@",error);
+                  [self showContent:@"网络错误"];
+              }];
     }
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -414,12 +473,24 @@
         [whiteView11 addSubview:line];
         
         
-        if (i == 1) {
+        if (i == 1 || i == 4 || i == 5) {
             
             UITextField *textFiled = [[UITextField alloc] initWithFrame:CGRectMake(100 *SIZE, 50 *SIZE * i, 230 *SIZE, 49 *SIZE)];
             textFiled.textAlignment = NSTextAlignmentRight;
-            _numTextField = textFiled;
-            [whiteView11 addSubview:_numTextField];
+            if (i == 1) {
+                
+                _numTextField = textFiled;
+                _numTextField.keyboardType = UIKeyboardTypeNumberPad;
+                [whiteView11 addSubview:_numTextField];
+            }else if (i == 4){
+                
+                _departTextField = textFiled;
+                [whiteView11 addSubview:_departTextField];
+            }else{
+                
+                _positionTextField = textFiled;
+                [whiteView11 addSubview:_positionTextField];
+            }
         }else{
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100 *SIZE, 18 *SIZE + i * 50 *SIZE, 230 *SIZE, 12 *SIZE)];
@@ -454,18 +525,18 @@
                     [whiteView11 addSubview:_projectL];
                     break;
                 }
-                case 4:
-                {
-                    _departL = label;
-                    [whiteView11 addSubview:_departL];
-                    break;
-                }
-                case 5:
-                {
-                    _positionL = label;
-                    [whiteView11 addSubview:_positionL];
-                    break;
-                }
+//                case 4:
+//                {
+//                    _departL = label;
+//                    [whiteView11 addSubview:_departL];
+//                    break;
+//                }
+//                case 5:
+//                {
+//                    _positionL = label;
+//                    [whiteView11 addSubview:_positionL];
+//                    break;
+//                }
                 case 6:
                 {
                     _timeL = label;
@@ -512,6 +583,20 @@
     _commitBtn.titleLabel.font = [UIFont systemFontOfSize:16 *SIZE];
     [_commitBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_commitBtn];
+}
+
+- (DateChooseView *)dateView{
+    
+    if (!_dateView) {
+        
+        _dateView = [[DateChooseView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        __weak __typeof(&*self)weakSelf = self;
+        _dateView.dateblock = ^(NSDate *date) {
+            
+            weakSelf.timeL.text = [weakSelf.formatter stringFromDate:date];
+        };
+    }
+    return _dateView;
 }
 
 @end

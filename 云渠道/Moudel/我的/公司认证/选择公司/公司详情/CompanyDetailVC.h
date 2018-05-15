@@ -9,7 +9,13 @@
 #import "BaseViewController.h"
 #import "CompanyModel.h"
 
+@class CompanyDetailVC;
+
+typedef void(^CompanyDetailVCBlock)(NSString *companyId, NSString *name);
+
 @interface CompanyDetailVC : BaseViewController
+
+@property (nonatomic, copy) CompanyDetailVCBlock companyDetailVCBlock;
 
 - (instancetype)initWithModel:(CompanyModel *)model;;
 

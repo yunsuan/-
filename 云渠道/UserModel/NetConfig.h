@@ -88,6 +88,9 @@ static NSString *const UnPayList_URL = @"agent/personal/unPayList";
 
 //已结佣金列表
 static NSString *const IsPayList_URL = @"agent/personal/isPayList";
+
+//身份证认证
+static NSString *const AgentAuth_URL = @"agent/personal/agentAuth";
 #pragma mark ---  客源  ---
 
 
