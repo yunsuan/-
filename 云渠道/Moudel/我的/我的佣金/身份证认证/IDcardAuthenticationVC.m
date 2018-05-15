@@ -14,6 +14,9 @@
     UIImagePickerController *_imagePickerController;
     UIImage *_image;
     NSInteger _index;
+    NSString *_imgUrl1;
+    NSString *_imgUrl2;
+    NSString *_imgUrl3;
 }
 @property (nonatomic, strong) UITextField *nameTF;
 
@@ -64,7 +67,55 @@
 
 - (void)ActionDoneBtn:(UIButton *)btn{
     
+    if ([self isEmpty:_nameTF.text]) {
+        
+        [self showContent:@"请填写姓名"];
+        return;
+    }
     
+    if ([self isEmpty:_idCardTF.text]) {
+        
+        [self showContent:@"请填写身份证号"];
+        return;
+    }
+    
+    if (!_imgUrl1) {
+        
+        [self showContent:@"请上传正面人像页"];
+        return;
+    }
+    
+    if (!_imgUrl2) {
+        
+        [self showContent:@"请上传背面国徽页"];
+        return;
+    }
+    
+    if (!_imgUrl3) {
+        
+        [self showContent:@"请上传手持身份证照片"];
+        return;
+    }
+    
+    NSDictionary *dic = @{@"name":_nameTF.text,
+                          @"card_id":_idCardTF.text,
+                          @"card_front":_imgUrl1,
+                          @"card_back":_imgUrl2,
+                          @"card_hand":_imgUrl3
+                          };
+    [BaseRequest POST:AgentAuth_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
 }
 
 #pragma mark - 选择头像
@@ -147,12 +198,15 @@
                           if (_index == 0) {
                               
                               _img1.image = _image;
+                              _imgUrl1 = resposeObject[@"data"];
                           }else if (_index == 1){
                               
                               _img2.image = _image;
+                              _imgUrl2 = resposeObject[@"data"];
                           }else{
                               
                               _img3.image = _image;
+                              _imgUrl3 = resposeObject[@"data"];
                           }
                       }else{
                           
@@ -176,18 +230,20 @@
               } success:^(id resposeObject) {
                   NSLog(@"%@",resposeObject);
                   
-                  
                   if ([resposeObject[@"code"] integerValue] == 200) {
                       
                       if (_index == 0) {
                           
                           _img1.image = _image;
+                          _imgUrl1 = resposeObject[@"data"];
                       }else if (_index == 1){
                           
                           _img2.image = _image;
+                          _imgUrl2 = resposeObject[@"data"];
                       }else{
                           
                           _img3.image = _image;
+                          _imgUrl3 = resposeObject[@"data"];
                       }
                   }else{
                       

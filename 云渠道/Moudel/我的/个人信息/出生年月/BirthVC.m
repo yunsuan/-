@@ -50,7 +50,7 @@
     
     if (_birthL.text.length && ![self isEmpty:_birthL.text]) {
         
-        NSDictionary *dic = @{@"birth":_date};
+        NSDictionary *dic = @{@"birth":_birthL.text};
         [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
@@ -66,7 +66,7 @@
             }
         } failure:^(NSError *error) {
             
-            [self showContent:@"网络错误"];
+               [self showContent:@"网络错误"];
             NSLog(@"%@",error);
         }];
     }

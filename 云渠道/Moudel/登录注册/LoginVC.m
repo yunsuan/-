@@ -12,6 +12,7 @@
 #import "FindPassWordVC.h"
 #import <UMSocialQQHandler.h>
 #import <UMSocialWechatHandler.h>
+#import "WXApi.h"
 
 @interface LoginVC ()
 @property (nonatomic , strong) UITextField *Account;
@@ -40,8 +41,17 @@
     [self.view addSubview:self.RegisterBtn];
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
+    if ([WXApi isWXAppInstalled]) {
+        
+        self.QQBtn.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+        [self.view addSubview:self.WEIBOBTN];
+    }else{
+        
+        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+        
+    }
     [self.view addSubview:self.QQBtn];
-    [self.view addSubview:self.WEIBOBTN];
+    
 //    [self.view addSubview:self.QuickLoginBtn];
     [self.view addSubview:self.LoginBtn];
 //    [self.view addSubview:self.ProtocolBtn];
@@ -185,7 +195,7 @@
             [UserModel defaultModel].Password = _PassWord.text;
             [UserModel defaultModel].agent_id =resposeObject[@"data"][@"agent_id"];
             [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
-            CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
+//            CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
             [UserModelArchiver archive];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"goHome" object:nil];
 //            [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];

@@ -53,6 +53,12 @@ static NSString *const UpdatePersonal_URL = @"agent/personal/update";
 //获取公司列表
 static NSString *const GetCompanyList_URL = @"agent/personal/getCompanyList";
 
+//公司认证申请提交
+static NSString *const AddAuthInfo_URL = @"agent/personal/addAuthInfo";
+
+//获取公司旗下项目
+static NSString *const GetCompanyProject_URL = @"agent/personal/getCompanyProject";
+
 //获取经纪人工作历史
 static NSString *const WorkHis_URL = @"agent/personal/WorkHis";
 
@@ -83,11 +89,16 @@ static NSString *const UnPayList_URL = @"agent/personal/unPayList";
 //已结佣金列表
 static NSString *const IsPayList_URL = @"agent/personal/isPayList";
 
+
 //佣金详情
 static NSString *const PayDetail_URL = @"agent/personal/unPayDetail";
 
 //催佣
 static NSString *const Urge_URL = @"agent/personal/urge";
+
+//身份证认证
+static NSString *const AgentAuth_URL = @"agent/personal/agentAuth";
+
 #pragma mark ---  客源  ---
 
 
