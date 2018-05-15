@@ -10,6 +10,8 @@
 
 @interface AuthenedTableHeader : UITableViewHeaderFooterView
 
+@property (nonatomic, strong) UILabel *statusL;
+
 @property (nonatomic, strong) UILabel *phoneL;
 
 @end

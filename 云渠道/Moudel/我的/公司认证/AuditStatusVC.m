@@ -13,12 +13,23 @@
 {
     NSArray *_data;
     NSArray *_titleArr;
+    NSDictionary *_dataDic;
 }
 @property (nonatomic , strong) UITableView *statusTable;
 
 @end
 
 @implementation AuditStatusVC
+
+- (instancetype)initWithData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        
+        _dataDic = data;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,45 +41,56 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"客户信息",@"项目信息",@"到访确认人信息"];
-    _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
+    _data = @[[NSString stringWithFormat:@"姓名：%@",[UserInfoModel defaultModel].name],[NSString stringWithFormat:@"公司名称：%@",_dataDic[@"company_name"]],[NSString stringWithFormat:@"工号：%@",_dataDic[@"work_code"]],[NSString stringWithFormat:@"部门：%@",_dataDic[@"department"]],[NSString stringWithFormat:@"位置：%@",_dataDic[@"position"]]];
+    
 }
 
 #pragma mark    -----  delegate   ------
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 3) {
-        
-        return 7;
-    }
-    return 3;
+//    if (section == 3) {
+//
+//        return 7;
+//    }
+//    return 3;
+    return 5;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 228*SIZE)];
+    UIView *backview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 162*SIZE)];
     backview.backgroundColor = [UIColor whiteColor];
-    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 194*SIZE, 6.7*SIZE, 13.3*SIZE)];
+    UIView *blueView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 117 *SIZE)];
+    blueView.backgroundColor = YJBlueBtnColor;
+    [backview addSubview:blueView];
+    
+    UILabel *statusL = [[UILabel alloc] initWithFrame:CGRectMake(0, 31 *SIZE, SCREEN_Width, 17 *SIZE)];
+    statusL.textColor = CH_COLOR_white;
+    statusL.font = [UIFont systemFontOfSize:19 *SIZE];
+    statusL.textAlignment = NSTextAlignmentCenter;
+    statusL.text = @"审核中";
+    [backview addSubview:statusL];
+    
+    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 136*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
     [backview addSubview:header];
-    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 194*SIZE, 300*SIZE, 16*SIZE)];
+    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 137*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    title.text = _titleArr[section];
+    title.text = @"申请信息";
     [backview addSubview:title];
     return backview;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 228*SIZE;
+    return 162*SIZE;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-    
 }
 
 

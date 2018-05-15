@@ -26,6 +26,7 @@
     label.textColor = CH_COLOR_white;
     label.font = [UIFont systemFontOfSize:19 *SIZE];
     label.textAlignment = NSTextAlignmentCenter;
+    label.text = @"已认证";
     [self.contentView addSubview:label];
     
     _phoneL = [[UILabel alloc] initWithFrame:CGRectMake(0, 69 *SIZE, SCREEN_Width, 17 *SIZE)];

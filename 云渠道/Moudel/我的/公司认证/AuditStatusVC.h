@@ -10,4 +10,6 @@
 
 @interface AuditStatusVC : BaseViewController
 
+- (instancetype)initWithData:(NSDictionary *)data;
+
 @end

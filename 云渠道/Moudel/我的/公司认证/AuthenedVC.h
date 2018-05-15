@@ -10,4 +10,6 @@
 
 @interface AuthenedVC : BaseViewController
 
+- (instancetype)initWithData:(NSDictionary *)data;
+
 @end

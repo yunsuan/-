@@ -72,8 +72,33 @@
     switch (btn.tag) {
         case 0:
         {
-            IDcardAuthenticationVC *nextVC = [[IDcardAuthenticationVC alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
+            
+            [BaseRequest GET:GetAgentAuthInfo_URL parameters:nil success:^(id resposeObject) {
+                
+                NSLog(@"%@",resposeObject);
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSDictionary *dic = resposeObject[@"data"];
+                        IdentifyingVC *nextVC = [[IdentifyingVC alloc] initWithData:dic];
+                        [self.navigationController pushViewController:nextVC animated:YES];
+                    }else{
+                        
+                        IDcardAuthenticationVC *nextVC = [[IDcardAuthenticationVC alloc] init];
+                        [self.navigationController pushViewController:nextVC animated:YES];
+                    }
+                }else{
+                    
+                    IDcardAuthenticationVC *nextVC = [[IDcardAuthenticationVC alloc] init];
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }
+            } failure:^(NSError *error) {
+                
+                IDcardAuthenticationVC *nextVC = [[IDcardAuthenticationVC alloc] init];
+                [self.navigationController pushViewController:nextVC animated:YES];
+                NSLog(@"%@",error);
+            }];
             break;
         }
         case 1:

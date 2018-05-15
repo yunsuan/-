@@ -99,6 +99,12 @@ static NSString *const Urge_URL = @"agent/personal/urge";
 //身份证认证
 static NSString *const AgentAuth_URL = @"agent/personal/agentAuth";
 
+//获取身份证认证信息
+static NSString *const GetAgentAuthInfo_URL = @"agent/personal/getAgentAuthInfo";
+
+//获取认证信息
+static NSString *const GetAuthInfo_URL = @"agent/personal/getAuthInfo";
+
 #pragma mark ---  客源  ---
 
 

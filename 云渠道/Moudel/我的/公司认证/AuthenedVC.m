@@ -20,6 +20,7 @@
     NSMutableArray *_contentArr;
     NSMutableArray *_imgArr;
     NSInteger _index;
+    NSDictionary *_dataDic;
 }
 @property (nonatomic, strong) UITableView *authenTable;
 
@@ -35,6 +36,16 @@
 
 @implementation AuthenedVC
 
+- (instancetype)initWithData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        
+        _dataDic = data;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -46,6 +57,17 @@
     
     _contentArr = [[NSMutableArray alloc] init];
     _imgArr = [[NSMutableArray alloc] init];
+    NSArray *tempArr = @[_dataDic[@"company_name"],_dataDic[@"work_code"],_dataDic[@"company_name"],_dataDic[@"company_name"],_dataDic[@"department"],_dataDic[@"position"],_dataDic[@"company_name"]];
+    _contentArr = [NSMutableArray arrayWithArray:tempArr];
+    if ([_dataDic[@"butter_project"] isEqualToString:@"0"]) {
+        
+        [_contentArr replaceObjectAtIndex:2 withObject:@"经纪人"];
+        [_contentArr replaceObjectAtIndex:3 withObject:@""];
+    }else{
+        
+        [_contentArr replaceObjectAtIndex:2 withObject:@"确认人"];
+        [_contentArr replaceObjectAtIndex:4 withObject:_dataDic[@"butter_project"]];
+    }
     _titleArr = @[@"所属公司",@"工号",@"角色",@"申请项目",@"所属部门",@"职位",@"入职/申请时间"];
 }
 
@@ -79,6 +101,7 @@
         header = [[AuthenedTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 117 *SIZE)];
     }
     
+    
     return header;
 }
 
@@ -93,6 +116,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.titleL.text = _titleArr[indexPath.row];
+    cell.contentL.text = _contentArr[indexPath.row];
     return cell;
 }
 
@@ -100,7 +124,7 @@
 #pragma mark --coll代理
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _imgArr.count < 3? _imgArr.count + 1: 3;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -112,21 +136,13 @@
     }
     cell.cancelBtn.tag = indexPath.item;
     cell.cancelBtn.hidden = YES;
-    if (_imgArr.count) {
-        
-        if (indexPath.item < _imgArr.count) {
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+       
+        if (error) {
             
-            cell.imageView.image = _imgArr[indexPath.item];
-        }else{
-            
-            cell.imageView.image = [UIImage imageNamed:@"add"];
-            cell.cancelBtn.hidden = YES;
+            cell.imageView.image = [UIImage imageNamed:@"default_3"];
         }
-    }else{
-        
-        cell.imageView.image = [UIImage imageNamed:@"add"];
-        cell.cancelBtn.hidden = YES;
-    }
+    }];
     
     return cell;
 }
@@ -174,7 +190,7 @@
     _commitBtn.layer.masksToBounds = YES;
     _commitBtn.layer.cornerRadius = 2 *SIZE;
     _commitBtn.backgroundColor = YJLoginBtnColor;
-    [_commitBtn setTitle:@"更换公司" forState:UIControlStateNormal];
+    [_commitBtn setTitle:@"重新认证" forState:UIControlStateNormal];
     [_commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _commitBtn.titleLabel.font = [UIFont systemFontOfSize:16 *SIZE];
     [_commitBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
