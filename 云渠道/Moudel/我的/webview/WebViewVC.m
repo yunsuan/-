@@ -19,9 +19,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"新房推荐";
+    self.titleLabel.text = @"操作指南";
     //2.创建URL
-    NSURL *URL = [NSURL URLWithString:@"https://www.baidu.com"];
+    NSURL *URL = [NSURL URLWithString:@"http://www.ccsoft.com.cn"];
     //3.创建Request
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     //4.加载Request
@@ -61,4 +61,10 @@
     return _webwivw;
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_webwivw stopLoading];
+    [WaitAnimation stopAnimation];
+}
 @end

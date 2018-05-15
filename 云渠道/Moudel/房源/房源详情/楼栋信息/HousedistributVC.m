@@ -574,7 +574,7 @@
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0,1, 360*SIZE, 123*SIZE)];
         view.backgroundColor = [UIColor whiteColor];
         
-        NSArray *arr =  @[@[[NSString stringWithFormat:@"总户数：%@",_LDdic[@"build_info"][@"total_house_num"]],[NSString stringWithFormat:@"开盘方式：%@",_LDdic[@"build_info"][@"open_way"]]],@[[NSString stringWithFormat:@"楼上层数：%@",_LDdic[@"build_info"][@"uppper_floor_num"]],[NSString stringWithFormat:@"楼下层数：%@",_LDdic[@"build_info"][@"down_floor_num"]]],@[[NSString stringWithFormat:@"开盘时间：%@",_LDdic[@"build_info"][@"open_time"]],[NSString stringWithFormat:@"交房时间：%@",_LDdic[@"build_info"][@"handing_room_time"]]]];
+        NSArray *arr =  @[@[[NSString stringWithFormat:@"总户数：%@",_LDdic[@"build_info"][@"total_house_num"]],[NSString stringWithFormat:@"开盘方式：%@",_LDdic[@"build_info"][@"open_way"]]],@[[NSString stringWithFormat:@"楼上层数：%@",_LDdic[@"build_info"][@"upper_floor_num"]],[NSString stringWithFormat:@"楼下层数：%@",_LDdic[@"build_info"][@"down_floor_num"]]],@[[NSString stringWithFormat:@"开盘时间：%@",_LDdic[@"build_info"][@"open_time"]],[NSString stringWithFormat:@"交房时间：%@",_LDdic[@"build_info"][@"handing_room_time"]]]];
         for (int i=0; i<3; i++) {
             for (int j=0; j<2; j++) {
                 UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(9.7*SIZE+j*200*SIZE, 13.3*SIZE+i*27.7*SIZE, 180*SIZE, 13*SIZE)];
