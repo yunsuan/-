@@ -200,8 +200,9 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"goHome" object:nil];
 //            [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];
 //            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarControllerConfig.tabBarController;
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
-        [self showContent:resposeObject[@"msg"]];
         
     } failure:^(NSError *error) {
         [self showContent:@"网络错误"];

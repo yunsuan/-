@@ -67,7 +67,7 @@
     [BaseRequest POST:ClientAppeal_URL parameters:@{@"project_client_id":_projectId,@"type":_type,@"comment":_feedbackTV.text} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+   
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             for (UIViewController *vc in self.navigationController.viewControllers) {
@@ -93,6 +93,9 @@
                     [self.navigationController popToViewController:vc animated:YES];
                 }
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

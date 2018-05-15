@@ -97,7 +97,7 @@
     [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -110,6 +110,9 @@
         }else if([resposeObject[@"code"] integerValue] == 400){
             
 //            [self showContent:resposeObject[@"msg"]];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

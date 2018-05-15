@@ -52,7 +52,7 @@
         
         NSLog(@"%@",resposeObject);
         [_searchTable.mj_header endRefreshing];
-        [self showContent:resposeObject[@"msg"]];
+     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -83,6 +83,9 @@
             
 //            [self showContent:resposeObject[@"msg"]];
         }
+        else{
+            [self showContent:resposeObject[@"msg"]];
+        }
     } failure:^(NSError *error) {
         
         [_searchTable.mj_header endRefreshing];
@@ -101,7 +104,7 @@
         
         NSLog(@"%@",resposeObject);
         [_searchTable.mj_footer endRefreshing];
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -130,6 +133,9 @@
         }else if([resposeObject[@"code"] integerValue] == 400){
             
 //            [self showContent:resposeObject[@"msg"]];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

@@ -94,12 +94,12 @@
 
 //        [self.MainTableView.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+       
         if ([resposeObject[@"code"] integerValue] == 200) {
 
             [self SetData:resposeObject[@"data"]];
-        }else{
-
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
 

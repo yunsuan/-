@@ -73,7 +73,7 @@
     [BaseRequest GET:DisabledDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+    
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -85,6 +85,9 @@
                 }
             }];
             [_invalidTable reloadData];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -104,7 +107,7 @@
     [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_dataDic[@"client_info_id"]} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+    
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             self.recommendView.codeL.text = [NSString stringWithFormat:@"推荐编号:%@",_clientId];

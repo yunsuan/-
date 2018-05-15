@@ -41,7 +41,7 @@
     [BaseRequest POST:BankCardInfo_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+  
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -50,7 +50,7 @@
             }
         }else{
             
-//            [self showContent:resposeObject[@"msg"]];
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        
@@ -86,11 +86,14 @@
             [BaseRequest POST:DeleteBankCard_URL parameters:nil success:^(id resposeObject) {
                 
                 NSLog(@"%@",resposeObject);
-                [self showContent:resposeObject[@"msg"]];
+            
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
                     [_dataArr removeAllObjects];
                     [_bankTable reloadData];
+                }
+                else{
+                    [self showContent:resposeObject[@"msg"]];
                 }
             } failure:^(NSError *error) {
                 

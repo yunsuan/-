@@ -347,7 +347,7 @@
     [BaseRequest POST:AddRecord_URL parameters:prameter success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             [self showContent:@"添加成功"];
             [self.navigationController popViewControllerAnimated:YES];
@@ -355,6 +355,9 @@
         else if([resposeObject[@"code"] integerValue] == 400){
             
 //            [self showContent:resposeObject[@"msg"]];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
         
     } failure:^(NSError *error) {

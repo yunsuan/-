@@ -79,14 +79,14 @@
     
     [BaseRequest POST:ChangePassword_URL parameters:parameter success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+    
         if ([resposeObject[@"code"] integerValue] == 200) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }
         else{
-            
+            [self showContent:resposeObject[@"msg"]];
         }
         
     } failure:^(NSError *error) {

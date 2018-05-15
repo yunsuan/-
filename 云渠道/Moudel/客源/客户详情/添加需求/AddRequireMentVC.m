@@ -432,7 +432,7 @@
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
             NSLog(@"%@",resposeObject);
-            [self showContent:resposeObject[@"msg"]];
+ 
             _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -445,6 +445,9 @@
                         [self.navigationController popToViewController:vc animated:YES];
                     }
                 }
+            }
+            else{
+                [self showContent:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             _nextBtn.userInteractionEnabled = YES;

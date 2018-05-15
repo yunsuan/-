@@ -99,9 +99,8 @@
             [self.navigationController pushViewController:next_vc animated:YES];
         }
         else{
-           
+            [self showContent:resposeObject[@"msg"]];
         }
-        [self showContent:resposeObject[@"msg"]];
     } failure:^(NSError *error) {
         [self showContent:@"网络错误"];
     }];
@@ -137,9 +136,9 @@
                 time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
                 
             }
-            
-            
-             [self showContent:resposeObject[@"msg"]];
+            else{
+                [self showContent:resposeObject[@"msg"]];
+            }
             _GetCodeBtn.userInteractionEnabled = YES;
         } failure:^(NSError *error) {
             _GetCodeBtn.userInteractionEnabled = YES;

@@ -66,7 +66,7 @@
         
         [self.searchTable.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -85,6 +85,8 @@
                 
             }
         }else{
+            
+                [self showContent:resposeObject[@"msg"]];
             
             
         }

@@ -56,11 +56,14 @@
     [BaseRequest GET:ProjectWaitConfirmDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
             [_confirmTable reloadData];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -212,7 +215,7 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"待确认详情";
     
-    _confirmTable.rowHeight = 150 *SIZE;
+    _confirmTable.rowHeight = 200 *SIZE;
     _confirmTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
      if ([[UserModelArchiver unarchive].agent_identity integerValue]==2) {

@@ -406,7 +406,7 @@
                     
                     [BaseRequest GET:CancelFocusProject_URL parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
                         
-                        [self showContent:resposeObject[@"msg"]];
+                       
                         NSLog(@"%@",resposeObject);
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
@@ -414,6 +414,9 @@
                         }else if([resposeObject[@"code"] integerValue] == 400){
                             
 //                            [self showContent:resposeObject[@"msg"]];
+                        }
+                        else{
+                            [self showContent:resposeObject[@"msg"]];
                         }
                     } failure:^(NSError *error) {
                         
@@ -425,13 +428,16 @@
                     [BaseRequest GET:FocusProject_URL parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
                         
                         NSLog(@"%@",resposeObject);
-                        [self showContent:resposeObject[@"msg"]];
+                       
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
                             [self RequestMethod];
                         }else if([resposeObject[@"code"] integerValue] == 400){
                             
 //                            [self showContent:resposeObject[@"msg"]];
+                        }
+                        else{
+                            [self showContent:resposeObject[@"msg"]];
                         }
                         [self RequestMethod];
                     } failure:^(NSError *error) {
@@ -630,13 +636,16 @@
                 [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
                     
                     NSLog(@"%@",resposeObject);
-                    [self showContent:resposeObject[@"msg"]];
+                    
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
 
                     }else if ([resposeObject[@"code"] integerValue] == 400){
                         
                         
+                    }
+                    else{
+                        [self showContent:resposeObject[@"msg"]];
                     }
                 } failure:^(NSError *error) {
                     

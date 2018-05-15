@@ -36,7 +36,15 @@
 
 -(void)initUI
 {
-    
+//
+//    UIView *view = [[UIView alloc]init];
+//    [self.contentView addSubview:view];
+//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.contentView).offset(96.7*SIZE);
+//        make.top.equalTo(self.contentView).offset(0*SIZE);
+//        make.width.mas_equalTo(33*SIZE);
+//        make.height.mas_equalTo(120*SIZE);
+//    }];
     _dayL = [[UILabel alloc]init];
     _dayL.textColor = [UIColor whiteColor];
     _dayL.textAlignment = NSTextAlignmentCenter;

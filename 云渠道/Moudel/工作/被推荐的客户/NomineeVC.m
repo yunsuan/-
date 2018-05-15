@@ -114,7 +114,7 @@
         [_MainTableView.mj_header endRefreshing];
         
         _page1 = 1;
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_unComfirmArr removeAllObjects];
@@ -124,6 +124,9 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast1 = YES;
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -141,7 +144,7 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
+       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
@@ -150,9 +153,12 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast1 = YES;
             }else{
-                
+            
                 [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -188,7 +194,7 @@
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectValue_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+      
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -202,6 +208,9 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast2 = YES;
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -219,7 +228,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetValidArr:resposeObject[@"data"][@"data"]];
@@ -228,9 +236,12 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast2 = YES;
             }else{
-                
-                [_MainTableView.mj_footer endRefreshing];
+              
+              [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -266,7 +277,7 @@
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDisabled_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+       
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -280,6 +291,9 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast3 = YES;
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -297,7 +311,7 @@
         
         [_MainTableView.mj_footer endRefreshing];
         
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetInValidArr:resposeObject[@"data"][@"data"]];
@@ -306,7 +320,8 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast3 = YES;
             }else{
-                
+              
+                [self showContent:resposeObject[@"msg"]];               
                 [_MainTableView.mj_footer endRefreshing];
             }
         }
@@ -344,7 +359,7 @@
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectAppealList_URL parameters:nil success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+       
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -358,6 +373,9 @@
                 _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                 _isLast4 = YES;
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -374,8 +392,7 @@
         NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
-        
-        [self showContent:resposeObject[@"msg"]];
+    
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetApealArr:resposeObject[@"data"][@"data"]];
@@ -387,6 +404,9 @@
                 
                 [_MainTableView.mj_footer endRefreshing];
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

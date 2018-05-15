@@ -66,10 +66,13 @@
     [BaseRequest GET:ProjectBuildInfo_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetData:resposeObject[@"data"]];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

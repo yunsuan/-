@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/&#x4fee;&#x6539;&#x5bc6;&#x7801;/ChangePassWordVC.m"
-            timestampString = "545731194.532796"
+            timestampString = "548090512.2077579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -68,12 +68,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/&#x6237;&#x578b;&#x8be6;&#x60c5;/HouseTypeDetailVC.m"
-            timestampString = "546921700.906154"
+            timestampString = "548090512.208347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
             endingLineNumber = "80"
-            landmarkName = "-RequestMethod"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
             <Locations>
                <Location
@@ -84,7 +84,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Documents/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%BF%E6%BA%90/%E6%88%BF%E6%BA%90%E8%AF%A6%E6%83%85/%E6%88%B7%E5%9E%8B%E8%AF%A6%E6%83%85/HouseTypeDetailVC.m"
-                  timestampString = "548073237.215571"
+                  timestampString = "548090512.737022"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
@@ -99,7 +99,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Documents/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%BF%E6%BA%90/%E6%88%BF%E6%BA%90%E8%AF%A6%E6%83%85/%E6%88%B7%E5%9E%8B%E8%AF%A6%E6%83%85/HouseTypeDetailVC.m"
-                  timestampString = "548073237.218035"
+                  timestampString = "548090512.742494"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -148,7 +148,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Documents/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/%E8%87%AA%E5%AE%9A%E4%B9%89SDK/%E5%BC%B9%E5%87%BA%E6%A1%86/InvalidView.m"
-                  timestampString = "548073237.230793"
+                  timestampString = "548090512.763688"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "31"
@@ -163,7 +163,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Documents/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/%E8%87%AA%E5%AE%9A%E4%B9%89SDK/%E5%BC%B9%E5%87%BA%E6%A1%86/InvalidView.m"
-                  timestampString = "548073237.2339849"
+                  timestampString = "548090512.769143"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -178,7 +178,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Documents/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/%E8%87%AA%E5%AE%9A%E4%B9%89SDK/%E5%BC%B9%E5%87%BA%E6%A1%86/InvalidView.m"
-                  timestampString = "548073237.237085"
+                  timestampString = "548090512.773515"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "31"
@@ -195,11 +195,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x63a8;&#x8350;/&#x5df2;&#x786e;&#x8ba4;&#x8be6;&#x60c5;/confirmDetailVC.m"
-            timestampString = "548068429.263399"
+            timestampString = "548090512.209069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-WaitConfirmRequest"
             landmarkType = "7">
          </BreakpointContent>
@@ -211,7 +211,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x88ab;&#x63a8;&#x8350;&#x7684;&#x5ba2;&#x6237;/&#x5b8c;&#x5584;&#x5ba2;&#x6237;&#x4fe1;&#x606f;/CompleteCustomVC2.m"
-            timestampString = "547717451.153808"
+            timestampString = "548090512.209438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "378"
@@ -243,7 +243,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/RoomVC.m"
-            timestampString = "548066637.268909"
+            timestampString = "548090512.209941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -259,7 +259,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/RoomVC.m"
-            timestampString = "548066637.269508"
+            timestampString = "548090512.210209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -274,13 +274,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/RoomProjectVC.m"
-            timestampString = "548073236.811677"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/view/CustomDetailTableCell4.m"
+            timestampString = "548082671.255152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-SetMatchPeople:"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-ActionAddBtn:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/view/CustomTableHeader4.m"
+            timestampString = "548082727.716537"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-ActionShowBtn:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/CustomDetailVC.m"
+            timestampString = "548090512.2108639"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
+            landmarkName = "-tableView:viewForHeaderInSection:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

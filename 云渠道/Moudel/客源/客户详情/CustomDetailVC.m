@@ -107,7 +107,7 @@
         
        
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+    
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -115,6 +115,9 @@
                 [self SetProjectList:resposeObject[@"data"][@"list"]];
                 _statusArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"recommend_project"]];
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -168,14 +171,13 @@
     [BaseRequest GET:GetRecord_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _FollowArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"data"]];
             [_customDetailTable reloadData];
-        }else{
-            
-
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        
@@ -189,7 +191,7 @@
     [BaseRequest GET:GetCliendInfo_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -207,9 +209,8 @@
                 
 //                [self showContent:@"暂无客户信息"];
             }
-        }else{
-            
-//            [self showContent:resposeObject[@"msg"]];
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        
