@@ -56,6 +56,7 @@
 		0C0BED4F20A93C01005A16A1 /* BoxAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED4E20A93C01005A16A1 /* BoxAddressView.m */; };
 		0C0BED5320A98841005A16A1 /* CityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5220A98841005A16A1 /* CityVC.m */; };
 		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
+		0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -384,6 +385,8 @@
 		0C0BED5220A98841005A16A1 /* CityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityVC.m; sourceTree = "<group>"; };
 		0C0BED5520A992E1005A16A1 /* BMChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMChineseSort.h; sourceTree = "<group>"; };
 		0C0BED5620A992E1005A16A1 /* BMChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMChineseSort.m; sourceTree = "<group>"; };
+		0C0BED5920AA7F6A005A16A1 /* ApplyProjectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyProjectVC.h; sourceTree = "<group>"; };
+		0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyProjectVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1035,6 +1038,7 @@
 		0C0B821B2064963E00238D4F /* 公司认证 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0BED5820AA7F3C005A16A1 /* 申请项目 */,
 				0CC19CE8206E21100007CC5F /* 选择公司 */,
 				0CC19CE2206E21100007CC5F /* AuthenticationVC.h */,
 				0CC19CF6206E21100007CC5F /* AuthenticationVC.m */,
@@ -1201,6 +1205,15 @@
 				0C0BED5620A992E1005A16A1 /* BMChineseSort.m */,
 			);
 			path = BMChineseStringSort;
+			sourceTree = "<group>";
+		};
+		0C0BED5820AA7F3C005A16A1 /* 申请项目 */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BED5920AA7F6A005A16A1 /* ApplyProjectVC.h */,
+				0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */,
+			);
+			path = "申请项目";
 			sourceTree = "<group>";
 		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
@@ -2711,6 +2724,7 @@
 				0C06B1FE209D9B3100F11993 /* QuickSearchVC.m in Sources */,
 				0CF04F97207CB97F00A45F4A /* AuthenedVC.m in Sources */,
 				102DF9702057A12B00E1859C /* MessageVC.m in Sources */,
+				0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */,
 				0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
