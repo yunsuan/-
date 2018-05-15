@@ -101,7 +101,7 @@
 
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
-    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_clientId} success:^(id resposeObject) {
+    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_dataDic[@"client_info_id"]} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
