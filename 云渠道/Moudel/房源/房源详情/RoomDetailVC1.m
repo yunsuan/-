@@ -152,6 +152,7 @@
     
     // 创建scrollView
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT)];
+    self.scrollView.scrollEnabled = NO;
     [self.view addSubview:self.scrollView];
     // 设置scrollView的内容
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 3, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT);
@@ -162,16 +163,7 @@
     
     // 创建控制器
     _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
-    WS(weakself);
-    _roomProjectVC.userinterfaceblook = ^(BOOL ismapview) {
-        if (ismapview) {
-            weakself.scrollView.userInteractionEnabled = NO;
-        }
-        else
-        {
-            weakself.scrollView.userInteractionEnabled = YES;
-        }
-    };
+   
     _roomBrokerageVC = [[RoomBrokerageVC alloc] initWithModel:_model];
     _roomAnalyzeVC = [[RoomAnalyzeVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
     // 添加为self的子控制器
@@ -187,6 +179,7 @@
     // 设置scrollView的代理
     self.scrollView.delegate = self;
 }
+
 
 
 @end
