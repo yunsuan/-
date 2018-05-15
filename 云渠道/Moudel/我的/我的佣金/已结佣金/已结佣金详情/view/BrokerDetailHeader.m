@@ -22,11 +22,11 @@
 
 - (void)ActionDropBtn:(UIButton *)btn{
     
-    _drop = !_drop;
-    if (self.dropBtnBlock) {
-        
-        self.dropBtnBlock();
-    }
+//    _drop = !_drop;
+//    if (self.dropBtnBlock) {
+//
+//        self.dropBtnBlock();
+//    }
 }
 
 - (void)initUI{
@@ -42,22 +42,22 @@
     _titleL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_titleL];
     
-    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(335 *SIZE, 23 *SIZE, 12 *SIZE, 12 *SIZE)];
-    if (_drop) {
-        
-        _dropImg.image = [UIImage imageNamed:@"uparrow"];
-    }else{
-        
-        _dropImg.image = [UIImage imageNamed:@"downarrow"];
-    }
-
-//    _dropImg.image = [UIImage imageNamed:@"downarrow"];
-    [self.contentView addSubview:_dropImg];
-    
-    _dropBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _dropBtn.frame = CGRectMake(330 *SIZE, 18 *SIZE, 22 *SIZE, 22 *SIZE);
-    [_dropBtn addTarget:self action:@selector(ActionDropBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_dropBtn];
+//    _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(335 *SIZE, 23 *SIZE, 12 *SIZE, 12 *SIZE)];
+//    if (_drop) {
+//
+//        _dropImg.image = [UIImage imageNamed:@"uparrow"];
+//    }else{
+//
+//        _dropImg.image = [UIImage imageNamed:@"downarrow"];
+//    }
+//
+////    _dropImg.image = [UIImage imageNamed:@"downarrow"];
+//    [self.contentView addSubview:_dropImg];
+//
+//    _dropBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _dropBtn.frame = CGRectMake(330 *SIZE, 18 *SIZE, 22 *SIZE, 22 *SIZE);
+//    [_dropBtn addTarget:self action:@selector(ActionDropBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.contentView addSubview:_dropBtn];
 }
 
 @end

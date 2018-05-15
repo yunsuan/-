@@ -10,4 +10,6 @@
 
 @interface BrokerageDetailVC : BaseViewController
 @property (nonatomic , strong) NSString *broker_id;
+@property (nonatomic , strong) NSString *type;
+@property (nonatomic , strong) NSString *is_urge;
 @end

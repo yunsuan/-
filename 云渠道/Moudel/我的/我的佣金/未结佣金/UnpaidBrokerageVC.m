@@ -8,6 +8,7 @@
 
 #import "UnpaidBrokerageVC.h"
 #import "UnpaidCell.h"
+#import "BrokerageDetailVC.h"
 
 @interface UnpaidBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -130,9 +131,33 @@
     cell.timeL.text = [NSString stringWithFormat:@"推荐时间：%@",_data[indexPath.row][@"create_time"]];
     cell.expediteBtn.tag = indexPath.row;
     cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"broker_num"]];
+//    WS(weakself);
+    if ([_data[indexPath.row][@"is_urge"] integerValue]==1) {
+        [cell.expediteBtn setTitle:@"已催佣" forState:UIControlStateNormal];
+        cell.expediteBtn.userInteractionEnabled = NO;
+    }
+ 
+    __weak __typeof(&*cell)weakcell = cell;
     cell.moneybtnBlook = ^(NSInteger index) {
-      
+        [BaseRequest POST:Urge_URL parameters:@{
+                                    @"broker_id":_data[indexPath.row][@"broker_id"]
+                                                }
+                  success:^(id resposeObject) {
+                      NSLog(@"%@",resposeObject);
+                      if ([resposeObject[@"code"] integerValue]==200) {
+                          [weakcell.expediteBtn setTitle:@"已催佣" forState:UIControlStateNormal];
+                          weakcell.expediteBtn.userInteractionEnabled = NO;
+                      }
+                      else
+                      {
+                          [self showContent:resposeObject[@"msg"]];
+                      }
+                                                }
+                  failure:^(NSError *error) {
+                      NSLog(@"%@",error.description);
+                                                }];
         NSLog(@"%ld",index);
+        
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -140,20 +165,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case 0:
-        {
-            
-        }
-            break;
-        case 1:
-        {
-            NSLog(@"");
-        }
-            
-        default:
-            break;
-    }
+    BrokerageDetailVC *nextVC = [[BrokerageDetailVC alloc] init];
+    nextVC.broker_id = _data[indexPath.row][@"broker_id"];
+    nextVC.type = @"0";
+    nextVC.is_urge =_data[indexPath.row][@"is_urge"];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 
