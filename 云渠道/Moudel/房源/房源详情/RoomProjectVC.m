@@ -604,7 +604,6 @@
             }
             CLLocationCoordinate2D cllocation = CLLocationCoordinate2DMake([_model.latitude floatValue] , [_model.longitude floatValue]);
             [_mapView setCenterCoordinate:cllocation animated:YES];
-            
             BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
             annotation.coordinate = cllocation;
             annotation.title = _model.project_name;
@@ -680,11 +679,10 @@
     
     if ([gestureRecognizer.view isKindOfClass:[BMKMapView class]]) {
         _roomTable.scrollEnabled=NO;
-        self.userinterfaceblook(YES);
         
     }else{
         _roomTable.scrollEnabled=YES;
-        self.userinterfaceblook(NO);
+
     }
     
     return NO;
@@ -759,7 +757,7 @@
     _poisearch = [self poisearch];
     BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
     boundSearchOption.pageIndex = 0;
-    boundSearchOption.pageCapacity = 40;
+    boundSearchOption.pageCapacity = 20;
     boundSearchOption.keyword = name;
     boundSearchOption.leftBottom =_leftBottomPoint;
     boundSearchOption.rightTop =_rightBottomPoint;
@@ -790,6 +788,13 @@
             BMKPoiInfo* poi = [result.poiInfoList objectAtIndex:i];
             [self addAnimatedAnnotationWithName:poi.name withAddress:poi.pt];
         }
+        
+        CLLocationCoordinate2D cllocation = CLLocationCoordinate2DMake([_model.latitude floatValue] , [_model.longitude floatValue]);
+        [_mapView setCenterCoordinate:cllocation animated:YES];
+        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+        annotation.coordinate = cllocation;
+        annotation.title = _model.project_name;
+        [_mapView addAnnotation:annotation];
         
     } else if (error == BMK_SEARCH_AMBIGUOUS_ROURE_ADDR){
         NSLog(@"起始点有歧义");
