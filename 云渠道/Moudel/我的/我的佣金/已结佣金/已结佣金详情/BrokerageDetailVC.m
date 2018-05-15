@@ -243,9 +243,31 @@
         [_moneybtn setTitle:@"催佣" forState:UIControlStateNormal];
         _moneybtn.titleLabel.font = [UIFont systemFontOfSize:15*SIZE];
         [_moneybtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_moneybtn addTarget:self action:@selector(action_urge) forControlEvents:UIControlEventTouchUpInside];
         _moneybtn.backgroundColor = YJBlueBtnColor;
     }
     return _moneybtn;
+}
+
+-(void)action_urge
+{
+    [BaseRequest POST:Urge_URL parameters:@{
+                                            @"broker_id":_broker_id
+                                            }
+              success:^(id resposeObject) {
+                  NSLog(@"%@",resposeObject);
+                  if ([resposeObject[@"code"] integerValue]==200) {
+                      [_moneybtn setTitle:@"已催佣" forState:UIControlStateNormal];
+                      _moneybtn.userInteractionEnabled = NO;
+                  }
+                  else
+                  {
+                      [self showContent:resposeObject[@"msg"]];
+                  }
+              }
+              failure:^(NSError *error) {
+                  NSLog(@"%@",error.description);
+              }];
 }
 
 @end

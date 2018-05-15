@@ -162,6 +162,16 @@
     
     // 创建控制器
     _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
+    WS(weakself);
+    _roomProjectVC.userinterfaceblook = ^(BOOL ismapview) {
+        if (ismapview) {
+            weakself.scrollView.userInteractionEnabled = NO;
+        }
+        else
+        {
+            weakself.scrollView.userInteractionEnabled = YES;
+        }
+    };
     _roomBrokerageVC = [[RoomBrokerageVC alloc] initWithModel:_model];
     _roomAnalyzeVC = [[RoomAnalyzeVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
     // 添加为self的子控制器
