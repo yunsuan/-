@@ -11,4 +11,5 @@
 @interface InfoDetailCell : UITableViewCell
 @property (nonatomic , strong) UILabel *contentlab;
 -(void)SetCellContentbystring:(NSString *)str;
+-(CGFloat)calculateTextHeight;
 @end

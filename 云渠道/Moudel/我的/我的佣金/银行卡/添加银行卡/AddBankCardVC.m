@@ -142,7 +142,7 @@
         NSDictionary *dic = @{@"tel":_phoneTF.text};
         [BaseRequest GET:SendCaptcha_URL parameters:dic success:^(id resposeObject) {
             _GetCodeBtn.userInteractionEnabled = YES;
-            [self showContent:resposeObject[@"msg"]];
+         
             if ([resposeObject[@"code"] integerValue] == 200) {
 
                 surplusTime = 60;
@@ -153,7 +153,7 @@
                 _GetCodeBtn.userInteractionEnabled = YES;
             }else{
                 
-//                [self showContent:resposeObject[@"msg"]];
+                [self showContent:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
            

@@ -171,6 +171,7 @@
         }
 //        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         [cell setcountdownbyendtime:_endtime];
+        cell.frame = CGRectMake(0, 0, 360*SIZE, 75*SIZE);
         cell.countdownblock = ^{
             [self refresh];
             
@@ -198,7 +199,6 @@
     
     _Maintableview.rowHeight = 150 *SIZE;
     _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
-    
     _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _Maintableview.backgroundColor = YJBackColor;
     _Maintableview.delegate = self;
@@ -208,6 +208,7 @@
         
         _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
     }
+   
     [self.view addSubview:_Maintableview];
     
     _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -222,8 +223,15 @@
         [self.view addSubview:_confirmBtn];
     }
     
-        
+}
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+     if (indexPath.section ==0 && indexPath.row ==1) {
+         return 75*SIZE;
+     }
+     else{
+         return 50*SIZE;
+     }
 }
 
 - (InvalidView *)invalidView{

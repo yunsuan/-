@@ -64,7 +64,7 @@
         [BaseRequest POST:UpdatePersonal_URL parameters:tempDic success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
-            [self showContent:resposeObject[@"msg"]];
+      
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 if (_provinceId) {
@@ -87,7 +87,7 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
                 
-//                [self showContent:resposeObject[@"msg"]];
+                [self showContent:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             

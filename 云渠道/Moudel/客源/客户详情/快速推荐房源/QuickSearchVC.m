@@ -68,7 +68,7 @@
         
         [self.searchTable.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -87,7 +87,9 @@
                 
             }
         }else{
-            
+      
+                [self showContent:resposeObject[@"msg"]];
+        
             
         }
     } failure:^(NSError *error) {
@@ -195,7 +197,7 @@
         [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
-            [self showContent:resposeObject[@"msg"]];
+        
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 for (UIViewController *vc in self.navigationController.viewControllers) {
@@ -208,6 +210,9 @@
                         });
                     }
                 }
+            }
+            else{
+                [self showContent:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             

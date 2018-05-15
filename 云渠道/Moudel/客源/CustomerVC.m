@@ -95,7 +95,7 @@
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
-        [self showContent:resposeObject[@"msg"]];
+      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -129,9 +129,8 @@
 //                [self showContent:@"暂无数据"];
             }
             [_customerTable reloadData];
-        }else{
-
-//            [self showContent:resposeObject[@"msg"]];
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -164,8 +163,7 @@
         
         NSLog(@"%@",resposeObject);
         
-        [self showContent:resposeObject[@"msg"]];
-        
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -195,7 +193,8 @@
                 [_customerTable.mj_footer endRefreshing];
             }
         }else{
-
+            [self showContent:resposeObject[@"msg"]];
+            
             [_customerTable.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {

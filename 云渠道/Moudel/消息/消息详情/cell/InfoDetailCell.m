@@ -43,4 +43,9 @@
     _contentlab.text = str;
 }
 
+-(CGFloat)calculateTextHeight
+{
+    return self.contentlab.frame.size.height +15*SIZE;
+}
+
 @end

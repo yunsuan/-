@@ -203,7 +203,7 @@
         
         [self.MainTableView.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -223,7 +223,9 @@
                 
             }
         }else{
-            
+         
+                [self showContent:resposeObject[@"msg"]];
+   
         }
     } failure:^(NSError *error) {
         
@@ -266,7 +268,7 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -287,7 +289,9 @@
                 [self.MainTableView.mj_footer endRefreshing];
             }
         }else{
-            
+           
+            [self showContent:resposeObject[@"msg"]];
+        
             [self.MainTableView.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {

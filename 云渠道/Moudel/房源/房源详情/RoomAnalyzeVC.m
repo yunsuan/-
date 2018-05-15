@@ -50,7 +50,7 @@
     [BaseRequest GET:HouseTypeAnalyse_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -62,6 +62,9 @@
             }
         }else if([resposeObject[@"code"] integerValue] == 400){
             
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
         [_analyzeTable reloadData];
     } failure:^(NSError *error) {

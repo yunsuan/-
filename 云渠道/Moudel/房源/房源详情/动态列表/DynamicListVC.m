@@ -53,7 +53,7 @@
         
         [_listTable.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -68,6 +68,9 @@
             
 //            [self showContent:resposeObject[@"msg"]];
             _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -88,7 +91,7 @@
         
         [_listTable.mj_footer endRefreshing];
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -108,6 +111,9 @@
             
 //            [self showContent:resposeObject[@"msg"]];
             _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

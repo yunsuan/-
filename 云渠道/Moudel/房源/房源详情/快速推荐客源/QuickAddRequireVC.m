@@ -420,7 +420,7 @@
     [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             for (UIViewController *vc in self.navigationController.viewControllers) {
@@ -435,6 +435,9 @@
                     
                 }
             }
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

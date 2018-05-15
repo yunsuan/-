@@ -43,7 +43,7 @@
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -59,9 +59,8 @@
                 
 //                [self showContent:@"暂无关注"];
             }
-        }else{
-            
-//            [self showContent:resposeObject[@"msg"]];
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -164,15 +163,13 @@
     NSDictionary *dic = @{@"project_id":model.project_id};
     [BaseRequest GET:CancelFocusProject_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+ 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_dataArr removeObjectAtIndex:indexPath.row];
             [tableView reloadData];
-        }else{
-            
-//            [self showContent:resposeObject[@"msg"]];
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
        

@@ -38,7 +38,7 @@
     [BaseRequest GET:WorkHis_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+   
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSArray class]]) {
@@ -48,9 +48,8 @@
                 
 //                [self showContent:@"暂时没有记录"];
             }
-        }else{
-            
-//            [self showContent:resposeObject[@"msg"]];
+        }        else{
+            [self showContent:resposeObject[@"msg"]];
         }
         [_experienceTable reloadData];
     } failure:^(NSError *error) {

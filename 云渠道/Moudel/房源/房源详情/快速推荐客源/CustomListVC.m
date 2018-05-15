@@ -59,7 +59,7 @@
         
         NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
-        [self showContent:resposeObject[@"msg"]];
+     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -90,7 +90,9 @@
                 [_dataArr removeAllObjects];
             }
         }else{
-            
+       
+                [self showContent:resposeObject[@"msg"]];
+           
         }
     } failure:^(NSError *error) {
         
@@ -111,7 +113,7 @@
         
         NSLog(@"%@",resposeObject);
 
-        [self showContent:resposeObject[@"msg"]];
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -139,7 +141,9 @@
                 [_customerTable.mj_footer endRefreshing];
             }
         }else{
-
+            
+            [self showContent:resposeObject[@"msg"]];
+            
             [_customerTable.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {
@@ -232,10 +236,13 @@
         [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
-            [self showContent:resposeObject[@"msg"]];
+
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 //                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else{
+                [self showContent:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             

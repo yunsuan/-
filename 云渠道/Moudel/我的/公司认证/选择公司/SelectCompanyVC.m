@@ -85,7 +85,7 @@
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+     
         [_selecTable.mj_header endRefreshing];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -107,7 +107,8 @@
                 _selecTable.mj_footer.state = MJRefreshStateNoMoreData;
             }
         }else{
-            
+                [self showContent:resposeObject[@"msg"]];
+          
             _selecTable.mj_footer.state = MJRefreshStateNoMoreData;
         }
     } failure:^(NSError *error) {
@@ -142,7 +143,7 @@
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -165,7 +166,9 @@
                 _selecTable.mj_footer.state = MJRefreshStateNoMoreData;
             }
         }else{
-            
+          
+            [self showContent:resposeObject[@"msg"]];
+           
             _page -= 1;
             _selecTable.mj_footer.state = MJRefreshStateNoMoreData;
         }
@@ -192,7 +195,7 @@
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -215,7 +218,8 @@
                 _selecTable.mj_footer.state = MJRefreshStateNoMoreData;
             }
         }else{
-            
+         
+            [self showContent:resposeObject[@"msg"]];
             _page -= 1;
             _selecTable.mj_footer.state = MJRefreshStateNoMoreData;
         }
@@ -255,7 +259,7 @@
         [BaseRequest GET:GetCompanyList_URL parameters:@{@"company_name":textField.text} success:^(id resposeObject) {
             
             NSLog(@"%@",resposeObject);
-            [self showContent:resposeObject[@"msg"]];
+        
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -272,9 +276,8 @@
                     
                     
                 }
-            }else{
-                
-                
+            }        else{
+                [self showContent:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             

@@ -58,7 +58,7 @@
     [BaseRequest GET:BrokerAppealDetail_URL parameters:@{@"appeal_id":_appealId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
+ 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -70,6 +70,9 @@
                 }
             }];
             [_completeTable reloadData];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
