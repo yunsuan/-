@@ -196,10 +196,10 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"确认中详情";
     
-    
-    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _Maintableview.rowHeight = 150 *SIZE;
     _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
+    
+    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _Maintableview.backgroundColor = YJBackColor;
     _Maintableview.delegate = self;
     _Maintableview.dataSource = self;

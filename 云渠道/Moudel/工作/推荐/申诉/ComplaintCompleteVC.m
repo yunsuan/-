@@ -241,9 +241,10 @@
     self.titleLabel.text = @"申诉详情";
     
     
-    _completeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _completeTable.rowHeight = 150 *SIZE;
     _completeTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    
+    _completeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _completeTable.backgroundColor = YJBackColor;
     _completeTable.delegate = self;
     _completeTable.dataSource = self;

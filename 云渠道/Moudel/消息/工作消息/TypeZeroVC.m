@@ -280,11 +280,9 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = _titleinfo;
     
-    
-    _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _invalidTable.rowHeight = 150 *SIZE;
     _invalidTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    
+    _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _invalidTable.backgroundColor = YJBackColor;
     _invalidTable.delegate = self;
     _invalidTable.dataSource = self;

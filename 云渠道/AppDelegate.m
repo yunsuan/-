@@ -135,6 +135,7 @@
         if (remote) {
             
 //            [self GotoMessVC];
+            [self GotoHome];
         }
     }
     
@@ -172,6 +173,7 @@
 
 - (void)GotoHome{
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
     [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
 }
 
