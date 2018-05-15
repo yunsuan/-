@@ -14,6 +14,7 @@
 {
     
     NSArray *_titleArr;
+    NSArray *_contentArr;
     NSDictionary *_dataDic;
 }
 @property (nonatomic, strong) UITableView *identifyTable;
@@ -36,6 +37,13 @@
     [super viewDidLoad];
     
     _titleArr = @[@[@"姓名",@"身份证号"],@[@"上传正面人像页",@"上传背面国徽页",@"手持正面身份证"]];
+    if ([_dataDic[@"state"] isEqualToString:@"认证中"]) {
+        
+        _contentArr = @[@[_dataDic[@"name"],_dataDic[@"card_id"]],@[@"验证中",@"验证中",@"验证中"]];
+    }else{
+        
+        _contentArr = @[@[_dataDic[@"name"],_dataDic[@"card_id"]],@[@"已验证",@"已验证",@"已验证"]];
+    }
     [self initUI];
 }
 
@@ -71,7 +79,7 @@
             
             header = [[IdentifyHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 117 *SIZE)];
         }
-        
+        header.statusL.text = _dataDic[@"state"];
         return header;
     }
     return [[UIView alloc] init];
@@ -102,7 +110,20 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.titleL.text = _titleArr[indexPath.section][indexPath.row];
-    
+    cell.contentL.text = _contentArr[indexPath.section][indexPath.row];
+    if ([_dataDic[@"state"] isEqualToString:@"认证中"]) {
+        
+        if (indexPath.section == 1) {
+            
+            cell.contentL.textColor = COLOR(255, 59, 59, 1);
+        }
+    }else{
+        
+        if (indexPath.section == 1) {
+            
+            cell.contentL.textColor = YJContentLabColor;
+        }
+    }
     return cell;
 }
 

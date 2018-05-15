@@ -59,7 +59,7 @@
     _imgArr = [[NSMutableArray alloc] init];
     NSArray *tempArr = @[_dataDic[@"company_name"],_dataDic[@"work_code"],_dataDic[@"company_name"],_dataDic[@"company_name"],_dataDic[@"department"],_dataDic[@"position"],_dataDic[@"company_name"]];
     _contentArr = [NSMutableArray arrayWithArray:tempArr];
-    if ([_dataDic[@"butter_project"] isEqualToString:@"0"]) {
+    if ([[NSString stringWithFormat:@"%@",_dataDic[@"butter_project"]] isEqualToString:@"0"]) {
         
         [_contentArr replaceObjectAtIndex:2 withObject:@"经纪人"];
         [_contentArr replaceObjectAtIndex:3 withObject:@""];
@@ -114,7 +114,7 @@
         cell = [[AuthenTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    cell.rightView.hidden = YES;
     cell.titleL.text = _titleArr[indexPath.row];
     cell.contentL.text = _contentArr[indexPath.row];
     return cell;
@@ -171,6 +171,12 @@
     UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_authenTable.frame), SCREEN_Width, 174 *SIZE)];
     whiteView.backgroundColor = CH_COLOR_white;
     [_scrollView addSubview:whiteView];
+    
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 19 *SIZE, 100 *SIZE, 13 *SIZE)];
+    label1.textColor = YJContentLabColor;
+    label1.font = [UIFont systemFontOfSize:13 *SIZE];
+    label1.text = @"工牌照片";
+    [whiteView addSubview:label1];
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.itemSize = CGSizeMake(120 *SIZE, 91 *SIZE);

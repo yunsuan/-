@@ -17,6 +17,8 @@
 }
 @property (nonatomic , strong) UITableView *statusTable;
 
+@property (nonatomic, strong) UIButton *cancelBtn;
+
 @end
 
 @implementation AuditStatusVC
@@ -41,20 +43,33 @@
 -(void)initDataSouce
 {
     
-    _data = @[[NSString stringWithFormat:@"姓名：%@",[UserInfoModel defaultModel].name],[NSString stringWithFormat:@"公司名称：%@",_dataDic[@"company_name"]],[NSString stringWithFormat:@"工号：%@",_dataDic[@"work_code"]],[NSString stringWithFormat:@"部门：%@",_dataDic[@"department"]],[NSString stringWithFormat:@"位置：%@",_dataDic[@"position"]]];
+    _data = @[[NSString stringWithFormat:@"姓名：%@",[UserInfoModel defaultModel].name],[NSString stringWithFormat:@"公司名称：%@",_dataDic[@"company_name"]],[NSString stringWithFormat:@"工号：%@",_dataDic[@"work_code"]],[NSString stringWithFormat:@"部门：%@",_dataDic[@"department"]],[NSString stringWithFormat:@"位置：%@",_dataDic[@"position"]],[NSString stringWithFormat:@"申请时间：%@",_dataDic[@"create_time"]]];
     
+}
+
+- (void)ActionCancelBtn:(UIButton *)btn{
+    
+    [BaseRequest GET:CancelAuth_URL parameters:@{@"id":_dataDic[@"id"]} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [self showContent:resposeObject[@"msg"]];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error);
+    }];
 }
 
 #pragma mark    -----  delegate   ------
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (section == 3) {
-//
-//        return 7;
-//    }
-//    return 3;
-    return 5;
+
+    return 6;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -123,7 +138,16 @@
     [_statusTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_statusTable];
 
-    
+    _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cancelBtn.frame = CGRectMake(21 *SIZE, 600 *SIZE, 317 *SIZE, 40 *SIZE);
+    _cancelBtn.layer.masksToBounds = YES;
+    _cancelBtn.layer.cornerRadius = 2 *SIZE;
+    _cancelBtn.backgroundColor = YJLoginBtnColor;
+    [_cancelBtn setTitle:@"取消认证" forState:UIControlStateNormal];
+    [_cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:16 *SIZE];
+    [_cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_cancelBtn];
 }
 
 

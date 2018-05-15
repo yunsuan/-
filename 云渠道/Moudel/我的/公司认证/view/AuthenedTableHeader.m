@@ -22,6 +22,8 @@
 
 - (void)initUI{
     
+    self.contentView.backgroundColor = YJBlueBtnColor;
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 31 *SIZE, SCREEN_Width, 17 *SIZE)];
     label.textColor = CH_COLOR_white;
     label.font = [UIFont systemFontOfSize:19 *SIZE];

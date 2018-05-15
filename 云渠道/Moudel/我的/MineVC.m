@@ -414,6 +414,11 @@
                             AuditStatusVC *nextVC = [[AuditStatusVC alloc] initWithData:dic];
                             nextVC.hidesBottomBarWhenPushed = YES;
                             [self.navigationController pushViewController:nextVC animated:YES];
+                        }else if([dic[@"state"] isEqualToString:@"认证不通过"]){
+                            
+                            AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+                            nextVC.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:nextVC animated:YES];
                         }else{
                             
                             AuthenedVC *nextVC = [[AuthenedVC alloc] initWithData:dic];

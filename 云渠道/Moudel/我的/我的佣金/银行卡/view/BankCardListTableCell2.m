@@ -22,7 +22,7 @@
 
 - (void)initUI{
     
-    _addImg = [[UIImageView alloc] initWithFrame:self.bounds];
+    _addImg = [[UIImageView alloc] initWithFrame:CGRectMake(150 *SIZE, 43.5 *SIZE, 60 *SIZE, 60 *SIZE)];
     _addImg.contentMode = UIViewContentModeCenter;
     _addImg.image = [UIImage imageNamed:@"add_3"];
     [self.contentView addSubview:_addImg];
