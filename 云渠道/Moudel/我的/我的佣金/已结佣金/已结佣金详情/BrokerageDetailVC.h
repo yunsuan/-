@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface BrokerageDetailVC : BaseViewController
-
+@property (nonatomic , strong) NSString *broker_id;
 @end
