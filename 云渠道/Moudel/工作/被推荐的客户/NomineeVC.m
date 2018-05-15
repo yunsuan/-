@@ -78,6 +78,16 @@
         [self ValidRequest];
         
     });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self InValidRequest];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self ApealRequest];
+        
+    });
 }
 
 -(void)initDateSouce

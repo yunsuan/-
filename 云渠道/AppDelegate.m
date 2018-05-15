@@ -174,6 +174,7 @@
 - (void)GotoHome{
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
     [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
 }
 
@@ -375,7 +376,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (application.applicationState == UIApplicationStateActive) {
         
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
     }else{
         
 //        [self GotoMessVC];
@@ -391,10 +393,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     if (application.applicationState == UIApplicationStateActive) {
         
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
     }else{
         
-//        [self GotoMessVC];
         [self GotoHome];
     }
 }
