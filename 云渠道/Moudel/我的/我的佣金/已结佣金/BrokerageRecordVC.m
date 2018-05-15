@@ -143,22 +143,9 @@
 {
     
     BrokerageDetailVC *nextVC = [[BrokerageDetailVC alloc] init];
+    nextVC.broker_id = _data[indexPath.row][@"broker_id"];
     [self.navigationController pushViewController:nextVC animated:YES];
     
-    switch (indexPath.row) {
-        case 0:
-        {
-            
-        }
-            break;
-        case 1:
-        {
-            NSLog(@"");
-        }
-            
-        default:
-            break;
-    }
 }
 
 
@@ -172,6 +159,13 @@
         _MainTableView.backgroundColor = YJBackColor;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
+        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+            [self postWithPage:@"1"];
+        }];
+        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
+            page++;
+            [self postWithPage:[NSString stringWithFormat:@"%d",page]];
+        }];
         //        _MainTableView.
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
