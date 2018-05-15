@@ -187,14 +187,17 @@
             
             weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
             weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            _addBtn.hidden = NO;
         }else if (_btnNum == 2){
             
             weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
             weakself.addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            _addBtn.hidden = NO;
         }else{
             
             weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
             weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            _addBtn.hidden = NO;
         }
     };
     
@@ -698,6 +701,7 @@
     _addBtn.frame = CGRectMake(313 *SIZE, 56 *SIZE, 25 *SIZE, 25 *SIZE);
     [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
+    _addBtn.hidden = YES;
     [_infoView addSubview:_addBtn];
     
     for(int i = 0; i < 13; i++){
@@ -1036,6 +1040,7 @@
                 {
                     _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province_name"],arrr[0][@"city_name"],arrr[0][@"district_name"]];
                     _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province"],arrr[0][@"city"],arrr[0][@"district"]];
+                    _addBtn.hidden = NO;
                     break;
                 }
                 case 2:
@@ -1043,6 +1048,7 @@
                     _addressBtn.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province_name"],arrr[0][@"city_name"],arrr[0][@"district_name"]];
                     _addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[0][@"province"],arrr[0][@"city"],arrr[0][@"district"]];
                     
+                    _addBtn.hidden = NO;
                     [self ActionAddBtn:_addBtn];
                     _addressBtn2.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[1][@"province_name"],arrr[1][@"city_name"],arrr[1][@"district_name"]];
                     _addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[1][@"province"],arrr[1][@"city"],arrr[1][@"district"]];
@@ -1058,6 +1064,7 @@
                     [self ActionAddBtn:_addBtn];
                     _addressBtn3.content.text = [NSString stringWithFormat:@"%@-%@-%@",arrr[2][@"province_name"],arrr[2][@"city_name"],arrr[2][@"district_name"]];
                     _addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",arrr[2][@"province"],arrr[2][@"city"],arrr[2][@"district"]];
+                    _addBtn.hidden = NO;
                     break;
                 }
                 default:

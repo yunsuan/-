@@ -98,7 +98,6 @@
         
         title.text = _titleArr[section - 1];
     }
-//    title.text = _titleArr[section];
     [backview addSubview:title];
     return backview;
 }
@@ -226,12 +225,7 @@
     _confirmTable.delegate = self;
     _confirmTable.dataSource = self;
     [_confirmTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-          if ([[UserModelArchiver unarchive].agent_identity integerValue]==2) {
-                [self.view addSubview:_confirmTable];
-          }
-          else{
-              
-          }
+    [self.view addSubview:_confirmTable];
   
 }
 
