@@ -15,6 +15,8 @@
 #import "FeedbackVC.h"
 #import "ExperienceVC.h"
 #import "WebViewVC.h"
+#import "AuditStatusVC.h"
+#import "AuthenedVC.h"
 
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -399,9 +401,45 @@
             [self.navigationController pushViewController:nextVC animated:YES];
         }else if (indexPath.row == 1) {
             
-            AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
-            nextVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:nextVC animated:YES];
+            [BaseRequest GET:GetAuthInfo_URL parameters:nil success:^(id resposeObject) {
+                
+                NSLog(@"%@",resposeObject);
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                        
+                        NSDictionary *dic = resposeObject[@"data"];
+                        if ([dic[@"state"] isEqualToString:@"认证中"]) {
+                            
+                            AuditStatusVC *nextVC = [[AuditStatusVC alloc] initWithData:dic];
+                            nextVC.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:nextVC animated:YES];
+                        }else{
+                            
+                            AuthenedVC *nextVC = [[AuthenedVC alloc] initWithData:dic];
+                            nextVC.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:nextVC animated:YES];
+                        }
+                    }else{
+                        
+                        AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+                        nextVC.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:nextVC animated:YES];
+                    }
+                }else{
+                    
+                    AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }
+            } failure:^(NSError *error) {
+                
+                AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+                nextVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nextVC animated:YES];
+                NSLog(@"%@",error);
+            }];
+            
         }else{
             
             ExperienceVC *nextVC = [[ExperienceVC alloc] init];

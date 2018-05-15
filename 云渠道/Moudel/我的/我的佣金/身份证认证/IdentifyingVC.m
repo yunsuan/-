@@ -14,12 +14,23 @@
 {
     
     NSArray *_titleArr;
+    NSDictionary *_dataDic;
 }
 @property (nonatomic, strong) UITableView *identifyTable;
 
 @end
 
 @implementation IdentifyingVC
+
+- (instancetype)initWithData:(NSDictionary *)data
+{
+    self = [super init];
+    if (self) {
+        
+        _dataDic = data;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
