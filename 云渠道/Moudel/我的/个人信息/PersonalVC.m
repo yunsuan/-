@@ -19,7 +19,6 @@
 
     NSArray *_titleArr;
     NSMutableArray *_contentArr;
-//    NSMutableArray *
 }
 @property (nonatomic, strong) UITableView *personTable;
 
@@ -33,6 +32,7 @@
     
     [super viewWillAppear:animated];
     
+    [self initDataSource];
     [_personTable reloadData];
 }
 
@@ -101,10 +101,10 @@
                                 
                                 if ([UserInfoModel defaultModel].absolute_address.length) {
                                     
-                                    [_contentArr replaceObjectAtIndex:6 withObject:[NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],[UserInfoModel defaultModel].absolute_address]];
+                                    [_contentArr replaceObjectAtIndex:6 withObject:[NSString stringWithFormat:@"%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],[UserInfoModel defaultModel].absolute_address]];
                                 }else{
                                     
-                                    [_contentArr replaceObjectAtIndex:6 withObject:[NSString stringWithFormat:@"地址：%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]]];
+                                    [_contentArr replaceObjectAtIndex:6 withObject:[NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]]];
                                 }
                             }
                         }

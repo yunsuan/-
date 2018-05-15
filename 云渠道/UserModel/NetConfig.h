@@ -53,6 +53,12 @@ static NSString *const UpdatePersonal_URL = @"agent/personal/update";
 //获取公司列表
 static NSString *const GetCompanyList_URL = @"agent/personal/getCompanyList";
 
+//公司认证申请提交
+static NSString *const AddAuthInfo_URL = @"agent/personal/addAuthInfo";
+
+//获取公司旗下项目
+static NSString *const GetCompanyProject_URL = @"agent/personal/getCompanyProject";
+
 //获取经纪人工作历史
 static NSString *const WorkHis_URL = @"agent/personal/WorkHis";
 

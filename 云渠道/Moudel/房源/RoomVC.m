@@ -49,6 +49,7 @@
     NSString *_houseType;
     NSString *_status;
     NSMutableArray *_searchArr;
+    NSString *_asc;
     BOOL _is1;
     BOOL _is2;
     BOOL _is3;
@@ -109,6 +110,7 @@
     _searchArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _page = 1;
+    _asc = @"asc";
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     _geocodesearch.delegate = self;
     [self startLocation];//开始定位方法
@@ -195,6 +197,7 @@
         
         [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
     }
+    [dic setObject:_asc forKey:@"sort_type"];
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
@@ -258,6 +261,7 @@
         
         [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
     }
+    [dic setObject:_asc forKey:@"sort_type"];
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
@@ -463,6 +467,15 @@
         }
         case 5:
         {
+            if ([_asc isEqualToString:@"asc"]) {
+                
+                _asc = @"desc";
+            }else{
+                
+                _asc = @"asc";
+            }
+            _page = 1;
+            [self RequestMethod];
             break;
         }
         default:
@@ -856,8 +869,8 @@
             case 4:
             {
                 btn.frame = CGRectMake(80 * i, 62 *SIZE, 40 *SIZE, 40 *SIZE);
-                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
-                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                [btn setImage:[UIImage imageNamed:@"reverseorder"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"reverseorder"] forState:UIControlStateSelected];
                 _sortBtn = btn;
                 [self.headerView addSubview:_sortBtn];
                 break;
