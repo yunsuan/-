@@ -136,29 +136,29 @@
         make.left.equalTo(self.contentView).offset(28 *SIZE);
         make.top.equalTo(_houseTypeL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
-        make.bottom.equalTo(_unitL.mas_top).offset(-17 *SIZE);
-    }];
-    
-    [_unitL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
-        make.right.equalTo(self.contentView).offset(-28 *SIZE);
-        make.bottom.equalTo(_contactL.mas_top).offset(-17 *SIZE);
-    }];
-    
-    [_contactL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(_unitL.mas_bottom).offset(17 *SIZE);
-        make.right.equalTo(self.contentView).offset(-28 *SIZE);
         make.bottom.equalTo(_brokerTypeL.mas_top).offset(-17 *SIZE);
     }];
+    
+//    [_unitL mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self.contentView).offset(28 *SIZE);
+//        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
+//        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+//        make.bottom.equalTo(_contactL.mas_top).offset(-17 *SIZE);
+//    }];
+//
+//    [_contactL mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self.contentView).offset(28 *SIZE);
+//        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
+//        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+//        make.bottom.equalTo(_brokerTypeL.mas_top).offset(-17 *SIZE);
+//    }];
     
     [_brokerTypeL mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(_contactL.mas_bottom).offset(17 *SIZE);
+        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
         make.bottom.equalTo(_priceL.mas_top).offset(-17 *SIZE);
     }];
@@ -176,21 +176,21 @@
         make.left.equalTo(self.contentView).offset(28 *SIZE);
         make.top.equalTo(_priceL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
-        make.bottom.equalTo(_companyL.mas_top).offset(-17 *SIZE);
-    }];
-    
-    [_companyL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(_timeL.mas_bottom).offset(17 *SIZE);
-        make.right.equalTo(self.contentView).offset(-28 *SIZE);
         make.bottom.equalTo(_endTimeL.mas_top).offset(-17 *SIZE);
     }];
     
+//    [_companyL mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self.contentView).offset(28 *SIZE);
+//        make.top.equalTo(_timeL.mas_bottom).offset(17 *SIZE);
+//        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+//        make.bottom.equalTo(_endTimeL.mas_top).offset(-17 *SIZE);
+//    }];
+//
     [_endTimeL mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(_companyL.mas_bottom).offset(17 *SIZE);
+        make.top.equalTo(_timeL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
         make.bottom.equalTo(self.contentView).offset(-32 *SIZE);
     }];
@@ -198,7 +198,7 @@
     [_ruleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(259 *SIZE);
-        make.top.equalTo(_addressL.mas_bottom).offset(101 *SIZE);
+        make.top.equalTo(_nameL.mas_bottom).offset(101 *SIZE);
         make.width.equalTo(@(94 *SIZE));
         make.height.equalTo(@(23 *SIZE));
     }];
@@ -206,7 +206,7 @@
     [_statusImg mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(271 *SIZE);
-        make.top.equalTo(_addressL.mas_bottom).offset(132 *SIZE);
+        make.top.equalTo(_nameL.mas_bottom).offset(132 *SIZE);
         make.width.height.equalTo(@(75 *SIZE));
 //        make.height.equalTo(@(23 *SIZE));
     }];

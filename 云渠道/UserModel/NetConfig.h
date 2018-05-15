@@ -82,6 +82,12 @@ static NSString *const UnPayList_URL = @"agent/personal/unPayList";
 
 //已结佣金列表
 static NSString *const IsPayList_URL = @"agent/personal/isPayList";
+
+//佣金详情
+static NSString *const PayDetail_URL = @"agent/personal/unPayDetail";
+
+//催佣
+static NSString *const Urge_URL = @"agent/personal/urge";
 #pragma mark ---  客源  ---
 
 

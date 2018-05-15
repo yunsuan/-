@@ -120,12 +120,10 @@
 {
     
     static NSString *CellIdentifier = @"BrokerageCell";
-    
     BrokerageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[BrokerageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
     cell.nameL.text = _data[indexPath.row][@"name"];
     cell.phoneL.text = _data[indexPath.row][@"tel"];
     cell.unitL.text =  _data[indexPath.row][@"project_name"];
@@ -144,6 +142,7 @@
     
     BrokerageDetailVC *nextVC = [[BrokerageDetailVC alloc] init];
     nextVC.broker_id = _data[indexPath.row][@"broker_id"];
+    nextVC.type = @"1";
     [self.navigationController pushViewController:nextVC animated:YES];
     
 }

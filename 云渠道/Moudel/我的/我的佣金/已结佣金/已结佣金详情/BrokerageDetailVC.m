@@ -17,9 +17,12 @@
 {
     
     BOOL _drop;
+    NSDictionary *_data;
+    NSArray *_Pace;
 }
 
 @property (nonatomic, strong) UITableView *brokerTable;
+@property (nonatomic , strong) UIButton *moneybtn;
 
 @end
 
@@ -29,9 +32,28 @@
     [super viewDidLoad];
     
     [self initUI];
+    [self post];
     
 }
 
+-(void)post{
+    [BaseRequest GET:PayDetail_URL
+          parameters:@{
+             @"broker_id":_broker_id
+                        }
+             success:^(id resposeObject) {
+                 if ([resposeObject[@"code"] integerValue] == 200) {
+                     _data = resposeObject[@"data"];
+                     _Pace = resposeObject[@"data"][@"process"];
+                     [_brokerTable reloadData];
+                 }
+                 
+                        }
+             failure:^(NSError *error) {
+                 [self showContent:@"网络错误"];
+                                                }];
+    
+}
 
 
 #pragma mark -- Tableview
@@ -43,12 +65,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == 2) {
-        
-        if (!_drop) {
-            
-            return 6;
-        }
-        return 0;
+            return _Pace.count+1;
     }
     return 1;
 }
@@ -78,9 +95,7 @@
         }
         header.titleL.text = @"当前项目进度";
         header.dropBtnBlock = ^{
-            
-            _drop = !_drop;
-            [tableView reloadData];
+
         };
         
         return header;
@@ -99,9 +114,17 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleL.text = @"推荐客户";
-        cell.nameL.text = @"冷月英";
-        cell.genderL.text = @"男";
-        cell.phoneL.text = @"1231238123123";
+        cell.nameL.text = [NSString stringWithFormat:@"姓名：%@",_data[@"name"]];
+        NSString *sex = @"性别：无";
+        if ([_data[@"sex"] integerValue] == 1) {
+            sex = @"性别：男";
+        }
+        if([_data[@"sex"]  integerValue] == 2)
+        {
+            sex =@"性别：女";
+        }
+        cell.genderL.text =sex;
+        cell.phoneL.text = [NSString stringWithFormat:@"电话：%@",_data[@"tel"]];
         return cell;
     }else{
         
@@ -115,22 +138,29 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             cell.titleL.text = @"推荐项目";
-            cell.codeL.text = @"推荐编号：TJBHNO1";
-            cell.nameL.text = @"项目名称：凤凰国际";
-            cell.houseTypeL.text = @"物业类型：住宅";
-            cell.addressL.text = @"项目地址：郫都区德源镇大禹东路项目地址：郫都区德源镇大禹东路项目地址：郫都区德源镇大禹东路";
-            cell.unitL.text = @"成交房号：1批次 - 1栋 -1单元 - 102";
-            cell.contactL.text = @"置业顾问：张三";
-            cell.brokerTypeL.text = @"佣金类型：成交佣金";
-            cell.priceL.text = @"佣金金额：50000元";
-            cell.timeL.text = @"成交时间：2018-02-10";
-            cell.companyL.text = @"结算单位：云算平台";
-            cell.endTimeL.text = @"结佣时间：2018-02-10";
-            cell.statusImg.image = [UIImage imageNamed:@"seal_knot"];
+            cell.codeL.text = [NSString stringWithFormat:@"推荐编号：%@",_data[@"client_id"]];
+            cell.nameL.text = [NSString stringWithFormat:@"项目名称：%@",_data[@"project_name"]];
+            cell.houseTypeL.text = [NSString stringWithFormat:@"物业类型：%@",_data[@"property"]];
+            cell.addressL.text = [NSString stringWithFormat:@"项目地址：%@",_data[@"absolute_address"]];
+            
+            cell.brokerTypeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"broker_type"]];
+            cell.priceL.text =  [NSString stringWithFormat:@"佣金金额：%@元",_data[@"broker_num"]];
+            cell.timeL.text = [NSString stringWithFormat:@"产生时间：%@",_data[@"visit_time"]];
+            if ([_type isEqualToString:@"1"]) {
+                cell.endTimeL.text = [NSString stringWithFormat:@"结佣时间：%@",_data[@"pay_time"]];
+                cell.statusImg.image = [UIImage imageNamed:@"seal_knot"];
+            }
+            else
+            {
+                cell.endTimeL.text =@"";
+                cell.statusImg.image = [UIImage imageNamed:@"nocommission"];
+            }
+            
+            
             return cell;
         }else{
             
-            if (indexPath.row == 5) {
+            if (indexPath.row == _Pace.count) {
                 
                 BrokerageDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell4"];
                 if (!cell) {
@@ -148,7 +178,7 @@
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-                cell.titleL.text = @"推荐  ——  推荐时间：2017-10-08 18:00";
+                cell.titleL.text = [NSString stringWithFormat:@"%@时间：%@",_Pace[indexPath.row][@"process_name"],_Pace[indexPath.row][@"time"]];
                 if (indexPath.row == 0) {
                     
                     cell.upLine.hidden = YES;
@@ -156,7 +186,7 @@
                     
                     cell.upLine.hidden = NO;
                 }
-                if (indexPath.row == 4) {
+                if (indexPath.row == _Pace.count-1) {
                     
                     cell.downLine.hidden = YES;
                 }else{
@@ -177,17 +207,45 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"已结佣金详情";
+    if ([_type isEqualToString:@"1"]) {
+        self.titleLabel.text = @"已结佣金详情";
+    }
+    else
+    {
+        self.titleLabel.text = @"未结佣金详情";
+    }
     
     _brokerTable.rowHeight = 397 *SIZE;
     _brokerTable.estimatedRowHeight = UITableViewAutomaticDimension;
-    
-    _brokerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    if ([_type isEqualToString:@"1"]) {
+            _brokerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    }else{
+        _brokerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT-TAB_BAR_HEIGHT) style:UITableViewStyleGrouped];
+        if ([_is_urge integerValue] ==1) {
+            [_moneybtn setTitle:@"已结佣" forState:UIControlStateNormal];
+            _moneybtn.userInteractionEnabled = YES;
+        }
+        [self.view addSubview:self.moneybtn];
+    }
+
     _brokerTable.backgroundColor = self.view.backgroundColor;
     _brokerTable.delegate = self;
     _brokerTable.dataSource = self;
     _brokerTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_brokerTable];
+}
+
+-(UIButton *)moneybtn
+{
+    if (!_moneybtn) {
+        _moneybtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _moneybtn.frame = CGRectMake(0, SCREEN_Height-TAB_BAR_HEIGHT, 360*SIZE, TAB_BAR_HEIGHT);
+        [_moneybtn setTitle:@"催佣" forState:UIControlStateNormal];
+        _moneybtn.titleLabel.font = [UIFont systemFontOfSize:15*SIZE];
+        [_moneybtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _moneybtn.backgroundColor = YJBlueBtnColor;
+    }
+    return _moneybtn;
 }
 
 @end
