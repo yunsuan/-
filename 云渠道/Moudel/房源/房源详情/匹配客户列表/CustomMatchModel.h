@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) NSString *client_id;
 
+@property (nonatomic, strong) NSString *is_recommend;
+
 @property (nonatomic, strong) NSString *decorate;
 
 @property (nonatomic, strong) NSString *house_type;

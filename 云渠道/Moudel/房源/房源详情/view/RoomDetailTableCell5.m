@@ -161,6 +161,16 @@
         
         _phoneL.text = @"";
     }
+    
+    if ([model.is_recommend integerValue] == 0) {
+        
+        [_recommendBtn setBackgroundColor:COLOR(27, 152, 255, 1)];
+        _recommendBtn.userInteractionEnabled = YES;
+    }else{
+        
+        [_recommendBtn setBackgroundColor:YJContentLabColor];
+        _recommendBtn.userInteractionEnabled = NO;
+    }
 }
 
 - (void)ActionRecommendBtn:(UIButton *)btn{

@@ -109,7 +109,41 @@
         }];
     }
 }
+
+- (NSString *)replaceStringWithAsterisk:(NSInteger)startLocation length:(NSInteger)length str:(NSString *)str {
+    NSString *replaceStr = str;
+    for (NSInteger i = 0; i < length - 4; i++) {
+        NSRange range = NSMakeRange(startLocation, 1);
+        replaceStr = [replaceStr stringByReplacingCharactersInRange:range withString:@"*"];
+        startLocation ++;
+    }
+    return replaceStr;
+}
+
+- (NSString *)substring:(NSString *)str{
     
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < str.length; i++) {
+        
+        if (i % 4 == 0) {
+            
+            NSString *subStr = [str substringWithRange:NSMakeRange(i, 4)];
+            [arr addObject:subStr];
+        }
+    }
+    NSString *resultStr;
+    for (int i = 0; i < arr.count; i++) {
+        
+        if (i == 0) {
+            
+            resultStr = arr[0];
+        }else{
+            
+            resultStr = [NSString stringWithFormat:@"%@   %@",resultStr,arr[i]];
+        }
+    }
+    return resultStr;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
@@ -147,8 +181,18 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backImg.image = [UIImage imageNamed:@"bg_china"];
+        NSArray *array = [self getDetailConfigArrByConfigState:BANK_TYPE];
+        for (NSDictionary *dic in array) {
+            
+            if ([dic[@"id"] integerValue] == [_dataArr[indexPath.section][@"bank"] integerValue]) {
+                
+                cell.bankL.text = dic[@"param"];
+            }
+        }
 //        cell.bankL.text = _dataArr[indexPath.section][@"bank"];
-        NSMutableAttributedString *atti = [[NSMutableAttributedString alloc] initWithString:_dataArr[indexPath.section][@"bank_card"]];
+        NSString *str = [self replaceStringWithAsterisk:0 length:[_dataArr[indexPath.section][@"bank_card"] length] str:_dataArr[indexPath.section][@"bank_card"]];
+        NSString *subStr = [self substring:str];
+        NSMutableAttributedString *atti = [[NSMutableAttributedString alloc] initWithString:subStr];
 //        atti addAttribute:<#(nonnull NSAttributedStringKey)#> value:<#(nonnull id)#> range:<#(NSRange)#>
         cell.accL.attributedText = atti;
         

@@ -32,7 +32,7 @@
     _logoImg.layer.cornerRadius = 14 *SIZE;
     _logoImg.clipsToBounds = YES;
     _logoImg.backgroundColor = YJBackColor;
-    [self.contentView addSubview:_logoImg];
+//    [self.contentView addSubview:_logoImg];
     
     _bankL = [[UILabel alloc] initWithFrame:CGRectMake(68 *SIZE,  38*SIZE, 200 *SIZE, 14 *SIZE)];
     _bankL.textColor = CH_COLOR_white;
