@@ -7,8 +7,10 @@
 //
 
 #import "BaseViewController.h"
-
+@class RoomProjectVC;
+typedef void (^UserInterfaceBlook)(BOOL ismapview);
 @interface RoomProjectVC : BaseViewController
+@property (nonatomic , copy) UserInterfaceBlook userinterfaceblook;
 
 - (instancetype)initWithProjectId:(NSString *)projectId;
 

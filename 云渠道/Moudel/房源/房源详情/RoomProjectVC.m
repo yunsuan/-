@@ -30,7 +30,7 @@
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate>
+@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate,UIGestureRecognizerDelegate>
 {
     CLLocationCoordinate2D _leftBottomPoint;
     CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
@@ -584,7 +584,15 @@
                 cell = [[RoomDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell4"];
                 cell.delegate = self;
                 [cell.contentView addSubview:self.mapView];
-
+                UIGestureRecognizer *gestur = [[UIGestureRecognizer alloc]init];
+                gestur.delegate=self;
+                [_roomTable addGestureRecognizer:gestur];
+                
+                UIGestureRecognizer *gestur1 = [[UIGestureRecognizer alloc]init];
+                gestur1.delegate=self;
+                [_mapView addGestureRecognizer:gestur1];
+                
+                
                 [_mapView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(cell.contentView).offset(0);
                     make.top.equalTo(cell.contentView).offset(33 *SIZE);
@@ -665,6 +673,21 @@
         nextVC.projiect_id = _projectId;
         [self.navigationController pushViewController:nextVC animated:YES];
     }
+}
+
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if ([gestureRecognizer.view isKindOfClass:[BMKMapView class]]) {
+        _roomTable.scrollEnabled=NO;
+        self.userinterfaceblook(YES);
+        
+    }else{
+        _roomTable.scrollEnabled=YES;
+        self.userinterfaceblook(NO);
+    }
+    
+    return NO;
 }
 
 
