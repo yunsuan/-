@@ -168,6 +168,7 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"待确认详情";
+  
     _Maintableview.rowHeight = 150 *SIZE;
     _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
     

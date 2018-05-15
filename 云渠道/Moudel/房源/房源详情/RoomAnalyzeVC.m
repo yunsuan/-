@@ -156,6 +156,7 @@
 
 - (void)initUI{
     
+
     _analyzeTable.rowHeight = UITableViewAutomaticDimension;
     _analyzeTable.estimatedRowHeight = 214 *SIZE;
     

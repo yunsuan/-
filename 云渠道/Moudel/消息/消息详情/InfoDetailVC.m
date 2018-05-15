@@ -27,8 +27,7 @@
     [super viewDidLoad];
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"消息详情";
-    _Maintableview.rowHeight = 150 *SIZE;
-    _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
+    
     [self initDataSouce];
     [self initUI];
     [self post];
@@ -119,6 +118,8 @@
 -(UITableView *)Maintableview
 {
     if (!_Maintableview) {
+        _Maintableview.rowHeight = 150 *SIZE;
+        _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
         _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT-46.3*SIZE) style:UITableViewStyleGrouped];
         _Maintableview.backgroundColor = YJBackColor;
         _Maintableview.delegate = self;

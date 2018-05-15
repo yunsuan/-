@@ -56,7 +56,7 @@
 
 - (void)ActionInBtn:(UIButton *)btn{
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"goHome" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
 }
 
 

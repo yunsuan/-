@@ -184,6 +184,7 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"有效到访详情";
+    
     _validTable.rowHeight = 150 *SIZE;
     _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
     

@@ -39,8 +39,6 @@
     [self initUI];
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text =@"楼栋详情";
-//    _Mytableview.rowHeight = 34.4 *SIZE;
-//    _Mytableview.estimatedRowHeight = UITableViewAutomaticDimension;
 
 }
 
@@ -203,8 +201,10 @@
 {
     if(!_Mytableview)
     {
+
         _Mytableview.rowHeight = 34.4 *SIZE;
         _Mytableview.estimatedRowHeight = UITableViewAutomaticDimension;
+        
         _Mytableview =   [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
         _Mytableview.backgroundColor = YJBackColor;
         _Mytableview.delegate = self;

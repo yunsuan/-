@@ -179,6 +179,8 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = _titleinfo;
+    
+    
     _validTable.rowHeight = 150 *SIZE;
     _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
     

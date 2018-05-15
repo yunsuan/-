@@ -15,10 +15,6 @@ static UIImageView *_imageV ;
 
 @implementation WaitAnimation
 
-
-
-
-
 +(void)startAnimation{
     if (!_imageV) {
         static dispatch_once_t onceToken;
@@ -54,9 +50,6 @@ static UIImageView *_imageV ;
         [_imageV stopAnimating];
         [_imageV removeFromSuperview];
     });
-    
-   
-  
 }
 
 

@@ -277,6 +277,7 @@
     self.titleLabel.text = @"申诉详情";
     
     
+    
     _unCompleteTable.rowHeight = 150 *SIZE;
     _unCompleteTable.estimatedRowHeight = UITableViewAutomaticDimension;
     
