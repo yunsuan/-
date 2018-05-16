@@ -167,7 +167,7 @@
 -(UIImageView *)Headerimg
 {
     if (!_Headerimg) {
-        _Headerimg = [[UIImageView alloc]initWithFrame:CGRectMake(142*SIZE, 82*SIZE, 78*SIZE, 58*SIZE)];
+        _Headerimg = [[UIImageView alloc]initWithFrame:CGRectMake(135*SIZE, 82*SIZE, 93*SIZE, 58*SIZE)];
 //        _Headerimg.backgroundColor =[UIColor redColor];
         _Headerimg.image = [UIImage imageNamed:@"logo_2"];
     }

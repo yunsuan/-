@@ -12,7 +12,6 @@
 
 - (void)prepare{
     [super prepare];
-    
     // 设置普通状态的动画图片
     NSMutableArray *idleImages = [NSMutableArray array];
     for (NSUInteger i = 1; i <= 1; i++) {
@@ -33,7 +32,8 @@
     [self setImages:refreshingImages forState:MJRefreshStateRefreshing];
     
     [self setTitle:@"—— 已经到底了 ——" forState:MJRefreshStateNoMoreData];
-    self.stateLabel.textColor = YJContentLabColor;
+    self.stateLabel.textColor = YJ170Color;
+    self.stateLabel.font = [UIFont systemFontOfSize:12*SIZE];
     //隐藏时间
 //    self.lastUpdatedTimeLabel.hidden = YES;
     //隐藏状态

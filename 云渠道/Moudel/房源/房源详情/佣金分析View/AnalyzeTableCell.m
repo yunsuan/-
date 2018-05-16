@@ -23,6 +23,9 @@
 - (void)initUI{
     
  
+    UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 16*SIZE, 6.7*SIZE, 15*SIZE)];
+    header.backgroundColor = YJBlueBtnColor;
+    [self.contentView addSubview:header];
     _titleL = [[UILabel alloc] init];
     _titleL.textColor = YJTitleLabColor;
     _titleL.font = [UIFont systemFontOfSize:15 *SIZE];
