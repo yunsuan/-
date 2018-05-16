@@ -57,7 +57,7 @@
 
 - (void)CityListRequest{
     
-    [BaseRequest GET:@"getCityList" parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -77,8 +77,8 @@
 
 - (void)SetData:(NSArray *)data{
     
-    _nameArr = [BMChineseSort IndexWithArray:_cityArr Key:@"name"];
-    _dataArr = [BMChineseSort sortObjectArray:_cityArr Key:@"name"];
+    _nameArr = [BMChineseSort IndexWithArray:_cityArr Key:@"city_name"];
+    _dataArr = [BMChineseSort sortObjectArray:_cityArr Key:@"city_name"];
     [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:_dataArr];
     [UserModel defaultModel].groupArr = [NSMutableArray arrayWithArray:_nameArr];
     [UserModelArchiver archive];
@@ -139,15 +139,15 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.textLabel.text = _dataArr[indexPath.section][indexPath.row][@"name"];
+    cell.textLabel.text = _dataArr[indexPath.section][indexPath.row][@"city_name"];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    _code = _dataArr[indexPath.section][indexPath.row][@"code"];
-    _city = _dataArr[indexPath.section][indexPath.row][@"name"];
+    _code = _dataArr[indexPath.section][indexPath.row][@"city_code"];
+    _city = _dataArr[indexPath.section][indexPath.row][@"city_name"];
     _cityLabel.text = [NSString stringWithFormat:@"当前选择：%@",_city];
 }
 
