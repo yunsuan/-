@@ -69,11 +69,11 @@
         }
             break;
         case 2:{
-            _namelist = @[@"客户报备"];
-            _imglist = @[@"client"];
+            _namelist = @[@"新房推荐"];
+            _imglist = @[@"recommended"];
             _countdata  = @[@""];
             [BaseRequest GET:Butterinfocount_URL parameters:nil success:^(id resposeObject) {
-                _countdata = @[[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"recommend_count"],resposeObject[@"data"][@"value"],resposeObject[@"data"][@"valueDisabled"]]];
+                _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend_count"],resposeObject[@"data"][@"value"],resposeObject[@"data"][@"valueDisabled"]]];
                 [_MainTableView reloadData];
             } failure:^(NSError *error) {
 

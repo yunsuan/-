@@ -56,9 +56,6 @@
     
 }
 
-
-
-
 -(UILabel *)titlelab
 {
     if (!_titlelab) {
@@ -69,6 +66,7 @@
     }
     return _titlelab;
 }
+
 -(UICollectionView *)mycollectionView
 {
     if (!_mycollectionView) {

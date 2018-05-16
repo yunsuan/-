@@ -760,6 +760,10 @@
 }
 
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  300*SIZE;
+}
 
 - (void)beginSearchWithname:(NSString *)name{
     
