@@ -15,7 +15,7 @@
 #import "CustomerModel.h"
 #import "AddRequireMentVC.h"
 
-@interface AddCustomerVC ()
+@interface AddCustomerVC ()<UITextFieldDelegate>
 {
     NSInteger _numAdd;
     CustomerModel *_model;
@@ -171,6 +171,24 @@
     }
 }
 
+
+#pragma mark -- TextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == _name.textfield) {
+        if (string.length == 0) return YES;
+        
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength > 5) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 -(void)initUI
 {
     
@@ -200,6 +218,7 @@
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
     _name.textfield.placeholder = @"必填";
     _name.textfield.text = _model.name;
+    _name.textfield.delegate = self;
     [_scrollview addSubview:_name];
     
     //性别
