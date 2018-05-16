@@ -230,6 +230,7 @@ static NSString *const MessageProjectDisabledDetail_URL = @"agent/message/work/p
 
 //获取工作消息项目成交
 static NSString *const MessageProjectDealDetail_URL = @"agent/message/work/projectDealDetail";
+
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"agent/work/getRecommendList";
 

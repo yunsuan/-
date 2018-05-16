@@ -13,6 +13,7 @@
 #import "SinglePickView.h"
 #import "DateChooseView.h"
 #import "RecommendVC.h"
+#import "TypeOneVC.h"
 
 @interface CompleteCustomVC2 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 {
@@ -411,7 +412,7 @@
 
             for (UIViewController *vc in self.navigationController.viewControllers) {
                 
-                if ([vc isKindOfClass:[RecommendVC class]]) {
+                if ([vc isKindOfClass:[RecommendVC class]] || [vc isKindOfClass:[TypeOneVC class]]) {
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
                     [self.navigationController popToViewController:vc animated:YES];
@@ -803,9 +804,10 @@
                         [_infoView addSubview:_agentbtn];
                     }
                     else{
-                    BorderTF *borderTF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
-                    _adviserTF = borderTF;
-                    [_infoView addSubview:_adviserTF];
+                        
+                        BorderTF *borderTF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
+                        _adviserTF = borderTF;
+                        [_infoView addSubview:_adviserTF];
                     }
                     break;
                 }

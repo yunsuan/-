@@ -52,10 +52,10 @@
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
     if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
         
-        _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
+        _titleArr = @[@"推荐编号",@"到访信息",@"失效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
     }else{
         
-        _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"推荐人信息"];
+        _titleArr = @[@"推荐编号",@"到访信息",@"失效信息",@"客户信息",@"项目信息",@"推荐人信息"];
     }
     
     [self RequestMethod];
@@ -159,6 +159,18 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.section == 1) {
+        
+        if (indexPath.row == 0) {
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"接待人员：%@",_dataDic[@"name"]]];
+        }else if (indexPath.row == 1){
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"到访人数：%@",_dataDic[@"name"]]];
+        }else{
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"name"]]];
+        }
+    }else if (indexPath.section == 2) {
         
         if (indexPath.row == 0) {
             

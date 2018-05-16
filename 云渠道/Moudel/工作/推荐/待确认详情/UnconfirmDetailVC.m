@@ -64,7 +64,7 @@
                       {
                           sex =@"客户性别：女";
                       }
-                      _name = resposeObject[@"data"][@"city_name"];
+                      _name = resposeObject[@"data"][@"name"];
                       NSString *tel = resposeObject[@"data"][@"tel"];
                       NSArray *arr = [tel componentsSeparatedByString:@","];
                       if (arr.count>0) {

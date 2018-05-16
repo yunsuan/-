@@ -54,10 +54,10 @@
                  if ([resposeObject[@"code"] integerValue] ==200) {
                      if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
                          
-                         _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"客户信息",@"项目信息",@"到访确认人信息"];
+                         _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"到访信息",@"客户信息",@"项目信息",@"到访确认人信息"];
                      }else{
                          
-                         _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"客户信息",@"项目信息",@"推荐人信息"];
+                         _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"到访信息",@"客户信息",@"项目信息",@"推荐人信息"];
                      }
                      
                      NSString *sex = @"客户性别：无";
@@ -82,10 +82,10 @@
                      
                      if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
                          
-                         _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
+                         _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
                      }else{
                          
-                         _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"推荐人：%@",resposeObject[@"data"][@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"broker_name"]]]];
+                         _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]]],@[],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"推荐人：%@",resposeObject[@"data"][@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"broker_name"]]]];
                      }
                      _endtime = resposeObject[@"data"][@"timeLimit"];
                      _Pace = resposeObject[@"data"][@"process"];
@@ -104,7 +104,7 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"客户信息",@"项目信息",@"到访确认人信息"];
+    _titleArr = @[@"推荐编号",@"到访信息",@"客户信息",@"项目信息",@"到访确认人信息"];
     _data = @[];
 }
 

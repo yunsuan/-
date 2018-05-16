@@ -109,21 +109,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/&#x5feb;&#x901f;&#x63a8;&#x8350;&#x623f;&#x6e90;/QuickRoomVC.m"
-            timestampString = "548158852.725336"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
-            landmarkName = "-ActionCityBtn:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

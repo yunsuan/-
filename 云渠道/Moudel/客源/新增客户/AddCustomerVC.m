@@ -90,6 +90,13 @@
 
 - (void)ActionAddBtn:(UIButton *)btn{
     
+    [_tel1.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_tel3.textfield endEditing:YES];
+    [_name.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_num.textfield endEditing:YES];
+    [_detailadress endEditing:YES];
     if (_numAdd == 0 ) {
         
         if ([self checkTel:_tel1.textfield.text]) {
@@ -529,6 +536,13 @@
 -(void)action_sex
 {
 
+    [_tel1.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_tel3.textfield endEditing:YES];
+    [_name.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_num.textfield endEditing:YES];
+    [_detailadress endEditing:YES];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"性别" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *male = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -557,6 +571,13 @@
 
 -(void)action_brith
 {
+    [_tel1.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_tel3.textfield endEditing:YES];
+    [_name.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_num.textfield endEditing:YES];
+    [_detailadress endEditing:YES];
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
         NSLog(@"%@",[self gettime:date]);
@@ -568,6 +589,13 @@
 
 -(void)action_numclass
 {
+    [_tel1.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_tel3.textfield endEditing:YES];
+    [_name.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_num.textfield endEditing:YES];
+    [_detailadress endEditing:YES];
     SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.view.frame WithData:[self getDetailConfigArrByConfigState:CARD_TYPE]];
     
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
@@ -580,6 +608,13 @@
 
 -(void)action_address
 {
+    [_tel1.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_tel3.textfield endEditing:YES];
+    [_name.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_num.textfield endEditing:YES];
+    [_detailadress endEditing:YES];
     AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
     [self.view addSubview:view];
     view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
@@ -592,6 +627,13 @@
 
 -(void)action_sure
 {
+    [_tel1.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_tel3.textfield endEditing:YES];
+    [_name.textfield endEditing:YES];
+    [_tel2.textfield endEditing:YES];
+    [_num.textfield endEditing:YES];
+    [_detailadress endEditing:YES];
     if (_name.textfield.text.length == 0 || [self isEmpty:_name.textfield.text]) {
         
         [self showContent:@"请输入姓名！"];
