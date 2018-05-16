@@ -61,7 +61,7 @@
             _imglist = @[@"recommended",@"client",@"Clinchadeal"];
              _countdata  = @[@"",@"",@""];
             [BaseRequest GET:AgentInfoCount_URL parameters:nil success:^(id resposeObject) {
-            _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend"][@"recommend_count"],resposeObject[@"data"][@"recommend"][@"value"],resposeObject[@"data"][@"recommend"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]],[NSString stringWithFormat:@"累计人数%@，成交%@，为成交%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]]];
+            _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend"][@"recommend_count"],resposeObject[@"data"][@"recommend"][@"value"],resposeObject[@"data"][@"recommend"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]],[NSString stringWithFormat:@"累计笔数%@，成交%@，未成交%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]]];
                 [_MainTableView reloadData];
             } failure:^(NSError *error) {
                 
@@ -143,14 +143,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (_countdata.count ==3) {
+    if ([[UserModelArchiver unarchive].agent_identity integerValue]==2) {
         if (indexPath.row == 0) {
             
             RecommendVC *nextVC = [[RecommendVC alloc] init];
-            [self.navigationController pushViewController:nextVC animated:YES];
-        }else{
-            
-            NomineeVC *nextVC = [[NomineeVC alloc] init];
             [self.navigationController pushViewController:nextVC animated:YES];
         }
     }
