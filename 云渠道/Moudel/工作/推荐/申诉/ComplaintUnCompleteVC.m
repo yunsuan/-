@@ -250,16 +250,22 @@
                 [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
             }else{
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间：%@",_dataDic[@"recommend_time"]]];
+                if([_dataDic[@"process"] count]){
+                 
+                    [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间：%@",_dataDic[@"process"][[_dataDic[@"process"] count] - 1][@"time"]]];
+                }else{
+                
+                    [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间"]];
+                }
             }
         }else if (indexPath.section == 4){
             
             if (indexPath.row == 0) {
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"recommend_time"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"name"]]];
             }else if (indexPath.row == 1){
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"recommend_time"]]];
+                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"tel"]]];
             }else if (indexPath.row == 2){
                 
                 [cell SetCellContentbystring:[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"visit_time"]]];

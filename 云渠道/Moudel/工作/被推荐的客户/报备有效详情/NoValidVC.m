@@ -84,7 +84,7 @@
                          _data = @[@[[NSString stringWithFormat:@"有效到访时间：%@",resposeObject[@"data"][@"allot_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
                      }else{
                          
-                         _data = @[@[[NSString stringWithFormat:@"有效到访时间：%@",resposeObject[@"data"][@"allot_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"推荐人人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
+                         _data = @[@[[NSString stringWithFormat:@"有效到访时间：%@",resposeObject[@"data"][@"allot_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"推荐人人：%@",resposeObject[@"data"][@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"broker_tel"]]]];
                      }
                      
                      _endtime = resposeObject[@"data"][@"timeLimit"];
@@ -202,10 +202,7 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"有效到访详情";
-    
-//    _validTable.rowHeight = UITableViewAutomaticDimension;
-//    _validTable.estimatedRowHeight = 150 *SIZE;
+    self.titleLabel.text = @"客户到访有效详情";
     
     _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _validTable.rowHeight = UITableViewAutomaticDimension;

@@ -12,7 +12,7 @@
 #import "FindPassWordVC.h"
 #import <UMSocialQQHandler.h>
 #import <UMSocialWechatHandler.h>
-#import "WXApi.h"
+//#import "WXApi.h"
 
 @interface LoginVC ()
 @property (nonatomic , strong) UITextField *Account;
@@ -41,15 +41,15 @@
     [self.view addSubview:self.RegisterBtn];
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
-    if ([WXApi isWXAppInstalled]) {
-        
+//    if ([WXApi isWXAppInstalled]) {
+    
         self.QQBtn.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
         [self.view addSubview:self.WEIBOBTN];
-    }else{
-        
-        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-        
-    }
+//    }else{
+//
+//        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+//
+//    }
     [self.view addSubview:self.QQBtn];
     
 //    [self.view addSubview:self.QuickLoginBtn];
