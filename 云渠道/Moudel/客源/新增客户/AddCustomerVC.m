@@ -127,37 +127,46 @@
         
     }else{
         
-        if ([self checkTel:_tel2.textfield.text]) {
+        if ([_tel2.textfield.text isEqualToString:_tel1.textfield.text]) {
             
-            _numAdd += 1;
-            [_tel3 mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.equalTo(_scrollview).offset(80 *SIZE);
-                make.top.equalTo(_tel2.mas_bottom).offset(19 *SIZE);
-                make.width.equalTo(@(258 *SIZE));
-                make.height.equalTo(@(33 *SIZE));
-            }];
-            _tel3.hidden = NO;
-            
-            
-            [_numclasslab mas_remakeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.equalTo(_scrollview).offset(9 *SIZE);
-                make.top.equalTo(_tel3.mas_bottom).offset(30 *SIZE);
-                make.width.equalTo(@(65 *SIZE));
-                make.height.equalTo(@(13 *SIZE));
-            }];
-            
-            [_numclass mas_remakeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.equalTo(_scrollview).offset(80 *SIZE);
-                make.top.equalTo(_tel3.mas_bottom).offset(19 *SIZE);
-                make.width.equalTo(@(258 *SIZE));
-                make.height.equalTo(@(33 *SIZE));
+            [self alertControllerWithNsstring:@"温馨提示" And:@"请不要输入相同电话号码" WithDefaultBlack:^{
+               
+    
             }];
         }else{
             
-            [self showContent:@"请填写正确的电话号码"];
+            if ([self checkTel:_tel2.textfield.text]) {
+                
+                _numAdd += 1;
+                [_tel3 mas_makeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.equalTo(_scrollview).offset(80 *SIZE);
+                    make.top.equalTo(_tel2.mas_bottom).offset(19 *SIZE);
+                    make.width.equalTo(@(258 *SIZE));
+                    make.height.equalTo(@(33 *SIZE));
+                }];
+                _tel3.hidden = NO;
+                
+                
+                [_numclasslab mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.equalTo(_scrollview).offset(9 *SIZE);
+                    make.top.equalTo(_tel3.mas_bottom).offset(30 *SIZE);
+                    make.width.equalTo(@(65 *SIZE));
+                    make.height.equalTo(@(13 *SIZE));
+                }];
+                
+                [_numclass mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.equalTo(_scrollview).offset(80 *SIZE);
+                    make.top.equalTo(_tel3.mas_bottom).offset(19 *SIZE);
+                    make.width.equalTo(@(258 *SIZE));
+                    make.height.equalTo(@(33 *SIZE));
+                }];
+            }else{
+                
+                [self showContent:@"请填写正确的电话号码"];
+            }
         }
     }
 }
@@ -573,6 +582,13 @@
         
         [self showContent:@"请输入正确的电话号码"];
         return;
+    }
+    
+    if ([_tel1.textfield.text isEqualToString:_tel2.textfield.text] || [_tel3.textfield.text isEqualToString:_tel2.textfield.text] ||[_tel1.textfield.text isEqualToString:_tel3.textfield.text]) {
+        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"请不要输入相同电话号码" WithDefaultBlack:^{
+            
+        }];
     }
     
     if (_model.client_id) {
