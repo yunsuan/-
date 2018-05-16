@@ -15,6 +15,7 @@
     NSArray *_data;
     NSArray *_titleArr;
     NSString *_clientid;
+    NSString *_messageId;
     NSString *_endtime;
     NSString *_name;
     NSArray *_Pace;
@@ -27,12 +28,13 @@
 
 @implementation ComfirmValidVC
 
--(instancetype)initWithClientId:(NSString *)ClientID
+-(instancetype)initWithClientId:(NSString *)ClientID messageId:(NSString *)messageId
 {
     self =[super init];
     if (self) {
         
         _clientid = ClientID;
+        _messageId = messageId;
     }
     return self;
 }
@@ -45,9 +47,10 @@
 }
 
 -(void)post{
-    [BaseRequest GET:ProjectValueDetail_URL
+    [BaseRequest GET:MessageProejectValueDetail_URL
           parameters:@{
-                       @"client_id":_clientid
+                       @"client_id":_clientid,
+                       @"message_id":_messageId
                        }
              success:^(id resposeObject) {
                  NSLog(@"%@",resposeObject);

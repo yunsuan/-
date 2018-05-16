@@ -58,7 +58,6 @@
 		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
 		0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */; };
 		0C0BED6120AAB937005A16A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0BED6020AAB937005A16A1 /* libWeChatSDK.a */; };
-		0C1A013720AC28AD00665BB9 /* ArriveValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013620AC28AD00665BB9 /* ArriveValidVC.m */; };
 		0C1A013A20AC28C300665BB9 /* ComfirmValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
@@ -218,7 +217,6 @@
 		1044B3F4209C6BA1002D9BAE /* SingleHouseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3F3209C6BA1002D9BAE /* SingleHouseCell.m */; };
 		1044B3FB20A03654002D9BAE /* TypeOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FA20A03654002D9BAE /* TypeOneVC.m */; };
 		1044B3FE20A04227002D9BAE /* TypeTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FD20A04227002D9BAE /* TypeTwoVC.m */; };
-		1044B40120A04FD7002D9BAE /* TypeThreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40020A04FD7002D9BAE /* TypeThreeVC.m */; };
 		1044B40420A05179002D9BAE /* TypeZeroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40320A05179002D9BAE /* TypeZeroVC.m */; };
 		1044B40720A56857002D9BAE /* WaitAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40620A56857002D9BAE /* WaitAnimation.m */; };
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
@@ -394,8 +392,6 @@
 		0C0BED5E20AAB937005A16A1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		0C0BED5F20AAB937005A16A1 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		0C0BED6020AAB937005A16A1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		0C1A013520AC28AD00665BB9 /* ArriveValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArriveValidVC.h; sourceTree = "<group>"; };
-		0C1A013620AC28AD00665BB9 /* ArriveValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArriveValidVC.m; sourceTree = "<group>"; };
 		0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmValidVC.h; sourceTree = "<group>"; };
 		0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComfirmValidVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
@@ -707,8 +703,6 @@
 		1044B3FA20A03654002D9BAE /* TypeOneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeOneVC.m; sourceTree = "<group>"; };
 		1044B3FC20A04227002D9BAE /* TypeTwoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeTwoVC.h; sourceTree = "<group>"; };
 		1044B3FD20A04227002D9BAE /* TypeTwoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeTwoVC.m; sourceTree = "<group>"; };
-		1044B3FF20A04FD7002D9BAE /* TypeThreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeThreeVC.h; sourceTree = "<group>"; };
-		1044B40020A04FD7002D9BAE /* TypeThreeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeThreeVC.m; sourceTree = "<group>"; };
 		1044B40220A05179002D9BAE /* TypeZeroVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeZeroVC.h; sourceTree = "<group>"; };
 		1044B40320A05179002D9BAE /* TypeZeroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeZeroVC.m; sourceTree = "<group>"; };
 		1044B40520A56857002D9BAE /* WaitAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitAnimation.h; sourceTree = "<group>"; };
@@ -1085,10 +1079,6 @@
 				1044B3FA20A03654002D9BAE /* TypeOneVC.m */,
 				1044B3FC20A04227002D9BAE /* TypeTwoVC.h */,
 				1044B3FD20A04227002D9BAE /* TypeTwoVC.m */,
-				1044B3FF20A04FD7002D9BAE /* TypeThreeVC.h */,
-				1044B40020A04FD7002D9BAE /* TypeThreeVC.m */,
-				0C1A013520AC28AD00665BB9 /* ArriveValidVC.h */,
-				0C1A013620AC28AD00665BB9 /* ArriveValidVC.m */,
 				0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */,
 				0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */,
 			);
@@ -2683,7 +2673,6 @@
 				0C382E6D20A037D6005472CD /* IdentifyingVC.m in Sources */,
 				0C3AD5562068E5C30059CE02 /* RoomDetailCollCell.m in Sources */,
 				0C0BED1620A17E3C005A16A1 /* BarginVC.m in Sources */,
-				0C1A013720AC28AD00665BB9 /* ArriveValidVC.m in Sources */,
 				0C0BED2B20A193E9005A16A1 /* UnDealVC.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */,
@@ -2897,7 +2886,6 @@
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
-				1044B40120A04FD7002D9BAE /* TypeThreeVC.m in Sources */,
 				0C0BED3D20A2D0C7005A16A1 /* GZQAnimation.m in Sources */,
 				1044B3F4209C6BA1002D9BAE /* SingleHouseCell.m in Sources */,
 				0C08BF7B206DCEEB005BB3B4 /* AttentionTableCell.m in Sources */,

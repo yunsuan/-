@@ -10,6 +10,6 @@
 
 @interface ComfirmValidVC : BaseViewController
 
--(instancetype)initWithClientId:(NSString *)ClientID;
+-(instancetype)initWithClientId:(NSString *)ClientID messageId:(NSString *)messageId;
 
 @end
