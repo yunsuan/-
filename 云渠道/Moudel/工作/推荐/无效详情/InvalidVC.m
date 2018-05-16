@@ -286,8 +286,8 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"无效详情";
     
-    _invalidTable.rowHeight = 150 *SIZE;
-    _invalidTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _invalidTable.rowHeight = UITableViewAutomaticDimension;
+    _invalidTable.estimatedRowHeight = 150 *SIZE;
     
     if ([[UserModelArchiver unarchive].agent_identity integerValue]==2) {
                     _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];

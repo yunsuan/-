@@ -278,8 +278,8 @@
     
     
     
-    _unCompleteTable.rowHeight = 150 *SIZE;
-    _unCompleteTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _unCompleteTable.rowHeight = UITableViewAutomaticDimension;
+    _unCompleteTable.estimatedRowHeight = 150 *SIZE;
     
     _unCompleteTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _unCompleteTable.backgroundColor = YJBackColor;

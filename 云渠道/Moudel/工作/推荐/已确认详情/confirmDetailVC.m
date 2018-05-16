@@ -215,8 +215,8 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"待确认详情";
     
-    _confirmTable.rowHeight = 200 *SIZE;
-    _confirmTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _confirmTable.rowHeight = UITableViewAutomaticDimension;
+    _confirmTable.estimatedRowHeight = 200 *SIZE;
     
      if ([[UserModelArchiver unarchive].agent_identity integerValue]==2) {
     _confirmTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];

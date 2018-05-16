@@ -142,6 +142,16 @@
     return 53*SIZE;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section ==0 && indexPath.row ==1) {
+        return 75*SIZE;
+    }
+    else{
+        return 50*SIZE;
+    }
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
@@ -187,8 +197,8 @@
     self.titleLabel.text =_titleinfo;
     
     
-    _Maintableview.rowHeight = 150 *SIZE;
-    _Maintableview.estimatedRowHeight = UITableViewAutomaticDimension;
+    _Maintableview.rowHeight = UITableViewAutomaticDimension;
+    _Maintableview.estimatedRowHeight = 150 *SIZE;
     _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _Maintableview.backgroundColor = YJBackColor;
     _Maintableview.delegate = self;

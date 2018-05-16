@@ -130,6 +130,16 @@
     return 53*SIZE;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section ==0 && indexPath.row ==1) {
+        return 75*SIZE;
+    }
+    else{
+        return 50*SIZE;
+    }
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count;
@@ -181,8 +191,8 @@
     self.titleLabel.text = _titleinfo;
     
     
-    _validTable.rowHeight = 150 *SIZE;
-    _validTable.estimatedRowHeight = UITableViewAutomaticDimension;
+    _validTable.rowHeight = UITableViewAutomaticDimension;
+    _validTable.estimatedRowHeight = 150 *SIZE;
     
     _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _validTable.backgroundColor = YJBackColor;
