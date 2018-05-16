@@ -679,13 +679,20 @@
                 if (_dataArr.count) {
                     
                     CustomRequireModel *model = _dataArr[0];
+//                    self.customDetailTable.userInteractionEnabled = NO;
                     [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectArr[index][@"project_id"],@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
                         
+//                        self.customDetailTable.userInteractionEnabled = YES;
                         NSLog(@"%@",resposeObject);
-                        [self showContent:resposeObject[@"msg"]];
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
+                            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                                
+                                [self MatchRequest];
+                            }];
+                        }else{
                             
+                            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
                         }
                     } failure:^(NSError *error) {
                         

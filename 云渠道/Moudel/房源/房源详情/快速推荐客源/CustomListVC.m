@@ -239,10 +239,15 @@
 
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                //                [self.navigationController popViewControllerAnimated:YES];
+                [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                   
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
             }
             else{
-                [self showContent:resposeObject[@"msg"]];
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             

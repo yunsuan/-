@@ -90,6 +90,7 @@
 - (void)initDataSource{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MapViewDismissNoti:) name:@"mapViewDismiss" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MatchRequest) name:@"matchReload" object:nil];
     
     _dynamicNum = @"";
     _imgArr = [@[] mutableCopy];
@@ -639,13 +640,17 @@
                     
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
-
+                        [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                            
+                            [self MatchRequest];
+                        }];
                     }else if ([resposeObject[@"code"] integerValue] == 400){
                         
                         
                     }
                     else{
-                        [self showContent:resposeObject[@"msg"]];
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
                     }
                 } failure:^(NSError *error) {
                     

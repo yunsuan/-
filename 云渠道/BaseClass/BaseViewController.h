@@ -61,6 +61,9 @@ typedef NS_OPTIONS(NSUInteger, ConfigState){
 //弹出框
 - (void)alertControllerWithNsstring:(NSString *)str And:(NSString *)str1 WithCancelBlack:(void(^)(void))CancelBlack WithDefaultBlack:(void(^)(void))defaultBlack;
 
+- (void)alertControllerWithNsstring:(NSString *)str And:(NSString *)str1 WithDefaultBlack:(void(^)(void))defaultBlack;
+
+
 //没有点击效果的弹出框
 - (void)alertControllerWithNsstring:(NSString *)str And:(NSString *)str1;
 
