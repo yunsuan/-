@@ -703,10 +703,11 @@
 
 - (void)initUI{
     
-    _roomTable.rowHeight = UITableViewAutomaticDimension;
-    _roomTable.estimatedRowHeight = 360 *SIZE;
+    
     
     _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _roomTable.rowHeight = UITableViewAutomaticDimension;
+    _roomTable.estimatedRowHeight = 360 *SIZE;
     _roomTable.backgroundColor = self.view.backgroundColor;
     _roomTable.delegate = self;
     _roomTable.dataSource = self;
@@ -757,12 +758,6 @@
     _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
     _rightBottomPoint = [_mapView convertPoint:CGPointMake(_mapView.frame.size.width,0) toCoordinateFromView:mapView];  //东北角（右上角）同上
     //开始搜索
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  300*SIZE;
 }
 
 - (void)beginSearchWithname:(NSString *)name{

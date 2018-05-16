@@ -79,11 +79,6 @@
     return _dataDic.count ? 4: 0;
 }
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  350*SIZE;
-}
-
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
     return 40*SIZE;
 }
@@ -169,10 +164,11 @@
 - (void)initUI{
     
 
-    _analyzeTable.rowHeight = UITableViewAutomaticDimension;
-    _analyzeTable.estimatedRowHeight = 214 *SIZE;
+
     
     _analyzeTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _analyzeTable.rowHeight = UITableViewAutomaticDimension;
+    _analyzeTable.estimatedRowHeight = 214 *SIZE;
     _analyzeTable.backgroundColor = YJBackColor;;
     _analyzeTable.delegate = self;
     _analyzeTable.dataSource = self;

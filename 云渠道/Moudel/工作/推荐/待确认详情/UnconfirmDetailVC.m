@@ -206,9 +206,10 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"确认中详情";
+
+    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _Maintableview.rowHeight = UITableViewAutomaticDimension;
     _Maintableview.estimatedRowHeight = 150 *SIZE;
-    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _Maintableview.backgroundColor = YJBackColor;
     _Maintableview.delegate = self;
     _Maintableview.dataSource = self;
@@ -232,16 +233,6 @@
         [self.view addSubview:_confirmBtn];
     }
     
-}
-
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-     if (indexPath.section ==0 && indexPath.row ==1) {
-         return 75*SIZE;
-     }
-     else{
-         return 50*SIZE;
-     }
 }
 
 - (InvalidView *)invalidView{

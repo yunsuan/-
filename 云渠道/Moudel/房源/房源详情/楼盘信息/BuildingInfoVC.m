@@ -205,10 +205,11 @@
     if(!_Mytableview)
     {
 
-        _Mytableview.rowHeight = UITableViewAutomaticDimension;
-        _Mytableview.estimatedRowHeight = 34.4 *SIZE;
+
         
         _Mytableview =   [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+        _Mytableview.rowHeight = UITableViewAutomaticDimension;
+        _Mytableview.estimatedRowHeight = 34.4 *SIZE;
         _Mytableview.backgroundColor = YJBackColor;
         _Mytableview.delegate = self;
         _Mytableview.dataSource = self;

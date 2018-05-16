@@ -225,6 +225,9 @@ static NSString *const Disabledinfo_URL = @"agent/message/work/disabledDetail";
 //项目上判断有效
 static NSString *const MessageProejectValueDetail_URL = @"agent/message/work/projectValueDetail";
 
+//项目上判断无效
+static NSString *const MessageProjectDisabledDetail_URL = @"agent/message/work/projectDisabledDetail";
+
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"agent/work/getRecommendList";
 

@@ -71,7 +71,7 @@
                          _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],@""],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"butter_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"butter_tel"]]]];
                      }else{
                          
-                         _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],@""],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"broker_tel"]]]];
+                         _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],@""],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"推荐人：%@",resposeObject[@"data"][@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"broker_tel"]]]];
                      }
                      _endtime = resposeObject[@"data"][@"timeLimit"];
                      [_Maintableview reloadData];
@@ -154,15 +154,6 @@
     return 53*SIZE;
 }
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section ==0 && indexPath.row ==1) {
-        return 75*SIZE;
-    }
-    else{
-        return 50*SIZE;
-    }
-}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -209,9 +200,10 @@
     self.titleLabel.text =_titleinfo;
     
     
+    
+    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _Maintableview.rowHeight = UITableViewAutomaticDimension;
     _Maintableview.estimatedRowHeight = 150 *SIZE;
-    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _Maintableview.backgroundColor = YJBackColor;
     _Maintableview.delegate = self;
     _Maintableview.dataSource = self;

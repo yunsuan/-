@@ -1,22 +1,23 @@
 //
-//  FailedDealVC.m
+//  ComfirmInValidVC.m
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/5/8.
+//  Created by 谷治墙 on 2018/5/16.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "FailedDealVC.h"
+#import "ComfirmInValidVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
 #import "ComplaintVC.h"
 
-@interface FailedDealVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ComfirmInValidVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     
     NSArray *_data;
     NSArray *_titleArr;
     NSString *_clientId;
+    NSString *_messageId;
     NSMutableDictionary *_dataDic;
 }
 
@@ -24,18 +25,17 @@
 
 @property (nonatomic , strong) UIButton *complaintBtn;
 
-@property (nonatomic, strong) NSDateFormatter *formatter;
-
 @end
 
-@implementation FailedDealVC
+@implementation ComfirmInValidVC
 
-- (instancetype)initWithClientId:(NSString *)clientId
+- (instancetype)initWithClientId:(NSString *)clientId messageId:(NSString *)messageId
 {
     self = [super init];
     if (self) {
         
         _clientId = clientId;
+        _messageId = messageId;
     }
     return self;
 }
@@ -49,30 +49,28 @@
 
 -(void)initDateSouce
 {
-    _formatter = [[NSDateFormatter alloc] init];
-    [_formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",_clientId],@"未成交信息",@"客户信息",@"项目信息"];
-    _dataDic = [@{} mutableCopy];
-    [self InValidRequestMethod];
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+        
+        _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
+    }else{
+        
+        _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"推荐人信息"];
+    }
+    
+    [self RequestMethod];
 }
 
-- (void)InValidRequestMethod{
+- (void)RequestMethod{
     
-    [BaseRequest GET:ProjectDeailDisableDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+    [BaseRequest GET:MessageProjectDisabledDetail_URL parameters:@{@"client_id":_clientId,@"message_id":_messageId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
-            [_dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                
-                if ([obj isKindOfClass:[NSNull class]]) {
-                    
-                    [_dataDic setObject:@"" forKey:key];
-                }
-            }];
             [_invalidTable reloadData];
         }
         else
@@ -86,6 +84,11 @@
     }];
 }
 
+- (void)ActionComplaintBtn:(UIButton *)btn{
+    
+    ComplaintVC *nextVC = [[ComplaintVC alloc] initWithProjectId:_clientId];
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
 
 #pragma mark    -----  delegate   ------
 
@@ -93,11 +96,10 @@
 {
     if (section == 0) {
         
-        return 2;
-    }else{
-        
-        return 3;
+        return 0;
     }
+    
+    return 3;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -110,7 +112,13 @@
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    title.text = _titleArr[section];
+    if (section == 0) {
+        
+        title.text = [NSString stringWithFormat:@"推荐编号：%@",_clientId];
+    }else{
+        
+        title.text = _titleArr[section];
+    }
     [backview addSubview:title];
     return backview;
 }
@@ -135,11 +143,9 @@
     
     if (_dataDic.count) {
         
-        return 4;
-    }else{
-        
-        return 0;
+        return 3;
     }
+    return 0;
 }
 
 
@@ -151,92 +157,43 @@
     if (!cell) {
         cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    //    [cell SetCellContentbystring:_data[indexPath.row]];
-    switch (indexPath.section) {
-        case 0:
-        {
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]]];
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"visit_time"]]];
-            }
-            break;
-        }
-        case 1:{
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]]];
-            }else if (indexPath.row == 1){
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效原因：%@",_dataDic[@"disabled_reason"]]];
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"state_change_time"]]];
-            }
-            break;
-        }
-        case 2:{
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]]];
-            }else if (indexPath.row == 1){
-                
-                if ([_dataDic[@"sex"] integerValue] == 1) {
-                    
-                    [cell SetCellContentbystring:[NSString stringWithFormat:@"客户性别：男"]];
-                }else if ([_dataDic[@"sex"] integerValue] == 2){
-                    
-                    [cell SetCellContentbystring:[NSString stringWithFormat:@"客户性别：女"]];
-                }else{
-                    
-                    [cell SetCellContentbystring:[NSString stringWithFormat:@"客户性别："]];
-                }
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"tel"]]];
-            }
-            break;
-        }
-        case 3:{
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]]];
-            }else if (indexPath.row == 1){
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"项目地址：%@-%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],_dataDic[@"absolute_address"]]];
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@",_dataDic[@"state_change_time"]]];
-            }
-            break;
-        }
-        default:
-            break;
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.section == 1) {
+        
+        if (indexPath.row == 0) {
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]]];
+        }else if (indexPath.row == 1){
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"项目地址：%@-%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],_dataDic[@"absolute_address"]]];
+        }else{
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@",_dataDic[@"property_type"]]];
+        }
+    }else{
+        
+        if (indexPath.row == 0) {
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"失效类型：%@",_dataDic[@"disabled_state"]]];
+        }else if (indexPath.row == 1){
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
+        }else{
+            
+            [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
+        }
+    }
     return cell;
     
-}
-
-- (void)ActionComplaintBtn:(UIButton *)btn{
-    
-    ComplaintVC *nextVC = [[ComplaintVC alloc] initWithProjectId:_clientId];
-    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 -(void)initUI
 {
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"无效详情";
+    self.titleLabel.text = @"报备失效详情";
     
-
     
     _invalidTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _invalidTable.rowHeight = UITableViewAutomaticDimension;
@@ -255,7 +212,7 @@
     [_complaintBtn setBackgroundColor:COLOR(191, 191, 191, 1)];
     [_complaintBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
     [self.view addSubview:_complaintBtn];
-
+    
 }
 
 @end

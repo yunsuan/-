@@ -72,9 +72,10 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"已推荐项目状态";
     
+
+    _reStatusTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _reStatusTable.rowHeight = UITableViewAutomaticDimension;
     _reStatusTable.estimatedRowHeight = 113 *SIZE;
-    _reStatusTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _reStatusTable.backgroundColor = self.view.backgroundColor;
     _reStatusTable.delegate = self;
     _reStatusTable.dataSource = self;
