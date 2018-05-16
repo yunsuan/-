@@ -209,11 +209,17 @@
                     [cell SetCellContentbystring:[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]]];
                 }else{
                     
-                    [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"butter_name"]]];
+                    [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]]];
                 }
             }else{
                 
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"butter_tel"]]];
+                if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+                    
+                    [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"butter_tel"]]];
+                }else{
+                
+                    [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]]];
+                }
             }
         }
         return cell;

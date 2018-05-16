@@ -221,6 +221,7 @@ static NSString *const Valueinfo_URL = @"agent/message/work/confirmDetail";
 
 //经纪人无效客户消息
 static NSString *const Disabledinfo_URL = @"agent/message/work/disabledDetail";
+
 #pragma mark ---  工作  ---
 static NSString *const RecommendList_URL = @"agent/work/getRecommendList";
 
