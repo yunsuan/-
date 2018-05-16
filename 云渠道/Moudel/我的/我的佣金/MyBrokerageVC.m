@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UILabel *priceL;
 
+@property (nonatomic, strong) UILabel *declareL;
+
 @end
 
 @implementation MyBrokerageVC
@@ -216,6 +218,12 @@
     _brokerTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     _brokerTable.bounces = NO;
     [self.view addSubview:_brokerTable];
+    
+    _declareL = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, SCREEN_Height - 20 *SIZE, 300 *SIZE, 15 *SIZE)];
+    _declareL.textColor = YJContentLabColor;
+    _declareL.font = [UIFont systemFontOfSize:11 *SIZE];
+    _declareL.text = @"免责声明：佣金数据仅供参考，不作为财务结算依据。";
+    [self.view addSubview:_declareL];
 }
 
 @end

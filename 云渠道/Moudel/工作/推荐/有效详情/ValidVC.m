@@ -187,10 +187,11 @@
     self.titleLabel.text = @"有效到访详情";
     
     
-    _validTable.rowHeight = UITableViewAutomaticDimension;
-    _validTable.estimatedRowHeight = 150 *SIZE;
+
     
     _validTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _validTable.rowHeight = UITableViewAutomaticDimension;
+    _validTable.estimatedRowHeight = 150 *SIZE;
     _validTable.backgroundColor = YJBackColor;
     _validTable.delegate = self;
     _validTable.dataSource = self;
