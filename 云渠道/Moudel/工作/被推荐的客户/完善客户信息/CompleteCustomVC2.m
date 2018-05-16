@@ -314,7 +314,7 @@
 
     }
     
-    if (!_agentname) {
+    if (!_agentname.length) {
         
         [self showContent:@"请选择置业顾问"];
         return;

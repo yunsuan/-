@@ -626,19 +626,20 @@
         
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                for (UIViewController *vc in self.navigationController.viewControllers) {
+                [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
                     
-                    if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                    for (UIViewController *vc in self.navigationController.viewControllers) {
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        if ([vc isKindOfClass:[CustomDetailVC class]]) {
                             
                             [self.navigationController popToViewController:vc animated:YES];
-                        });
+                        }
                     }
-                }
+                }];
             }
             else{
-                [self showContent:resposeObject[@"msg"]];
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
             }
         } failure:^(NSError *error) {
             

@@ -174,7 +174,6 @@
         cell.frame = CGRectMake(0, 0, 360*SIZE, 75*SIZE);
         cell.countdownblock = ^{
             [self refresh];
-            
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -238,6 +237,7 @@
     if (!_invalidView) {
         
         _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+        
     }
     return _invalidView;
 }
