@@ -58,6 +58,7 @@
 		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
 		0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */; };
 		0C1A013A20AC28C300665BB9 /* ComfirmValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */; };
+		0C1A013D20AC3F7700665BB9 /* ComfirmInValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
@@ -389,6 +390,8 @@
 		0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyProjectVC.m; sourceTree = "<group>"; };
 		0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmValidVC.h; sourceTree = "<group>"; };
 		0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComfirmValidVC.m; sourceTree = "<group>"; };
+		0C1A013B20AC3F7700665BB9 /* ComfirmInValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmInValidVC.h; sourceTree = "<group>"; };
+		0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComfirmInValidVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
@@ -1075,6 +1078,8 @@
 				1044B3FD20A04227002D9BAE /* TypeTwoVC.m */,
 				0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */,
 				0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */,
+				0C1A013B20AC3F7700665BB9 /* ComfirmInValidVC.h */,
+				0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */,
 			);
 			path = "工作消息";
 			sourceTree = "<group>";
@@ -2714,6 +2719,7 @@
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
+				0C1A013D20AC3F7700665BB9 /* ComfirmInValidVC.m in Sources */,
 				0CBD85A0208835C800E7B183 /* CustomDetailTableCell4.m in Sources */,
 				10174BF220720C9A00D00B9A /* AdressChooseView.m in Sources */,
 				0CBD857720848EC700E7B183 /* LevelView.m in Sources */,
