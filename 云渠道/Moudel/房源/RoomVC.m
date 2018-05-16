@@ -177,7 +177,7 @@
         
         [dic setObject:_city forKey:@"city"];
     }
-    if (![_district isEqualToString:@"0"] && _district) {
+    if (![_district isEqualToString:@"0"] && _district.length) {
         
         [dic setObject:_district forKey:@"district"];
     }
@@ -243,7 +243,7 @@
         
         [dic setObject:_city forKey:@"city"];
     }
-    if (_district.length) {
+    if (_district.length && [_district isEqualToString:@"0"]) {
         
         [dic setObject:_district forKey:@"district"];
     }
@@ -944,12 +944,22 @@
             if ([str isEqualToString:@"不限"]) {
                 
                 [weakSelf.areaBtn setTitle:@"区域" forState:UIControlStateNormal];
+                _district = @"";
             }else{
                 
-                [weakSelf.areaBtn setTitle:str forState:UIControlStateNormal];
+                if (str.length) {
+                    
+                    [weakSelf.areaBtn setTitle:str forState:UIControlStateNormal];
+                }else{
+                    
+                    [weakSelf.areaBtn setTitle:@"区域" forState:UIControlStateNormal];
+                }
+                if ([ID integerValue]) {
+                    
+                    _district = [NSString stringWithFormat:@"%@",ID];
+                }
             }
-            _is1 = YES;
-            _district = [NSString stringWithFormat:@"%@",ID];
+            _is1 = NO;
             weakSelf.areaBtn.selected = NO;
             [weakSelf.areaView removeFromSuperview];
             [weakSelf RequestMethod];

@@ -19,6 +19,7 @@
 #import "RoomListModel.h"
 #import "AdressChooseView.h"
 #import "CustomDetailVC.h"
+#import "CityVC.h"
 
 @interface QuickRoomVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BMKLocationServiceDelegate,PYSearchViewControllerDelegate>
 {
@@ -81,7 +82,7 @@
     self = [super init];
     if (self) {
         
-        _city = @"510100";
+//        _city = @"510100";
         _model = model;
     }
     return self;
@@ -106,7 +107,7 @@
     _searchArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _page = 1;
-    [self RequestMethod];
+//    [self RequestMethod];
 }
 
 - (void)SearchRequest{
@@ -167,7 +168,7 @@
         
         [dic setObject:_city forKey:@"city"];
     }
-    if (_district.length) {
+    if (_district.length && [_district isEqualToString:@"0"]) {
         
         [dic setObject:_district forKey:@"district"];
     }
@@ -232,7 +233,7 @@
         
         [dic setObject:_city forKey:@"city"];
     }
-    if (_district.length) {
+    if (_district.length && [_district isEqualToString:@"0"]) {
         
         [dic setObject:_district forKey:@"district"];
     }
@@ -496,25 +497,15 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
-    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
-    [[UIApplication sharedApplication].keyWindow addSubview:view];
-    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
         
-        if (![area isEqualToString:@"市辖区"]) {
-            
-            [_cityBtn setTitle:area forState:UIControlStateNormal];
-        }else{
-            
-            if (![city isEqualToString:@"市辖区"]) {
-                
-                [_cityBtn setTitle:city forState:UIControlStateNormal];
-            }else{
-                
-                [_cityBtn setTitle:province forState:UIControlStateNormal];
-            }
-        }
-        
+        [_cityBtn setTitle:city forState:UIControlStateNormal];
+        _city = [NSString stringWithFormat:@"%@",code];
+        [self RequestMethod];
     };
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)ActionUpAndDownBtn:(UIButton *)btn{
@@ -671,16 +662,12 @@
     }
 }
 
+
+#pragma mark -- 界面初始化
+
 -(void)initUI
 {
     [self.view addSubview:self.headerView];
-    
-//    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _cityBtn.frame = CGRectMake(0, 19 *SIZE, 50 *SIZE, 21 *SIZE);
-//    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
-//    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
-//    [self.headerView addSubview:_cityBtn];
     self.leftButton.center = CGPointMake(25 * sIZE,  30 *SIZE);
     self.leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
     self.maskButton.frame = CGRectMake(0, 0, 60 * sIZE, 44 *SIZE);
@@ -688,7 +675,16 @@
     [self.headerView addSubview:self.leftButton];
     [self.headerView addSubview:self.maskButton];
     
-    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
+    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cityBtn.frame = CGRectMake(300 *SIZE, 19 *SIZE, 50 *SIZE, 21 *SIZE);
+    _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
+    [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_cityBtn setTitle:@"选择城市" forState:UIControlStateNormal];
+    [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+    [self.headerView addSubview:_cityBtn];
+
+    
+    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 242 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
     [self.headerView addSubview:_searchBar];
     
@@ -698,7 +694,7 @@
     label.font = [UIFont systemFontOfSize:11 *SIZE];
     [_searchBar addSubview:label];
     
-    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(256 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(206 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
     rightImg.image = [UIImage imageNamed:@"search_2"];
     [_searchBar addSubview:rightImg];
     
@@ -783,6 +779,7 @@
     [self.headerView addSubview:btn];
     
     [self.view addSubview:self.MainTableView];
+    self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
 }
 
 #pragma mark  ---  懒加载   ---
@@ -798,12 +795,50 @@
         _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
             
             _page = 1;
-            [self RequestMethod];
+            if (_city) {
+                
+                [self RequestMethod];
+            }else{
+                
+                [_MainTableView.mj_header endRefreshing];
+                [self alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
+                    
+                    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+                    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                        
+                        [_cityBtn setTitle:city forState:UIControlStateNormal];
+                        _city = [NSString stringWithFormat:@"%@",code];
+                        [self RequestMethod];
+                    };
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }];
+            }
         }];
         
         _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
             
-            [self RequestMethod];
+//            [self RequestAddMethod];
+            
+            if (_city) {
+                
+                [self RequestAddMethod];
+            }else{
+                
+                [_MainTableView.mj_footer endRefreshing];
+                [self alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
+                    
+                    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+                    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                        
+                        [_cityBtn setTitle:city forState:UIControlStateNormal];
+                        _city = [NSString stringWithFormat:@"%@",code];
+                        [self RequestMethod];
+                    };
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }];
+            }
         }];
     }
     return _MainTableView;
@@ -829,15 +864,44 @@
             if ([str isEqualToString:@"不限"]) {
                 
                 [weakSelf.areaBtn setTitle:@"区域" forState:UIControlStateNormal];
+                _district = @"";
             }else{
                 
-                [weakSelf.areaBtn setTitle:str forState:UIControlStateNormal];
+                if (str.length) {
+                    
+                    [weakSelf.areaBtn setTitle:str forState:UIControlStateNormal];
+                }else{
+                    
+                    [weakSelf.areaBtn setTitle:@"区域" forState:UIControlStateNormal];
+                }
+                if ([ID integerValue]) {
+                    
+                    _district = [NSString stringWithFormat:@"%@",ID];
+                }
             }
-            _is1 = YES;
-            _district = [NSString stringWithFormat:@"%@",ID];
+            _is1 = NO;
             weakSelf.areaBtn.selected = NO;
             [weakSelf.areaView removeFromSuperview];
-            [weakSelf RequestMethod];
+//            [weakSelf RequestMethod];
+            if (_city) {
+                
+                [weakSelf RequestMethod];
+            }else{
+                
+                [_MainTableView.mj_header endRefreshing];
+                [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
+                    
+                    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+                    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                        
+                        [_cityBtn setTitle:city forState:UIControlStateNormal];
+                        _city = [NSString stringWithFormat:@"%@",code];
+                        [self RequestMethod];
+                    };
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }];
+            }
         };
         
         _areaView.boxAddressCancelBlock = ^{
@@ -868,7 +932,25 @@
             _price = [NSString stringWithFormat:@"%@",ID];
             weakSelf.priceBtn.selected = NO;
             [weakSelf.priceView removeFromSuperview];
-            [weakSelf RequestMethod];
+            if (_city) {
+                
+                [weakSelf RequestMethod];
+            }else{
+                
+                [_MainTableView.mj_header endRefreshing];
+                [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
+                    
+                    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+                    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                        
+                        [_cityBtn setTitle:city forState:UIControlStateNormal];
+                        _city = [NSString stringWithFormat:@"%@",code];
+                        [self RequestMethod];
+                    };
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }];
+            }
         };
         
         _priceView.cancelBtnBlock = ^{
@@ -899,7 +981,26 @@
             _type = [NSString stringWithFormat:@"%@",ID];
             weakSelf.typeBtn.selected = NO;
             [weakSelf.typeView removeFromSuperview];
-            [weakSelf RequestMethod];
+//            [weakSelf RequestMethod];
+            if (_city) {
+                
+                [weakSelf RequestMethod];
+            }else{
+                
+                [_MainTableView.mj_header endRefreshing];
+                [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
+                    
+                    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+                    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                        
+                        [_cityBtn setTitle:city forState:UIControlStateNormal];
+                        _city = [NSString stringWithFormat:@"%@",code];
+                        [self RequestMethod];
+                    };
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }];
+            }
         };
         
         _typeView.cancelBtnBlock = ^{
@@ -934,8 +1035,27 @@
                 
                 _status = [NSString stringWithFormat:@"%@",status];
             }
-            
-            [weakSelf RequestMethod];
+//
+//            [weakSelf RequestMethod];
+            if (_city) {
+                
+                [weakSelf RequestMethod];
+            }else{
+                
+                [_MainTableView.mj_header endRefreshing];
+                [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
+                    
+                    CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+                    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                        
+                        [_cityBtn setTitle:city forState:UIControlStateNormal];
+                        _city = [NSString stringWithFormat:@"%@",code];
+                        [self RequestMethod];
+                    };
+                    nextVC.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }];
+            }
         };
         
     }

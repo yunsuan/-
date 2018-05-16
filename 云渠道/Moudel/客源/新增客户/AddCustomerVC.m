@@ -603,7 +603,7 @@
         return;
     }
     
-    if ([_tel1.textfield.text isEqualToString:_tel2.textfield.text] || [_tel3.textfield.text isEqualToString:_tel2.textfield.text] ||[_tel1.textfield.text isEqualToString:_tel3.textfield.text]) {
+    if (((_tel1.textfield.text.length && _tel2.textfield.text.length) && [_tel1.textfield.text isEqualToString:_tel2.textfield.text]) || ((_tel3.textfield.text.length && _tel2.textfield.text.length) && [_tel3.textfield.text isEqualToString:_tel2.textfield.text]) || ((_tel3.textfield.text.length && _tel1.textfield.text.length) && [_tel1.textfield.text isEqualToString:_tel3.textfield.text])) {
         
         [self alertControllerWithNsstring:@"温馨提示" And:@"请不要输入相同电话号码" WithDefaultBlack:^{
             

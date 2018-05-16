@@ -50,7 +50,14 @@
 {
     
     _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+        
+        _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
+    }else{
+        
+        _titleArr = @[@"推荐编号",@"失效信息",@"客户信息",@"项目信息",@"推荐人信息"];
+    }
+    
     [self RequestMethod];
 }
 
