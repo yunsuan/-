@@ -110,7 +110,7 @@
         return;
     }
     
-    if ([_role isEqualToString:@"确认人"]) {
+    if ([_role isEqualToString:@"到访确认人"]) {
         
         if (!_projectId) {
             
@@ -146,7 +146,7 @@
     [dic setObject:_companyId forKey:@"company_id"];
     [dic setObject:_role forKey:@"role"];
     [dic setObject:_numTextField.text forKey:@"work_code"];
-    if ([_role isEqualToString:@"确认人"]) {
+    if ([_role isEqualToString:@"到访确认人"]) {
         
         [dic setObject:_projectId forKey:@"project_id"];
     }
@@ -155,7 +155,6 @@
     [dic setObject:_timeL.text forKey:@"entry_time"];
     [dic setObject:_imgUrl forKey:@"img_url"];
 
-    
     [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
@@ -207,10 +206,10 @@
                 _roleL.text = @"经纪人";
             }];
             
-            UIAlertAction *comfirm = [UIAlertAction actionWithTitle:@"确认人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *comfirm = [UIAlertAction actionWithTitle:@"到访确认人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 _role = @"2";
-                _roleL.text = @"确认人";
+                _roleL.text = @"到访确认人";
             }];
             
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -244,7 +243,7 @@
                 }
             }else{
                 
-                [self showContent:@"只有确认人才能申请固定项目"];
+                [self showContent:@"只有到访确认人才能申请固定项目"];
             }
             break;
         }
