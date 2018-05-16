@@ -46,9 +46,9 @@
         self.QQBtn.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
         [self.view addSubview:self.WEIBOBTN];
 //    }else{
-//        
+//
 //        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-//        
+//
 //    }
     [self.view addSubview:self.QQBtn];
     
