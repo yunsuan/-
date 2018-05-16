@@ -57,7 +57,6 @@
 		0C0BED5320A98841005A16A1 /* CityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5220A98841005A16A1 /* CityVC.m */; };
 		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
 		0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */; };
-		0C0BED6120AAB937005A16A1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0BED6020AAB937005A16A1 /* libWeChatSDK.a */; };
 		0C1A013A20AC28C300665BB9 /* ComfirmValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
@@ -388,10 +387,6 @@
 		0C0BED5620A992E1005A16A1 /* BMChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMChineseSort.m; sourceTree = "<group>"; };
 		0C0BED5920AA7F6A005A16A1 /* ApplyProjectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyProjectVC.h; sourceTree = "<group>"; };
 		0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyProjectVC.m; sourceTree = "<group>"; };
-		0C0BED5D20AAB937005A16A1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		0C0BED5E20AAB937005A16A1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		0C0BED5F20AAB937005A16A1 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
-		0C0BED6020AAB937005A16A1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmValidVC.h; sourceTree = "<group>"; };
 		0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComfirmValidVC.m; sourceTree = "<group>"; };
 		0C23F61B2068BCB400B4D573 /* CustomTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader2.h; sourceTree = "<group>"; };
@@ -812,7 +807,6 @@
 			files = (
 				105E18DD206A36C40031558D /* libssl.a in Frameworks */,
 				105E18DE206A36C40031558D /* libcrypto.a in Frameworks */,
-				0C0BED6120AAB937005A16A1 /* libWeChatSDK.a in Frameworks */,
 				BF3D5C8D28ABC2D033EBFE3F /* libPods-云渠道.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1220,17 +1214,6 @@
 				0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */,
 			);
 			path = "申请项目";
-			sourceTree = "<group>";
-		};
-		0C0BED5C20AAB937005A16A1 /* wechat */ = {
-			isa = PBXGroup;
-			children = (
-				0C0BED5D20AAB937005A16A1 /* WXApi.h */,
-				0C0BED5E20AAB937005A16A1 /* WXApiObject.h */,
-				0C0BED5F20AAB937005A16A1 /* WechatAuthSDK.h */,
-				0C0BED6020AAB937005A16A1 /* libWeChatSDK.a */,
-			);
-			path = wechat;
 			sourceTree = "<group>";
 		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
@@ -2176,7 +2159,6 @@
 		106900032057974200E11F52 /* 第三方SDK */ = {
 			isa = PBXGroup;
 			children = (
-				0C0BED5C20AAB937005A16A1 /* wechat */,
 				0C0BED5420A992E1005A16A1 /* BMChineseStringSort */,
 				0CF04F82207CAFAF00A45F4A /* PYSearch */,
 				0CF7425B206262DF001F926F /* BoxView */,
