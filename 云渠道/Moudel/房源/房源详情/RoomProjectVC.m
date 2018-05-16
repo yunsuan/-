@@ -703,10 +703,11 @@
 
 - (void)initUI{
     
-    _roomTable.rowHeight = UITableViewAutomaticDimension;
-    _roomTable.estimatedRowHeight = 360 *SIZE;
+    
     
     _roomTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - 47 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
+    _roomTable.rowHeight = UITableViewAutomaticDimension;
+    _roomTable.estimatedRowHeight = 360 *SIZE;
     _roomTable.backgroundColor = self.view.backgroundColor;
     _roomTable.delegate = self;
     _roomTable.dataSource = self;
@@ -760,10 +761,10 @@
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  300*SIZE;
-}
+//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return  300*SIZE;
+//}
 
 - (void)beginSearchWithname:(NSString *)name{
     
