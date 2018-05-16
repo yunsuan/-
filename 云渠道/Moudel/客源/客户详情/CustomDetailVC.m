@@ -236,6 +236,7 @@
 
 - (void)setData:(NSArray *)data{
     
+    [_dataArr removeAllObjects];
     for (int i = 0; i < data.count; i++) {
         if ([data[i] isKindOfClass:[NSDictionary class]]) {
             

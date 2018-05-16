@@ -73,13 +73,30 @@
                          
                          _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],@""],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]],@[[NSString stringWithFormat:@"推荐人：%@",resposeObject[@"data"][@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",resposeObject[@"data"][@"broker_tel"]]]];
                      }
+                     if ([resposeObject[@"data"][@"is_deal"] integerValue] == 1) {
+                         
+                         _confirmBtn.hidden = YES;
+                         _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
+                     }else{
+                         
+                         _confirmBtn.hidden = NO;
+                         _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE);
+                     }
                      _endtime = resposeObject[@"data"][@"timeLimit"];
                      [_Maintableview reloadData];
                      
+                 }else{
+                     
+                     _confirmBtn.hidden = YES;
+                     _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
                  }
              }
              failure:^(NSError *error) {
                  
+                 NSLog(@"%@",error);
+                 [self showContent:@"网络错误"];
+                 _confirmBtn.hidden = YES;
+                 _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
              }];
 }
 
@@ -201,23 +218,30 @@
     
     
     
-    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _Maintableview = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _Maintableview.rowHeight = UITableViewAutomaticDimension;
     _Maintableview.estimatedRowHeight = 150 *SIZE;
     _Maintableview.backgroundColor = YJBackColor;
     _Maintableview.delegate = self;
     _Maintableview.dataSource = self;
     [_Maintableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+        
+        _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
+    }
     [self.view addSubview:_Maintableview];
     
-//    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _confirmBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
-//    _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
-//    [_confirmBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
-//    [_confirmBtn setBackgroundColor:YJBlueBtnColor];
-//    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
-//    [self.view addSubview:_confirmBtn];
+    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _confirmBtn.frame = CGRectMake(0, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
+    _confirmBtn.titleLabel.font = [UIFont systemFontOfSize:14 *sIZE];
+    [_confirmBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
+    [_confirmBtn setBackgroundColor:YJBlueBtnColor];
+    [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    if ([[UserModel defaultModel].agent_identity integerValue] == 2) {
+        
+        [self.view addSubview:_confirmBtn];
+    }
     
     
 }
@@ -234,6 +258,8 @@
 
 -(void)refresh{
     
+    _confirmBtn.hidden = YES;
+    _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);
 //    [BaseRequest GET:FlushDate_URL parameters:nil success:^(id resposeObject) {
 //        [self.navigationController popViewControllerAnimated:YES];
 //    } failure:^(NSError *error) {

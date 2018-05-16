@@ -14,6 +14,7 @@
 #import "TypeTwoVC.h"
 #import "ComfirmValidVC.h"
 #import "ComfirmInValidVC.h"
+#import "DealValidVC.h"
 
 @interface WorkMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -179,7 +180,8 @@
             break;
         case 4:
         {
-            
+            DealValidVC *nextVC = [[DealValidVC alloc] initWithClientId:_data[indexPath.row][@"client_id"] messageId:_data[indexPath.row][@"message_id"]];
+            [self.navigationController pushViewController:nextVC animated:YES];
         }
             break;
         case 5:
