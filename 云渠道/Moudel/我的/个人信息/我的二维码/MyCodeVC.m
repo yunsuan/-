@@ -53,7 +53,7 @@
             [self creatQRCodeWith:@"http://wwww.ccsoft.com.cn"];
         }
     } failure:^(NSError *error) {
-        
+        [self creatQRCodeWith:@"http://wwww.ccsoft.com.cn"];
     }];
     
 }
