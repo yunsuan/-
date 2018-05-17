@@ -12,27 +12,21 @@
 
 @property (nonatomic, strong) UILabel *titleL;
 
-@property (nonatomic, strong) UILabel *codeL;
+@property (nonatomic, strong) UILabel *typeL;
 
-@property (nonatomic, strong) UILabel *nameL;
+@property (nonatomic, strong) UILabel *moneyL;
 
-@property (nonatomic, strong) UILabel *houseTypeL;
+@property (nonatomic, strong) UILabel *numL;
 
-@property (nonatomic, strong) UILabel *addressL;
+@property (nonatomic, strong) UILabel *tmoneyL;
 
-@property (nonatomic, strong) UILabel *unitL;
+@property (nonatomic, strong) UILabel *areaL;
 
-@property (nonatomic, strong) UILabel *contactL;
+@property (nonatomic, strong) UILabel *statuL;
 
-@property (nonatomic, strong) UILabel *brokerTypeL;
-
-@property (nonatomic, strong) UILabel *priceL;
+@property (nonatomic, strong) UILabel *propertyL;
 
 @property (nonatomic, strong) UILabel *timeL;
-
-@property (nonatomic, strong) UILabel *companyL;
-
-@property (nonatomic, strong) UILabel *endTimeL;
 
 @property (nonatomic, strong) UIImageView *statusImg;
 

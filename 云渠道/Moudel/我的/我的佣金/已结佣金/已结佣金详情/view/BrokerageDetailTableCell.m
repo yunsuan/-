@@ -31,6 +31,27 @@
     _titleL.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.contentView addSubview:_titleL];
     
+    
+    _numL =[[UILabel alloc] init];
+    _numL.textColor = YJContentLabColor;
+    _numL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.contentView addSubview:_numL];;
+    
+    _pushtimeL =[[UILabel alloc] init];
+    _pushtimeL.textColor = YJContentLabColor;
+    _pushtimeL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.contentView addSubview:_pushtimeL];;
+    
+    _projectnameL =[[UILabel alloc] init];
+    _projectnameL.textColor = YJContentLabColor;
+    _projectnameL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.contentView addSubview:_projectnameL];;
+    
+    _adressL =[[UILabel alloc] init];
+    _adressL.textColor = YJContentLabColor;
+    _adressL.font = [UIFont systemFontOfSize:13 *SIZE];
+    [self.contentView addSubview:_adressL];;
+    
     _nameL = [[UILabel alloc] init];
     _nameL.textColor = YJContentLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
@@ -51,10 +72,38 @@
 
 - (void)masonryUI{
     
+    [_numL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(self.contentView).offset(55 *SIZE);
+        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+        make.bottom.equalTo(_pushtimeL.mas_top).offset(-17 *SIZE);
+    }];
+    
+    [_pushtimeL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_numL.mas_bottom).offset(17 *SIZE);
+        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+        make.bottom.equalTo(_projectnameL.mas_top).offset(-17 *SIZE);
+    }];
+    
+    [_projectnameL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_pushtimeL.mas_bottom).offset(17 *SIZE);
+        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+        make.bottom.equalTo(_adressL.mas_top).offset(-17 *SIZE);
+    }];
+    
+    [_adressL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_projectnameL.mas_bottom).offset(17 *SIZE);
+        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+        make.bottom.equalTo(_nameL.mas_top).offset(-17 *SIZE);
+    }];
+    
     [_nameL mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(self.contentView).offset(55 *SIZE);
+        make.top.equalTo(_adressL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
         make.bottom.equalTo(_genderL.mas_top).offset(-17 *SIZE);
     }];
