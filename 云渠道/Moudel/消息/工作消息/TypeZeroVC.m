@@ -142,7 +142,7 @@
             self.recommendView.timeL.attributedText = attr;
             [[UIApplication sharedApplication].keyWindow addSubview:self.recommendView];
         }else{
-//            [self showContent:resposeObject[@"msg"]];
+            
             self.failView.reasonL.text = resposeObject[@"msg"];
             self.failView.timeL.text = [_formatter stringFromDate:[NSDate date]];
             [[UIApplication sharedApplication].keyWindow addSubview:self.failView];
@@ -342,12 +342,20 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
+
+            [self alertControllerWithNsstring:@"分享失败" And:@"" WithDefaultBlack:^{
+                
+                [self.transmitView removeFromSuperview];
+                [self.recommendView removeFromSuperview];
+            }];
         }else{
             NSLog(@"response data is %@",data);
-            [self showContent:@"分享成功"];
-            [self.transmitView removeFromSuperview];
-            [self.recommendView removeFromSuperview];
+            [self alertControllerWithNsstring:@"分享成功" And:@"" WithDefaultBlack:^{
+                
+                [self.transmitView removeFromSuperview];
+                [self.recommendView removeFromSuperview];
+            }];
+            
         }
     }];
 }

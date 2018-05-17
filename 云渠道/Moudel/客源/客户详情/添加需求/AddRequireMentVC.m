@@ -571,7 +571,7 @@
                     
                     if ([vc isKindOfClass:[CustomDetailVC class]]) {
                         
-//                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
                         [self.navigationController popToViewController:vc animated:YES];
                     }
                 }

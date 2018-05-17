@@ -71,6 +71,11 @@
         [self GetFollowRequestMethod];
         
     });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self MatchRequest];
+        
+    });
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 

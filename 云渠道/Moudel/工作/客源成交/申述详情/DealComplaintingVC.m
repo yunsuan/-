@@ -100,6 +100,7 @@
             [_unCompleteTable reloadData];
         }
         else{
+            
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
@@ -123,7 +124,7 @@
         }
         else
         {
-             [self showContent:resposeObject[@"msg"]];
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         

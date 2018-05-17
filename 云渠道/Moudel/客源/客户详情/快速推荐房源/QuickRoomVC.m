@@ -664,7 +664,7 @@
         }];
     }else{
         
-        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"到访确认人不可推荐客户"];
     }
 }
 
