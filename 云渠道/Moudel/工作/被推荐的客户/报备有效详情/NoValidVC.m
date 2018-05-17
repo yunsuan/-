@@ -15,6 +15,7 @@
     NSArray *_data;
     NSArray *_titleArr;
     NSString *_clientid;
+    NSMutableDictionary *_dataDic;
     NSString *_endtime;
     NSString *_name;
     NSArray *_Pace;
@@ -52,16 +53,25 @@
                  NSLog(@"%@",resposeObject);
                  if ([resposeObject[@"code"] integerValue] ==200) {
                      
+                     _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
+                     [_dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                         
+                         if ([obj isKindOfClass:[NSNull class]]) {
+                             
+                             [_dataDic setObject:@"" forKey:key];
+                         }
+                     }];
+                     
                      NSString *sex = @"客户性别：无";
-                     if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
+                     if ([_dataDic[@"sex"] integerValue] == 1) {
                          sex = @"客户性别：男";
                      }
-                     if([resposeObject[@"data"][@"sex"] integerValue] == 2)
+                     if([_dataDic[@"sex"] integerValue] == 2)
                      {
                          sex =@"客户性别：女";
                      }
-                     _name = resposeObject[@"data"][@"name"];
-                     NSString *tel = resposeObject[@"data"][@"tel"];
+                     _name = _dataDic[@"name"];
+                     NSString *tel = _dataDic[@"tel"];
                      NSArray *arr = [tel componentsSeparatedByString:@","];
                      if (arr.count>0) {
                          tel = [NSString stringWithFormat:@"联系方式：%@",arr[0]];
@@ -69,13 +79,13 @@
                      else{
                          tel = @"联系方式：无";
                      }
-                     NSString *adress = resposeObject[@"data"][@"absolute_address"];
-                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"],adress];
+                     NSString *adress = _dataDic[@"absolute_address"];
+                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],adress];
                      
-                     _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_name],tel,[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"到访时间：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"接待人员：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"确认人电话：%@",resposeObject[@"data"][@"name"]]]];
+                     _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_name],tel,[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"接待人员：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"name"]]]];
                      
-                     _endtime = resposeObject[@"data"][@"timeLimit"];
-                     _Pace = resposeObject[@"data"][@"process"];
+                     _endtime = _dataDic[@"timeLimit"];
+                     _Pace = _dataDic[@"process"];
                      [_validTable reloadData];
                      
                  }
@@ -91,8 +101,8 @@
 -(void)initDataSouce
 {
     
+    _dataDic = [@{} mutableCopy];
     _titleArr = @[@"推荐信息",@"到访信息"];
-    _data = @[];
 }
 
 - (void)ActionPrintBtn:(UIButton *)btn{
@@ -123,15 +133,16 @@
     backview.backgroundColor = [UIColor whiteColor];
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
-    [backview addSubview:header];
+    
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
     if (section < 2) {
         
+        [backview addSubview:header];
         title.text = _titleArr[section];
+        [backview addSubview:title];
     }
-    [backview addSubview:title];
     return backview;
 }
 
