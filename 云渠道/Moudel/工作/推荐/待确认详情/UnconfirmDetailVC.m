@@ -78,7 +78,8 @@
                                                          }
               failure:^(NSError *error) {
                                                              
-                                                         }];
+                  
+              }];
 }
 
 - (void)viewDidLoad {
@@ -163,13 +164,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == [_data[indexPath.section] count]) {
+    if (indexPath.row == 0) {
         static NSString *CellIdentifier = @"CountDownCell";
         CountDownCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
             cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-//        [cell setcountdownbyday:0 hours:0 min:0 sec:30];
         [cell setcountdownbyendtime:_endtime];
         cell.frame = CGRectMake(0, 0, 360*SIZE, 75*SIZE);
         cell.countdownblock = ^{
@@ -183,7 +183,7 @@
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
+        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row - 1]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }

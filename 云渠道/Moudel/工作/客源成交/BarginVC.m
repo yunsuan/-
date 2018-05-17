@@ -732,6 +732,8 @@
     [_nomineeColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
     
     _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
+//    _MainTableView.estimatedRowHeight = 150 *SIZE;
+//    _MainTableView.rowHeight = UITableViewAutomaticDimension;
     _MainTableView.backgroundColor = YJBackColor;
     _MainTableView.delegate = self;
     _MainTableView.dataSource = self;

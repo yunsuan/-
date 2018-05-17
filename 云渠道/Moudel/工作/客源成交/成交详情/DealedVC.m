@@ -92,7 +92,7 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"成交信息",@"客户信息",@"项目信息"];
+    _titleArr = @[@"推荐编号",@"到访信息",@"成交信息"];
     _data = @[];
 }
 
@@ -121,15 +121,18 @@
     backview.backgroundColor = [UIColor whiteColor];
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
-    [backview addSubview:header];
+    
+    
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section < 4) {
+    if (section < 3) {
         
+        [backview addSubview:header];
         title.text = _titleArr[section];
+        [backview addSubview:title];
     }
-    [backview addSubview:title];
+    
     return backview;
 }
 
@@ -192,8 +195,6 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"成交详情";
     
-
-
     _dealTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _dealTable.rowHeight = UITableViewAutomaticDimension;
     _dealTable.estimatedRowHeight = 150 *SIZE;
