@@ -44,7 +44,13 @@
     
     _addressL.text = [NSString stringWithFormat:@"%@-%@",dataDic[@"district_name"],dataDic[@"absolute_address"]];
     
-    _rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",dataDic[@"sort"]];
+    if (dataDic[@"sort"]) {
+        
+        _rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",dataDic[@"sort"]];
+    }else{
+        
+        _rankView.rankL.text = [NSString stringWithFormat:@"佣金:无排名"];
+    }
     [_rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_rankView).offset(0);
