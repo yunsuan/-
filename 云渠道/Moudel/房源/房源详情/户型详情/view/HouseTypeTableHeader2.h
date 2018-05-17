@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class HouseTypeTableHeader2;
+
+typedef void(^HouseTypeTableHeader2Block)(void);
+
 @interface HouseTypeTableHeader2 : UITableViewHeaderFooterView
+
+@property (nonatomic, strong) HouseTypeTableHeader2Block houseTypeTableHeader2Block;
 
 @property (nonatomic, strong) UILabel *titleL;
 

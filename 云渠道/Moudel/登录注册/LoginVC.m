@@ -60,7 +60,7 @@
         
         UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
         line2.backgroundColor = YJ170Color;
-        [self.view addSubview:line2];
+//        [self.view addSubview:line2];
     }
     
 //    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];

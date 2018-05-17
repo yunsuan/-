@@ -56,8 +56,21 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self RequestMethod];
-    [self GetFollowRequestMethod];
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
+        
+        [self RequestMethod];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [self GetFollowRequestMethod];
+        
+    });
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
@@ -176,7 +189,7 @@
             
             _FollowArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"data"]];
             [_customDetailTable reloadData];
-        }        else{
+        }else{
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {

@@ -42,10 +42,7 @@
     [self initDataSource];
     [self initUI];
     
-    if (!_dataArr.count) {
-        
-        [self CityListRequest];
-    }
+    [self CityListRequest];
 }
 
 - (void)initDataSource{
@@ -160,7 +157,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.rightBtn.hidden = NO;
-    [self.rightBtn setTitle:@"保存" forState:UIControlStateNormal];
+    [self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
     [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
     [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];

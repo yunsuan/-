@@ -3069,6 +3069,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B040976ECCBAE7E833CAD51A /* Pods-云渠道.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "云渠道/云渠道.entitlements";
@@ -3093,6 +3094,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B4E233417D126BDD0E0282A9 /* Pods-云渠道.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "云渠道/云渠道.entitlements";

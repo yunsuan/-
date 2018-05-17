@@ -20,6 +20,14 @@
     return self;
 }
 
+- (void)ActionMoreBtn:(UIButton *)btn{
+    
+    if (self.houseTypeTableHeader2Block) {
+        
+        self.houseTypeTableHeader2Block();
+    }
+}
+
 - (void)initUI{
     
     self.contentView.backgroundColor = CH_COLOR_white;
@@ -32,7 +40,7 @@
     _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _moreBtn.frame = CGRectMake(287 *SIZE, 7 *SIZE, 65 *SIZE, 20 *SIZE);
     _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
-    //    [<#UIButton#> addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
+    [_moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_moreBtn setTitle:@"查看更多 >>" forState:UIControlStateNormal];
     [_moreBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
     [self.contentView addSubview:_moreBtn];

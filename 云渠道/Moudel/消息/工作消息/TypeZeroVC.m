@@ -310,6 +310,15 @@
             if (index == 0) {
                 
                 [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+            }else if (index == 1){
+                
+                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
+            }else if (index == 2){
+                
+                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+            }else{
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时不支持发送短信"];
             }
         };
     }

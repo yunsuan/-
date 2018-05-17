@@ -14,6 +14,7 @@
 #import "HouseTypeTableHeader.h"
 #import "HouseTypeTableHeader2.h"
 #import "BuildingAlbumVC.h"
+#import "CustomMatchListVC.h"
 
 @interface HouseTypeDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -227,6 +228,7 @@
     }else{
         
         HouseTypeTableHeader2 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HouseTypeTableHeader2"];
+        
         if (!header) {
             
             header = [[HouseTypeTableHeader2 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 33 *SIZE)];
@@ -240,6 +242,11 @@
             header.titleL.font = [UIFont systemFontOfSize:13 *SIZE];
             header.titleL.text = [NSString stringWithFormat:@"匹配的客户(%ld)",_matchList.count];
         }
+        header.houseTypeTableHeader2Block = ^{
+            
+            CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_matchList projectId:_projectId];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        };
         return header;
     }
 }
@@ -354,6 +361,8 @@
     }];
     
     _houseTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
+    _houseTable.estimatedRowHeight = 150 *SIZE;
+    _houseTable.rowHeight = UITableViewAutomaticDimension;
     _houseTable.backgroundColor = self.view.backgroundColor;
     _houseTable.delegate = self;
     _houseTable.dataSource = self;
