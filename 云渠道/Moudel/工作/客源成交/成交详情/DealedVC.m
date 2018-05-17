@@ -88,10 +88,7 @@
                      _endtime = _dataDic[@"timeLimit"];
                      _Pace = _dataDic[@"process"];
                      [_dealTable reloadData];
-                     
                  }
-                 
-                 
              }
              failure:^(NSError *error) {
                  
@@ -105,7 +102,6 @@
     
     _dataDic = [@{} mutableCopy];
     _titleArr = @[@"推荐编号",@"到访信息",@"成交信息"];
-    _data = @[];
 }
 
 - (void)ActionPrintBtn:(UIButton *)btn{
