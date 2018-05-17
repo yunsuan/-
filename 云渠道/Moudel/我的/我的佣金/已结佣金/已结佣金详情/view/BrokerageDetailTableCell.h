@@ -12,6 +12,14 @@
 
 @property (nonatomic, strong) UILabel *titleL;
 
+@property (nonatomic, strong) UILabel *numL;
+
+@property (nonatomic, strong) UILabel *pushtimeL;
+
+@property (nonatomic, strong) UILabel *projectnameL;
+
+@property (nonatomic, strong) UILabel *adressL;
+
 @property (nonatomic, strong) UILabel *nameL;
 
 @property (nonatomic, strong) UILabel *genderL;

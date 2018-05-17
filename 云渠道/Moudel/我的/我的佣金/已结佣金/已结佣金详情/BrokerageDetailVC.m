@@ -113,7 +113,11 @@
             cell = [[BrokerageDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.titleL.text = @"推荐客户";
+        cell.titleL.text = @"推荐信息";
+        cell.numL.text = [NSString stringWithFormat:@"推荐编号：%@",_data[@"client_id"]];
+        cell.pushtimeL.text = @"推荐时间";
+        cell.projectnameL.text = [NSString stringWithFormat:@"项目名称：%@",_data[@"project_name"]];
+        cell.adressL.text = [NSString stringWithFormat:@"项目地址：%@",_data[@"absolute_address"]];
         cell.nameL.text = [NSString stringWithFormat:@"姓名：%@",_data[@"name"]];
         NSString *sex = @"性别：无";
         if ([_data[@"sex"] integerValue] == 1) {
@@ -137,22 +141,36 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            cell.titleL.text = @"推荐项目";
-            cell.codeL.text = [NSString stringWithFormat:@"推荐编号：%@",_data[@"client_id"]];
-            cell.nameL.text = [NSString stringWithFormat:@"项目名称：%@",_data[@"project_name"]];
-            cell.houseTypeL.text = [NSString stringWithFormat:@"物业类型：%@",_data[@"property"]];
-            cell.addressL.text = [NSString stringWithFormat:@"项目地址：%@",_data[@"absolute_address"]];
+            cell.titleL.text = @"佣金信息";
             
-            cell.brokerTypeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"broker_type"]];
-            cell.priceL.text =  [NSString stringWithFormat:@"佣金金额：%@元",_data[@"broker_num"]];
-            cell.timeL.text = [NSString stringWithFormat:@"产生时间：%@",_data[@"visit_time"]];
+            cell.typeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"property"]];
+            
+            cell.moneyL.text = [NSString stringWithFormat:@"佣金金额：%@",_data[@"broker_num"]];
+            
+            if ([_data[@"broker_type"] isEqualToString:@"成交佣金"]) {
+                cell.propertyL.text = @"物业类型:";
+                cell.numL.text = @"房号:";
+                cell.tmoneyL.text = @"成交总价:";
+                cell.areaL.text = @"套内面积:";
+                cell.statuL.text = @"成交状态:";
+                cell.timeL.text = @"成交时间:";
+            }
+            else if ([_data[@"broker_type"] isEqualToString:@"到访佣金"]){
+                cell.propertyL.text = @"到访确认时间:";
+            }
+            else{
+                
+                cell.propertyL.text = @"到访时间:";
+            }
+
+          
             if ([_type isEqualToString:@"1"]) {
-                cell.endTimeL.text = [NSString stringWithFormat:@"结佣时间：%@",_data[@"pay_time"]];
+       
                 cell.statusImg.image = [UIImage imageNamed:@"seal_knot"];
             }
             else
             {
-                cell.endTimeL.text =@"";
+               
                 cell.statusImg.image = [UIImage imageNamed:@"nocommission"];
             }
             
