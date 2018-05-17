@@ -47,7 +47,7 @@
 {
     [BaseRequest GET:QRCode_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
-            [self creatQRCodeWith:resposeObject[@""]];
+            [self creatQRCodeWith:resposeObject[@"data"][@"url"]];
         }
         else{
             [self creatQRCodeWith:@"http://wwww.ccsoft.com.cn"];
@@ -126,7 +126,7 @@
     
     _YSlable = [[UILabel alloc]initWithFrame:CGRectMake(0, 145*SIZE, 267 *SIZE, 15*SIZE)];
     _YSlable.font = [UIFont systemFontOfSize:12*SIZE];
-    _YSlable.text = [NSString stringWithFormat:@"云算编号：%@",[UserModelArchiver InfoUnarchive].account];
+    _YSlable.text = [NSString stringWithFormat:@"云算号：%@",[UserModelArchiver InfoUnarchive].account];
     _YSlable.textColor =YJContentLabColor;
     _YSlable.textAlignment = NSTextAlignmentCenter;
     [self.whiteView addSubview:_YSlable];
