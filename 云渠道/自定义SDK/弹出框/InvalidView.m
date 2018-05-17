@@ -30,8 +30,19 @@
                             };
     [BaseRequest POST:ConfirmDisabled_URL parameters:param success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
-        if ([resposeObject[@"code"] integerValue]==200) {
-                [self removeFromSuperview];
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self removeFromSuperview];
+            if (self.invalidViewBlock) {
+                
+                self.invalidViewBlock();
+            }
+        }else{
+            
+            if (self.invalidViewBlockFail) {
+                
+                self.invalidViewBlockFail(resposeObject[@"msg"]);
+            }
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
@@ -55,7 +66,7 @@
 
 -(void)action_type
 {
-    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.frame WithData:[UserModelArchiver unarchive].Configdic[@"24"][@"param"]];
+    SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.frame WithData:[UserModelArchiver unarchive].Configdic[@"18"][@"param"]];
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         _typeBtn.content.text = MC;
         _type_id = ID;

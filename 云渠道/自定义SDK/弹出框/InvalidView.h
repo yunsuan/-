@@ -12,7 +12,17 @@
 #import "SinglePickView.h"
 #import "DateChooseView.h"
 
+@class InvalidView;
+
+typedef void(^InvalidViewBlock)(void);
+
+typedef void(^InvalidViewBlockFail)(NSString *str);
+
 @interface InvalidView : UIView
+
+@property (nonatomic, copy) InvalidViewBlockFail invalidViewBlockFail;
+
+@property (nonatomic, copy) InvalidViewBlock invalidViewBlock;
 
 @property (nonatomic , strong) NSString *client_id;
 

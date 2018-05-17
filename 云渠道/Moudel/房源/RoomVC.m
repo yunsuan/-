@@ -724,7 +724,14 @@
     NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
     [cell settagviewWithdata:tempArr3];
     
-    cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",model.sort];
+    
+    if (model.sort) {
+        
+        cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",model.sort];
+    }else{
+        
+        cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:无排名"];
+    }
     [cell.rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(cell.rankView).offset(0);

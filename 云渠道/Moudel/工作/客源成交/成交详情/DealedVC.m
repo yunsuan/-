@@ -88,6 +88,9 @@
                      _endtime = _dataDic[@"timeLimit"];
                      _Pace = _dataDic[@"process"];
                      [_dealTable reloadData];
+                 }else{
+                     
+                     [self showContent:resposeObject[@"msg"]];
                  }
              }
              failure:^(NSError *error) {

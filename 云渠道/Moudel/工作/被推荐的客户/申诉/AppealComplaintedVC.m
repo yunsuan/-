@@ -92,7 +92,7 @@
             NSString *adress = _dataDic[@"absolute_address"];
             adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],adress];
             
-            _data = @[@[[NSString stringWithFormat:@"申诉类型：%@",_dataDic[@""]],[NSString stringWithFormat:@"申诉描述：%@",_dataDic[@""]],[NSString stringWithFormat:@"处理状态：%@",_dataDic[@""]],[NSString stringWithFormat:@"处理结果：%@",_dataDic[@""]]],@[[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]],[NSString stringWithFormat:@"无效描述：%@",_dataDic[@"disabled_reason"]],[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"disabled_time"]]],@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@人",_dataDic[@"visit_num"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"process"][1][@"time"]],[NSString stringWithFormat:@"置业顾问：%@",_dataDic[@"property_advicer_wish"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"butter_tel"]]]];
+            _data = @[@[[NSString stringWithFormat:@"申诉类型：%@",_dataDic[@"type"]],[NSString stringWithFormat:@"申诉描述：%@",_dataDic[@"comment"]],[NSString stringWithFormat:@"处理状态：%@",_dataDic[@"state"]],[NSString stringWithFormat:@"处理结果：%@",_dataDic[@"solve_info"]]],@[[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]],[NSString stringWithFormat:@"无效描述：%@",_dataDic[@"disabled_reason"]],[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"disabled_time"]]],@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"recommend_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@人",_dataDic[@"visit_num"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"visit_time"]],[NSString stringWithFormat:@"置业顾问：%@",_dataDic[@"property_advicer_real"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"butter_tel"]]]];
             
             _endtime = _dataDic[@"timeLimit"];
             _Pace = _dataDic[@"process"];
@@ -118,7 +118,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 3) {
+    if (section == 4) {
         
         return _Pace.count;
     }
@@ -139,7 +139,7 @@
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section < 3) {
+    if (section < 4) {
         
         title.text = _titleArr[section];
         [backview addSubview:header];
@@ -151,7 +151,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    if (section < 3) {
+    if (section < 4) {
         
         return 53*SIZE;
     }
@@ -169,7 +169,7 @@
 {
     
     
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {

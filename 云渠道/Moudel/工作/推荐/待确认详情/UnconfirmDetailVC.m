@@ -234,7 +234,16 @@
     if (!_invalidView) {
         
         _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-        
+//        _invalidView
+        WS(weakSelf);
+        _invalidView.invalidViewBlockFail = ^(NSString *str) {
+            
+            [weakSelf alertControllerWithNsstring:@"温馨提示" And:str];
+        };
+        _invalidView.invalidViewBlock = ^{
+          
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        };
     }
     return _invalidView;
 }
