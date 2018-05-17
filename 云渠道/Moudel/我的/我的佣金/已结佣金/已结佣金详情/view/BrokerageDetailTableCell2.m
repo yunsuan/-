@@ -136,29 +136,29 @@
         make.left.equalTo(self.contentView).offset(28 *SIZE);
         make.top.equalTo(_houseTypeL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
-        make.bottom.equalTo(_brokerTypeL.mas_top).offset(-17 *SIZE);
+        make.bottom.equalTo(_unitL.mas_top).offset(-17 *SIZE);
     }];
     
-//    [_unitL mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(self.contentView).offset(28 *SIZE);
-//        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
-//        make.right.equalTo(self.contentView).offset(-28 *SIZE);
-//        make.bottom.equalTo(_contactL.mas_top).offset(-17 *SIZE);
-//    }];
-//
-//    [_contactL mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(self.contentView).offset(28 *SIZE);
-//        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
-//        make.right.equalTo(self.contentView).offset(-28 *SIZE);
-//        make.bottom.equalTo(_brokerTypeL.mas_top).offset(-17 *SIZE);
-//    }];
+    [_unitL mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
+        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+        make.bottom.equalTo(_contactL.mas_top).offset(-17 *SIZE);
+    }];
+
+    [_contactL mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.equalTo(self.contentView).offset(28 *SIZE);
+        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
+        make.right.equalTo(self.contentView).offset(-28 *SIZE);
+        make.bottom.equalTo(_brokerTypeL.mas_top).offset(-17 *SIZE);
+    }];
     
     [_brokerTypeL mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(28 *SIZE);
-        make.top.equalTo(_addressL.mas_bottom).offset(17 *SIZE);
+        make.top.equalTo(_contactL.mas_bottom).offset(17 *SIZE);
         make.right.equalTo(self.contentView).offset(-28 *SIZE);
         make.bottom.equalTo(_priceL.mas_top).offset(-17 *SIZE);
     }];
