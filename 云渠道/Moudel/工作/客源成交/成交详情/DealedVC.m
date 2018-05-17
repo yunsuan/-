@@ -84,7 +84,7 @@
                      NSString *adress = _dataDic[@"absolute_address"];
                      adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"]];
 
-                     _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_name],tel,[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"接待人员：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"name"]]],@[[NSString stringWithFormat:@"房号：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"成交总价：%@元",_dataDic[@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",_dataDic[@"inner_area"]],[NSString stringWithFormat:@"成交状态：%@",_dataDic[@"state_change_time"]],[NSString stringWithFormat:@"成交时间：%@",_dataDic[@"state_change_time"]]]];
+                     _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@人",_dataDic[@"visit_num"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"process"][1][@"time"]],[NSString stringWithFormat:@"置业顾问：%@",_dataDic[@"property_advicer_wish"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"butter_tel"]]],@[[NSString stringWithFormat:@"房号：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"成交总价：%@元",_dataDic[@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",_dataDic[@"inner_area"]],[NSString stringWithFormat:@"成交状态：%@",_dataDic[@"state_change_time"]],[NSString stringWithFormat:@"成交时间：%@",_dataDic[@"state_change_time"]]]];
                      _endtime = _dataDic[@"timeLimit"];
                      _Pace = _dataDic[@"process"];
                      [_dealTable reloadData];
@@ -101,7 +101,7 @@
 {
     
     _dataDic = [@{} mutableCopy];
-    _titleArr = @[@"推荐编号",@"到访信息",@"成交信息"];
+    _titleArr = @[@"推荐信息",@"到访信息",@"成交信息"];
 }
 
 - (void)ActionPrintBtn:(UIButton *)btn{

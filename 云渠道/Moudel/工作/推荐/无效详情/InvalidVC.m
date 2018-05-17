@@ -106,14 +106,19 @@
             NSString *adress = _dataDic[@"absolute_address"];
             adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],adress];
             
-            _data = @[@[[NSString stringWithFormat:@"无效类型：%@",_dataDic[@""]],[NSString stringWithFormat:@"无效描述：%@",_dataDic[@""]],[NSString stringWithFormat:@"无效时间：%@",_dataDic[@""]]],@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_name],tel,[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress,[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel]];
+            _data = @[@[[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]],[NSString stringWithFormat:@"无效描述：%@",_dataDic[@"disabled_reason"]],[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"disabled_time"]]],@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress,[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel]];
             [_invalidTable reloadData];
         }
         else{
+            
+            _complaintBtn.hidden = YES;
+            _recommendBtn.hidden = YES;
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
+        _complaintBtn.hidden = YES;
+        _recommendBtn.hidden = YES;
         NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];

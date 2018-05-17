@@ -18,6 +18,9 @@
     NSString *_clientId;
     NSString *_appealId;
     NSMutableDictionary *_dataDic;
+    NSString *_endtime;
+    NSString *_name;
+    NSArray *_Pace;
 }
 @property (nonatomic , strong) UITableView *unCompleteTable;
 
@@ -48,9 +51,7 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"处理信息",@"申诉信息",@"无效信息",@"到访确认人信息"];
-    _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    
+    _titleArr = @[@"申诉信息",@"无效信息",@"推荐信息",@"到访信息"];
     [self AppealRequestMethod];
 }
 
@@ -70,6 +71,32 @@
                     [_dataDic setObject:@"" forKey:key];
                 }
             }];
+            
+            NSString *sex = @"客户性别：无";
+            if ([_dataDic[@"sex"] integerValue] == 1) {
+                sex = @"客户性别：男";
+            }
+            if([_dataDic[@"sex"] integerValue] == 2)
+            {
+                sex =@"客户性别：女";
+            }
+            _name = _dataDic[@"name"];
+            NSString *tel = _dataDic[@"tel"];
+            NSArray *arr = [tel componentsSeparatedByString:@","];
+            if (arr.count>0) {
+                tel = [NSString stringWithFormat:@"联系方式：%@",arr[0]];
+            }
+            else{
+                tel = @"联系方式：无";
+            }
+            NSString *adress = _dataDic[@"absolute_address"];
+            adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],adress];
+            
+            _data = @[@[[NSString stringWithFormat:@"申诉类型：%@",_dataDic[@""]],[NSString stringWithFormat:@"申诉描述：%@",_dataDic[@""]],[NSString stringWithFormat:@"处理状态：%@",_dataDic[@""]],[NSString stringWithFormat:@"处理结果：%@",_dataDic[@""]]],@[[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]],[NSString stringWithFormat:@"无效描述：%@",_dataDic[@"disabled_reason"]],[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"disabled_time"]]],@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@人",_dataDic[@"visit_num"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"process"][1][@"time"]],[NSString stringWithFormat:@"置业顾问：%@",_dataDic[@"property_advicer_wish"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"butter_tel"]]]];
+            
+            _endtime = _dataDic[@"timeLimit"];
+            _Pace = _dataDic[@"process"];
+            
             [_unCompleteTable reloadData];
         }
         else
@@ -110,21 +137,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 4) {
+    if (section == 3) {
         
-        return 6;
-    }else if (section == 0){
-        
-        return 1;
-    }else if (section == 1){
-        
-        return 2;
-    }else if (section == 2){
-        
-        return 2;
-    }else{
-        
-        return 3;
+        return _Pace.count;
+    }
+    else
+    {
+        NSArray *arr = _data[section];
+        return arr.count;
     }
 }
 
@@ -134,44 +154,39 @@
     backview.backgroundColor = [UIColor whiteColor];
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
-    [backview addSubview:header];
+    
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    //    title.text = _titleArr[section];
-    if (section == 0) {
-        
-        title.text = [NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]];
-    }else{
+    if (section < 3) {
         
         title.text = _titleArr[section];
+        [backview addSubview:header];
+        [backview addSubview:title];
     }
-    [backview addSubview:title];
     return backview;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 53*SIZE;
+    if (section < 3) {
+        
+        return 53*SIZE;
+    }
+    return 0;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_dataDic.count) {
-        
-        return 5;
-    }else{
-        
-        return 0;
-    }
     
+    return _data.count ? _Pace.count?_data.count + 1:_data.count:0;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 4 && indexPath.row > 2) {
+    if (indexPath.section == 3) {
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
@@ -180,30 +195,15 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        NSArray *arr = _dataDic[@"process"];
-        if (arr.count == 3) {
-            
-            cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
-        }else{
-            
-            if (indexPath.row < 5) {
-                
-                cell.titleL.text = [NSString stringWithFormat:@"%@ —— %@：%@",arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"process_name"],arr[indexPath.row - 3][@"time"]];
-            }else{
-                
-                cell.titleL.text = @"处理完成";
-                cell.circleImg.image = [UIImage imageNamed:@"progressbar_gray"];
-            }
-        }
-        
-        if (indexPath.row == 3) {
+        cell.titleL.text = [NSString stringWithFormat:@"%@时间：%@",_Pace[indexPath.row][@"process_name"],_Pace[indexPath.row][@"time"]];
+        if (indexPath.row == 0) {
             
             cell.upLine.hidden = YES;
         }else{
             
             cell.upLine.hidden = NO;
         }
-        if (indexPath.row == 5) {
+        if (indexPath.row == _Pace.count - 1) {
             
             cell.downLine.hidden = YES;
         }else{
@@ -219,54 +219,7 @@
         if (!cell) {
             cell = [[InfoDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        if (indexPath.section == 0) {
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"recommend_time"]]];
-        }else if (indexPath.section == 1){
-            
-            if (indexPath.row == 0) {
-                
-                NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"状态：%@",_dataDic[@"state"]]];
-                [attr addAttribute:NSFontAttributeName value:YJBlueBtnColor range:NSMakeRange(3, attr.length - 3)];
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"状态：%@",_dataDic[@"state"]]];
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"处理描述：%@",_dataDic[@"solve_info"]]];
-            }
-        }else if (indexPath.section == 2){
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"申诉类型：%@",_dataDic[@"type"]]];
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"申诉描述：%@",_dataDic[@"comment"]]];
-            }
-        }else if (indexPath.section == 3){
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效类型：%@",_dataDic[@"disabled_state"]]];
-            }else if (indexPath.row == 1){
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
-            }else{
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"失效时间：%@",_dataDic[@"recommend_time"]]];
-            }
-        }else if (indexPath.section == 4){
-            
-            if (indexPath.row == 0) {
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"recommend_time"]]];
-            }else if (indexPath.row == 1){
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"recommend_time"]]];
-            }else if (indexPath.row == 2){
-                
-                [cell SetCellContentbystring:[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"visit_time"]]];
-            }
-        }
+        [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -276,10 +229,7 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"申诉详情";
-    
-    
 
-    
     _unCompleteTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _unCompleteTable.rowHeight = UITableViewAutomaticDimension;
     _unCompleteTable.estimatedRowHeight = 150 *SIZE;
