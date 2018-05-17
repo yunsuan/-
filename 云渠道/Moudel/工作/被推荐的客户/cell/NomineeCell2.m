@@ -33,7 +33,7 @@
     _nameL.text = dataDic[@"name"];
     _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
     _projectL.text = [NSString stringWithFormat:@"项目名称：%@",dataDic[@"project_name"]];
-    _contactL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"property_advicer_real"]];
+    _contactL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"property_advicer_wish"]];
     _reportTimeL.text = [NSString stringWithFormat:@"报备日期：%@",dataDic[@"allot_time"]];
     _statusL.text = dataDic[@"current_state"];
 }

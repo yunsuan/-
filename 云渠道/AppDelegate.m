@@ -352,7 +352,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
-//        [self GotoMessVC];
         [self GotoHome];
     }
     else {
@@ -384,7 +383,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
     }else{
         
-//        [self GotoMessVC];
         [self GotoHome];
     }
 }
