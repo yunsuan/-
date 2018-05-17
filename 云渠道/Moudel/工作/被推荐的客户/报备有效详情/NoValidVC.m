@@ -52,8 +52,6 @@
                  NSLog(@"%@",resposeObject);
                  if ([resposeObject[@"code"] integerValue] ==200) {
                      
-                     _titleArr = @[@"推荐信息",@"到访信息"];
-
                      NSString *sex = @"客户性别：无";
                      if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
                          sex = @"客户性别：男";

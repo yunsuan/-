@@ -52,10 +52,7 @@
              success:^(id resposeObject) {
                  NSLog(@"%@",resposeObject);
                  if ([resposeObject[@"code"] integerValue] ==200) {
-                     
-//                     _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"成交信息",@"客户信息",@"项目信息"];
-                     _titleArr = @[@"推荐信息",@"到访信息",@"成交信息"];
-                     
+
                      NSString *sex = @"客户性别：无";
                      if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
                          sex = @"客户性别：男";
@@ -75,8 +72,7 @@
                      }
                      NSString *adress = resposeObject[@"data"][@"absolute_address"];
                      adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"]];
-                     
-//                     _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],[NSString stringWithFormat:@"到访时间：%@",resposeObject[@"data"][@"visit_time"]]],@[[NSString stringWithFormat:@"合同编号：%@",resposeObject[@"data"][@"contract_num"]],[NSString stringWithFormat:@"成交总价：%@元",resposeObject[@"data"][@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",resposeObject[@"data"][@"inner_area"]],[NSString stringWithFormat:@"成交时间：%@",resposeObject[@"data"][@"state_change_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]]];
+
                      _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_name],tel,[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"到访时间：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"接待人员：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"到访确认人：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"确认人电话：%@",resposeObject[@"data"][@"name"]]],@[[NSString stringWithFormat:@"房号：%@",resposeObject[@"data"][@"name"]],[NSString stringWithFormat:@"成交总价：%@元",resposeObject[@"data"][@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",resposeObject[@"data"][@"inner_area"]],[NSString stringWithFormat:@"成交状态：%@",resposeObject[@"data"][@"state_change_time"]],[NSString stringWithFormat:@"成交时间：%@",resposeObject[@"data"][@"state_change_time"]]]];
                      _endtime = resposeObject[@"data"][@"timeLimit"];
                      _Pace = resposeObject[@"data"][@"process"];
@@ -150,8 +146,6 @@
 {
     
     return _data.count ? _Pace.count?_data.count + 1:_data.count:0;
-//    return _Pace.count ? _data.count + 1: _data.count;
-    
 }
 
 
