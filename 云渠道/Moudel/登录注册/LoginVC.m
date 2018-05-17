@@ -43,14 +43,14 @@
     [self.view addSubview:self.PassWord];
 //    if ([WXApi isWXAppInstalled]) {
     
-        self.QQBtn.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-        [self.view addSubview:self.WEIBOBTN];
+//        self.QQBtn.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+//        [self.view addSubview:self.WEIBOBTN];
 //    }else{
 //
 //        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
 //
 //    }
-    [self.view addSubview:self.QQBtn];
+//    [self.view addSubview:self.QQBtn];
     [self.view addSubview:self.LoginBtn];
     [self.view addSubview:self.FindPassWordBtn];
     for (int i = 0; i<2; i++) {
@@ -63,11 +63,11 @@
         [self.view addSubview:line2];
     }
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
-    label.textColor = YJ170Color;
-    label.font = [UIFont systemFontOfSize:13 *SIZE];
-    label.text = @"第三方账号登录";
-    [self.view addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
+//    label.textColor = YJ170Color;
+//    label.font = [UIFont systemFontOfSize:13 *SIZE];
+//    label.text = @"第三方账号登录";
+//    [self.view addSubview:label];
 }
 
 -(void)Register
