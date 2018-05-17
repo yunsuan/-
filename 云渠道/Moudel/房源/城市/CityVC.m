@@ -48,8 +48,8 @@
 - (void)initDataSource{
     
     _cityArr = [@[] mutableCopy];
-    _dataArr = [UserModel defaultModel].cityArr;
-    _nameArr = [UserModel defaultModel].groupArr;
+//    _dataArr = [UserModel defaultModel].cityArr;
+//    _nameArr = [UserModel defaultModel].groupArr;
 }
 
 - (void)CityListRequest{

@@ -69,6 +69,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldEditChanged:) name:@"UITextFieldTextDidChangeNotification" object:_name.textfield];
     self.navBackgroundView.hidden = NO;
     if (_model.client_id) {
         
@@ -181,20 +182,6 @@
 
 #pragma mark -- TextFieldDelegate
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
-    if (textField == _name.textfield) {
-        if (string.length == 0) return YES;
-        
-        NSInteger existedLength = textField.text.length;
-        NSInteger selectedLength = range.length;
-        NSInteger replaceLength = string.length;
-        if (existedLength - selectedLength + replaceLength > 5) {
-            return NO;
-        }
-    }
-    return YES;
-}
 
 -(void)initUI
 {
@@ -223,7 +210,7 @@
     namelab.textColor = YJTitleLabColor;
     [_scrollview addSubview:namelab];
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
-    _name.textfield.placeholder = @"必填";
+    _name.textfield.placeholder = @"必填(少于5个字)";
     _name.textfield.text = _model.name;
     _name.textfield.delegate = self;
     [_scrollview addSubview:_name];
@@ -649,6 +636,15 @@
         
         [self alertControllerWithNsstring:@"温馨提示" And:@"请不要输入相同电话号码" WithDefaultBlack:^{
             
+            return ;
+        }];
+    }
+    
+    if (_name.textfield.text.length > 5) {
+        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"姓名不能超过5个字" WithDefaultBlack:^{
+            
+            return ;
         }];
     }
     
