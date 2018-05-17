@@ -51,10 +51,7 @@
 //
 //    }
     [self.view addSubview:self.QQBtn];
-    
-//    [self.view addSubview:self.QuickLoginBtn];
     [self.view addSubview:self.LoginBtn];
-//    [self.view addSubview:self.ProtocolBtn];
     [self.view addSubview:self.FindPassWordBtn];
     for (int i = 0; i<2; i++) {
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
@@ -139,8 +136,7 @@
     }];
 }
 
-// 在需要进行获取用户信息的UIViewController中加入如下代码
-#import <UMShare/UMShare.h>
+
 - (void)getAuthWithUserInfoFromWechat
 {
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
