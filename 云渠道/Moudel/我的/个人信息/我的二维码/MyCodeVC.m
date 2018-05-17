@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) UIImageView *codeImg;
 
+@property (nonatomic , strong) UILabel *YSlable;
+
 @property (nonatomic, strong) UIView *whiteView;
 
 @property (nonatomic, strong) TransmitView *transmitView;
@@ -34,6 +36,28 @@
     [self initUI];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self post];
+}
+
+
+-(void)post
+{
+    [BaseRequest GET:QRCode_URL parameters:nil success:^(id resposeObject) {
+        if ([resposeObject[@"code"] integerValue]==200) {
+            [self creatQRCodeWith:resposeObject[@"data"][@"url"]];
+        }
+        else{
+            [self creatQRCodeWith:@"http://wwww.ccsoft.com.cn"];
+        }
+    } failure:^(NSError *error) {
+        [self creatQRCodeWith:@"http://wwww.ccsoft.com.cn"];
+    }];
+    
+}
+
 - (void)ActionRightBtn:(UIButton *)btn{
     
     [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
@@ -44,14 +68,14 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"我的二维码";
     self.rightBtn.hidden = NO;
-    [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
-    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
-    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
-    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
+//    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
+//    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+//    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     self.view.backgroundColor = COLOR(67, 67, 67, 1);
     
-    _whiteView = [[UIView alloc] initWithFrame:CGRectMake(46 *SIZE, 37 *SIZE + NAVIGATION_BAR_HEIGHT, 267 *SIZE, 333 *SIZE)];
+    _whiteView = [[UIView alloc] initWithFrame:CGRectMake(46 *SIZE, 100 *SIZE + NAVIGATION_BAR_HEIGHT, 267 *SIZE, 350 *SIZE)];
     _whiteView.backgroundColor = CH_COLOR_white;
     [self.view addSubview:_whiteView];
     
@@ -88,7 +112,7 @@
     }
     [_tagImg addSubview:_genderImg];
     
-    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(36 *SIZE, 11 *SIZE, 50 *SIZE, 12 *SIZE)];
+    _nameL = [[UILabel alloc] initWithFrame:CGRectMake(36 *SIZE, 11 *SIZE, 50 *SIZE, 14 *SIZE)];
     _nameL.textColor = CH_COLOR_white;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
     if ([UserInfoModel defaultModel].name) {
@@ -100,8 +124,15 @@
     }
     [_tagImg addSubview:_nameL];
     
-    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(50 *SIZE, 148 *SIZE, 167 *SIZE, 167 *SIZE)];
+    _YSlable = [[UILabel alloc]initWithFrame:CGRectMake(0, 145*SIZE, 267 *SIZE, 15*SIZE)];
+    _YSlable.font = [UIFont systemFontOfSize:12*SIZE];
+    _YSlable.text = [NSString stringWithFormat:@"云算号：%@",[UserModelArchiver InfoUnarchive].account];
+    _YSlable.textColor =YJContentLabColor;
+    _YSlable.textAlignment = NSTextAlignmentCenter;
+    [self.whiteView addSubview:_YSlable];
+    _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(50 *SIZE, 168 *SIZE, 167 *SIZE, 167 *SIZE)];
     _codeImg.backgroundColor = [UIColor blackColor];
+    
     [_whiteView addSubview:_codeImg];
 }
 
@@ -148,5 +179,35 @@
         }
     }];
 }
+
+-(void)creatQRCodeWith:(NSString *)urlString
+{
+    // 1.实例化二维码滤镜
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    
+    // 2.恢复滤镜的默认属性 (因为滤镜有可能保存上一次的属性)
+    [filter setDefaults];
+    
+    NSData *data  = [urlString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // 4.通过KVO设置滤镜, 传入data, 将来滤镜就知道要通过传入的数据生成二维码
+    [filter setValue:data forKey:@"inputMessage"];
+    
+    // 5.生成二维码
+    CIImage *outputImage = filter.outputImage;
+    CGFloat scale = _codeImg.frame.size.width/ CGRectGetWidth(outputImage.extent);
+    CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale); // scale 为放大倍数
+    CIImage *transformImage = [outputImage imageByApplyingTransform:transform];
+    
+    // 保存
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef imageRef = [context createCGImage:transformImage fromRect:transformImage.extent];
+    UIImage *qrCodeImage = [UIImage imageWithCGImage:imageRef];
+    
+    // 6.设置生成好得二维码到imageView上
+  _codeImg.image  = qrCodeImage;
+
+}
+
 
 @end

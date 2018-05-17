@@ -110,6 +110,10 @@ static NSString *const GetAuthInfo_URL = @"agent/personal/getAuthInfo";
 //取消公司认证
 static NSString *const CancelAuth_URL = @"agent/personal/cancelAuth";
 
+//我的二维码
+
+static NSString *const QRCode_URL = @"agent/personal/qrcodeUrl";
+
 #pragma mark ---  客源  ---
 
 
