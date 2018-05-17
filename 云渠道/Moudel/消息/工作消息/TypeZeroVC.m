@@ -109,7 +109,6 @@
         NSLog(@"%@",resposeObject);
         
         if ([resposeObject[@"code"] integerValue] == 200) {
-            
             self.recommendView.codeL.text = [NSString stringWithFormat:@"推荐编号:%@",_client_id];
             self.recommendView.nameL.text = [NSString stringWithFormat:@"客户：%@",_dataDic[@"name"]];
             self.recommendView.projectL.text = [NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]];
