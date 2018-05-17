@@ -61,6 +61,8 @@
 		0C1A013D20AC3F7700665BB9 /* ComfirmInValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */; };
 		0C1A014020AC566100665BB9 /* DealValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013F20AC566100665BB9 /* DealValidVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
+		0C2D02AE20AD51A7002F1B4E /* AppealComplaintingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D02AD20AD51A7002F1B4E /* AppealComplaintingVC.m */; };
+		0C2D02B120AD51BA002F1B4E /* AppealComplaintedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D02B020AD51BA002F1B4E /* AppealComplaintedVC.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
 		0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB9207E01510058406D /* CustomRequireModel.m */; };
 		0C342FD02080ACD50058406D /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FCF2080ACD50058406D /* UserInfoModel.m */; };
@@ -399,6 +401,10 @@
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
 		0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader3.m; sourceTree = "<group>"; };
+		0C2D02AC20AD51A7002F1B4E /* AppealComplaintingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppealComplaintingVC.h; sourceTree = "<group>"; };
+		0C2D02AD20AD51A7002F1B4E /* AppealComplaintingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppealComplaintingVC.m; sourceTree = "<group>"; };
+		0C2D02AF20AD51BA002F1B4E /* AppealComplaintedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppealComplaintedVC.h; sourceTree = "<group>"; };
+		0C2D02B020AD51BA002F1B4E /* AppealComplaintedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppealComplaintedVC.m; sourceTree = "<group>"; };
 		0C342FB5207DEB540058406D /* BaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		0C342FB6207DEB540058406D /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		0C342FB8207E01510058406D /* CustomRequireModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomRequireModel.h; sourceTree = "<group>"; };
@@ -1224,6 +1230,17 @@
 				0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */,
 			);
 			path = "申请项目";
+			sourceTree = "<group>";
+		};
+		0C2D02AB20AD5178002F1B4E /* 申诉 */ = {
+			isa = PBXGroup;
+			children = (
+				0C2D02AC20AD51A7002F1B4E /* AppealComplaintingVC.h */,
+				0C2D02AD20AD51A7002F1B4E /* AppealComplaintingVC.m */,
+				0C2D02AF20AD51BA002F1B4E /* AppealComplaintedVC.h */,
+				0C2D02B020AD51BA002F1B4E /* AppealComplaintedVC.m */,
+			);
+			path = "申诉";
 			sourceTree = "<group>";
 		};
 		0C3AD5502068E17B0059CE02 /* view */ = {
@@ -2053,6 +2070,7 @@
 		105E18E3206B65E90031558D /* 被推荐的客户 */ = {
 			isa = PBXGroup;
 			children = (
+				0C2D02AB20AD5178002F1B4E /* 申诉 */,
 				0C96D9F4209C52CF00B6A8B8 /* 报备有效详情 */,
 				0CF04F6D207C82F700A45F4A /* 被推荐失效详情 */,
 				0CF04F59207B5B7500A45F4A /* 完善客户信息 */,
@@ -2641,6 +2659,7 @@
 				0C0BED2320A18F7A005A16A1 /* ComplaintCell.m in Sources */,
 				0CBD859920872C8500E7B183 /* CustomTableHeader3.m in Sources */,
 				0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */,
+				0C2D02B120AD51BA002F1B4E /* AppealComplaintedVC.m in Sources */,
 				0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */,
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
 				100FD892209960CC00D02EAC /* MapVC.m in Sources */,
@@ -2780,6 +2799,7 @@
 				0CC19CFA206E21110007CC5F /* SelectCompanyVC.m in Sources */,
 				1044B40420A05179002D9BAE /* TypeZeroVC.m in Sources */,
 				0C07BFD82060FB1C007F31EC /* CustomerTableModel.m in Sources */,
+				0C2D02AE20AD51A7002F1B4E /* AppealComplaintingVC.m in Sources */,
 				0CF04F222079AAE500A45F4A /* RoomDetailTableCell7.m in Sources */,
 				0CB6BB082074C6DE00921C75 /* HouseHeaderCollCell.m in Sources */,
 				0CBD858C2085F90500E7B183 /* RoomProjectVC.m in Sources */,

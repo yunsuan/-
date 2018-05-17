@@ -18,6 +18,8 @@
     NSArray *_titleArr;
     NSString *_clientId;
     NSMutableDictionary *_dataDic;
+    NSString *_endtime;
+    NSString *_name;
 }
 
 @property (nonatomic , strong) UITableView *invalidTable;
@@ -49,15 +51,7 @@
 -(void)initDateSouce
 {
     
-    _data = @[@"项目名称：凤凰国际",@"项目地址：dafdsfasdfasdfsadfasfasfasdf高新区-天府三街-000号",@"推荐时间：2017-10-23  19:00:00"];
-    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
-        
-        _titleArr = @[@"推荐编号",@"到访信息",@"失效信息",@"客户信息",@"项目信息",@"到访确认人信息"];
-    }else{
-        
-        _titleArr = @[@"推荐编号",@"到访信息",@"失效信息",@"客户信息",@"项目信息",@"推荐人信息"];
-    }
-    
+    _titleArr = @[@"无效信息",@"推荐信息",@"到访信息"];
     [self RequestMethod];
 }
 
@@ -70,14 +64,47 @@
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
+            
+            [_dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [_dataDic setObject:@"" forKey:key];
+                }
+            }];
+            
+            NSString *sex = @"客户性别：无";
+            if ([_dataDic[@"sex"] integerValue] == 1) {
+                sex = @"客户性别：男";
+            }
+            if([_dataDic[@"sex"] integerValue] == 2)
+            {
+                sex =@"客户性别：女";
+            }
+            _name = _dataDic[@"name"];
+            NSString *tel = _dataDic[@"tel"];
+            NSArray *arr = [tel componentsSeparatedByString:@","];
+            if (arr.count>0) {
+                tel = [NSString stringWithFormat:@"联系方式：%@",arr[0]];
+            }
+            else{
+                tel = @"联系方式：无";
+            }
+            NSString *adress = _dataDic[@"absolute_address"];
+            adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],adress];
+            
+            _data = @[@[[NSString stringWithFormat:@"无效类型：%@",_dataDic[@"disabled_state"]],[NSString stringWithFormat:@"无效描述：%@",_dataDic[@"disabled_reason"]],[NSString stringWithFormat:@"无效时间：%@",_dataDic[@"disabled_time"]]],@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@人",_dataDic[@"visit_num"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"process"][1][@"time"]],[NSString stringWithFormat:@"置业顾问：%@",_dataDic[@"property_advicer_wish"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"butter_tel"]]]];
+            
             [_invalidTable reloadData];
         }
         else
         {
+            _complaintBtn.hidden = YES;
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
+        _complaintBtn.hidden = YES;
         NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
@@ -93,12 +120,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        
-        return 0;
-    }
     
-    return 3;
+    return [_data[section] count];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -107,18 +130,17 @@
     backview.backgroundColor = [UIColor whiteColor];
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
-    [backview addSubview:header];
+    
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section == 0) {
+    if (section < 3) {
         
-        title.text = [NSString stringWithFormat:@"推荐编号：%@",_clientId];
-    }else{
-        
+        [backview addSubview:header];
         title.text = _titleArr[section];
+        [backview addSubview:title];
     }
-    [backview addSubview:title];
+    
     return backview;
 }
 
@@ -140,11 +162,7 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    if (_dataDic.count) {
-        
-        return 3;
-    }
-    return 0;
+    return _data.count;
 }
 
 
@@ -158,43 +176,7 @@
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.section == 1) {
-        
-        if (indexPath.row == 0) {
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"接待人员：%@",_dataDic[@"name"]]];
-        }else if (indexPath.row == 1){
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"到访人数：%@",_dataDic[@"name"]]];
-        }else{
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"name"]]];
-        }
-    }else if (indexPath.section == 2) {
-        
-        if (indexPath.row == 0) {
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]]];
-        }else if (indexPath.row == 1){
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"项目地址：%@-%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],_dataDic[@"absolute_address"]]];
-        }else{
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"物业类型：%@",_dataDic[@"property_type"]]];
-        }
-    }else{
-        
-        if (indexPath.row == 0) {
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"失效类型：%@",_dataDic[@"disabled_state"]]];
-        }else if (indexPath.row == 1){
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
-        }else{
-            
-            [cell SetCellContentbystring:[NSString stringWithFormat:@"失效描述：%@",_dataDic[@"disabled_reason"]]];
-        }
-    }
+    [cell SetCellContentbystring:_data[indexPath.section][indexPath.row]];
     return cell;
     
 }

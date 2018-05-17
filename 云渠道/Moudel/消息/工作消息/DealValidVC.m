@@ -17,6 +17,7 @@
     NSArray *_titleArr;
     NSString *_clientid;
     NSString *_messageId;
+    NSMutableDictionary *_dataDic;
     NSString *_endtime;
     NSString *_name;
     NSArray *_Pace;
@@ -57,18 +58,26 @@
                  NSLog(@"%@",resposeObject);
                  if ([resposeObject[@"code"] integerValue] ==200) {
                      
-                     _titleArr = @[[NSString stringWithFormat:@"推荐编号：%@",resposeObject[@"data"][@"client_id"]],@"成交信息",@"客户信息",@"项目信息"];
+                     _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
+                     
+                     [_dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                         
+                         if ([obj isKindOfClass:[NSNull class]]) {
+                             
+                             [_dataDic setObject:@"" forKey:key];
+                         }
+                     }];
                      
                      NSString *sex = @"客户性别：无";
-                     if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
+                     if ([_dataDic[@"sex"] integerValue] == 1) {
                          sex = @"客户性别：男";
                      }
-                     if([resposeObject[@"data"][@"sex"] integerValue] == 2)
+                     if([_dataDic[@"sex"] integerValue] == 2)
                      {
                          sex =@"客户性别：女";
                      }
-                     _name = resposeObject[@"data"][@"city_name"];
-                     NSString *tel = resposeObject[@"data"][@"tel"];
+                     _name = _dataDic[@"name"];
+                     NSString *tel = _dataDic[@"tel"];
                      NSArray *arr = [tel componentsSeparatedByString:@","];
                      if (arr.count>0) {
                          tel = [NSString stringWithFormat:@"联系方式：%@",arr[0]];
@@ -76,17 +85,14 @@
                      else{
                          tel = @"联系方式：无";
                      }
-                     NSString *adress = resposeObject[@"data"][@"absolute_address"];
-                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@",resposeObject[@"data"][@"province_name"],resposeObject[@"data"][@"city_name"],resposeObject[@"data"][@"district_name"]];
+                     NSString *adress = _dataDic[@"absolute_address"];
+                     adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"]];
                      
-                     _data = @[@[[NSString stringWithFormat:@"推荐时间：%@",resposeObject[@"data"][@"create_time"]],[NSString stringWithFormat:@"到访时间：%@",resposeObject[@"data"][@"visit_time"]]],@[[NSString stringWithFormat:@"合同编号：%@",resposeObject[@"data"][@"contract_num"]],[NSString stringWithFormat:@"成交总价：%@元",resposeObject[@"data"][@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",resposeObject[@"data"][@"inner_area"]],[NSString stringWithFormat:@"成交时间：%@",resposeObject[@"data"][@"state_change_time"]]],@[[NSString stringWithFormat:@"客户姓名：%@",resposeObject[@"data"][@"name"]],sex,tel],@[[NSString stringWithFormat:@"项目名称：%@",resposeObject[@"data"][@"project_name"]],adress,[NSString stringWithFormat:@"物业类型：%@",resposeObject[@"data"][@"property_type"]]]];
-                     _endtime = resposeObject[@"data"][@"timeLimit"];
-                     _Pace = resposeObject[@"data"][@"process"];
+                     _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress],@[[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"到访人数：%@人",_dataDic[@"visit_num"]],[NSString stringWithFormat:@"到访时间：%@",_dataDic[@"process"][1][@"time"]],[NSString stringWithFormat:@"置业顾问：%@",_dataDic[@"property_advicer_wish"]],[NSString stringWithFormat:@"到访确认人：%@",_dataDic[@"butter_name"]],[NSString stringWithFormat:@"确认人电话：%@",_dataDic[@"butter_tel"]]],@[[NSString stringWithFormat:@"房号：%@",_dataDic[@"name"]],[NSString stringWithFormat:@"成交总价：%@元",_dataDic[@"total_money"]],[NSString stringWithFormat:@"套内面积：%@㎡",_dataDic[@"inner_area"]],[NSString stringWithFormat:@"成交状态：%@",_dataDic[@"state_change_time"]],[NSString stringWithFormat:@"成交时间：%@",_dataDic[@"state_change_time"]]]];
+                     _endtime = _dataDic[@"timeLimit"];
+                     _Pace = _dataDic[@"process"];
                      [_dealTable reloadData];
-                     
                  }
-                 
-                 
              }
              failure:^(NSError *error) {
                  
@@ -98,8 +104,8 @@
 -(void)initDataSouce
 {
     
-    _titleArr = @[@"推荐编号",@"成交信息",@"客户信息",@"项目信息"];
-    _data = @[];
+    _dataDic = [@{} mutableCopy];
+    _titleArr = @[@"推荐信息",@"到访信息",@"成交信息"];
 }
 
 - (void)ActionPrintBtn:(UIButton *)btn{
@@ -111,7 +117,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section < 4) {
+    if (section < 3) {
         
         NSArray *arr = _data[section];
         return arr.count;
@@ -127,21 +133,24 @@
     backview.backgroundColor = [UIColor whiteColor];
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
-    [backview addSubview:header];
+    
+    
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section < 4) {
+    if (section < 3) {
         
+        [backview addSubview:header];
         title.text = _titleArr[section];
+        [backview addSubview:title];
     }
-    [backview addSubview:title];
+    
     return backview;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section < 4) {
+    if (section < 3) {
         
         return 53*SIZE;
     }
@@ -151,15 +160,13 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return _data.count ? _Pace.count?_data.count+1:_data.count:0;
-    //    return _Pace.count ? _data.count + 1: _data.count;
-    
+    return _data.count ? _Pace.count?_data.count + 1:_data.count:0;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 4){
+    if(indexPath.section == 3){
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {

@@ -1,17 +1,17 @@
 //
-//  DealComplaintingVC.m
+//  AppealComplaintingVC.m
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/5/8.
+//  Created by 谷治墙 on 2018/5/17.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
-#import "DealComplaintingVC.h"
+#import "AppealComplaintingVC.h"
 #import "CountDownCell.h"
 #import "InfoDetailCell.h"
 #import "BrokerageDetailTableCell3.h"
 
-@interface DealComplaintingVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface AppealComplaintingVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_data;
     NSArray *_titleArr;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation DealComplaintingVC
+@implementation AppealComplaintingVC
 
 - (instancetype)initWithAppealId:(NSString *)appealId
 {
@@ -114,16 +114,15 @@
     [BaseRequest POST:AppealCancel_URL parameters:@{@"appeal_id":_appealId} success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
-       
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"inValidReload" object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"appealReload" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }
-        else
-        {
-             [self showContent:resposeObject[@"msg"]];
+        else{
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
@@ -137,7 +136,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section == 4) {
+    if (section == 3) {
         
         return _Pace.count;
     }
@@ -158,7 +157,7 @@
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section < 4) {
+    if (section < 3) {
         
         title.text = _titleArr[section];
         [backview addSubview:header];
@@ -170,7 +169,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section < 4) {
+    if (section < 3) {
         
         return 53*SIZE;
     }
@@ -179,6 +178,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
     return _data.count ? _Pace.count?_data.count + 1:_data.count:0;
 }
 
@@ -186,7 +186,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 4) {
+    if (indexPath.section == 3) {
         
         BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
         if (!cell) {
@@ -229,7 +229,9 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"申诉详情";
-
+    
+    
+    
     _unCompleteTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT- 40 *SIZE - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _unCompleteTable.rowHeight = UITableViewAutomaticDimension;
     _unCompleteTable.estimatedRowHeight = 150 *SIZE;
