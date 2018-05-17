@@ -45,6 +45,7 @@
     NSMutableArray *_peopleArr;
     NSMutableDictionary *_buildDic;
     NSString *_phone;
+    NSString *_phone_url;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -180,6 +181,9 @@
 }
 
 - (void)SetData:(NSDictionary *)data{
+    if (data[@"total_float_url_phone"]) {
+        _phone_url =  [NSString stringWithFormat:@"%@",data[@"total_float_url_phone"]];
+    }
     
     if (data[@"butter_tel"]) {
         
@@ -679,7 +683,7 @@
     if (indexPath.section == 3) {
         
         DistributVC *nextVC = [[DistributVC alloc] init];
-        nextVC.img_name = _model.total_float_url;
+        nextVC.img_name = _model.total_float_url_phone;
         nextVC.projiect_id = _projectId;
         [self.navigationController pushViewController:nextVC animated:YES];
     }

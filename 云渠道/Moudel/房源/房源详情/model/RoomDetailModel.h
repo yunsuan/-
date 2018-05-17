@@ -34,6 +34,8 @@
 
 @property (nonatomic, strong) NSString *total_float_url;
 
+@property (nonatomic, strong) NSString *total_float_url_phone;
+
 @property (nonatomic, strong) NSString *yunsuan_id;
 
 @property (nonatomic, strong) NSString *yunsuan_url;
