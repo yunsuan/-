@@ -17,8 +17,8 @@
 #import "InvalidView.h"
 #import "NoInvalidVC.h"
 #import "NoValidVC.h"
-#import "ComplaintCompleteVC.h"
-#import "ComplaintUnCompleteVC.h"
+#import "AppealComplaintingVC.h"
+#import "AppealComplaintedVC.h"
 
 @interface NomineeVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -750,11 +750,11 @@
         
         if ([_appealArr[indexPath.row][@"state"] isEqualToString:@"处理完成"]) {
             
-            ComplaintCompleteVC *nextVC = [[ComplaintCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
+            AppealComplaintedVC *nextVC = [[AppealComplaintedVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }else{
             
-            ComplaintUnCompleteVC *nextVC = [[ComplaintUnCompleteVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
+            AppealComplaintingVC *nextVC = [[AppealComplaintingVC alloc] initWithAppealId:_appealArr[indexPath.row][@"appeal_id"]];
             [self.navigationController pushViewController:nextVC animated:YES];
         }
     }

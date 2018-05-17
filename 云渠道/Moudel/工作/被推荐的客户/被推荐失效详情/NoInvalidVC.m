@@ -128,18 +128,17 @@
     backview.backgroundColor = [UIColor whiteColor];
     UIView * header = [[UIView alloc]initWithFrame:CGRectMake(10*SIZE , 19*SIZE, 6.7*SIZE, 13.3*SIZE)];
     header.backgroundColor = YJBlueBtnColor;
-    [backview addSubview:header];
+    
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(27.3*SIZE, 19*SIZE, 300*SIZE, 16*SIZE)];
     title.font = [UIFont systemFontOfSize:15.3*SIZE];
     title.textColor = YJTitleLabColor;
-    if (section == 0) {
+    if (section < 3) {
         
-        title.text = [NSString stringWithFormat:@"推荐编号：%@",_clientId];
-    }else{
-        
+        [backview addSubview:header];
         title.text = _titleArr[section];
+        [backview addSubview:title];
     }
-    [backview addSubview:title];
+    
     return backview;
 }
 
