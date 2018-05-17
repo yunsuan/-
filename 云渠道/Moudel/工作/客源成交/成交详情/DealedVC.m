@@ -197,9 +197,6 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"成交详情";
-    
-
-
     _dealTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _dealTable.rowHeight = UITableViewAutomaticDimension;
     _dealTable.estimatedRowHeight = 150 *SIZE;
