@@ -584,7 +584,7 @@
 {
     if (!_surebtn) {
         _surebtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _surebtn.frame =  CGRectMake(20*SIZE, 566*SIZE, 320*SIZE, 40*SIZE);
+        _surebtn.frame = CGRectMake(20*SIZE, 566*SIZE, 320*SIZE, 40*SIZE);
         _surebtn.backgroundColor = YJBlueBtnColor;
         _surebtn.layer.masksToBounds = YES;
         _surebtn.layer.cornerRadius = 1.7*SIZE;
