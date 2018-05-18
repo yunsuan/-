@@ -10,6 +10,7 @@
 #import "DropDownBtn.h"
 #import "BorderTF.h"
 #import "AdressChooseView.h"
+#import "AddressChooseView3.h"
 #import "CustomerVC.h"
 #import "CustomDetailVC.h"
 #import "SinglePickView.h"
@@ -17,7 +18,7 @@
 #import "AddTagVC.h"
 #import "AddTagView.h"
 
-@interface AddRequireMentVC ()<UITextViewDelegate>
+@interface AddRequireMentVC ()<UITextViewDelegate,UITextFieldDelegate>
 {
     
     NSMutableArray *_stairArr;
@@ -144,6 +145,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextFieldDidchange:) name:UITextFieldTextDidChangeNotification object:_intentionTF.textfield];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextFieldDidchange:) name:UITextFieldTextDidChangeNotification object:_urgentTF.textfield];
+    
     [self initDataSource];
     [self initUI];
 }
@@ -155,6 +159,48 @@
         
         NSString *str = [NSString stringWithFormat:@"%d层",i];
         [_stairArr addObject:@{@"id":@(i),@"param":str}];
+    }
+}
+
+- (void)TextFieldDidchange:(UITextField *)textField{
+    
+//    if (textField == _intentionTF.textfield) {
+//
+//        if ([_intentionTF.textfield.text integerValue] > 100) {
+//
+//            _intentionTF.textfield.text = @"100";
+//        }
+//        _intentionTF.textfield.text = [NSString stringWithFormat:@"%ld",[_intentionTF.textfield.text integerValue]];
+//        _intentionSlider.value =  [_intentionTF.textfield.text floatValue] / 100.0 * 100;
+//    }else if (textField == _urgentTF.textfield){
+//
+//        if ([_urgentTF.textfield.text integerValue] > 100) {
+//
+//            _urgentTF.textfield.text = @"100";
+//        }
+//        _urgentTF.textfield.text = [NSString stringWithFormat:@"%ld",[_urgentTF.textfield.text integerValue]];
+//        _urgentSlider.value =  [_urgentTF.textfield.text floatValue] / 100.0 * 100;
+//    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if (textField == _intentionTF.textfield) {
+        
+        if ([_intentionTF.textfield.text integerValue] > 100) {
+            
+            _intentionTF.textfield.text = @"100";
+        }
+        _intentionTF.textfield.text = [NSString stringWithFormat:@"%ld",[_intentionTF.textfield.text integerValue]];
+        _intentionSlider.value =  [_intentionTF.textfield.text floatValue] / 100.0 * 100;
+    }else if (textField == _urgentTF.textfield){
+        
+        if ([_urgentTF.textfield.text integerValue] > 100) {
+            
+            _urgentTF.textfield.text = @"100";
+        }
+        _urgentTF.textfield.text = [NSString stringWithFormat:@"%ld",[_urgentTF.textfield.text integerValue]];
+        _urgentSlider.value =  [_urgentTF.textfield.text floatValue] / 100.0 * 100;
     }
 }
 
@@ -179,44 +225,81 @@
         default:
             break;
     }
-    AdressChooseView *addressChooseView= [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+//    AdressChooseView *addressChooseView= [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+//    WS(weakself);
+//    addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+//
+//        if (_btnNum == 1) {
+//
+//            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//            _addBtn.hidden = NO;
+//        }else if (_btnNum == 2){
+//
+//            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid]]) {
+//
+//                [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
+//
+//                }];
+//            }else{
+//
+//                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//                weakself.addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//                _addBtn.hidden = NO;
+//            }
+//        }else{
+//
+//            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid]] || [weakself.addressBtn2.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid]]) {
+//
+//                [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
+//
+//                }];
+//            }else{
+//
+//                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//                _addBtn.hidden = NO;
+//            }
+//        }
+//    };
+    
+    AddressChooseView3 *addressChooseView = [[AddressChooseView3 alloc] initWithFrame:self.view.frame withdata:@[]];
     WS(weakself);
-    addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+    addressChooseView.addressChooseView3ConfirmBlock = ^(NSString *city, NSString *area, NSString *cityid, NSString *areaid) {
         
         if (_btnNum == 1) {
             
-            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            weakself.addressBtn.content.text = [NSString stringWithFormat:@"四川省/%@/%@",city,area];
+            weakself.addressBtn.str = [NSString stringWithFormat:@"510000-%@-%@",cityid,areaid];
             _addBtn.hidden = NO;
         }else if (_btnNum == 2){
             
-            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid]]) {
+            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"510000-%@-%@",cityid,areaid]]) {
                 
                 [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
                     
                 }];
             }else{
                 
-                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-                weakself.addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"四川省/%@/%@",city,area];
+                weakself.addressBtn2.str = [NSString stringWithFormat:@"510000-%@-%@",cityid,areaid];
                 _addBtn.hidden = NO;
             }
         }else{
             
-            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid]] || [weakself.addressBtn2.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid]]) {
+            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"510000-%@-%@",cityid,areaid]] || [weakself.addressBtn2.str isEqualToString:[NSString stringWithFormat:@"510000-%@-%@",cityid,areaid]]) {
                 
                 [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
                     
                 }];
             }else{
                 
-                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"四川省/%@/%@",city,area];
+                weakself.addressBtn3.str = [NSString stringWithFormat:@"510000-%@-%@",cityid,areaid];
                 _addBtn.hidden = NO;
             }
         }
     };
-    
     [self.view addSubview:addressChooseView];
 }
 
@@ -905,6 +988,7 @@
         if (i < 5) {
             
             BorderTF *TF = [[BorderTF alloc] initWithFrame:CGRectMake(0, 0, 258 *SIZE, 33 *SIZE)];
+            TF.textfield.delegate = self;
             switch (i) {
                 case 0:
                 {

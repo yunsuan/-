@@ -13,7 +13,7 @@
 #import "DateChooseView.h"
 #import "YJChooseView.h"
 
-@interface FollowRecordVC ()
+@interface FollowRecordVC ()<UITextFieldDelegate>
 {
     NSArray *_titleArr;
     NSArray *_wayArr;
@@ -78,6 +78,27 @@
     _titleArr = @[@"客户名称",@"跟进时间",@"跟进人"];
 
 
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if (textField == _intentionTF.textfield) {
+        
+        if ([_intentionTF.textfield.text integerValue] > 100) {
+            
+            _intentionTF.textfield.text = @"100";
+        }
+        _intentionTF.textfield.text = [NSString stringWithFormat:@"%ld",[_intentionTF.textfield.text integerValue]];
+        _intentionSlider.value =  [_intentionTF.textfield.text floatValue] / 100.0 * 100;
+    }else if (textField == _urgentTF.textfield){
+        
+        if ([_urgentTF.textfield.text integerValue] > 100) {
+            
+            _urgentTF.textfield.text = @"100";
+        }
+        _urgentTF.textfield.text = [NSString stringWithFormat:@"%ld",[_urgentTF.textfield.text integerValue]];
+        _urgentSlider.value =  [_urgentTF.textfield.text floatValue] / 100.0 * 100;
+    }
 }
 
 -(void)action_pay
@@ -199,6 +220,7 @@
         [view2 addSubview:label];
         
         BorderTF *TF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 34 *SIZE+_chooseview.frame.size.height + i * 95 *SIZE, 258 *SIZE, 33 *SIZE)];
+        TF.textfield.delegate = self;
         switch (i) {
             case 0:
             {
