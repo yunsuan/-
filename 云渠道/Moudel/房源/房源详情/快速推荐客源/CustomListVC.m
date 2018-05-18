@@ -300,6 +300,8 @@
 //    [whiteView addSubview:_searchBar];
     
     _customerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE , SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 62 *SIZE  - TAB_BAR_MORE) style:UITableViewStylePlain];;
+    _customerTable.estimatedRowHeight = 150 *SIZE;
+    _customerTable.rowHeight = UITableViewAutomaticDimension;
     _customerTable.backgroundColor = self.view.backgroundColor;
     _customerTable.delegate = self;
     _customerTable.dataSource = self;
