@@ -20,7 +20,7 @@
 #import "confirmDetailVC.h"
 #import "CompleteCustomVC1.h"
 #import "InvalidView.h"
-
+#import "QuickAddAndRecommendVC.h"
 
 
 @interface RecommendVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -659,8 +659,21 @@
     [_MainTableView reloadData];
 }
 
+-(void)action_add
+{
+
+    QuickAddAndRecommendVC *nextVC = [[QuickAddAndRecommendVC alloc] init];
+    [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+
 -(void)initUI
 {
+    
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setImage:[UIImage imageNamed:@"add_3"] forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(action_add) forControlEvents:UIControlEventTouchUpInside];
+    
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
@@ -701,6 +714,7 @@
     [self.MainTableView reloadData];
     if (_index == 0) {
         
+        self.rightBtn.hidden = NO;
         if (_unComfirmArr.count) {
             
             [_MainTableView reloadData];
@@ -718,6 +732,7 @@
         
     }else if (_index == 1){
         
+        self.rightBtn.hidden = YES;
         if (_validArr.count) {
             
             [_MainTableView reloadData];
@@ -734,6 +749,7 @@
         }
     }else if (_index == 2){
         
+        self.rightBtn.hidden = YES;
         if (_inValidArr.count) {
             
             [_MainTableView reloadData];
@@ -750,6 +766,7 @@
         }
     }else{
         
+        self.rightBtn.hidden = YES;
         if (_appealArr.count) {
             
             [_MainTableView reloadData];
