@@ -121,7 +121,6 @@
     
     [BaseRequest GET:@"user/project/hotSearch" parameters:nil success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -131,7 +130,6 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
     }];
 }
 
@@ -202,7 +200,6 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -231,7 +228,6 @@
         
         [self.MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error.localizedDescription);
     }];
 
 }
@@ -267,8 +263,6 @@
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
-      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -298,7 +292,6 @@
         
         [self showContent:@"网路错误"];
         [self.MainTableView.mj_footer endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
     }];
     
 }
@@ -509,14 +502,15 @@
 
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
 {
-    NSLog(@"heading is %@",userLocation.heading);
+//    NSLog(@"heading is %@",userLocation.heading);
+    
 }
 
 //处理位置坐标更新
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //地理反编码
     
     BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
@@ -527,13 +521,13 @@
     
     if(flag){
         
-        NSLog(@"反geo检索发送成功");
+//        NSLog(@"反geo检索发送成功");
         
         [_locService stopUserLocationService];
         
     }else{
         
-        NSLog(@"反geo检索发送失败");
+//        NSLog(@"反geo检索发送失败");
         
     }
     
@@ -545,7 +539,7 @@
 
 {
     
-    NSLog(@"address:%@----%@",result.addressDetail,result.address);
+//    NSLog(@"address:%@----%@",result.addressDetail,result.address);
     [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
     NSInteger disInteger = [result.addressDetail.adCode integerValue];
     NSInteger cityInteger = disInteger / 100 * 100;
@@ -558,7 +552,8 @@
 
 - (void)didFailToLocateUserWithError:(NSError *)error{
     
-    NSLog(@"error:%@",error);
+//    NSLog(@"error:%@",error);
+    [self alertControllerWithNsstring:@"定位失败" And:@"请检查定位设置"];
     
 }
 
@@ -782,7 +777,7 @@
                 break;
             case 1:
             {
-                NSLog(@"");
+//                NSLog(@"");
             }
 
             default:

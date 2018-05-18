@@ -36,7 +36,7 @@
                                                         @"message_id":_message_id
                                                         }
              success:^(id resposeObject) {
-                 NSLog(@"%@",resposeObject);
+
                  if ([resposeObject[@"code"] integerValue]==200) {
                      
                      _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -92,7 +92,6 @@
              }
              failure:^(NSError *error) {
                  
-                 NSLog(@"%@",error);
                  [self showContent:@"网络错误"];
                  _confirmBtn.hidden = YES;
                  _Maintableview.frame = CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT);

@@ -178,6 +178,7 @@
     if (!_Account) {
         _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+124*SIZE, 314*SIZE, 15*SIZE)];
         _Account.placeholder = @"请输入手机号码";
+        _Account.keyboardType = UIKeyboardTypeNumberPad;
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
         [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         
@@ -189,6 +190,7 @@
     if (!_Code) {
         _Code = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+171*SIZE, 200*SIZE, 15*SIZE)];
         _Code.placeholder = @"请输入验证码";
+        _Code.keyboardType = UIKeyboardTypeNumberPad;
         _Code.font = [UIFont systemFontOfSize:14*SIZE];
         [_Code addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         

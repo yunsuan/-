@@ -62,8 +62,6 @@
     
     [BaseRequest GET:ProjectDeailDisableDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
-        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -108,7 +106,6 @@
     } failure:^(NSError *error) {
         
         _complaintBtn.hidden = YES;
-        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }

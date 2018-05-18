@@ -52,7 +52,6 @@
     [BaseRequest GET:DynamicList_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
         [_listTable.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -76,7 +75,6 @@
         
         [_listTable.mj_header endRefreshing];
         _listTable.mj_footer.state = MJRefreshStateNoMoreData;
-        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -90,7 +88,6 @@
     [BaseRequest GET:DynamicList_URL parameters:tempDic success:^(id resposeObject) {
         
         [_listTable.mj_footer endRefreshing];
-        NSLog(@"%@",resposeObject);
        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -119,7 +116,6 @@
         
         [_listTable.mj_footer endRefreshing];
         _listTable.mj_footer.state = MJRefreshStateNoMoreData;
-        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }

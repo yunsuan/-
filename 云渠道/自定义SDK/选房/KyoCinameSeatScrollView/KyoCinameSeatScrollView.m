@@ -201,7 +201,6 @@
 
 - (void)btnSeatTouchIn:(UIButton *)btn {
     
-    NSLog(@"btnSeatTouchIn-btn.tag=%ld",(long)btn.tag);
     if (self.kyoCinameSeatScrollViewDelegate &&
         [self.kyoCinameSeatScrollViewDelegate respondsToSelector:@selector(kyoCinameSeatScrollViewDidTouchInSeatWithRow:withColumn:)]) {
         

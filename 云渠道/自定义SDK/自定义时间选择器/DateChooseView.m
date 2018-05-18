@@ -168,7 +168,7 @@
 
 - (void)dateChange:(UIDatePicker *)date
 {
-    NSLog(@"%@", date.date);
+
     _date = date.date;
 }
 

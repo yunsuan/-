@@ -419,8 +419,6 @@
     }
     [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
-
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
@@ -443,7 +441,6 @@
     } failure:^(NSError *error) {
         
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 

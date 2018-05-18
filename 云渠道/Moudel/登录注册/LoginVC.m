@@ -53,15 +53,15 @@
 //    [self.view addSubview:self.QQBtn];
     [self.view addSubview:self.LoginBtn];
     [self.view addSubview:self.FindPassWordBtn];
-    for (int i = 0; i<2; i++) {
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
-        line.backgroundColor = COLOR(130, 130, 130, 1);
-        [self.view addSubview:line];
-        
-        UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
-        line2.backgroundColor = YJ170Color;
+//    for (int i = 0; i<2; i++) {
+//        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
+//        line.backgroundColor = COLOR(130, 130, 130, 1);
+//        [self.view addSubview:line];
+//
+//        UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
+//        line2.backgroundColor = YJ170Color;
 //        [self.view addSubview:line2];
-    }
+//    }
     
 //    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
 //    label.textColor = YJ170Color;
@@ -164,7 +164,6 @@
 {
     if (!_Headerimg) {
         _Headerimg = [[UIImageView alloc]initWithFrame:CGRectMake(135*SIZE, 82*SIZE, 93*SIZE, 58*SIZE)];
-//        _Headerimg.backgroundColor =[UIColor redColor];
         _Headerimg.image = [UIImage imageNamed:@"logo_2"];
     }
     return _Headerimg;
@@ -191,16 +190,16 @@
             [UserModel defaultModel].Password = _PassWord.text;
             [UserModel defaultModel].agent_id =resposeObject[@"data"][@"agent_id"];
             [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
-//            CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
             [UserModelArchiver archive];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"goHome" object:nil];
-//            [self presentViewController:tabBarControllerConfig.tabBarController animated:NO completion:nil];
-//            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarControllerConfig.tabBarController;
-        }        else{
+
+        }else{
+            
             [self showContent:resposeObject[@"msg"]];
         }
         
     } failure:^(NSError *error) {
+        
         [self showContent:@"网络错误"];
     }];
     
@@ -209,8 +208,8 @@
 
 -(void)QuickLogin
 {
-//    QuickLoginVC *next_vc= [[QuickLoginVC alloc]init];
-//    [self.navigationController pushViewController:next_vc animated:YES];
+
+    
 }
 
 -(void)Protocol
@@ -235,6 +234,7 @@
     if (!_Account) {
         _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 219*SIZE, 314*SIZE, 15*SIZE)];
         _Account.placeholder = @"请输入手机号";
+        _Account.keyboardType = UIKeyboardTypeNumberPad;
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
         [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         _Account.clearButtonMode = UITextFieldViewModeWhileEditing;

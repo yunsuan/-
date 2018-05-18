@@ -54,9 +54,7 @@
 - (void)WaitConfirmRequest{
     
     [BaseRequest GET:ProjectWaitConfirmDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-        
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -97,8 +95,7 @@
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
-        
-        NSLog(@"%@",error);
+
         [self showContent:@"网络错误"];
     }];
 }

@@ -133,7 +133,7 @@
 {
     if (_leftviewBtn.selected == NO) {
         _leftviewBtn.selected = YES;
-        NSLog(@"11");
+
     }
     
 }
@@ -268,7 +268,6 @@
     
     if (!jsonData) {
         
-        NSLog(@"%@",error);
         
     }else{
         

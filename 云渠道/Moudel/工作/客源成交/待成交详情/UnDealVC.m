@@ -45,7 +45,7 @@
                                                         @"client_id":_str
                                                         }
              success:^(id resposeObject) {
-                 NSLog(@"%@",resposeObject);
+
                  if ([resposeObject[@"code"] integerValue]==200) {
                      _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
                      
@@ -85,7 +85,6 @@
              }
              failure:^(NSError *error) {
                  
-                 NSLog(@"%@",error);
              }];
 }
 

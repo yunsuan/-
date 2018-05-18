@@ -29,7 +29,7 @@
                             @"comment":_reasonTV.text
                             };
     [BaseRequest POST:ConfirmDisabled_URL parameters:param success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self removeFromSuperview];
@@ -45,7 +45,7 @@
             }
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+
     }];
     
 

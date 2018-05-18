@@ -109,8 +109,7 @@
     _isLast1 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectWaitConfirm_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
+
         [_MainTableView.mj_header endRefreshing];
         
         _page1 = 1;
@@ -132,7 +131,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -140,8 +138,7 @@
     
     _page1 += 1;
     [BaseRequest GET:ProjectWaitConfirm_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
+
         [_MainTableView.mj_footer endRefreshing];
         
        
@@ -164,7 +161,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -193,9 +189,7 @@
     _isLast2 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectValue_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-      
-        
+
         [_MainTableView.mj_header endRefreshing];
         
         _page2 = 1;
@@ -216,7 +210,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -224,8 +217,7 @@
     
     _page2 += 1;
     [BaseRequest GET:BrokerValue_URL parameters:@{@"page":@(_page2)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
+
         [_MainTableView.mj_footer endRefreshing];
         
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -247,7 +239,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -276,9 +267,7 @@
     _isLast3 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDisabled_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-       
-        
+
         [_MainTableView.mj_header endRefreshing];
         
         _page3 = 1;
@@ -299,7 +288,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -307,8 +295,7 @@
     
     _page3 += 1;
     [BaseRequest GET:BrokerDisabled_URL parameters:@{@"page":@(_page3)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
+
         [_MainTableView.mj_footer endRefreshing];
         
         
@@ -329,7 +316,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -358,9 +344,7 @@
     _isLast4 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectAppealList_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-       
-        
+
         [_MainTableView.mj_header endRefreshing];
         
         _page4 = 1;
@@ -381,7 +365,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -389,8 +372,7 @@
     
     _page4 += 1;
     [BaseRequest GET:BrokerAppeal_URL parameters:@{@"page":@(_page4)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
+
         [_MainTableView.mj_footer endRefreshing];
     
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -412,7 +394,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 

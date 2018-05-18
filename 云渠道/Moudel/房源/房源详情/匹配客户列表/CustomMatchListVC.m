@@ -67,9 +67,7 @@
         
         CustomMatchModel *model = _tempArr[index];
         [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
-            
-            NSLog(@"%@",resposeObject);
-          
+                      
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
@@ -83,7 +81,6 @@
             }
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
             [self showContent:@"网络错误"];
         }];
     };

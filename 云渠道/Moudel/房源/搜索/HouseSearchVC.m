@@ -65,8 +65,7 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.searchTable.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
-        
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -94,7 +93,6 @@
         
         [self.searchTable.mj_header endRefreshing];
         [self.searchTable.mj_footer endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
     }];
     
 }
@@ -201,7 +199,7 @@
             break;
         case 1:
         {
-            NSLog(@"");
+
         }
             
         default:

@@ -45,7 +45,7 @@
                        @"message_id":_message_id
                        }
              success:^(id resposeObject) {
-                 NSLog(@"%@",resposeObject);
+
                  if ([resposeObject[@"code"] integerValue] ==200) {
                      _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
                      

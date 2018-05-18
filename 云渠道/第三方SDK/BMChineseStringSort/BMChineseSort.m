@@ -89,7 +89,6 @@
         
         //这里我自己写了一个递归过滤指定字符串   RemoveSpecialCharacter
         chineseString.string = [BMChineseSort RemoveSpecialCharacter:chineseString.string];
-        // NSLog(@"string====%@",chineseString.string);
         
         
         //判断首字符是否为字母
@@ -163,8 +162,8 @@
     }
     
     if (BMLog==1) {
+        
         CFAbsoluteTime useTime = (CFAbsoluteTimeGetCurrent() - startTime);
-        NSLog(@"BMChineseSort user time in %f ms", useTime *1000.0);
     }
 
     
