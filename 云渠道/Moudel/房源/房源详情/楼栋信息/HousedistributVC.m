@@ -96,16 +96,16 @@
                                               @"unit_id":_unit_id
                                               }
              success:^(id resposeObject) {
-                 NSLog(@"%@",resposeObject);
+
                  if ([resposeObject[@"code"] integerValue]==200) {
                      _datasouce = resposeObject[@"data"];
                      [self initInterFace];
                  }
 
-                                              }
-             failure:^(NSError *error) {
+            }
+        failure:^(NSError *error) {
                  
-             }];
+        }];
 
  
 }
@@ -177,8 +177,8 @@
     self.myScrollView = [[SMScrollView alloc] init];
     _myScrollView.contentSize = CGSizeMake((self.seatLeft + self.column * self.seatSize.width + self.seatRight) * _myScrollView.zoomScale,(self.seatTop + self.row * self.seatSize.height + self.seatBottom) * _myScrollView.zoomScale);
     
-    NSLog(@"_myScrollView.contentSize = %@",NSStringFromCGRect(_myScrollView.frame));
-    NSLog(@"_myScrollView.zoomScale = %f",_myScrollView.zoomScale);
+//    NSLog(@"_myScrollView.contentSize = %@",NSStringFromCGRect(_myScrollView.frame));
+//    NSLog(@"_myScrollView.zoomScale = %f",_myScrollView.zoomScale);
     if (!self.contentView) {
         self.contentView = [[UIView alloc] init];
         self.contentView.backgroundColor = [UIColor whiteColor];

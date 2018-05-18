@@ -104,7 +104,6 @@
     _isLast1 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectWaitDeal_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -127,7 +126,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -135,7 +133,6 @@
     
     _page1 += 1;
     [BaseRequest GET:ProjectWaitDeal_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
         
@@ -160,7 +157,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -189,8 +185,6 @@
     _isLast2 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDealList_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -213,7 +207,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -221,7 +214,6 @@
     
     _page2 += 1;
     [BaseRequest GET:ProjectDealList_URL parameters:@{@"page":@(_page2)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
         
@@ -246,7 +238,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -275,8 +266,6 @@
     _isLast3 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDealDisableList_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -298,7 +287,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -306,7 +294,6 @@
     
     _page3 += 1;
     [BaseRequest GET:ProjectDealDisableList_URL parameters:@{@"page":@(_page3)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
         
@@ -331,7 +318,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -360,8 +346,6 @@
     _isLast4 = NO;
     _MainTableView.mj_footer.state = MJRefreshStateIdle;
     [BaseRequest GET:ProjectDealAppealList_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
-        
         
         [_MainTableView.mj_header endRefreshing];
         
@@ -384,7 +368,6 @@
         
         [_MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -392,7 +375,6 @@
     
     _page4 += 1;
     [BaseRequest GET:ProjectDealAppealList_URL parameters:@{@"page":@(_page4)} success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
         
         [_MainTableView.mj_footer endRefreshing];
         
@@ -417,7 +399,6 @@
         
         [_MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 

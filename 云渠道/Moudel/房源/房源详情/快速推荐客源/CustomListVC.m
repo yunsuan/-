@@ -57,7 +57,6 @@
     
     [BaseRequest GET:FastRecommendList_URL parameters:nil success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
      
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -97,7 +96,6 @@
     } failure:^(NSError *error) {
         
         [_customerTable.mj_header endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
         [self showContent:@"网络错误"];
     }];
 }
@@ -110,10 +108,7 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
 
     [BaseRequest GET:FastRecommendList_URL parameters:dic success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
 
-        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -149,7 +144,6 @@
     } failure:^(NSError *error) {
         
         [_customerTable.mj_footer endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
         [self showContent:@"网络错误"];
     }];
 }
@@ -234,8 +228,6 @@
         
         CustomMatchModel *model = _dataArr[index];
         [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
-            
-            NSLog(@"%@",resposeObject);
 
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -251,7 +243,6 @@
             }
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
             [self showContent:@"网络错误"];
         }];
     };

@@ -118,8 +118,7 @@
         _isLast1 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:BrokerWaitConfirm_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_header endRefreshing];
             
             _page1 = 1;
@@ -141,15 +140,13 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
         _isLast1 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:ButterWaitConfirm_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_header endRefreshing];
             
             _page1 = 1;
@@ -171,7 +168,6 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }
 }
@@ -182,8 +178,7 @@
         
         _page1 += 1;
         [BaseRequest GET:BrokerWaitConfirm_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
            
@@ -206,14 +201,12 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
         _page1 += 1;
         [BaseRequest GET:ButterWaitConfirm_URL parameters:@{@"page":@(_page1)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
             
@@ -236,7 +229,6 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }
 }
@@ -268,9 +260,7 @@
         _isLast2 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:BrokerValue_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-         
-            
+
             [_MainTableView.mj_header endRefreshing];
             
             _page2 = 1;
@@ -291,16 +281,13 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
         _isLast2 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:ButterValue_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
 
-            
             [_MainTableView.mj_header endRefreshing];
             
             _page2 = 1;
@@ -321,7 +308,6 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }
 }
@@ -332,8 +318,7 @@
         
         _page2 += 1;
         [BaseRequest GET:BrokerValue_URL parameters:@{@"page":@(_page2)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
         
@@ -356,14 +341,12 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
         _page2 += 1;
         [BaseRequest GET:ButterValue_URL parameters:@{@"page":@(_page2)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
           
@@ -386,7 +369,6 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }
 }
@@ -417,9 +399,7 @@
         _isLast3 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:BrokerDisabled_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-       
-            
+
             [_MainTableView.mj_header endRefreshing];
             
             _page3 = 1;
@@ -440,16 +420,13 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
         _isLast3 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:ButterDisabled_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
-            
+
             [_MainTableView.mj_header endRefreshing];
             
             _page3 = 1;
@@ -470,7 +447,6 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }
 }
@@ -481,8 +457,7 @@
         
         _page3 += 1;
         [BaseRequest GET:BrokerDisabled_URL parameters:@{@"page":@(_page3)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
         
@@ -505,14 +480,12 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
         _page3 += 1;
         [BaseRequest GET:ButterDisabled_URL parameters:@{@"page":@(_page3)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
           
@@ -535,7 +508,6 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }
 }
@@ -566,9 +538,7 @@
         _isLast4 = NO;
         _MainTableView.mj_footer.state = MJRefreshStateIdle;
         [BaseRequest GET:BrokerAppeal_URL parameters:nil success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-           
-            
+
             [_MainTableView.mj_header endRefreshing];
             
             _page4 = 1;
@@ -589,7 +559,6 @@
             
             [_MainTableView.mj_header endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         
@@ -605,8 +574,7 @@
         
         _page4 += 1;
         [BaseRequest GET:BrokerAppeal_URL parameters:@{@"page":@(_page4)} success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
-            
+
             [_MainTableView.mj_footer endRefreshing];
             
           
@@ -629,7 +597,6 @@
             
             [_MainTableView.mj_footer endRefreshing];
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
         }];
     }else{
         

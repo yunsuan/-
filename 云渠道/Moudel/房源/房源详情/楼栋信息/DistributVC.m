@@ -46,8 +46,7 @@
                                                   
                                                   }
              success:^(id resposeObject) {
-                 NSLog(@"%@",resposeObject);
-                 
+
                  if ([resposeObject[@"code"] integerValue] ==200) {
                      _dylist = resposeObject[@"data"];
                      [self setItemforchoosebuildingviewbyarr:_dylist];
@@ -83,7 +82,7 @@
 
 -(void)action_buildingchoose:(UIButton *)sender
 {
-    NSLog(@"%ld",sender.tag);
+
     NSArray *arr=_dylist[sender.tag-1000][@"DYLIST"];
     _lddic =_dylist[sender.tag-1000];
     if (arr.count>0) {

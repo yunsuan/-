@@ -72,9 +72,7 @@
 - (void)InValidRequestMethod{
     
     [BaseRequest GET:DisabledDetail_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-    
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _dataDic = [NSMutableDictionary dictionaryWithDictionary:resposeObject[@"data"]];
@@ -119,7 +117,6 @@
         
         _complaintBtn.hidden = YES;
         _recommendBtn.hidden = YES;
-        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -133,9 +130,7 @@
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
     [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_dataDic[@"client_info_id"]} success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-    
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             self.recommendView.codeL.text = [NSString stringWithFormat:@"推荐编号:%@",_clientId];
@@ -159,7 +154,6 @@
         self.failView.reasonL.text = @"网络错误";
         self.failView.timeL.text = [_formatter stringFromDate:[NSDate date]];
         [[UIApplication sharedApplication].keyWindow addSubview:self.failView];
-        NSLog(@"%@",error);
     }];
 }
 
@@ -341,12 +335,14 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
+
+            [self alertControllerWithNsstring:@"分享失败" And:@""];
         }else{
-            NSLog(@"response data is %@",data);
-            [self showContent:@"分享成功"];
-            [self.transmitView removeFromSuperview];
-            [self.recommendView removeFromSuperview];
+            [self alertControllerWithNsstring:@"分享成功" And:@"" WithDefaultBlack:^{
+                
+                [self.transmitView removeFromSuperview];
+                [self.recommendView removeFromSuperview];
+            }];
         }
     }];
 }

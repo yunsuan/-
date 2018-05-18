@@ -61,8 +61,7 @@
 - (void)CityListRequest{
     
     [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             _cityArr = [NSMutableArray arrayWithArray:resposeObject[@"data"]];
@@ -72,8 +71,7 @@
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
-        
-        NSLog(@"%@",error);
+
         [self showContent:@"网络错误"];
     }];
 }
@@ -84,7 +82,6 @@
     _dataArr = [BMChineseSort sortObjectArray:_cityArr Key:@"city_name"];
     [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:data];
     [UserModelArchiver archive];
-    NSLog(@"%@",_dataArr);
     [_cityTable reloadData];
 }
 

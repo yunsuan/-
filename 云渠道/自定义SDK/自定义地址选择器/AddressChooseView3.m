@@ -175,7 +175,6 @@
         
         [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 _cityArray = resposeObject[@"data"];
@@ -193,8 +192,7 @@
             [_pickerView reloadAllComponents];
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
-//            [self showContent:@"网络错误"];
+            
         }];
     }
 }

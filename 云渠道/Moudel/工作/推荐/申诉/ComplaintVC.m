@@ -65,9 +65,7 @@
     }
     
     [BaseRequest POST:ClientAppeal_URL parameters:@{@"project_client_id":_projectId,@"type":_type,@"comment":_feedbackTV.text} success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-   
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             for (UIViewController *vc in self.navigationController.viewControllers) {
@@ -100,7 +98,6 @@
     } failure:^(NSError *error) {
         
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
     }];
 }
 

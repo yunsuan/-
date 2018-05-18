@@ -40,8 +40,9 @@
 }
 
 -(void)post{
+    
     [BaseRequest GET:_url parameters:_extra_param success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+
     } failure:^(NSError *error) {
         
     }];

@@ -95,9 +95,7 @@
 - (void)RequestMethod{
     
     [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-       
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {

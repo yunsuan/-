@@ -323,7 +323,7 @@
         [self presentViewController:_imagePickerController animated:YES completion:nil];
         
     } else {
-        NSLog(@"当前设备不支持拍照");
+
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                   message:@"当前设备不支持拍照"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -351,8 +351,6 @@
                   constructionBody:^(id<AFMultipartFormData> formData) {
                       [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
                   } success:^(id resposeObject) {
-                      NSLog(@"%@",resposeObject);
-                      
                      
                       if ([resposeObject[@"code"] integerValue] == 200) {
                           
@@ -360,14 +358,10 @@
                               
                               [_posBtn setImage:_image forState:UIControlStateNormal];
                               _imgStr1 = resposeObject[@"data"];
-//                              [_imgArr replaceObjectAtIndex:_index withObject:_image];
-//                              [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
                           }else{
                               
                               [_backBtn setImage:_image forState:UIControlStateNormal];
                               _imgStr2 = resposeObject[@"data"];
-//                              [_imgArr addObject:_image];
-//                              [_imgUrl addObject:resposeObject[@"data"]];
                           }
                       }else{
                           
@@ -375,7 +369,7 @@
                       }
                       [self.authenColl reloadData];
                   } failure:^(NSError *error) {
-                      NSLog(@"%@",error);
+
                       [self showContent:@"网络错误"];
             }];
         }
@@ -390,8 +384,6 @@
               constructionBody:^(id<AFMultipartFormData> formData) {
                   [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
               } success:^(id resposeObject) {
-                  NSLog(@"%@",resposeObject);
-                  
                   
                   if ([resposeObject[@"code"] integerValue] == 200) {
                       
@@ -399,14 +391,10 @@
                           
                           [_posBtn setImage:_image forState:UIControlStateNormal];
                           _imgStr1 = resposeObject[@"data"];
-//                          [_imgArr replaceObjectAtIndex:_index withObject:_image];
-//                          [_imgUrl replaceObjectAtIndex:_index withObject:resposeObject[@"data"]];
                       }else{
                           
                           [_backBtn setImage:_image forState:UIControlStateNormal];
                           _imgStr2 = resposeObject[@"data"];
-//                          [_imgArr addObject:_image];
-//                          [_imgUrl addObject:resposeObject[@"data"]];
                       }
                   }else{
                       
@@ -414,7 +402,7 @@
                   }
                   [self.authenColl reloadData];
               } failure:^(NSError *error) {
-                  NSLog(@"%@",error);
+
                   [self showContent:@"网络错误"];
               }];
     }
