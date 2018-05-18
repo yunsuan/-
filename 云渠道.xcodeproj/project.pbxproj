@@ -145,6 +145,7 @@
 		0CE47B5A206B4401001ADD73 /* RoomDetailTableHeader5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B59206B4401001ADD73 /* RoomDetailTableHeader5.m */; };
 		0CE47B65206B9D0E001ADD73 /* PersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B64206B9D0E001ADD73 /* PersonalVC.m */; };
 		0CE47B69206B9E33001ADD73 /* PersonalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */; };
+		0CEBDE3420AE6F7B004BAF7A /* AddressChooseView3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBDE3320AE6F7B004BAF7A /* AddressChooseView3.m */; };
 		0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */; };
 		0CEC62E2208DDE0C006EC0BD /* RuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62E1208DDE0C006EC0BD /* RuleView.m */; };
 		0CEC62E5208DE786006EC0BD /* RoomBrokerageTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEC62E4208DE786006EC0BD /* RoomBrokerageTableHeader.m */; };
@@ -562,6 +563,8 @@
 		0CE47B64206B9D0E001ADD73 /* PersonalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalVC.m; sourceTree = "<group>"; };
 		0CE47B67206B9E33001ADD73 /* PersonalTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalTableCell.h; sourceTree = "<group>"; };
 		0CE47B68206B9E33001ADD73 /* PersonalTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalTableCell.m; sourceTree = "<group>"; };
+		0CEBDE3220AE6F7B004BAF7A /* AddressChooseView3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressChooseView3.h; sourceTree = "<group>"; };
+		0CEBDE3320AE6F7B004BAF7A /* AddressChooseView3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressChooseView3.m; sourceTree = "<group>"; };
 		0CEC62DD208DDA62006EC0BD /* RoomBrokerageTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomBrokerageTableCell.h; sourceTree = "<group>"; };
 		0CEC62DE208DDA62006EC0BD /* RoomBrokerageTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomBrokerageTableCell.m; sourceTree = "<group>"; };
 		0CEC62E0208DDE0C006EC0BD /* RuleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleView.h; sourceTree = "<group>"; };
@@ -1511,6 +1514,8 @@
 				0CA37B8E2089D7B9005609C7 /* AddressChooseView2.m */,
 				0CA37B902089DE27005609C7 /* AddressTableCell.h */,
 				0CA37B912089DE27005609C7 /* AddressTableCell.m */,
+				0CEBDE3220AE6F7B004BAF7A /* AddressChooseView3.h */,
+				0CEBDE3320AE6F7B004BAF7A /* AddressChooseView3.m */,
 			);
 			path = "自定义地址选择器";
 			sourceTree = "<group>";
@@ -2767,6 +2772,7 @@
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
 				0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */,
+				0CEBDE3420AE6F7B004BAF7A /* AddressChooseView3.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */,
 				0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */,

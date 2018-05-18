@@ -33,7 +33,6 @@
     _nameL.text = dataDic[@"name"];
     _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
     _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project_name"]];
-//    _confirmL.text = [NSString stringWithFormat:@"置业顾问：%@",dataDic[@"property_advicer_real"]];
     _timeL.text = [NSString stringWithFormat:@"到访时间：%@",dataDic[@"visit_time"]];
     _statusL.text = dataDic[@"current_state"];
     _statusL.textColor = YJBlueBtnColor;
@@ -44,7 +43,6 @@
     _nameL.text = inValidDic[@"name"];
     _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",inValidDic[@"client_id"]];
     _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",inValidDic[@"project_name"]];
-//    _confirmL.text = [NSString stringWithFormat:@"置业顾问：%@",inValidDic[@"property_advicer_real"]];
     _timeL.text = [NSString stringWithFormat:@"失效时间：%@",inValidDic[@"state_change_time"]];
     _statusL.text = inValidDic[@"current_state"];
     
