@@ -49,20 +49,29 @@
         [view removeFromSuperview];
     }
     
-    for (int i = 0; i < imgArr.count; i++) {
+    if (imgArr.count) {
         
-        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, 183 *SIZE)];
-        img.contentMode = UIViewContentModeScaleAspectFill;
-        [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,imgArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-           
-            if (error) {
+        for (int i = 0; i < imgArr.count; i++) {
+            
+            UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, 183 *SIZE)];
+            img.contentMode = UIViewContentModeScaleAspectFill;
+            [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,imgArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 
-                img.image = [UIImage imageNamed:@"banner_default_2"];
-            }
-        }];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionImgBtn)];
-        [img addGestureRecognizer:tap];
-        img.userInteractionEnabled = YES;
+                if (error) {
+                    
+                    img.image = [UIImage imageNamed:@"banner_default_2"];
+                }
+            }];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionImgBtn)];
+            [img addGestureRecognizer:tap];
+            img.userInteractionEnabled = YES;
+            [_imgScroll addSubview:img];
+        }
+    }else{
+    
+        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 183 *SIZE)];
+        img.contentMode = UIViewContentModeScaleAspectFill;
+        img.image = [UIImage imageNamed:@"banner_default_2"];
         [_imgScroll addSubview:img];
     }
 }
