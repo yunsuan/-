@@ -210,7 +210,7 @@
     namelab.textColor = YJTitleLabColor;
     [_scrollview addSubview:namelab];
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
-    _name.textfield.placeholder = @"必填(少于5个字)";
+    _name.textfield.placeholder = @"必填(少于5字)";
     _name.textfield.text = _model.name;
     _name.textfield.delegate = self;
     [_scrollview addSubview:_name];
