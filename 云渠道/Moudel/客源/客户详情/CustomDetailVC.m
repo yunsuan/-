@@ -370,6 +370,15 @@
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
+- (void)ActionRightBtn:(UIButton *)btn{
+    
+    if (_dataArr[0]) {
+        
+        QuickRoomVC  *nextVC = [[QuickRoomVC alloc] initWithModel:_dataArr[0]];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+}
+
 
 - (void)head3collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -446,7 +455,7 @@
             return 407 *SIZE;
         }else{
 
-            return 485 *SIZE;
+            return 435 *SIZE;
         }
     }
 }
@@ -738,6 +747,9 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"客户详情";
 
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setImage:[UIImage imageNamed:@"add_3"] forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     
     _customDetailTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStyleGrouped];
