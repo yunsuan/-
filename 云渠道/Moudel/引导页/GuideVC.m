@@ -35,7 +35,7 @@
     // 设置页码
     _pageControl.currentPage = page;
     
-    if (page == 2) {
+    if (page == 4) {
         
         [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             
@@ -67,21 +67,24 @@
     _scrollView.showsVerticalScrollIndicator= NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;
-    [_scrollView setContentSize:CGSizeMake(SCREEN_Width * 3, SCREEN_Height)];
+    [_scrollView setContentSize:CGSizeMake(SCREEN_Width * 5, SCREEN_Height)];
     [self.view addSubview:_scrollView];
     
-    NSArray *imgArr = @[@"guidepage_1",@"guidepage_2",@"guidepage_3"];
-    for (int i = 0; i < 3; i++) {
+    NSArray *imgArr = @[@"guidepage_1@2x",@"guidepage_2@2x",@"guidepage_3@2x",@"guidepage_4@2x",@"guidepage_5@2x"];
+    for (int i = 0; i < 5; i++) {
         
         UIImageView *guideImg = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, SCREEN_Height)];
-        guideImg.image = [UIImage imageNamed:imgArr[i]];
+
+        NSString *path = [[NSBundle mainBundle] pathForResource:imgArr[i] ofType:@"png"];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        guideImg.image = image;
         guideImg.contentMode = UIViewContentModeScaleAspectFill;
         [_scrollView addSubview:guideImg];
     }
     
     _pageControl = [[UIPageControl alloc] init];
     _pageControl.frame = CGRectMake(140 *SIZE, SCREEN_Height - 24 *SIZE - TAB_BAR_MORE, 80 *SIZE, 10 *SIZE);//指定位置大小
-    _pageControl.numberOfPages = 3;//指定页面个数
+    _pageControl.numberOfPages = 5;//指定页面个数
     _pageControl.currentPage = 0;//指定pagecontroll的值，默认选中的小白点（第一个）
     //添加委托方法，当点击小白点就执行此方法
     
