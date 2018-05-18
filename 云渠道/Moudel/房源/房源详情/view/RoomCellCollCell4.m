@@ -22,8 +22,8 @@
 
 - (void)initUI{
     
-    self.contentView.layer.borderColor = COLOR(112, 112, 112, 1).CGColor;
-    self.contentView.layer.borderWidth = SIZE;
+//    self.contentView.layer.borderColor = COLOR(112, 112, 112, 1).CGColor;
+//    self.contentView.layer.borderWidth = SIZE;
     self.contentView.layer.cornerRadius = 2 *SIZE;
     self.contentView.clipsToBounds = YES;
     

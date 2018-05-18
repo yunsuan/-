@@ -12,6 +12,8 @@
 @interface RoomDetailTableCell4()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
     NSArray *namearr;
+    NSArray *_color;
+    NSArray *_namecolor;
 }
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
@@ -24,7 +26,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        namearr = @[@"教育",@"交通",@"医院",@"购物",@"餐饮"];;
+        namearr = @[@"教育",@"交通",@"医院",@"购物",@"餐饮"];
+        _color = @[COLOR(213, 242, 255, 1),COLOR(234, 242, 237, 1),COLOR(208, 243, 245, 1),COLOR(255, 237, 211, 1),COLOR(255, 185, 158, 1)];
+        _namecolor = @[COLOR(63, 176, 237, 1),COLOR(107, 188, 137, 1),COLOR(120, 189, 194, 1),COLOR(232, 143, 14, 1),COLOR(210, 101, 61, 1)];
         self.backgroundColor = [UIColor whiteColor];
         [self initUI];
     }
@@ -43,8 +47,9 @@
         
         cell = [[RoomCellCollCell4 alloc] initWithFrame:CGRectMake(0, 0, 60 *SIZE, 27 *SIZE)];
     }
-    
     cell.titleL.text = namearr[indexPath.row];
+    cell.backgroundColor = _color[indexPath.row];
+    cell.titleL.textColor = _namecolor[indexPath.row];
     return cell;
 }
 
