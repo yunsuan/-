@@ -44,7 +44,7 @@
     alphaView.alpha = 0.4;
     [self addSubview:alphaView];
     
-    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_Height - 167 *SIZE - TAB_BAR_MORE, SCREEN_Width *SIZE, 167 *SIZE + TAB_BAR_MORE)];
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_Height - 167 *SIZE - TAB_BAR_MORE, SCREEN_Width, 167 *SIZE + TAB_BAR_MORE)];
     whiteView.backgroundColor = CH_COLOR_white;
     [self addSubview:whiteView];
     
@@ -69,7 +69,7 @@
     }
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelBtn.frame = CGRectMake(0 *SIZE , 127 *sIZE, SCREEN_Width *SIZE, 40 *SIZE + TAB_BAR_MORE);
+    cancelBtn.frame = CGRectMake(0 *SIZE , 127 *sIZE, SCREEN_Width , 40 *SIZE + TAB_BAR_MORE);
     cancelBtn.titleLabel.font = [UIFont systemFontOfSize:13 *sIZE];
     [cancelBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];

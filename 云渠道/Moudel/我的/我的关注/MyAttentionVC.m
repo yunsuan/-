@@ -11,6 +11,9 @@
 #import "RoomListModel.h"
 #import "MyAttentionModel.h"
 #import "PeopleCell.h"
+#import "RoomDetailVC1.h"
+#import "RoomListModel.h"
+
 
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -185,7 +188,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    RoomListModel *model = [[RoomListModel alloc]init];
+    MyAttentionModel *attention = _dataArr[indexPath.row];
+//    NSDictionary *dic = @{@"project_id":attention.project_id};
+    model.project_id =attention.project_id;
+    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)initUI{

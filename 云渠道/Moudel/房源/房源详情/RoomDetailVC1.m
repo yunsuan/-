@@ -13,6 +13,7 @@
 #import "HouseSearchVC.h"
 #import "RoomVC.h"
 #import "BrokerageDetailVC.h"
+#import "MyAttentionVC.h"
 
 @interface RoomDetailVC1 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
 {
@@ -70,6 +71,9 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }
             if ([vc isKindOfClass:[BrokerageDetailVC class]]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            if ([vc isKindOfClass:[MyAttentionVC class]]) {
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }

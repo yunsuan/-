@@ -508,8 +508,11 @@
 }
 
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+
 {
+    
     NSLog(@"heading is %@",userLocation.heading);
+
 }
 
 //处理位置坐标更新
@@ -768,7 +771,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     RoomListModel *model = _dataArr[indexPath.row];
     RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
     nextVC.hidesBottomBarWhenPushed = YES;
