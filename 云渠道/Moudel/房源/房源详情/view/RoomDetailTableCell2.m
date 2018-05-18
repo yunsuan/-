@@ -32,6 +32,7 @@
     _bigImg = [[UIImageView alloc] init];
     _bigImg.backgroundColor = [UIColor whiteColor];
     _bigImg.contentMode = UIViewContentModeScaleAspectFill;
+    _bigImg.clipsToBounds = YES;
     [self.contentView addSubview:_bigImg];
     
     [self masonryUI];

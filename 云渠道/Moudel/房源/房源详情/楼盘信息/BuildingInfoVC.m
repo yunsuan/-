@@ -38,7 +38,7 @@
     [self initDataSouce];
     [self initUI];
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text =@"楼栋详情";
+    self.titleLabel.text = @"楼盘详情";
 
 }
 

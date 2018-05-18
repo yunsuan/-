@@ -11,9 +11,8 @@
 #import "RoomListModel.h"
 #import "MyAttentionModel.h"
 #import "PeopleCell.h"
+#import "CompanyCell.h"
 #import "RoomDetailVC1.h"
-#import "RoomListModel.h"
-
 
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -106,48 +105,65 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"PeopleCell";
-    
-    PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     MyAttentionModel *model = _dataArr[indexPath.row];
-    [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
-    
-    NSArray *tempArr1 = @[model.property_tags,model.project_tags_name];
-    [cell settagviewWithdata:tempArr1];
-    cell.getLevel.hidden = YES;
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-    
-    //    if (indexPath.row == 1) {
-    //        static NSString *CellIdentifier = @"CompanyCell";
-    //
-    //        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //        if (!cell) {
-    //            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    //        }
-    //        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-    //        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-    //        [cell settagviewWithdata:_arr[indexPath.row]];
-    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //        return cell;
-    //    }else
-    //    {
-    //        static NSString *CellIdentifier = @"PeopleCell";
-    //
-    //        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //        if (!cell) {
-    //            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    //        }
-    //        //    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
-    //        [cell SetTitle:@"新希望国际" image:@"" contentlab:@"高新区——天府三街" statu:@"在售"];
-    //        [cell settagviewWithdata:_arr[indexPath.row]];
-    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //        return cell;
-    //    }
+    if ([model.guarantee_brokerage integerValue] == 2) {
+        
+        static NSString *CellIdentifier = @"CompanyCell";
+        
+        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
+        NSMutableArray *tempArr = [@[] mutableCopy];
+        for (int i = 0; i < model.property_tags.count; i++) {
+            
+            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                    
+                    [tempArr addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        
+        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSMutableArray *tempArr2 = [@[] mutableCopy];
+        for (int i = 0; i < tempArr1.count; i++) {
+            
+            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                    
+                    [tempArr2 addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+        [cell settagviewWithdata:tempArr3];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    }else{
+        
+        static NSString *CellIdentifier = @"PeopleCell";
+        
+        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
+        
+        NSArray *tempArr1 = @[model.property_tags,model.project_tags_name];
+        [cell settagviewWithdata:tempArr1];
+        cell.getLevel.hidden = YES;
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -188,11 +204,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    RoomListModel *model = [[RoomListModel alloc]init];
-    MyAttentionModel *attention = _dataArr[indexPath.row];
-//    NSDictionary *dic = @{@"project_id":attention.project_id};
-    model.project_id =attention.project_id;
+//    MyAttentionModel *model = _dataArr[indexPath.row];
+//    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+//    if ([model.guarantee_brokerage integerValue] == 2) {
+//
+//        nextVC.brokerage = @"no";
+//    }else{
+//
+//        nextVC.brokerage = @"yes";
+//    }
+//=======
+//    RoomListModel *model = [[RoomListModel alloc]init];
+//    MyAttentionModel *attention = _dataArr[indexPath.row];
+////    NSDictionary *dic = @{@"project_id":attention.project_id};
+//    model.project_id = attention.project_id;
+//    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+////>>>>>>> 057c30c0394b6fdafaf942ee33411e657024b962
+//    nextVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:nextVC animated:YES];
+    
+    MyAttentionModel *model = _dataArr[indexPath.row];
     RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+    if ([model.guarantee_brokerage integerValue] == 2) {
+        
+        nextVC.brokerage = @"no";
+    }else{
+        
+        nextVC.brokerage = @"yes";
+    }
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
 }

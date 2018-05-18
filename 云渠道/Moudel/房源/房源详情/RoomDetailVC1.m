@@ -95,7 +95,14 @@
 
 - (void)initDataSource{
     
-    _titleArr = @[@"项目",@"佣金",@"分析"];
+    if ([self.brokerage isEqualToString:@"yes"]) {
+        
+        _titleArr = @[@"项目",@"佣金",@"分析"];
+    }else{
+        
+        _titleArr = @[@"项目",@"分析"];
+    }
+    
 }
 
 - (void)ActionLeftBtn:(UIButton *)btn{
@@ -107,7 +114,7 @@
 #pragma mark -- collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 3;
+    return _titleArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -149,7 +156,14 @@
     _flowLayout.minimumInteritemSpacing = 0;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(80 *SIZE, STATUS_BAR_HEIGHT, 200 *SIZE, 43) collectionViewLayout:_flowLayout];
+    
+    if ([self.brokerage isEqualToString:@"yes"]) {
+        
+        _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(80 *SIZE, STATUS_BAR_HEIGHT, 200 *SIZE, 43) collectionViewLayout:_flowLayout];
+    }else{
+        
+        _segmentColl = [[UICollectionView alloc] initWithFrame:CGRectMake(113 *SIZE, STATUS_BAR_HEIGHT, 200 *SIZE, 43) collectionViewLayout:_flowLayout];
+    }
     _segmentColl.backgroundColor = CH_COLOR_white;
     _segmentColl.delegate = self;
     _segmentColl.dataSource = self;
@@ -163,7 +177,13 @@
     self.scrollView.scrollEnabled = NO;
     [self.view addSubview:self.scrollView];
     // 设置scrollView的内容
-    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 3, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT);
+    if ([self.brokerage isEqualToString:@"yes"]) {
+        
+        self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 3, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT);
+    }else{
+        
+        self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 2, [UIScreen mainScreen].bounds.size.height - NAVIGATION_BAR_HEIGHT);
+    }
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -176,12 +196,18 @@
     _roomAnalyzeVC = [[RoomAnalyzeVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];
-    [self addChildViewController:_roomBrokerageVC];
+    if ([self.brokerage isEqualToString:@"yes"]) {
+       
+        [self addChildViewController:_roomBrokerageVC];
+        _roomAnalyzeVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 2, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
+        [self.scrollView addSubview:_roomBrokerageVC.view];
+    }else{
+        
+        _roomAnalyzeVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
+    }
     _roomProjectVC.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     _roomBrokerageVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
-    _roomAnalyzeVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 2, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     [self.scrollView addSubview:_roomProjectVC.view];
-    [self.scrollView addSubview:_roomBrokerageVC.view];
     [self.scrollView addSubview:_roomAnalyzeVC.view];
     
     // 设置scrollView的代理

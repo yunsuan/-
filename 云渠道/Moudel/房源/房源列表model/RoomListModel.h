@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *district;
 @property (nonatomic, strong) NSString *district_name;
 @property (nonatomic, strong) NSString *img_url;
+@property (nonatomic, strong) NSString *guarantee_brokerage;
 @property (nonatomic, strong) NSString *project_id;
 @property (nonatomic, strong) NSString *project_name;
 @property (nonatomic, strong) NSString *project_tags;
