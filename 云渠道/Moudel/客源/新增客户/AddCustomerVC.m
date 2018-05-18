@@ -210,7 +210,7 @@
     namelab.textColor = YJTitleLabColor;
     [_scrollview addSubview:namelab];
     _name = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 46*SIZE, 116.7*SIZE, 33.3*SIZE)];
-    _name.textfield.placeholder = @"必填(少于5个字)";
+    _name.textfield.placeholder = @"必填(最多5字)";
     _name.textfield.text = _model.name;
     _name.textfield.delegate = self;
     [_scrollview addSubview:_name];
@@ -264,11 +264,11 @@
     _tel1.textfield.keyboardType = UIKeyboardTypePhonePad;
     [_scrollview addSubview:_tel1];
     
-    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addBtn.frame = CGRectMake(313 *SIZE, 162 *SIZE, 25 *SIZE, 25 *SIZE);
-    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
-    [_scrollview addSubview:_addBtn];
+//    _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _addBtn.frame = CGRectMake(313 *SIZE, 162 *SIZE, 25 *SIZE, 25 *SIZE);
+//    [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
+//    [_scrollview addSubview:_addBtn];
     
     _tel2 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 196*SIZE, 257.7*SIZE, 33.3*SIZE)];
     _tel2.textfield.placeholder = @"选填";
@@ -450,7 +450,8 @@
         
         make.left.equalTo(_scrollview).offset(81 *SIZE);
         make.top.equalTo(_scrollview).offset(158 *SIZE);
-        make.width.equalTo(@(217 *SIZE));
+//        make.width.equalTo(@(217 *SIZE));
+         make.width.equalTo(@(258 *SIZE));
         make.height.equalTo(@(33 *SIZE));
     }];
     

@@ -508,11 +508,8 @@
 }
 
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
-
 {
-    
     NSLog(@"heading is %@",userLocation.heading);
-    
 }
 
 //处理位置坐标更新
