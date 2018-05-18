@@ -67,7 +67,7 @@
         }
     }];
     _titlelab.text = title;
-    _statulab.text = statu;
+    _statulab.text = [NSString stringWithFormat:@"%@",statu];
     _contentlab.text = content;
 }
 
