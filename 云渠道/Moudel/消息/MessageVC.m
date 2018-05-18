@@ -102,7 +102,7 @@
             [_messageTable reloadData];
             [_messageTable.mj_header endRefreshing];
 
-            if (([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]) == 0) {
+            if (([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]) < 1) {
                 
                 
                 [[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setBadgeValue:nil];
