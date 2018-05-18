@@ -56,7 +56,7 @@
     
    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page),@"city":_city}];
-    
+    [dic setObject:[UserModel defaultModel].agent_id forKey:@"agent_id"];
     if (self.title.length) {
         
         [dic setObject:self.title forKey:@"project_name"];
@@ -66,35 +66,59 @@
         
         [self.searchTable.mj_header endRefreshing];
 
+        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-                
-                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
-                    
-                    [self SetData:resposeObject[@"data"][@"data"]];
-                    if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
-                        
-                        self.searchTable.mj_footer.state = MJRefreshStateNoMoreData;
-                    }
-                }else{
-                    
-                }
-            }else{
-                
-            }
+            [_dataArr removeAllObjects];
+            [self SetData:resposeObject[@"data"]];
         }else{
             
-                [self showContent:resposeObject[@"msg"]];
-            
-            
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
+        NSLog(@"%@",error);
         [self.searchTable.mj_header endRefreshing];
         [self.searchTable.mj_footer endRefreshing];
     }];
     
+}
+
+- (void)RequestAddMethod{
+    
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page),@"city":_city}];
+    [dic setObject:[UserModel defaultModel].agent_id forKey:@"agent_id"];
+    if (self.title.length) {
+        
+        [dic setObject:self.title forKey:@"project_name"];
+    }
+    
+    [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] count]) {
+                
+                [self SetData:resposeObject[@"data"]];
+                [self.searchTable.mj_footer endRefreshing];
+            }else{
+                
+                self.searchTable.mj_footer.state = MJRefreshStateNoMoreData;
+            }
+        }else{
+            
+            _page -= 1;
+            [self showContent:resposeObject[@"msg"]];
+            [self.searchTable.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        
+        _page -= 1;
+        NSLog(@"%@",error);
+        [self.searchTable.mj_footer endRefreshing];
+    }];
 }
 
 - (void)SetData:(NSArray *)data{
@@ -139,77 +163,115 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"PeopleCell";
-    
-    PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     RoomListModel *model = _dataArr[indexPath.row];
-    [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
-    
-    
-    NSMutableArray *tempArr = [@[] mutableCopy];
-    for (int i = 0; i < model.property_tags.count; i++) {
+    if ([model.guarantee_brokerage integerValue] == 2) {
         
-        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
-                
-                [tempArr addObject:obj[@"param"]];
-                *stop = YES;
-            }
-        }];
-    }
-    
-    NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
-    NSMutableArray *tempArr2 = [@[] mutableCopy];
-    for (int i = 0; i < tempArr1.count; i++) {
+        static NSString *CellIdentifier = @"CompanyCell";
         
-        [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
+        NSMutableArray *tempArr = [@[] mutableCopy];
+        for (int i = 0; i < model.property_tags.count; i++) {
             
-            if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                [tempArr2 addObject:obj[@"param"]];
-                *stop = YES;
-            }
-        }];
+                if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                    
+                    [tempArr addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        
+        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSMutableArray *tempArr2 = [@[] mutableCopy];
+        for (int i = 0; i < tempArr1.count; i++) {
+            
+            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                    
+                    [tempArr2 addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+        [cell settagviewWithdata:tempArr3];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    }else{
+        
+        static NSString *CellIdentifier = @"PeopleCell";
+        
+        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+//        RoomListModel *model = _dataArr[indexPath.row];
+        [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
+        
+        
+        NSMutableArray *tempArr = [@[] mutableCopy];
+        for (int i = 0; i < model.property_tags.count; i++) {
+            
+            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                    
+                    [tempArr addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        
+        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSMutableArray *tempArr2 = [@[] mutableCopy];
+        for (int i = 0; i < tempArr1.count; i++) {
+            
+            [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                    
+                    [tempArr2 addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+        [cell settagviewWithdata:tempArr3];
+        [cell.tagview reloadInputViews];
+        [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
-    [cell settagviewWithdata:tempArr3];
-    [cell.tagview reloadInputViews];
-    [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:_dataArr[indexPath.row]];
+    RoomListModel *model = _dataArr[indexPath.row];
+    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+    if ([model.guarantee_brokerage integerValue] == 2) {
+        
+        nextVC.brokerage = @"no";
+    }else{
+        
+        nextVC.brokerage = @"yes";
+    }
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
-    switch (indexPath.row) {
-        case 0:
-        {
-            
-            
-        }
-            break;
-        case 1:
-        {
-
-        }
-            
-        default:
-            break;
-    }
 }
 
 - (void)initUI{
     
-    _searchTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, SCREEN_Height - STATUS_BAR_HEIGHT) style:UITableViewStylePlain];
+    _searchTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
     _searchTable.backgroundColor = YJBackColor;
     _searchTable.delegate = self;
     _searchTable.dataSource = self;
