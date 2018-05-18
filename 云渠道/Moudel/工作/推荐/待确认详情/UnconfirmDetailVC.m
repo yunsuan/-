@@ -177,11 +177,12 @@
         if (!cell) {
             cell = [[CountDownCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        [cell setcountdownbyendtime:_endtime];
+       
         cell.frame = CGRectMake(0, 0, 360*SIZE, 75*SIZE);
         cell.countdownblock = ^{
             [self refresh];
         };
+         [cell setcountdownbyendtime:_endtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{

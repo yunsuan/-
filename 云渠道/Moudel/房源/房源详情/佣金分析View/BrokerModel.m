@@ -52,15 +52,32 @@
                 NSArray *list = broker[j][@"list"];
                 for (int k = 0 ; k<list.count; k++) {
                     if ([list[k][@"commission_way"] isEqualToString:@"定额"]) {
-                        str3 =[NSString stringWithFormat:@"%@成交佣金：%@元\n%@",list[k][@"property_type"],list[k][@"param"],str3];
+                        NSString *property = list[k][@"property_type"];
+                        NSArray *propertyarr = [property componentsSeparatedByString:@","];
+                        for (int t= 0; t<propertyarr.count; t++) {
+                            str3 = [NSString stringWithFormat:@"%@-%@元;%@",propertyarr[t],list[k][@"param"],str3];
+                        }
+                       
                     }
                     else if ([list[k][@"commission_way"] isEqualToString:@"比率"])
                     {
-                        str3 =[NSString stringWithFormat:@"%@成交佣金：总价*%@%%\n%@",list[k][@"property_type"],list[k][@"param"],str3];
+                        NSString *property = list[k][@"property_type"];
+                        NSArray *propertyarr = [property componentsSeparatedByString:@","];
+                        for (int t= 0; t<propertyarr.count; t++) {
+                            str3 = [NSString stringWithFormat:@"%@-总价*%@%%;%@",propertyarr[t],list[k][@"param"],str3];
+                        }
+                    
                     }else{
                         
-                        str3 =[NSString stringWithFormat:@"%@成交佣金：面积*%@\n%@",list[k][@"property_type"],list[k][@"param"],str3];
+                        NSString *property = list[k][@"property_type"];
+                        NSArray *propertyarr = [property componentsSeparatedByString:@","];
+                        for (int t= 0; t<propertyarr.count; t++) {
+                            str3 = [NSString stringWithFormat:@"%@-面积*%@%%;%@",propertyarr[t],list[k][@"param"],str3];
+                        }
+                        
                     }
+                    
+                     str3 =[NSString stringWithFormat:@"成交佣金：%@",str3];
                 }
             }
         }
