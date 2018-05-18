@@ -12,6 +12,8 @@
 #import "BrokerageDetailTableCell3.h"
 #import "BrokerageDetailTableCell4.h"
 #import "BrokerDetailHeader.h"
+#import "RoomDetailVC1.h"
+#import "RoomListModel.h"
 
 @interface BrokerageDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -65,7 +67,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == 2) {
-            return _Pace.count+1;
+            return _Pace.count;
     }
     return 1;
 }
@@ -115,7 +117,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleL.text = @"推荐信息";
         cell.numL.text = [NSString stringWithFormat:@"推荐编号：%@",_data[@"client_id"]];
-        cell.pushtimeL.text = @"推荐时间";
+        cell.pushtimeL.text = [NSString stringWithFormat:@"推荐时间：%@",_data[@"create_time"]];;
         cell.projectnameL.text = [NSString stringWithFormat:@"项目名称：%@",_data[@"project_name"]];
         cell.adressL.text = [NSString stringWithFormat:@"项目地址：%@",_data[@"absolute_address"]];
         cell.nameL.text = [NSString stringWithFormat:@"姓名：%@",_data[@"name"]];
@@ -143,27 +145,28 @@
             
             cell.titleL.text = @"佣金信息";
             
-            cell.typeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"property"]];
+            cell.typeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"broker_type"]];
             
             cell.moneyL.text = [NSString stringWithFormat:@"佣金金额：%@",_data[@"broker_num"]];
             
             if ([_data[@"broker_type"] isEqualToString:@"成交佣金"]) {
-                cell.propertyL.text = @"物业类型:";
-                cell.numL.text = @"房号:";
-                cell.tmoneyL.text = @"成交总价:";
-                cell.areaL.text = @"套内面积:";
-                cell.statuL.text = @"成交状态:";
-                cell.timeL.text = @"成交时间:";
+                cell.propertyL.text =[NSString stringWithFormat:@"物业类型：%@",_data[@"deal_info"][@"property"]];
+                cell.numL.text = [NSString stringWithFormat:@"房号：%@",_data[@"deal_info"][@"house_info"]];
+                cell.tmoneyL.text = [NSString stringWithFormat:@"成交总价：%@",_data[@"deal_info"][@"total_money"]];
+                cell.areaL.text = [NSString stringWithFormat:@"套内面积：%@",_data[@"deal_info"][@"inner_area"]];
+                cell.statuL.text = [NSString stringWithFormat:@"成交状态：%@",_data[@"current_state"]];
+                cell.timeL.text = [NSString stringWithFormat:@"成交时间：%@",_data[@"deal_info"][@"update_time"]];
             }
             else if ([_data[@"broker_type"] isEqualToString:@"到访佣金"]){
-                cell.propertyL.text = @"到访确认时间:";
+                cell.propertyL.text = [NSString stringWithFormat:@"有效到访时间：%@",_data[@"allot_time"]];;
             }
             else{
                 
-                cell.propertyL.text = @"到访时间:";
+                cell.propertyL.text = [NSString stringWithFormat:@"有效到访时间：%@",_data[@"visit_time"]];;;
             }
 
-          
+            [cell.ruleBtn addTarget:self action:@selector(action_rule) forControlEvents:UIControlEventTouchUpInside];
+            
             if ([_type isEqualToString:@"1"]) {
        
                 cell.statusImg.image = [UIImage imageNamed:@"seal_knot"];
@@ -178,17 +181,17 @@
             return cell;
         }else{
             
-            if (indexPath.row == _Pace.count) {
-                
-                BrokerageDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell4"];
-                if (!cell) {
-                    
-                    cell = [[BrokerageDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell4"];
-                }
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }else{
-                
+//            if (indexPath.row == _Pace.count) {
+//
+//                BrokerageDetailTableCell4 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell4"];
+//                if (!cell) {
+//
+//                    cell = [[BrokerageDetailTableCell4 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BrokerageDetailTableCell4"];
+//                }
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                return cell;
+//            }else{
+            
                 BrokerageDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokerageDetailTableCell3"];
                 if (!cell) {
                     
@@ -212,7 +215,7 @@
                     cell.downLine.hidden = NO;
                 }
                 return cell;
-            }
+//            }
         }
     }
 }
@@ -287,6 +290,15 @@
               failure:^(NSError *error) {
                   NSLog(@"%@",error.description);
               }];
+}
+
+-(void)action_rule
+{
+    RoomListModel *model = [[RoomListModel alloc]init];
+    model.project_id = _data[@"project_id"];
+    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 @end

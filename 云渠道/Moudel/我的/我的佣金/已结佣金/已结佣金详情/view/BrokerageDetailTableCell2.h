@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface BrokerageDetailTableCell2 : UITableViewCell
 
 @property (nonatomic, strong) UILabel *titleL;
