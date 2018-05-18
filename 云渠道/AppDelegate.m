@@ -34,8 +34,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
+    [self postVersion];
     dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
     
     dispatch_group_t group = dispatch_group_create();
@@ -243,6 +242,40 @@
             NSLog(@"rescode: %ld, \ntags: %@, \nalias: %@\n", (long)iResCode, tags , iAlias);;
         } seq:0];
     }
+}
+
+-(void)postVersion
+{
+    [BaseRequest GET:Version_URL parameters:nil success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] ==200) {
+            
+        
+        if ([resposeObject[@"data"] floatValue]<=[version floatValue]) {
+            
+        }
+        else
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去APPStore下载最新版本的APP" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"去下载" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [ [UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1371978352?mt=8"]];
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:^{
+                
+            }];
+            
+        }
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+        
+
 }
 
 -(void)tagsAliasCallback:(int)iResCode

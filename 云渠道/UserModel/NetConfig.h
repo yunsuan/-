@@ -15,6 +15,9 @@
 //基础接口
 static NSString *const Base_Net = @"http://120.27.21.136:2798/";
 
+//获取版本
+static NSString *const Version_URL = @"getVersion";
+
 #pragma mark ---  配置文件  ---
 //配置文件
 static NSString *const Config_URL = @"config";
@@ -341,4 +344,6 @@ static NSString *const ButterValue_URL = @"agent/work/butter/value";
 
 //对接人无效客户列表
 static NSString *const ButterDisabled_URL = @"agent/work/butter/disabled";
+
+
 

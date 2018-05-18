@@ -139,10 +139,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
-    next_vc.url = dataarr[indexPath.row][@"api_url"];
-    next_vc.extra_param = dataarr[indexPath.row][@"extra_param"];
-    [self.navigationController pushViewController:next_vc animated:YES];
+//    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
+//    next_vc.url = dataarr[indexPath.row][@"api_url"];
+//    next_vc.extra_param = dataarr[indexPath.row][@"extra_param"];
+//    [self.navigationController pushViewController:next_vc animated:YES];
     
 }
 
