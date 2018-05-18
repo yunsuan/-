@@ -44,10 +44,16 @@
             
             NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:imgArr[i]];
             
-            for (int j = 0; j < [tempDic[@"data"] count]; j++) {
-                
-                _total = _total + 1;
-                [_allArr addObject:tempDic[@"data"][j]];
+            if ([tempDic[@"list"] count]) {
+                for (int j = 0; j < [tempDic[@"list"] count]; j++) {
+                    
+                    _total = _total + 1;
+                    [_allArr addObject:tempDic[@"list"][j]];
+                }
+            }else{
+            
+                _total += 1;
+                [_allArr addObject:@{@"img_url":@"default_3"}];
             }
         }
     }
@@ -59,13 +65,20 @@
         img.backgroundColor = YJTitleLabColor;
         img.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:img];
-        [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_allArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if ([_allArr[i][@"img_url"] isEqualToString:@"default_3"]) {
             
-            if (error) {
+            img.image = [UIImage imageNamed:@"default_3"];
+        }else{
+            
+            [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_allArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 
-                img.image = [UIImage imageNamed:@"default_3"];
-            }
-        }];
+                if (error) {
+                    
+                    img.image = [UIImage imageNamed:@"default_3"];
+                }
+            }];
+        }
+        
     }
     [_imgColl reloadData];
     [_imgColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:0];
@@ -79,13 +92,26 @@
     for (int i = 0; i < _imgArr.count; i++) {
         
         
-        if (([_imgArr[i][@"data"] count]  + count)< _num) {
+        if ([_imgArr[i][@"list"] count]) {
             
-            count = count + [_imgArr[i][@"data"] count];
+            if (([_imgArr[i][@"list"] count]  + count)< _num) {
+                
+                count = count + [_imgArr[i][@"list"] count];
+            }else{
+                
+                [_imgColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:NO scrollPosition:0];
+                break;
+            }
         }else{
             
-            [_imgColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:NO scrollPosition:0];
-            break;
+            if ((1  + count)< _num) {
+                
+                count = count + 1;
+            }else{
+                
+                [_imgColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:NO scrollPosition:0];
+                break;
+            }
         }
     }
     
@@ -117,7 +143,7 @@
         cell = [[BuildingAlbumCollCell alloc] initWithFrame:CGRectMake(0, 0, 50 *SIZE, 27 *SIZE)];
     }
     
-    cell.contentL.text = _imgArr[indexPath.item][@"type_name"];
+    cell.contentL.text = _imgArr[indexPath.item][@"type"];
     
     return cell;
 }
@@ -129,7 +155,13 @@
         
         if (i < indexPath.item) {
             
-            count = count + [_imgArr[i][@"data"] count];
+            if ([_imgArr[i][@"list"] count]) {
+                
+                count = count + [_imgArr[i][@"list"] count];
+            }else{
+            
+                count = count + 1;
+            }
         }
     }
     [_scrollView setContentOffset:CGPointMake(count * SCREEN_Width, 0) animated:NO];

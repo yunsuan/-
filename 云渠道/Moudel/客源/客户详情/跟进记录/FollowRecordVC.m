@@ -221,6 +221,7 @@
         
         BorderTF *TF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 34 *SIZE+_chooseview.frame.size.height + i * 95 *SIZE, 258 *SIZE, 33 *SIZE)];
         TF.textfield.delegate = self;
+        TF.textfield.keyboardType = UIKeyboardTypeNumberPad;
         switch (i) {
             case 0:
             {
