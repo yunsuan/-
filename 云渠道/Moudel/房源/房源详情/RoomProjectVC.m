@@ -460,22 +460,29 @@
         
         if (section == 6) {
               
-              RoomDetailTableHeader5 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader5"];
-              if (!header) {
+            RoomDetailTableHeader5 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomDetailTableHeader5"];
+            if (!header) {
                   
-                  header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
-              }
-              header.numL.text = [NSString stringWithFormat:@"匹配的客户(%ld)",_peopleArr.count];
-              header.moreBtnBlock = ^{
+                header = [[RoomDetailTableHeader5 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
+            }
+            header.numL.text = [NSString stringWithFormat:@"匹配的客户(%ld)",_peopleArr.count];
+            if (_peopleArr.count == 0) {
+                
+                header.moreBtn.hidden = YES;
+            }else{
+                
+                header.moreBtn.hidden = NO;
+            }
+            header.moreBtnBlock = ^{
                   
-                  CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr projectId:_projectId];
-                  [self.navigationController pushViewController:nextVC animated:YES];
-              };
-              return header;
-          }else{
+                CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr projectId:_projectId];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            };
+            return header;
+        }else{
               
-              return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 6 *SIZE)];
-          }
+            return [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 6 *SIZE)];
+        }
     }
 }
 

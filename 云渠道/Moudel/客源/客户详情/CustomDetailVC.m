@@ -521,7 +521,13 @@
             
             header.numListL.text = [NSString stringWithFormat:@"匹配项目列表(%ld)",_projectArr.count];
             header.recommendListL.text = [NSString stringWithFormat:@"已推荐项目数(%ld)",_statusArr.count];
-            
+            if (_projectArr.count == 0) {
+                
+                header.moreBtn.hidden = YES;
+            }else{
+                
+                header.moreBtn.hidden = NO;
+            }
             header.moreBtnBlock = ^{
                 
 //                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId];

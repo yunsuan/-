@@ -418,7 +418,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         NSLog(@"iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
     }
     
-    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:[badge integerValue]];
+//    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:[badge integerValue]];
+    [UIApplication sharedApplication].applicationIconBadgeNumber += 1;
     
     completionHandler();  // 系统要求执行这个方法
 }

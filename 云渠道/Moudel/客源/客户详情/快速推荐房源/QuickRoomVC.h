@@ -9,7 +9,15 @@
 #import "BaseViewController.h"
 #import "CustomRequireModel.h"
 
+@class QuickRoomVC;
+
+typedef void(^QuickRoomVCSelectBlock)(NSString *projectId,NSString *projectName);
+
 @interface QuickRoomVC : BaseViewController
+
+@property (nonatomic, copy) QuickRoomVCSelectBlock quickRoomVCSelectBlock;
+
+@property (nonatomic, strong) NSString *ways;
 
 - (instancetype)initWithModel:(CustomRequireModel *)model;
 
