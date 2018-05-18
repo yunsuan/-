@@ -12,6 +12,7 @@
 #import "RoomDetailCollCell.h"
 #import "HouseSearchVC.h"
 #import "RoomVC.h"
+#import "BrokerageDetailVC.h"
 
 @interface RoomDetailVC1 ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
 {
@@ -65,7 +66,10 @@
         }else{
             
             if ([vc isKindOfClass:[RoomVC class]]) {
-                
+            
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            if ([vc isKindOfClass:[BrokerageDetailVC class]]) {
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
