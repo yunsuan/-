@@ -42,14 +42,20 @@
     [self initDataSource];
     [self initUI];
     
-    [self CityListRequest];
+    if (!_cityArr.count) {
+        
+        [self CityListRequest];
+    }else{
+        
+        [self SetData:_cityArr];
+    }
+    
 }
 
 - (void)initDataSource{
     
     _cityArr = [@[] mutableCopy];
-//    _dataArr = [UserModel defaultModel].cityArr;
-//    _nameArr = [UserModel defaultModel].groupArr;
+    _cityArr = [UserModel defaultModel].cityArr;
 }
 
 - (void)CityListRequest{
@@ -76,8 +82,7 @@
     
     _nameArr = [BMChineseSort IndexWithArray:_cityArr Key:@"city_name"];
     _dataArr = [BMChineseSort sortObjectArray:_cityArr Key:@"city_name"];
-    [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:_dataArr];
-    [UserModel defaultModel].groupArr = [NSMutableArray arrayWithArray:_nameArr];
+    [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:data];
     [UserModelArchiver archive];
     NSLog(@"%@",_dataArr);
     [_cityTable reloadData];

@@ -34,14 +34,40 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [BaseRequest GET:Config_URL parameters:nil success:^(id resposeObject) {
-        if ([resposeObject[@"code"] integerValue] == 200) {
-            [UserModel defaultModel].Configdic = resposeObject[@"data"];
-            [UserModelArchiver archive];
-        }
-    } failure:^(NSError *error) {
+    
+    
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue1, ^{
         
-    }];
+        [BaseRequest GET:Config_URL parameters:nil success:^(id resposeObject) {
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                [UserModel defaultModel].Configdic = resposeObject[@"data"];
+                [UserModelArchiver archive];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    });
+    dispatch_group_async(group, queue1, ^{
+        
+        [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:resposeObject[@"data"]];
+                [UserModelArchiver archive];
+            }
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    });
+    
     if (![UserModelArchiver unarchive].agent_id) {
          [UserModel defaultModel].agent_id = @"0";
         [UserModelArchiver archive];
