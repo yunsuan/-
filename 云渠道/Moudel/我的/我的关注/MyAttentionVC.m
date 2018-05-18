@@ -204,6 +204,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+//    MyAttentionModel *model = _dataArr[indexPath.row];
+//    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+//    if ([model.guarantee_brokerage integerValue] == 2) {
+//
+//        nextVC.brokerage = @"no";
+//    }else{
+//
+//        nextVC.brokerage = @"yes";
+//    }
+//=======
+//    RoomListModel *model = [[RoomListModel alloc]init];
+//    MyAttentionModel *attention = _dataArr[indexPath.row];
+////    NSDictionary *dic = @{@"project_id":attention.project_id};
+//    model.project_id = attention.project_id;
+//    RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
+////>>>>>>> 057c30c0394b6fdafaf942ee33411e657024b962
+//    nextVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:nextVC animated:YES];
+    
     MyAttentionModel *model = _dataArr[indexPath.row];
     RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
     if ([model.guarantee_brokerage integerValue] == 2) {

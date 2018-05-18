@@ -97,21 +97,28 @@
 -(void)post{
     [BaseRequest GET:InfoList_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
-            _data = @[@[@"systemmessage",@"系统消息",[NSString stringWithFormat:@"未读消息%ld条",[resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue]]],@[@"worknews",@"工作消息",[NSString stringWithFormat:@"未读消息%ld条",[resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]]]];
+            NSInteger system = [resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue];
+            if (system <0) {
+                system = 0;
+            }
+            NSInteger working = [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue];
+            if (working<0) {
+                working = 0;
+            }
+            _data = @[@[@"systemmessage",@"系统消息",[NSString stringWithFormat:@"未读消息%ld条",system]],@[@"worknews",@"工作消息",[NSString stringWithFormat:@"未读消息%ld条",working]]];
     
             [_messageTable reloadData];
             [_messageTable.mj_header endRefreshing];
 
-            if (([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue]) < 1) {
-                
+            if (working+system < 1) {
                 
                 [[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setBadgeValue:nil];
             }else{
                 
-                [[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%ld",([resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue])]];
+                [[[self.navigationController.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%ld",working+system]];
             }
             
-            [UIApplication sharedApplication].applicationIconBadgeNumber = [resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue] + [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue];
+            [UIApplication sharedApplication].applicationIconBadgeNumber = working+system;
         }
         
     } failure:^(NSError *error) {

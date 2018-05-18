@@ -348,17 +348,17 @@
     self.titleLabel.text = @"户型详情";
     self.line.hidden = YES;
 
-    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
-//    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
-    [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_recommendBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-    [self.view addSubview:self.recommendBtn];
-    [self.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.leftButton);
-        make.right.equalTo(self.navBackgroundView).offset(- 8 *SIZE);
-        make.size.mas_offset(CGSizeMake(22, 22));
-    }];
+//    _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _recommendBtn.frame = CGRectMake(SCREEN_Width - 35, STATUS_BAR_HEIGHT + 8, 24, 24);
+////    [_recommendBtn setBackgroundColor:YJBlueBtnColor];
+//    [_recommendBtn addTarget:self action:@selector(ActionRecommendBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [_recommendBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+//    [self.view addSubview:self.recommendBtn];
+//    [self.recommendBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.leftButton);
+//        make.right.equalTo(self.navBackgroundView).offset(- 8 *SIZE);
+//        make.size.mas_offset(CGSizeMake(22, 22));
+//    }];
     
     _houseTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _houseTable.estimatedRowHeight = 150 *SIZE;
