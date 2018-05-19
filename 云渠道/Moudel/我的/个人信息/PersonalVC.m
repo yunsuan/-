@@ -123,12 +123,19 @@
     [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
         
     } WithDefaultBlack:^{
+        
+        [BaseRequest GET:@"agent/user/logOut" parameters:nil success:^(id resposeObject) {
+            
+            NSLog(@"%@",resposeObject);
+        } failure:^(NSError *error) {
+            
+            NSLog(@"%@",error);
+        }];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
         [UserModel defaultModel].Token = @"";
         [UserModelArchiver archive];
         [UserModelArchiver ClearUserInfoModel];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"goLoginVC" object:nil];
-        
     }];
 }
 
