@@ -198,10 +198,17 @@
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_dataArr removeAllObjects];
-            [self SetData:resposeObject[@"data"]];
+            if ([resposeObject[@"data"] count]) {
+                
+                [self SetData:resposeObject[@"data"]];
+            }else{
+            
+                self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }
         }else{
             
             [self showContent:resposeObject[@"msg"]];
+            self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
         }
     } failure:^(NSError *error) {
         
@@ -248,12 +255,19 @@
        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            [_dataArr removeAllObjects];
-            [self SetData:resposeObject[@"data"]];
+            if ([resposeObject[@"data"] count]) {
+                
+                [self SetData:resposeObject[@"data"]];
+                [self.MainTableView.mj_footer endRefreshing];
+            }else{
+            
+                self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }
         }else{
             
             _page -= 1;
             [self showContent:resposeObject[@"msg"]];
+            self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
         }
     } failure:^(NSError *error) {
         

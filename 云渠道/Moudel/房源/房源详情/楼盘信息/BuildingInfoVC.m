@@ -156,7 +156,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section !=3) {
+    if (indexPath.section != 3) {
         static NSString *CellIdentifier = @"BuildinginfoCell";
         
         BuildinginfoCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
