@@ -34,29 +34,48 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    RoomCellCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomCellCollCell" forIndexPath:indexPath];
-    if (!cell) {
+    if (self.dataArr.count) {
         
-        cell = [[RoomCellCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 220 *SIZE)];
-    }
-    
-    [cell.typeImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,self.dataArr[indexPath.item][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-       
-        if (error) {
+        RoomCellCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomCellCollCell" forIndexPath:indexPath];
+        if (!cell) {
             
-            cell.typeImg.image = [UIImage imageNamed:@"default_3"];
+            cell = [[RoomCellCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 220 *SIZE)];
         }
-    }];
-    cell.letterL.text = self.dataArr[indexPath.item][@"house_type_name"];
-    cell.areaL.text = [NSString stringWithFormat:@"%@㎡",self.dataArr[indexPath.item][@"property_area_min"]];
-    cell.typeL.text = self.dataArr[indexPath.item][@"house_type"];
-    cell.statusL.text = self.dataArr[indexPath.item][@"sale_state"];
+        
+        [cell.typeImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,self.dataArr[indexPath.item][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            if (error) {
+                
+                cell.typeImg.image = [UIImage imageNamed:@"default_3"];
+            }
+        }];
+        cell.letterL.text = self.dataArr[indexPath.item][@"house_type_name"];
+        cell.areaL.text = [NSString stringWithFormat:@"%@㎡",self.dataArr[indexPath.item][@"property_area_min"]];
+        cell.typeL.text = self.dataArr[indexPath.item][@"house_type"];
+        cell.statusL.text = self.dataArr[indexPath.item][@"sale_state"];
+        return cell;
+    }else{
+        
+        RoomCellCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RoomCellCollCell" forIndexPath:indexPath];
+        if (!cell) {
+            
+            cell = [[RoomCellCollCell alloc] initWithFrame:CGRectMake(0, 0, 120 *SIZE, 220 *SIZE)];
+        }
+        
+        cell.typeImg.image = [UIImage imageNamed:@"default_3"];
+        cell.letterL.text = @"暂无户型资料";
+        cell.areaL.text = @"";
+        cell.typeL.text = @"";
+        cell.statusL.text = @"";
+        
+        return cell;
+    }
 //    cell.letterL.text = @"A型";
 //    cell.areaL.text = @"102m";
 //    cell.typeL.text = @"3室1厅1卫";
 //    cell.statusL.text = @"在售";
     
-    return cell;
+//    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

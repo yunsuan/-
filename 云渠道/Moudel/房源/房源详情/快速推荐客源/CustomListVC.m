@@ -18,9 +18,12 @@
     NSMutableArray *_tempArr;
     NSString *_projectId;
     NSInteger _page;
+    BOOL _isSearch;
 }
 
 @property (nonatomic , strong) UITableView *customerTable;
+
+@property (nonatomic, strong) UITextField *searchBar;
 
 @end
 
@@ -54,7 +57,10 @@
 - (void)RequestMethod{
     
     _customerTable.mj_footer.state = MJRefreshStateIdle;
-    
+    if (_isSearch) {
+        
+        
+    }
     [BaseRequest GET:FastRecommendList_URL parameters:nil success:^(id resposeObject) {
         
         [_customerTable.mj_header endRefreshing];
@@ -104,9 +110,11 @@
     
     _page += 1;
     NSDictionary *tempDic = @{@"page":@(_page)};
-    
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:tempDic];
-
+    if (_isSearch) {
+        
+        
+    }
     [BaseRequest GET:FastRecommendList_URL parameters:dic success:^(id resposeObject) {
 
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -197,14 +205,26 @@
 }
 
 
-
-
 //action
 -(void)action_add
 {
     QuickAddCustomVC *next_vc = [[QuickAddCustomVC alloc]initWithProjectId:_projectId];
     [self.navigationController pushViewController:next_vc animated:YES];
     
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if (textField.text) {
+        
+        _isSearch = YES;
+        [self RequestMethod];
+    }else{
+        
+        _isSearch = NO;
+        [self RequestMethod];
+    }
+    return YES;
 }
 
 #pragma mark -- TableViewDelegate
@@ -282,22 +302,22 @@
     [whiteView addSubview:self.leftButton];
     [whiteView addSubview:self.maskButton];
     
-//    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, STATUS_BAR_HEIGHT + 14  *SIZE, 283 *SIZE, 33 *SIZE)];
-//    _searchBar.backgroundColor = YJBackColor;
-//    _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
-//    //设置显示模式为永远显示(默认不显示)
-//    _searchBar.leftViewMode = UITextFieldViewModeAlways;
-//    _searchBar.placeholder = @"客户姓名/电话";
-//    _searchBar.font = [UIFont systemFontOfSize:11 *SIZE];
-//    _searchBar.returnKeyType = UIReturnKeySearch;
-//    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
-//    //    rightImg.backgroundColor = YJGreenColor;
-//    rightImg.image = [UIImage imageNamed:@"search_2"];
-//    _searchBar.rightView = rightImg;
-//    _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
-//    _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    _searchBar.delegate = self;
-//    [whiteView addSubview:_searchBar];
+    _searchBar = [[UITextField alloc] initWithFrame:CGRectMake(38 *SIZE, STATUS_BAR_HEIGHT + 14  *SIZE, 263 *SIZE, 33 *SIZE)];
+    _searchBar.backgroundColor = YJBackColor;
+    _searchBar.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 11 *SIZE, 0)];
+    //设置显示模式为永远显示(默认不显示)
+    _searchBar.leftViewMode = UITextFieldViewModeAlways;
+    _searchBar.placeholder = @"客户姓名/电话";
+    _searchBar.font = [UIFont systemFontOfSize:11 *SIZE];
+    _searchBar.returnKeyType = UIReturnKeySearch;
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(0 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    //    rightImg.backgroundColor = YJGreenColor;
+    rightImg.image = [UIImage imageNamed:@"search_2"];
+    _searchBar.rightView = rightImg;
+    _searchBar.rightViewMode = UITextFieldViewModeUnlessEditing;
+    _searchBar.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _searchBar.delegate = self;
+    [whiteView addSubview:_searchBar];
     
     _customerTable = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 62 *SIZE , SCREEN_Width, SCREEN_Height - STATUS_BAR_HEIGHT - 62 *SIZE  - TAB_BAR_MORE) style:UITableViewStylePlain];;
     _customerTable.estimatedRowHeight = 150 *SIZE;

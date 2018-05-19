@@ -336,7 +336,19 @@
             return 0;
         }else{
             
-            return 1;
+            if (section == 2) {
+                
+                if (_dynamicDic.count) {
+                    
+                    return 1;
+                }else{
+                    
+                    return 0;
+                }
+            }else{
+                
+                return 1;
+            }
         }
     }
 }
@@ -573,18 +585,30 @@
                 cell = [[RoomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell3"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.num = _houseArr.count;
+            
+            if (_houseArr.count) {
+                
+               cell.num = _houseArr.count;
+            }else{
+                
+                cell.num = 3;
+            }
             if (_houseArr.count) {
                 
                 cell.dataArr = [NSMutableArray arrayWithArray:_houseArr];
+                [cell.cellColl reloadData];
+            }else{
+                
                 [cell.cellColl reloadData];
             }
             
             cell.collCellBlock = ^(NSInteger index) {
 
-                HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:_houseArr projectId:_projectId];
-//                nextVC.dataArr = [NSMutableArray arrayWithArray:_houseArr];
-                [self.navigationController pushViewController:nextVC animated:YES];
+                if (_houseArr.count) {
+                    
+                    HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:_houseArr projectId:_projectId];
+                    [self.navigationController pushViewController:nextVC animated:YES];
+                }
             };
 
             return cell;

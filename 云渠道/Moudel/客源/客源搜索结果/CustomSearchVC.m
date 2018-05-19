@@ -156,6 +156,14 @@
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
         [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             
+            if ([key isEqualToString:@"region"]) {
+                
+                if (![obj isKindOfClass:[NSArray class]]) {
+                    
+                    [tempDic setObject:@[] forKey:@"region"];
+                }
+            }
+            
             if ([obj isKindOfClass:[NSNull class]]) {
                 
                 if ([key isEqualToString:@"region"]) {
@@ -221,7 +229,7 @@
 //    self.view.backgroundColor = YJBackColor;
 
     
-    _searchTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+    _searchTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
     _searchTable.backgroundColor = YJBackColor;
     _searchTable.delegate = self;
     _searchTable.dataSource = self;

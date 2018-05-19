@@ -256,7 +256,7 @@
             if ([resposeObject[@"data"] count]) {
                 
                 [self SetData:resposeObject[@"data"]];
-                [_MainTableView.mj_footer endRefreshing];
+                [self.MainTableView.mj_footer endRefreshing];
             }else{
                 
                 self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
@@ -265,7 +265,6 @@
            
             _page -= 1;
             [self showContent:resposeObject[@"msg"]];
-        
             [self.MainTableView.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {
@@ -576,49 +575,23 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
-    if (_city) {
+    CityVC *nextVC = [[CityVC alloc] initWithLabel:_cityName];
+    nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
         
-        CityVC *nextVC = [[CityVC alloc] initWithLabel:_cityName];
-        nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
-            
-            [_cityBtn setTitle:city forState:UIControlStateNormal];
-            _city = [NSString stringWithFormat:@"%@",code];
-            [self RequestMethod];
-        };
-        nextVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:nextVC animated:YES];
-    }else{
-        
-        [self showContent:@"正在定位中,请稍后"];
-    }
+        [_cityBtn setTitle:city forState:UIControlStateNormal];
+        _city = [NSString stringWithFormat:@"%@",code];
+        [self RequestMethod];
+    };
+    nextVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:nextVC animated:YES];
+    
+//    if (_city) {
 //
-//    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
 //
-//        NSLog(@"%@",resposeObject);
+//    }else{
 //
-//    } failure:^(NSError *error) {
-//
-//        NSLog(@"%@",error);
-//    }];
-//    AdressChooseView *view = [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
-//    [[UIApplication sharedApplication].keyWindow addSubview:view];
-//    view.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
-//
-//        if (![area isEqualToString:@"市辖区"]) {
-//
-//            [_cityBtn setTitle:area forState:UIControlStateNormal];
-//        }else{
-//
-//            if (![city isEqualToString:@"市辖区"]) {
-//
-//                [_cityBtn setTitle:city forState:UIControlStateNormal];
-//            }else{
-//
-//                [_cityBtn setTitle:province forState:UIControlStateNormal];
-//            }
-//        }
-//
-//    };
+//        [self showContent:@"正在定位中,请稍后"];
+//    }
 }
 
 - (void)ActionUpAndDownBtn:(UIButton *)btn{
