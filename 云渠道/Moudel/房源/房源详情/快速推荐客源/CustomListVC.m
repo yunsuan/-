@@ -57,10 +57,6 @@
 - (void)RequestMethod{
     
     _customerTable.mj_footer.state = MJRefreshStateIdle;
-    if (_isSearch) {
-        
-        
-    }
     [BaseRequest GET:FastRecommendList_URL parameters:nil success:^(id resposeObject) {
         
         [_customerTable.mj_header endRefreshing];
@@ -156,6 +152,107 @@
     }];
 }
 
+- (void)SearchMethod{
+    
+    _customerTable.mj_footer.state = MJRefreshStateIdle;
+    NSDictionary *dic = @{@"search":_searchBar.text};
+    [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [_customerTable.mj_header endRefreshing];
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if ([resposeObject[@"data"][@"current_page"] integerValue] == [resposeObject[@"data"][@"total"] integerValue]) {
+                    
+                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+                
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    if ([resposeObject[@"data"][@"data"] count]) {
+                        
+                        [self SetData:resposeObject[@"data"][@"data"]];
+                        
+                    }else{
+                        
+                        _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                        //                        [self showContent:@"暂无数据"];
+                    }
+                }else{
+                    //                    [self showContent:@"暂无数据"];
+                }
+            }else{
+                //                [self showContent:@"暂无数据"];
+            }
+        }else if([resposeObject[@"code"] integerValue] == 400){
+            
+            //            [self showContent:resposeObject[@"msg"]];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [_customerTable.mj_header endRefreshing];
+        NSLog(@"%@",error.localizedDescription);
+        [self showContent:@"网络错误"];
+    }];
+}
+
+- (void)SearchRequestAdd{
+    
+    _page += 1;
+    NSDictionary *dic = @{@"search":_searchBar.text,
+                          @"page":@(_page)
+                          };
+    [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        [_customerTable.mj_footer endRefreshing];
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                
+                if ([resposeObject[@"data"][@"current_page"] integerValue] == [resposeObject[@"data"][@"total"] integerValue]) {
+                    
+                    _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
+                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
+                    
+                    if ([resposeObject[@"data"][@"data"] count]) {
+                        
+                        [self SetData:resposeObject[@"data"][@"data"]];
+                        
+                    }else{
+                        
+                        _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                        //                        [self showContent:@"暂无数据"];
+                    }
+                }else{
+                    //                    [self showContent:@"暂无数据"];
+                }
+            }else{
+                //                [self showContent:@"暂无数据"];
+            }
+        }else if([resposeObject[@"code"] integerValue] == 400){
+            
+            //            [self showContent:resposeObject[@"msg"]];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [_customerTable.mj_footer endRefreshing];
+        NSLog(@"%@",error.localizedDescription);
+        [self showContent:@"网络错误"];
+    }];
+}
+
 - (void)SetData:(NSArray *)data{
     
     if (_page == 1) {
@@ -215,10 +312,11 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    if (textField.text) {
+    _page = 1;
+    if (![self isEmpty:textField.text]) {
         
         _isSearch = YES;
-        [self RequestMethod];
+        [self SearchMethod];
     }else{
         
         _isSearch = NO;
@@ -330,12 +428,24 @@
     _customerTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
         
         _page = 1;
-        [self RequestMethod];
+        if (!_isSearch) {
+            
+            [self RequestMethod];
+        }else{
+            
+            [self SearchRequestAdd];
+        }
     }];
     
     _customerTable.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
         
-        [self RequestAddMethod];
+        if (_isSearch) {
+            
+            [self SearchRequestAdd];
+        }else{
+            
+            [self RequestAddMethod];
+        }
     }];
 }
 

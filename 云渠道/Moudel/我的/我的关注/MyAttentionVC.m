@@ -48,20 +48,9 @@
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
-                
-                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
-                    
-                    [self SetData:resposeObject[@"data"][@"data"]];
-                }else{
-                    
-//                    [self showContent:@"暂无关注"];
-                }
-            }else{
-                
-//                [self showContent:@"暂无关注"];
-            }
-        }        else{
+            [self SetData:resposeObject[@"data"]];
+        }else{
+            
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
@@ -115,34 +104,8 @@
             cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
-        NSMutableArray *tempArr = [@[] mutableCopy];
-        for (int i = 0; i < model.property_tags.count; i++) {
-            
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
-                    
-                    [tempArr addObject:obj[@"param"]];
-                    *stop = YES;
-                }
-            }];
-        }
-        
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
-        NSMutableArray *tempArr2 = [@[] mutableCopy];
-        for (int i = 0; i < tempArr1.count; i++) {
-            
-            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
-            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
-                    
-                    [tempArr2 addObject:obj[@"param"]];
-                    *stop = YES;
-                }
-            }];
-        }
-        NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+       
+        NSArray *tempArr3 = @[model.property_tags,model.project_tags_name.count? model.project_tags_name:@[]];
         [cell settagviewWithdata:tempArr3];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -157,8 +120,16 @@
         }
         [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
         
-        NSArray *tempArr1 = @[model.property_tags,model.project_tags_name];
-        [cell settagviewWithdata:tempArr1];
+        if ([model.guarantee_brokerage integerValue] == 1) {
+            
+            cell.surelab.hidden = NO;
+        }else{
+            
+            cell.surelab.hidden = YES;
+        }
+        NSArray *tempArr3 = @[model.property_tags,model.project_tags_name.count? model.project_tags_name:@[]];
+        [cell settagviewWithdata:tempArr3];
+        
         cell.getLevel.hidden = YES;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
