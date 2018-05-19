@@ -46,6 +46,7 @@
     NSMutableDictionary *_buildDic;
     NSString *_phone;
     NSString *_phone_url;
+    NSString *_name;
 }
 
 @property (nonatomic, strong) UITableView *roomTable;
@@ -312,7 +313,7 @@
 
 - (void)Cell4collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSArray * namearr = @[@"教育",@"公交站",@"医院",@"购物",@"餐饮"];
+    NSArray * namearr = @[@"教育",@"公交站点",@"医院",@"购物",@"餐饮"];
     [self beginSearchWithname:namearr[indexPath.row]];
 }
 
@@ -795,7 +796,7 @@
 }
 
 - (void)beginSearchWithname:(NSString *)name{
-    
+    _name = name;
     _poisearch = [self poisearch];
     BMKBoundSearchOption *boundSearchOption = [[BMKBoundSearchOption alloc]init];
     boundSearchOption.pageIndex = 0;
@@ -851,6 +852,46 @@
     animatedAnnotation.title = name;
     [_mapView addAnnotation:animatedAnnotation];
 }
+-(BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+        
+        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+        newAnnotationView.pinColor = BMKPinAnnotationColorRed;
+        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
+        if ([annotation.title isEqualToString:_model.project_name]) {
+            newAnnotationView.image = [UIImage imageNamed:@"coordinates"];
+        }
+        else
+        {
+               NSArray *arr= @[@"教育",@"公交站点",@"医院",@"购物",@"餐饮"];
+            if ([_name isEqualToString:arr[0]]) {
+                 newAnnotationView.image = [UIImage imageNamed:@"education"];
+            }
+            else if ([_name isEqualToString:arr[1]]) {
+                newAnnotationView.image = [UIImage imageNamed:@"traffic"];
+            }
+            else if ([_name isEqualToString:arr[2]]) {
+                newAnnotationView.image = [UIImage imageNamed:@"hospital"];
+            }
+            else if ([_name isEqualToString:arr[3]]) {
+                newAnnotationView.image = [UIImage imageNamed:@"shopping"];
+            }
+            else
+            {
+                newAnnotationView.image = [UIImage imageNamed:@"caterin"];
+            }
+           
+        }
+        
+        return newAnnotationView;
+    }
+    return nil;
+    
+}
+
+
+
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     
     _leftBottomPoint = [_mapView convertPoint:CGPointMake(0,_mapView.frame.size.height) toCoordinateFromView:mapView];  // //西南角（左下角） 屏幕坐标转地理经纬度
