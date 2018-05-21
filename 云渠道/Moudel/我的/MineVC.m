@@ -43,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self InitDataSouce];
     [self InitUI];
@@ -357,7 +358,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 360*SIZE, 10*SIZE)];
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor = YJBackColor;
     return view;
 }
 

@@ -639,7 +639,7 @@
         }];
         if ([model.brokerSortCompare integerValue] == 0) {
             
-            cell.rankView.statusImg.image = [UIImage imageNamed:@""];
+            cell.rankView.statusImg.image = nil;
         }else if ([model.brokerSortCompare integerValue] == 1){
             
             cell.rankView.statusImg.image = [UIImage imageNamed:@"rising"];

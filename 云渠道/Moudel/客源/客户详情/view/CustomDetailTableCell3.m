@@ -60,7 +60,7 @@
     }];
     if ([dataDic[@"brokerSortCompare"] integerValue] == 0) {
         
-        _rankView.statusImg.image = [UIImage imageNamed:@""];
+        _rankView.statusImg.image = nil;
     }else if ([dataDic[@"brokerSortCompare"] integerValue] == 1){
         
         _rankView.statusImg.image = [UIImage imageNamed:@"rising"];

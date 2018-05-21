@@ -108,7 +108,7 @@
         _genderImg.image = [UIImage imageNamed:@"girl_2"];
     }else{
         
-        _genderImg.image = [UIImage imageNamed:@""];
+        _genderImg.image = nil;
     }
     [_tagImg addSubview:_genderImg];
     
