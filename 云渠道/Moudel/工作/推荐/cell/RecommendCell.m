@@ -33,7 +33,7 @@
     _nameL.text = dataDic[@"name"];
     _codeL.text = [NSString stringWithFormat:@"推荐编号：%@",dataDic[@"client_id"]];
     _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project_name"]];
-    _confirmL.text = [NSString stringWithFormat:@"到访确认人：%@",dataDic[@"butter_name"]];
+//    _confirmL.text = [NSString stringWithFormat:@"到访确认人：%@",dataDic[@"butter_name"]];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"失效时间：%@",dataDic[@"create_time"]]];
     [attr addAttribute:NSForegroundColorAttributeName value:YJ86Color range:NSMakeRange(0, 5)];
     _timeL.attributedText = attr;
@@ -63,20 +63,21 @@
     _timeL.font = [UIFont systemFontOfSize:11 *SIZE];
     [self.contentView addSubview:_timeL];
     
-    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 107 *SIZE, 170 *SIZE, 10 *SIZE)];
-    _confirmL.textColor = YJ170Color;
-    _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
-    [self.contentView addSubview:_confirmL];
+//    _confirmL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 107 *SIZE, 170 *SIZE, 10 *SIZE)];
+//    _confirmL.textColor = YJ170Color;
+//    _confirmL.font = [UIFont systemFontOfSize:11 *SIZE];
+//    [self.contentView addSubview:_confirmL];
 
     _statusImg = [[UIImageView alloc] init];
     _statusImg.layer.cornerRadius = 10 *SIZE;
     _statusImg.clipsToBounds = YES;
     [self.contentView addSubview:_statusImg];
     
-    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(180 *SIZE, 107 *SIZE, 170 *SIZE, 10 *SIZE)];
+//    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(180 *SIZE, 107 *SIZE, 170 *SIZE, 10 *SIZE)];
+    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 107 *SIZE, 300 *SIZE, 10 *SIZE)];
     _addressL.textColor = YJ170Color;
     _addressL.font = [UIFont systemFontOfSize:11 *SIZE];
-    _addressL.textAlignment = NSTextAlignmentRight;
+//    _addressL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_addressL];
     
     
