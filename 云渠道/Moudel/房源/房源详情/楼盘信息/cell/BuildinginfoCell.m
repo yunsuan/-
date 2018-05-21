@@ -42,6 +42,23 @@
 {
     _titlelab.text = title;
     _contentlab.text = content;
+    if (content.length) {
+        
+        [_contentlab mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(92*SIZE);
+            make.top.equalTo(self.contentView).offset(13.7*SIZE);
+            make.width.mas_equalTo(248*SIZE);
+            make.bottom.equalTo(self.contentView).offset(-9*SIZE);
+        }];
+    }else{
+        
+        [_titlelab mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView).offset(9.7*SIZE);
+            make.top.equalTo(self.contentView).offset(14 *SIZE);
+            make.width.mas_equalTo(80 *SIZE);
+            make.bottom.equalTo(self.contentView).offset(-9*SIZE);
+        }];
+    }
 }
 
 @end

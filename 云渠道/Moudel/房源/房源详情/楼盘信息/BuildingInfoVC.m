@@ -57,7 +57,6 @@
 {
     _titlelist = [NSMutableArray arrayWithArray:@[@[@"项目名称",@"楼盘状态",@"开发商",@"区域位置",@"设计公司",@"楼盘地址",@"售楼处地址"],@[@"建筑类型",@"均价",@"价格区间",@"占地面积",@"装修标准",@"建筑面积",@"容积率",@"绿化率",@"规划户数",@"规划车位"],@[@"物业类型",@"物业公司",@"物业费",@"供暖方式",@"供水类型",@"供电类型"]]];
     _contentlist = [@[] mutableCopy];
-//    contentlist = @[@[@"项目名称",@"楼盘状态",@"开发商",@"区域位置",@"设计公司",@"楼盘地址",@"售楼处地址jslfjsdjflsdjflsjdlfjsdlkfjlfjsladjklasjfl"],@[@"建筑类型",@"均价",@"价格区间",@"占地面积物业费物业费物业费物业费物业费物业费物业费物业费物业费物业费物业费物业费物业费",@"装修标准",@"建筑面积",@"容积率",@"绿化率",@"规划户数",@"规划车位"],@[@"物业类型",@"物业公司",@"物业费",@"供暖方式",@"供水类型",@"供电类型"],@[@"发证时间",@"2016-06-08"]];
     [self RequestMethod];
 }
 
@@ -115,26 +114,20 @@
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (section !=3) {
-        NSArray *arr= _titlelist[section];
-        return arr.count;
-//    }
-//    else{
-//        return 1;
-//    }
-
+    
+    NSArray *arr = _titlelist[section];
+    return arr.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return _contentlist.count;
-    
+    if (_contentlist.count) {
+        
+        return _titlelist.count;
+    }
+    return 0;
 }
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 43.3*SIZE;
-//}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -204,9 +197,6 @@
 {
     if(!_Mytableview)
     {
-
-
-        
         _Mytableview =   [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
         _Mytableview.rowHeight = UITableViewAutomaticDimension;
         _Mytableview.estimatedRowHeight = 34.4 *SIZE;
