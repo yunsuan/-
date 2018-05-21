@@ -67,7 +67,7 @@
                 }
             }];
             
-            NSString *sex = @"客户性别：无";
+            NSString *sex = @"客户性别：";
             if ([resposeObject[@"data"][@"sex"] integerValue] == 1) {
                 sex = @"客户性别：男";
             }
