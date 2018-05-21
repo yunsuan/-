@@ -241,7 +241,7 @@
     }
     if (_tag.length) {
         
-        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"project_tags"];
+        [dic setObject:[NSString stringWithFormat:@"%@",_tag] forKey:@"project_tags"];
     }
     if (_houseType.length) {
         
