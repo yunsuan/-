@@ -99,37 +99,41 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-//    if (section == 0) {
-//
-//        return nil;
-//    }
-    RoomBrokerageTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomBrokerageTableHeader"];
-    if (!header) {
-        
-        header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
-    }
-   
-    header.titleL.text = [NSString stringWithFormat:@"%@至%@",_model.dataarr[section][@"act_start"],[_model.dataarr[section][@"act_end"] isKindOfClass:[NSNull class]]?@"":_model.dataarr[section][@"act_end"]];//@"2017-07-11至2017-08-10";
-    header.dropBtn.tag = section;
-    if ([_selectArr[section] integerValue]) {
-        
-        [header.dropBtn setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
-    }else{
-        
-        [header.dropBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
-    }
-    header.dropBtnBlock = ^(NSInteger index) {
-        
-        if ([_selectArr[index] integerValue]) {
+
+        RoomBrokerageTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomBrokerageTableHeader"];
+        if (!header) {
             
-            [_selectArr replaceObjectAtIndex:index withObject:@0];
+            header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
+        }
+        
+        if ([_model.dataarr[section][@"act_end"] isEqual:@"0000-00-00"]) {
+            header.titleL.text = [NSString stringWithFormat:@"%@起",_model.dataarr[section][@"act_start"]];
+        }
+        else{
+        header.titleL.text = [NSString stringWithFormat:@"%@至%@",_model.dataarr[section][@"act_start"],_model.dataarr[section][@"act_end"]];//@"2017-07-11至2017-08-10";
+        }
+        header.dropBtn.tag = section;
+        if ([_selectArr[section] integerValue]) {
+            
+            [header.dropBtn setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
         }else{
             
-            [_selectArr replaceObjectAtIndex:index withObject:@1];
+            [header.dropBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
         }
-        [tableView reloadData];
-    };
+        header.dropBtnBlock = ^(NSInteger index) {
+            
+            if ([_selectArr[index] integerValue]) {
+                
+                [_selectArr replaceObjectAtIndex:index withObject:@0];
+            }else{
+                
+                [_selectArr replaceObjectAtIndex:index withObject:@1];
+            }
+            [tableView reloadData];
+        };
+        
     
+
     return header;
 }
 
