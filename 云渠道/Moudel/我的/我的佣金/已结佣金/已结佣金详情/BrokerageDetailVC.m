@@ -121,7 +121,7 @@
         cell.projectnameL.text = [NSString stringWithFormat:@"项目名称：%@",_data[@"project_name"]];
         cell.adressL.text = [NSString stringWithFormat:@"项目地址：%@",_data[@"absolute_address"]];
         cell.nameL.text = [NSString stringWithFormat:@"姓名：%@",_data[@"name"]];
-        NSString *sex = @"性别：无";
+        NSString *sex = @"性别：";
         if ([_data[@"sex"] integerValue] == 1) {
             sex = @"性别：男";
         }

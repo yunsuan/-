@@ -126,10 +126,7 @@
     
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"审核状态";
-    
-    
 
-    
     _statusTable = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
     _statusTable.rowHeight = UITableViewAutomaticDimension;
     _statusTable.estimatedRowHeight = 150 *SIZE;
@@ -140,7 +137,7 @@
     [self.view addSubview:_statusTable];
 
     _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _cancelBtn.frame = CGRectMake(21 *SIZE, 600 *SIZE, 317 *SIZE, 40 *SIZE);
+    _cancelBtn.frame = CGRectMake(0 *SIZE, SCREEN_Height - 40 *SIZE - TAB_BAR_MORE, SCREEN_Width, 40 *SIZE + TAB_BAR_MORE);
     _cancelBtn.layer.masksToBounds = YES;
     _cancelBtn.layer.cornerRadius = 2 *SIZE;
     _cancelBtn.backgroundColor = YJLoginBtnColor;
