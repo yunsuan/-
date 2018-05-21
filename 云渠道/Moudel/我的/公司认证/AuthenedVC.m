@@ -57,7 +57,7 @@
     
     _contentArr = [[NSMutableArray alloc] init];
     _imgArr = [[NSMutableArray alloc] init];
-    NSArray *tempArr = @[_dataDic[@"company_name"],_dataDic[@"work_code"],_dataDic[@"company_name"],_dataDic[@"company_name"],_dataDic[@"department"],_dataDic[@"position"],_dataDic[@"company_name"]];
+    NSArray *tempArr = @[_dataDic[@"company_name"],_dataDic[@"work_code"],_dataDic[@"company_name"],_dataDic[@"butter_project"],_dataDic[@"department"],_dataDic[@"position"],_dataDic[@"create_time"]];
     _contentArr = [NSMutableArray arrayWithArray:tempArr];
     if ([[NSString stringWithFormat:@"%@",_dataDic[@"butter_project"]] isEqualToString:@"0"]) {
         
@@ -66,7 +66,7 @@
     }else{
         
         [_contentArr replaceObjectAtIndex:2 withObject:@"确认人"];
-        [_contentArr replaceObjectAtIndex:4 withObject:_dataDic[@"butter_project"]];
+        [_contentArr replaceObjectAtIndex:3 withObject:_dataDic[@"butter_project"]];
     }
     _titleArr = @[@"所属公司",@"工号",@"角色",@"申请项目",@"所属部门",@"职位",@"入职/申请时间"];
 }

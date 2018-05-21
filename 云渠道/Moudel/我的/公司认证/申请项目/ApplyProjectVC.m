@@ -98,7 +98,8 @@
         if ([resposeObject[@"code"] integerValue] == 200) {
 
             [self SetData:resposeObject[@"data"]];
-        }        else{
+        }else{
+            
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
