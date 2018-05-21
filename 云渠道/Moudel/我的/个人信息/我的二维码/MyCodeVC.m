@@ -131,7 +131,7 @@
     _YSlable.textAlignment = NSTextAlignmentCenter;
     [self.whiteView addSubview:_YSlable];
     _codeImg = [[UIImageView alloc] initWithFrame:CGRectMake(50 *SIZE, 168 *SIZE, 167 *SIZE, 167 *SIZE)];
-    _codeImg.backgroundColor = [UIColor blackColor];
+//    _codeImg.backgroundColor = [UIColor blackColor];
     
     [_whiteView addSubview:_codeImg];
 }

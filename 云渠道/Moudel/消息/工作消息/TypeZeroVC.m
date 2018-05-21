@@ -92,7 +92,7 @@
                 tel = [NSString stringWithFormat:@"联系方式：%@",arr[0]];
             }
             else{
-                tel = @"联系方式：无";
+                tel = @"联系方式：";
             }
             NSString *adress = _dataDic[@"absolute_address"];
             adress = [NSString stringWithFormat:@"项目地址：%@-%@-%@ %@",_dataDic[@"province_name"],_dataDic[@"city_name"],_dataDic[@"district_name"],adress];
