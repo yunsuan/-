@@ -35,6 +35,7 @@
 -(void)setstylebytype:(NSString *)type andsetlab:(NSString *)str{
     
     _displayLabel.text = str;
+    _displayLabel.frame = CGRectMake(0, 3.7*SIZE, 12*SIZE * str.length + 4.7*SIZE *2, 11*SIZE);
     if ([type isEqualToString:@"1"]) {
         self.layer.borderWidth = 0.5*SIZE;
         self.layer.borderColor = COLOR(181, 181, 181, 1).CGColor;
