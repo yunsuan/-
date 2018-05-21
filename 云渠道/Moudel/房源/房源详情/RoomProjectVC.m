@@ -582,7 +582,6 @@
 
             RoomDetailTableCell3 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell3"];
             if (!cell) {
-
                 cell = [[RoomDetailTableCell3 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell3"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

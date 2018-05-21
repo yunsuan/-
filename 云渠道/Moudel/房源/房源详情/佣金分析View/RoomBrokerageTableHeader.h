@@ -20,4 +20,6 @@ typedef void(^DropBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UIButton *dropBtn;
 
+@property (nonatomic , strong)UIButton *headerbtn;
+
 @end

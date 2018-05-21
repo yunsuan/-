@@ -97,7 +97,7 @@
     
     if ([self.brokerage isEqualToString:@"yes"]) {
         
-        _titleArr = @[@"项目",@"佣金",@"分析"];
+        _titleArr = @[@"项目",@"渠道",@"分析"];
     }else{
         
         _titleArr = @[@"项目",@"分析"];
