@@ -149,7 +149,7 @@
     
     if ([model.sex integerValue] == 0) {
         
-        _gender.image = [UIImage imageNamed:@""];
+        _gender.image = nil;
     }else if ([model.sex integerValue] == 1){
         
         _gender.image = [UIImage imageNamed:@"man"];

@@ -241,7 +241,7 @@
     }
     if (_tag.length) {
         
-        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"project_tags"];
+        [dic setObject:[NSString stringWithFormat:@"%@",_tag] forKey:@"project_tags"];
     }
     if (_houseType.length) {
         
@@ -739,7 +739,7 @@
         }];
         if ([model.brokerSortCompare integerValue] == 0) {
             
-            cell.rankView.statusImg.image = [UIImage imageNamed:@""];
+            cell.rankView.statusImg.image = nil;
         }else if ([model.brokerSortCompare integerValue] == 1){
             
             cell.rankView.statusImg.image = [UIImage imageNamed:@"rising"];

@@ -16,7 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        _headimg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+        _headimg = [[UIImageView alloc]init];
         _headimg.frame = CGRectMake(10*SIZE, 17*SIZE, 51*SIZE, 51*SIZE);
         [self.contentView addSubview:_headimg];
 

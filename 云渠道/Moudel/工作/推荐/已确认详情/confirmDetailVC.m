@@ -214,6 +214,8 @@
 -(void)refresh{
     
     [BaseRequest GET:FlushDate_URL parameters:nil success:^(id resposeObject) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         [self.navigationController popViewControllerAnimated:YES];

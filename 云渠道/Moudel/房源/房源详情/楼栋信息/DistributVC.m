@@ -179,11 +179,11 @@
     if (!_backimg) {
         _backimg = [[UIImageView alloc]init];
         _backimg.frame = CGRectMake(0, 0, SCREEN_Width, SCREEN_Height);
-        [_backimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_img_name]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [_backimg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_img_name]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
             if (error) {
                 
-                [UIImage imageNamed:@""];
+                [UIImage imageNamed:@"banner_default_2"];
             }
         }];
     }
