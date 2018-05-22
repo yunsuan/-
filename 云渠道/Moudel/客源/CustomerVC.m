@@ -340,7 +340,10 @@
         }
         [self.boxView removeFromSuperview];
         [self RequestMethod];
-        [_customerTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        if (_dataArr.count) {
+            
+            [_customerTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }
     }
 }
 
