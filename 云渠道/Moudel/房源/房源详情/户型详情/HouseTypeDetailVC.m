@@ -326,13 +326,11 @@
                 }];
             };
             return cell;
-            return cell;
         }
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
     return [[UIView alloc] init];
 }
 
