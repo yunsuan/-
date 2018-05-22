@@ -1,11 +1,11 @@
-platform:ios,'8.0'
+platform:ios,'9.0'
 target '云渠道' do
-  pod 'AFNetworking', '~> 3.2.0'
-  pod 'SDWebImage', '~> 4.3.3’
-  pod 'MJRefresh', '~> 3.1.15.3'
-  pod 'IQKeyboardManager', '~> 5.0.8'
-  pod 'SDCycleScrollView', '~> 1.75'
-  pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'AFNetworking'
+  pod 'SDWebImage'
+  pod 'MJRefresh'
+  pod 'IQKeyboardManager'
+  pod 'SDCycleScrollView'
+  pod 'MBProgressHUD'
   pod 'JPush'
   pod 'Masonry'
   # U-Share SDK UI模块（分享面板，建议添加）
@@ -16,7 +16,7 @@ target '云渠道' do
   pod 'UMCShare/Social/ReducedQQ'
   # 集成新浪微博(精简版1M)
   pod 'UMCShare/Social/ReducedSina'
-  pod 'WechatOpenSDK'
+  # pod 'WechatOpenSDK'
   pod 'BaiduMapKit' #百度地图SDK
-  #pod 'TencentOpenApiSDK'
+  # pod 'TencentOpenApiSDK'
 end
