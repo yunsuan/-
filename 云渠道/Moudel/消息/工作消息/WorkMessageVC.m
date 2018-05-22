@@ -19,7 +19,7 @@
 @interface WorkMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_data;
-    int page;
+    int _page;
 }
 
 @property (nonatomic , strong) UITableView *systemmsgtable;
@@ -35,6 +35,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    _page = 1;
     [self postWithpage:@"1"];
 }
 
@@ -75,7 +76,8 @@
             }
             else{
                 NSArray *arr =resposeObject[@"data"][@"data"];
-                if (arr.count ==0) {
+                if (arr.count == 0) {
+                    
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
                 }
                 else{
@@ -85,8 +87,13 @@
                 }
             }
             [_systemmsgtable.mj_header endRefreshing];
+        }else{
+            
+            _page -= 1;
         }
     } failure:^(NSError *error) {
+        
+        _page -= 1;
         [self showContent:@"网络错误"];
         [_systemmsgtable.mj_footer endRefreshing];
         [_systemmsgtable.mj_header endRefreshing];
@@ -215,11 +222,13 @@
         _systemmsgtable.delegate = self;
         _systemmsgtable.dataSource = self;
         _systemmsgtable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+            
+            _page = 1;
             [self postWithpage:@"1"];
         }];
         _systemmsgtable.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
-            page++;
-            [self postWithpage:[NSString stringWithFormat:@"%d",page]];
+            _page++;
+            [self postWithpage:[NSString stringWithFormat:@"%d",_page]];
         }];
         [_systemmsgtable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
