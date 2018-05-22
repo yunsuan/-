@@ -206,6 +206,11 @@
             
             [_dataArr removeAllObjects];
             [self SetData:resposeObject[@"data"]];
+            if ([resposeObject[@"data"] count] < 15) {
+                
+                self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }
+            
         }else{
          
             [self showContent:resposeObject[@"msg"]];
