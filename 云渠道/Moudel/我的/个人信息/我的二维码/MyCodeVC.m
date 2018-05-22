@@ -68,10 +68,10 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"我的二维码";
     self.rightBtn.hidden = NO;
-//    [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
-//    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
-//    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
-//    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.rightBtn setTitle:@"分享" forState:UIControlStateNormal];
+    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
+    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     self.view.backgroundColor = COLOR(67, 67, 67, 1);
     
@@ -147,7 +147,40 @@
             
             if (index == 0) {
                 
-                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装手机QQ"];
+                }
+            }else if (index == 1){
+                
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_Qzone];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装手机QQ"];
+                }
+            }else if (index == 2){
+                
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装微信"];
+                }
+            }else{
+                
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装微信"];
+                }
             }
         };
     }
@@ -161,7 +194,7 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"分享标题" descr:@"分享内容描述" thumImage:[UIImage imageNamed:@"icon"]];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:_nameL.text descr:@"" thumImage:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]];
     //设置网页地址
     shareObject.webpageUrl =@"http://mobile.umeng.com/social";
     
@@ -172,6 +205,7 @@
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {
             NSLog(@"************Share fail with error %@*********",error);
+            [self alertControllerWithNsstring:@"分享失败" And:nil];
         }else{
             NSLog(@"response data is %@",data);
             [self showContent:@"分享成功"];
