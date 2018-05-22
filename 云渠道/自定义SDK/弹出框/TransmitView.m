@@ -36,8 +36,8 @@
 
 - (void)initUI{
     
-    NSArray *titleArr = @[@"QQ",@"微信",@"朋友圈",@"短信"];
-    NSArray *imgArr = @[@"qq",@"wechat",@"circleofFriends",@"note1"];
+    NSArray *titleArr = @[@"QQ",@"QQ空间",@"微信",@"朋友圈"];
+    NSArray *imgArr = @[@"qq",@"space",@"wechat",@"circleofFriends"];
     
     UIView *alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     alphaView.backgroundColor = [UIColor blackColor];
