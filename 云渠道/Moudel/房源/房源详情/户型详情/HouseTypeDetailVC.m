@@ -237,6 +237,7 @@
             
             header.titleL.font = [UIFont systemFontOfSize:15 *SIZE];
             header.titleL.text = @"本楼盘其他户型";
+            header.moreBtn.hidden = YES;
         }else{
             
             header.titleL.font = [UIFont systemFontOfSize:13 *SIZE];
