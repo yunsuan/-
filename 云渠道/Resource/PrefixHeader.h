@@ -24,31 +24,34 @@
 #import <Foundation/Foundation.h>
 #endif
 
-//#import "InfoCenter.h"
-//#import "InfoCenterArchiver.h"
 #import "MJRefresh.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Radar/BMKRadarOption.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Base/BMKMapManager.h>
+#import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import "NetConfig.h"
+//#import <BaiduMapAPI_Map/BMKMapView.h>
 
-//#import "WJQTools.h"
+#import <Masonry.h>
 #import "UIImageView+WebCache.h"
-//#import "SVProgressHUD.h"
-//#import "NetConfitModel.h"
 #import "MBProgressHUD.h"
-//#import "MBSJModel.h"
-////#import "NetConfig.h"
-//#import "BaseNetRequest.h"
-////#import "ThirdConfig.h"
-//#import "Wbtn.h"
-//#define HQFWQDZ @"http://www.ccsoft.com.cn/serverurl.asp?code=YS12330"
-//#import "MyConfigTool.h"
+#import "UserModel.h"
+#import "UserInfoModel.h"
+#import "UserModelArchiver.h"
+#import "BaseRequest.h"
+#import "GZQGifHeader.h"
+#import "GZQGifFooter.h"
+#import "WaitAnimation.h"
+#import <UMShare/UMShare.h>
+#import "TransmitView.h"
 
-#define HTTPHEADNUMBER @"http://101.205.19.65:10000"
-//#define HTTPHEADNUMBER @"http://pinjinbao.bingfor.com/"
-#define HTTPHEAD @"http://182.92.161.212/pigadoption"
-#define kBaseUrl @"http://101.205.19.65:10000/TelService.ashx"
+
+
 #ifndef deviceVersion
 #define deviceVersion [[[UIDevice currentDevice] systemVersion] floatValue]
 #endif
-#define sIZE [UIScreen mainScreen].bounds.size.width/320
+#define sIZE [UIScreen mainScreen].bounds.size.width/360
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define SCREEN_Width [UIScreen mainScreen].bounds.size.width
 #define SCREEN_Height [UIScreen mainScreen].bounds.size.height
@@ -60,6 +63,9 @@
 #define FROMFORLEFT  20 * SIZE
 #define PLINEHEIGHT    0.5*SIZE
 
+#define JpushAppKey @"2dd909361c253b51e0cd05a9"
+#define version @"1.0"
+#define ACCESSROLE @"agent"
 
 // 判断是否是iPhone X
 #define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -76,6 +82,13 @@
 #define LOGINENTIFIER @"logIndentifier"
 #define LOGINSUCCESS @"logInSuccessdentifier"
 #define HUANPASSWORD @"1111"
+
+#define UmengAppkey @"5ac9debcb27b0a2147000050"
+#define QQAPPID @"1106811849"
+#define QQAppkey @"Yik2oC5WcDQ5IOrpc"
+#define WechatAppId @"wx3e34d92e8b8cb53e"
+#define WechatSecret @"200ee15186843d67c0d9ba6a66f3a6ba"
+#define redirectUrl @"http://www.ccsoft.com.cn/"
 
 #define __KPropretyLaebl(key) @property(nonatomic,copy) UILabel *key;
 #define __KPropretyImageView(key) @property(nonatomic,copy) UIImageView *key;
@@ -102,8 +115,12 @@
 #define YJBackColor  COLOR(240, 240, 240, 1)
 #define YJTitleLabColor  COLOR(51, 51, 51, 1)
 #define YJContentLabColor  COLOR(115, 115, 115, 1)
+#define YJ86Color   COLOR(86, 86, 86, 1)
+#define YJ170Color   COLOR(170, 170, 170, 1)
 #define YJGreenColor  COLOR(60, 191, 75, 1)
 #define YJLoginBtnColor   COLOR(0x1b, 0x80, 0xfe, 1)
+#define YJBlueBtnColor   COLOR(27, 152, 255, 1)
+
 /**
  *  第一部分,颜色部分
  */
@@ -172,5 +189,7 @@
  *新增
  */
 #define FyColor_ZhutiColor  COLOR(18, 183, 245, 1)
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #endif /* Header_h */

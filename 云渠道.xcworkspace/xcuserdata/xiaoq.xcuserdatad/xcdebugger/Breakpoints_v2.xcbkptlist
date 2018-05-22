@@ -2,4 +2,430 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x767b;&#x5f55;&#x6ce8;&#x518c;/&#x627e;&#x56de;&#x5bc6;&#x7801;/FindPassWordVC.m"
+            timestampString = "545731194.532431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "RegisterBtn"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/&#x4fee;&#x6539;&#x5bc6;&#x7801;/ChangePassWordVC.m"
+            timestampString = "548135788.877682"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-Register"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6d88;&#x606f;/&#x7cfb;&#x7edf;&#x6d88;&#x606f;/SystemMessageVC.m"
+            timestampString = "548405917.934131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/&#x81ea;&#x5b9a;&#x4e49;SDK/&#x5f39;&#x51fa;&#x6846;/InvalidView.m"
+            timestampString = "547376883.6925679"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-ActionConfirmBtn:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[InvalidView ActionConfirmBtn:]"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/%E8%87%AA%E5%AE%9A%E4%B9%89SDK/%E5%BC%B9%E5%87%BA%E6%A1%86/InvalidView.m"
+                  timestampString = "548672533.606835"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "410">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[InvalidView ActionConfirmBtn:]_block_invoke"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/%E8%87%AA%E5%AE%9A%E4%B9%89SDK/%E5%BC%B9%E5%87%BA%E6%A1%86/InvalidView.m"
+                  timestampString = "548672533.609533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/%E8%87%AA%E5%AE%9A%E4%B9%89SDK/%E5%BC%B9%E5%87%BA%E6%A1%86/InvalidView.m"
+                  timestampString = "548672533.61246"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x63a8;&#x8350;/&#x5df2;&#x786e;&#x8ba4;&#x8be6;&#x60c5;/confirmDetailVC.m"
+            timestampString = "548583913.9492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-WaitConfirmRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x88ab;&#x63a8;&#x8350;&#x7684;&#x5ba2;&#x6237;/&#x5b8c;&#x5584;&#x5ba2;&#x6237;&#x4fe1;&#x606f;/CompleteCustomVC2.m"
+            timestampString = "548091239.865983"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "-ActionConfirmBtn:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/view/CustomDetailTableCell4.m"
+            timestampString = "548082671.255152"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-ActionAddBtn:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/view/CustomTableHeader4.m"
+            timestampString = "548082727.716537"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-ActionShowBtn:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x767b;&#x5f55;&#x6ce8;&#x518c;/LoginVC.m"
+            timestampString = "548584619.838966"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "-getUserInfoForPlatform:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/&#x6211;&#x7684;&#x4e8c;&#x7ef4;&#x7801;/MyCodeVC.m"
+            timestampString = "548262826.6704921"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-post"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/&#x6211;&#x7684;&#x4e8c;&#x7ef4;&#x7801;/MyCodeVC.m"
+            timestampString = "548262826.670608"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-post"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x4e2a;&#x4eba;&#x4fe1;&#x606f;/&#x6211;&#x7684;&#x4e8c;&#x7ef4;&#x7801;/MyCodeVC.m"
+            timestampString = "548262826.670693"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-post"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5ba2;&#x6e90;/&#x5ba2;&#x6237;&#x8be6;&#x60c5;/CustomDetailVC.m"
+            timestampString = "548593740.152108"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "697"
+            endingLineNumber = "697"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/MineVC.m"
+            timestampString = "548258133.569231"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "-updateheadimgbyimg:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x6211;&#x7684;&#x4f63;&#x91d1;/&#x5df2;&#x7ed3;&#x4f63;&#x91d1;/&#x5df2;&#x7ed3;&#x4f63;&#x91d1;&#x8be6;&#x60c5;/BrokerageDetailVC.m"
+            timestampString = "548593740.152204"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "-action_urge"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x63a8;&#x8350;/&#x5f85;&#x786e;&#x8ba4;&#x8be6;&#x60c5;/UnconfirmDetailVC.m"
+            timestampString = "548577599.529821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "-refresh"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UnconfirmDetailVC refresh]"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E5%BE%85%E7%A1%AE%E8%AE%A4%E8%AF%A6%E6%83%85/UnconfirmDetailVC.m"
+                  timestampString = "548672533.697577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__28-[UnconfirmDetailVC refresh]_block_invoke"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E5%BE%85%E7%A1%AE%E8%AE%A4%E8%AF%A6%E6%83%85/UnconfirmDetailVC.m"
+                  timestampString = "548672533.700286"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.499"
+                  moduleName = "&#x4e91;&#x6e20;&#x9053;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E5%BE%85%E7%A1%AE%E8%AE%A4%E8%AF%A6%E6%83%85/UnconfirmDetailVC.m"
+                  timestampString = "548672533.702765"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x63a8;&#x8350;/&#x5f85;&#x786e;&#x8ba4;&#x8be6;&#x60c5;/UnconfirmDetailVC.m"
+            timestampString = "548577599.530041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "-refresh"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x57ce;&#x5e02;/CityVC.m"
+            timestampString = "548333305.910578"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-CityListRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x57ce;&#x5e02;/CityVC.m"
+            timestampString = "548333305.91065"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "-CityListRequest"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/&#x697c;&#x76d8;&#x4fe1;&#x606f;/BuildingInfoVC.m"
+            timestampString = "548410996.696822"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-SetData:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

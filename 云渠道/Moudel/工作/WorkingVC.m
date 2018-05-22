@@ -8,10 +8,15 @@
 
 #import "WorkingVC.h"
 #import "WorkingCell.h"
+#import "RecommendVC.h"
+#import "NomineeVC.h"
+#import "BarginVC.h"
 
 @interface WorkingVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_namelist;
+    NSArray *_imglist;
+    NSArray *_countdata;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -22,19 +27,72 @@
 
 @implementation WorkingVC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self postWithidentify:[UserModelArchiver unarchive].agent_identity];
+
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
+    self.leftButton.hidden = YES;
     self.titleLabel.text = @"工作";
+     self.leftButton.hidden = YES;
     [self initDateSouce];
     [self initUI];
 
 }
 
+-(void)refresh{
+    
+
+}
+
+-(void)postWithidentify:(NSString *)identify
+{
+    switch ([identify integerValue]) {
+        case 1:
+        {
+            _namelist = @[@"新房推荐",@"客户报备",@"成交客户"];
+            _imglist = @[@"recommended",@"client",@"Clinchadeal"];
+             _countdata  = @[@"",@"",@""];
+            [BaseRequest GET:AgentInfoCount_URL parameters:nil success:^(id resposeObject) {
+            _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend"][@"total"],resposeObject[@"data"][@"recommend"][@"value"],resposeObject[@"data"][@"recommend"][@"disabled"]],[NSString stringWithFormat:@"累计报备%@，有效%@，无效%@",resposeObject[@"data"][@"preparation"][@"count"],resposeObject[@"data"][@"preparation"][@"value"],resposeObject[@"data"][@"preparation"][@"disabled"]],[NSString stringWithFormat:@"累计笔数%@，成交%@，未成交%@",resposeObject[@"data"][@"deal"][@"total"],resposeObject[@"data"][@"deal"][@"value"],resposeObject[@"data"][@"deal"][@"disabled"]]];
+                [_MainTableView reloadData];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+            break;
+        case 2:{
+            _namelist = @[@"新房推荐"];
+            _imglist = @[@"recommended"];
+            _countdata  = @[@""];
+            [BaseRequest GET:Butterinfocount_URL parameters:nil success:^(id resposeObject) {
+                _countdata = @[[NSString stringWithFormat:@"累计推荐%@，有效%@，无效%@",resposeObject[@"data"][@"recommend_count"],resposeObject[@"data"][@"value"],resposeObject[@"data"][@"valueDisabled"]]];
+                [_MainTableView reloadData];
+            } failure:^(NSError *error) {
+
+            }];
+        }
+            break;
+        
+        default:{
+            break;
+        }
+            
+    }
+
+    
+}
+
 -(void)initDateSouce
 {
-    _namelist = @[@"推荐",@"被推荐的客户"];
+   
 }
 
 -(void)initUI
@@ -42,17 +100,19 @@
     [self.view addSubview:self.MainTableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 #pragma mark  ---  delegate   ---
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if ([[UserModelArchiver unarchive].agent_identity integerValue]==1) {
+        return 3;
+    }
+    else{
+         return 1;
+    }
+   
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -72,8 +132,9 @@
     WorkingCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[WorkingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell setTitle:_namelist[indexPath.row] content:@"123" img:@""];
+    [cell setTitle:_namelist[indexPath.row] content:_countdata[indexPath.row] img:_imglist[indexPath.row]];
     return cell;
     
 }
@@ -81,48 +142,30 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    switch (indexPath.row) {
-    //        case 0:
-    //        {
-    //            MyCommissionVC *next_vc = [[MyCommissionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 1:
-    //        {
-    //            MyAttentionVC *next_vc = [[MyAttentionVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 2:
-    //        {
-    //            FixPassWrodVC *next_vc = [[FixPassWrodVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //
-    //        }
-    //            break;
-    //        case 3:
-    //        {
-    //            AbortVC *next_vc = [[AbortVC alloc]init];
-    //            [self.navigationController pushViewController:next_vc animated:YES];
-    //        }
-    //            break;
-    //        case 4:
-    //        {
-//    [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-//        
-//    } WithDefaultBlack:^{
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-//        
-//    }];
     
-    //        }
-    //            break;
-    //
-    //        default:
-    //            break;
-    //    }
+    if ([[UserModelArchiver unarchive].agent_identity integerValue]==2) {
+        if (indexPath.row == 0) {
+            
+            RecommendVC *nextVC = [[RecommendVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
+    }
+    else{
+        if (indexPath.row == 0) {
+            
+            RecommendVC *nextVC = [[RecommendVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else if(indexPath.row == 1){
+            
+            NomineeVC *nextVC = [[NomineeVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            BarginVC *nextVC = [[BarginVC alloc] init];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
+    }
+ 
 }
 
 
@@ -137,7 +180,6 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//        _MainTableView.scrollEnabled = NO;
     }
     return _MainTableView;
 }

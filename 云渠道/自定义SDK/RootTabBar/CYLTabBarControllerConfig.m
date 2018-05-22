@@ -116,28 +116,28 @@
     
     NSDictionary *dict1 = @{
                             CYLTabBarItemTitle : @"消息",
-                            CYLTabBarItemImage : @"daiban",
-                            CYLTabBarItemSelectedImage : @"daiban_1",
+                            CYLTabBarItemImage : @"message",
+                            CYLTabBarItemSelectedImage : @"message_selected",
                             };
     NSDictionary *dict2 = @{
                             CYLTabBarItemTitle : @"房源",
-                            CYLTabBarItemImage : @"gongzuo",
-                            CYLTabBarItemSelectedImage : @"gongzuo_1",
+                            CYLTabBarItemImage : @"housing",
+                            CYLTabBarItemSelectedImage : @"housing_selected",
                             };
     NSDictionary *dict3 = @{
                             CYLTabBarItemTitle : @"客源",
-                            CYLTabBarItemImage : @"fangyuan",
-                            CYLTabBarItemSelectedImage : @"fangyuan_1",
+                            CYLTabBarItemImage : @"customers",
+                            CYLTabBarItemSelectedImage : @"customers_selected",
                             };
     NSDictionary *dict4 = @{
                             CYLTabBarItemTitle : @"工作",
-                            CYLTabBarItemImage : @"baobiao",
-                            CYLTabBarItemSelectedImage : @"baobiao_1",
+                            CYLTabBarItemImage : @"work",
+                            CYLTabBarItemSelectedImage : @"work_selected",
                             };
     NSDictionary *dict5 = @{
                             CYLTabBarItemTitle : @"我的",
-                            CYLTabBarItemImage : @"baobiao",
-                            CYLTabBarItemSelectedImage : @"baobiao_1",
+                            CYLTabBarItemImage : @"me",
+                            CYLTabBarItemSelectedImage : @"me_selected",
                             };
 
     NSArray *tabBarItemsAttributes = @[
@@ -205,9 +205,9 @@
     void (^deviceOrientationDidChangeBlock)(NSNotification *) = ^(NSNotification *notification) {
         UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
         if ((orientation == UIDeviceOrientationLandscapeLeft) || (orientation == UIDeviceOrientationLandscapeRight)) {
-            NSLog(@"Landscape Left or Right !");
+
         } else if (orientation == UIDeviceOrientationPortrait){
-            NSLog(@"Landscape portrait!");
+
         }
         [self customizeTabBarSelectionIndicatorImage];
     };

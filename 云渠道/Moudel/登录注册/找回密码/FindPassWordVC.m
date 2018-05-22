@@ -19,7 +19,6 @@
 @property (nonatomic , strong) UITextField *PassWord;
 @property (nonatomic , strong) UIButton *GetCodeBtn;
 @property (nonatomic , strong) UIButton *RegisterBtn;
-//@property (nonatomic , strong) UIButton *ProtocolBtn;
 @property (nonatomic , strong) UITextField *SurePassWord;
 @property (nonatomic, strong)  UILabel *timeLabel;
 
@@ -29,7 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navBackgroundView.hidden = NO;
+    self.navBackgroundView.backgroundColor = YJBackColor;
     [self InitUI];
+    
     
 }
 
@@ -126,6 +128,7 @@
     if (!_Account) {
         _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+124*SIZE, 200*SIZE, 15*SIZE)];
         _Account.placeholder = @"请输入手机号码";
+        _Account.keyboardType = UIKeyboardTypeNumberPad;
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
         
     }
@@ -136,6 +139,7 @@
     if (!_Code) {
         _Code = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+171*SIZE, 200*SIZE, 15*SIZE)];
         _Code.placeholder = @"请输入验证码";
+        _Code.keyboardType = UIKeyboardTypeNumberPad;
         _Code.font = [UIFont systemFontOfSize:14*SIZE];
         
     }
@@ -193,19 +197,6 @@
     return _GetCodeBtn;
 }
 
-
-//-(UIButton *)ProtocolBtn
-//{
-//    if (!_ProtocolBtn) {
-//        _ProtocolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _ProtocolBtn.frame =  CGRectMake(0, SCREEN_Height-TAB_BAR_MORE-13*SIZE-19*SIZE, 360*SIZE, 13*SIZE);
-//        [_ProtocolBtn setTitle:@"注册/登录即代表同意《易家用户使用协议》" forState: UIControlStateNormal];
-//        [_ProtocolBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
-//        _ProtocolBtn.titleLabel.font = [UIFont systemFontOfSize:12*SIZE];
-//        [_ProtocolBtn addTarget:self action:@selector(Protocol) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _ProtocolBtn;
-//}
 
 -(UILabel *)timeLabel
 {
