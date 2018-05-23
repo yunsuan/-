@@ -127,7 +127,7 @@
                 
                 [_unComfirmArr removeAllObjects];
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast1 = YES;
@@ -155,7 +155,7 @@
                 
                 [_unComfirmArr removeAllObjects];
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast1 = YES;
@@ -185,7 +185,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast1 = YES;
@@ -213,7 +213,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast1 = YES;
@@ -268,7 +268,7 @@
                 
                 [_validArr removeAllObjects];
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast2 = YES;
@@ -295,7 +295,7 @@
                 
                 [_validArr removeAllObjects];
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast2 = YES;
@@ -325,7 +325,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast2 = YES;
@@ -353,7 +353,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast2 = YES;
@@ -407,7 +407,7 @@
                 
                 [_inValidArr removeAllObjects];
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast3 = YES;
@@ -434,7 +434,7 @@
                 
                 [_inValidArr removeAllObjects];
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast3 = YES;
@@ -464,7 +464,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast3 = YES;
@@ -492,7 +492,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast3 = YES;
@@ -546,7 +546,7 @@
                 
                 [_appealArr removeAllObjects];
                 [self SetApealArr:resposeObject[@"data"][@"data"]];
-                if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page4 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast4 = YES;
@@ -581,7 +581,7 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetApealArr:resposeObject[@"data"][@"data"]];
-                if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page4 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
                     _isLast4 = YES;
@@ -820,6 +820,10 @@
             UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 InvalidView * invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
                 invalidView.client_id = _unComfirmArr[indexPath.row][@"client_id"];
+                invalidView.invalidViewBlock = ^{
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                };
                 [[UIApplication sharedApplication].keyWindow addSubview:invalidView];
             }];
             
