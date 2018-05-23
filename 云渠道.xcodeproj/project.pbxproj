@@ -234,6 +234,11 @@
 		1044B3FE20A04227002D9BAE /* TypeTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FD20A04227002D9BAE /* TypeTwoVC.m */; };
 		1044B40420A05179002D9BAE /* TypeZeroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40320A05179002D9BAE /* TypeZeroVC.m */; };
 		1044B40720A56857002D9BAE /* WaitAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40620A56857002D9BAE /* WaitAnimation.m */; };
+		104B924720B55271001583E2 /* .swift-version in Resources */ = {isa = PBXBuildFile; fileRef = 104B924220B55270001583E2 /* .swift-version */; };
+		104B924820B55271001583E2 /* Bugtags.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104B924320B55270001583E2 /* Bugtags.framework */; };
+		104B924920B55271001583E2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 104B924420B55270001583E2 /* README.md */; };
+		104B924A20B55271001583E2 /* Bugtags.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 104B924520B55270001583E2 /* Bugtags.podspec */; };
+		104B924B20B55271001583E2 /* Bugtags.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 104B924620B55270001583E2 /* Bugtags.bundle */; };
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
 		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
@@ -740,6 +745,11 @@
 		1044B40320A05179002D9BAE /* TypeZeroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeZeroVC.m; sourceTree = "<group>"; };
 		1044B40520A56857002D9BAE /* WaitAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitAnimation.h; sourceTree = "<group>"; };
 		1044B40620A56857002D9BAE /* WaitAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitAnimation.m; sourceTree = "<group>"; };
+		104B924220B55270001583E2 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		104B924320B55270001583E2 /* Bugtags.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugtags.framework; sourceTree = "<group>"; };
+		104B924420B55270001583E2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		104B924520B55270001583E2 /* Bugtags.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Bugtags.podspec; sourceTree = "<group>"; };
+		104B924620B55270001583E2 /* Bugtags.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Bugtags.bundle; sourceTree = "<group>"; };
 		105E18892060E1F50031558D /* CompanyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
 		105E188A2060E1F50031558D /* CompanyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		105E188C2060E21C0031558D /* PeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
@@ -800,10 +810,10 @@
 		1069FFD2205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFD3205795BE00E11F52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1069FFD9205795BE00E11F52 /* 云渠道Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "云渠道Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1069FFDD205795BE00E11F52 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ___Tests.m; sourceTree = "<group>"; };
+		1069FFDD205795BE00E11F52 /* ___Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___Tests.m"; sourceTree = "<group>"; };
 		1069FFDF205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFE4205795BE00E11F52 /* 云渠道UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "云渠道UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1069FFE8205795BE00E11F52 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ___UITests.m; sourceTree = "<group>"; };
+		1069FFE8205795BE00E11F52 /* ___UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "___UITests.m"; sourceTree = "<group>"; };
 		1069FFEA205795BE00E11F52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1069FFF72057974100E11F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1069FFF82057974100E11F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -845,6 +855,7 @@
 			files = (
 				105E18DD206A36C40031558D /* libssl.a in Frameworks */,
 				105E18DE206A36C40031558D /* libcrypto.a in Frameworks */,
+				104B924820B55271001583E2 /* Bugtags.framework in Frameworks */,
 				BF3D5C8D28ABC2D033EBFE3F /* libPods-云渠道.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1990,6 +2001,18 @@
 			path = webview;
 			sourceTree = "<group>";
 		};
+		104B924120B55270001583E2 /* Bugtags-iOS-3.0.1 */ = {
+			isa = PBXGroup;
+			children = (
+				104B924220B55270001583E2 /* .swift-version */,
+				104B924320B55270001583E2 /* Bugtags.framework */,
+				104B924420B55270001583E2 /* README.md */,
+				104B924520B55270001583E2 /* Bugtags.podspec */,
+				104B924620B55270001583E2 /* Bugtags.bundle */,
+			);
+			path = "Bugtags-iOS-3.0.1";
+			sourceTree = "<group>";
+		};
 		105E18882060E1970031558D /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -2234,6 +2257,7 @@
 		106900032057974200E11F52 /* 第三方SDK */ = {
 			isa = PBXGroup;
 			children = (
+				104B924120B55270001583E2 /* Bugtags-iOS-3.0.1 */,
 				0C0BED5420A992E1005A16A1 /* BMChineseStringSort */,
 				0CF04F82207CAFAF00A45F4A /* PYSearch */,
 				0CF7425B206262DF001F926F /* BoxView */,
@@ -2615,16 +2639,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CEBDE7420AECDC3004BAF7A /* guidepage_1@2x.png in Resources */,
+				104B924720B55271001583E2 /* .swift-version in Resources */,
 				0CEBDE7520AECDC3004BAF7A /* guidepage_1@3x.png in Resources */,
 				1069FFD1205795BE00E11F52 /* LaunchScreen.storyboard in Resources */,
 				0CF04F93207CAFB000A45F4A /* PYSearch.bundle in Resources */,
 				1069FFCE205795BE00E11F52 /* Assets.xcassets in Resources */,
+				104B924920B55271001583E2 /* README.md in Resources */,
+				104B924B20B55271001583E2 /* Bugtags.bundle in Resources */,
 				0CEBDE6F20AECDC3004BAF7A /* guidepage_2@3x.png in Resources */,
 				1069FFCC205795BE00E11F52 /* Main.storyboard in Resources */,
 				0CEBDE7020AECDC3004BAF7A /* guidepage_2@2x.png in Resources */,
 				0CEBDE7320AECDC3004BAF7A /* guidepage_3@3x.png in Resources */,
 				0CEBDE6D20AECDC3004BAF7A /* guidepage_4@3x.png in Resources */,
 				0CEBDE7120AECDC3004BAF7A /* guidepage_5@3x.png in Resources */,
+				104B924A20B55271001583E2 /* Bugtags.podspec in Resources */,
 				0CEBDE6E20AECDC3004BAF7A /* guidepage_4@2x.png in Resources */,
 				0CEBDE7620AECDC3004BAF7A /* guidepage_3@2x.png in Resources */,
 				10174C14207B010500D00B9A /* region.json in Resources */,
@@ -3122,6 +3150,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/云渠道/第三方SDK/Bugtags-iOS-3.0.1",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3148,6 +3180,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/云渠道/第三方SDK/Bugtags-iOS-3.0.1",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/云渠道/Resource/PrefixHeader.h";
 				INFOPLIST_FILE = "云渠道/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

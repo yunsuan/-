@@ -23,6 +23,8 @@
 
 #import <UMShare/UMShare.h>
 
+#import <Bugtags/Bugtags.h>
+
 @interface AppDelegate ()<JPUSHRegisterDelegate,BMKMapViewDelegate>
 {
     
@@ -34,6 +36,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+     [Bugtags startWithAppKey:@"1560323d00d5dac86cd32d7b0d130787" invocationEvent:BTGInvocationEventBubble];
     [self postVersion];
     dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
     
@@ -257,7 +261,7 @@
         if ([resposeObject[@"code"] integerValue] ==200) {
             
         
-        if ([resposeObject[@"data"] floatValue]<=[version floatValue]) {
+        if ([resposeObject[@"data"] floatValue]<=[YQDversion floatValue]) {
             
         }
         else
