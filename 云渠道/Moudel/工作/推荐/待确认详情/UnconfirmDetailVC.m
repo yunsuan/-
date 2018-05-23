@@ -243,6 +243,7 @@
         };
         _invalidView.invalidViewBlock = ^{
           
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         };
     }
