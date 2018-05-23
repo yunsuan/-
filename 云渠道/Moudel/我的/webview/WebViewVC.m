@@ -54,7 +54,7 @@
 -(WKWebView *)webwivw
 {
     if (!_webwivw) {
-        _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
+        _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - NAVIGATION_BAR_HEIGHT)];
         _webwivw.navigationDelegate = self;
         self.view.backgroundColor = [UIColor whiteColor];
     }
