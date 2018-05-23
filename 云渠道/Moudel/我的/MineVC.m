@@ -101,7 +101,7 @@
 {
     _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于云算",@"操作指南"]];
     _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
-    _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
+    _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",YQDversion,@""]];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 
