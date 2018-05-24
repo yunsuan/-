@@ -104,10 +104,6 @@
             _window.rootViewController = mainLogin_nav;
         }
 
-//        CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
-//        _window.rootViewController = tabBarControllerConfig.tabBarController;
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Guided"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
     
         _window .alpha = 0;
@@ -132,8 +128,7 @@
         // NSSet<UNNotificationCategory *> *categories for iOS10 or later
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
         [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
-        
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
+
     }else{
         
         [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
@@ -164,8 +159,7 @@
         NSDictionary *remote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         
         if (remote) {
-            
-//            [self GotoMessVC];
+
             [self GotoHome];
         }else{
             
