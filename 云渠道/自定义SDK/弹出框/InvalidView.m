@@ -16,6 +16,7 @@
     if (self) {
         
         [self initUI];
+        _type_id =@"0";
     }
     return self;
 }
@@ -81,6 +82,7 @@
 
 -(void)action_type
 {
+    
     SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.frame WithData:[UserModelArchiver unarchive].Configdic[@"18"][@"param"]];
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         _typeBtn.content.text = MC;

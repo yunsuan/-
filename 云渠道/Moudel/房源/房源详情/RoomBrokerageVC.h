@@ -12,6 +12,7 @@
 @interface RoomBrokerageVC : BaseViewController
 
 //@property (nonatomic, strong) RoomListModel *model;
+@property (nonatomic, strong) NSString *brokerage;
 
 - (instancetype)initWithModel:(RoomListModel *)model;
 
