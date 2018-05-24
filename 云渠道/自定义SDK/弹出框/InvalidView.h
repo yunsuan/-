@@ -14,7 +14,7 @@
 
 @class InvalidView;
 
-typedef void(^InvalidViewBlock)(void);
+typedef void(^InvalidViewBlock)(NSDictionary *dic);
 
 typedef void(^InvalidViewBlockFail)(NSString *str);
 

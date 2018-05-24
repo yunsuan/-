@@ -820,9 +820,27 @@
             UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 InvalidView * invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
                 invalidView.client_id = _unComfirmArr[indexPath.row][@"client_id"];
-                invalidView.invalidViewBlock = ^{
+                invalidView.invalidViewBlock = ^(NSDictionary *dic) {
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                    [BaseRequest POST:ConfirmDisabled_URL parameters:dic success:^(id resposeObject) {
+                        
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            [self alertControllerWithNsstring:@"失效确认成功" And:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                            
+                        }else{
+                            
+                            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                        }
+                    } failure:^(NSError *error) {
+                        
+                    }];
+                };
+                
+                invalidView.invalidViewBlockFail = ^(NSString *str) {
+                    
+                    [self alertControllerWithNsstring:@"温馨提示" And:str];
                 };
                 [[UIApplication sharedApplication].keyWindow addSubview:invalidView];
             }];
