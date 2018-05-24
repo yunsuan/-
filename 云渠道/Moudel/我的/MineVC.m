@@ -369,19 +369,6 @@
         cell = [[MineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:_imageList[indexPath.section][indexPath.row] contentlab:_contentList[indexPath.section][indexPath.row]];
-//    if (indexPath.section == 0) {
-//
-//        [cell SetTitle:_namelist[indexPath.row] icon:_imageList[indexPath.row] contentlab:_contentList[indexPath.row]];
-//    }else{
-//
-//        if (indexPath.section == 1) {
-//
-//            [cell SetTitle:_namelist[indexPath.row + 3] icon:_imageList[indexPath.row + 3] contentlab:_contentList[indexPath.row + 3]];
-//        }else{
-//
-//            [cell SetTitle:_namelist[indexPath.row + 5] icon:_imageList[indexPath.row + 5] contentlab:_contentList[indexPath.row + 5]];
-//        }
-//    }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

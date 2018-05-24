@@ -88,14 +88,14 @@
             }
             case 4:
             {
-                _contactL = label;
-                [_whiteView addSubview:_contactL];
+//                _contactL = label;
+//                [_whiteView addSubview:_contactL];
                 break;
             }
             case 5:
             {
-                _phoneL = label;
-                [_whiteView addSubview:_phoneL];
+//                _phoneL = label;
+//                [_whiteView addSubview:_phoneL];
                 break;
             }
             case 6:
@@ -170,22 +170,11 @@
         make.top.equalTo(_projectL.mas_bottom).offset(19 *SIZE);
         make.right.equalTo(_whiteView).offset(-15 *SIZE);
     }];
-    [_contactL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_whiteView).offset(28 *SIZE);
-        make.top.equalTo(_addressL.mas_bottom).offset(19 *SIZE);
-        make.right.equalTo(_whiteView).offset(-15 *SIZE);
-    }];
-    [_phoneL mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_whiteView).offset(28 *SIZE);
-        make.top.equalTo(_contactL.mas_bottom).offset(19 *SIZE);
-        make.right.equalTo(_whiteView).offset(-15 *SIZE);
-    }];
+
     [_timeL mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_whiteView).offset(28 *SIZE);
-        make.top.equalTo(_phoneL.mas_bottom).offset(19 *SIZE);
+        make.top.equalTo(_addressL.mas_bottom).offset(19 *SIZE);
         make.right.equalTo(_whiteView).offset(-15 *SIZE);
     }];
     [_tranmitBtn mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -235,16 +235,29 @@
     if (!_invalidView) {
         
         _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-//        _invalidView
+
         WS(weakSelf);
+        _invalidView.invalidViewBlock = ^(NSDictionary *dic) {
+            
+            [BaseRequest POST:ConfirmDisabled_URL parameters:dic success:^(id resposeObject) {
+                
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    [self alertControllerWithNsstring:@"失效确认成功" And:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                    
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                }
+            } failure:^(NSError *error) {
+                
+            }];
+        };
+        
         _invalidView.invalidViewBlockFail = ^(NSString *str) {
             
             [weakSelf alertControllerWithNsstring:@"温馨提示" And:str];
-        };
-        _invalidView.invalidViewBlock = ^{
-          
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
         };
     }
     return _invalidView;

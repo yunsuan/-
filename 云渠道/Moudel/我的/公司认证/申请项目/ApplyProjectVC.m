@@ -16,6 +16,7 @@
     
     NSString *_companyId;
     NSMutableArray *_dataArr;
+    NSInteger _page;
 }
 
 @property (nonatomic , strong) UITableView *MainTableView;
@@ -50,6 +51,7 @@
 -(void)initDateSouce
 {
     
+    _page = 1;
     _dataArr = [@[] mutableCopy];
     [self RequestMethod];
 }
@@ -58,49 +60,26 @@
 
 - (void)RequestMethod{
 
-//    if (_page == 1) {
-//
-//        self.MainTableView.mj_footer.state = MJRefreshStateIdle;
-//    }
-
-//    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
-//    if (_city.length) {
-//
-//        [dic setObject:_city forKey:@"city"];
-//    }
-//    if (_district.length) {
-//
-//        [dic setObject:_district forKey:@"district"];
-//    }
-//    if (![_price isEqualToString:@"0"] && _price) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_price] forKey:@"average_price"];
-//    }
-//    if (![_type isEqualToString:@"0"] && _type) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"property_id"];
-//    }
-//    if (_tag.length) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_tag] forKey:@"project_tags"];
-//    }
-//    if (_houseType.length) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
-//    }
+    self.MainTableView.mj_footer.state = MJRefreshStateIdle;
     NSDictionary *dic = @{@"company_id":_companyId};
 
     [BaseRequest GET:GetCompanyProject_URL parameters:dic success:^(id resposeObject) {
 
-//        [self.MainTableView.mj_header endRefreshing];
+        [self.MainTableView.mj_header endRefreshing];
         NSLog(@"%@",resposeObject);
        
         if ([resposeObject[@"code"] integerValue] == 200) {
 
-            [self SetData:resposeObject[@"data"]];
+            [_dataArr removeAllObjects];
+            [self SetData:resposeObject[@"data"][@"data"]];
+            if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                
+                self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }
         }else{
             
             [self showContent:resposeObject[@"msg"]];
+            self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
         }
     } failure:^(NSError *error) {
 
@@ -110,72 +89,41 @@
     }];
 
 }
-//
-//- (void)RequestAddMethod{
-//
-//    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
-//    if (_city.length) {
-//
-//        [dic setObject:_city forKey:@"city"];
-//    }
-//    if (_district.length) {
-//
-//        [dic setObject:_district forKey:@"district"];
-//    }
-//    if (![_price isEqualToString:@"0"] && _price) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_price] forKey:@"average_price"];
-//    }
-//    if (![_type isEqualToString:@"0"] && _type) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"property_id"];
-//    }
-//    if (_tag.length) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_type] forKey:@"project_tags"];
-//    }
-//    if (_houseType.length) {
-//
-//        [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
-//    }
-//
-//    [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
-//
-//        NSLog(@"%@",resposeObject);
-//        [self showContent:resposeObject[@"msg"]];
-//        if ([resposeObject[@"code"] integerValue] == 200) {
-//
-//            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-//
-//                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
-//
-//                    [self SetData:resposeObject[@"data"][@"data"]];
-//                    if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
-//
-//                        self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-//                    }
-//                }else{
-//
-//                    self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-//                }
-//            }else{
-//
-//                [self.MainTableView.mj_footer endRefreshing];
-//            }
-//        }else{
-//
-//            [self.MainTableView.mj_footer endRefreshing];
-//        }
-//    } failure:^(NSError *error) {
-//
-//        [self showContent:@"网路错误"];
-//        [self.MainTableView.mj_footer endRefreshing];
-//        NSLog(@"%@",error.localizedDescription);
-//    }];
-//
-//}
 
-//
+- (void)RequestAddMethod{
+
+    _page += 1;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:@{@"page":@(_page)}];
+
+    [BaseRequest GET:GetCompanyProject_URL parameters:dic success:^(id resposeObject) {
+        
+        
+        NSLog(@"%@",resposeObject);
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self SetData:resposeObject[@"data"][@"data"]];
+            if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                
+                self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+            }
+        }else{
+            
+            [self.MainTableView.mj_footer endRefreshing];
+            _page -= 1;
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        _page -= 1;
+        [self.MainTableView.mj_footer endRefreshing];
+        [self showContent:@"网络错误"];
+        NSLog(@"%@",error.localizedDescription);
+    }];
+
+}
+
+
 - (void)SetData:(NSArray *)data{
 
     for (int i = 0; i < data.count; i++) {
@@ -279,16 +227,16 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
-//            
-////            _page = 1;
-////            [self RequestMethod];
-//        }];
-//        
-//        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
-//            
-////            [self RequestMethod];
-//        }];
+        _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+            
+            _page = 1;
+            [self RequestMethod];
+        }];
+        
+        _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{
+            
+            [self RequestAddMethod];
+        }];
     }
     return _MainTableView;
 }
