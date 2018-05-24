@@ -120,8 +120,14 @@
             [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
             if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast1 = YES;
+                if (_index == 0) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast1 = YES;
+                    });
+                }
             }
         }
         else{
@@ -147,8 +153,14 @@
             [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
             if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast1 = YES;
+                if (_index == 0) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast1 = YES;
+                    });
+                }
             }else{
             
                 [_MainTableView.mj_footer endRefreshing];
@@ -199,8 +211,14 @@
             [self SetValidArr:resposeObject[@"data"][@"data"]];
             if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast2 = YES;
+                if (_index == 1) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast2 = YES;
+                    });
+                }
             }
         }
         else{
@@ -225,8 +243,14 @@
             [self SetValidArr:resposeObject[@"data"][@"data"]];
             if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast2 = YES;
+                if (_index == 1) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast2 = YES;
+                    });
+                }
             }else{
               
               [_MainTableView.mj_footer endRefreshing];
@@ -277,8 +301,14 @@
             [self SetInValidArr:resposeObject[@"data"][@"data"]];
             if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast3 = YES;
+                if (_index == 2) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast3 = YES;
+                    });
+                }
             }
         }
         else{
@@ -304,8 +334,14 @@
             [self SetInValidArr:resposeObject[@"data"][@"data"]];
             if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast3 = YES;
+                if (_index == 2) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast3 = YES;
+                    });
+                }
             }else{
               
                 [self showContent:resposeObject[@"msg"]];               
@@ -354,8 +390,14 @@
             [self SetApealArr:resposeObject[@"data"][@"data"]];
             if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast4 = YES;
+                if (_index == 3) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast4 = YES;
+                    });
+                }
             }
         }
         else{
@@ -380,8 +422,14 @@
             [self SetApealArr:resposeObject[@"data"][@"data"]];
             if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast4 = YES;
+                if (_index == 3) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast4 = YES;
+                    });
+                }
             }else{
                 
                 [_MainTableView.mj_footer endRefreshing];

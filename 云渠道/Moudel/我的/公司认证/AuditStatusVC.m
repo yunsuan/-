@@ -55,7 +55,10 @@
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            [self alertControllerWithNsstring:@"取消认证成功" And:nil WithDefaultBlack:^{
+               
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }
     } failure:^(NSError *error) {
         
