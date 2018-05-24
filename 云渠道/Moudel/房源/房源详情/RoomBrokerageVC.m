@@ -10,6 +10,7 @@
 #import "RoomBrokerageTableCell.h"
 #import "RoomBrokerageTableCell2.h"
 #import "RoomBrokerageTableHeader.h"
+#import "C_brokerageCell.h"
 #import "BrokerModel.h"
 
 @interface RoomBrokerageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -77,15 +78,18 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   
     return _model.dataarr.count;
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-//    if (section == 0) {
-//
-//        return 0;
-//    }
+    if ([_brokerage isEqualToString:@"no"]) {
+
+        return 0;
+    }
+    else{
     return 51 *SIZE;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -99,14 +103,18 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-
+     if ([_brokerage isEqualToString:@"no"])
+     {
+         return [[UIView alloc]init];
+     }else
+     {
         RoomBrokerageTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomBrokerageTableHeader"];
         if (!header) {
             
             header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
         }
         
-        if ([_model.dataarr[section][@"act_end"] isEqual:@"0000-00-00"]) {
+        if ([_model.dataarr[section][@"act_end"] isEqual:@"2037-12-31"]) {
             header.titleL.text = [NSString stringWithFormat:@"%@起",_model.dataarr[section][@"act_start"]];
         }
         else{
@@ -135,10 +143,25 @@
     
 
     return header;
+     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if ([_brokerage isEqualToString:@"no"])
+    {
+        C_brokerageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"C_brokerageCell"];
+        if (!cell) {
+            
+            cell = [[C_brokerageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"C_brokerageCell"];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
+        cell.ruleView.titleL.text = @"报备规则";
+        cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
+        return cell;
+    }
+    else{
     if (indexPath.section == 0) {
         
         RoomBrokerageTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomBrokerageTableCell"];
@@ -182,6 +205,7 @@
         cell.standView.contentL.text = arr[indexPath.section];
         
         return cell;
+    }
     }
 }
 

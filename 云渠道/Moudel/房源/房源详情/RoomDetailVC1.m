@@ -188,6 +188,8 @@
     _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
    
     _roomBrokerageVC = [[RoomBrokerageVC alloc] initWithModel:_model];
+    _roomBrokerageVC.brokerage = _brokerage;
+    
     _roomAnalyzeVC = [[RoomAnalyzeVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];
