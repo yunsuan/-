@@ -33,25 +33,28 @@
         return;
     }
     
-    if (!_timeBtn.content.text) {
-        
-        if (self.invalidViewBlockFail) {
-            
-            [self removeFromSuperview];
-            self.invalidViewBlockFail(@"请选择到访时间");
-        }
-        return;
-    }
+//    if (_timeBtn.content.text) {
+//
+////        if (self.invalidViewBlockFail) {
+////
+////            [self removeFromSuperview];
+////            self.invalidViewBlockFail(@"请选择到访时间");
+////        }
+////        return;
+//    }
     
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithDictionary:@{
-                                                                                   @"visit_time":_timeBtn.content.text,
+//                                                                                   @"visit_time":_timeBtn.content.text,
                                                                                    @"client_id":_client_id,
                                                                                    @"disabled_state":_type_id
                                                                                    
                                                                                    }];
 
     
-
+    if (_timeBtn.content.text) {
+        
+        [param setObject:_timeBtn.content.text forKey:@"visit_time"];
+    }
     if (_reasonTV.text) {
         
         [param setObject:_reasonTV.text forKey:@"comment"];
