@@ -239,6 +239,7 @@
 		1044B3FE20A04227002D9BAE /* TypeTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B3FD20A04227002D9BAE /* TypeTwoVC.m */; };
 		1044B40420A05179002D9BAE /* TypeZeroVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40320A05179002D9BAE /* TypeZeroVC.m */; };
 		1044B40720A56857002D9BAE /* WaitAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1044B40620A56857002D9BAE /* WaitAnimation.m */; };
+		104B924E20B663EC001583E2 /* C_brokerageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 104B924D20B663EC001583E2 /* C_brokerageCell.m */; };
 		105E188B2060E1F50031558D /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188A2060E1F50031558D /* CompanyCell.m */; };
 		105E188E2060E21C0031558D /* PeopleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E188D2060E21C0031558D /* PeopleCell.m */; };
 		105E18982060EE710031558D /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18972060EE710031558D /* TagView.m */; };
@@ -750,6 +751,8 @@
 		1044B40320A05179002D9BAE /* TypeZeroVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeZeroVC.m; sourceTree = "<group>"; };
 		1044B40520A56857002D9BAE /* WaitAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitAnimation.h; sourceTree = "<group>"; };
 		1044B40620A56857002D9BAE /* WaitAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitAnimation.m; sourceTree = "<group>"; };
+		104B924C20B663EC001583E2 /* C_brokerageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C_brokerageCell.h; sourceTree = "<group>"; };
+		104B924D20B663EC001583E2 /* C_brokerageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = C_brokerageCell.m; sourceTree = "<group>"; };
 		105E18892060E1F50031558D /* CompanyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCell.h; sourceTree = "<group>"; };
 		105E188A2060E1F50031558D /* CompanyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCell.m; sourceTree = "<group>"; };
 		105E188C2060E21C0031558D /* PeopleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleCell.h; sourceTree = "<group>"; };
@@ -1622,6 +1625,8 @@
 				0CEC62E4208DE786006EC0BD /* RoomBrokerageTableHeader.m */,
 				0CEC62E9208DEB86006EC0BD /* RoomBrokerageTableCell2.h */,
 				0CEC62EA208DEB86006EC0BD /* RoomBrokerageTableCell2.m */,
+				104B924C20B663EC001583E2 /* C_brokerageCell.h */,
+				104B924D20B663EC001583E2 /* C_brokerageCell.m */,
 				0CEC62EC208DED26006EC0BD /* AnalyzeTableCell.h */,
 				0CEC62ED208DED26006EC0BD /* AnalyzeTableCell.m */,
 				10B509752092EE0D004355C4 /* BrokerModel.h */,
@@ -2850,6 +2855,7 @@
 				1044B3FB20A03654002D9BAE /* TypeOneVC.m in Sources */,
 				0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
+				104B924E20B663EC001583E2 /* C_brokerageCell.m in Sources */,
 				0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */,
 				0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */,
 				1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */,
