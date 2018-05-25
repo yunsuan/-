@@ -77,7 +77,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   
+    if (_model.bsicarr.count>1&&[_brokerage isEqualToString:@"no"]) {
+        return 1;
+    }
+    else{
     return _model.dataarr.count;
+    }
 
 }
 
@@ -158,7 +163,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"报备规则";
-        cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
+        cell.ruleView.contentL.text = _model.bsicarr[0][@"basic"];
         return cell;
     }
     else{
