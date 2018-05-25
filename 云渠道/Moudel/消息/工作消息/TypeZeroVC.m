@@ -124,7 +124,7 @@
 
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
-    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_client_id} success:^(id resposeObject) {
+    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataDic[@"project_id"],@"client_need_id":_dataDic[@"client_need_id"],@"client_id":_dataDic[@"client_info_id"]} success:^(id resposeObject) {
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             self.recommendView.codeL.text = [NSString stringWithFormat:@"推荐编号:%@",_client_id];
