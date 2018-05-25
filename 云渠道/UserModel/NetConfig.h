@@ -186,6 +186,9 @@ static NSString *const HouseTypeAnalyse_URL = @"user/houseType/analyse";
 //获取佣金规则
 static NSString *const GetRule_URL = @"user/project/getRule";
 
+//获取佣金规则新
+static NSString *const GetRuleNew_URL = @"user/project/getRuleNew";
+
 //获取户型信息
 static NSString *const HouseTypeDetail_URL = @"user/houseType/detail";
 
