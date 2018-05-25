@@ -233,6 +233,7 @@
     [_confirmBtn setTitle:@"确认" forState:UIControlStateNormal];
     [_confirmBtn setBackgroundColor:YJBlueBtnColor];
     [_confirmBtn setTitleColor:CH_COLOR_white forState:UIControlStateNormal];
+    _confirmBtn.hidden = YES;
     if ([[UserModel defaultModel].agent_identity integerValue] == 2) {
         
         [self.view addSubview:_confirmBtn];
