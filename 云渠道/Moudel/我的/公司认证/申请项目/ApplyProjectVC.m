@@ -135,6 +135,7 @@
 
                 [tempDic setObject:@"" forKey:key];
             }
+            
         }];
 
        MyAttentionModel *model = [[MyAttentionModel alloc] initWithDictionary:tempDic];

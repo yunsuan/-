@@ -55,6 +55,7 @@
             
             UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, 183 *SIZE)];
             img.contentMode = UIViewContentModeScaleAspectFill;
+            img.clipsToBounds = YES;
             [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,imgArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 
                 if (error) {
@@ -71,6 +72,7 @@
     
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 183 *SIZE)];
         img.contentMode = UIViewContentModeScaleAspectFill;
+        img.clipsToBounds = YES;
         img.image = [UIImage imageNamed:@"banner_default_2"];
         [_imgScroll addSubview:img];
     }
