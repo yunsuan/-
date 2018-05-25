@@ -78,7 +78,7 @@
                                 };
     
     [BaseRequest POST:ChangePassword_URL parameters:parameter success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
     
         if ([resposeObject[@"code"] integerValue] == 200) {
             [UserModel defaultModel].Password = _PassWord.text;

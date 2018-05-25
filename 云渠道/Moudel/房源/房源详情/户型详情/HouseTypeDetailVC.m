@@ -90,7 +90,7 @@
     
     [BaseRequest GET:HouseTypeDetail_URL parameters:@{@"id":_houseTypeId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
@@ -103,7 +103,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -143,7 +143,7 @@
     
     [BaseRequest GET:HouseTypeMatching_URL parameters:@{@"project_id":_projectId,@"house_type_id":_houseTypeId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetMatchPeople:resposeObject[@"data"]];
@@ -153,7 +153,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -307,7 +307,7 @@
                 CustomMatchModel *model = _matchList[index];
                 [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
                     
-                    NSLog(@"%@",resposeObject);
+//                    NSLog(@"%@",resposeObject);
                   
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
@@ -321,7 +321,7 @@
                     }
                 } failure:^(NSError *error) {
                     
-                    NSLog(@"%@",error);
+//                    NSLog(@"%@",error);
                     [self showContent:@"网络错误"];
                 }];
             };
@@ -393,9 +393,9 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
+//            NSLog(@"************Share fail with error %@*********",error);
         }else{
-            NSLog(@"response data is %@",data);
+//            NSLog(@"response data is %@",data);
             [self showContent:@"分享成功"];
             [self.transmitView removeFromSuperview];
         }

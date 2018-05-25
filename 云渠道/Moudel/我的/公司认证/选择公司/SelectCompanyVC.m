@@ -84,7 +84,7 @@
     [_dataArr removeAllObjects];
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
      
         [_selecTable.mj_header endRefreshing];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -114,7 +114,7 @@
     } failure:^(NSError *error) {
         
         [_selecTable.mj_header endRefreshing];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -142,7 +142,7 @@
     
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -176,7 +176,7 @@
         
         _page -= 1;
         [_selecTable.mj_footer endRefreshing];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -194,7 +194,7 @@
     
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -227,7 +227,7 @@
         
         _page -= 1;
         [_selecTable.mj_footer endRefreshing];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -258,7 +258,7 @@
         _isSearch = YES;
         [BaseRequest GET:GetCompanyList_URL parameters:@{@"company_name":textField.text} success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
         
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -281,7 +281,7 @@
             }
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
             [self showContent:@"网络错误"];
         }];
     }else{

@@ -114,7 +114,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }

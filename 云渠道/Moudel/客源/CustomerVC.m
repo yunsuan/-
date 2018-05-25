@@ -93,7 +93,7 @@
 
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
       
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -135,7 +135,7 @@
     } failure:^(NSError *error) {
         
         [_customerTable.mj_header endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
         [self showContent:@"网络错误"];
     }];
 }
@@ -161,7 +161,7 @@
     }
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
 
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -200,7 +200,7 @@
     } failure:^(NSError *error) {
         
         [_customerTable.mj_footer endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
         [self showContent:@"网络错误"];
     }];
 }

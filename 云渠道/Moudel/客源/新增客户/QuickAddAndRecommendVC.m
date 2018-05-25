@@ -462,7 +462,7 @@
     [_detailadress endEditing:YES];
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
-        NSLog(@"%@",[self gettime:date]);
+//        NSLog(@"%@",[self gettime:date]);
         _birth.content.text = [self gettime:date];
         _Customerinfomodel.birth = _birth.content.text;
     };

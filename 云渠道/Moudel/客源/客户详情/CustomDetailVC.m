@@ -124,7 +124,7 @@
     [BaseRequest GET:ClientMatching_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
        
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -139,7 +139,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 
@@ -176,10 +176,10 @@
     
     [BaseRequest GET:GetStateList_URL parameters:@{@"client_id":[UserModelArchiver unarchive].agent_id} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 
 }
@@ -188,7 +188,7 @@
     
     [BaseRequest GET:GetRecord_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -199,7 +199,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -208,7 +208,7 @@
     
     [BaseRequest GET:GetCliendInfo_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -232,7 +232,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -311,7 +311,7 @@
             [self MatchRequest];
         }
     }
-    NSLog(@"%@",indexPath);
+//    NSLog(@"%@",indexPath);
 }
 
 - (void)head2collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -341,7 +341,7 @@
         }
     }
     
-    NSLog(@"%@",indexPath);
+//    NSLog(@"%@",indexPath);
 }
 
 - (void)DGActionAddBtn:(UIButton *)btn{
@@ -364,7 +364,7 @@
 
 - (void)DGActionEditBtn:(UIButton *)btn{
     
-    NSLog(@"%ld",_item);
+//    NSLog(@"%ld",_item);
 
     AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:_customModel];
     [self.navigationController pushViewController:nextVC animated:YES];
@@ -717,7 +717,7 @@
                     [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectArr[index][@"project_id"],@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
                         
 //                        self.customDetailTable.userInteractionEnabled = YES;
-                        NSLog(@"%@",resposeObject);
+//                        NSLog(@"%@",resposeObject);
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
                             [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
@@ -730,7 +730,7 @@
                         }
                     } failure:^(NSError *error) {
                         
-                        NSLog(@"%@",error);
+//                        NSLog(@"%@",error);
                         [self showContent:@"网络错误"];
                     }];
                 }

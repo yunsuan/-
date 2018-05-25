@@ -40,7 +40,7 @@
     
     [BaseRequest POST:BankCardInfo_URL parameters:nil success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
   
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -54,7 +54,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -85,7 +85,7 @@
             
             [BaseRequest POST:DeleteBankCard_URL parameters:nil success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
             
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
@@ -98,7 +98,7 @@
             } failure:^(NSError *error) {
                 
                 [self showContent:@"网络错误"];
-                NSLog(@"%@",error);
+//                NSLog(@"%@",error);
             } ];
         }];
         

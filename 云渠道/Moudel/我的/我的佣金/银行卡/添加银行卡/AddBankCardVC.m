@@ -114,7 +114,7 @@
                           };
     [BaseRequest POST:BindingBankCard_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -122,7 +122,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -158,7 +158,7 @@
         } failure:^(NSError *error) {
            
             _GetCodeBtn.userInteractionEnabled = YES;
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
             [self showContent:@"网络错误"];
         }];
         

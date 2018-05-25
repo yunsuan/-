@@ -124,14 +124,14 @@
     
     [BaseRequest GET:ProjectMatching_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetMatchPeople:resposeObject[@"data"]];
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -162,7 +162,7 @@
      [dic setObject:[UserModelArchiver unarchive].agent_id forKey:@"agent_id"];
 //    [dic setObject:@"1" forKey:@"agent_id"];
     [BaseRequest GET:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -176,7 +176,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -267,7 +267,7 @@
 
 - (void)ActionMoreBtn:(UIButton *)btn{
     
-    NSLog(@"%ld",btn.tag);
+//    NSLog(@"%ld",btn.tag);
     if (btn.tag == 1) {
         BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]initWithProjectId:_projectId];
         [self.navigationController pushViewController:next_vc animated:YES];

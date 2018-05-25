@@ -143,7 +143,7 @@
                                     @"broker_id":_data[indexPath.row][@"broker_id"]
                                                 }
                   success:^(id resposeObject) {
-                      NSLog(@"%@",resposeObject);
+//                      NSLog(@"%@",resposeObject);
                       if ([resposeObject[@"code"] integerValue]==200) {
                           [weakcell.expediteBtn setTitle:@"已催佣" forState:UIControlStateNormal];
                           weakcell.expediteBtn.userInteractionEnabled = NO;
@@ -154,9 +154,9 @@
                       }
                                                 }
                   failure:^(NSError *error) {
-                      NSLog(@"%@",error.description);
+//                      NSLog(@"%@",error.description);
                                                 }];
-        NSLog(@"%ld",index);
+//        NSLog(@"%ld",index);
         
     };
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

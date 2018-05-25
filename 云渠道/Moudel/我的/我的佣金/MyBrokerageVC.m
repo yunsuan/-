@@ -55,7 +55,7 @@
 
 -(void)post{
     [BaseRequest GET:BrokerInfo_URL parameters:nil success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue]==200) {
             _priceL.text = [NSString stringWithFormat:@"￥%@",resposeObject[@"data"][@"total"]];
             _brokerCount = @[@[[NSString stringWithFormat:@"%@",resposeObject[@"data"][@"un_pay"][@"total"]],[NSString stringWithFormat:@"￥%@",resposeObject[@"data"][@"un_pay"][@"count"]]],@[[NSString stringWithFormat:@"%@",resposeObject[@"data"][@"is_pay"][@"total"]],[NSString stringWithFormat:@"￥%@",resposeObject[@"data"][@"is_pay"][@"count"]]]];
@@ -63,7 +63,7 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 
@@ -77,7 +77,7 @@
             
             [BaseRequest GET:GetAgentAuthInfo_URL parameters:nil success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
                     if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -99,7 +99,7 @@
                 
                 IDcardAuthenticationVC *nextVC = [[IDcardAuthenticationVC alloc] init];
                 [self.navigationController pushViewController:nextVC animated:YES];
-                NSLog(@"%@",error);
+//                NSLog(@"%@",error);
             }];
             break;
         }
