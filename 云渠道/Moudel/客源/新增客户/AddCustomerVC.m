@@ -568,7 +568,7 @@
     [_detailadress endEditing:YES];
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
-        NSLog(@"%@",[self gettime:date]);
+//        NSLog(@"%@",[self gettime:date]);
         _birth.content.text = [self gettime:date];
         _Customerinfomodel.birth = _birth.content.text;
     };
@@ -692,7 +692,7 @@
         }];
         
         [BaseRequest POST:UpdateClient_URL parameters:dic success:^(id resposeObject) {
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
            
             if ([resposeObject[@"code"] integerValue] ==200) {
                 
@@ -706,7 +706,7 @@
             }
             
         } failure:^(NSError *error) {
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
             [self showContent:@"网络出错"];
         }];
     }else{

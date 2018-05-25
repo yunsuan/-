@@ -64,7 +64,7 @@
     
     [BaseRequest GET:ProjectBuildInfo_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -75,7 +75,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }

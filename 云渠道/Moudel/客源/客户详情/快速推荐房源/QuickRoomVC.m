@@ -114,7 +114,7 @@
     
     [BaseRequest GET:@"user/project/hotSearch" parameters:nil success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             
@@ -122,7 +122,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 
@@ -193,7 +193,7 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.MainTableView.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -214,7 +214,7 @@
         
         [self.MainTableView.mj_header endRefreshing];
         [self showContent:@"网路错误"];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
     }];
     
 }
@@ -251,7 +251,7 @@
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
        
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -274,7 +274,7 @@
         _page -= 1;
         [self showContent:@"网路错误"];
         [self.MainTableView.mj_footer endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
     }];
     
 }
@@ -671,7 +671,7 @@
             RoomListModel *model = _dataArr[indexPath.row];
             [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
                 
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     

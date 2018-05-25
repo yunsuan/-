@@ -59,7 +59,7 @@
         
         [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:resposeObject[@"data"]];
@@ -412,7 +412,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     UNNotificationSound *sound = content.sound;  // 推送消息的声音
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
-    NSLog(@"1111111%@",userInfo);
+//    NSLog(@"1111111%@",userInfo);
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         

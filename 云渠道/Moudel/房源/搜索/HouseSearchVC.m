@@ -65,8 +65,6 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.searchTable.mj_header endRefreshing];
-
-        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_dataArr removeAllObjects];
@@ -77,7 +75,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+ 
         [self.searchTable.mj_header endRefreshing];
         [self.searchTable.mj_footer endRefreshing];
     }];
@@ -96,7 +94,7 @@
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] count]) {
@@ -116,7 +114,7 @@
     } failure:^(NSError *error) {
         
         _page -= 1;
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self.searchTable.mj_footer endRefreshing];
     }];
 }

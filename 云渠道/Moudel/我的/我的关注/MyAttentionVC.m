@@ -44,7 +44,7 @@
     
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -55,8 +55,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
-        NSLog(@"%@",error.localizedDescription);
+     
     }];
 }
 
@@ -163,7 +162,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }

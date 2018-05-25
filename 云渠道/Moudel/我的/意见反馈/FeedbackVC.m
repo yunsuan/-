@@ -46,7 +46,7 @@
         _confirmBtn.userInteractionEnabled = NO;
         [BaseRequest POST:Advice_URL parameters:@{@"content":_textView.text} success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self showContent:@"反馈成功"];
@@ -58,7 +58,7 @@
         } failure:^(NSError *error) {
             
             _confirmBtn.userInteractionEnabled = YES;
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
             [self showContent:@"网络错误"];
         }];
     }else{

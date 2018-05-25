@@ -66,7 +66,7 @@
     [BaseRequest GET:GetCompanyProject_URL parameters:dic success:^(id resposeObject) {
 
         [self.MainTableView.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
        
         if ([resposeObject[@"code"] integerValue] == 200) {
 
@@ -85,7 +85,7 @@
 
         [self.MainTableView.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
     }];
 
 }
@@ -98,7 +98,7 @@
     [BaseRequest GET:GetCompanyProject_URL parameters:dic success:^(id resposeObject) {
         
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -118,7 +118,7 @@
         _page -= 1;
         [self.MainTableView.mj_footer endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
     }];
 
 }

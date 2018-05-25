@@ -530,7 +530,7 @@
         _nextBtn.userInteractionEnabled = NO;
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
  
             _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
@@ -551,7 +551,7 @@
         } failure:^(NSError *error) {
             _nextBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
     }else{
     
@@ -645,7 +645,7 @@
         _nextBtn.userInteractionEnabled = NO;
         [BaseRequest POST:UpdateNeed_URL parameters:dic success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
             _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -662,7 +662,7 @@
         } failure:^(NSError *error) {
             _nextBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
     }
 }

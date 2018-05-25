@@ -157,7 +157,7 @@
 
     [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -169,7 +169,7 @@
     } failure:^(NSError *error) {
         
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 //    AuditStatusVC *nextVC = [[AuditStatusVC alloc] init];
 //    [self.navigationController pushViewController:nextVC animated:YES];
@@ -365,7 +365,7 @@
         [self presentViewController:_imagePickerController animated:YES completion:nil];
         
     } else {
-        NSLog(@"当前设备不支持拍照");
+//        NSLog(@"当前设备不支持拍照");
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                   message:@"当前设备不支持拍照"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -393,7 +393,7 @@
                   constructionBody:^(id<AFMultipartFormData> formData) {
                       [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
                   } success:^(id resposeObject) {
-                      NSLog(@"%@",resposeObject);
+//                      NSLog(@"%@",resposeObject);
                       
                       if ([resposeObject[@"code"] integerValue] == 200) {
                           
@@ -404,7 +404,7 @@
                       }
                       [self.authenColl reloadData];
                   } failure:^(NSError *error) {
-                      NSLog(@"%@",error);
+//                      NSLog(@"%@",error);
                       [self showContent:@"网络错误"];
             }];
 
@@ -419,7 +419,7 @@
               constructionBody:^(id<AFMultipartFormData> formData) {
                   [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
               } success:^(id resposeObject) {
-                  NSLog(@"%@",resposeObject);
+//                  NSLog(@"%@",resposeObject);
                   
                   if ([resposeObject[@"code"] integerValue] == 200) {
                       
@@ -430,7 +430,7 @@
                   }
                   [self.authenColl reloadData];
               } failure:^(NSError *error) {
-                  NSLog(@"%@",error);
+//                  NSLog(@"%@",error);
                   [self showContent:@"网络错误"];
               }];
     }

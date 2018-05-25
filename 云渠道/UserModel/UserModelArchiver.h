@@ -15,4 +15,5 @@
 + (void)archive; //归档
 + (void)infoArchive; //iofo归档
 + (void)ClearUserInfoModel;
+
 @end

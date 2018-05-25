@@ -63,7 +63,7 @@
         }
         [BaseRequest POST:UpdatePersonal_URL parameters:tempDic success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
       
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -92,7 +92,7 @@
         } failure:^(NSError *error) {
             
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
     }
 }

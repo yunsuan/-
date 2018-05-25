@@ -11,7 +11,6 @@
 @implementation UserModelArchiver
 
 + (UserModel *)unarchive {
-    
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]];
 }
 
@@ -61,7 +60,7 @@
 {
     BOOL flag = [NSKeyedArchiver archiveRootObject:[[UserInfoModel alloc]init] toFile:[self infoArchivePath]];
     if (!flag) {
-        NSLog(@"清空用户信息失败!");
+//        NSLog(@"清空用户信息失败!");
     }
 }
 

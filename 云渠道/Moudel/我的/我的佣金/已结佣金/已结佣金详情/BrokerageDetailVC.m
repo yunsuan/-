@@ -277,7 +277,7 @@
                                             @"broker_id":_broker_id
                                             }
               success:^(id resposeObject) {
-                  NSLog(@"%@",resposeObject);
+//                  NSLog(@"%@",resposeObject);
                   if ([resposeObject[@"code"] integerValue]==200) {
                       [_moneybtn setTitle:@"已催佣" forState:UIControlStateNormal];
                       _moneybtn.userInteractionEnabled = NO;
@@ -288,7 +288,7 @@
                   }
               }
               failure:^(NSError *error) {
-                  NSLog(@"%@",error.description);
+//                  NSLog(@"%@",error.description);
               }];
 }
 

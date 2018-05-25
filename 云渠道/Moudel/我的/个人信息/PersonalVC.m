@@ -126,10 +126,10 @@
         
         [BaseRequest GET:@"agent/user/logOut" parameters:nil success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
         [UserModel defaultModel].Token = @"";
@@ -325,7 +325,7 @@
                 NSDictionary *dic = @{@"sex":@1};
                 [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                     
-                    NSLog(@"%@",resposeObject);
+//                    NSLog(@"%@",resposeObject);
                   
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
@@ -337,7 +337,7 @@
                     }
                 } failure:^(NSError *error) {
                    
-                    NSLog(@"%@",error);
+//                    NSLog(@"%@",error);
                     [self showContent:@"网络错误"];
                 }];
             }];
@@ -347,7 +347,7 @@
                 NSDictionary *dic = @{@"sex":@2};
                 [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                     
-                    NSLog(@"%@",resposeObject);
+//                    NSLog(@"%@",resposeObject);
                   
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
@@ -360,7 +360,7 @@
                     }
                 } failure:^(NSError *error) {
                     
-                    NSLog(@"%@",error);
+//                    NSLog(@"%@",error);
                     [self showContent:@"网络错误"];
                 }];
             }];

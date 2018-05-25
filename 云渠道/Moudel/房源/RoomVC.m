@@ -490,7 +490,7 @@
 {
 
     
-    NSLog(@"heading is %@",userLocation.heading);
+//    NSLog(@"heading is %@",userLocation.heading);
 
 
 }
@@ -499,8 +499,6 @@
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    //地理反编码
     
     BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
     

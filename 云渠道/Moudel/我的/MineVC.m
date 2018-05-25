@@ -112,7 +112,7 @@
     [BaseRequest POST:GetPersonalBaseInfo_URL parameters:nil success:^(id resposeObject) {
         
         [self.Mytableview.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -132,7 +132,7 @@
         
         [self.Mytableview.mj_header endRefreshing];
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 
@@ -241,7 +241,7 @@
         [self presentViewController:_imagePickerController animated:YES completion:nil];
         
     } else {
-        NSLog(@"当前设备不支持拍照");
+//        NSLog(@"当前设备不支持拍照");
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                   message:@"当前设备不支持拍照"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -280,7 +280,7 @@
           constructionBody:^(id<AFMultipartFormData> formData) {
               [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
     } success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
 //        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -288,7 +288,7 @@
             NSDictionary *dic = @{@"head_img":resposeObject[@"data"]};
             [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
    
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
@@ -301,7 +301,7 @@
                 }
             } failure:^(NSError *error) {
                
-                NSLog(@"%@",error);
+//                NSLog(@"%@",error);
                 [self showContent:@"网络错误"];
             }];
         }else{
@@ -310,7 +310,7 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -388,7 +388,7 @@
             
             [BaseRequest GET:GetAuthInfo_URL parameters:nil success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
                     if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -427,7 +427,7 @@
                 AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
                 nextVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nextVC animated:YES];
-                NSLog(@"%@",error);
+//                NSLog(@"%@",error);
             }];
             
         }else{

@@ -236,7 +236,7 @@
         
         self.rowIndexView.frame = CGRectMake((kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) / _myScrollView.zoomScale, self.seatTop, kRowIndexWith, self.row * self.seatSize.height);
         
-        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
+//        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
         self.rowIndexView.rowIndexType = self.rowIndexType;
         //        self.rowIndexView.arrayRowIndex = self.arrayRowIndex;
         self.rowIndexView.hidden = NO;
@@ -506,8 +506,8 @@
         self.rowIndexView.frame = CGRectMake((kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) < 2 ? 2:(kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) / _myScrollView.zoomScale, self.seatTop,
                                              kRowIndexWith,
                                              self.row * self.seatSize.height);
-        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
-        NSLog(@"self.myScrollView.contentSize = %@",NSStringFromCGSize( _myScrollView.contentSize));
+//        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
+//        NSLog(@"self.myScrollView.contentSize = %@",NSStringFromCGSize( _myScrollView.contentSize));
         self.rowIndexView.rowIndexType = self.rowIndexType;
         self.rowIndexView.arrayRowIndex = self.arrayRowIndex;
         self.rowIndexView.hidden = NO;

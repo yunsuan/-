@@ -116,7 +116,7 @@
 {
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
-        NSLog(@"%@",[self gettime:date]);
+//        NSLog(@"%@",[self gettime:date]);
         _nextTimeBtn.content.text = [self gettime:date];
     };
     [self.view addSubview:view];
@@ -127,7 +127,7 @@
 {
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
-        NSLog(@"%@",[self gettime:date]);
+//        NSLog(@"%@",[self gettime:date]);
         _timeL.text = [self gettime:date];
     };
     [self.view addSubview:view];
@@ -369,7 +369,7 @@
                                };
     [BaseRequest POST:AddRecord_URL parameters:prameter success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             [self showContent:@"添加成功"];
