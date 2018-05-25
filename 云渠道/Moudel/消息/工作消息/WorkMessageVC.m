@@ -35,8 +35,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _page = 1;
-    [self postWithpage:@"1"];
+//    _page = 1;
+//    [self postWithpage:@"1"];
 }
 
 - (void)viewDidLoad {
@@ -50,7 +50,7 @@
     
     [self initDateSouce];
     [self initUI];
-
+    [self postWithpage:@"1"];
 }
 
 - (void)ActionDismiss{
@@ -149,6 +149,7 @@
 
 -(void)initDateSouce
 {
+    _page = 1;
     _data = [NSMutableArray arrayWithArray:@[]];
 }
 
@@ -197,9 +198,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger i = [_data[indexPath.row][@"message_type"] integerValue];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:_data[indexPath.row]];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:dic[@"attribute"]];
+    [tempDic setObject:@"1" forKey:@"is_read"];
+    [dic setObject:tempDic forKey:@"attribute"];
+    [_data replaceObjectAtIndex:indexPath.row withObject:dic];
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
     switch (i) {
         case 0:
         {
+            
             TypeZeroVC *next_vc = [[TypeZeroVC alloc]init];
             next_vc.client_id = _data[indexPath.row][@"client_id"];
             next_vc.message_id = _data[indexPath.row][@"message_id"];
