@@ -32,6 +32,7 @@
         make.left.equalTo(self.contentView).offset(0);
         make.right.equalTo(self.contentView).offset(0);
         make.top.equalTo(self.contentView).offset(0 *SIZE);
+        make.bottom.equalTo(self.contentView).offset(0);
     }];
     
 

@@ -57,12 +57,14 @@
 
 - (void)RequestMethod{
     
-    [BaseRequest GET:GetRule_URL parameters:@{@"project_id":_roomModel.project_id} success:^(id resposeObject) {
+    [BaseRequest GET:GetRuleNew_URL parameters:@{@"project_id":_roomModel.project_id,
+                   @"agent_id":[UserModelArchiver unarchive].agent_id
+                                              } success:^(id resposeObject) {
         
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
 
-            _model = [[BrokerModel alloc]initWithdata:resposeObject[@"data"][@"basic"]];
+            _model = [[BrokerModel alloc]initWithdata:resposeObject[@"data"]];
             [_brokerageTable reloadData];
             
         }
@@ -77,8 +79,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   
-    if (_model.bsicarr.count>1&&[_brokerage isEqualToString:@"no"]) {
-        return 1;
+    if ([_brokerage isEqualToString:@"no"]) {
+        return _model.companyarr.count;
     }
     else{
     return _model.dataarr.count;
@@ -88,13 +90,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    if ([_brokerage isEqualToString:@"no"]) {
-
-        return 0;
-    }
-    else{
     return 51 *SIZE;
-    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -110,7 +107,38 @@
     
      if ([_brokerage isEqualToString:@"no"])
      {
-         return [[UIView alloc]init];
+         RoomBrokerageTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomBrokerageTableHeader"];
+         if (!header) {
+             
+             header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
+         }
+         
+         if ([_model.companyarr[section][@"end_time"] isEqual:@"2037-12-31"]) {
+             header.titleL.text = [NSString stringWithFormat:@"%@起",_model.companyarr[section][@"begin_time"]];
+         }
+         else{
+             header.titleL.text = [NSString stringWithFormat:@"%@至%@",_model.companyarr[section][@"begin_time"],_model.companyarr[section][@"end_time"]];//@"2017-07-11至2017-08-10";
+         }
+         header.dropBtn.tag = section;
+         if ([_selectArr[section] integerValue]) {
+             
+             [header.dropBtn setImage:[UIImage imageNamed:@"uparrow"] forState:UIControlStateNormal];
+         }else{
+             
+             [header.dropBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
+         }
+         header.dropBtnBlock = ^(NSInteger index) {
+             
+             if ([_selectArr[index] integerValue]) {
+                 
+                 [_selectArr replaceObjectAtIndex:index withObject:@0];
+             }else{
+                 
+                 [_selectArr replaceObjectAtIndex:index withObject:@1];
+             }
+             [tableView reloadData];
+         };
+         return header;
      }else
      {
         RoomBrokerageTableHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"RoomBrokerageTableHeader"];
@@ -163,7 +191,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
         cell.ruleView.titleL.text = @"报备规则";
-        cell.ruleView.contentL.text = _model.bsicarr[0][@"basic"];
+        cell.ruleView.contentL.text = _model.companyarr[indexPath.row][@"basic"];
         return cell;
     }
     else{
@@ -175,8 +203,13 @@
             cell = [[RoomBrokerageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomBrokerageTableCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (_roomModel.sort) {
+            cell.rankL.text = [NSString stringWithFormat:@"第%@名",_roomModel.sort];
+        }else
+        {
+            cell.rankL.text = @"无排名";
+        }
         
-        cell.rankL.text = [NSString stringWithFormat:@"第%@名",_roomModel.sort];
         [cell.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(cell.contentView).offset(114 *SIZE);
@@ -190,7 +223,7 @@
         cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
         cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
         cell.standView.titleL.text = @"结佣标准";
-        NSMutableArray *arr = [_model getbreakinfo];
+        NSMutableArray *arr = _model.breakerinfo;
         cell.standView.contentL.text = arr[indexPath.section];
         return cell;
     }else{
@@ -206,7 +239,7 @@
         cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
         cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
         cell.standView.titleL.text = @"结佣标准";
-        NSMutableArray *arr = [_model getbreakinfo];
+        NSMutableArray *arr = _model.breakerinfo;
         cell.standView.contentL.text = arr[indexPath.section];
         
         return cell;
