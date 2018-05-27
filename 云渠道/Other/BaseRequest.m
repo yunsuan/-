@@ -20,7 +20,7 @@ static AFHTTPSessionManager *updatemanager ;
     [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
     [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
 
-    NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
+    NSString *str = [NSString stringWithFormat:@"%@%@",TestBase_Net,url];
     
     [htttmanger GET:str parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -84,7 +84,7 @@ static AFHTTPSessionManager *updatemanager ;
     [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
     [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
 
-    NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
+    NSString *str = [NSString stringWithFormat:@"%@%@",TestBase_Net,url];
     [htttmanger POST:str parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -143,7 +143,7 @@ static AFHTTPSessionManager *updatemanager ;
 
 + (void)Updateimg:(NSString *)url parameters:(NSDictionary *)parameters constructionBody:(void (^)(id<AFMultipartFormData>))blocks success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     [WaitAnimation startAnimation];
-    NSString *str = [NSString stringWithFormat:@"%@%@",Base_Net,url];
+    NSString *str = [NSString stringWithFormat:@"%@%@",TestBase_Net,url];
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:str]];
   
     AFHTTPSessionManager *htttmanger = [self sharedHttpSessionUpdateManager];

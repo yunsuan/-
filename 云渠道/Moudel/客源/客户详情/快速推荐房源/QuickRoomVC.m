@@ -153,7 +153,7 @@
         [_dataArr addObject:model];
     }
     
-    [_MainTableView reloadData];
+    [self.MainTableView reloadData];
 }
 
 - (void)RequestMethod{
@@ -205,6 +205,7 @@
             
                 self.MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
             }
+            [self.MainTableView reloadData];
         }else{
             
             [self showContent:resposeObject[@"msg"]];
