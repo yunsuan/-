@@ -70,21 +70,31 @@
     _GetCodeBtn.userInteractionEnabled = NO;
     if([self checkTel:_Account.text]) {
         
-        //        NetConfitModel *model = [[NetConfitModel alloc]init];
-        //
-        //        [BaseNetRequest startpost:@"/TelService.ashx" parameters:[model configgetCodebyphone:@"13438339177"] success:^(id resposeObject) {
-        //
-        //            NSLog(@"%@",resposeObject);
-        //            [self showContent:[NSString stringWithFormat:@"%@",resposeObject[0][@"content"]]];
-        //            if ([resposeObject[0][@"state"] isEqualToString:@"1"])
-        //            {
-        _GetCodeBtn.hidden = YES;
-        _timeLabel.hidden = NO;
-        surplusTime = 60;
-        _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
-        //倒计时
-        time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-        _GetCodeBtn.userInteractionEnabled = YES;
+        NSDictionary *parameter = @{
+                                    @"tel":_Account.text
+                                    };
+        [BaseRequest GET:Captcha_URL parameters:parameter success:^(id resposeObject) {
+            NSLog(@"%@",resposeObject);
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                _GetCodeBtn.hidden = YES;
+                _timeLabel.hidden = NO;
+                surplusTime = 60;
+                _timeLabel.text = [NSString stringWithFormat:@"%ldS", (long)surplusTime];
+                //倒计时
+                time = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+                
+            }
+            else{
+                [self showContent:resposeObject[@"msg"]];
+            }
+            _GetCodeBtn.userInteractionEnabled = YES;
+        } failure:^(NSError *error) {
+            _GetCodeBtn.userInteractionEnabled = YES;
+            [self showContent:@"网络错误"];
+        }];
+
+        
+
         
         //            }
         //

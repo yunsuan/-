@@ -64,7 +64,7 @@
 #define PLINEHEIGHT    0.5*SIZE
 
 #define JpushAppKey @"2dd909361c253b51e0cd05a9"
-#define YQDversion @"1.3"
+#define YQDversion @"1.4"
 #define ACCESSROLE @"agent"
 
 // 判断是否是iPhone X
