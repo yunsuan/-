@@ -225,6 +225,8 @@
         cell.standView.titleL.text = @"结佣标准";
         NSMutableArray *arr = _model.breakerinfo;
         cell.standView.contentL.text = arr[indexPath.section];
+        
+
         return cell;
     }else{
         

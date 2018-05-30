@@ -184,6 +184,9 @@
 
 - (void)ActionBankTypeBtn:(UIButton *)btn{
     
+    [_peopleTF endEditing:YES];
+    [_cardNumTF endEditing:YES];
+    [_codeTF endEditing:YES];
     SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:BANK_TYPE]];
     
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
@@ -243,7 +246,7 @@
             }
             case 2:
             {
-                _cardTypeTF = [[DropDownBtn alloc] initWithFrame:textField.frame];
+                _cardTypeTF = [[DropDownBtn alloc] initWithFrame:CGRectMake(77 *SIZE, i * 52 *SIZE + 8 *SIZE, 200 *SIZE, 44 *SIZE)];
                 _cardTypeTF.dropimg.hidden = YES;
                 _cardTypeTF.layer.borderWidth = 0;
                 [_cardTypeTF addTarget:self action:@selector(ActionBankTypeBtn:) forControlEvents:UIControlEventTouchUpInside];

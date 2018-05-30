@@ -196,7 +196,7 @@
         make.left.equalTo(self.contentView).offset(0);
         make.right.equalTo(self.contentView).offset(0);
         make.top.equalTo(self.contentView).offset(134 *SIZE);
-        make.bottom.equalTo(_standView.mas_top).offset(-8 *SIZE);
+//        make.bottom.equalTo(_standView.mas_top).offset(-8 *SIZE);
     }];
     
     [_standView mas_makeConstraints:^(MASConstraintMaker *make) {
