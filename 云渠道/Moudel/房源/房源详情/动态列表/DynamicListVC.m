@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    _page = 1;
     [self initUI];
     [self RequestMethod];
 }
@@ -59,6 +60,10 @@
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
                 
                 [self SetData:resposeObject[@"data"][@"data"]];
+                if (_page <= [resposeObject[@"data"][@"last_page"] integerValue]) {
+                    
+                    _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
             }else{
                 
                 _listTable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -95,7 +100,7 @@
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
                 
                 [self SetData:resposeObject[@"data"][@"data"]];
-                if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page <= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
                     _listTable.mj_footer.state = MJRefreshStateNoMoreData;
                 }
