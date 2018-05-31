@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C02360120BFC94C00B255AA /* DynamicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C02360020BFC94C00B255AA /* DynamicDetailVC.m */; };
 		0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A4207DAEC00045E3C1 /* CustomerModel.m */; };
 		0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A8207DB3050045E3C1 /* RoomListModel.m */; };
 		0C06B1F7209D7DBB00F11993 /* CustomListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C06B1F6209D7DBB00F11993 /* CustomListVC.m */; };
@@ -303,6 +304,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0235FF20BFC94C00B255AA /* DynamicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicDetailVC.h; sourceTree = "<group>"; };
+		0C02360020BFC94C00B255AA /* DynamicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailVC.m; sourceTree = "<group>"; };
 		0C0606A3207DAEC00045E3C1 /* CustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerModel.h; sourceTree = "<group>"; };
 		0C0606A4207DAEC00045E3C1 /* CustomerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerModel.m; sourceTree = "<group>"; };
 		0C0606A7207DB3050045E3C1 /* RoomListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomListModel.h; sourceTree = "<group>"; };
@@ -1635,6 +1638,8 @@
 				0CF04F2A207A0D8E00A45F4A /* view */,
 				0CF04F27207A0AF500A45F4A /* DynamicListVC.h */,
 				0CF04F28207A0AF500A45F4A /* DynamicListVC.m */,
+				0C0235FF20BFC94C00B255AA /* DynamicDetailVC.h */,
+				0C02360020BFC94C00B255AA /* DynamicDetailVC.m */,
 			);
 			path = "动态列表";
 			sourceTree = "<group>";
@@ -2783,6 +2788,7 @@
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
 				0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */,
+				0C02360120BFC94C00B255AA /* DynamicDetailVC.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
 				0C96DA01209C6A6700B6A8B8 /* QuickAddCustomVC.m in Sources */,
 				0CEC62E2208DDE0C006EC0BD /* RuleView.m in Sources */,
