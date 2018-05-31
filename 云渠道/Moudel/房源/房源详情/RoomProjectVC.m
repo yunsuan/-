@@ -24,7 +24,7 @@
 #import "DistributVC.h"
 #import "RoomDetailModel.h"
 #import "BuildingAlbumVC.h"
-//#import "QuickAddCustomVC.h"
+#import "DynamicDetailVC.h"
 #import "CustomListVC.h"
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
@@ -518,10 +518,7 @@
                 cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.developL.text = @"阳光物业公司";
-//            cell.openL.text = @"2017年02月20日";
-//            cell.payL.text = @"2019年02月";
-//            cell.timeL.text = @"70年";
+
             if (_model.developer_name) {
 
                 cell.developL.text = _model.developer_name;
@@ -549,7 +546,7 @@
                 cell.numL.text = [NSString stringWithFormat: @"（共%@条）",_dynamicNum];
                 cell.titleL.text = _dynamicDic[@"title"];
                 cell.timeL.text = _dynamicDic[@"update_time"];
-                cell.contentL.text = _dynamicDic[@"content"];
+                cell.contentL.text = _dynamicDic[@"abstract"];
             }
             
             cell.moreBtn.tag = indexPath.section;
@@ -716,6 +713,11 @@
         DistributVC *nextVC = [[DistributVC alloc] init];
         nextVC.img_name = _model.total_float_url_phone;
         nextVC.projiect_id = _projectId;
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (indexPath.section == 2) {
+        
+        DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:_dynamicDic[@"url"] titleStr:@"动态详情"];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }

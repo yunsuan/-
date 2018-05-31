@@ -8,6 +8,7 @@
 
 #import "DynamicListVC.h"
 #import "DynamicListTableCell.h"
+#import "DynamicDetailVC.h"
 
 @interface DynamicListVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -94,6 +95,10 @@
             if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
                 
                 [self SetData:resposeObject[@"data"][@"data"]];
+                if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                    
+                    _listTable.mj_footer.state = MJRefreshStateNoMoreData;
+                }
             }else{
                 
                 _listTable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -110,6 +115,7 @@
             _listTable.mj_footer.state = MJRefreshStateNoMoreData;
         }
         else{
+            
             [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
@@ -161,13 +167,14 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.contentL.text = _dataArr[indexPath.row][@"content"];
+    cell.contentL.text = _dataArr[indexPath.row][@"abstract"];
     cell.titleL.text = _dataArr[indexPath.row][@"title"];
     cell.timeL.text = _dataArr[indexPath.row][@"update_time"];
     
     cell.cellBtnBlock = ^(NSInteger index) {
         
-        
+        DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:_dataArr[indexPath.row][@"url"] titleStr:@"动态详情"];
+        [self.navigationController pushViewController:nextVC animated:YES];
     };
     
     return cell;
@@ -175,7 +182,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:_dataArr[indexPath.row][@"url"] titleStr:@"动态详情"];
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)initUI{

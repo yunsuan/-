@@ -269,22 +269,39 @@
     //创建网页内容对象
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房地产渠道分销软件" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
-    shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
     
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
     
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-        if (error) {
-//            NSLog(@"************Share fail with error %@*********",error);
-            [self alertControllerWithNsstring:@"分享失败" And:nil];
+    [BaseRequest GET:@"user/project/getShare" parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            shareObject.webpageUrl = resposeObject[@"data"];
+            //分享消息对象设置分享内容对象
+            messageObject.shareObject = shareObject;
+            
+            //调用分享接口
+            [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+                if (error) {
+                   
+                    [self alertControllerWithNsstring:@"分享失败" And:nil];
+                }else{
+
+                    [self showContent:@"分享成功"];
+                    [self.transmitView removeFromSuperview];
+                }
+            }];
         }else{
-//            NSLog(@"response data is %@",data);
-            [self showContent:@"分享成功"];
-            [self.transmitView removeFromSuperview];
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:@"获取分享链接失败"];
         }
+    } failure:^(NSError *error) {
+        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"获取分享链接失败"];
+        NSLog(@"%@",error);
     }];
+    
+    
 }
 
 @end
