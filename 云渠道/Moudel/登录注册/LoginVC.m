@@ -12,6 +12,9 @@
 #import "FindPassWordVC.h"
 #import <UMSocialQQHandler.h>
 #import <UMSocialWechatHandler.h>
+#import "JudgeView.h"
+#import "BingdingAccountVC.h"
+#import "BingdingExitAccountVC.h"
 
 @interface LoginVC ()
 @property (nonatomic , strong) UITextField *Account;
@@ -24,6 +27,7 @@
 @property (nonatomic , strong) UIImageView *Headerimg;
 @property (nonatomic , strong) UIButton  *QQBtn;
 @property (nonatomic , strong) UIButton  *WEIBOBTN;
+@property (nonatomic, strong) JudgeView *judgeView;
 @end
 
 @implementation LoginVC
@@ -41,66 +45,66 @@
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
     
-//    if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession] && [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
-//
-//        for (int i = 0; i<2; i++) {
-//            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
-//            line.backgroundColor = COLOR(130, 130, 130, 1);
-//            [self.view addSubview:line];
-//
-//            UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
-//            line2.backgroundColor = YJ170Color;
-//            [self.view addSubview:line2];
-//        }
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
-//        label.textColor = YJ170Color;
-//        label.font = [UIFont systemFontOfSize:13 *SIZE];
-//        label.text = @"第三方账号登录";
-//        [self.view addSubview:label];
-//
-//        [self.view addSubview:self.WEIBOBTN];
-//        [self.view addSubview:self.QQBtn];
-//    }else if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]){
-//        
-//        for (int i = 0; i<2; i++) {
-//            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
-//            line.backgroundColor = COLOR(130, 130, 130, 1);
-//            [self.view addSubview:line];
-//            
-//            UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
-//            line2.backgroundColor = YJ170Color;
-//            [self.view addSubview:line2];
-//        }
-//        
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
-//        label.textColor = YJ170Color;
-//        label.font = [UIFont systemFontOfSize:13 *SIZE];
-//        label.text = @"第三方账号登录";
-//        [self.view addSubview:label];
-//        
-//        self.WEIBOBTN.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-//        [self.view addSubview:self.WEIBOBTN];
-//    }else{
-//        
-//        for (int i = 0; i<2; i++) {
-//            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
-//            line.backgroundColor = COLOR(130, 130, 130, 1);
-//            [self.view addSubview:line];
-//            
-//            UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
-//            line2.backgroundColor = YJ170Color;
-//            [self.view addSubview:line2];
-//        }
-//        
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
-//        label.textColor = YJ170Color;
-//        label.font = [UIFont systemFontOfSize:13 *SIZE];
-//        label.text = @"第三方账号登录";
-//        [self.view addSubview:label];
-//        
-//        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
-//        [self.view addSubview:self.QQBtn];
-//    }
+    if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession] && [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
+
+        for (int i = 0; i<2; i++) {
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
+            line.backgroundColor = COLOR(130, 130, 130, 1);
+            [self.view addSubview:line];
+
+            UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
+            line2.backgroundColor = YJ170Color;
+            [self.view addSubview:line2];
+        }
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
+        label.textColor = YJ170Color;
+        label.font = [UIFont systemFontOfSize:13 *SIZE];
+        label.text = @"第三方账号登录";
+        [self.view addSubview:label];
+
+        [self.view addSubview:self.WEIBOBTN];
+        [self.view addSubview:self.QQBtn];
+    }else if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]){
+        
+        for (int i = 0; i<2; i++) {
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
+            line.backgroundColor = COLOR(130, 130, 130, 1);
+            [self.view addSubview:line];
+            
+            UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
+            line2.backgroundColor = YJ170Color;
+            [self.view addSubview:line2];
+        }
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
+        label.textColor = YJ170Color;
+        label.font = [UIFont systemFontOfSize:13 *SIZE];
+        label.text = @"第三方账号登录";
+        [self.view addSubview:label];
+        
+        self.WEIBOBTN.frame = CGRectMake(106.7*SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+        [self.view addSubview:self.WEIBOBTN];
+    }else{
+        
+        for (int i = 0; i<2; i++) {
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, 249*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
+            line.backgroundColor = COLOR(130, 130, 130, 1);
+            [self.view addSubview:line];
+            
+            UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(101 *SIZE + i * 133 *SIZE, 526 *SIZE , 27*SIZE, SIZE)];
+            line2.backgroundColor = YJ170Color;
+            [self.view addSubview:line2];
+        }
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(133 *SIZE, 521 *SIZE, 200 *SIZE, 13 *SIZE)];
+        label.textColor = YJ170Color;
+        label.font = [UIFont systemFontOfSize:13 *SIZE];
+        label.text = @"第三方账号登录";
+        [self.view addSubview:label];
+        
+        self.QQBtn.frame = CGRectMake(160 *SIZE, 544*SIZE+STATUS_BAR_HEIGHT, 40*SIZE, 40*SIZE);
+        [self.view addSubview:self.QQBtn];
+    }
 
     [self.view addSubview:self.LoginBtn];
     [self.view addSubview:self.FindPassWordBtn];
@@ -148,6 +152,83 @@
         NSLog(@" gender: %@", resp.unionGender);
         // 第三方平台SDK原始数据
         NSLog(@" originalResponse: %@", resp.originalResponse);
+        
+        if (error) {
+            
+        }else{
+            
+            if (platformType == UMSocialPlatformType_QQ) {
+                
+                [BaseRequest POST:Login_URL parameters:@{@"account":resp.openid,@"login_type":@"1"} success:^(id resposeObject) {
+                    
+                    NSLog(@"%@",resposeObject);
+                    if ([resposeObject[@"code"] integerValue] == 400) {
+                        
+                        WS(weakSelf);
+                        self.judgeView.judgeNewBlock = ^{
+                            
+                            NSDictionary *dic = @{@"open_id":resp.openid,@"headimgurl":resp.iconurl,@"regist_type":@"1"};
+                            BingdingAccountVC *nextVC = [[BingdingAccountVC alloc] initWithData:dic];
+                            [weakSelf.navigationController pushViewController:nextVC animated:YES];
+                        };
+                        self.judgeView.judgeExitBlock = ^{
+                            
+                            NSDictionary *dic = @{@"open_id":resp.openid,@"type":@"1"};
+                            BingdingExitAccountVC *nextVC = [[BingdingExitAccountVC alloc] initWithData:dic];
+                            [weakSelf.navigationController pushViewController:nextVC animated:YES];
+                        };
+                        [self.view addSubview:self.judgeView];
+                    }else if ([resposeObject[@"code"] integerValue] == 200){
+                        
+                        [[NSUserDefaults standardUserDefaults]setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
+                        [UserModel defaultModel].Token = resposeObject[@"data"][@"token"];
+                        [UserModel defaultModel].agent_id =resposeObject[@"data"][@"agent_id"];
+                        [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
+                        [UserModelArchiver archive];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"goHome" object:nil];
+                    }else{
+                        
+                        
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                }];
+            }else{
+                
+                [BaseRequest POST:Login_URL parameters:@{@"account":resp.openid,@"login_type":@"2"} success:^(id resposeObject) {
+                    
+                    NSLog(@"%@",resposeObject);
+                    if ([resposeObject[@"code"] integerValue] == 400) {
+                        
+                        WS(weakSelf);
+                        self.judgeView.judgeNewBlock = ^{
+                            
+                            NSDictionary *dic = @{@"open_id":resp.openid,@"headimgurl":resp.iconurl,@"regist_type":@"2"};
+                            BingdingAccountVC *nextVC = [[BingdingAccountVC alloc] initWithData:dic];
+                            [weakSelf.navigationController pushViewController:nextVC animated:YES];
+                        };
+                        self.judgeView.judgeExitBlock = ^{
+                            
+                            NSDictionary *dic = @{@"open_id":resp.openid,@"type":@"2"};
+                            BingdingExitAccountVC *nextVC = [[BingdingExitAccountVC alloc] initWithData:dic];
+                            [weakSelf.navigationController pushViewController:nextVC animated:YES];
+                        };
+                        [self.view addSubview:self.judgeView];
+                    }else if ([resposeObject[@"code"] integerValue] == 200){
+                        
+                        
+                    }else{
+                        
+                        
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                }];
+            }
+            
+        }
     }];
 }
 
@@ -155,6 +236,7 @@
 {
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
+        
         } else {
             UMSocialUserInfoResponse *resp = result;
             // 授权信息
@@ -269,28 +351,27 @@
 
 -(UITextField *)Account{
     if (!_Account) {
+        
         _Account = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 219*SIZE, 314*SIZE, 15*SIZE)];
         _Account.placeholder = @"请输入手机号";
         _Account.keyboardType = UIKeyboardTypeNumberPad;
         _Account.font = [UIFont systemFontOfSize:14*SIZE];
         [_Account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         _Account.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _Account.text = [UserModelArchiver unarchive].Account
-        ;
-        
+        _Account.text = [UserModelArchiver unarchive].Account;
     }
     return _Account;
 }
 
 -(UITextField *)PassWord{
     if (!_PassWord) {
+        
         _PassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, 266*SIZE, 314*SIZE, 15*SIZE)];
         _PassWord.placeholder = @"请输入密码";
         _PassWord.font = [UIFont systemFontOfSize:14*SIZE];
         [_PassWord addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-         _PassWord.secureTextEntry = YES;
+        _PassWord.secureTextEntry = YES;
         _PassWord.text = [UserModelArchiver unarchive].Password;
-        
     }
     return _PassWord;
 }
@@ -393,5 +474,14 @@
  
 }
 
+
+- (JudgeView *)judgeView{
+    
+    if (!_judgeView) {
+        
+        _judgeView = [[JudgeView alloc] initWithFrame:self.view.bounds];
+    }
+    return _judgeView;
+}
 
 @end

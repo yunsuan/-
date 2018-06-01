@@ -44,7 +44,11 @@ static NSString *const Register_URL = @"agent/user/register";
 //修改密码
 static NSString *const ChangePassword_URL = @"agent/user/changePassword";
 
+//第三方账号注册
+static NSString *const RegisterOther_URL = @"agent/user/registerOther";
 
+//切换绑定
+static NSString *const SwitchBingding_URL = @"agent/user/switchBinding";
 
 #pragma mark ---  我的  ---
 //上传文件

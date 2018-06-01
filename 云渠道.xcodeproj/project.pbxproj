@@ -208,6 +208,9 @@
 		0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7424620622DCD001F926F /* BankCardListTableCell.m */; };
 		0CF7425E206262EC001F926F /* BoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7425D206262EC001F926F /* BoxView.m */; };
 		0CF7426120626756001F926F /* CustomerCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF7426020626756001F926F /* CustomerCollCell.m */; };
+		0CF89A6020C14BBB00454EDD /* BingdingExitAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF89A5F20C14BBB00454EDD /* BingdingExitAccountVC.m */; };
+		0CF89A6320C14BE600454EDD /* BingdingAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF89A6220C14BE600454EDD /* BingdingAccountVC.m */; };
+		0CF89A6620C14BFA00454EDD /* JudgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF89A6520C14BFA00454EDD /* JudgeView.m */; };
 		100FD892209960CC00D02EAC /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 100FD891209960CC00D02EAC /* MapVC.m */; };
 		1016245B208863BB00AD53DE /* YJChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245A208863BB00AD53DE /* YJChooseView.m */; };
 		1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1016245D2088640300AD53DE /* YJChooseViewCell.m */; };
@@ -695,6 +698,12 @@
 		0CF7425D206262EC001F926F /* BoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxView.m; sourceTree = "<group>"; };
 		0CF7425F20626756001F926F /* CustomerCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerCollCell.h; sourceTree = "<group>"; };
 		0CF7426020626756001F926F /* CustomerCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomerCollCell.m; sourceTree = "<group>"; };
+		0CF89A5E20C14BBB00454EDD /* BingdingExitAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BingdingExitAccountVC.h; sourceTree = "<group>"; };
+		0CF89A5F20C14BBB00454EDD /* BingdingExitAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BingdingExitAccountVC.m; sourceTree = "<group>"; };
+		0CF89A6120C14BE600454EDD /* BingdingAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BingdingAccountVC.h; sourceTree = "<group>"; };
+		0CF89A6220C14BE600454EDD /* BingdingAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BingdingAccountVC.m; sourceTree = "<group>"; };
+		0CF89A6420C14BFA00454EDD /* JudgeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudgeView.h; sourceTree = "<group>"; };
+		0CF89A6520C14BFA00454EDD /* JudgeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudgeView.m; sourceTree = "<group>"; };
 		100FD890209960CC00D02EAC /* MapVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
 		100FD891209960CC00D02EAC /* MapVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
 		10162459208863BB00AD53DE /* YJChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJChooseView.h; sourceTree = "<group>"; };
@@ -2427,6 +2436,12 @@
 			children = (
 				10B2CAA4205A0D0900E814AC /* RegisterVC.h */,
 				10B2CAA3205A0D0900E814AC /* RegisterVC.m */,
+				0CF89A5E20C14BBB00454EDD /* BingdingExitAccountVC.h */,
+				0CF89A5F20C14BBB00454EDD /* BingdingExitAccountVC.m */,
+				0CF89A6120C14BE600454EDD /* BingdingAccountVC.h */,
+				0CF89A6220C14BE600454EDD /* BingdingAccountVC.m */,
+				0CF89A6420C14BFA00454EDD /* JudgeView.h */,
+				0CF89A6520C14BFA00454EDD /* JudgeView.m */,
 			);
 			path = "注册";
 			sourceTree = "<group>";
@@ -2771,6 +2786,7 @@
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
+				0CF89A6320C14BE600454EDD /* BingdingAccountVC.m in Sources */,
 				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
 				0C382E7020A03A01005472CD /* IdentifyTableCell.m in Sources */,
 				0C0BED3320A1A222005A16A1 /* DealComplaintingVC.m in Sources */,
@@ -2896,6 +2912,7 @@
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */,
+				0CF89A6620C14BFA00454EDD /* JudgeView.m in Sources */,
 				0C08BF63206CB8A7005BB3B4 /* BrokerageDetailTableCell.m in Sources */,
 				10B5097B209317C7004355C4 /* SelectView.m in Sources */,
 				0C1A014020AC566100665BB9 /* DealValidVC.m in Sources */,
@@ -2918,6 +2935,7 @@
 				0CF04F69207C5C3900A45F4A /* InvalidView.m in Sources */,
 				0CF04F252079AD1100A45F4A /* RoomDetailTableCell8.m in Sources */,
 				0C0B82162063A0C700238D4F /* ChangePassWordVC.m in Sources */,
+				0CF89A6020C14BBB00454EDD /* BingdingExitAccountVC.m in Sources */,
 				0CBD85AA208876DC00E7B183 /* TagViewCollCell.m in Sources */,
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
