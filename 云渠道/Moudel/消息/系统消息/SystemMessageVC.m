@@ -9,6 +9,7 @@
 #import "SystemMessageVC.h"
 #import "SystemMessageCell.h"
 #import "InfoDetailVC.h"
+#import "DynamicDetailVC.h"
 
 @interface SystemMessageVC ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -50,16 +51,16 @@
 
 -(void)postWithpage:(NSString *)page{
     
-    [BaseRequest GET:SystemInfoList_URL parameters:@{
-                                                     @"page":page
-                                                     }
+    [BaseRequest GET:GetMessage_URL parameters:@{
+                                                     @"page":page,
+                                                     @"agent_id":[UserModel defaultModel].agent_id}
              success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
             
             if ([page isEqualToString:@"1"]) {
                 
                 [_systemmsgtable.mj_footer endRefreshing];
-                dataarr = [resposeObject[@"data"] mutableCopy];
+                dataarr = [resposeObject[@"data"][@"data"] mutableCopy];
                 
                 if (dataarr.count < 15) {
                     
@@ -68,7 +69,8 @@
                 [_systemmsgtable reloadData];
             }
             else{
-                NSArray *arr =resposeObject[@"data"];
+                
+                NSArray *arr =resposeObject[@"data"][@"data"];
                 if (arr.count ==0) {
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
                 }
@@ -78,7 +80,6 @@
                     [_systemmsgtable.mj_footer endRefreshing];
                     
                 }
-
             }
             
             [_systemmsgtable.mj_header endRefreshing];
@@ -126,24 +127,34 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        static NSString *CellIdentifier = @"SystemMessageCell";
+    
+    static NSString *CellIdentifier = @"SystemMessageCell";
         
-        SystemMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (!cell) {
-            cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-    [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:dataarr[indexPath.row][@"content"] time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"][@"is_read"] boolValue]];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+    SystemMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([dataarr[indexPath.row][@"type"] integerValue] == 2) {
+        
+        [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:@"" time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"] boolValue]];
+    }else{
+        
+        [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:dataarr[indexPath.row][@"content"] time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"] boolValue]];
+    }
+    
+    
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    InfoDetailVC * next_vc =[[InfoDetailVC alloc]init];
-//    next_vc.url = dataarr[indexPath.row][@"api_url"];
-//    next_vc.extra_param = dataarr[indexPath.row][@"extra_param"];
-//    [self.navigationController pushViewController:next_vc animated:YES];
     
+    if ([dataarr[indexPath.row][@"type"] integerValue] == 2) {
+        
+        DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:dataarr[indexPath.row][@"param"] titleStr:@"消息详情"];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
 }
 
 

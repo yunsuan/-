@@ -50,7 +50,15 @@
     
     [self.view addSubview:_wkWebView];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_urlStr]];
+    NSURL *url;
+    if ([_titleStr isEqualToString:@"消息详情"]) {
+        
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",_urlStr]];
+    }else{
+        
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_urlStr]];
+    }
+
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_wkWebView loadRequest:request];
 }

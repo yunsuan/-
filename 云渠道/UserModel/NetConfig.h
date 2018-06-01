@@ -228,6 +228,9 @@ static NSString *const InfoList_URL = @"agent/message/getUnread";
 //系统消息列表
 static NSString *const SystemInfoList_URL = @"agent/message/system";
 
+//系统消息列表
+static NSString *const GetMessage_URL = @"admin/message/getMessage";
+
 //标记系统消息已读
 static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
 
