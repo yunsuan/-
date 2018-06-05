@@ -25,6 +25,7 @@
     NSInteger _num;
     CustomRequireModel *_model;
     NSInteger _btnNum;
+    NSArray *_tagsArr;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -154,6 +155,7 @@
 
 - (void)initDataSource{
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
     _stairArr = [[NSMutableArray alloc] init];
     for (int i = 1; i < 50; i++) {
         
@@ -1072,11 +1074,11 @@
     NSArray *arr =  [_model.need_tags componentsSeparatedByString:@","];
         
     _tagView = [[AddTagView alloc] initWithFrame:CGRectMake(0, 757 *SIZE, SCREEN_Width, 127 *SIZE)];
-    NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    
     NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
     for (int i = 0; i < arr.count; i++) {
         
-        [tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             if ([obj[@"id"] integerValue] == [arr[i] integerValue]) {
                 

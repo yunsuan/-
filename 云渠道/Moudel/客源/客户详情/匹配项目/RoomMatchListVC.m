@@ -19,6 +19,7 @@
     NSMutableArray *_dataArr;
     NSString *_clientId;
     CustomRequireModel *_model;
+    NSArray *_tagsArr;
 }
 
 @property (nonatomic , strong) UITableView *matchListTable;
@@ -65,6 +66,7 @@
 -(void)initDateSouce
 {
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
 }
 
 
@@ -103,7 +105,7 @@
     NSMutableArray *tempArr2 = [@[] mutableCopy];
     for (int i = 0; i < tempArr1.count; i++) {
         
-        [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                 

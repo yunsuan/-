@@ -17,7 +17,7 @@
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_dataArr;
-    NSArray *_arr;
+//    NSArray *_arr;
 }
 @property (nonatomic, strong) UITableView *attentionTable;
 
@@ -35,7 +35,7 @@
 
 - (void)initDataShource{
     
-    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     _dataArr = [@[] mutableCopy];
     [self RequestMethod];
 }
@@ -43,8 +43,6 @@
 - (void)RequestMethod{
     
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
-        
-//        NSLog(@"%@",resposeObject);
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             

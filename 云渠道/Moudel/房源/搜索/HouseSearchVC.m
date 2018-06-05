@@ -19,6 +19,7 @@
     NSArray *_arr;
     NSMutableArray *_dataArr;
     NSString *_city;
+    NSArray *_tagsArr;
 }
 @property (nonatomic , strong) UITableView *searchTable;
 
@@ -40,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
     _page = 1;
     _dataArr = [@[] mutableCopy];
     [self initUI];
@@ -188,8 +190,7 @@
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
-            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     
@@ -239,7 +240,7 @@
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     

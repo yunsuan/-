@@ -39,6 +39,7 @@
     NSString *_houseType;
     NSString *_status;
     NSMutableArray *_searchArr;
+    NSArray *_tagsArr;
     BOOL _is1;
     BOOL _is2;
     BOOL _is3;
@@ -107,6 +108,7 @@
     _searchArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _page = 1;
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
 //    [self RequestMethod];
 }
 
@@ -585,8 +587,8 @@
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
-            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     
@@ -636,7 +638,7 @@
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     
