@@ -19,6 +19,8 @@
     NSArray *_arr;
     NSMutableArray *_dataArr;
     NSString *_city;
+    NSArray *_tagsArr;
+    NSArray *_propertyArr;
 }
 @property (nonatomic , strong) UITableView *searchTable;
 
@@ -40,6 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     _page = 1;
     _dataArr = [@[] mutableCopy];
     [self initUI];
@@ -174,7 +178,7 @@
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
@@ -188,8 +192,7 @@
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
-            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     
@@ -214,11 +217,18 @@
 //        RoomListModel *model = _dataArr[indexPath.row];
         [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
         
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
+            
+            cell.statusImg.hidden = YES;
+        }else{
+            
+            cell.statusImg.hidden = NO;
+        }
         
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
@@ -232,7 +242,7 @@
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     

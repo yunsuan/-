@@ -27,6 +27,7 @@
     NSString *_district;
     NSString *_sortType;
     NSString *_asc;
+    NSArray *_propertyArr;
     BOOL _is1;
     BOOL _is2;
 }
@@ -71,6 +72,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RequestMethod) name:@"reloadCustom" object:nil];
     _page = 1;
     _dataArr = [@[] mutableCopy];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
 }
 
 - (void)RequestMethod{
@@ -263,8 +265,8 @@
                 
                 _is1 = YES;
                 _type = @"0";
-                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+                
+                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
                 [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
                 self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
                 [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

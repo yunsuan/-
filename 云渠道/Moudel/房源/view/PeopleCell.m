@@ -37,7 +37,13 @@
         _statulab = [[UILabel alloc]initWithFrame:CGRectMake(327.7*SIZE, 15.7*SIZE, 30*SIZE, 13*SIZE)];
         _statulab.textColor = COLOR(27, 152, 255, 1);
         _statulab.font = [UIFont systemFontOfSize:12*SIZE];
-        [self.contentView addSubview:_statulab];
+//        [self.contentView addSubview:_statulab];
+        
+        _statusImg = [[UIImageView alloc] initWithFrame:CGRectMake(333 *SIZE, 11 *SIZE, 17 *SIZE, 17 *SIZE)];
+        _statusImg.image = [UIImage imageNamed:@"tui"];
+        [self.contentView addSubview:_statusImg];
+        
+        
         _surelab = [[UILabel alloc]initWithFrame:CGRectMake(309.7*SIZE, 52.7*SIZE, 50*SIZE, 11*SIZE)];
         _surelab.textColor = COLOR(255, 165, 29, 1);
         _surelab.font = [UIFont systemFontOfSize:10.7*SIZE];

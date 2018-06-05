@@ -19,6 +19,8 @@
     NSMutableArray *_dataArr;
     NSString *_clientId;
     CustomRequireModel *_model;
+    NSArray *_tagsArr;
+    NSArray *_propertyArr;
 }
 
 @property (nonatomic , strong) UITableView *matchListTable;
@@ -65,6 +67,8 @@
 -(void)initDateSouce
 {
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
 }
 
 
@@ -89,7 +93,7 @@
     NSMutableArray *tempArr = [@[] mutableCopy];
     for (int i = 0; i < [_dataArr[indexPath.row][@"property_tags"] count]; i++) {
         
-        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             if ([obj[@"id"] integerValue] == [_dataArr[indexPath.row][@"property_tags"][i] integerValue]) {
                 
@@ -103,7 +107,7 @@
     NSMutableArray *tempArr2 = [@[] mutableCopy];
     for (int i = 0; i < tempArr1.count; i++) {
         
-        [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                 

@@ -29,7 +29,12 @@
         _statulab = [[UILabel alloc]initWithFrame:CGRectMake(327.7*SIZE, 15.7*SIZE, 30*SIZE, 13*SIZE)];
         _statulab.textColor = COLOR(27, 152, 255, 1);
         _statulab.font = [UIFont systemFontOfSize:12*SIZE];
-        [self.contentView addSubview:_statulab];
+//        [self.contentView addSubview:_statulab];
+        
+        _statusImg = [[UIImageView alloc] initWithFrame:CGRectMake(333 *SIZE, 11 *SIZE, 17 *SIZE, 17 *SIZE)];
+        _statusImg.image = [UIImage imageNamed:@"tui"];
+        [self.contentView addSubview:_statusImg];
+        
         _wuyeview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 56.3*SIZE, 200*SIZE, 16.7*SIZE) type:@"0"];
         [self.contentView addSubview:_wuyeview];
         

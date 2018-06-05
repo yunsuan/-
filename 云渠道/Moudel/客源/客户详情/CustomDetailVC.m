@@ -37,6 +37,8 @@
     NSMutableArray *_FollowArr;
     NSMutableArray *_projectArr;
     NSMutableArray *_statusArr;
+    NSArray *_tagsArr;
+    NSArray *_propertyArr;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
 
@@ -116,7 +118,8 @@
     _FollowArr = [@[] mutableCopy];
     _projectArr = [@[] mutableCopy];
     _statusArr = [@[] mutableCopy];
-    
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
 }
 
 - (void)MatchRequest{
@@ -607,10 +610,10 @@
                 layout.sectionInset = UIEdgeInsetsMake(0, 28 *SIZE, 0, 0);
                 layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
-                NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+            
                 NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
                 for (int i = 0; i < arr.count; i++) {
-                    [tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([obj[@"id"] integerValue] == [arr[i] integerValue]) {
                             [tagArr1 addObject:obj[@"param"]];
                             *stop = YES;
@@ -681,7 +684,7 @@
             NSMutableArray *tempArr = [@[] mutableCopy];
             for (int i = 0; i < [_projectArr[indexPath.row][@"property_tags"] count]; i++) {
                 
-                [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if ([obj[@"id"] integerValue] == [_projectArr[indexPath.row][@"property_tags"][i] integerValue]) {
                         
@@ -695,7 +698,7 @@
             NSMutableArray *tempArr2 = [@[] mutableCopy];
             for (int i = 0; i < tempArr1.count; i++) {
                 
-                [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                         

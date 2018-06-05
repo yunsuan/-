@@ -19,6 +19,8 @@
     NSArray *_arr;
     NSMutableArray *_dataArr;
     NSString *_city;
+    NSArray *_tagsArr;
+    NSArray *_propertyArr;
     CustomRequireModel *_model;
 }
 @property (nonatomic , strong) UITableView *searchTable;
@@ -44,6 +46,8 @@
     
     _page = 1;
     _dataArr = [@[] mutableCopy];
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     [self initUI];
     [self RequestMethod];
 }
@@ -71,26 +75,17 @@
      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+            
+            if ([resposeObject[@"data"] count]) {
                 
-                if ([resposeObject[@"data"][@"data"] isKindOfClass:[NSArray class]]) {
-                    
-                    [self SetData:resposeObject[@"data"][@"data"]];
-                    if (_page == [resposeObject[@"data"][@"last_page"] integerValue]) {
-                        
-                        self.searchTable.mj_footer.state = MJRefreshStateNoMoreData;
-                    }
-                }else{
-                    
-                }
+                [self SetData:resposeObject[@"data"]];
             }else{
                 
+                _searchTable.mj_footer.state = MJRefreshStateNoMoreData;
             }
         }else{
       
                 [self showContent:resposeObject[@"msg"]];
-        
-            
         }
     } failure:^(NSError *error) {
         
@@ -127,6 +122,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     return _dataArr.count;
 }
 
@@ -143,49 +139,125 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"PeopleCell";
-    
-    PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     RoomListModel *model = _dataArr[indexPath.row];
-    [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
-    
-    
-    NSMutableArray *tempArr = [@[] mutableCopy];
-    for (int i = 0; i < model.property_tags.count; i++) {
+    if ([model.guarantee_brokerage integerValue] == 2) {
         
-        [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
-                
-                [tempArr addObject:obj[@"param"]];
-                *stop = YES;
-            }
-        }];
-    }
-    
-    NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
-    NSMutableArray *tempArr2 = [@[] mutableCopy];
-    for (int i = 0; i < tempArr1.count; i++) {
+        static NSString *CellIdentifier = @"CompanyCell";
         
-        [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CompanyCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[CompanyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
+        NSMutableArray *tempArr = [@[] mutableCopy];
+        for (int i = 0; i < model.property_tags.count; i++) {
             
-            if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                [tempArr2 addObject:obj[@"param"]];
-                *stop = YES;
-            }
+                if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                    
+                    [tempArr addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        
+        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSMutableArray *tempArr2 = [@[] mutableCopy];
+        for (int i = 0; i < tempArr1.count; i++) {
+            
+            
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                    
+                    [tempArr2 addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+        [cell settagviewWithdata:tempArr3];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    }else{
+        
+        static NSString *CellIdentifier = @"PeopleCell";
+        
+        PeopleCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
+        
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
+            
+            cell.statusImg.hidden = YES;
+        }else{
+            
+            cell.statusImg.hidden = NO;
+        }
+        
+        NSMutableArray *tempArr = [@[] mutableCopy];
+        for (int i = 0; i < model.property_tags.count; i++) {
+            
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
+                    
+                    [tempArr addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        
+        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSMutableArray *tempArr2 = [@[] mutableCopy];
+        for (int i = 0; i < tempArr1.count; i++) {
+            
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
+                    
+                    [tempArr2 addObject:obj[@"param"]];
+                    *stop = YES;
+                }
+            }];
+        }
+        NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
+        [cell settagviewWithdata:tempArr3];
+        
+        if (model.sort) {
+            
+            cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:第%@名",model.sort];
+        }else{
+            
+            cell.rankView.rankL.text = [NSString stringWithFormat:@"佣金:无排名"];
+        }
+        [cell.rankView.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(cell.rankView).offset(0);
+            make.top.equalTo(cell.rankView).offset(0);
+            make.height.equalTo(@(10 *SIZE));
+            make.width.equalTo(@(cell.rankView.rankL.mj_textWith + 5 *SIZE));
         }];
+        if ([model.brokerSortCompare integerValue] == 0) {
+            
+            cell.rankView.statusImg.image = nil;
+        }else if ([model.brokerSortCompare integerValue] == 1){
+            
+            cell.rankView.statusImg.image = [UIImage imageNamed:@"rising"];
+        }else if ([model.brokerSortCompare integerValue] == 2){
+            
+            cell.rankView.statusImg.image = [UIImage imageNamed:@"falling"];
+        }
+        [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:[model.cycle integerValue]];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
-    [cell settagviewWithdata:tempArr3];
-    [cell.tagview reloadInputViews];
-    [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

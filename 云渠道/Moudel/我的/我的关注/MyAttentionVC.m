@@ -17,7 +17,7 @@
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_dataArr;
-    NSArray *_arr;
+//    NSArray *_arr;
 }
 @property (nonatomic, strong) UITableView *attentionTable;
 
@@ -35,7 +35,7 @@
 
 - (void)initDataShource{
     
-    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     _dataArr = [@[] mutableCopy];
     [self RequestMethod];
 }
@@ -43,8 +43,6 @@
 - (void)RequestMethod{
     
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
-        
-//        NSLog(@"%@",resposeObject);
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -118,6 +116,14 @@
             cell = [[PeopleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
+        
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
+            
+            cell.statusImg.hidden = YES;
+        }else{
+            
+            cell.statusImg.hidden = NO;
+        }
         
         if ([model.guarantee_brokerage integerValue] == 1) {
             
