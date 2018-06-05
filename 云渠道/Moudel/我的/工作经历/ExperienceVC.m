@@ -37,7 +37,6 @@
     
     [BaseRequest GET:WorkHis_URL parameters:nil success:^(id resposeObject) {
         
-//        NSLog(@"%@",resposeObject);
    
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -46,15 +45,15 @@
                 [self SetData:resposeObject[@"data"]];
             }else{
                 
-//                [self showContent:@"暂时没有记录"];
+                
             }
-        }        else{
+        }else{
+         
             [self showContent:resposeObject[@"msg"]];
         }
         [_experienceTable reloadData];
     } failure:^(NSError *error) {
         
-//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -96,8 +95,8 @@
         cell = [[ExperienceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ExperienceTableCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.timeL.text = @"2017-10-08 —至今";
-    cell.companyL.text = @"云算科技有限公司";
+    cell.timeL.text = _dataArr[indexPath.row][@"create_time"];
+    cell.companyL.text = _dataArr[indexPath.row][@"company_name"];
     cell.recommendL.text = @"推荐客户数量：46";
     cell.visitL.text = @"推荐客户数量：46";
     cell.dealL.text = @"推荐客户数量：46";
@@ -111,7 +110,7 @@
         cell.upLine.hidden = NO;
     }
     
-    if (indexPath.row == 2) {
+    if (indexPath.row == _dataArr.count - 1) {
         
         cell.downLine.hidden = YES;
     }else{
