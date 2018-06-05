@@ -140,6 +140,7 @@
 
 - (void)ActionMaskBtn:(UIButton *)btn{
     
+    [WaitAnimation stopAnimation];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
