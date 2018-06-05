@@ -462,28 +462,45 @@
     //    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
     
     // 2. 创建控制器
-    
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // 开始搜索执行以下代码
-        // 如：跳转到指定控制器
+    if (_city) {
         
-        if ([self.ways isEqualToString:@"quickAdd"]) {
+        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            // 开始搜索执行以下代码
+            // 如：跳转到指定控制器
             
+            if ([self.ways isEqualToString:@"quickAdd"]) {
+                
+                
+            }else{
+                
+                [searchViewController.navigationController pushViewController:[[QuickSearchVC alloc] initWithTitle:searchText city:_city model:_model] animated:YES];
+            }
+        }];
+        // 3. 设置风格
+        searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
+        searchViewController.hotSearchStyle = 3; // 热门搜索风格根据选择
+        searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为
+        // 4. 设置代理
+        searchViewController.delegate = self;
+        // 5. 跳转到搜索控制器
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+        [self presentViewController:nav  animated:NO completion:nil];
+    }else{
+        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
             
-        }else{
-            
-            [searchViewController.navigationController pushViewController:[[QuickSearchVC alloc] initWithTitle:searchText city:_city model:_model] animated:YES];
-        }
-    }];
-    // 3. 设置风格
-    searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
-    searchViewController.hotSearchStyle = 3; // 热门搜索风格根据选择
-    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为
-    // 4. 设置代理
-    searchViewController.delegate = self;
-    // 5. 跳转到搜索控制器
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    [self presentViewController:nav  animated:NO completion:nil];
+            CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
+            nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
+                
+                [_cityBtn setTitle:city forState:UIControlStateNormal];
+                _city = [NSString stringWithFormat:@"%@",code];
+                [self RequestMethod];
+            };
+            nextVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }];
+    }
+    
 //    [self.navigationController presentViewController:nav animated:NO completion:nil];
 //    [self.navigationController pushViewController:nav animated:NO];
 }
@@ -594,6 +611,13 @@
         
         [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
         
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
+            
+            cell.statusImg.hidden = YES;
+        }else{
+            
+            cell.statusImg.hidden = NO;
+        }
         
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {

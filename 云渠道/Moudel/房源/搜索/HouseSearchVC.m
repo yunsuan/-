@@ -214,6 +214,13 @@
 //        RoomListModel *model = _dataArr[indexPath.row];
         [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
         
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
+            
+            cell.statusImg.hidden = YES;
+        }else{
+            
+            cell.statusImg.hidden = NO;
+        }
         
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {

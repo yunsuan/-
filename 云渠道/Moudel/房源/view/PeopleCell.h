@@ -18,6 +18,7 @@
 @property (nonatomic , strong) UILabel *statulab;
 @property (nonatomic , strong) UILabel *surelab;
 @property (nonatomic , strong) TagView *tagview;
+@property (nonatomic, strong) UIImageView *statusImg;
 @property (nonatomic , strong) TagView *wuyeview;
 @property (nonatomic, strong) RankView *rankView;
 @property (nonatomic, strong) LevelView *getLevel;
