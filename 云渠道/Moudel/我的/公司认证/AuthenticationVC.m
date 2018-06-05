@@ -13,6 +13,7 @@
 #import "AuditStatusVC.h"
 #import "ApplyProjectVC.h"
 #import "DateChooseView.h"
+#import "MineVC.h"
 
 @interface AuthenticationVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
@@ -85,7 +86,7 @@
 
 
 - (void)ActionCancelBtn:(UIButton *)btn{
-//    [_imgArr removeObjectAtIndex:btn.tag];
+
     [self.authenColl reloadData];
 }
 
@@ -155,24 +156,51 @@
     [dic setObject:_timeL.text forKey:@"entry_time"];
     [dic setObject:_imgUrl forKey:@"img_url"];
 
-    [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
+    if ([self.status isEqualToString:@"重新认证"]) {
         
-//        NSLog(@"%@",resposeObject);
-
-        if ([resposeObject[@"code"] integerValue] == 200) {
+        [dic setObject:self.beforeId forKey:@"before_id"];
+        [BaseRequest POST:@"agent/personal/reAuth" parameters:dic success:^(id resposeObject) {
             
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else{
-            [self showContent:resposeObject[@"msg"]];
-        }
-    } failure:^(NSError *error) {
+            
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self alertControllerWithNsstring:@"提交成功" And:@"请等待审核" WithDefaultBlack:^{
+                    
+                    for (UIViewController *vc in self.navigationController.viewControllers) {
+                        
+                        if ([vc isKindOfClass:[MineVC class]]) {
+                            
+                            [self.navigationController popToViewController:vc animated:YES];
+                        }
+                    }
+                }];
+            }else{
+                
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+           
+            [self showContent:@"网络错误"];
+        }];
+    }else{
         
-        [self showContent:@"网络错误"];
-//        NSLog(@"%@",error);
-    }];
-//    AuditStatusVC *nextVC = [[AuditStatusVC alloc] init];
-//    [self.navigationController pushViewController:nextVC animated:YES];
+        [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
+            
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self alertControllerWithNsstring:@"提交成功" And:@"请等待审核" WithDefaultBlack:^{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }
+            else{
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            
+            [self showContent:@"网络错误"];
+        }];
+    }
 }
 
 - (void)ActionTagBtn:(UIButton *)btn{

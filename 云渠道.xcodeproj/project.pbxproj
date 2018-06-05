@@ -1469,9 +1469,9 @@
 			isa = PBXGroup;
 			children = (
 				0CC19CE4206E21100007CC5F /* AuthenTableCell.h */,
-				0CC19CE5206E21100007CC5F /* AuthenCollCell.m */,
 				0CC19CE6206E21100007CC5F /* AuthenTableCell.m */,
 				0CC19CE7206E21100007CC5F /* AuthenCollCell.h */,
+				0CC19CE5206E21100007CC5F /* AuthenCollCell.m */,
 				0CF04F98207CBBCB00A45F4A /* AuthenedTableHeader.h */,
 				0CF04F99207CBBCB00A45F4A /* AuthenedTableHeader.m */,
 			);
