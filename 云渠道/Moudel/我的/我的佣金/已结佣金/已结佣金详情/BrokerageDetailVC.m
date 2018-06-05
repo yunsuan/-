@@ -158,11 +158,11 @@
                 cell.timeL.text = [NSString stringWithFormat:@"成交时间：%@",_data[@"deal_info"][@"update_time"]];
             }
             else if ([_data[@"broker_type"] isEqualToString:@"到访佣金"]){
-                cell.propertyL.text = [NSString stringWithFormat:@"有效到访时间：%@",_data[@"allot_time"]];;
+                cell.propertyL.text = [NSString stringWithFormat:@"到访时间：%@",_data[@"allot_time"]];;
             }
             else{
                 
-                cell.propertyL.text = [NSString stringWithFormat:@"有效到访时间：%@",_data[@"visit_time"]];;;
+                cell.propertyL.text = [NSString stringWithFormat:@"确认有效时间：%@",_data[@"visit_time"]];;;
             }
 
             [cell.ruleBtn addTarget:self action:@selector(action_rule) forControlEvents:UIControlEventTouchUpInside];
