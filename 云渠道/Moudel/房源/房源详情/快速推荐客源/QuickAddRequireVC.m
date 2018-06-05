@@ -24,6 +24,7 @@
 {
     
     NSMutableArray *_stairArr;
+    NSArray *_propertyArr;
     NSInteger _num;
     NSInteger _btnNum;
     NSString *_projectId;
@@ -148,6 +149,7 @@
 - (void)initDataSource{
     
     _stairArr = [[NSMutableArray alloc] init];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     for (int i = 1; i < 50; i++) {
         
         NSString *str = [NSString stringWithFormat:@"%d层",i];
@@ -215,7 +217,7 @@
         }
         case 3:
         {
-            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:[self getDetailConfigArrByConfigState:PROPERTY_TYPE]];
+            SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.view.bounds WithData:_propertyArr];
             WS(weakself);
             view.selectedBlock = ^(NSString *MC, NSString *ID) {
                 

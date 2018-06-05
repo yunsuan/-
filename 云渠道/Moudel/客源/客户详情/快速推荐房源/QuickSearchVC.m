@@ -20,6 +20,7 @@
     NSMutableArray *_dataArr;
     NSString *_city;
     NSArray *_tagsArr;
+    NSArray *_propertyArr;
     CustomRequireModel *_model;
 }
 @property (nonatomic , strong) UITableView *searchTable;
@@ -46,6 +47,7 @@
     _page = 1;
     _dataArr = [@[] mutableCopy];
     _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     [self initUI];
     [self RequestMethod];
 }
@@ -150,7 +152,7 @@
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
@@ -201,7 +203,7 @@
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     

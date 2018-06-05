@@ -51,6 +51,7 @@
     NSMutableArray *_searchArr;
     NSString *_asc;
     NSArray *_tagsArr;
+    NSArray *_propertyArr;
     BOOL _is1;
     BOOL _is2;
     BOOL _is3;
@@ -109,6 +110,7 @@
 {
     
     _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     _searchArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
     _page = 1;
@@ -405,8 +407,8 @@
                 
                 _is3 = YES;
                 _type = @"0";
-                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+                
+                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
                 [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
                 self.typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
                 [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -651,7 +653,7 @@
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
@@ -708,7 +710,7 @@
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
