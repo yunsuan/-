@@ -130,8 +130,14 @@
     cell.typeL.text =  [NSString stringWithFormat:@"类型：%@",_data[indexPath.row][@"broker_type"]];
     cell.timeL.text = [NSString stringWithFormat:@"推荐时间：%@",_data[indexPath.row][@"create_time"]];
     cell.expediteBtn.tag = indexPath.row;
+    if ([_data[indexPath.row][@"type"] integerValue]==1) {
+        cell.priceL.text = @"";
+    }
+    else{
     cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"broker_num"]];
+    }
 //    WS(weakself);
+    
     if ([_data[indexPath.row][@"is_urge"] integerValue]==1) {
         [cell.expediteBtn setTitle:@"已催佣" forState:UIControlStateNormal];
         cell.expediteBtn.userInteractionEnabled = NO;
