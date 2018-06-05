@@ -113,7 +113,7 @@
              header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
          }
          
-         if ([_model.companyarr[section][@"end_time"] isEqual:@"2037-12-31"]) {
+         if ([_model.companyarr[section][@"end_time"] isEqual:@"2037-12-31 23:59:59"]) {
              header.titleL.text = [NSString stringWithFormat:@"%@起",_model.companyarr[section][@"begin_time"]];
          }
          else{
@@ -147,7 +147,7 @@
             header = [[RoomBrokerageTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 51 *SIZE)];
         }
         
-        if ([_model.dataarr[section][@"act_end"] isEqual:@"2037-12-31"]) {
+        if ([_model.dataarr[section][@"act_end"] isEqual:@"2037-12-31 23:59:59"]) {
             header.titleL.text = [NSString stringWithFormat:@"%@起",_model.dataarr[section][@"act_start"]];
         }
         else{
