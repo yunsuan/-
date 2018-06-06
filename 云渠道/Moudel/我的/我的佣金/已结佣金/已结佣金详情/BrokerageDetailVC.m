@@ -146,9 +146,12 @@
             cell.titleL.text = @"佣金信息";
             
             cell.typeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"broker_type"]];
-            
+            if ([self.iscompany integerValue] ==1) {
+                cell.moneyL.text = @"";
+            }
+            else{
             cell.moneyL.text = [NSString stringWithFormat:@"佣金金额：%@",_data[@"broker_num"]];
-            
+            }
             if ([_data[@"broker_type"] isEqualToString:@"成交佣金"]) {
                 cell.propertyL.text =[NSString stringWithFormat:@"物业类型：%@",_data[@"deal_info"][@"property"]];
                 cell.numL.text = [NSString stringWithFormat:@"房号：%@",_data[@"deal_info"][@"house_info"]];

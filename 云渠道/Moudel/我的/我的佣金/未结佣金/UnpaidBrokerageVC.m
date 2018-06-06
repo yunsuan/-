@@ -175,6 +175,7 @@
     nextVC.broker_id = _data[indexPath.row][@"broker_id"];
     nextVC.type = @"0";
     nextVC.is_urge =_data[indexPath.row][@"is_urge"];
+    nextVC.iscompany = _data[indexPath.row][@"type"];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
