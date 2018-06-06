@@ -122,7 +122,10 @@ static NSString *const GetAgentAuthInfo_URL = @"agent/personal/getAgentAuthInfo"
 static NSString *const GetAuthInfo_URL = @"agent/personal/getAuthInfo";
 
 //取消公司认证
-static NSString *const CancelAuth_URL = @"agent/personal/cancelAuth";
+static NSString *const CancelAuth_URL = @"agent/personal/canCelAuth";
+
+//离职
+static NSString *const QuitAuth_URL = @"agent/personal/quit";
 
 //我的二维码
 

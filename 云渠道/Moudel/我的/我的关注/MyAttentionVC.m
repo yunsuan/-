@@ -53,7 +53,7 @@
         }
     } failure:^(NSError *error) {
         
-     
+        [self showContent:@"网络错误"];
     }];
 }
 

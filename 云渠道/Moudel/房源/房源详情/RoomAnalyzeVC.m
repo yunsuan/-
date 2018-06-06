@@ -76,7 +76,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return _dataDic.count ? 4: 0;
+    return 4;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
@@ -132,39 +132,58 @@
         case 0:
         {
             cell.titleL.text = @"项目优势";
-            cell.contentL.text = _dataDic[@"advantage"];
+            if (_dataDic[@"advantage"]) {
+                
+                cell.contentL.text = _dataDic[@"advantage"];
+            }else{
+                
+                cell.contentL.text = @"项目很懒，没有优势";
+            }
             break;
         }
         case 1:
         {
             cell.titleL.text = @"周边分析";
-            cell.contentL.text = _dataDic[@"rim"];
+            if (_dataDic[@"rim"]) {
+                
+                cell.contentL.text = _dataDic[@"rim"];
+            }else{
+                
+                cell.contentL.text = @"项目很懒，没有分析";
+            }
             break;
         }
         case 2:
         {
             cell.titleL.text = @"适合人群";
-            cell.contentL.text = _dataDic[@"fetch"];
+            if (_dataDic[@"fetch"]) {
+                
+                cell.contentL.text = _dataDic[@"fetch"];
+            }else{
+                
+                cell.contentL.text = @"项目很懒，没有适合人群";
+            }
             break;
         }
         case 3:
         {
             cell.titleL.text = @"升值空间";
-            cell.contentL.text = _dataDic[@"increase_value"];
+            if (_dataDic[@"increase_value"]) {
+                
+                cell.contentL.text = _dataDic[@"increase_value"];
+            }else{
+                
+                cell.contentL.text = @"项目很懒，没有升值空间";
+            }
             break;
         }
         default:
             break;
     }
-    
-    
     return cell;
 }
 
 - (void)initUI{
-    
-
-
     
     _analyzeTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStyleGrouped];
     _analyzeTable.rowHeight = UITableViewAutomaticDimension;

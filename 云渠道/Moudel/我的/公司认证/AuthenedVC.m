@@ -76,26 +76,28 @@
 - (void)ActionConfirmBtn:(UIButton *)btn{
     
     AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+    nextVC.status = @"重新认证";
+    nextVC.beforeId = _dataDic[@"id"];
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 - (void)ActionCancelBtn:(UIButton *)btn{
     
-    [BaseRequest GET:CancelAuth_URL parameters:@{@"id":_dataDic[@"id"]} success:^(id resposeObject) {
+    [BaseRequest GET:QuitAuth_URL parameters:@{@"id":_dataDic[@"id"]} success:^(id resposeObject) {
         
-//        NSLog(@"%@",resposeObject);
-        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self alertControllerWithNsstring:@"离职成功" And:nil WithDefaultBlack:^{
                 
                 [self.navigationController popViewControllerAnimated:YES];
             }];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
         [self showContent:@"网络错误"];
-//        NSLog(@"%@",error);
     }];
 }
 

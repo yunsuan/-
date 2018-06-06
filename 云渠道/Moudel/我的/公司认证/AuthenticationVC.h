@@ -10,4 +10,8 @@
 
 @interface AuthenticationVC : BaseViewController
 
+@property (nonatomic, strong) NSString *status;
+
+@property (nonatomic, strong) NSString *beforeId;
+
 @end
