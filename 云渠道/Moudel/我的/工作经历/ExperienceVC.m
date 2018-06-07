@@ -107,7 +107,7 @@
     cell.recommendL.text = [NSString stringWithFormat:@"推荐客户数量：%@",_dataArr[indexPath.row][@"his"][@"recommend"]];
     cell.visitL.text = [NSString stringWithFormat:@"到访客户数量：%@",_dataArr[indexPath.row][@"his"][@"value"]];
     cell.dealL.text = [NSString stringWithFormat:@"成交客户数量：%@",_dataArr[indexPath.row][@"his"][@"deal"]];
-    cell.roleL.text = @"角色：推荐经纪人";
+    cell.roleL.text = _dataArr[indexPath.row][@"role"];
     
     if (indexPath.row == 0) {
         
