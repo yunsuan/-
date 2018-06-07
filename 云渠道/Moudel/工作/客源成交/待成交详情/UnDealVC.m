@@ -207,7 +207,7 @@
 }
 
 -(void)refresh{
-//    @{@"23":[UserModelArchiver unarchive].agent_identity}
+
     [BaseRequest GET:FlushDate_URL parameters:nil success:^(id resposeObject) {
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
