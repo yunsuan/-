@@ -82,7 +82,7 @@
     
     if (model.developer_name) {
         
-        _developerL.text = [NSString stringWithFormat:@"开发商：%@",model.developer_name];
+        _payL.text = [NSString stringWithFormat:@"开发商：%@",model.developer_name];
     }
     
     if (model.latitude) {
@@ -230,6 +230,7 @@
     _payL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 100 *SIZE + CGRectGetMaxY(_imgScroll.frame), 300 *SIZE, 12 *SIZE)];
     _payL.textColor = YJContentLabColor;
     _payL.font = [UIFont systemFontOfSize:12 *SIZE];
+    _payL.text = [NSString stringWithFormat:@"开发商："];
     [self.contentView addSubview:_payL];
     
     
@@ -238,27 +239,21 @@
     _priceL.font = [UIFont systemFontOfSize:16 *SIZE];
     [self.contentView addSubview:_priceL];
     
-    _developerL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 146 *SIZE + CGRectGetMaxY(_imgScroll.frame), 280 *SIZE, 17 *SIZE)];
-    _developerL.textColor = YJContentLabColor;
-    _developerL.font = [UIFont systemFontOfSize:12 *SIZE];
-    _developerL.text = @"开发商：";
-    [self.contentView addSubview:_developerL];
-    
-    UIImageView *addressImg = [[UIImageView alloc] initWithFrame:CGRectMake(11 *SIZE, 354 *SIZE, 16 *SIZE, 16 *SIZE)];
+    UIImageView *addressImg = [[UIImageView alloc] initWithFrame:CGRectMake(11 *SIZE, 335 *SIZE, 16 *SIZE, 16 *SIZE)];
     addressImg.image = [UIImage imageNamed:@"map"];
     [self.contentView addSubview:addressImg];
     
-    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(31 *SIZE, 174 *SIZE + CGRectGetMaxY(_imgScroll.frame), 300 *SIZE, 11 *SIZE)];
+    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(31 *SIZE, 155 *SIZE + CGRectGetMaxY(_imgScroll.frame), 250 *SIZE, 11 *SIZE)];
     _addressL.textColor = YJContentLabColor;
     _addressL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_addressL];
     _addressL.userInteractionEnabled = YES;
     [_addressL addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action_map)]];
     
+    
     _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _moreBtn.frame = CGRectMake(287 *SIZE, 355 *SIZE, 65 *SIZE, 20 *SIZE);
+    _moreBtn.frame = CGRectMake(287 *SIZE, 155 *SIZE + CGRectGetMaxY(_imgScroll.frame), 65 *SIZE, 20 *SIZE);
     _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
-    //    [_moreBtn addTarget:self action:@selector(<#selector#>) forControlEvents:UIControlEventTouchUpInside];
     [_moreBtn setTitle:@"查看更多 >>" forState:UIControlStateNormal];
     [_moreBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
     [self.contentView addSubview:_moreBtn];

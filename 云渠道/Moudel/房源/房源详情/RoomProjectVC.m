@@ -358,7 +358,7 @@
     
     if (!section) {
         
-        return 383 *SIZE;
+        return 368 *SIZE;
     }else{
         
         if (section == 6) {
@@ -385,17 +385,18 @@
             
             header = [[RoomDetailTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
         }
-        header.moreBtn.tag = 1;
-        [header.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
         header.model = _model;
         header.imgArr = _imgArr;
-        if (_buildDic[@"handing_room_time"]) {
-            
-            header.payL.text = [NSString stringWithFormat:@"交房时间：%@",_buildDic[@"handing_room_time"]];
-        }else{
-            
-            header.payL.text = [NSString stringWithFormat:@"交房时间：暂无数据"];
-        }
+        header.moreBtn.tag = 1;
+        [header.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        if (_buildDic[@"handing_room_time"]) {
+//            
+////            header.payL.text = [NSString stringWithFormat:@"交房时间：%@",_buildDic[@"handing_room_time"]];
+//        }else{
+//            
+//            header.payL.text = [NSString stringWithFormat:@"交房时间：暂无数据"];
+//        }
         
         if (_focusDic.count) {
             
@@ -511,26 +512,25 @@
     switch (indexPath.section) {
         case 0:
         case 1:
-//        case 1:
 //        {
 //
-////            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
-////            if (!cell) {
-////
-////                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
-////            }
-////            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-////
-////            if (_model.developer_name) {
-////
-////                cell.developL.text = _model.developer_name;
-////            }
-////            cell.openL.text = _buildDic[@"open_time"];
-////            cell.payL.text = _buildDic[@"handing_room_time"];
-////
-////            cell.moreBtn.tag = indexPath.section;
+//            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
+//            if (!cell) {
+//
+//                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
+//            }
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//            if (_model.developer_name) {
+//
+//                cell.developL.text = _model.developer_name;
+//            }
+//            cell.openL.text = _buildDic[@"open_time"];
+//            cell.payL.text = _buildDic[@"handing_room_time"];
+//
+//            cell.moreBtn.tag = indexPath.section;
 //            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-////            return cell;
+//            return cell;
 //            break;
 //        }
         case 2:
