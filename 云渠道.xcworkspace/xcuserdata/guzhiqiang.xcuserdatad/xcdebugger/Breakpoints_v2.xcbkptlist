@@ -147,22 +147,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/RoomProjectVC.m"
-            timestampString = "549444898.1504641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "-RequestMethod"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x767b;&#x5f55;&#x6ce8;&#x518c;/&#x6ce8;&#x518c;/BingdingExitAccountVC.m"
             timestampString = "549543835.07023"
             startingColumnNumber = "9223372036854775807"
@@ -260,12 +244,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E5%85%AC%E5%8F%B8%E8%AE%A4%E8%AF%81/AuditStatusVC.m"
-                  timestampString = "549939451.837652"
+                  timestampString = "550057463.766928"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
                   endingLineNumber = "52"
-                  offsetFromSymbolStart = "116">
+                  offsetFromSymbolStart = "71">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -275,12 +259,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E5%85%AC%E5%8F%B8%E8%AE%A4%E8%AF%81/AuditStatusVC.m"
-                  timestampString = "549939451.840466"
+                  timestampString = "550057463.769756"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
                   endingLineNumber = "52"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "19">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -290,12 +274,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/guzhiqiang/Desktop/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E5%85%AC%E5%8F%B8%E8%AE%A4%E8%AF%81/AuditStatusVC.m"
-                  timestampString = "549939451.843407"
+                  timestampString = "550057463.77306"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
                   endingLineNumber = "52"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>

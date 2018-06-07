@@ -68,9 +68,15 @@
                         NSString *property = list[k][@"property_type"];
                         NSArray *propertyarr = [property componentsSeparatedByString:@","];
                         for (int t= 0; t<propertyarr.count; t++) {
-                            str3 = [NSString stringWithFormat:@"%@-%@元;%@",propertyarr[t],list[k][@"param"],str3];
+                            
+                            if ([propertyarr[t] length]) {
+                                
+                                str3 = [NSString stringWithFormat:@"%@-%@元;%@",propertyarr[t],list[k][@"param"],str3];
+                            }else{
+                                
+                                str3 = [NSString stringWithFormat:@"%@元;",list[k][@"param"]];
+                            }
                         }
-                       
                     }
                     else if ([list[k][@"commission_way"] isEqualToString:@"比率"])
                     {

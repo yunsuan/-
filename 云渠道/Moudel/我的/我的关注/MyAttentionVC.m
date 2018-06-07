@@ -120,18 +120,19 @@
         if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
             
             cell.statusImg.hidden = YES;
+            cell.surelab.hidden = YES;
         }else{
             
             cell.statusImg.hidden = NO;
+            if ([model.guarantee_brokerage integerValue] == 1) {
+                
+                cell.surelab.hidden = NO;
+            }else{
+                
+                cell.surelab.hidden = YES;
+            }
         }
         
-        if ([model.guarantee_brokerage integerValue] == 1) {
-            
-            cell.surelab.hidden = NO;
-        }else{
-            
-            cell.surelab.hidden = YES;
-        }
         NSArray *tempArr3 = @[model.property_tags,model.project_tags_name.count? model.project_tags_name:@[]];
         [cell settagviewWithdata:tempArr3];
         

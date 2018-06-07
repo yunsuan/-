@@ -83,7 +83,7 @@
         return _model.companyarr.count;
     }
     else{
-    return _model.dataarr.count;
+        return _model.dataarr.count;
     }
 
 }

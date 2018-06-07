@@ -95,11 +95,18 @@
         cell = [[ExperienceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ExperienceTableCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.timeL.text = _dataArr[indexPath.row][@"create_time"];
+    if ([_dataArr[indexPath.row][@"quit_time"] length]) {
+        
+        cell.timeL.text = [NSString stringWithFormat:@"%@至%@",_dataArr[indexPath.row][@"entry_time"],_dataArr[indexPath.row][@"quit_time"]];
+    }else{
+        
+        cell.timeL.text = [NSString stringWithFormat:@"%@至今",_dataArr[indexPath.row][@"entry_time"]];
+    }
+    
     cell.companyL.text = _dataArr[indexPath.row][@"company_name"];
-    cell.recommendL.text = @"推荐客户数量：46";
-    cell.visitL.text = @"推荐客户数量：46";
-    cell.dealL.text = @"推荐客户数量：46";
+    cell.recommendL.text = [NSString stringWithFormat:@"推荐客户数量：%@",_dataArr[indexPath.row][@"his"][@"recommend"]];
+    cell.visitL.text = [NSString stringWithFormat:@"到访客户数量：%@",_dataArr[indexPath.row][@"his"][@"value"]];
+    cell.dealL.text = [NSString stringWithFormat:@"成交客户数量：%@",_dataArr[indexPath.row][@"his"][@"deal"]];
     cell.roleL.text = @"角色：推荐经纪人";
     
     if (indexPath.row == 0) {
