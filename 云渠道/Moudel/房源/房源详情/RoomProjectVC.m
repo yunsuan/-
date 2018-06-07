@@ -332,7 +332,7 @@
         return _peopleArr.count > 2? 2:_peopleArr.count;
     }else{
         
-        if (section == 0) {
+        if (section == 0 || section == 1) {
             
             return 0;
         }else{
@@ -358,7 +358,7 @@
     
     if (!section) {
         
-        return 368 *SIZE;
+        return 383 *SIZE;
     }else{
         
         if (section == 6) {
@@ -385,7 +385,8 @@
             
             header = [[RoomDetailTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 383 *SIZE)];
         }
-        
+        header.moreBtn.tag = 1;
+        [header.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
         header.model = _model;
         header.imgArr = _imgArr;
         if (_buildDic[@"handing_room_time"]) {
@@ -510,27 +511,28 @@
     switch (indexPath.section) {
         case 0:
         case 1:
-        {
-            
-            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
-            if (!cell) {
-                
-                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            if (_model.developer_name) {
-
-                cell.developL.text = _model.developer_name;
-            }
-            cell.openL.text = _buildDic[@"open_time"];
-            cell.payL.text = _buildDic[@"handing_room_time"];
-            
-            cell.moreBtn.tag = indexPath.section;
-            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-            break;
-        }
+//        case 1:
+//        {
+//
+////            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
+////            if (!cell) {
+////
+////                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
+////            }
+////            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+////
+////            if (_model.developer_name) {
+////
+////                cell.developL.text = _model.developer_name;
+////            }
+////            cell.openL.text = _buildDic[@"open_time"];
+////            cell.payL.text = _buildDic[@"handing_room_time"];
+////
+////            cell.moreBtn.tag = indexPath.section;
+//            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
+////            return cell;
+//            break;
+//        }
         case 2:
         {
 

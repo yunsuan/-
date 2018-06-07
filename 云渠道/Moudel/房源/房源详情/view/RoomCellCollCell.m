@@ -28,12 +28,12 @@
     _typeImg.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_typeImg];
     
-    _letterL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 144 *SIZE, 60 *SIZE, 11 *SIZE)];
+    _letterL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 134 *SIZE, 80 *SIZE, 11 *SIZE)];
     _letterL.textColor = YJTitleLabColor;
     _letterL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_letterL];
     
-    _areaL = [[UILabel alloc] initWithFrame:CGRectMake(60 *SIZE, 146 *SIZE, 40 *SIZE, 11 *SIZE)];
+    _areaL = [[UILabel alloc] initWithFrame:CGRectMake(40 *SIZE, 150 *SIZE, 60 *SIZE, 11 *SIZE)];
     _areaL.textColor = YJTitleLabColor;
     _areaL.font = [UIFont systemFontOfSize:12 *SIZE];
     _areaL.textAlignment = NSTextAlignmentRight;

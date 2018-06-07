@@ -16,6 +16,8 @@ typedef void(^AttentBtnBlock)(void);
 
 typedef void(^ImgBtnBlock)(NSInteger num,NSArray *imgArr);
 
+typedef void(^RoomDetailHeaderMoreBlock)(void);
+
 @interface RoomDetailTableHeader : UITableViewHeaderFooterView
 
 @property (nonatomic, copy) AttentBtnBlock attentBtnBlock;
@@ -40,6 +42,8 @@ typedef void(^ImgBtnBlock)(NSInteger num,NSArray *imgArr);
 
 @property (nonatomic, strong) UILabel *priceL;
 
+@property (nonatomic, strong) UILabel *developerL;
+
 @property (nonatomic, strong) UILabel *addressL;
 
 @property (nonatomic , strong) TagView *tagview;
@@ -49,6 +53,8 @@ typedef void(^ImgBtnBlock)(NSInteger num,NSArray *imgArr);
 @property (nonatomic, strong) RoomDetailModel *model;
 
 @property (nonatomic, strong) NSMutableArray *imgArr;
+
+@property (nonatomic, strong) UIButton *moreBtn;
 
 
 @end
