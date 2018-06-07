@@ -81,7 +81,6 @@
     self.titleLabel.text = _titleinfo;
     [self post];
     
-    
 }
 
 -(void)initDataSouce

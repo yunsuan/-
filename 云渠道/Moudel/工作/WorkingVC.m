@@ -31,6 +31,7 @@
 {
     [super viewWillAppear:animated];
     [self postWithidentify:[UserModelArchiver unarchive].agent_identity];
+    [self refresh];
 
     
 }
@@ -48,8 +49,11 @@
 }
 
 -(void)refresh{
-    
-
+    [BaseRequest GET:FlushDate_URL parameters:nil success:^(id resposeObject) {
+        
+    } failure:^(NSError *error) {
+      
+    }];
 }
 
 -(void)postWithidentify:(NSString *)identify

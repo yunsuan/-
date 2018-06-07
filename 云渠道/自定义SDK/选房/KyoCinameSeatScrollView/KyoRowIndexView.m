@@ -63,6 +63,11 @@
             CGContextStrokePath(ctx);
             
 //            NSString *string = self.rowIndexType == KyoCinameSeatRowIndexTypeNumber ? [NSString stringWithFormat:@"F%ld",self.row-i] : [NSString stringWithFormat:@"%C", (unichar)(i + 65)];
+            
+            if (self.arrayRowIndex[i]) {
+                
+            }
+            
             NSString * string = self.arrayRowIndex[i];
 //            if (self.arrayRowIndex && self.arrayRowIndex.count > i) {
 //               NSString * string = self.arrayRowIndex[i];
@@ -80,12 +85,7 @@
             CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
             CTFrameDraw(frame, context);
             
-            
-         
-            
-
         
-            
             CFRelease(frame);
             CGPathRelease(path);
             CFRelease(framesetter);
