@@ -147,10 +147,11 @@
             _GetCodeBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
         }];
-
     }
     else
     {
+        
+        _GetCodeBtn.userInteractionEnabled = NO;
         [self showContent:@"请输入正确的电话号码"];
     }
 }
