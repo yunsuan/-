@@ -28,6 +28,8 @@
 
 #import<BaiduMapAPI_Search/BMKPoiSearchType.h>
 
+#import <CoreLocation/CoreLocation.h>
+
 
 @interface RoomVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,PYSearchViewControllerDelegate>
 {
@@ -57,6 +59,7 @@
     BOOL _is3;
     BOOL _is4;
 }
+//@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic , strong) UITableView *MainTableView;
 @property (nonatomic , strong) UIView *headerView;
@@ -104,6 +107,22 @@
     
     [super viewWillAppear:animated];
     
+    if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
+        
+        [self startLocation];
+    }else{
+        
+        [self alertControllerWithNsstring:@"打开[定位服务权限]来允许[云渠道]确定您的位置" And:@"请在系统设置中开启定位服务(设置>隐私>定位服务>开启)" WithCancelBlack:^{
+            
+            
+        } WithDefaultBlack:^{
+            
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if( [[UIApplication sharedApplication]canOpenURL:url] ) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }];
+    }
 }
 
 -(void)initDateSouce
