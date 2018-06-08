@@ -47,6 +47,7 @@
     
     _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT)];
     _wkWebView.navigationDelegate = self;
+//    _wkWebView.
     
     [self.view addSubview:_wkWebView];
     
@@ -54,12 +55,13 @@
     if ([_titleStr isEqualToString:@"消息详情"]) {
         
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",_urlStr]];
+        
     }else{
         
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_urlStr]];
     }
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     [_wkWebView loadRequest:request];
 }
 
