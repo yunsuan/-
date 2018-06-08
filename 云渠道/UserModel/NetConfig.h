@@ -16,11 +16,11 @@
 static NSString *const Base_Net = @"http://120.27.21.136:2798/";
 
 
-////基础接口正式
-//static NSString *const TestBase_Net = @"http://120.78.69.178:2902/";
-//基础接口测试
-
-static NSString *const TestBase_Net = @"http://120.27.21.136:2798/";
+//基础接口正式
+static NSString *const TestBase_Net = @"http://120.78.69.178:2902/";
+////基础接口测试
+//
+//static NSString *const TestBase_Net = @"http://120.27.21.136:2798/";
 
 //获取版本
 static NSString *const Version_URL = @"getVersion";

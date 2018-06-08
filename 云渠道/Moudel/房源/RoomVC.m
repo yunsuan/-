@@ -108,6 +108,23 @@
     
     [super viewWillAppear:animated];
     
+ 
+}
+
+-(void)initDateSouce
+{
+    
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
+    _searchArr = [@[] mutableCopy];
+    _dataArr = [@[] mutableCopy];
+    _page = 1;
+    _asc = @"asc";
+    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    _geocodesearch.delegate = self;
+//    [self startLocation];//开始定位方法
+    [self SearchRequest];
+    
     if ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied) {
         
         if (!_isLocation) {
@@ -135,21 +152,6 @@
             }
         }];
     }
-}
-
--(void)initDateSouce
-{
-    
-    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
-    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-    _searchArr = [@[] mutableCopy];
-    _dataArr = [@[] mutableCopy];
-    _page = 1;
-    _asc = @"asc";
-    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
-    _geocodesearch.delegate = self;
-    [self startLocation];//开始定位方法
-    [self SearchRequest];
 }
 
 - (void)SearchRequest{
