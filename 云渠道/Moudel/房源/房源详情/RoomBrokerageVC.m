@@ -24,6 +24,7 @@
 
 }
 @property (nonatomic, strong) UITableView *brokerageTable;
+@property (nonatomic, strong) UIView *DefaultView;
 
 @end
 
@@ -66,7 +67,17 @@
 
             _model = [[BrokerModel alloc]initWithdata:resposeObject[@"data"]];
             [_brokerageTable reloadData];
-            
+            if ([_brokerage isEqualToString:@"no"]) {
+                if (_model.companyarr.count == 0) {
+                    [self.view addSubview:self.DefaultView];
+                }
+            }
+            else
+            {
+                if (_model.dataarr.count == 0) {
+                    [self.view addSubview:self.DefaultView];
+                }
+            }
         }
     } failure:^(NSError *error) {
         
@@ -162,12 +173,11 @@
             [header.dropBtn setImage:[UIImage imageNamed:@"downarrow"] forState:UIControlStateNormal];
         }
         header.dropBtnBlock = ^(NSInteger index) {
-            
             if ([_selectArr[index] integerValue]) {
                 
                 [_selectArr replaceObjectAtIndex:index withObject:@0];
             }else{
-                
+                _selectArr = [NSMutableArray arrayWithArray:@[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
                 [_selectArr replaceObjectAtIndex:index withObject:@1];
             }
             [tableView reloadData];
@@ -261,6 +271,19 @@
     [self.view addSubview:_brokerageTable];
 }
 
+-(UIView *)DefaultView
+{
+    if (!_DefaultView) {
+        _DefaultView = [[UIView alloc]initWithFrame:CGRectMake(0, 100*SIZE , SCREEN_Width , 20*SIZE)];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, 20*SIZE)];
+        lab.text = @"暂无渠道规则，还不能推荐哦";
+        lab.textColor = YJContentLabColor;
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.font = [UIFont systemFontOfSize:13*SIZE];
+        [_DefaultView addSubview:lab];
+    }
+    return _DefaultView;
+}
 
 
 @end
