@@ -63,6 +63,7 @@
 //@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic , strong) UITableView *MainTableView;
+
 @property (nonatomic , strong) UIView *headerView;
 
 @property (nonatomic, strong) UIButton *cityBtn;
@@ -88,7 +89,6 @@
 @property (nonatomic, strong) UIImageView *upImg;
 
 @property (nonatomic, strong) MoreView *moreView;
-
 
 -(void)initUI;
 -(void)initDateSouce;
@@ -616,6 +616,7 @@
     CityVC *nextVC = [[CityVC alloc] initWithLabel:_cityName];
     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
         
+        _isLocation = YES;
         [_cityBtn setTitle:city forState:UIControlStateNormal];
         _city = [NSString stringWithFormat:@"%@",code];
         [self RequestMethod];
