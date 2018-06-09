@@ -151,7 +151,7 @@
     else
     {
         
-        _GetCodeBtn.userInteractionEnabled = NO;
+        _GetCodeBtn.userInteractionEnabled = YES;
         [self showContent:@"请输入正确的电话号码"];
     }
 }
