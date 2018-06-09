@@ -122,10 +122,14 @@
                     
                     if ([resposeObject[@"data"][@"data"] count]) {
                         
+                        
                         [self SetData:resposeObject[@"data"][@"data"]];
                         if (_page >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                             
                             _customerTable.mj_footer.state = MJRefreshStateNoMoreData;
+                        }else{
+                            
+                            [_customerTable.mj_footer endRefreshing];
                         }
                     }else{
                         
