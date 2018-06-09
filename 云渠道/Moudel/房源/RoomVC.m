@@ -626,13 +626,6 @@
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
     
-//    if (_city) {
-//
-//
-//    }else{
-//
-//        [self showContent:@"正在定位中,请稍后"];
-//    }
 }
 
 - (void)ActionUpAndDownBtn:(UIButton *)btn{
@@ -658,16 +651,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
     return _dataArr.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
     
+    return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return 120*SIZE;
 }
 
@@ -804,6 +799,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     RoomListModel *model = _dataArr[indexPath.row];
     RoomDetailVC1 *nextVC = [[RoomDetailVC1 alloc] initWithModel:model];
     if ([model.guarantee_brokerage integerValue] == 2) {
@@ -815,11 +811,11 @@
     }
     nextVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:nextVC animated:YES];
-
 }
 
 -(void)initUI
 {
+    
     [self.view addSubview:self.headerView];
     
     _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -937,11 +933,7 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//        _MainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//
-//            _page = 1;
-//            [self RequestMethod];
-//        }];
+
         _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
             
             _page = 1;
