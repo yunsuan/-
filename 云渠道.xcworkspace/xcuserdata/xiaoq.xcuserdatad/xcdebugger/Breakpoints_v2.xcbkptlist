@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x767b;&#x5f55;&#x6ce8;&#x518c;/&#x627e;&#x56de;&#x5bc6;&#x7801;/FindPassWordVC.m"
-            timestampString = "550163711.576946"
+            timestampString = "550229239.841895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
@@ -196,12 +196,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E8%B7%9F%E8%BF%9B%E8%AE%B0%E5%BD%95/FollowRecordVC.m"
-                  timestampString = "550163712.0741301"
+                  timestampString = "550229240.903313"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "370"
                   endingLineNumber = "370"
-                  offsetFromSymbolStart = "1212">
+                  offsetFromSymbolStart = "1170">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -211,27 +211,27 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E8%B7%9F%E8%BF%9B%E8%AE%B0%E5%BD%95/FollowRecordVC.m"
-                  timestampString = "550163712.077402"
+                  timestampString = "550229240.9064"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "374"
                   endingLineNumber = "374"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "51">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.474"
+                  symbolName = "__destroy_helper_block_.476"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E8%B7%9F%E8%BF%9B%E8%AE%B0%E5%BD%95/FollowRecordVC.m"
-                  timestampString = "550163712.080062"
+                  timestampString = "550229240.909514"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "370"
                   endingLineNumber = "370"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -259,12 +259,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginVC.m"
-                  timestampString = "550163712.091729"
+                  timestampString = "550229240.922691"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "162"
                   endingLineNumber = "162"
-                  offsetFromSymbolStart = "832">
+                  offsetFromSymbolStart = "786">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -274,7 +274,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginVC.m"
-                  timestampString = "550163712.095124"
+                  timestampString = "550229240.925953"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "164"
@@ -285,16 +285,16 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.404"
+                  symbolName = "__destroy_helper_block_.406"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginVC.m"
-                  timestampString = "550163712.09849"
+                  timestampString = "550229240.931024"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "162"
                   endingLineNumber = "162"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -322,12 +322,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginVC.m"
-                  timestampString = "550163712.10922"
+                  timestampString = "550229240.951369"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
                   endingLineNumber = "140"
-                  offsetFromSymbolStart = "44">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -337,27 +337,27 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginVC.m"
-                  timestampString = "550163712.112411"
+                  timestampString = "550229240.956286"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
                   endingLineNumber = "141"
-                  offsetFromSymbolStart = "116">
+                  offsetFromSymbolStart = "104">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.430"
+                  symbolName = "__destroy_helper_block_.432"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/LoginVC.m"
-                  timestampString = "550163712.115999"
+                  timestampString = "550229240.961375"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "140"
                   endingLineNumber = "140"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -493,31 +493,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__40-[CustomDetailVC GetFollowRequestMethod]_block_invoke.348"
+                  symbolName = "__40-[CustomDetailVC GetFollowRequestMethod]_block_invoke.350"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/CustomDetailVC.m"
-                  timestampString = "550163712.174786"
+                  timestampString = "550229241.068154"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "207"
                   endingLineNumber = "207"
-                  offsetFromSymbolStart = "108">
+                  offsetFromSymbolStart = "91">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.351"
+                  symbolName = "__copy_helper_block_.353"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/CustomDetailVC.m"
-                  timestampString = "550163712.179518"
+                  timestampString = "550229241.071359"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
                   endingLineNumber = "203"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -609,42 +609,42 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E6%96%B0%E5%A2%9E%E5%AE%A2%E6%88%B7/AddCustomerVC.m"
-                  timestampString = "550163712.2199"
+                  timestampString = "550229241.1149859"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "694"
                   endingLineNumber = "694"
-                  offsetFromSymbolStart = "6676">
+                  offsetFromSymbolStart = "6704">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__28-[AddCustomerVC action_sure]_block_invoke.657"
+                  symbolName = "__28-[AddCustomerVC action_sure]_block_invoke.659"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E6%96%B0%E5%A2%9E%E5%AE%A2%E6%88%B7/AddCustomerVC.m"
-                  timestampString = "550163712.2226011"
+                  timestampString = "550229241.119064"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "697"
                   endingLineNumber = "697"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "51">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.670"
+                  symbolName = "__destroy_helper_block_.672"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E6%96%B0%E5%A2%9E%E5%AE%A2%E6%88%B7/AddCustomerVC.m"
-                  timestampString = "550163712.22639"
+                  timestampString = "550229241.124568"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "694"
                   endingLineNumber = "694"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -656,7 +656,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/WorkingVC.m"
-            timestampString = "550163711.577499"
+            timestampString = "550229239.852183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
