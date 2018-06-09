@@ -276,7 +276,8 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            shareObject.webpageUrl = resposeObject[@"data"];
+             shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
+//            shareObject.webpageUrl = resposeObject[@"data"];
             //分享消息对象设置分享内容对象
             messageObject.shareObject = shareObject;
             

@@ -101,7 +101,6 @@
 -(void)initUI
 {
     [self.view addSubview:self.systemmsgtable];
-    
     [self.maskButton addTarget:self action:@selector(ActionDismiss) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -129,7 +128,6 @@
 {
     
     static NSString *CellIdentifier = @"SystemMessageCell";
-        
     SystemMessageCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
