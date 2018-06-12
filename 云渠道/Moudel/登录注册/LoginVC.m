@@ -172,7 +172,6 @@
                             [weakSelf.navigationController pushViewController:nextVC animated:YES];
                         };
                         self.judgeView.judgeExitBlock = ^{
-                            
                             NSDictionary *dic = @{@"open_id":resp.openid,@"type":@"1"};
                             BingdingExitAccountVC *nextVC = [[BingdingExitAccountVC alloc] initWithData:dic];
                             [weakSelf.navigationController pushViewController:nextVC animated:YES];
@@ -217,7 +216,12 @@
                         [self.view addSubview:self.judgeView];
                     }else if ([resposeObject[@"code"] integerValue] == 200){
                         
-                        
+                        [[NSUserDefaults standardUserDefaults]setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
+                        [UserModel defaultModel].Token = resposeObject[@"data"][@"token"];
+                        [UserModel defaultModel].agent_id =resposeObject[@"data"][@"agent_id"];
+                        [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
+                        [UserModelArchiver archive];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"goHome" object:nil];
                     }else{
                         
                         
@@ -328,7 +332,7 @@
 -(void)QuickLogin
 {
 
-    
+
 }
 
 -(void)Protocol
