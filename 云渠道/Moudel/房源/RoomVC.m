@@ -60,13 +60,14 @@
     BOOL _is3;
     BOOL _is4;
 }
-//@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic , strong) UITableView *MainTableView;
 
 @property (nonatomic , strong) UIView *headerView;
 
 @property (nonatomic, strong) UIButton *cityBtn;
+
+@property (nonatomic, strong) UIButton *houseBtn;
 
 @property (nonatomic, strong) UIView *searchBar;
 
@@ -319,6 +320,47 @@
 }
 
 #pragma mark -- Method
+
+- (void)ActionSearchBtn:(UIButton *)btn{
+    
+    // 1.创建热门搜索
+    //    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    
+    // 2. 创建控制器
+    
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // 开始搜索执行以下代码
+        // 如：跳转到指定控制器
+        
+        HouseSearchVC *nextVC = [[HouseSearchVC alloc] initWithTitle:searchText city:_city];
+        //        nextVC.hidesBottomBarWhenPushed = YES;
+        [searchViewController.navigationController pushViewController:nextVC animated:YES];
+    }];
+    // 3. 设置风格
+    searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
+    searchViewController.hotSearchStyle = 3; // 热门搜索风格根据选择
+    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为
+    // 4. 设置代理
+    searchViewController.delegate = self;
+    // 5. 跳转到搜索控制器
+    //    [self.navigationController pushViewController:searchViewController animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    ////    nav.hidesBottomBarWhenPushed = YES;
+    //    [self.navigationController pushViewController:nav animated:YES];
+    [self.navigationController presentViewController:nav  animated:NO completion:nil];
+}
+
+- (void)ActionUpAndDownBtn:(UIButton *)btn{
+    
+    _upAndDown = !_upAndDown;
+    if (_upAndDown) {
+        
+        
+    }else{
+        
+        
+    }
+}
 
 - (void)ActionTagBtn:(UIButton *)btn{
     
@@ -582,37 +624,6 @@
 }
 
 
-
-- (void)ActionSearchBtn:(UIButton *)btn{
-    
-    // 1.创建热门搜索
-//    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    
-    // 2. 创建控制器
-
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // 开始搜索执行以下代码
-        // 如：跳转到指定控制器
-     
-        HouseSearchVC *nextVC = [[HouseSearchVC alloc] initWithTitle:searchText city:_city];
-//        nextVC.hidesBottomBarWhenPushed = YES;
-        [searchViewController.navigationController pushViewController:nextVC animated:YES];
-    }];
-    // 3. 设置风格
-    searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
-    searchViewController.hotSearchStyle = 3; // 热门搜索风格根据选择
-    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为
-    // 4. 设置代理
-    searchViewController.delegate = self;
-    // 5. 跳转到搜索控制器
-//    [self.navigationController pushViewController:searchViewController animated:YES];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-////    nav.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:nav animated:YES];
-    [self.navigationController presentViewController:nav  animated:NO completion:nil];
-}
-
-
 - (void)ActionCityBtn:(UIButton *)btn{
     
     CityVC *nextVC = [[CityVC alloc] initWithLabel:_cityName];
@@ -628,26 +639,15 @@
     
 }
 
-- (void)ActionUpAndDownBtn:(UIButton *)btn{
-    
-    _upAndDown = !_upAndDown;
-    if (_upAndDown) {
-        
-        
-    }else{
-        
-        
-    }
-}
 
-//textfieldDelegate;
+#pragma mark  ---  textfielddelegate   ---
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     return YES;
 }
 
 
-#pragma mark  ---  delegate   ---
+#pragma mark  ---  tabledelegate   ---
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -826,7 +826,7 @@
     [_cityBtn setTitle:@"定位中" forState:UIControlStateNormal];
     [self.headerView addSubview:_cityBtn];
     
-    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 292 *SIZE, 33 *SIZE)];
+    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 233 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
     [self.headerView addSubview:_searchBar];
     
@@ -836,7 +836,7 @@
     label.font = [UIFont systemFontOfSize:11 *SIZE];
     [_searchBar addSubview:label];
     
-    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(256 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(197 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
     rightImg.image = [UIImage imageNamed:@"search_2"];
     [_searchBar addSubview:rightImg];
     
@@ -844,6 +844,14 @@
     searchBtn.frame = _searchBar.bounds;
     [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_searchBar addSubview:searchBtn];
+    
+    _houseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _houseBtn.frame = CGRectMake(306 *SIZE, 19 *SIZE, 50 *SIZE, 21 *SIZE);
+    _houseBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
+    [_houseBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_houseBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+    [_houseBtn setTitle:@"新房" forState:UIControlStateNormal];
+    [self.headerView addSubview:_houseBtn];
     
     for (int i = 0; i < 5; i++) {
         

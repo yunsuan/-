@@ -462,7 +462,7 @@
     [_detailadress endEditing:YES];
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
     view.dateblock = ^(NSDate *date) {
-//        NSLog(@"%@",[self gettime:date]);
+        
         _birth.content.text = [self gettime:date];
         _Customerinfomodel.birth = _birth.content.text;
     };
@@ -514,7 +514,7 @@
     nextVC.quickRoomVCSelectBlock = ^(NSString *projectId, NSString *projectName) {
       
         _projectBtn.content.text = projectName;
-        _projectBtn.str = projectId;
+        _projectBtn.str = [NSString stringWithFormat:@"%@",projectId];
     };
     [self.navigationController pushViewController:nextVC animated:YES];
 }
@@ -577,6 +577,46 @@
     _Customerinfomodel.card_id = _num.textfield.text;
     _Customerinfomodel.address = _detailadress.text;
 
+    if (!_projectBtn.str.length) {
+        
+        [self alertControllerWithNsstring:@"温馨提示" And:@"请选择项目" WithDefaultBlack:^{
+            
+            QuickRoomVC *nextVC = [[QuickRoomVC alloc] init];
+            nextVC.ways = @"quickAdd";
+            nextVC.quickRoomVCSelectBlock = ^(NSString *projectId, NSString *projectName) {
+                
+                _projectBtn.content.text = projectName;
+                _projectBtn.str = [NSString stringWithFormat:@"%@",projectId];
+            };
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[_Customerinfomodel modeltodic]];
+    
+    [dic setObject:_projectBtn.str forKey:@"project_id"];
+    
+    [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else{
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+    }];
 }
 
 
