@@ -210,7 +210,7 @@
 
 - (void)ActionTimeTap:(UITapGestureRecognizer *)sender{
     
-    [[[UIApplication sharedApplication] keyWindow] addSubview:self.dateView];
+//    [[[UIApplication sharedApplication] keyWindow] addSubview:self.dateView];
 }
 
 -(void)action_agent

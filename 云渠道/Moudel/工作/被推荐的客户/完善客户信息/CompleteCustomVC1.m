@@ -187,8 +187,7 @@
         
         [dic setObject:_imgStr2 forKey:@"card_img_url"];
     }
-    
-//    [dic setObject:[_imgUrl componentsJoinedByString:@","] forKey:@"card_img_url"];
+
     CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
     nextVC.datadic = _dataDic;
     [self.navigationController pushViewController:nextVC animated:YES];
