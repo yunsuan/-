@@ -217,14 +217,15 @@
 {
     
     [BaseRequest GET:Advicer_URL parameters:@{
-                                              @"project_id":_datadic[@"project_id"]
+                                              @"project_id":_datadic[@"project_id"],
+                                              @"broker_id":_datadic[@"broker_id"],
                                       }
              success:^(id resposeObject) {
                  
                  if ([resposeObject[@"code"] integerValue]==200) {
                      NSArray *data = resposeObject[@"data"][@"rows"];
                      NSMutableArray * agent = [[NSMutableArray alloc]init];
-                     for (int i =0; i<data.count; i++) {
+                     for (int i = 0; i<data.count; i++) {
                          NSDictionary *dic = @{
                                                @"param":data[i][@"RYXM"],
                                                @"id":data[i][@"ID"]
@@ -248,7 +249,7 @@
         
     } failure:^(NSError *error) {
         
-        
+        [self showContent:@"获取置业顾问失败"];
     }];
 
    
