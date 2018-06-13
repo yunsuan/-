@@ -218,7 +218,7 @@
     
     [BaseRequest GET:Advicer_URL parameters:@{
                                               @"project_id":_datadic[@"project_id"],
-                                              @"broker_id":_datadic[@"broker_id"],
+                                              @"broker_id":_datadic[@"broker_id"]
                                       }
              success:^(id resposeObject) {
                  
