@@ -405,7 +405,7 @@
     }
     
     
-
+    _confirmBtn.userInteractionEnabled = NO;
     [BaseRequest POST:ConfirmValue_URL parameters:_dic success:^(id resposeObject) {
 
         
@@ -423,9 +423,12 @@
         {
             [self showContent:resposeObject[@"msg"]];
         }
+        
+        _confirmBtn.userInteractionEnabled = YES;
     } failure:^(NSError *error) {
 
         [self showContent:@"网络错误"];
+        _confirmBtn.userInteractionEnabled = YES;
     }];
 }
 
