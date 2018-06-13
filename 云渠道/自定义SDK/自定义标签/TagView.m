@@ -75,7 +75,7 @@
         //设置item的大小
         _layout.minimumLineSpacing =0;
         _layout.minimumInteritemSpacing = 5*SIZE;
-        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //        _layout.sectionHeadersPinToVisibleBounds = YES;
     }
     return _layout;
