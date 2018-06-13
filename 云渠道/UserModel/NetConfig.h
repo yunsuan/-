@@ -50,6 +50,10 @@ static NSString *const RegisterOther_URL = @"agent/user/registerOther";
 //切换绑定
 static NSString *const SwitchBingding_URL = @"agent/user/switchBinding";
 
+//忘记密码
+static NSString *const ForgetPassWord_URL = @"user/resetPassword";
+
+
 #pragma mark ---  我的  ---
 //上传文件
 static NSString *const UploadFile_URL = @"agent/file/upload";

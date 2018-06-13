@@ -59,14 +59,57 @@
 
 -(void)Register
 {
-    LoginVC *next_vc = [[LoginVC alloc]init];
-    [self.navigationController pushViewController:next_vc animated:YES];
+    if (![self checkTel:_Account.text]) {
+        [self showContent:@"请输入正确的电话号码！"];
+    }
+    if ([_Code.text isEqualToString:@""]) {
+        [self showContent:@"请输入验证码！"];
+        return;
+    }
+    if (_PassWord.text.length<6) {
+        [self showContent:@"密码长度至少为6位"];
+        return;
+    }
+    if (![self checkPassword:_PassWord.text]) {
+        [self showContent:@"密码格式错误！"];
+        return;
+    }
+    
+    if (![_PassWord.text isEqualToString:_SurePassWord.text]) {
+        [self showContent:@"两次输入的密码不相同！"];
+        return;
+    }
+    
+    
+    NSDictionary *temp = @{
+                           @"tel":_Account.text,
+                           @"password":_PassWord.text,
+                           @"password_verify":_SurePassWord.text,
+                           @"captcha":_Code.text
+                           };
+    
+    [BaseRequest POST:ForgetPassWord_URL parameters:temp success:^(id resposeObject) {
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            LoginVC *next_vc = [[LoginVC alloc]init];
+            [UserModel defaultModel].Account = _Account.text;
+            [UserModel defaultModel].Password = _PassWord.text;
+            [UserModelArchiver archive];
+            [self.navigationController pushViewController:next_vc animated:YES];
+            [self alertControllerWithNsstring:@"系统提示" And:@"修改密码成功，请妥善保管好账号"];
+        }
+        else{
+            [self showContent:resposeObject[@"msg"]];
+        }
+        
+    } failure:^(NSError *error) {
+        [self showContent:@"网络错误"];
+    }];
+//    LoginVC *next_vc = [[LoginVC alloc]init];
+//    [self.navigationController pushViewController:next_vc animated:YES];
 }
 
 -(void)GetCode{
     //获取验证码
-    
-    
     _GetCodeBtn.userInteractionEnabled = NO;
     if([self checkTel:_Account.text]) {
         
