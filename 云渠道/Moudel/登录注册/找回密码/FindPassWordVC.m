@@ -50,7 +50,7 @@
     title.textColor = YJTitleLabColor;
     [self.view addSubview:title];
     
-    for (int i = 0; i<4; i++) {
+    for (int i = 0; i < 4; i++) {
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+154*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
         line.backgroundColor = COLOR(180, 180, 180, 1);
         [self.view addSubview:line];
@@ -229,7 +229,7 @@
         _RegisterBtn.layer.masksToBounds = YES;
         _RegisterBtn.layer.cornerRadius = 2*SIZE;
         _RegisterBtn.backgroundColor = YJLoginBtnColor;
-        [_RegisterBtn setTitle:@"立即注册" forState:UIControlStateNormal];
+        [_RegisterBtn setTitle:@"找回密码" forState:UIControlStateNormal];
         [_RegisterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _RegisterBtn.titleLabel.font = [UIFont systemFontOfSize:16*SIZE];
         [_RegisterBtn addTarget:self action:@selector(Register) forControlEvents:UIControlEventTouchUpInside];
