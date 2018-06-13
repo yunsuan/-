@@ -1115,7 +1115,7 @@
 //
 //            [weakSelf RequestMethod];
             if (_city) {
-                
+
                 [weakSelf RequestMethod];
             }else{
                 
