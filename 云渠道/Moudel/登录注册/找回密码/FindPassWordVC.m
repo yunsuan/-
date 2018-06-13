@@ -89,13 +89,16 @@
                            };
     
     [BaseRequest POST:ForgetPassWord_URL parameters:temp success:^(id resposeObject) {
+        
         if ([resposeObject[@"code"] integerValue] == 200) {
             LoginVC *next_vc = [[LoginVC alloc]init];
             [UserModel defaultModel].Account = _Account.text;
             [UserModel defaultModel].Password = _PassWord.text;
             [UserModelArchiver archive];
-            [self.navigationController pushViewController:next_vc animated:YES];
-            [self alertControllerWithNsstring:@"系统提示" And:@"修改密码成功，请妥善保管好账号"];
+            [self alertControllerWithNsstring:@"系统提示" And:@"修改密码成功，请妥善保管好账号" WithDefaultBlack:^{
+                
+                [self.navigationController pushViewController:next_vc animated:YES];
+            }];
         }
         else{
             [self showContent:resposeObject[@"msg"]];
