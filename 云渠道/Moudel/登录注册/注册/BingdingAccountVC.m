@@ -117,10 +117,10 @@
 
             [UserModel defaultModel].Account = _Account.text;
             [UserModel defaultModel].Password = _PassWord.text;
-            [[NSUserDefaults standardUserDefaults]setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
+            [[NSUserDefaults standardUserDefaults] setValue:LOGINSUCCESS forKey:LOGINENTIFIER];
             [UserModel defaultModel].Token = resposeObject[@"data"][@"token"];
-            [UserModel defaultModel].agent_id =resposeObject[@"data"][@"agent_id"];
-            [UserModel defaultModel].agent_identity =resposeObject[@"data"][@"agent_identity"];
+            [UserModel defaultModel].agent_id = resposeObject[@"data"][@"agent_id"];
+            [UserModel defaultModel].agent_identity = resposeObject[@"data"][@"agent_identity"];
             [UserModelArchiver archive];
             
             [self alertControllerWithNsstring:@"系统提示" And:@"恭喜你注册成功，请妥善保管好账号" WithDefaultBlack:^{
