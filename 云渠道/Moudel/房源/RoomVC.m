@@ -826,7 +826,7 @@
     [_cityBtn setTitle:@"定位中" forState:UIControlStateNormal];
     [self.headerView addSubview:_cityBtn];
     
-    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 233 *SIZE, 33 *SIZE)];
+    _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 283 *SIZE, 33 *SIZE)];
     _searchBar.backgroundColor = YJBackColor;
     [self.headerView addSubview:_searchBar];
     
@@ -836,7 +836,7 @@
     label.font = [UIFont systemFontOfSize:11 *SIZE];
     [_searchBar addSubview:label];
     
-    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(197 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
+    UIImageView *rightImg = [[UIImageView alloc] initWithFrame:CGRectMake(257 *SIZE, 8 *SIZE, 17 *SIZE, 17 *SIZE)];
     rightImg.image = [UIImage imageNamed:@"search_2"];
     [_searchBar addSubview:rightImg];
     
@@ -845,13 +845,13 @@
     [searchBtn addTarget:self action:@selector(ActionSearchBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_searchBar addSubview:searchBtn];
     
-    _houseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _houseBtn.frame = CGRectMake(306 *SIZE, 19 *SIZE, 50 *SIZE, 21 *SIZE);
-    _houseBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
-    [_houseBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [_houseBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
-    [_houseBtn setTitle:@"新房" forState:UIControlStateNormal];
-    [self.headerView addSubview:_houseBtn];
+//    _houseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _houseBtn.frame = CGRectMake(306 *SIZE, 19 *SIZE, 50 *SIZE, 21 *SIZE);
+//    _houseBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
+//    [_houseBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [_houseBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
+//    [_houseBtn setTitle:@"新房" forState:UIControlStateNormal];
+//    [self.headerView addSubview:_houseBtn];
     
     for (int i = 0; i < 5; i++) {
         

@@ -21,6 +21,7 @@
 @property (nonatomic , strong) UIButton *RegisterBtn;
 //@property (nonatomic , strong) UIButton *ProtocolBtn;
 @property (nonatomic , strong) UITextField *SurePassWord;
+@property (nonatomic , strong) UITextField *recommendTF;
 @property (nonatomic, strong)  UILabel *timeLabel;
 
 @end
@@ -54,13 +55,14 @@
     [self.view addSubview:self.SurePassWord];
     [self.view addSubview:self.timeLabel];
     [self.view addSubview:self.PassWord];
+    [self.view addSubview:self.recommendTF];
     UILabel  *title = [[UILabel alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+53*SIZE, 200*SIZE, 22*SIZE)];
     title.text = @"绑定新账号";
     title.font = [UIFont systemFontOfSize:21*SIZE];
     title.textColor = YJTitleLabColor;
     [self.view addSubview:title];
     
-    for (int i = 0; i<4; i++) {
+    for (int i = 0; i< 5; i++) {
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+154*SIZE+47*SIZE*i, 316*SIZE, 0.5*SIZE)];
         line.backgroundColor = COLOR(180, 180, 180, 1);
         [self.view addSubview:line];
@@ -90,12 +92,24 @@
         [self showContent:@"两次输入的密码不相同！"];
         return;
     }
-    
+
+    if (![self isEmpty:self.recommendTF.text]) {
+        
+        if (![self checkTel:self.recommendTF.text]) {
+            
+            [self showContent:@"请输入正确的推荐人号码！"];
+            return;
+        }else{
+            
+            [_dataDic setObject:self.recommendTF.text forKey:@"consultant_tel"];
+        }
+    }
     
     [_dataDic setObject:_Account.text forKey:@"tel"];
     [_dataDic setObject:_PassWord.text forKey:@"password"];
     [_dataDic setObject:_SurePassWord.text forKey:@"password_verify"];
     [_dataDic setObject:_Code.text forKey:@"captcha"];
+    
     [BaseRequest POST:RegisterOther_URL parameters:_dataDic success:^(id resposeObject) {
         NSLog(@"%@",resposeObject);
         
@@ -239,11 +253,22 @@
     return _SurePassWord;
 }
 
+-(UITextField *)recommendTF
+{
+    if (!_recommendTF) {
+        _recommendTF = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+312*SIZE, 314*SIZE, 20*SIZE)];
+        _recommendTF.placeholder = @"推荐人号码(选填)";
+        _recommendTF.font = [UIFont systemFontOfSize:14*SIZE];
+        [_recommendTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    }
+    return _recommendTF;
+}
+
 -(UIButton *)RegisterBtn
 {
     if (!_RegisterBtn) {
         _RegisterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _RegisterBtn.frame = CGRectMake(22*SIZE, 340*SIZE+STATUS_BAR_HEIGHT, 316*SIZE, 41*SIZE);
+        _RegisterBtn.frame = CGRectMake(22*SIZE, 377*SIZE+STATUS_BAR_HEIGHT, 316*SIZE, 41*SIZE);
         _RegisterBtn.layer.masksToBounds = YES;
         _RegisterBtn.layer.cornerRadius = 2*SIZE;
         _RegisterBtn.backgroundColor = YJLoginBtnColor;
@@ -316,6 +341,13 @@
     if (textField == _SurePassWord) {
         if (textField.text.length > 20) {
             textField.text = [textField.text substringToIndex:20];
+        }
+    }
+    if (textField == _recommendTF) {
+        
+        if (textField.text.length > 11) {
+            
+            textField.text = [textField.text substringToIndex:11];
         }
     }
 }
