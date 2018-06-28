@@ -9,12 +9,15 @@
 #import "DistributVC.h"
 #import "HousedistributVC.h"
 #import "SelectView.h"
+#import <WebKit/WebKit.h>
 
-@interface DistributVC ()
+@interface DistributVC ()<WKNavigationDelegate>
 {
     NSArray *_dylist;
     NSDictionary *_lddic;
 }
+
+@property (nonatomic , strong) WKWebView *webwivw;
 @property (nonatomic , strong) UIImageView *backimg;
 @property (nonatomic , strong) UIButton *leftbutton;
 @property (nonatomic , strong) UIButton *openbtn;
@@ -59,7 +62,17 @@
 
 -(void)initUI
 {
-    [self.view addSubview:self.backimg];
+    
+    //2.创建URL
+    NSURL *URL = [NSURL URLWithString:@"http://120.27.21.136:2798/360/test4/index.html"];
+    //    NSURL *URL = [NSURL URLWithString:@"http://www.ccsoft.com.cn"];
+    
+    //3.创建Request
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    //4.加载Request
+    [self.webwivw loadRequest:request];
+    [self.view addSubview:self.webwivw];
+//    [self.view addSubview:self.backimg];
     [self.view addSubview:self.leftbutton];
     [self.view addSubview:self.openbtn];
     [self.view addSubview:self.drawerview];
@@ -293,6 +306,48 @@
     }
     [self.selectView removeFromSuperview];
     [self.maskView removeFromSuperview];
+}
+
+#pragma mark - WKNavigationDelegate
+// 页面开始加载时调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    [WaitAnimation startAnimation];
+    
+}
+// 当内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+    
+}
+// 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [WaitAnimation stopAnimation];
+}
+// 页面加载失败时调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
+    [self showContent:@"网络错误"];
+}
+
+
+-(WKWebView *)webwivw
+{
+    if (!_webwivw) {
+        _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _webwivw.navigationDelegate = self;
+        _webwivw.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    return _webwivw;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if (_webwivw) {
+        [_webwivw stopLoading];
+       
+    }
+    [WaitAnimation stopAnimation];
 }
 
 @end

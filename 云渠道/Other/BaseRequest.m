@@ -16,7 +16,7 @@ static AFHTTPSessionManager *updatemanager ;
 + (void)GET:(NSString *)url parameters:(NSDictionary *)parameters success:(void(^)(id resposeObject))success failure:(void(^)(NSError *error))failure{
 //        [SVProgressHUD show];
     [WaitAnimation startAnimation];
-      AFHTTPSessionManager *htttmanger  =   [BaseRequest sharedHttpSessionManager];
+      AFHTTPSessionManager *htttmanger = [BaseRequest sharedHttpSessionManager];
     [manager.requestSerializer setValue:[UserModelArchiver unarchive].Token forHTTPHeaderField:@"ACCESS-TOKEN"];
     [manager.requestSerializer setValue:ACCESSROLE forHTTPHeaderField:@"ACCESS-ROLE"];
 

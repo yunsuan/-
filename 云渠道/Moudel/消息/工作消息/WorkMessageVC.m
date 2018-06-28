@@ -46,7 +46,7 @@
     
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"推荐成功";
+    self.titleLabel.text = @"工作消息";
     
     [self initDateSouce];
     [self initUI];

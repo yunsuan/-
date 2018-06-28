@@ -207,7 +207,7 @@
             if ([cityDic[@"code"] integerValue] == [code integerValue]) {
                 
                 tempArr = [NSMutableArray arrayWithArray:cityDic[@"district"]];
-                _areaArray = tempArr;
+                self.areaArray = tempArr;
                 break;
             }
         }
@@ -255,8 +255,10 @@
 {
     if (component == 0) {
         return self.cityArray.count;
+    }else
+    {
+        return self.areaArray.count;
     }
-    return self.areaArray.count;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
@@ -282,12 +284,13 @@
         self.cityStr = self.cityArray[row][@"city_name"];
         self.cityid = self.cityArray[row][@"city_code"];
         
-        [self.pickerView reloadComponent:1];
+//        [self.pickerView reloadComponent:1];
         [self.pickerView selectRow:0 inComponent:1 animated:YES];
 
-        
+        [self getAreaArrayBycity:self.cityArray[row][@"city_code"]];
         self.areaStr = self.areaArray[0][@"name"];
         self.areaid = self.areaArray[0][@"code"];
+        [self.pickerView reloadComponent:1];
 
     }else{
         

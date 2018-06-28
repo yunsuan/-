@@ -131,6 +131,7 @@
     } failure:^(NSError *error) {
         
         [self.Mytableview.mj_header endRefreshing];
+        
         [self showContent:@"网络错误"];
 //        NSLog(@"%@",error);
     }];
@@ -457,7 +458,6 @@
     }else
     {
         if (indexPath.row == 0) {
-            
             FeedbackVC *nextVC = [[FeedbackVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
@@ -468,6 +468,7 @@
         }else{
             
             WebViewVC *next_vc = [[WebViewVC alloc]init];
+            next_vc.weburl = @"www.ccfost.com.cn";
             [self.navigationController pushViewController:next_vc animated:YES];
         }
         

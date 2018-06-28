@@ -42,7 +42,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initDataSouce];
     [self initUI];
 }
@@ -50,7 +49,6 @@
 
 -(void)initDataSouce
 {
-    
     _titleArr = @[@"申诉信息",@"无效信息",@"推荐信息",@"到访信息"];
     [self AppealRequestMethod];
 }

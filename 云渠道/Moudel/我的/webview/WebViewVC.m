@@ -21,8 +21,8 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"操作指南";
     //2.创建URL
-//    NSURL *URL = [NSURL URLWithString:@"http://test.cqhansa.com/wls/"];
-    NSURL *URL = [NSURL URLWithString:@"http://www.ccsoft.com.cn"];
+//    NSURL *URL = [NSURL URLWithString:@"http://120.27.21.136:2798/360/index.html"];
+    NSURL *URL = [NSURL URLWithString:_weburl];
 
     //3.创建Request
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];

@@ -1186,8 +1186,8 @@
             
             if ([typeArr[i][@"id"] integerValue] == [_model.property_type integerValue]) {
                 
-                _typeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
-                _typeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                _houseTypeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _houseTypeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
                 break;
             }
         }
@@ -1234,8 +1234,8 @@
             
             if ([typeArr[i][@"id"] integerValue] == [_model.house_type integerValue]) {
                 
-                _houseTypeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
-                _houseTypeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+               _typeBtn .content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+               _typeBtn .str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
                 break;
             }
         }

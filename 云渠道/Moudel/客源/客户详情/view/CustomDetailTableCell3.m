@@ -85,6 +85,7 @@
     
     _headImg = [[UIImageView alloc]initWithFrame:CGRectMake(11.7*SIZE,16.3*SIZE, 100*SIZE, 88.3*SIZE)];
     _headImg.contentMode = UIViewContentModeScaleAspectFill;
+    _headImg.clipsToBounds = YES;
     [self.contentView addSubview:_headImg];
     
     _titleL = [[UILabel alloc]initWithFrame:CGRectMake(123.3*SIZE, 16*SIZE, 140*SIZE, 14*SIZE)];
