@@ -105,11 +105,11 @@
         return;
     }
     
-    if (!_role) {
-        
-        [self showContent:@"请选择角色"];
-        return;
-    }
+//    if (!_role) {
+//
+//        [self showContent:@"请选择角色"];
+//        return;
+//    }
     
     if ([_role isEqualToString:@"到访确认人"]) {
         
@@ -127,22 +127,22 @@
     }
     
     if (!_positionTextField.text) {
-        
+
         [self showContent:@"请输入职位"];
         return;
     }
     
-    if (!_timeL.text) {
-        
-        [self showContent:@"请选择入职时间"];
-        return;
-    }
-    
-    if (!_imgUrl) {
-        
-        [self showContent:@"请选择工牌照片"];
-        return;
-    }
+//    if (!_timeL.text) {
+//
+//        [self showContent:@"请选择入职时间"];
+//        return;
+//    }
+//
+//    if (!_imgUrl) {
+//
+//        [self showContent:@"请选择工牌照片"];
+//        return;
+//    }
     
     [dic setObject:_companyId forKey:@"company_id"];
     [dic setObject:_role forKey:@"role"];
@@ -153,8 +153,19 @@
     }
     [dic setObject:_departTextField.text forKey:@"department"];
     [dic setObject:_positionTextField.text forKey:@"position"];
-    [dic setObject:_timeL.text forKey:@"entry_time"];
+    if (_timeL.text.length==0) {
+        [dic setObject:@"2018-06-29" forKey:@"entry_time"];
+    }
+    else
+    {
+        [dic setObject:_timeL.text forKey:@"entry_time"];
+    }
+    if (_imgUrl.length==0) {
+        
+    }
+    else{
     [dic setObject:_imgUrl forKey:@"img_url"];
+    }
 
     if ([self.status isEqualToString:@"重新认证"]) {
         
@@ -547,6 +558,8 @@
                 {
                     _roleL = label;
                     [whiteView11 addSubview:_roleL];
+                    _role = @"1";
+                    _roleL.text = @"经纪人";
                     break;
                 }
                 case 3:

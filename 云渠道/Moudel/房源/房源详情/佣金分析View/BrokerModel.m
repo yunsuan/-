@@ -39,8 +39,6 @@
                                          
                                             };
             [_companyarr addObject:companydic];
-            
-            
             NSArray *arr = data[i][@"person"];
             [_dataarr addObjectsFromArray:arr];
             for (int j = 0 ; j<arr.count; j++) {

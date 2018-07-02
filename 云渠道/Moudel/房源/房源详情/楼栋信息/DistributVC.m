@@ -338,6 +338,7 @@
         } else {
             // Fallback on earlier versions
         }
+
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return _webwivw;
