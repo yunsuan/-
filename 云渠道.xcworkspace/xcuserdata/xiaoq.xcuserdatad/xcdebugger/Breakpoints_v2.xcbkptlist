@@ -195,38 +195,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/&#x6237;&#x578b;&#x8be6;&#x60c5;/HouseTypeDetailVC.m"
-            timestampString = "550035942.972142"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-RequestMethod"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/&#x6237;&#x578b;&#x8be6;&#x60c5;/HouseTypeDetailVC.m"
-            timestampString = "550035942.972198"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-RequestMethod"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6d88;&#x606f;/&#x5de5;&#x4f5c;&#x6d88;&#x606f;/TypeOneVC.m"
             timestampString = "550562852.787945"
             startingColumnNumber = "9223372036854775807"
@@ -308,7 +276,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E6%B7%BB%E5%8A%A0%E9%9C%80%E6%B1%82/AddRequireMentVC.m"
-                  timestampString = "551787421.7406271"
+                  timestampString = "551957769.553533"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "533"
@@ -323,7 +291,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E6%B7%BB%E5%8A%A0%E9%9C%80%E6%B1%82/AddRequireMentVC.m"
-                  timestampString = "551787421.743791"
+                  timestampString = "551957769.555618"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "533"
@@ -334,11 +302,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.473"
+                  symbolName = "__destroy_helper_block_.471"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E6%B7%BB%E5%8A%A0%E9%9C%80%E6%B1%82/AddRequireMentVC.m"
-                  timestampString = "551787421.746307"
+                  timestampString = "551957769.5576299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "533"
@@ -451,7 +419,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E6%97%A0%E6%95%88%E8%AF%A6%E6%83%85/InvalidVC.m"
-                  timestampString = "551787421.781152"
+                  timestampString = "551957769.584743"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
@@ -466,7 +434,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E6%97%A0%E6%95%88%E8%AF%A6%E6%83%85/InvalidVC.m"
-                  timestampString = "551787421.783711"
+                  timestampString = "551957769.586711"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "143"
@@ -477,11 +445,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.427"
+                  symbolName = "__destroy_helper_block_.425"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E6%97%A0%E6%95%88%E8%AF%A6%E6%83%85/InvalidVC.m"
-                  timestampString = "551787421.7871211"
+                  timestampString = "551957769.588713"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
@@ -489,6 +457,22 @@
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x5de5;&#x4f5c;/&#x63a8;&#x8350;/&#x7533;&#x8bc9;/ComplaintUnCompleteVC.m"
+            timestampString = "551870206.081409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-AppealRequestMethod"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

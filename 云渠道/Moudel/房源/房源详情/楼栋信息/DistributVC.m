@@ -333,7 +333,14 @@
     if (!_webwivw) {
         _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         _webwivw.navigationDelegate = self;
-        _webwivw.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+ 
+            if (@available(iOS 11.0, *)) {
+                _webwivw.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            } else {
+                // Fallback on earlier versions
+            }
+      
+      
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return _webwivw;
