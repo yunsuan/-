@@ -213,6 +213,10 @@
     _currentL.text = [NSString stringWithFormat:@"%@1/%d",_imgArr[indexPath.item][@"name"],[_imgArr[indexPath.item][@"data"] count]];
 }
 
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+//
+//
+//}
 
 - (void)initUI{
     
@@ -225,6 +229,8 @@
     
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 55 *SIZE - TAB_BAR_MORE)];
     _scrollView.delegate = self;
+    _scrollView.minimumZoomScale = 0.5;
+    _scrollView.maximumZoomScale = 3;
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width * _imgArr.count, _scrollView.bounds.size.height)];
     _scrollView.pagingEnabled = YES;
     _scrollView.showsVerticalScrollIndicator = NO;

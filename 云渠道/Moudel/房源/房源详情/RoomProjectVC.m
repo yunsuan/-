@@ -7,6 +7,15 @@
 //
 
 #import "RoomProjectVC.h"
+#import "BuildingAlbumVC.h"
+#import "BuildingInfoVC.h"
+#import "HouseTypeDetailVC.h"
+#import "DynamicListVC.h"
+#import "CustomMatchListVC.h"
+#import "DistributVC.h"
+#import "DynamicDetailVC.h"
+#import "CustomListVC.h"
+
 #import "RoomDetailTableHeader.h"
 #import "RoomDetailTableHeader5.h"
 #import "RoomDetailTableHeader6.h"
@@ -16,16 +25,11 @@
 #import "RoomDetailTableCell3.h"
 #import "RoomDetailTableCell4.h"
 #import "RoomDetailTableCell5.h"
-#import "BuildingInfoVC.h"
-#import "HouseTypeDetailVC.h"
-#import "DynamicListVC.h"
-#import "CustomMatchListVC.h"
+
 #import "CustomMatchModel.h"
-#import "DistributVC.h"
 #import "RoomDetailModel.h"
-#import "BuildingAlbumVC.h"
-#import "DynamicDetailVC.h"
-#import "CustomListVC.h"
+
+
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
@@ -390,13 +394,6 @@
         header.imgArr = _imgArr;
         header.moreBtn.tag = 1;
         [header.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-//        if (_buildDic[@"handing_room_time"]) {
-//            
-////            header.payL.text = [NSString stringWithFormat:@"交房时间：%@",_buildDic[@"handing_room_time"]];
-//        }else{
-//            
-//            header.payL.text = [NSString stringWithFormat:@"交房时间：暂无数据"];
-//        }
         
         if (_focusDic.count) {
             
@@ -512,27 +509,6 @@
     switch (indexPath.section) {
         case 0:
         case 1:
-//        {
-//
-//            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
-//            if (!cell) {
-//
-//                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
-//            }
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//            if (_model.developer_name) {
-//
-//                cell.developL.text = _model.developer_name;
-//            }
-//            cell.openL.text = _buildDic[@"open_time"];
-//            cell.payL.text = _buildDic[@"handing_room_time"];
-//
-//            cell.moreBtn.tag = indexPath.section;
-//            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-//            return cell;
-//            break;
-//        }
         case 2:
         {
 
