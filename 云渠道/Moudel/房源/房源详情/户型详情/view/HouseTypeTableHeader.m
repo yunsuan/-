@@ -14,6 +14,7 @@
 {
     
     NSInteger _num;
+    NSInteger _nowNum;
     NSMutableArray *_allArr;
     NSInteger _total;
     NSInteger _current;
@@ -37,6 +38,15 @@
 
 - (void)setImgArr:(NSMutableArray *)imgArr{
     
+    
+    if (!imgArr.count) {
+        
+        UIImageView *img = [[UIImageView alloc] initWithFrame:_scrollView.frame];
+        img.contentMode = UIViewContentModeScaleAspectFill;
+        img.image = [UIImage imageNamed:@"default_3"];
+        img.clipsToBounds = YES;
+        [self.contentView addSubview:img];
+    }
     _imgArr = [NSMutableArray arrayWithArray:imgArr];
     for ( int i = 0; i < imgArr.count; i++) {
         
@@ -63,7 +73,11 @@
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, _scrollView.frame.size.height)];
         img.backgroundColor = YJTitleLabColor;
-        img.contentMode = UIViewContentModeScaleAspectFit;
+        img.contentMode = UIViewContentModeScaleAspectFill;
+        img.clipsToBounds = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionImgBtn)];
+        [img addGestureRecognizer:tap];
+        img.userInteractionEnabled = YES;
         [_scrollView addSubview:img];
         if ([_allArr[i][@"img_url"] isEqualToString:@"default_3"]) {
             
@@ -82,12 +96,26 @@
     }
     [_imgColl reloadData];
     [_imgColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:0];
+    
+}
+
+
+- (void)ActionImgBtn{
+    
+    if (self.houseTypeImgBtnBlock) {
+        
+        if (_imgArr.count) {
+            
+            self.houseTypeImgBtnBlock(_nowNum, _imgArr);
+            
+        }
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     _num = (scrollView.contentOffset.x / SCREEN_Width) + 1;
-    
+    _nowNum = scrollView.contentOffset.x / SCREEN_Width;
     NSInteger count = 0;
     for (int i = 0; i < _imgArr.count; i++) {
         

@@ -36,7 +36,7 @@
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate,UIGestureRecognizerDelegate>
+@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate,UIGestureRecognizerDelegate,YBImageBrowserDelegate>
 {
     CLLocationCoordinate2D _leftBottomPoint;
     CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
@@ -46,6 +46,7 @@
     NSMutableDictionary *_focusDic;
     NSString *_dynamicNum;
     NSMutableArray *_imgArr;
+    NSMutableArray *_albumArr;
     NSString *_focusId;
     NSMutableArray *_houseArr;
     NSMutableArray *_peopleArr;
@@ -102,6 +103,7 @@
     
     _dynamicNum = @"";
     _imgArr = [@[] mutableCopy];
+    _albumArr = [@[] mutableCopy];
     _focusDic = [@{} mutableCopy];
     _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
@@ -121,6 +123,12 @@
     dispatch_group_async(group, queue1, ^{
         
         [self MatchRequest];
+        
+    });
+    
+    dispatch_group_async(group, queue1, ^{
+        
+        [self ImgRequest];
         
     });
     
@@ -160,6 +168,39 @@
         [_peopleArr addObject:model];
     }
     [_roomTable reloadData];
+}
+
+- (void)ImgRequest{
+    
+    [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                [self SetImg:resposeObject[@"data"]];
+            }else{
+                
+            }
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetImg:(NSArray *)data{
+    
+    [_albumArr removeAllObjects];
+    for ( int i = 0; i < data.count; i++) {
+        
+        if ([data[i] isKindOfClass:[NSDictionary class]]) {
+            
+            NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+            
+            [_albumArr addObject:tempDic];
+        }
+    }
 }
 
 - (void)RequestMethod{
@@ -420,16 +461,49 @@
                 model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
                 [tempArr addObject:model];
             }];
-
-            YBImageBrowser *browser = [YBImageBrowser new];
-            browser.dataArray = tempArr;
-            browser.projectId = _projectId;
-            browser.currentIndex = num;
-            
-            //展示
-            [browser show];
-//            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num projectId:_projectId];
-//            [self.navigationController pushViewController:nextVC animated:YES];
+            if (_albumArr.count) {
+                
+                YBImageBrowser *browser = [YBImageBrowser new];
+                browser.delegate = self;
+                browser.dataArray = tempArr;
+                browser.albumArr = _albumArr;
+                browser.projectId = _projectId;
+                browser.currentIndex = num;
+                [browser show];
+            }else{
+                
+                [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+                    
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                            
+                            [_albumArr removeAllObjects];
+                            for ( int i = 0; i < [resposeObject[@"data"] count]; i++) {
+                                
+                                if ([resposeObject[@"data"][i] isKindOfClass:[NSDictionary class]]) {
+                                    
+                                    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:resposeObject[@"data"][i]];
+                                    
+                                    [_albumArr addObject:tempDic];
+                                    YBImageBrowser *browser = [YBImageBrowser new];
+                                    browser.delegate = self;
+                                    browser.albumArr = _albumArr;
+                                    browser.dataArray = tempArr;
+                                    browser.projectId = _projectId;
+                                    browser.currentIndex = num;
+                                    [browser show];
+                                }
+                            }
+                        }else{
+                            
+                        }
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                }];
+            }
         };
         
         header.attentBtnBlock = ^{

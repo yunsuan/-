@@ -7,16 +7,20 @@
 //
 
 #import "HouseTypeDetailVC.h"
-#import "RoomDetailTableCell5.h"
-#import "HouseTypeTableCell.h"
-#import "HouseTypeTableCell2.h"
 #import "HouseTypeDetailVC.h"
-#import "HouseTypeTableHeader.h"
-#import "HouseTypeTableHeader2.h"
 #import "BuildingAlbumVC.h"
 #import "CustomMatchListVC.h"
 
-@interface HouseTypeDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+#import "RoomDetailTableCell5.h"
+#import "HouseTypeTableCell.h"
+#import "HouseTypeTableCell2.h"
+#import "HouseTypeTableHeader.h"
+#import "HouseTypeTableHeader2.h"
+
+
+#import "YBImageBrowser.h"
+
+@interface HouseTypeDetailVC ()<UITableViewDelegate,UITableViewDataSource,YBImageBrowserDelegate>
 {
     
     NSString *_houseTypeId;
@@ -223,7 +227,43 @@
             header = [[HouseTypeTableHeader alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 366 *SIZE)];
         }
         header.imgArr = [NSMutableArray arrayWithArray:_imgArr];
-        
+        header.houseTypeImgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
+            
+            NSMutableArray *tempArr = [NSMutableArray array];
+            
+            NSMutableArray *tempArr1 = [NSMutableArray array];
+            for (NSDictionary *dic in imgArr) {
+                
+                for (NSDictionary *subDic in dic[@"list"]) {
+                    
+                    [tempArr1 addObject:subDic[@"img_url"]];
+                }
+            }
+            [tempArr1 enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                YBImageBrowserModel *model = [YBImageBrowserModel new];
+                model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj]];
+                [tempArr addObject:model];
+            }];
+            
+            [_imgArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+               
+                NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:obj];
+                [tempDic setObject:obj[@"type"] forKey:@"name"];
+                
+                [tempDic setObject:obj[@"list"] forKey:@"data"];
+                [_imgArr replaceObjectAtIndex:idx withObject:tempDic];
+                
+            }];
+            
+            YBImageBrowser *browser = [YBImageBrowser new];
+            browser.delegate = self;
+            browser.dataArray = tempArr;
+            browser.albumArr = _imgArr;
+            browser.projectId = _projectId;
+            browser.currentIndex = num;
+            [browser show];
+        };
         return header;
     }else{
         
