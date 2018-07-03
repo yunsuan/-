@@ -30,6 +30,8 @@
 #import "RoomDetailModel.h"
 
 
+#import "YBImageBrowser.h"
+
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
@@ -411,8 +413,23 @@
         }
         header.imgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
             
-            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num projectId:_projectId];
-            [self.navigationController pushViewController:nextVC animated:YES];
+            NSMutableArray *tempArr = [NSMutableArray array];
+            [imgArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                YBImageBrowserModel *model = [YBImageBrowserModel new];
+                model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
+                [tempArr addObject:model];
+            }];
+
+            YBImageBrowser *browser = [YBImageBrowser new];
+            browser.dataArray = tempArr;
+            browser.projectId = _projectId;
+            browser.currentIndex = num;
+            
+            //展示
+            [browser show];
+//            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num projectId:_projectId];
+//            [self.navigationController pushViewController:nextVC animated:YES];
         };
         
         header.attentBtnBlock = ^{
@@ -430,7 +447,6 @@
                             [self RequestMethod];
                         }else if([resposeObject[@"code"] integerValue] == 400){
                             
-//                            [self showContent:resposeObject[@"msg"]];
                         }
                         else{
                             [self showContent:resposeObject[@"msg"]];
@@ -451,7 +467,6 @@
                             [self RequestMethod];
                         }else if([resposeObject[@"code"] integerValue] == 400){
                             
-//                            [self showContent:resposeObject[@"msg"]];
                         }
                         else{
                             [self showContent:resposeObject[@"msg"]];

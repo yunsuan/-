@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C00FEB720EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FE9320EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.m */; };
+		0C00FEB820EA38F500B8F78A /* YBImageBrowserFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FE9620EA38F500B8F78A /* YBImageBrowserFunctionModel.m */; };
+		0C00FEB920EA38F500B8F78A /* YBImageBrowserFunctionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FE9720EA38F500B8F78A /* YBImageBrowserFunctionBar.m */; };
+		0C00FEBA20EA38F500B8F78A /* YBImageBrowserToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FE9A20EA38F500B8F78A /* YBImageBrowserToolBar.m */; };
+		0C00FEBB20EA38F500B8F78A /* YBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FE9C20EA38F500B8F78A /* YBImageBrowser.m */; };
+		0C00FEBC20EA38F500B8F78A /* YBImageBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FE9E20EA38F500B8F78A /* YBImageBrowserCell.m */; };
+		0C00FEBD20EA38F500B8F78A /* YBImageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEA020EA38F500B8F78A /* YBImageBrowserView.m */; };
+		0C00FEBE20EA38F500B8F78A /* YBImageBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEA220EA38F500B8F78A /* YBImageBrowserModel.m */; };
+		0C00FEBF20EA38F500B8F78A /* YBImageBrowserViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEA520EA38F500B8F78A /* YBImageBrowserViewLayout.m */; };
+		0C00FEC020EA38F500B8F78A /* YBImageBrowserCopywriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEAC20EA38F500B8F78A /* YBImageBrowserCopywriter.m */; };
+		0C00FEC120EA38F500B8F78A /* NSBundle+YBImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEAD20EA38F500B8F78A /* NSBundle+YBImageBrowser.m */; };
+		0C00FEC220EA38F500B8F78A /* YBImageBrowserUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEAE20EA38F500B8F78A /* YBImageBrowserUtilities.m */; };
+		0C00FEC320EA38F500B8F78A /* YBImageBrowserDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEAF20EA38F500B8F78A /* YBImageBrowserDownloader.m */; };
+		0C00FEC420EA38F500B8F78A /* YBImageBrowserPromptBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEB120EA38F500B8F78A /* YBImageBrowserPromptBar.m */; };
+		0C00FEC520EA38F500B8F78A /* YBImageBrowserProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C00FEB220EA38F500B8F78A /* YBImageBrowserProgressBar.m */; };
+		0C00FEC620EA38F500B8F78A /* YBImageBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C00FEB620EA38F500B8F78A /* YBImageBrowser.bundle */; };
 		0C02360120BFC94C00B255AA /* DynamicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C02360020BFC94C00B255AA /* DynamicDetailVC.m */; };
 		0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A4207DAEC00045E3C1 /* CustomerModel.m */; };
 		0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0606A8207DB3050045E3C1 /* RoomListModel.m */; };
@@ -58,6 +74,7 @@
 		0C0BED5320A98841005A16A1 /* CityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5220A98841005A16A1 /* CityVC.m */; };
 		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
 		0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */; };
+		0C0C19A120EB14780086E739 /* XGToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C19A020EB14780086E739 /* XGToolBar.m */; };
 		0C1A013A20AC28C300665BB9 /* ComfirmValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */; };
 		0C1A013D20AC3F7700665BB9 /* ComfirmInValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */; };
 		0C1A014020AC566100665BB9 /* DealValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013F20AC566100665BB9 /* DealValidVC.m */; };
@@ -307,6 +324,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C00FE9220EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserAnimatedTransitioning.h; sourceTree = "<group>"; };
+		0C00FE9320EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserAnimatedTransitioning.m; sourceTree = "<group>"; };
+		0C00FE9520EA38F500B8F78A /* YBImageBrowserFunctionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserFunctionBar.h; sourceTree = "<group>"; };
+		0C00FE9620EA38F500B8F78A /* YBImageBrowserFunctionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserFunctionModel.m; sourceTree = "<group>"; };
+		0C00FE9720EA38F500B8F78A /* YBImageBrowserFunctionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserFunctionBar.m; sourceTree = "<group>"; };
+		0C00FE9820EA38F500B8F78A /* YBImageBrowserFunctionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserFunctionModel.h; sourceTree = "<group>"; };
+		0C00FE9A20EA38F500B8F78A /* YBImageBrowserToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserToolBar.m; sourceTree = "<group>"; };
+		0C00FE9B20EA38F500B8F78A /* YBImageBrowserToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserToolBar.h; sourceTree = "<group>"; };
+		0C00FE9C20EA38F500B8F78A /* YBImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowser.m; sourceTree = "<group>"; };
+		0C00FE9E20EA38F500B8F78A /* YBImageBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserCell.m; sourceTree = "<group>"; };
+		0C00FE9F20EA38F500B8F78A /* YBImageBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserModel.h; sourceTree = "<group>"; };
+		0C00FEA020EA38F500B8F78A /* YBImageBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserView.m; sourceTree = "<group>"; };
+		0C00FEA120EA38F500B8F78A /* YBImageBrowserViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserViewLayout.h; sourceTree = "<group>"; };
+		0C00FEA220EA38F500B8F78A /* YBImageBrowserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserModel.m; sourceTree = "<group>"; };
+		0C00FEA320EA38F500B8F78A /* YBImageBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserCell.h; sourceTree = "<group>"; };
+		0C00FEA420EA38F500B8F78A /* YBImageBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserView.h; sourceTree = "<group>"; };
+		0C00FEA520EA38F500B8F78A /* YBImageBrowserViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserViewLayout.m; sourceTree = "<group>"; };
+		0C00FEA720EA38F500B8F78A /* YBImageBrowserScreenOrientationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserScreenOrientationProtocol.h; sourceTree = "<group>"; };
+		0C00FEA820EA38F500B8F78A /* NSBundle+YBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+YBImageBrowser.h"; sourceTree = "<group>"; };
+		0C00FEA920EA38F500B8F78A /* YBImageBrowserCopywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserCopywriter.h; sourceTree = "<group>"; };
+		0C00FEAA20EA38F500B8F78A /* YBImageBrowserUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserUtilities.h; sourceTree = "<group>"; };
+		0C00FEAB20EA38F500B8F78A /* YBImageBrowserDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserDownloader.h; sourceTree = "<group>"; };
+		0C00FEAC20EA38F500B8F78A /* YBImageBrowserCopywriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserCopywriter.m; sourceTree = "<group>"; };
+		0C00FEAD20EA38F500B8F78A /* NSBundle+YBImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+YBImageBrowser.m"; sourceTree = "<group>"; };
+		0C00FEAE20EA38F500B8F78A /* YBImageBrowserUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserUtilities.m; sourceTree = "<group>"; };
+		0C00FEAF20EA38F500B8F78A /* YBImageBrowserDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserDownloader.m; sourceTree = "<group>"; };
+		0C00FEB120EA38F500B8F78A /* YBImageBrowserPromptBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserPromptBar.m; sourceTree = "<group>"; };
+		0C00FEB220EA38F500B8F78A /* YBImageBrowserProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBImageBrowserProgressBar.m; sourceTree = "<group>"; };
+		0C00FEB320EA38F500B8F78A /* YBImageBrowserPromptBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserPromptBar.h; sourceTree = "<group>"; };
+		0C00FEB420EA38F500B8F78A /* YBImageBrowserProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowserProgressBar.h; sourceTree = "<group>"; };
+		0C00FEB520EA38F500B8F78A /* YBImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBImageBrowser.h; sourceTree = "<group>"; };
+		0C00FEB620EA38F500B8F78A /* YBImageBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YBImageBrowser.bundle; sourceTree = "<group>"; };
 		0C0235FF20BFC94C00B255AA /* DynamicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicDetailVC.h; sourceTree = "<group>"; };
 		0C02360020BFC94C00B255AA /* DynamicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailVC.m; sourceTree = "<group>"; };
 		0C0606A3207DAEC00045E3C1 /* CustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomerModel.h; sourceTree = "<group>"; };
@@ -410,6 +459,8 @@
 		0C0BED5620A992E1005A16A1 /* BMChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMChineseSort.m; sourceTree = "<group>"; };
 		0C0BED5920AA7F6A005A16A1 /* ApplyProjectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyProjectVC.h; sourceTree = "<group>"; };
 		0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyProjectVC.m; sourceTree = "<group>"; };
+		0C0C199F20EB14780086E739 /* XGToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGToolBar.h; sourceTree = "<group>"; };
+		0C0C19A020EB14780086E739 /* XGToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGToolBar.m; sourceTree = "<group>"; };
 		0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmValidVC.h; sourceTree = "<group>"; };
 		0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComfirmValidVC.m; sourceTree = "<group>"; };
 		0C1A013B20AC3F7700665BB9 /* ComfirmInValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmInValidVC.h; sourceTree = "<group>"; };
@@ -882,6 +933,103 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C00FE8F20EA38F500B8F78A /* 相册 */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FE9020EA38F500B8F78A /* YBImageBrowser */,
+			);
+			path = "相册";
+			sourceTree = "<group>";
+		};
+		0C00FE9020EA38F500B8F78A /* YBImageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FE9120EA38F500B8F78A /* Transition */,
+				0C00FE9420EA38F500B8F78A /* FunctionBar */,
+				0C00FE9920EA38F500B8F78A /* ToolBar */,
+				0C00FE9C20EA38F500B8F78A /* YBImageBrowser.m */,
+				0C00FE9D20EA38F500B8F78A /* CoreStructure */,
+				0C00FEA620EA38F500B8F78A /* Utilities */,
+				0C00FEB020EA38F500B8F78A /* AssistBar */,
+				0C00FEB520EA38F500B8F78A /* YBImageBrowser.h */,
+				0C00FEB620EA38F500B8F78A /* YBImageBrowser.bundle */,
+			);
+			path = YBImageBrowser;
+			sourceTree = "<group>";
+		};
+		0C00FE9120EA38F500B8F78A /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FE9220EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.h */,
+				0C00FE9320EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.m */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		0C00FE9420EA38F500B8F78A /* FunctionBar */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FE9520EA38F500B8F78A /* YBImageBrowserFunctionBar.h */,
+				0C00FE9620EA38F500B8F78A /* YBImageBrowserFunctionModel.m */,
+				0C00FE9720EA38F500B8F78A /* YBImageBrowserFunctionBar.m */,
+				0C00FE9820EA38F500B8F78A /* YBImageBrowserFunctionModel.h */,
+			);
+			path = FunctionBar;
+			sourceTree = "<group>";
+		};
+		0C00FE9920EA38F500B8F78A /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FE9A20EA38F500B8F78A /* YBImageBrowserToolBar.m */,
+				0C00FE9B20EA38F500B8F78A /* YBImageBrowserToolBar.h */,
+				0C0C199F20EB14780086E739 /* XGToolBar.h */,
+				0C0C19A020EB14780086E739 /* XGToolBar.m */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		0C00FE9D20EA38F500B8F78A /* CoreStructure */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FE9E20EA38F500B8F78A /* YBImageBrowserCell.m */,
+				0C00FE9F20EA38F500B8F78A /* YBImageBrowserModel.h */,
+				0C00FEA020EA38F500B8F78A /* YBImageBrowserView.m */,
+				0C00FEA120EA38F500B8F78A /* YBImageBrowserViewLayout.h */,
+				0C00FEA220EA38F500B8F78A /* YBImageBrowserModel.m */,
+				0C00FEA320EA38F500B8F78A /* YBImageBrowserCell.h */,
+				0C00FEA420EA38F500B8F78A /* YBImageBrowserView.h */,
+				0C00FEA520EA38F500B8F78A /* YBImageBrowserViewLayout.m */,
+			);
+			path = CoreStructure;
+			sourceTree = "<group>";
+		};
+		0C00FEA620EA38F500B8F78A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FEA720EA38F500B8F78A /* YBImageBrowserScreenOrientationProtocol.h */,
+				0C00FEA820EA38F500B8F78A /* NSBundle+YBImageBrowser.h */,
+				0C00FEA920EA38F500B8F78A /* YBImageBrowserCopywriter.h */,
+				0C00FEAA20EA38F500B8F78A /* YBImageBrowserUtilities.h */,
+				0C00FEAB20EA38F500B8F78A /* YBImageBrowserDownloader.h */,
+				0C00FEAC20EA38F500B8F78A /* YBImageBrowserCopywriter.m */,
+				0C00FEAD20EA38F500B8F78A /* NSBundle+YBImageBrowser.m */,
+				0C00FEAE20EA38F500B8F78A /* YBImageBrowserUtilities.m */,
+				0C00FEAF20EA38F500B8F78A /* YBImageBrowserDownloader.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0C00FEB020EA38F500B8F78A /* AssistBar */ = {
+			isa = PBXGroup;
+			children = (
+				0C00FEB120EA38F500B8F78A /* YBImageBrowserPromptBar.m */,
+				0C00FEB220EA38F500B8F78A /* YBImageBrowserProgressBar.m */,
+				0C00FEB320EA38F500B8F78A /* YBImageBrowserPromptBar.h */,
+				0C00FEB420EA38F500B8F78A /* YBImageBrowserProgressBar.h */,
+			);
+			path = AssistBar;
+			sourceTree = "<group>";
+		};
 		0C0606A2207DAE990045E3C1 /* 客户信息model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1429,6 +1577,7 @@
 		0CB6BB092074D23A00921C75 /* 相册 */ = {
 			isa = PBXGroup;
 			children = (
+				0C00FE8F20EA38F500B8F78A /* 相册 */,
 				0CF04F162075093100A45F4A /* view */,
 				0CB6BB0A2074D2BE00921C75 /* BuildingAlbumVC.h */,
 				0CB6BB0B2074D2BE00921C75 /* BuildingAlbumVC.m */,
@@ -2663,6 +2812,7 @@
 				0CA37B8C2089D511005609C7 /* BDDynamicTreeCell.xib in Resources */,
 				104B925720B7A408001583E2 /* yindaoye2.jpg in Resources */,
 				104B925620B7A408001583E2 /* yindaoye3.jpg in Resources */,
+				0C00FEC620EA38F500B8F78A /* YBImageBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2735,6 +2885,8 @@
 				0CBD859820872C8500E7B183 /* CustomTableHeader3.h in Sources */,
 				0C0BED2320A18F7A005A16A1 /* ComplaintCell.m in Sources */,
 				0CBD859920872C8500E7B183 /* CustomTableHeader3.m in Sources */,
+				0C00FEB920EA38F500B8F78A /* YBImageBrowserFunctionBar.m in Sources */,
+				0C00FEBE20EA38F500B8F78A /* YBImageBrowserModel.m in Sources */,
 				0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */,
 				0C2D02B120AD51BA002F1B4E /* AppealComplaintedVC.m in Sources */,
 				0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */,
@@ -2764,6 +2916,7 @@
 				0C0BED2B20A193E9005A16A1 /* UnDealVC.m in Sources */,
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */,
+				0C00FEC520EA38F500B8F78A /* YBImageBrowserProgressBar.m in Sources */,
 				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */,
 				0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */,
@@ -2782,16 +2935,19 @@
 				0CEBDE3720AEAC92004BAF7A /* QuickAddAndRecommendVC.m in Sources */,
 				0C0BED3A20A2CF74005A16A1 /* GZQGifHeader.m in Sources */,
 				10DBB1F5207CCACE00CFE59D /* KyoCenterLineView.m in Sources */,
+				0C00FEBB20EA38F500B8F78A /* YBImageBrowser.m in Sources */,
 				0C3AD55F2069DABC0059CE02 /* RoomDetailTableCell1.m in Sources */,
 				0C07BFC22060D835007F31EC /* UserModel.m in Sources */,
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CF89A6320C14BE600454EDD /* BingdingAccountVC.m in Sources */,
+				0C00FEC320EA38F500B8F78A /* YBImageBrowserDownloader.m in Sources */,
 				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
 				0C382E7020A03A01005472CD /* IdentifyTableCell.m in Sources */,
 				0C0BED3320A1A222005A16A1 /* DealComplaintingVC.m in Sources */,
 				0CC19D08206E30D60007CC5F /* CustomDetailTableCell2.m in Sources */,
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
+				0C0C19A120EB14780086E739 /* XGToolBar.m in Sources */,
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
@@ -2801,7 +2957,9 @@
 				10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */,
 				10174C0B2072179300D00B9A /* LicenceCell.m in Sources */,
 				0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */,
+				0C00FEBF20EA38F500B8F78A /* YBImageBrowserViewLayout.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
+				0C00FEC220EA38F500B8F78A /* YBImageBrowserUtilities.m in Sources */,
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
 				0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */,
 				0C02360120BFC94C00B255AA /* DynamicDetailVC.m in Sources */,
@@ -2820,6 +2978,7 @@
 				10B509772092EE0D004355C4 /* BrokerModel.m in Sources */,
 				0C0606A9207DB3050045E3C1 /* RoomListModel.m in Sources */,
 				1044B3F12099C3E5002D9BAE /* WebViewVC.m in Sources */,
+				0C00FEC120EA38F500B8F78A /* NSBundle+YBImageBrowser.m in Sources */,
 				0CF7425E206262EC001F926F /* BoxView.m in Sources */,
 				0C342FBA207E01510058406D /* CustomRequireModel.m in Sources */,
 				0CC19D1D207205CA0007CC5F /* ChangeAddessVC.m in Sources */,
@@ -2858,6 +3017,7 @@
 				0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */,
 				0C0B82522064FF6400238D4F /* WorkMessageVC.m in Sources */,
 				104B924E20B663EC001583E2 /* C_brokerageCell.m in Sources */,
+				0C00FEC420EA38F500B8F78A /* YBImageBrowserPromptBar.m in Sources */,
 				0CC19D01206E21500007CC5F /* ExperienceVC.m in Sources */,
 				0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */,
 				1016245E2088640300AD53DE /* YJChooseViewCell.m in Sources */,
@@ -2928,6 +3088,7 @@
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
 				0CEC62E5208DE786006EC0BD /* RoomBrokerageTableHeader.m in Sources */,
+				0C00FEB720EA38F500B8F78A /* YBImageBrowserAnimatedTransitioning.m in Sources */,
 				0CEC62DF208DDA62006EC0BD /* RoomBrokerageTableCell.m in Sources */,
 				0CEC62F1208F0017006EC0BD /* HouseTypeBriefModel.m in Sources */,
 				0CF04F63207C4CBF00A45F4A /* RecommendView.m in Sources */,
@@ -2940,6 +3101,7 @@
 				1069FFD4205795BE00E11F52 /* main.m in Sources */,
 				102DF9792057A1DD00E1859C /* CustomerVC.m in Sources */,
 				0C08BF77206CE919005BB3B4 /* MyAttentionVC.m in Sources */,
+				0C00FEBC20EA38F500B8F78A /* YBImageBrowserCell.m in Sources */,
 				0CC19CFE206E21110007CC5F /* AuthenticationVC.m in Sources */,
 				0CBD85932085FE5D00E7B183 /* RoomAnalyzeVC.m in Sources */,
 				0C0BED2720A191FF005A16A1 /* DealedVC.m in Sources */,
@@ -2949,6 +3111,7 @@
 				0CA37B802089C3C9005609C7 /* BoxViewCell.m in Sources */,
 				10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */,
 				0C0BED4020A40E42005A16A1 /* GZQGifFooter.m in Sources */,
+				0C00FEBA20EA38F500B8F78A /* YBImageBrowserToolBar.m in Sources */,
 				0C0B820E2063908E00238D4F /* CustomTableHeader.m in Sources */,
 				0C0B82532064FF6400238D4F /* SystemMessageCell.m in Sources */,
 				0C0BED1D20A18D94005A16A1 /* FailedDealCell.m in Sources */,
@@ -2958,6 +3121,7 @@
 				0C08BF5B206CB344005BB3B4 /* BrokerageCell.m in Sources */,
 				105E18F2206B6C340031558D /* NomineeCell.m in Sources */,
 				10174C18207C4EF600D00B9A /* CustomerInfoModel.m in Sources */,
+				0C00FEB820EA38F500B8F78A /* YBImageBrowserFunctionModel.m in Sources */,
 				1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */,
 				0CA37B7920897F16005609C7 /* AddTagCollFooter.m in Sources */,
 				0CF04F5C207B5B9D00A45F4A /* CompleteCustomVC1.m in Sources */,
@@ -2984,8 +3148,10 @@
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
+				0C00FEC020EA38F500B8F78A /* YBImageBrowserCopywriter.m in Sources */,
 				0C0BED3D20A2D0C7005A16A1 /* GZQAnimation.m in Sources */,
 				1044B3F4209C6BA1002D9BAE /* SingleHouseCell.m in Sources */,
+				0C00FEBD20EA38F500B8F78A /* YBImageBrowserView.m in Sources */,
 				0C08BF7B206DCEEB005BB3B4 /* AttentionTableCell.m in Sources */,
 				0CBD85A7208863C200E7B183 /* TagView2.m in Sources */,
 				0C08BF57206C835B005BB3B4 /* BrokerageTableCell.m in Sources */,

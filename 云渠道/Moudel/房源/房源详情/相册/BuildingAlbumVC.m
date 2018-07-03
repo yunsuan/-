@@ -9,6 +9,7 @@
 #import "BuildingAlbumVC.h"
 #import "BuildingAlbumCollCell.h"
 
+
 @interface BuildingAlbumVC ()<UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     
@@ -140,14 +141,15 @@
     
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width * _total, _scrollView.frame.size.height)];
     for (int i = 0; i < _total; i++) {
+
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, _scrollView.frame.size.height)];
         img.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:img];
         [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_allArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-           
+
             if (error) {
-                
+
                 img.image = [UIImage imageNamed:@"banner_default_2"];
             }
         }];
@@ -213,10 +215,6 @@
     _currentL.text = [NSString stringWithFormat:@"%@1/%d",_imgArr[indexPath.item][@"name"],[_imgArr[indexPath.item][@"data"] count]];
 }
 
-//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-//
-//
-//}
 
 - (void)initUI{
     
@@ -229,8 +227,6 @@
     
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT - 55 *SIZE - TAB_BAR_MORE)];
     _scrollView.delegate = self;
-    _scrollView.minimumZoomScale = 0.5;
-    _scrollView.maximumZoomScale = 3;
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width * _imgArr.count, _scrollView.bounds.size.height)];
     _scrollView.pagingEnabled = YES;
     _scrollView.showsVerticalScrollIndicator = NO;
