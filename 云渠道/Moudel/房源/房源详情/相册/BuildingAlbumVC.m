@@ -9,6 +9,7 @@
 #import "BuildingAlbumVC.h"
 #import "BuildingAlbumCollCell.h"
 
+
 @interface BuildingAlbumVC ()<UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     
@@ -140,14 +141,15 @@
     
     [_scrollView setContentSize:CGSizeMake(SCREEN_Width * _total, _scrollView.frame.size.height)];
     for (int i = 0; i < _total; i++) {
+
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, _scrollView.frame.size.height)];
         img.contentMode = UIViewContentModeScaleAspectFit;
         [_scrollView addSubview:img];
         [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_allArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-           
+
             if (error) {
-                
+
                 img.image = [UIImage imageNamed:@"banner_default_2"];
             }
         }];

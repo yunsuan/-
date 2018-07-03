@@ -82,20 +82,115 @@
 
 - (void)SetData:(NSDictionary *)data{
     
+    NSMutableDictionary *tempData = [[NSMutableDictionary alloc] init];
     
-    NSArray *arr1 = @[data[@"project_name"],data[@"sale_state"],data[@"developer_name"],[NSString stringWithFormat:@"%@-%@-%@",data[@"province_name"],data[@"city_name"],data[@"district_name"]],data[@"decoration_company"],data[@"absolute_address"],data[@"sale_address"]];
-    NSArray *arr2 = @[data[@"build_type"],[NSString stringWithFormat:@"%@元/㎡",data[@"average_price"]],[NSString stringWithFormat:@"%@万-%@万",data[@"min_price"],data[@"max_price"]],[NSString stringWithFormat:@"%@㎡ ",data[@"floor_space"]],data[@"decoration_standard"],[NSString stringWithFormat:@"%@㎡",data[@"covered_area"]],[NSString stringWithFormat:@"%@",data[@"plot_retio"]],[NSString stringWithFormat:@"%@%@",data[@"greening_rate"],@"%"],[NSString stringWithFormat:@"%@",data[@"households_num"]],[NSString stringWithFormat:@"%@",data[@"parking_num"]]];
-    NSArray *arr3 = @[[data[@"property"] componentsJoinedByString:@","],data[@"property_company_name"],[NSString stringWithFormat:@"%@元/㎡/月",data[@"property_cost"]],data[@"heat_supply"],data[@"water_supply"],data[@"power_supply"]];
+    [data enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        if ([key isEqualToString:@"property"]) {
+            
+            [tempData setObject:obj forKey:key];
+        }else{
+            
+            if ([key isEqualToString:@"sale_permit"]) {
+                
+                [tempData setObject:obj forKey:key];
+            }else{
+                
+                [tempData setObject:[NSString stringWithFormat:@"%@",obj] forKey:key];
+            }
+        }
+    }];
+    
+    [tempData enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        if ([key isEqualToString:@"property"]) {
+            
+            
+        }else{
+            
+            if ([key isEqualToString:@"sale_permit"]) {
+                
+                
+            }else{
+                
+                if ([obj isEqualToString:@""]) {
+                    
+                    [tempData setObject:@"暂无数据" forKey:key];
+                }else{
+                    
+                    if ([key isEqualToString:@"average_price"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@元/㎡",obj] forKey:key];
+                        }
+                    }
+                    
+                    if ([key isEqualToString:@"floor_space"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@㎡",obj] forKey:key];
+                        }
+                    }
+                    
+                    if ([key isEqualToString:@"covered_area"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@㎡",obj] forKey:key];
+                        }
+                    }
+                    
+                    if ([key isEqualToString:@"greening_rate"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@%@",obj,@"%"] forKey:key];
+                        }
+                    }
+                    
+                    if ([key isEqualToString:@"property_cost"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@元/㎡/月",obj] forKey:key];
+                        }
+                    }
+                }
+            }
+        }
+    }];
+    
+    
+    NSArray *arr1 = @[tempData[@"project_name"],tempData[@"sale_state"],tempData[@"developer_name"],[NSString stringWithFormat:@"%@-%@-%@",tempData[@"province_name"],tempData[@"city_name"],tempData[@"district_name"]],tempData[@"decoration_company"],tempData[@"absolute_address"],tempData[@"sale_address"]];
+    NSArray *arr2 = @[tempData[@"build_type"],[NSString stringWithFormat:@"%@",tempData[@"average_price"]],[NSString stringWithFormat:@"%@万-%@万",tempData[@"min_price"],tempData[@"max_price"]],[NSString stringWithFormat:@"%@ ",tempData[@"floor_space"]],tempData[@"decoration_standard"],[NSString stringWithFormat:@"%@",tempData[@"covered_area"]],[NSString stringWithFormat:@"%@",tempData[@"plot_retio"]],[NSString stringWithFormat:@"%@",tempData[@"greening_rate"]],[NSString stringWithFormat:@"%@",tempData[@"households_num"]],[NSString stringWithFormat:@"%@",tempData[@"parking_num"]]];
+    NSArray *arr3 = @[[tempData[@"property"] componentsJoinedByString:@","],tempData[@"property_company_name"],[NSString stringWithFormat:@"%@",tempData[@"property_cost"]],tempData[@"heat_supply"],tempData[@"water_supply"],tempData[@"power_supply"]];
     
     NSArray *tempArr = @[@"发证时间"];
     NSMutableArray *arr4 = [NSMutableArray arrayWithArray:tempArr];
-    for (NSDictionary *dic in data[@"sale_permit"]) {
+    for (NSDictionary *dic in tempData[@"sale_permit"]) {
         
         [arr4 addObject:dic[@"permit_time"]];
     }
     NSArray *tempArr1 = @[@"预售许可证"];
     NSMutableArray *arr5 = [NSMutableArray arrayWithArray:tempArr1];
-    for (NSDictionary *dic in data[@"sale_permit"]) {
+    for (NSDictionary *dic in tempData[@"sale_permit"]) {
         
         [arr5 addObject:dic[@"sale_permit"]];
     }
