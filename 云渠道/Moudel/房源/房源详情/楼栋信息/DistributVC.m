@@ -63,16 +63,16 @@
 -(void)initUI
 {
     
-    //2.创建URL
-    NSURL *URL = [NSURL URLWithString:@"http://120.27.21.136:2798/360/test4/index.html"];
-    //    NSURL *URL = [NSURL URLWithString:@"http://www.ccsoft.com.cn"];
-    
-    //3.创建Request
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    //4.加载Request
-    [self.webwivw loadRequest:request];
-    [self.view addSubview:self.webwivw];
-//    [self.view addSubview:self.backimg];
+//    //2.创建URL
+//    NSURL *URL = [NSURL URLWithString:@"http://120.27.21.136:2798/360/test4/index.html"];
+//    //    NSURL *URL = [NSURL URLWithString:@"http://www.ccsoft.com.cn"];
+//
+//    //3.创建Request
+//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+//    //4.加载Request
+//    [self.webwivw loadRequest:request];
+//    [self.view addSubview:self.webwivw];
+    [self.view addSubview:self.backimg];
     [self.view addSubview:self.leftbutton];
     [self.view addSubview:self.openbtn];
     [self.view addSubview:self.drawerview];
