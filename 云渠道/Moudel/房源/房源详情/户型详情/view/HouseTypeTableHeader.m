@@ -42,8 +42,9 @@
     if (!imgArr.count) {
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:_scrollView.frame];
-        img.contentMode = UIViewContentModeScaleAspectFit;
+        img.contentMode = UIViewContentModeScaleAspectFill;
         img.image = [UIImage imageNamed:@"default_3"];
+        img.clipsToBounds = YES;
         [self.contentView addSubview:img];
     }
     _imgArr = [NSMutableArray arrayWithArray:imgArr];
@@ -72,7 +73,8 @@
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, _scrollView.frame.size.height)];
         img.backgroundColor = YJTitleLabColor;
-        img.contentMode = UIViewContentModeScaleAspectFit;
+        img.contentMode = UIViewContentModeScaleAspectFill;
+        img.clipsToBounds = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ActionImgBtn)];
         [img addGestureRecognizer:tap];
         img.userInteractionEnabled = YES;
