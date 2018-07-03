@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class HouseTypeTableHeader;
+
+typedef void(^HouseTypeImgBtnBlock)(NSInteger num,NSArray *imgArr);
+
 @interface HouseTypeTableHeader : UITableViewHeaderFooterView
+
+@property (nonatomic, copy) HouseTypeImgBtnBlock houseTypeImgBtnBlock;
 
 @property (nonatomic, strong) UIImageView *bigImg;
 

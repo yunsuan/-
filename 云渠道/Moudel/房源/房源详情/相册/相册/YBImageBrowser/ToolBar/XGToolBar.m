@@ -21,15 +21,17 @@
 
 @implementation XGToolBar
 
-- (instancetype)initWithFrame:(CGRect)frame projectId:(NSString *)projectId
+- (instancetype)initWithFrame:(CGRect)frame projectId:(NSString *)projectId albumArr:(NSArray *)albumArr
 {
     self = [super initWithFrame:frame];
     if (self) {
         
-        _imgArr = [@[] mutableCopy];
+//        _imgArr = [@[] mutableCopy];
+        _imgArr = [NSMutableArray arrayWithArray:albumArr];
         _projectId = projectId;
         [self initUI];
-        [self RequestMethod];
+        [self SetData:_imgArr];
+//        [self RequestMethod];
     }
     return self;
 }
@@ -61,7 +63,7 @@
             
             NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
             
-            [_imgArr addObject:tempDic];
+//            [_imgArr addObject:tempDic];
             
             
             for (int j = 0; j < [tempDic[@"data"] count]; j++) {

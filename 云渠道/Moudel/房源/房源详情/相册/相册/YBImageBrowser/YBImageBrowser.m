@@ -495,7 +495,7 @@ static BOOL _statusBarIsHideBefore = NO;    //状态栏在模态切换之前是�
     
     if (!_xgToolBar) {
         
-        _xgToolBar = [[XGToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_Height - 100 *SIZE, SCREEN_Width, 100 *SIZE) projectId:self.projectId];
+        _xgToolBar = [[XGToolBar alloc] initWithFrame:CGRectMake(0, SCREEN_Height - 100 *SIZE, SCREEN_Width, 100 *SIZE) projectId:self.projectId albumArr:self.albumArr];
         _xgToolBar.delegate = self;
     }
     return _xgToolBar;

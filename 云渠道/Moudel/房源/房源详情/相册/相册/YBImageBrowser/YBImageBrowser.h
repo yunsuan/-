@@ -132,6 +132,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *projectId;
 
+@property (nonatomic, strong) NSArray *albumArr;
+
 @property (nonatomic, strong) XGToolBar *xgToolBar;
 /**
  取消长按手势的响应

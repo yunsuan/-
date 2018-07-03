@@ -16,6 +16,8 @@
 
 @interface XGToolBar : UIView
 
+//@property (nonatomic, strong) NSArray *albumArr;
+
 @property (nonatomic, strong) UILabel *currentL;
 
 @property (nonatomic, strong) UILabel *allL;
@@ -28,7 +30,7 @@
 
 //@property (nonatomic, strong) NSString *projectId;
 
--(instancetype)initWithFrame:(CGRect)frame projectId:(NSString *)projectId;
+-(instancetype)initWithFrame:(CGRect)frame projectId:(NSString *)projectId albumArr:(NSArray *)albumArr;
 
 - (void)setTitleLabelWithCurrentIndex:(NSUInteger)index totalCount:(NSUInteger)totalCount;
 @end
