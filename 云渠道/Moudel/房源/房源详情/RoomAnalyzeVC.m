@@ -49,7 +49,7 @@
     
     [BaseRequest GET:HouseTypeAnalyse_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+        NSLog(@"%@",resposeObject); 
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -137,7 +137,7 @@
                 cell.contentL.text = _dataDic[@"advantage"];
             }else{
                 
-                cell.contentL.text = @"项目很懒，没有优势";
+                cell.contentL.text = @"暂无数据";
             }
             break;
         }
@@ -149,7 +149,7 @@
                 cell.contentL.text = _dataDic[@"rim"];
             }else{
                 
-                cell.contentL.text = @"项目很懒，没有分析";
+                cell.contentL.text = @"暂无数据";
             }
             break;
         }
@@ -161,7 +161,7 @@
                 cell.contentL.text = _dataDic[@"fetch"];
             }else{
                 
-                cell.contentL.text = @"项目很懒，没有适合人群";
+                cell.contentL.text = @"暂无数据";
             }
             break;
         }
@@ -173,7 +173,7 @@
                 cell.contentL.text = _dataDic[@"increase_value"];
             }else{
                 
-                cell.contentL.text = @"项目很懒，没有升值空间";
+                cell.contentL.text = @"暂无数据";
             }
             break;
         }

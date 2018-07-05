@@ -182,7 +182,7 @@
 - (void)initUI{
     
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"待确认详情";
+    self.titleLabel.text = @"待成交详情";
   
 
     

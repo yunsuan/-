@@ -162,6 +162,42 @@
                         }
                     }
                     
+                    if ([key isEqualToString:@"parking_num"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@%@",obj,@"%"] forKey:key];
+                        }
+                    }
+                    
+                    if ([key isEqualToString:@"households_num"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@%@",obj,@"%"] forKey:key];
+                        }
+                    }
+                    
+                    
+                    if ([key isEqualToString:@"plot_retio"]) {
+                        
+                        if ([obj isEqualToString:@"0"]) {
+                            
+                            [tempData setObject:@"暂无数据" forKey:key];
+                        }else{
+                            
+                            [tempData setObject:[NSString stringWithFormat:@"%@%@",obj,@"%"] forKey:key];
+                        }
+                    }
+                    
+#pragma warning ---- 修改  ---
+                    
                     if ([key isEqualToString:@"property_cost"]) {
                         
                         if ([obj isEqualToString:@"0"]) {

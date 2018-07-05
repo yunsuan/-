@@ -293,11 +293,9 @@
                 }
             }];
         }else{
-            
             [self alertControllerWithNsstring:@"温馨提示" And:@"获取分享链接失败"];
         }
     } failure:^(NSError *error) {
-        
         [self alertControllerWithNsstring:@"温馨提示" And:@"获取分享链接失败"];
         NSLog(@"%@",error);
     }];
