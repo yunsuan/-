@@ -17,12 +17,8 @@
 //static NSString *const Base_Net = @"http://120.27.21.136:2798/";
 
 
-//可切换接口
-
-//static NSString *const TestBase_Net =
-
 ////演示接口
-//
+
 //static NSString *const TestBase_Net = @"http://47.106.39.169:2797/";
 
 //基础接口正式
