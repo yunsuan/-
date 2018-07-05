@@ -111,7 +111,7 @@
 //        return;
 //    }
     
-    if ([_role isEqualToString:@"到访确认人"]) {
+    if ([_roleL.text isEqualToString:@"到访确认人"]) {
         
         if (!_projectId) {
             
