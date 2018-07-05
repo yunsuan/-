@@ -37,6 +37,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ServerControl" ofType:@"plist"];
+//    NSMutableArray *data1 = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
+    NSMutableArray *arr = [[NSMutableArray alloc]initWithContentsOfFile:filePath];
+    if (arr.count != 1) {
+        NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
+        [dataarr writeToFile:filePath atomically:YES];
+    }
+
+
+    
+
+    
+    
+    
+    
     [Bugtags startWithAppKey:@"1560323d00d5dac86cd32d7b0d130787" invocationEvent:BTGInvocationEventNone];
     [self postVersion];
     dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);

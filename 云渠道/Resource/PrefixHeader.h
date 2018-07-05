@@ -57,6 +57,9 @@
 #define SCREEN_Height [UIScreen mainScreen].bounds.size.height
 #define IMAGE_WITH_NAME(x) [UIImage imageNamed:[NSString stringWithFormat:@"%@",x]]
 
+
+
+#define TestBase_Net  [[[NSMutableArray alloc]initWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"]] objectAtIndex:0]
 #define COLOR_RGB(_R,_G,_B,_A)[UIColor colorWithRed:_R/255.0 green:_G/255.0 blue:_B/255.0 alpha:_A]
 
 #define cycleScrollViewHeight 170 * SIZE

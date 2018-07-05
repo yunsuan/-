@@ -28,6 +28,7 @@
 @property (nonatomic , strong) UIButton  *QQBtn;
 @property (nonatomic , strong) UIButton  *WEIBOBTN;
 @property (nonatomic, strong) JudgeView *judgeView;
+@property (nonatomic, strong) UIButton *settingbtn;
 @end
 
 @implementation LoginVC
@@ -44,6 +45,7 @@
     [self.view addSubview:self.RegisterBtn];
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
+    [self.view addSubview:self.settingbtn];
     
     if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession] && [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
 
@@ -293,6 +295,7 @@
 }
 
 -(void)Login{
+    [self alertControllerWithNsstring:@"服务器地址" And:TestBase_Net];
     
     if (_PassWord.text.length<6) {
         [self showContent:@"密码长度至少为6位"];
@@ -487,5 +490,65 @@
     }
     return _judgeView;
 }
+
+-(UIButton *)settingbtn
+{
+    if (!_settingbtn) {
+        _settingbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _settingbtn.center = CGPointMake(SCREEN_Width - 25 * SIZE, STATUS_BAR_HEIGHT+20);
+        _settingbtn.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
+        [_settingbtn addTarget:self action:@selector(action_sever) forControlEvents:UIControlEventTouchUpInside];
+        [_settingbtn setImage:[UIImage imageNamed:@"housing_selected"] forState:UIControlStateNormal];
+    }
+    return _settingbtn;
+}
+
+-(void)action_sever
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"服务器选择" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction *cs = [UIAlertAction actionWithTitle:@"测试服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
+        NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
+        [dataarr writeToFile:filePath atomically:YES];
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@"1"];
+//        [data1 setObject:data atIndexedSubscript:0];
+//        NSArray *dataarr = [data1 copy];
+//        [dataarr writeToFile:filePath atomically:YES];
+//
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@"1"];
+//        [self.dic setValue:data forKey:QZONE_VIP_INFO];
+
+    }];
+        
+
+    
+    UIAlertAction *ys = [UIAlertAction actionWithTitle:@"演示服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
+        NSArray *dataarr  = @[@"http://47.106.39.169:2797/"];
+        [dataarr writeToFile:filePath atomically:YES];
+     
+    }];
+    
+    UIAlertAction *zs = [UIAlertAction actionWithTitle:@"正式服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
+        NSArray *dataarr  = @[@"http://120.78.69.178:2902/"];
+        [dataarr writeToFile:filePath atomically:YES];
+    }];
+    
+    [alert addAction:cs];
+    [alert addAction:ys];
+    [alert addAction:zs];
+    [alert addAction:cancel];
+    [self.navigationController presentViewController:alert animated:YES completion:^{
+        
+    }];
+}
+
 
 @end
