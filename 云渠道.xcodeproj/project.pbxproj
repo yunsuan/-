@@ -75,6 +75,8 @@
 		0C0BED5720A992E1005A16A1 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5620A992E1005A16A1 /* BMChineseSort.m */; };
 		0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */; };
 		0C0C19A120EB14780086E739 /* XGToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C19A020EB14780086E739 /* XGToolBar.m */; };
+		0C0C1A2720EE16B00086E739 /* CompanyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C1A2620EE16B00086E739 /* CompanyDetailCell.m */; };
+		0C0C1A2A20EE1C6F0086E739 /* CompanyDetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C1A2920EE1C6F0086E739 /* CompanyDetailHeaderCell.m */; };
 		0C1A013A20AC28C300665BB9 /* ComfirmValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */; };
 		0C1A013D20AC3F7700665BB9 /* ComfirmInValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */; };
 		0C1A014020AC566100665BB9 /* DealValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013F20AC566100665BB9 /* DealValidVC.m */; };
@@ -461,6 +463,10 @@
 		0C0BED5A20AA7F6A005A16A1 /* ApplyProjectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyProjectVC.m; sourceTree = "<group>"; };
 		0C0C199F20EB14780086E739 /* XGToolBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XGToolBar.h; sourceTree = "<group>"; };
 		0C0C19A020EB14780086E739 /* XGToolBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XGToolBar.m; sourceTree = "<group>"; };
+		0C0C1A2520EE16B00086E739 /* CompanyDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyDetailCell.h; sourceTree = "<group>"; };
+		0C0C1A2620EE16B00086E739 /* CompanyDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailCell.m; sourceTree = "<group>"; };
+		0C0C1A2820EE1C6F0086E739 /* CompanyDetailHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyDetailHeaderCell.h; sourceTree = "<group>"; };
+		0C0C1A2920EE1C6F0086E739 /* CompanyDetailHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailHeaderCell.m; sourceTree = "<group>"; };
 		0C1A013820AC28C300665BB9 /* ComfirmValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmValidVC.h; sourceTree = "<group>"; };
 		0C1A013920AC28C300665BB9 /* ComfirmValidVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComfirmValidVC.m; sourceTree = "<group>"; };
 		0C1A013B20AC3F7700665BB9 /* ComfirmInValidVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComfirmInValidVC.h; sourceTree = "<group>"; };
@@ -1644,6 +1650,10 @@
 			children = (
 				0CC19CEB206E21100007CC5F /* CompanyDetailVC.m */,
 				0CC19CEC206E21100007CC5F /* CompanyDetailVC.h */,
+				0C0C1A2520EE16B00086E739 /* CompanyDetailCell.h */,
+				0C0C1A2620EE16B00086E739 /* CompanyDetailCell.m */,
+				0C0C1A2820EE1C6F0086E739 /* CompanyDetailHeaderCell.h */,
+				0C0C1A2920EE1C6F0086E739 /* CompanyDetailHeaderCell.m */,
 			);
 			path = "公司详情";
 			sourceTree = "<group>";
@@ -1661,8 +1671,8 @@
 			isa = PBXGroup;
 			children = (
 				0CC19CF2206E21100007CC5F /* SelectCompanyTableCell.h */,
-				0CC19CF3206E21100007CC5F /* SelectCompanyCollCell.m */,
 				0CC19CF4206E21100007CC5F /* SelectCompanyTableCell.m */,
+				0CC19CF3206E21100007CC5F /* SelectCompanyCollCell.m */,
 				0CC19CF5206E21100007CC5F /* SelectCompanyCollCell.h */,
 			);
 			path = view;
@@ -2998,6 +3008,7 @@
 				0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
+				0C0C1A2720EE16B00086E739 /* CompanyDetailCell.m in Sources */,
 				0CBD85A3208835F300E7B183 /* CustomDetailTableCell5.m in Sources */,
 				0CB6BB022074A9A300921C75 /* HouseTypeTableHeader.m in Sources */,
 				0CC19CF9206E21110007CC5F /* CompanyDetailVC.m in Sources */,
@@ -3012,6 +3023,7 @@
 				0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				105E18FA206C829A0031558D /* SinglePickView.m in Sources */,
+				0C0C1A2A20EE1C6F0086E739 /* CompanyDetailHeaderCell.m in Sources */,
 				0CEC62F420917668006EC0BD /* RankView.m in Sources */,
 				1044B3FB20A03654002D9BAE /* TypeOneVC.m in Sources */,
 				0CF04F81207C9C8A00A45F4A /* HouseSearchVC.m in Sources */,

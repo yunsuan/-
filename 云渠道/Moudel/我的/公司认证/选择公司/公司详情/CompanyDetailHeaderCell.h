@@ -1,15 +1,16 @@
 //
-//  SelectCompanyTableCell.h
+//  CompanyDetailHeaderCell.h
 //  云渠道
 //
-//  Created by 谷治墙 on 2018/3/23.
+//  Created by 谷治墙 on 2018/7/5.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
 #import "CompanyModel.h"
 
-@interface SelectCompanyTableCell : UITableViewCell
+@interface CompanyDetailHeaderCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *headImg;
 
@@ -26,5 +27,4 @@
 @property (nonatomic, strong) UIView *line;
 
 @property (nonatomic, strong) CompanyModel *model;
-
 @end
