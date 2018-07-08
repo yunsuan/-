@@ -15,7 +15,6 @@ typedef void(^confirmBtnBlock)(NSInteger index);
 
 @interface RecommendCell : UITableViewCell
 
-
 @property (nonatomic, copy) confirmBtnBlock confirmBtnBlock;
 
 @property (nonatomic, strong) UIButton *confirmBtn;
@@ -33,6 +32,8 @@ typedef void(^confirmBtnBlock)(NSInteger index);
 @property (nonatomic, strong) UILabel *projectL;
 
 @property (nonatomic, strong) UILabel *addressL;
+
+@property (nonatomic, strong) UIView *lineView;
 
 @property (nonatomic, strong) NSMutableDictionary *dataDic;
 
