@@ -113,7 +113,7 @@
     
     if ([_roleL.text isEqualToString:@"到访确认人"]) {
         
-        if (!_projectId) {
+        if (!_projectId.length) {
             
             [self showContent:@"请选择申请项目"];
             return;
@@ -147,7 +147,7 @@
     [dic setObject:_companyId forKey:@"company_id"];
     [dic setObject:_role forKey:@"role"];
     [dic setObject:_numTextField.text forKey:@"work_code"];
-    if ([_role isEqualToString:@"到访确认人"]) {
+    if ([_roleL.text isEqualToString:@"到访确认人"]) {
         
         [dic setObject:_projectId forKey:@"project_id"];
     }
@@ -225,6 +225,8 @@
                 
                 _companyId = companyId;
                 _companyL.text = name;
+                _projectL.text = @"";
+                _projectId = @"";
             };
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
@@ -243,6 +245,8 @@
                
                 _role = @"1";
                 _roleL.text = @"经纪人";
+                _projectL.text = @"";
+                _projectId = @"";
             }];
             
             UIAlertAction *comfirm = [UIAlertAction actionWithTitle:@"到访确认人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

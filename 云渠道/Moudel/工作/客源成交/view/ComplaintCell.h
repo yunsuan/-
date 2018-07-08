@@ -30,6 +30,8 @@ typedef void(^ComplaintCellCellPhoneBtnBlock)(NSInteger index);
 
 @property (nonatomic, strong) UIButton *phoneBtn;
 
+@property (nonatomic, strong) UIView *lineView;
+
 @property (nonatomic, strong) NSMutableDictionary *dataDic;
 
 @end

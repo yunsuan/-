@@ -855,20 +855,20 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (_index == 0) {
-        
-        return 132 *SIZE;
-        
-    }else if (_index < 3){
-        
-        return 107 *SIZE;
-    }else{
-        
-        return 103 *SIZE;
-    }
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    if (_index == 0) {
+//        
+//        return 132 *SIZE;
+//        
+//    }else if (_index < 3){
+//        
+//        return 107 *SIZE;
+//    }else{
+//        
+//        return 103 *SIZE;
+//    }
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -1049,6 +1049,8 @@
     {
         _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
         _MainTableView.backgroundColor = YJBackColor;
+        _MainTableView.rowHeight = UITableViewAutomaticDimension;
+        _MainTableView.estimatedRowHeight = 130 *SIZE;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -1094,15 +1096,6 @@
     return _MainTableView;
 }
 
-
-//- (InvalidView *)invalidView{
-//
-//    if (!_invalidView) {
-//
-//        _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-//    }
-//    return _invalidView;
-//}
 
 
 @end

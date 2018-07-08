@@ -487,6 +487,8 @@
     [_nomineeColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
     
     _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
+    _MainTableView.rowHeight = UITableViewAutomaticDimension;
+    _MainTableView.estimatedRowHeight = 130 *SIZE;
     _MainTableView.backgroundColor = YJBackColor;
     _MainTableView.delegate = self;
     _MainTableView.dataSource = self;
@@ -644,17 +646,17 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (_index == 2) {
-        
-        return 133 *SIZE;
-    }else if (_index == 3){
-        
-        return 103 *SIZE;
-    }
-    return 128 *SIZE;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    if (_index == 2) {
+//
+//        return 133 *SIZE;
+//    }else if (_index == 3){
+//
+//        return 103 *SIZE;
+//    }
+//    return 128 *SIZE;
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
