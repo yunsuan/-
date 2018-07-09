@@ -18,11 +18,11 @@
 
 
 ////演示接口
-
+//
 //static NSString *const TestBase_Net = @"http://47.106.39.169:2797/";
 
-//基础接口正式
-
+////基础接口正式
+//
 //static NSString *const TestBase_Net = @"http://120.78.69.178:2902/";
 
 

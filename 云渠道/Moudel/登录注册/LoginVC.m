@@ -295,7 +295,7 @@
 }
 
 -(void)Login{
-    [self alertControllerWithNsstring:@"服务器地址" And:TestBase_Net];
+//    [self alertControllerWithNsstring:@"服务器地址" And:TestBase_Net];
     
     if (_PassWord.text.length<6) {
         [self showContent:@"密码长度至少为6位"];

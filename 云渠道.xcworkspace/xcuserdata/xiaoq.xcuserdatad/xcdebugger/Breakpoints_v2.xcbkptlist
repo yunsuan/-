@@ -244,7 +244,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E6%B7%BB%E5%8A%A0%E9%9C%80%E6%B1%82/AddRequireMentVC.m"
-                  timestampString = "552554736.914904"
+                  timestampString = "552797662.923169"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "533"
@@ -259,7 +259,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E6%B7%BB%E5%8A%A0%E9%9C%80%E6%B1%82/AddRequireMentVC.m"
-                  timestampString = "552554736.916904"
+                  timestampString = "552797662.925595"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "533"
@@ -274,7 +274,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%AE%A2%E6%BA%90/%E5%AE%A2%E6%88%B7%E8%AF%A6%E6%83%85/%E6%B7%BB%E5%8A%A0%E9%9C%80%E6%B1%82/AddRequireMentVC.m"
-                  timestampString = "552554736.918887"
+                  timestampString = "552797662.92837"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "533"
@@ -387,7 +387,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E6%97%A0%E6%95%88%E8%AF%A6%E6%83%85/InvalidVC.m"
-                  timestampString = "552554736.953719"
+                  timestampString = "552797662.955964"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
@@ -402,7 +402,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E6%97%A0%E6%95%88%E8%AF%A6%E6%83%85/InvalidVC.m"
-                  timestampString = "552554736.95611"
+                  timestampString = "552797662.9583139"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "143"
@@ -417,7 +417,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E5%B7%A5%E4%BD%9C/%E6%8E%A8%E8%8D%90/%E6%97%A0%E6%95%88%E8%AF%A6%E6%83%85/InvalidVC.m"
-                  timestampString = "552554736.958541"
+                  timestampString = "552797662.961201"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "141"
@@ -498,7 +498,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x516c;&#x53f8;&#x8ba4;&#x8bc1;/AuthenticationVC.m"
-            timestampString = "552554736.73081"
+            timestampString = "552797662.53844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -514,12 +514,12 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E5%85%AC%E5%8F%B8%E8%AE%A4%E8%AF%81/AuthenticationVC.m"
-                  timestampString = "552554736.983161"
+                  timestampString = "552797662.9925309"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
                   endingLineNumber = "173"
-                  offsetFromSymbolStart = "2008">
+                  offsetFromSymbolStart = "2096">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -529,7 +529,7 @@
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E5%85%AC%E5%8F%B8%E8%AE%A4%E8%AF%81/AuthenticationVC.m"
-                  timestampString = "552554736.985181"
+                  timestampString = "552797662.997761"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "176"
@@ -540,11 +540,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.337"
+                  symbolName = "__destroy_helper_block_.341"
                   moduleName = "&#x4e91;&#x6e20;&#x9053;"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wjq/Downloads/yunqudao/%E4%BA%91%E6%B8%A0%E9%81%93/Moudel/%E6%88%91%E7%9A%84/%E5%85%AC%E5%8F%B8%E8%AE%A4%E8%AF%81/AuthenticationVC.m"
-                  timestampString = "552554736.987247"
+                  timestampString = "552797663.000078"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -552,6 +552,22 @@
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x6211;&#x7684;/&#x516c;&#x53f8;&#x8ba4;&#x8bc1;/AuthenticationVC.m"
+            timestampString = "552797662.53851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-ActionTagBtn:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
