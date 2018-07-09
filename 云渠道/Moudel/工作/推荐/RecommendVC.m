@@ -878,6 +878,7 @@
         
         RecommendCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
+            
             cell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -919,6 +920,9 @@
                         }
                     } failure:^(NSError *error) {
                         
+                        [self alertControllerWithNsstring:@"温馨提示" And:@"操作失败" WithDefaultBlack:^{
+                            
+                        }];
                     }];
                 };
                 
