@@ -10,4 +10,6 @@
 
 @interface ChangeNameVC : BaseViewController
 
+- (instancetype)initWithName:(NSString *)name;
+
 @end

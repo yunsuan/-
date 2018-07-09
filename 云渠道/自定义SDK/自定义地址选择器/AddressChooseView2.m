@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) UITableView *districtTable;
 
-@property(nonatomic, strong) NSArray * provinceArray;
+@property(nonatomic, strong) NSMutableArray * provinceArray;
 
 @property(nonatomic, strong) NSMutableArray * cityArray;
 
@@ -440,7 +440,17 @@
 
 -(void)getprovincearray
 {
-    _provinceArray = _dataSource;
+    _provinceArray = [NSMutableArray arrayWithArray:_dataSource];
+    
+    NSDictionary *dic = @{@"code":@"",
+                          @"name":@"不限",
+                          @"city":@[@{@"code":@"",
+                                      @"name":@"不限",
+                                      @"district":@[@{@"code":@"",
+                                                      @"name":@"不限"
+                                                      }]
+                                      }]};
+    [_provinceArray insertObject:dic atIndex:0];
 }
 
 -(void)getCityArrayByprovince:(NSInteger)num

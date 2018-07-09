@@ -149,6 +149,20 @@
 
 - (void)ActionCancelBtn:(UIButton *)btn{
     
+    [_tagSelectArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [_tagSelectArr replaceObjectAtIndex:idx withObject:@0];
+    }];
+    
+    [_statusSelectArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [_statusSelectArr replaceObjectAtIndex:idx withObject:@0];
+    }];
+    
+    [_houseSelectArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [_houseSelectArr replaceObjectAtIndex:idx withObject:@0];
+    }];
     if (self.moreViewClearBlock) {
         
         self.moreViewClearBlock();

@@ -30,7 +30,13 @@
     
     [self initDataShource];
     [self initUI];
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self RequestMethod];
 }
 
 - (void)initDataShource{
@@ -44,6 +50,7 @@
     
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
 
+        [_attentionTable.mj_header endRefreshing];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetData:resposeObject[@"data"]];
@@ -59,6 +66,7 @@
 
 - (void)SetData:(NSArray *)data{
     
+    [_dataArr removeAllObjects];
     for (int i = 0; i < data.count; i++) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
@@ -204,6 +212,11 @@
     _attentionTable.delegate = self;
     _attentionTable.dataSource = self;
     _attentionTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _attentionTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+       
+        [self RequestMethod];
+    }];
     [self.view addSubview:_attentionTable];
 }
 @end

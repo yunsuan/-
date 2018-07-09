@@ -166,7 +166,7 @@
     cell.contentL.hidden = NO;
     cell.headImg.hidden = YES;
     
-    if (indexPath.row == 0 || indexPath.row == 4) {
+    if (indexPath.row == 0 || indexPath.row == 3) {
         
         cell.rightView.hidden = YES;
     }else{
@@ -307,7 +307,7 @@
         }
         case 2:
         {
-            ChangeNameVC *nextVC = [[ChangeNameVC alloc] init];
+            ChangeNameVC *nextVC = [[ChangeNameVC alloc] initWithName:[UserInfoModel defaultModel].name];
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
@@ -379,7 +379,7 @@
         }
         case 5:
         {
-            BirthVC *nextVC = [[BirthVC alloc] init];
+            BirthVC *nextVC = [[BirthVC alloc] initWithTime:[UserInfoModel defaultModel].birth];
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }

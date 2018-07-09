@@ -15,6 +15,7 @@
     NSString *_provinceId;
     NSString *_cityId;
     NSString *_areaId;
+    NSString *_address;
 }
 @property (nonatomic, strong) UILabel *addressL;
 
@@ -29,6 +30,16 @@
 @end
 
 @implementation ChangeAddessVC
+
+- (instancetype)initWithAddress:(NSString *)address
+{
+    self = [super init];
+    if (self) {
+        
+        _address = address;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -114,6 +125,7 @@
     _addressL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 18 *SIZE, 200 *SIZE, 13 *SIZE)];
     _addressL.textColor = YJTitleLabColor;
     _addressL.font = [UIFont systemFontOfSize:13 *SIZE];
+    _addressL.text = @"请选择地址";
     if ([UserInfoModel defaultModel].province.length && [UserInfoModel defaultModel].city.length && [UserInfoModel defaultModel].district.length) {
         
         NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];

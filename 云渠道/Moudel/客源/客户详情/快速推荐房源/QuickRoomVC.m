@@ -103,6 +103,23 @@
     [super viewWillAppear:animated];
 }
 
+- (void)ActionMaskBtn:(UIButton *)btn{
+    
+    _is1 = NO;
+    _is2 = NO;
+    _is3 = NO;
+    _is4 = NO;
+    _areaBtn.selected = NO;
+    _priceBtn.selected = NO;
+    _typeBtn.selected = NO;
+    _moreBtn.selected = NO;
+    [self.areaView removeFromSuperview];
+    [self.priceView removeFromSuperview];
+    [self.typeView removeFromSuperview];
+    [self.moreView removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)initDateSouce
 {
     
@@ -311,39 +328,39 @@
                 _is1 = YES;
                 _district = @"0";
                 
-                NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-                
-                NSError *err;
-                NSArray *pro = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                               options:NSJSONReadingMutableContainers
-                                                                 error:&err];
-                NSMutableArray * tempArr;
-                for (NSDictionary *proDic in pro) {
-                    
-                    for (NSDictionary *cityDic in proDic[@"city"]) {
-                        
-                        if ([cityDic[@"code"] integerValue] == [_city integerValue]) {
-                            
-                            tempArr = [NSMutableArray arrayWithArray:cityDic[@"district"]];
-                            break;
-                        }
-                    }
-                }
-                [tempArr insertObject:@{@"code":@"0",@"name":@"不限"} atIndex:0];
-                self.areaView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (idx == 0) {
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-                    }else{
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-                    }
-                    
-                }];
-                self.areaView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-                [self.areaView.mainTable reloadData];
+//                NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+//
+//                NSError *err;
+//                NSArray *pro = [NSJSONSerialization JSONObjectWithData:JSONData
+//                                                               options:NSJSONReadingMutableContainers
+//                                                                 error:&err];
+//                NSMutableArray * tempArr;
+//                for (NSDictionary *proDic in pro) {
+//
+//                    for (NSDictionary *cityDic in proDic[@"city"]) {
+//
+//                        if ([cityDic[@"code"] integerValue] == [_city integerValue]) {
+//
+//                            tempArr = [NSMutableArray arrayWithArray:cityDic[@"district"]];
+//                            break;
+//                        }
+//                    }
+//                }
+//                [tempArr insertObject:@{@"code":@"0",@"name":@"不限"} atIndex:0];
+//                self.areaView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//
+//                }];
+//                self.areaView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+//                [self.areaView.mainTable reloadData];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.areaView];
             }
             break;
@@ -367,22 +384,22 @@
                 
                 _is2 = YES;
                 _price = @"0";
-                NSArray *array = [self getDetailConfigArrByConfigState:AVERAGE];
-                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
-                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-                self.priceView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (idx == 0) {
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-                    }else{
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-                    }
-                }];
-                self.priceView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-                [self.priceView.mainTable reloadData];
+//                NSArray *array = [self getDetailConfigArrByConfigState:AVERAGE];
+//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+//                self.priceView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//                }];
+//                self.priceView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+//                [self.priceView.mainTable reloadData];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.priceView];
             }
             break;
@@ -407,20 +424,20 @@
                 _is3 = YES;
                 _type = @"0";
                 
-                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
-                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-                self.typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (idx == 0) {
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-                    }else{
-                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-                    }
-                }];
-                self.typeView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-                [self.typeView.mainTable reloadData];
+//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
+//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+//                self.typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//                }];
+//                self.typeView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+//                [self.typeView.mainTable reloadData];
                 [[UIApplication sharedApplication].keyWindow addSubview:self.typeView];
             }
             break;
@@ -462,6 +479,19 @@
 
 - (void)ActionSearchBtn:(UIButton *)btn{
     
+    
+    _is1 = NO;
+    _is2 = NO;
+    _is3 = NO;
+    _is4 = NO;
+    _areaBtn.selected = NO;
+    _priceBtn.selected = NO;
+    _typeBtn.selected = NO;
+    _moreBtn.selected = NO;
+    [self.areaView removeFromSuperview];
+    [self.priceView removeFromSuperview];
+    [self.typeView removeFromSuperview];
+    [self.moreView removeFromSuperview];
     // 1.创建热门搜索
     //    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
     
@@ -512,11 +542,59 @@
 
 - (void)ActionCityBtn:(UIButton *)btn{
     
+    _is1 = NO;
+    _is2 = NO;
+    _is3 = NO;
+    _is4 = NO;
+    _areaBtn.selected = NO;
+    _priceBtn.selected = NO;
+    _typeBtn.selected = NO;
+    _moreBtn.selected = NO;
+    [self.areaView removeFromSuperview];
+    [self.priceView removeFromSuperview];
+    [self.typeView removeFromSuperview];
+    [self.moreView removeFromSuperview];
+    
     CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
         
         [_cityBtn setTitle:city forState:UIControlStateNormal];
         _city = [NSString stringWithFormat:@"%@",code];
+        
+        NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+        
+        NSError *err;
+        NSArray *pro = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+        NSMutableArray * tempArr;
+        for (NSDictionary *proDic in pro) {
+            
+            for (NSDictionary *cityDic in proDic[@"city"]) {
+                
+                if ([cityDic[@"code"] integerValue] == [_city integerValue]) {
+                    
+                    tempArr = [NSMutableArray arrayWithArray:cityDic[@"district"]];
+                    break;
+                }
+            }
+        }
+        [tempArr insertObject:@{@"code":@"0",@"name":@"不限"} atIndex:0];
+        self.areaView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+        [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            }else{
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            }
+            
+        }];
+        self.areaView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+        [self.areaView.mainTable reloadData];
+        
         [self RequestMethod];
     };
     nextVC.hidesBottomBarWhenPushed = YES;
@@ -783,7 +861,7 @@
     for (int i = 0; i < 5; i++) {
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(80 * i, 62 *SIZE, 80 *SIZE, 40 *SIZE);
+        btn.frame = CGRectMake(80 *SIZE * i, 62 *SIZE, 80 *SIZE, 40 *SIZE);
         btn.tag = i + 1;
         [btn setBackgroundColor:CH_COLOR_white];
         [btn addTarget:self action:@selector(ActionTagBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -835,9 +913,9 @@
             }
             case 4:
             {
-                btn.frame = CGRectMake(80 * i, 62 *SIZE, 40 *SIZE, 40 *SIZE);
-                [btn setImage:[UIImage imageNamed:@"downarrow1"] forState:UIControlStateNormal];
-                [btn setImage:[UIImage imageNamed:@"uparrow2"] forState:UIControlStateSelected];
+                btn.frame = CGRectMake(80 *SIZE * i, 62 *SIZE, 40 *SIZE, 40 *SIZE);
+                [btn setImage:[UIImage imageNamed:@"reverseorder"] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"reverseorder"] forState:UIControlStateSelected];
                 _sortBtn = btn;
                 [self.headerView addSubview:_sortBtn];
                 break;
@@ -935,6 +1013,41 @@
     if (!_areaView) {
         
         _areaView = [[BoxAddressView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+        
+        NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+        
+        NSError *err;
+        NSArray *pro = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+        NSMutableArray * tempArr;
+        for (NSDictionary *proDic in pro) {
+            
+            for (NSDictionary *cityDic in proDic[@"city"]) {
+                
+                if ([cityDic[@"code"] integerValue] == [_city integerValue]) {
+                    
+                    tempArr = [NSMutableArray arrayWithArray:cityDic[@"district"]];
+                    break;
+                }
+            }
+        }
+        [tempArr insertObject:@{@"code":@"0",@"name":@"不限"} atIndex:0];
+        _areaView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+        [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            }else{
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            }
+            
+        }];
+        _areaView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+        [_areaView.mainTable reloadData];
+        
         WS(weakSelf);
         _areaView.boxAddressComfirmBlock = ^(NSString *ID, NSString *str, NSInteger index) {
             
@@ -995,6 +1108,24 @@
     if (!_priceView) {
         
         _priceView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+        
+        NSArray *array = [self getDetailConfigArrByConfigState:AVERAGE];
+        NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
+        [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+        _priceView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+        [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            }else{
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            }
+        }];
+        _priceView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+        [_priceView.mainTable reloadData];
+        
         WS(weakSelf);
         _priceView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
             
@@ -1044,6 +1175,22 @@
     if (!_typeView) {
         
         _typeView = [[BoxView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 102 *SIZE, SCREEN_Width, SCREEN_Height - 102 *SIZE)];
+        
+        NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
+        [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+        _typeView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+        [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            }else{
+                [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            }
+        }];
+        _typeView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+        [_typeView.mainTable reloadData];
+        
         WS(weakSelf);
         _typeView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
             
@@ -1098,6 +1245,9 @@
         WS(weakSelf);
         _moreView.moreBtnBlock = ^(NSString *tag, NSString *houseType, NSString *status) {
             
+            _is4 = NO;
+            weakSelf.moreBtn.selected = NO;
+            
             if (tag) {
                 
                 _tag = [NSString stringWithFormat:@"%@",tag];
@@ -1133,6 +1283,11 @@
                     [self.navigationController pushViewController:nextVC animated:YES];
                 }];
             }
+        };
+        _moreView.moreViewClearBlock = ^{
+          
+            _is4 = NO;
+            weakSelf.moreBtn.selected = NO;
         };
         
     }

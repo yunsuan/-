@@ -266,22 +266,23 @@
                 _is1 = YES;
                 _type = @"0";
                 
-                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
-                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (idx == 0) {
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-                    }else{
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-                    }
-                }];
-                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-                [self.boxView.mainTable reloadData];
-                [self.view addSubview:self.boxView];
+//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
+//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+//                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//                }];
+//                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+//                [self.boxView.mainTable reloadData];
+//                [self.view addSubview:self.boxView];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.boxView];
             }
         }else{
             
@@ -295,15 +296,19 @@
             }else{
                 
                 _is2 = YES;
-                [self.view addSubview:self.adressView];
+//                [self.view addSubview:self.adressView];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.adressView];
             }
         }
     }else{
         
         _page = 1;
         _is1 = NO;
+        _is2 = NO;
         _typeBtn.selected = NO;
         _areaBtn.selected = NO;
+        [self.boxView removeFromSuperview];
+        [self.adressView removeFromSuperview];
         if (btn.tag == 3) {
             
             _urgencyBtn.selected = NO;
@@ -340,7 +345,7 @@
             }
             _sortType = @"urgency";
         }
-        [self.boxView removeFromSuperview];
+//        [self.boxView removeFromSuperview];
         [self RequestMethod];
         if (_dataArr.count) {
             
@@ -352,6 +357,13 @@
 #pragma mark -- SearchMethod
 
 - (void)ActionSearchBtn:(UIButton *)btn{
+    
+    _is2 = NO;
+    _is1 = NO;
+    _typeBtn.selected = NO;
+    _areaBtn.selected = NO;
+    [self.boxView removeFromSuperview];
+    [self.adressView removeFromSuperview];
     
     // 1.创建热门搜索
     NSArray *hotSeaches = @[];
@@ -536,6 +548,14 @@
 
 -(void)action_add
 {
+    
+    _is2 = NO;
+    _is1 = NO;
+    _typeBtn.selected = NO;
+    _areaBtn.selected = NO;
+    [self.boxView removeFromSuperview];
+    [self.adressView removeFromSuperview];
+    
     AddCustomerVC *next_vc = [[AddCustomerVC alloc]init];
     [self.navigationController pushViewController:next_vc animated:YES];
 
@@ -551,16 +571,39 @@
           
             if (area.length) {
                 
-                _district = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
-                [weakSelf.areaBtn setTitle:area forState:UIControlStateNormal];
+                if ([area isEqualToString:@"不限"]) {
+                    
+                    _district = @"";
+                    [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+                }else{
+                    
+                    _district = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+                    [weakSelf.areaBtn setTitle:area forState:UIControlStateNormal];
+                }
+                
             }else if(city.length){
                 
-                _district = [NSString stringWithFormat:@"%@-%@",proviceid,cityid];
-                [weakSelf.areaBtn setTitle:city forState:UIControlStateNormal];
+                if ([city isEqualToString:@"不限"]) {
+                    
+                    _district = @"";
+                    [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+                }else{
+                    
+                    _district = [NSString stringWithFormat:@"%@-%@",proviceid,cityid];
+                    [weakSelf.areaBtn setTitle:city forState:UIControlStateNormal];
+                }
+                
             }else if (pro.length){
                 
-                _district = [NSString stringWithFormat:@"%@",proviceid];
-                [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
+                if ([pro isEqualToString:@"不限"]) {
+                    
+                    _district = @"";
+                    [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+                }else{
+                    
+                    _district = [NSString stringWithFormat:@"%@",proviceid];
+                    [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
+                }
             }else{
                 
                 [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
@@ -583,6 +626,23 @@
 - (BoxView *)boxView{
     if (!_boxView) {
         _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - (41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE))];
+        
+        NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
+        [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+        _boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+        [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            }else{
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            }
+        }];
+        _boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+        [_boxView.mainTable reloadData];
+        
         WS(weakSelf);
         _boxView.confirmBtnBlock = ^(NSString *ID,NSString *str) {
           

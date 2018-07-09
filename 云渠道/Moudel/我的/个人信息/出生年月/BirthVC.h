@@ -10,4 +10,6 @@
 
 @interface BirthVC : BaseViewController
 
+- (instancetype)initWithTime:(NSString *)time;
+
 @end

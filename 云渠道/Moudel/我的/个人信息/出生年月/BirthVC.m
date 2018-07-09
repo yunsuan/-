@@ -13,6 +13,7 @@
 {
     
     NSDate *_date;
+    NSString *_time;
 }
 @property (nonatomic, strong) UILabel *birthL;
 
@@ -27,6 +28,16 @@
 @end
 
 @implementation BirthVC
+
+- (instancetype)initWithTime:(NSString *)time
+{
+    self = [super init];
+    if (self) {
+        
+        _time = [NSString stringWithFormat:@"%@",time];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +101,14 @@
     
     _birthL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 20 *SIZE, 300 *SIZE, 12 *SIZE)];
     _birthL.textColor = YJTitleLabColor;
+    if (_time.length) {
+        
+        _birthL.text = _time;
+    }else{
+        
+        _birthL.text = @"请选择出生日期";
+    }
+    
     _birthL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.whiteView addSubview:_birthL];
     
