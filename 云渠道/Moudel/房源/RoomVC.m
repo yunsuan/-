@@ -605,13 +605,17 @@
 
 {
     
-//    NSLog(@"address:%@----%@",result.addressDetail,result.address);
-    [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
-    NSInteger disInteger = [result.addressDetail.adCode integerValue];
-    NSInteger cityInteger = disInteger / 100 * 100;
-    _city = [NSString stringWithFormat:@"%ld",cityInteger];
-    _cityName = result.addressDetail.city;
-    [self RequestMethod];
+    if (_city) {
+        
+    }else{
+        
+        [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
+        NSInteger disInteger = [result.addressDetail.adCode integerValue];
+        NSInteger cityInteger = disInteger / 100 * 100;
+        _city = [NSString stringWithFormat:@"%ld",cityInteger];
+        _cityName = result.addressDetail.city;
+        [self RequestMethod];
+    }
 }
 
 //定位失败
@@ -630,6 +634,7 @@
     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
         
         _isLocation = YES;
+//        [_locService stopUserLocationService];
         [_cityBtn setTitle:city forState:UIControlStateNormal];
         _city = [NSString stringWithFormat:@"%@",code];
         [self RequestMethod];
