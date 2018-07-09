@@ -277,7 +277,7 @@
                     nextVC.applyProjectVCBlock = ^(NSString *projectId, NSString *name) {
                       
                         _projectL.text = name;
-                        _projectId = projectId;
+                        _projectId = [NSString stringWithFormat:@"%@",projectId];
                     };
                     [self.navigationController pushViewController:nextVC animated:YES];
                 }else{
