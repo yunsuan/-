@@ -261,13 +261,13 @@
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
-//    //创建网页内容对象
-//    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:_model.project_name descr:_model.district_name thumImage:[NSString stringWithFormat:@"%@%@",Base_Net,_model.img_url]];
+    //创建网页内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:_model.project_name thumImage:[NSString stringWithFormat:@"%@%@",TestBase_Net,_model.img_url]];
 //    //设置网页地址
     
     
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房产渠道专业平台" thumImage:[UIImage imageNamed:@"shareimg"]];
+//    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房产渠道专业平台" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
     
     
@@ -276,8 +276,8 @@
         NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-             shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
-//            shareObject.webpageUrl = resposeObject[@"data"];
+//             shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
+            shareObject.webpageUrl = resposeObject[@"data"];
             //分享消息对象设置分享内容对象
             messageObject.shareObject = shareObject;
             
