@@ -132,6 +132,7 @@
     cell.timeL.text = [NSString stringWithFormat:@"推荐时间：%@",_data[indexPath.row][@"create_time"]];
     if ([_data[indexPath.row][@"type"] integerValue]==1) {
         cell.priceL.text = @"";
+       
     }
     else{
         cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"pay_num"]];

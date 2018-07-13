@@ -38,9 +38,9 @@
 }
 @property (nonatomic , strong) UITableView *MainTableView;
 
-@property (nonatomic, strong) UICollectionView *nomineeColl;
+@property (nonatomic , strong) UICollectionView *nomineeColl;
 
-@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic , strong) UICollectionViewFlowLayout *flowLayout;
 
 @end
 

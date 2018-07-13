@@ -40,4 +40,6 @@
 
 @property (nonatomic, strong) NSString *yunsuan_url;
 
+@property (nonatomic , strong) NSString *total_float_url_panorama;
+
 @end

@@ -132,9 +132,11 @@
     cell.expediteBtn.tag = indexPath.row;
     if ([_data[indexPath.row][@"type"] integerValue]==1) {
         cell.priceL.text = @"";
+        cell.expediteBtn.hidden = YES;
     }
     else{
     cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"broker_num"]];
+        cell.expediteBtn.hidden = NO;
     }
 //    WS(weakself);
     

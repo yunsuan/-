@@ -336,73 +336,86 @@
     
     _adress = [[DropDownBtn alloc]initWithFrame:CGRectMake(80.3*SIZE, 396*SIZE, 257.7*SIZE, 33.3*SIZE)];
     [_adress addTarget:self action:@selector(action_address) forControlEvents:UIControlEventTouchUpInside];
-    
-    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-    
-    NSError *err;
-    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                       options:NSJSONReadingMutableContainers
-                                                         error:&err];
-    
-    if (_model.province && _model.city && _model.district) {
-        
-        for (int i = 0; i < provice.count; i++) {
-            
-            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
-                
-                NSArray *city = provice[i][@"city"];
-                for (int j = 0; j < city.count; j++) {
-                    
-                    if([city[j][@"code"] integerValue] == [_model.city integerValue]){
-                        
-                        NSArray *area = city[j][@"district"];
-                        
-                        for (int k = 0; k < area.count; k++) {
-                            
-                            if([area[k][@"code"] integerValue] == [_model.district integerValue]){
-                                
-                                _adress.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[j][@"name"],area[k][@"name"]];
-                                _Customerinfomodel.province = _model.province;
-                                _Customerinfomodel.city = _model.city;
-                                _Customerinfomodel.district = _model.district;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }else if (_model.province && _model.city){
-        
-        for (int i = 0; i < provice.count; i++) {
-            
-            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
-                
-                NSArray *city = provice[i][@"city"];
-                for (int j = 0; j < city.count; j++) {
-                    
-                    if([city[j][@"code"] integerValue] == [_model.city integerValue]){
-                        
-                        _adress.content.text = [NSString stringWithFormat:@"%@-%@",provice[i][@"name"],city[j][@"name"]];
-                        _Customerinfomodel.province = _model.province;
-                        _Customerinfomodel.city = _model.city;
-                    }
-                }
-            }
-        }
-    }else if (_model.province){
-        
-        for (int i = 0; i < provice.count; i++) {
-            
-            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
-                
-                _adress.content.text = [NSString stringWithFormat:@"%@",provice[i][@"name"]];
-                _Customerinfomodel.province = _model.province;
-            }
-        }
-    }else{
-        
-        
+    if (_model.province_name&&_model.city_name&&_model.district_name) {
+        self.adress.content.text = [NSString stringWithFormat:@"%@/%@/%@",_model.province_name,_model.city_name,_model.district_name];
+        _Customerinfomodel.province = _model.province;
+        _Customerinfomodel.city = _model.city;
+        _Customerinfomodel.district = _model.district;
     }
+    else{
+        self.adress.content.text = @"";
+        _Customerinfomodel.province = _model.province;
+        _Customerinfomodel.city = _model.city;
+        _Customerinfomodel.district = _model.district;
+    }
+//
+//    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+//
+//    NSError *err;
+//    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+//                                                       options:NSJSONReadingMutableContainers
+//                                                         error:&err];
+//
+//    if (_model.province && _model.city && _model.district) {
+//
+//
+//        for (int i = 0; i < provice.count; i++) {
+//
+//            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
+//
+//                NSArray *city = provice[i][@"city"];
+//                for (int j = 0; j < city.count; j++) {
+//
+//                    if([city[j][@"code"] integerValue] == [_model.city integerValue]){
+//
+//                        NSArray *area = city[j][@"district"];
+//
+//                        for (int k = 0; k < area.count; k++) {
+//
+//                            if([area[k][@"code"] integerValue] == [_model.district integerValue]){
+//
+//                                _adress.content.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[j][@"name"],area[k][@"name"]];
+//                                _Customerinfomodel.province = _model.province;
+//                                _Customerinfomodel.city = _model.city;
+//                                _Customerinfomodel.district = _model.district;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }else if (_model.province && _model.city){
+//
+//        for (int i = 0; i < provice.count; i++) {
+//
+//            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
+//
+//                NSArray *city = provice[i][@"city"];
+//                for (int j = 0; j < city.count; j++) {
+//
+//                    if([city[j][@"code"] integerValue] == [_model.city integerValue]){
+//
+//                        _adress.content.text = [NSString stringWithFormat:@"%@-%@",provice[i][@"name"],city[j][@"name"]];
+//                        _Customerinfomodel.province = _model.province;
+//                        _Customerinfomodel.city = _model.city;
+//                    }
+//                }
+//            }
+//        }
+//    }else if (_model.province){
+//
+//        for (int i = 0; i < provice.count; i++) {
+//
+//            if([provice[i][@"code"] integerValue] == [_model.province integerValue]){
+//
+//                _adress.content.text = [NSString stringWithFormat:@"%@",provice[i][@"name"]];
+//                _Customerinfomodel.province = _model.province;
+//            }
+//        }
+//    }else{
+//
+//
+//    }
     [_scrollview addSubview:_adress];
 
     

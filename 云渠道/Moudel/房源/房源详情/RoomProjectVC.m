@@ -778,6 +778,7 @@
     if (indexPath.section == 3) {
         
         DistributVC *nextVC = [[DistributVC alloc] init];
+        nextVC.urlfor3d = _model.total_float_url_panorama;
         nextVC.img_name = _model.total_float_url_phone;
         nextVC.projiect_id = _projectId;
         [self.navigationController pushViewController:nextVC animated:YES];
