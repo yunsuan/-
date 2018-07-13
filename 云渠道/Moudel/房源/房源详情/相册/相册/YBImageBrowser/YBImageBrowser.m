@@ -339,7 +339,15 @@ static BOOL _statusBarIsHideBefore = NO;    //状态栏在模态切换之前是�
 }
 
 - (void)applyForHiddenByYBImageBrowserView:(YBImageBrowserView *)imageBrowserView {
-    [self hide];
+    
+//    if (self.currentIndex == 0) {
+//
+//        NSLog(@"1111");
+//    }else{
+//
+//        [self hide];
+//    }
+    
 }
 
 #pragma mark YBImageBrowserViewDataSource

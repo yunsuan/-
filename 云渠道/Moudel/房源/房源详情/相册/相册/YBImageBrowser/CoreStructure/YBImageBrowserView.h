@@ -20,6 +20,8 @@
 
 - (void)applyForHiddenByYBImageBrowserView:(YBImageBrowserView *)imageBrowserView;
 
+- (void)XGImageBrowserView:(YBImageBrowserView *)imageBrowserView didClickIndex:(NSUInteger)index;
+
 @end
 
 @protocol YBImageBrowserViewDataSource <NSObject>

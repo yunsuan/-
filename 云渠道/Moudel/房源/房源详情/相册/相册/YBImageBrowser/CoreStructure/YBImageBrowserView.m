@@ -124,6 +124,7 @@ static NSString * const YBImageBrowserViewCellIdentifier = @"YBImageBrowserViewC
     return cell;
 }
 
+
 #pragma mark UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
