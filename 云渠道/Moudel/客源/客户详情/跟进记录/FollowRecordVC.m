@@ -115,6 +115,18 @@
 -(void)action_nexttime
 {
     DateChooseView *view = [[DateChooseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
+    
+    view.pickerView.datePickerMode = UIDatePickerModeDate;
+    // 设置日期选择控件的地区
+    [view.pickerView setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@"zh_Hans_CN"]];
+    //默认为当天。
+    [view.pickerView setCalendar:[NSCalendar currentCalendar]];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:30];//设置最大时间为：当前时间推后10天
+    [view.pickerView setMaximumDate:[calendar dateByAddingComponents:comps toDate:[NSDate date] options:0]];
+    [comps setDay:0];//设置最大时间为：当前时间推后10天
+    [view.pickerView setMinimumDate:[calendar dateByAddingComponents:comps toDate:[NSDate date] options:0]];
     view.dateblock = ^(NSDate *date) {
 //        NSLog(@"%@",[self gettime:date]);
         _nextTimeBtn.content.text = [self gettime:date];

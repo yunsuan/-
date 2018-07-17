@@ -125,7 +125,12 @@
     }
     
 //    self.addressL.text = @"地址：";
-    self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",model.province_name,model.city_name,model.district_name,model.address];
+    if (model.province_name&&model.city_name&&model.district_name) {
+        self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",model.province_name,model.city_name,model.district_name,model.address];
+    }
+    else{
+        self.addressL.text = @"地址：";
+    }
 //    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
 //
 //    NSError *err;

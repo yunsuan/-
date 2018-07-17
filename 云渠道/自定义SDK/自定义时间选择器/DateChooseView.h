@@ -11,5 +11,8 @@
 @class DateChooseView;
 typedef void(^dateblock)(NSDate * date);
 @interface DateChooseView : UIView
+
+@property(nonatomic, strong) UIDatePicker * pickerView;
+
 @property(nonatomic, copy) dateblock dateblock;
 @end

@@ -17,7 +17,7 @@
     
     NSDate *_date;
 }
-@property(nonatomic, strong) UIDatePicker * pickerView;
+//@property(nonatomic, strong) UIDatePicker * pickerView;
 /**
  bgView
  */
