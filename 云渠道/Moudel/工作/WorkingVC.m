@@ -33,8 +33,6 @@
     [super viewWillAppear:animated];
     [self postWithidentify:[UserModelArchiver unarchive].agent_identity];
     [self refresh];
-
-    
 }
 
 - (void)viewDidLoad {
@@ -98,6 +96,12 @@
 -(void)initDateSouce
 {
    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadType) name:@"reloadType" object:nil];
+}
+
+- (void)reloadType{
+    
+    [self postWithidentify:[UserModelArchiver unarchive].agent_identity];
 }
 
 -(void)initUI

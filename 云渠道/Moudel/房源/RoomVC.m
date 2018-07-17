@@ -115,6 +115,7 @@
 -(void)initDateSouce
 {
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RequestMethod) name:@"reloadType" object:nil];
     _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
     _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     _searchArr = [@[] mutableCopy];

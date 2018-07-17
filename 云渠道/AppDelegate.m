@@ -402,7 +402,34 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *title = content.title;  // 推送消息的标题
     NSLog(@"22222222%@",userInfo);
     
-    
+    if (userInfo[@"agent_type"]) {
+        
+        switch ([userInfo[@"agent_type"] integerValue]) {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 2:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 3:
+            {
+                [UserModel defaultModel].agent_identity = @"2";
+                break;
+            }
+            default:
+                break;
+        }
+        [UserModelArchiver archive];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+    }
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
@@ -428,7 +455,35 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     UNNotificationSound *sound = content.sound;  // 推送消息的声音
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
-//    NSLog(@"1111111%@",userInfo);
+    NSLog(@"1111111%@",userInfo);
+    if (userInfo[@"agent_type"]) {
+        
+        switch ([userInfo[@"agent_type"] integerValue]) {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 2:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 3:
+            {
+                [UserModel defaultModel].agent_identity = @"2";
+                break;
+            }
+            default:
+                break;
+        }
+        [UserModelArchiver archive];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+    }
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
@@ -472,6 +527,35 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"%@",userInfo);
+    if (userInfo[@"agent_type"]) {
+        
+        switch ([userInfo[@"agent_type"] integerValue]) {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 2:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 3:
+            {
+                [UserModel defaultModel].agent_identity = @"2";
+                break;
+            }
+            default:
+                break;
+        }
+        
+        [UserModelArchiver archive];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+    }
     application.applicationIconBadgeNumber += 1;
     
     if (application.applicationState == UIApplicationStateActive) {
