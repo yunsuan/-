@@ -89,6 +89,9 @@
             
             [self alertControllerWithNsstring:@"离职成功" And:nil WithDefaultBlack:^{
                 
+                [UserModel defaultModel].agent_identity = @"1";
+                [UserModelArchiver archive];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }else{
