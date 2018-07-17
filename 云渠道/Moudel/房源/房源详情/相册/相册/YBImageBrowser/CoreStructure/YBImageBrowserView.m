@@ -92,6 +92,14 @@ static NSString * const YBImageBrowserViewCellIdentifier = @"YBImageBrowserViewC
     }
 }
 
+- (void)XGPushNextVC:(BuildingAlbumVC *)vc byYBImageBrowserCell:(YBImageBrowserCell *)imageBrowserCell{
+    
+    if (_yb_delegate && [_yb_delegate respondsToSelector:@selector(XGPushNextVC:byYBImageBrowserView:)]) {
+        
+        [_yb_delegate XGPushNextVC:vc byYBImageBrowserView:self];
+    }
+}
+
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -123,6 +131,8 @@ static NSString * const YBImageBrowserViewCellIdentifier = @"YBImageBrowserViewC
     }
     return cell;
 }
+
+
 
 
 #pragma mark UIScrollViewDelegate

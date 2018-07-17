@@ -14,6 +14,7 @@
 #import "XGToolBar.h"
 #import "YBImageBrowserCopywriter.h"
 #import "YBImageBrowserScreenOrientationProtocol.h"
+#import "BuildingAlbumVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol YBImageBrowserDelegate <NSObject>
 @optional
 
+- (void)XGPushNextVC:(BuildingAlbumVC *)vc animated:(BOOL) animated;
 /**
  图片浏览器翻页
 

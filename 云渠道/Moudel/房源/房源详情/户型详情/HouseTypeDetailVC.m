@@ -36,6 +36,8 @@
 
 @property (nonatomic, strong) TransmitView *transmitView;
 
+@property (nonatomic, strong) YBImageBrowser *browser;
+
 @end
 
 @implementation HouseTypeDetailVC
@@ -236,13 +238,19 @@
                 
                 for (NSDictionary *subDic in dic[@"list"]) {
                     
-                    [tempArr1 addObject:subDic[@"img_url"]];
+//                    [tempArr1 addObject:subDic[@"img_url"]];
+                    [tempArr1 addObject:subDic];
                 }
             }
-            [tempArr1 enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [tempArr1 enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 YBImageBrowserModel *model = [YBImageBrowserModel new];
-                model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj]];
+                model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
+                if ([obj[@"img_url_3d"] length]) {
+
+                    model.third_URL = [NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url_3d"]];
+                }
+                
                 [tempArr addObject:model];
             }];
             
@@ -256,13 +264,23 @@
                 
             }];
             
-            YBImageBrowser *browser = [YBImageBrowser new];
-            browser.delegate = self;
-            browser.dataArray = tempArr;
-            browser.albumArr = _imgArr;
-            browser.projectId = _projectId;
-            browser.currentIndex = num;
-            [browser show];
+            YBImageBrowserModel *model = tempArr[num];
+            if (model.third_URL.length) {
+                
+                BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] init];
+                nextVC.weburl = model.third_URL;
+                [self.navigationController pushViewController:nextVC animated:YES];
+            }else{
+                
+                YBImageBrowser *browser = [YBImageBrowser new];
+                browser.delegate = self;
+                browser.dataArray = tempArr;
+                browser.albumArr = _imgArr;
+                browser.projectId = _projectId;
+                browser.currentIndex = num;
+                [browser show];
+            }
+            
         };
         return header;
     }else{
@@ -379,6 +397,13 @@
     
 }
 
+- (void)XGPushNextVC:(BuildingAlbumVC *)vc animated:(BOOL)animated{
+    
+    vc.buildBackBlock = ^{
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 - (void)initUI{

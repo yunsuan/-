@@ -12,6 +12,7 @@
 #import <objc/message.h>
 #import "YBImageBrowserDownloader.h"
 #import "YBImageBrowser.h"
+#import "BuildingAlbumVC.h"
 
 @interface YBImageBrowserCell () <UIScrollViewDelegate> {
     //动画相关
@@ -102,9 +103,23 @@
 }
 
 - (void)respondsToTapSingle:(UITapGestureRecognizer *)tap {
-    if (_delegate && [_delegate respondsToSelector:@selector(applyForHiddenByYBImageBrowserCell:)]) {
-        [_delegate applyForHiddenByYBImageBrowserCell:self];
+    
+    if (_model.third_URL.length) {
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(XGPushNextVC:byYBImageBrowserCell:)]) {
+            
+            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] init];
+            nextVC.weburl = _model.third_URL;
+            
+            [_delegate XGPushNextVC:nextVC byYBImageBrowserCell:self];
+        }
+    }else{
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(applyForHiddenByYBImageBrowserCell:)]) {
+            [_delegate applyForHiddenByYBImageBrowserCell:self];
+        }
     }
+    
 }
 
 - (void)respondsToTapDouble:(UITapGestureRecognizer *)tap {

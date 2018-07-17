@@ -9,6 +9,7 @@
 #import "YBImageBrowserUtilities.h"
 #import "YBImageBrowserModel.h"
 #import "YBImageBrowserScreenOrientationProtocol.h"
+#import "BuildingAlbumVC.h"
 
 @class YBImageBrowserView;
 
@@ -20,7 +21,8 @@
 
 - (void)applyForHiddenByYBImageBrowserView:(YBImageBrowserView *)imageBrowserView;
 
-- (void)XGImageBrowserView:(YBImageBrowserView *)imageBrowserView didClickIndex:(NSUInteger)index;
+
+- (void)XGPushNextVC:(BuildingAlbumVC *)vc byYBImageBrowserView:(YBImageBrowserView *)imageBrowserView;
 
 @end
 
