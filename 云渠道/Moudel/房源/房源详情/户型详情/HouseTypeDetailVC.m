@@ -29,6 +29,7 @@
     NSMutableArray *_houseArr;
     NSString *_projectId;
     NSMutableArray *_matchList;
+    NSString *_url;
 }
 @property (nonatomic, strong) UIButton *recommendBtn;
 
@@ -90,6 +91,26 @@
         [self MatchListRequest];
         
     });
+}
+
+- (void)ActionRightBtn:(UIButton *)btn{
+    
+    [BaseRequest GET:@"user/project/getHouseType" parameters:@{@"house_type_id":_houseTypeId} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _url = resposeObject[@"data"][@"url"];
+            [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+        }else{
+            
+            [self showContent:@"分享失败"];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"分享失败"];
+    }];
 }
 
 - (void)RequestMethod{
@@ -410,6 +431,12 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"户型详情";
     self.line.hidden = YES;
+    
+    self.rightBtn.hidden = NO;
+    [self.rightBtn setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
+    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
 
 
     _houseTable = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT) style:UITableViewStyleGrouped];
@@ -449,7 +476,7 @@
     //创建网页内容对象
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房地产分销渠道平台" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
-    shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
+    shareObject.webpageUrl = _url;
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;

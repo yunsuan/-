@@ -119,9 +119,9 @@
     
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110*SIZE;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 110*SIZE;
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -174,6 +174,8 @@
     if(!_systemmsgtable)
     {
         _systemmsgtable =   [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+        _systemmsgtable.rowHeight = UITableViewAutomaticDimension;
+        _systemmsgtable.estimatedRowHeight = 110 *SIZE;
         _systemmsgtable.backgroundColor = YJBackColor;
         _systemmsgtable.delegate = self;
         _systemmsgtable.dataSource = self;

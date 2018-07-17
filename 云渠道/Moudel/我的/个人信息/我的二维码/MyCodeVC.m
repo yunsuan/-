@@ -9,7 +9,10 @@
 #import "MyCodeVC.h"
 
 @interface MyCodeVC ()
-
+{
+    
+    NSString *_url;
+}
 @property (nonatomic, strong) UIImageView *headImg;
 
 @property (nonatomic, strong) UIImageView *tagImg;
@@ -60,7 +63,23 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+    [BaseRequest GET:@"user/project/shareAgent" parameters:@{@"agent_id":[UserModel defaultModel].agent_id} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _url = resposeObject[@"data"][@"url"];
+            [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+        }else{
+            
+            [self showContent:@"分享失败"];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"分享失败"];
+        NSLog(@"%@",error);
+    }];
+    
 }
 
 - (void)initUI{
@@ -199,7 +218,7 @@
     //创建网页内容对象
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房产渠道专业平台" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
-    shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
+    shareObject.webpageUrl = _url;
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
     
