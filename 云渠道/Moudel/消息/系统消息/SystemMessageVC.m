@@ -51,16 +51,15 @@
 
 -(void)postWithpage:(NSString *)page{
     
-    [BaseRequest GET:GetMessage_URL parameters:@{
-                                                     @"page":page,
-                                                     @"agent_id":[UserModel defaultModel].agent_id}
+    [BaseRequest GET:SystemInfoList_URL parameters:@{
+                                                     @"page":page}
              success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
             
             if ([page isEqualToString:@"1"]) {
                 
                 [_systemmsgtable.mj_footer endRefreshing];
-                dataarr = [resposeObject[@"data"][@"data"] mutableCopy];
+                dataarr = [resposeObject[@"data"] mutableCopy];
                 
                 if (dataarr.count < 15) {
                     
@@ -70,7 +69,7 @@
             }
             else{
                 
-                NSArray *arr =resposeObject[@"data"][@"data"];
+                NSArray *arr =resposeObject[@"data"];
                 if (arr.count ==0) {
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
                 }
@@ -133,13 +132,13 @@
         cell = [[SystemMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if ([dataarr[indexPath.row][@"type"] integerValue] == 2) {
-        
-        [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:@"" time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"] boolValue]];
-    }else{
-        
-        [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:dataarr[indexPath.row][@"content"] time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"] boolValue]];
-    }
+//    if ([dataarr[indexPath.row][@"type"] integerValue] == 2) {
+//
+//        [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:@"" time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"] boolValue]];
+//    }else{
+    
+        [cell SetCellbytitle:dataarr[indexPath.row][@"title"] content:dataarr[indexPath.row][@"content"] time:dataarr[indexPath.row][@"create_time"] messageimg:[dataarr[indexPath.row][@"is_read"][@"is_read"] boolValue]];
+//    }
     
     
     return cell;
@@ -147,10 +146,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [BaseRequest GET:SystemInfoisread_URL parameters:@{
+                                                       @"message_id":dataarr[indexPath.row][@"is_read"][@"message_id"]
+                                                       }
+             success:^(id resposeObject) {
+                 NSLog(@"%@",resposeObject);
+                 
+                                                       }
+             failure:^(NSError *error) {
+                     NSLog(@"%@",error);
+                                                       }];
     
-    if ([dataarr[indexPath.row][@"type"] integerValue] == 2) {
+    if ([dataarr[indexPath.row][@"is_read"][@"url"] isEqual:@""]  ) {
         
-        DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:dataarr[indexPath.row][@"param"] titleStr:@"消息详情"];
+    }
+    else{
+        DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:dataarr[indexPath.row][@"is_read"][@"url"] titleStr:@"消息详情"];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }
