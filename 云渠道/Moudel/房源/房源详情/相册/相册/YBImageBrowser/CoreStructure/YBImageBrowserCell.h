@@ -31,6 +31,7 @@
 
 @property (nonatomic, strong, readonly) FLAnimatedImageView *imageView;
 @property (nonatomic, strong, readonly) UIImageView *animateImageView;
+@property (nonatomic, strong) UIImageView *tagImg;
 
 @property (nonatomic, assign) YBImageBrowserImageViewFillType verticalScreenImageViewFillType;
 @property (nonatomic, assign) YBImageBrowserImageViewFillType horizontalScreenImageViewFillType;

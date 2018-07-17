@@ -123,12 +123,14 @@ static NSString * const YBImageBrowserViewCellIdentifier = @"YBImageBrowserViewC
     cell.cancelDragImageViewAnimation = self.cancelDragImageViewAnimation;
     cell.outScaleOfDragImageViewAnimation = self.outScaleOfDragImageViewAnimation;
     cell.autoCountMaximumZoomScale = self.autoCountMaximumZoomScale;
+    
     [cell so_updateFrameWithScreenOrientation:_so_screenOrientation];
     if (_yb_dataSource && [_yb_dataSource respondsToSelector:@selector(yBImageBrowserView:modelForCellAtIndex:)]) {
         cell.model = [_yb_dataSource yBImageBrowserView:self modelForCellAtIndex:indexPath.row];
     } else {
         cell.model = nil;
     }
+//    cell.tagImg.center = cell.animateImageView.center;
     return cell;
 }
 

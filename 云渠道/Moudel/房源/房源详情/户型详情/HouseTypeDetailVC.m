@@ -280,7 +280,6 @@
                 browser.currentIndex = num;
                 [browser show];
             }
-            
         };
         return header;
     }else{

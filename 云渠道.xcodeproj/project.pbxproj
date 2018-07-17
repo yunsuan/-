@@ -106,6 +106,7 @@
 		0C96D9FD209C61CF00B6A8B8 /* PassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96D9FC209C61CF00B6A8B8 /* PassCell.m */; };
 		0C96DA01209C6A6700B6A8B8 /* QuickAddCustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */; };
 		0C96DA04209C6C0B00B6A8B8 /* QuickAddRequireVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C96DA03209C6C0B00B6A8B8 /* QuickAddRequireVC.m */; };
+		0C9CD3FC20FDEF06004894A3 /* AlbumCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9CD3FB20FDEF06004894A3 /* AlbumCollCell.m */; };
 		0CA37B7020889028005609C7 /* AddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B6F20889028005609C7 /* AddTagView.m */; };
 		0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B722088938C005609C7 /* AddTagViewCollCell.m */; };
 		0CA37B762088A0C4005609C7 /* AddTagCollHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA37B752088A0C4005609C7 /* AddTagCollHeader.m */; };
@@ -527,6 +528,8 @@
 		0C96DA00209C6A6700B6A8B8 /* QuickAddCustomVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickAddCustomVC.m; sourceTree = "<group>"; };
 		0C96DA02209C6C0B00B6A8B8 /* QuickAddRequireVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickAddRequireVC.h; sourceTree = "<group>"; };
 		0C96DA03209C6C0B00B6A8B8 /* QuickAddRequireVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickAddRequireVC.m; sourceTree = "<group>"; };
+		0C9CD3FA20FDEF06004894A3 /* AlbumCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumCollCell.h; sourceTree = "<group>"; };
+		0C9CD3FB20FDEF06004894A3 /* AlbumCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumCollCell.m; sourceTree = "<group>"; };
 		0CA37B6E20889028005609C7 /* AddTagView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagView.h; sourceTree = "<group>"; };
 		0CA37B6F20889028005609C7 /* AddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTagView.m; sourceTree = "<group>"; };
 		0CA37B712088938C005609C7 /* AddTagViewCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTagViewCollCell.h; sourceTree = "<group>"; };
@@ -1796,6 +1799,8 @@
 			children = (
 				0CF04F1720750AC700A45F4A /* BuildingAlbumCollCell.h */,
 				0CF04F1820750AC700A45F4A /* BuildingAlbumCollCell.m */,
+				0C9CD3FA20FDEF06004894A3 /* AlbumCollCell.h */,
+				0C9CD3FB20FDEF06004894A3 /* AlbumCollCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3065,6 +3070,7 @@
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
 				0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */,
 				0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */,
+				0C9CD3FC20FDEF06004894A3 /* AlbumCollCell.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,

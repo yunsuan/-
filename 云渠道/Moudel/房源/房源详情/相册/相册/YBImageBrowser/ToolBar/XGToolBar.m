@@ -7,7 +7,8 @@
 //
 
 #import "XGToolBar.h"
-#import "BuildingAlbumCollCell.h"
+//#import "BuildingAlbumCollCell.h"
+#import "AlbumCollCell.h"
 
 @interface XGToolBar()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
@@ -87,16 +88,29 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    BuildingAlbumCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BuildingAlbumCollCell" forIndexPath:indexPath];
+    AlbumCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AlbumCollCell" forIndexPath:indexPath];
     if (!cell) {
         
-        cell = [[BuildingAlbumCollCell alloc] initWithFrame:CGRectMake(0, 0, 50 *SIZE, 27 *SIZE)];
+        cell = [[AlbumCollCell alloc] initWithFrame:CGRectMake(0, 0, 78 *SIZE, 27 *SIZE)];
     }
     
 //    cell.contentL.text = @"123";
     cell.contentL.text = _imgArr[indexPath.item][@"name"];
     
     return cell;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    
+    NSInteger numberOfItems = [collectionView numberOfItemsInSection:0];
+    
+    CGFloat combinedItemWidth = (numberOfItems * _flowLayout.itemSize.width) + ((numberOfItems - 1) * _flowLayout.minimumInteritemSpacing);
+    
+    CGFloat padding = (collectionView.frame.size.width - combinedItemWidth) / 2;
+    
+    padding = padding > 0 ? padding :0 ;
+    
+    return UIEdgeInsetsMake(0, padding + 5 *SIZE,0, padding - 5 *SIZE);
 }
 
 - (void)setTitleLabelWithCurrentIndex:(NSUInteger)index totalCount:(NSUInteger)totalCount {
@@ -143,9 +157,10 @@
     self.backgroundColor = [UIColor clearColor];
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(50 *SIZE, 27 *SIZE);
+    _flowLayout.itemSize = CGSizeMake(78 *SIZE, 27 *SIZE);
     _flowLayout.minimumInteritemSpacing = 7 *SIZE;
-    _flowLayout.sectionInset = UIEdgeInsetsMake(SIZE, 10 *SIZE, 27 *SIZE, 10 *SIZE);
+//    _flowLayout.sectionInset = UIEdgeInsetsMake(SIZE, 10 *SIZE, 27 *SIZE, 10 *SIZE);
+    _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _currentL = [[UILabel alloc] initWithFrame:CGRectMake(9 *SIZE, 5 *SIZE, 100 *SIZE, 12 *SIZE)];
     _currentL.textColor = YJContentLabColor;
@@ -162,7 +177,7 @@
     _XGColl.backgroundColor = [UIColor clearColor];
     _XGColl.delegate = self;
     _XGColl.dataSource = self;
-    [_XGColl registerClass:[BuildingAlbumCollCell class] forCellWithReuseIdentifier:@"BuildingAlbumCollCell"];
+    [_XGColl registerClass:[AlbumCollCell class] forCellWithReuseIdentifier:@"AlbumCollCell"];
     [self addSubview:_XGColl];
 }
 
