@@ -20,6 +20,7 @@
     NSMutableArray *_selectArr;
     RoomListModel *_roomModel;
     BrokerModel *_model;
+
     
 
 }
@@ -48,10 +49,11 @@
 }
 
 - (void)initDataSource{
-    
+  
     _selectArr = [@[] mutableCopy];
     _dataArr = [@[] mutableCopy];
-    _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
+    
+    _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
 
     
 }
@@ -177,7 +179,7 @@
                 
                 [_selectArr replaceObjectAtIndex:index withObject:@0];
             }else{
-                _selectArr = [NSMutableArray arrayWithArray:@[@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
+                _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
                 [_selectArr replaceObjectAtIndex:index withObject:@1];
             }
             [tableView reloadData];

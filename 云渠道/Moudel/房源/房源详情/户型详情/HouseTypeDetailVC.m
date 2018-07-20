@@ -460,8 +460,42 @@
             
             if (index == 0) {
                 
-                [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_QQ];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装手机QQ"];
+                }
+            }else if (index == 1){
+                
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_Qzone];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装手机QQ"];
+                }
+            }else if (index == 2){
+                
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatSession];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装微信"];
+                }
+            }else{
+                
+                if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+                    
+                    [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
+                }else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先安装微信"];
+                }
             }
+            
         };
     }
     return _transmitView;

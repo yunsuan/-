@@ -11,6 +11,7 @@
 #import "GuideVC.h"
 #import "SystemMessageVC.h"
 #import "WorkMessageVC.h"
+#import <WebKit/WebKit.h>
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -45,14 +46,7 @@
         NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
         [dataarr writeToFile:filePath atomically:YES];
     }
-
-
-    
-
-    
-    
-    
-    
+    [self deleteWebCache];
     [Bugtags startWithAppKey:@"1560323d00d5dac86cd32d7b0d130787" invocationEvent:BTGInvocationEventNone];
     [self postVersion];
     dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
@@ -598,6 +592,28 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
 }
 
+
+- (void)deleteWebCache {
+    
+    //    if([UIDevice currentDevice])
+    if(@available(iOS 9.0, *)) {
+        NSSet * websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        NSDate * dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore]removeDataOfTypes: websiteDataTypes
+                                                  modifiedSince:dateFrom completionHandler:^{
+                                                      
+                                                  }];
+        
+    }else{
+        
+        NSString*libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask,YES)objectAtIndex:0];
+        NSString* cookiesFolderPath = [libraryPath stringByAppendingString:@"/Cookies"];
+        NSError * errors;
+        [[NSFileManager defaultManager]removeItemAtPath:cookiesFolderPath error:&errors];
+        
+    }
+    
+}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.

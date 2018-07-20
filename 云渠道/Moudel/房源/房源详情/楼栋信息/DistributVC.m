@@ -72,8 +72,11 @@
             //3.创建Request
             NSURLRequest *request = [NSURLRequest requestWithURL:URL];
             //4.加载Request
+
+            
             [self.webwivw loadRequest:request];
             [self.view addSubview:self.webwivw];
+           
     }else{
         [self.view addSubview:self.backimg];
     }
@@ -358,5 +361,9 @@
     }
     [WaitAnimation stopAnimation];
 }
+
+
+
+
 
 @end
