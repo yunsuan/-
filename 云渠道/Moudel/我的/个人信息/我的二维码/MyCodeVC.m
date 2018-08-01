@@ -222,6 +222,10 @@
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
     
+    if (platformType == UMSocialPlatformType_WechatTimeLine) {
+        shareObject.title = @"【云渠道】房地产渠道专业平台";
+    }
+    
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {

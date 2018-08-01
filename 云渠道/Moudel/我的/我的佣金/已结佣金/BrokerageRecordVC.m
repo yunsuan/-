@@ -29,6 +29,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    page =1;
     [self postWithPage:@"1"];
 }
 
@@ -168,6 +169,7 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+            page = 1;
             [self postWithPage:@"1"];
         }];
         _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{

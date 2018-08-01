@@ -262,13 +262,14 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:_model.project_name thumImage:[NSString stringWithFormat:@"%@%@",TestBase_Net,_model.img_url]];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房地产分销渠道平台" thumImage:[UIImage imageNamed:@"shareimg"]];
 //    //设置网页地址
     
     
     //创建网页内容对象
 //    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房产渠道专业平台" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
+    
     
     
     [BaseRequest GET:@"user/project/getShare" parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
@@ -280,6 +281,9 @@
             shareObject.webpageUrl = resposeObject[@"data"];
             //分享消息对象设置分享内容对象
             messageObject.shareObject = shareObject;
+            if (platformType == UMSocialPlatformType_WechatTimeLine) {
+                shareObject.title = @"【云渠道】房地产渠道专业平台";
+            }
             
             //调用分享接口
             [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
