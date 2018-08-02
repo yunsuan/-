@@ -108,8 +108,23 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+    [self GetOpenCity];
  
+}
+
+-(void)GetOpenCity
+{
+    [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
+        
+        //            NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:resposeObject[@"data"]];
+            [UserModelArchiver archive];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 -(void)initDateSouce
@@ -637,13 +652,28 @@
     if (_city) {
         
     }else{
-        
+        NSArray *opencity =  [UserModel defaultModel].cityArr;
         [_cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
         NSInteger disInteger = [result.addressDetail.adCode integerValue];
         NSInteger cityInteger = disInteger / 100 * 100;
-        _city = [NSString stringWithFormat:@"%ld",cityInteger];
-        _cityName = result.addressDetail.city;
-        [self RequestMethod];
+        NSMutableArray *citycode = [NSMutableArray array];
+        for (int i=0; i<opencity.count; i++) {
+            [citycode addObject:opencity[i][@"city_code"]];
+        }
+        
+        if ([citycode containsObject:[NSString stringWithFormat:@"%ld",cityInteger]]) {
+            _city = [NSString stringWithFormat:@"%ld",cityInteger];
+            _cityName = result.addressDetail.city;
+            [self RequestMethod];
+        }
+        else
+        {
+            [_cityBtn setTitle:@"成都市" forState:UIControlStateNormal];
+            _city = [NSString stringWithFormat:@"510100"];
+            _cityName = @"成都市";
+            [self RequestMethod];
+        }
+
     }
 }
 

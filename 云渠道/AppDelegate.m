@@ -38,8 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ServerControl" ofType:@"plist"];
-//    NSMutableArray *data1 = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
     NSMutableArray *arr = [[NSMutableArray alloc]initWithContentsOfFile:filePath];
     if (arr.count != 1) {
