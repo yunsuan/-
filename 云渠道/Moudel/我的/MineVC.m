@@ -468,7 +468,7 @@
         }else{
             
             WebViewVC *next_vc = [[WebViewVC alloc]init];
-            next_vc.weburl = @"http://www.ccfost.com.cn";
+            next_vc.weburl = @"http://www.ccsoft.com.cn";
             [self.navigationController pushViewController:next_vc animated:YES];
         }
         

@@ -250,6 +250,10 @@
         
         [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
     }
+    if (_status.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_status] forKey:@"sale_state"];
+    }
     [dic setObject:_asc forKey:@"sort_type"];
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
@@ -286,7 +290,7 @@
         
         [dic setObject:_city forKey:@"city"];
     }
-    if (_district.length && [_district isEqualToString:@"0"]) {
+    if (![_district isEqualToString:@"0"] && _district.length) {
         
         [dic setObject:_district forKey:@"district"];
     }
@@ -305,6 +309,10 @@
     if (_houseType.length) {
         
         [dic setObject:[NSString stringWithFormat:@"%@",_houseType] forKey:@"house_type"];
+    }
+    if (_status.length) {
+        
+        [dic setObject:[NSString stringWithFormat:@"%@",_status] forKey:@"sale_state"];
     }
     [dic setObject:_asc forKey:@"sort_type"];
     
@@ -359,10 +367,12 @@
     PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:_searchArr searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
-        
-        HouseSearchVC *nextVC = [[HouseSearchVC alloc] initWithTitle:searchText city:_city];
-        //        nextVC.hidesBottomBarWhenPushed = YES;
-        [searchViewController.navigationController pushViewController:nextVC animated:YES];
+        if (![self isEmpty:searchText]) {
+            
+            HouseSearchVC *nextVC = [[HouseSearchVC alloc] initWithTitle:searchText city:_city];
+            //        nextVC.hidesBottomBarWhenPushed = YES;
+            [searchViewController.navigationController pushViewController:nextVC animated:YES];
+        }
     }];
     // 3. 设置风格
     searchViewController.searchBar.returnKeyType = UIReturnKeySearch;
@@ -1261,19 +1271,28 @@
             
             _is4 = NO;
             weakSelf.moreBtn.selected = NO;
-            if (tag) {
+            if (tag.length) {
                 
                 _tag = [NSString stringWithFormat:@"%@",tag];
+            }else{
+                
+                _tag = @"";
             }
             
-            if (houseType) {
+            if (houseType.length) {
                 
                 _houseType = [NSString stringWithFormat:@"%@",houseType];
+            }else{
+                
+                _houseType = @"";
             }
             
-            if (status) {
+            if (status.length) {
                 
                 _status = [NSString stringWithFormat:@"%@",status];
+            }else{
+                
+                _status = @"";
             }
         
             [weakSelf RequestMethod];

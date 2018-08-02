@@ -152,6 +152,7 @@
 
 - (void)SetMatchPeople:(NSArray *)data{
     
+    [_peopleArr removeAllObjects];
     for (int i = 0 ; i < data.count; i++) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
