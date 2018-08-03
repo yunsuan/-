@@ -622,6 +622,7 @@
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
+  
     
     BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
     
