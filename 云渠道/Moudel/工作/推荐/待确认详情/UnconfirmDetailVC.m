@@ -243,7 +243,7 @@
                 
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
-                    [self alertControllerWithNsstring:@"失效确认成功" And:nil];
+                    [weakSelf alertControllerWithNsstring:@"失效确认成功" And:nil];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
                     
                 }else{

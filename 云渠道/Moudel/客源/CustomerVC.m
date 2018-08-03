@@ -368,7 +368,7 @@
     // 1.创建热门搜索
     NSArray *hotSeaches = @[];
     // 2. 创建控制器
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入姓名或电话" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
         [searchViewController.navigationController pushViewController:[[CustomSearchVC alloc] initWithTitle:searchText] animated:YES];
@@ -654,7 +654,7 @@
                 [weakSelf.typeBtn setTitle:str forState:UIControlStateNormal];
             }
             _is1 = NO;
-            _type = [NSString stringWithFormat:@"ID"];
+            _type = [NSString stringWithFormat:@"%@",ID];
             weakSelf.typeBtn.selected = NO;
             [weakSelf.boxView removeFromSuperview];
             [weakSelf RequestMethod];

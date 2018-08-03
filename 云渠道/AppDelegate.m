@@ -571,12 +571,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
-    if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
-    }
+//    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
+//    if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
+//
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+//    }
 }
 
 
@@ -585,7 +585,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
     if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
-        
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
     }

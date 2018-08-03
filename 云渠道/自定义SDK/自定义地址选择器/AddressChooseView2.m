@@ -390,7 +390,7 @@
             }
             case 1:
             {
-                table.backgroundColor = YJBackColor;
+                table.backgroundColor = CH_COLOR_white;
                 _cityTable = table;
                 [self addSubview:_cityTable];
                 break;

@@ -313,7 +313,7 @@
                 [weakSelf shareWebPageToPlatformType:UMSocialPlatformType_WechatTimeLine];
             }else{
                 
-                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时不支持发送短信"];
+                [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"暂时不支持发送短信"];
             }
         };
     }
