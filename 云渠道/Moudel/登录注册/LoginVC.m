@@ -288,7 +288,7 @@
 -(UIImageView *)Headerimg
 {
     if (!_Headerimg) {
-        _Headerimg = [[UIImageView alloc]initWithFrame:CGRectMake(135*SIZE, 82*SIZE, 93*SIZE, 58*SIZE)];
+        _Headerimg = [[UIImageView alloc]initWithFrame:CGRectMake(130*SIZE, 82*SIZE, 100*SIZE, 68*SIZE)];
         _Headerimg.image = [UIImage imageNamed:@"logo_2"];
     }
     return _Headerimg;

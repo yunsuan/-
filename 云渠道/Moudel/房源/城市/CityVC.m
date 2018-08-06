@@ -148,7 +148,10 @@
     _code = _dataArr[indexPath.section][indexPath.row][@"city_code"];
     _city = _dataArr[indexPath.section][indexPath.row][@"city_name"];
     _cityLabel.text = [NSString stringWithFormat:@"当前选择：%@",_city];
+    
 }
+
+
 
 - (void)initUI{
     
