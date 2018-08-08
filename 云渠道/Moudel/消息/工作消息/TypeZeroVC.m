@@ -45,7 +45,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initDateSouce];
     [self initUI];
 }
