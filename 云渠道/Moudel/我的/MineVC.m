@@ -17,6 +17,7 @@
 #import "WebViewVC.h"
 #import "AuditStatusVC.h"
 #import "AuthenedVC.h"
+#import "MyTeamVC.h"
 
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -99,9 +100,9 @@
 
 -(void)InitDataSouce
 {
-    _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于云算",@"操作指南"]];
-    _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
-    _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",YQDversion,@""]];
+    _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注",@"我的团队"],@[@"意见反馈",@"关于云算",@"操作指南"]];
+    _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus",@"focus"],@[@"opinion",@"about",@"operation"]];
+    _contentList= @[@[@"",@"",@""],@[@"",@"",@""],@[@" ",YQDversion,@""]];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 
@@ -325,11 +326,8 @@
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1) {
-        return 2;
-    }
-    else
-        return 3;
+    
+    return _namelist.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -451,6 +449,11 @@
             if (indexPath.row == 1) {
                 
                 MyAttentionVC *nextVC = [[MyAttentionVC alloc] init];
+                nextVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nextVC animated:YES];
+            }else{
+                
+                MyTeamVC *nextVC = [[MyTeamVC alloc] init];
                 nextVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nextVC animated:YES];
             }
