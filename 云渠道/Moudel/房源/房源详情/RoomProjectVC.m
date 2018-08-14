@@ -55,6 +55,7 @@
     NSString *_phone_url;
     NSString *_name;
 }
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
 @property (nonatomic, strong) UITableView *roomTable;
 
@@ -734,28 +735,57 @@
             cell.recommendBtnBlock5 = ^(NSInteger index) {
                 
                 CustomMatchModel *model = _peopleArr[index];
-                [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+                SS(strongSelf);
+                WS(weakSelf);
+                self.selectWorkerView.selectWorkerRecommendBlock = ^{
                     
-                    NSLog(@"%@",resposeObject);
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                    if (weakSelf.selectWorkerView.nameL.text) {
+                        
+                        [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+                    }
+                    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+                        
+                        NSLog(@"%@",resposeObject);
+                        
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                                
+                                [weakSelf MatchRequest];
+                            }];
+                        }else if ([resposeObject[@"code"] integerValue] == 401){
+                            
+                            
+                        }
+                        else{
+                            
+                            [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                        }
+                    } failure:^(NSError *error) {
+                        
+                        NSLog(@"%@",error);
+                        [weakSelf showContent:@"网络错误"];
+                    }];
+                };
+                [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":strongSelf->_model.project_id} success:^(id resposeObject) {
                     
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
-                        [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                        weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                        [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                             
-                            [self MatchRequest];
+                            NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                                  @"param":obj[@"RYXM"]
+                                                  };
+                            [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
                         }];
-                    }else if ([resposeObject[@"code"] integerValue] == 401){
-                        
-                        
                     }
-                    else{
-                        
-                        [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
-                    }
+                    [self.view addSubview:weakSelf.selectWorkerView];
                 } failure:^(NSError *error) {
                     
-                    NSLog(@"%@",error);
-                    [self showContent:@"网络错误"];
+                    [self.view addSubview:weakSelf.selectWorkerView];
                 }];
             };
             return cell;

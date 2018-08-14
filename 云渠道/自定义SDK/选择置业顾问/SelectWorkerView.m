@@ -30,7 +30,7 @@
           
             weakSelf.nameL.text = [NSString stringWithFormat:@"%@",MC];
             weakSelf.phone = [NSString stringWithFormat:@"%@",ID];
-            weakSelf.phoneL.text = [NSString stringWithFormat:@"%@",ID];;
+            weakSelf.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",ID];;
         };
         [self addSubview:view];
     }else{

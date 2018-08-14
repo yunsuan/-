@@ -23,6 +23,9 @@
     NSArray *_propertyArr;
     CustomRequireModel *_model;
 }
+
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
+
 @property (nonatomic , strong) UITableView *searchTable;
 
 @end
@@ -274,30 +277,59 @@
     if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
         
         RoomListModel *model = _dataArr[indexPath.row];
-        [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
+        self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+        SS(strongSelf);
+        WS(weakSelf);
+        self.selectWorkerView.selectWorkerRecommendBlock = ^{
             
-//            NSLog(@"%@",resposeObject);
-        
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":model.project_id,@"client_need_id":strongSelf->_model.need_id,@"client_id":strongSelf->_model.client_id}];
+            if (weakSelf.selectWorkerView.nameL.text) {
+                
+                [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+            }
+            [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+                
+                
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                        
+                        for (UIViewController *vc in weakSelf.navigationController.viewControllers) {
+                            
+                            if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                                
+                                [weakSelf.navigationController popToViewController:vc animated:YES];
+                            }
+                        }
+                    }];
+                }
+                else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                }
+            } failure:^(NSError *error) {
+                
+                NSLog(@"%@",error);
+                [weakSelf showContent:@"网络错误"];
+            }];
+        };
+        [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":model.project_id} success:^(id resposeObject) {
+            
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                for (UIViewController *vc in self.navigationController.viewControllers) {
+                weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
-                    if ([vc isKindOfClass:[CustomDetailVC class]]) {
-                        
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            
-                            [self.navigationController popToViewController:vc animated:YES];
-                        });
-                    }
-                }
+                    NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                          @"param":obj[@"RYXM"]
+                                          };
+                    [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                }];
             }
-            else{
-                [self showContent:resposeObject[@"msg"]];
-            }
+            [self.view addSubview:weakSelf.selectWorkerView];
         } failure:^(NSError *error) {
             
-//            NSLog(@"%@",error);
-            [self showContent:@"网络错误"];
+            [self.view addSubview:weakSelf.selectWorkerView];
         }];
     }else{
         
