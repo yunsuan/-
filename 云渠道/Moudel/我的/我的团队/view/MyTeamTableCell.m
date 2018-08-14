@@ -97,7 +97,7 @@
     
     [_timeL mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(_backView).offset(240 *SIZE);
+        make.left.equalTo(_backView).offset(180 *SIZE);
         make.top.equalTo(_backView).offset(18 *SIZE);
         make.right.equalTo(_backView).offset(-12 *SIZE);
     }];

@@ -39,6 +39,9 @@ static NSString *const Config_URL = @"config";
 
 static NSString *const Advicer_URL = @"user/yunsuan/advicer";
 
+//获取项目置业顾问
+static NSString *const ProjectAdvicer_URL = @"user/project/advicer";
+
 #pragma mark ---  登录注册  ---
 //1登录
 static NSString *const Login_URL = @"agent/user/login";
@@ -142,6 +145,9 @@ static NSString *const QuitAuth_URL = @"agent/personal/quit";
 //我的二维码
 
 static NSString *const QRCode_URL = @"agent/personal/qrcodeUrl";
+
+//我的团队
+static NSString *const PersonalMyTeamList_URL = @"agent/personal/myTeamList";
 
 #pragma mark ---  客源  ---
 

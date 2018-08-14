@@ -105,6 +105,7 @@
 		0C6B636D2122710200ABB506 /* MyTeamTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B636C2122710200ABB506 /* MyTeamTableHeader2.m */; };
 		0C6B63712122B68100ABB506 /* BrokerageAwardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63702122B68100ABB506 /* BrokerageAwardVC.m */; };
 		0C6B63752122B79900ABB506 /* BrokerageAwardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */; };
+		0C6B63792122DCD400ABB506 /* SelectWorkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63782122DCD400ABB506 /* SelectWorkerView.m */; };
 		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0C921951209472FC00EFE75C /* RecommendedStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C921950209472FC00EFE75C /* RecommendedStatusVC.m */; };
 		0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219532094791E00EFE75C /* ReStatusTableCell.m */; };
@@ -533,6 +534,8 @@
 		0C6B63702122B68100ABB506 /* BrokerageAwardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageAwardVC.m; sourceTree = "<group>"; };
 		0C6B63732122B79900ABB506 /* BrokerageAwardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageAwardCell.h; sourceTree = "<group>"; };
 		0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageAwardCell.m; sourceTree = "<group>"; };
+		0C6B63772122DCD400ABB506 /* SelectWorkerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectWorkerView.h; sourceTree = "<group>"; };
+		0C6B63782122DCD400ABB506 /* SelectWorkerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectWorkerView.m; sourceTree = "<group>"; };
 		0C92194A2092ECFC00EFE75C /* CustomMatchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMatchModel.h; sourceTree = "<group>"; };
 		0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchModel.m; sourceTree = "<group>"; };
 		0C92194F209472FC00EFE75C /* RecommendedStatusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendedStatusVC.h; sourceTree = "<group>"; };
@@ -1542,6 +1545,15 @@
 				0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0C6B63762122DC9900ABB506 /* 选择置业顾问 */ = {
+			isa = PBXGroup;
+			children = (
+				0C6B63772122DCD400ABB506 /* SelectWorkerView.h */,
+				0C6B63782122DCD400ABB506 /* SelectWorkerView.m */,
+			);
+			path = "选择置业顾问";
 			sourceTree = "<group>";
 		};
 		0C92194E209472B900EFE75C /* 已推荐项目状态 */ = {
@@ -2618,6 +2630,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				0C6B63762122DC9900ABB506 /* 选择置业顾问 */,
 				0C0BED3720A2CF49005A16A1 /* 加载动画 */,
 				10B5097820931764004355C4 /* selectview */,
 				101624582088638B00AD53DE /* 自定义选择页面 */,
@@ -3082,6 +3095,7 @@
 				0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */,
 				0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
+				0C6B63792122DCD400ABB506 /* SelectWorkerView.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
 				0C0C1A2720EE16B00086E739 /* CompanyDetailCell.m in Sources */,
 				0CBD85A3208835F300E7B183 /* CustomDetailTableCell5.m in Sources */,

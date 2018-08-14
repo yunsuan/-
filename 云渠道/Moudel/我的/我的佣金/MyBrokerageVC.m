@@ -251,11 +251,24 @@
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE + SCREEN_Width / 2 * i, 144 *SIZE + NAVIGATION_BAR_HEIGHT, 167 *SIZE, 83 *SIZE)];
         img.userInteractionEnabled = YES;
-        img.backgroundColor = YJBlueBtnColor;
+        if (i == 0) {
+            
+            img.image = [UIImage imageNamed:@"blue"];
+        }else{
+            
+            img.image = [UIImage imageNamed:@"orange"];
+        }
+//        img.backgroundColor = YJBlueBtnColor;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 18 *SIZE, 167 *SIZE, 13 *SIZE)];
         label.textColor = CH_COLOR_white;
-        label.text = @"邀请奖励";
+        if (i == 0) {
+            
+            label.text = @"邀请奖励";
+        }else{
+            
+            label.text = @"其他奖励";
+        }
         label.font = [UIFont systemFontOfSize:13 *SIZE];
         label.textAlignment = NSTextAlignmentCenter;
         

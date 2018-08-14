@@ -782,33 +782,60 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }else{
-            
             RoomListModel *model = _dataArr[indexPath.row];
-            [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
-                
-//                NSLog(@"%@",resposeObject);
+            SelectWorkerView *view = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+//            SS(strongSelf);
+//            WS(weakSelf);
+            view.selectWorkerRecommendBlock = ^{
+              
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id}];
+                if (view.nameL.text) {
+                    
+                    [dic setObject:view.phone forKey:@"consultant_tel"];
+                }
+                [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+
+                    
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                            
+                            for (UIViewController *vc in self.navigationController.viewControllers) {
+                                
+                                if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                                    
+                                    [self.navigationController popToViewController:vc animated:YES];
+                                }
+                            }
+                        }];
+                    }
+                    else{
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                    [self showContent:@"网络错误"];
+                }];
+            };
+            [BaseRequest POST:ProjectAdvicer_URL parameters:@{@"project_id":model.project_id} success:^(id resposeObject) {
                 
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
-                    [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
-                        
-                        for (UIViewController *vc in self.navigationController.viewControllers) {
-                            
-                            if ([vc isKindOfClass:[CustomDetailVC class]]) {
-                                
-                                [self.navigationController popToViewController:vc animated:YES];
-                            }
-                        }
+                    view.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                    [view.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                       
+                        NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                              @"param":obj[@"RYXM"]
+                                              };
+                        [view.dataArr replaceObjectAtIndex:idx withObject:dic];
                     }];
                 }
-                else{
-                    
-                    [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
-                }
+                [self.view addSubview:view];
             } failure:^(NSError *error) {
                 
-                NSLog(@"%@",error);
-                [self showContent:@"网络错误"];
+                [self.view addSubview:view];
             }];
         }
     }else{

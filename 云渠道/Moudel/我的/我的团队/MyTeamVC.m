@@ -17,6 +17,9 @@
 {
     
     NSMutableArray *_dataArr;
+    NSMutableDictionary *_person;
+    NSMutableDictionary *_parent;
+    NSMutableDictionary *_recommend;
 }
 
 @property (nonatomic, strong) UITableView *mainTable;
@@ -27,12 +30,107 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initDataSource];
     [self initUI];
+    [self RequestMethod];
+}
+
+- (void)initDataSource{
+    
+    _parent = [@{} mutableCopy];
+    _person = [@{} mutableCopy];
+    _recommend = [@{} mutableCopy];
+    _dataArr = [@[] mutableCopy];
+}
+
+- (void)RequestMethod{
+    
+    [BaseRequest GET:PersonalMyTeamList_URL parameters:nil success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self SetData:resposeObject[@"data"]];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetData:(NSDictionary *)data{
+    
+    if ([data[@"person"] isKindOfClass:[NSDictionary class]]) {
+        
+        _person = [NSMutableDictionary dictionaryWithDictionary:data[@"person"]];
+        [_person enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [_person setObject:@"" forKey:key];
+            }
+        }];
+    }
+    
+    if ([data[@"parent"] isKindOfClass:[NSDictionary class]]) {
+        
+        _parent = [NSMutableDictionary dictionaryWithDictionary:data[@"parent"]];
+        [_parent enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [_parent setObject:@"" forKey:key];
+            }
+        }];
+    }
+    
+    if ([data[@"recommend"] isKindOfClass:[NSDictionary class]]) {
+        
+        _recommend = [NSMutableDictionary dictionaryWithDictionary:data[@"recommend"]];
+        [_recommend enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[NSNull class]]) {
+                
+                [_recommend setObject:@"" forKey:key];
+            }
+        }];
+    }
+    
+    if ([data[@"child"] isKindOfClass:[NSArray class]]) {
+        
+        _dataArr = [NSMutableArray arrayWithArray:data[@"child"]];
+        for (int i = 0; i < _dataArr.count; i++) {
+            
+            NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:_dataArr[i]];
+            [tempDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[NSNull class]]) {
+                    
+                    [tempDic setObject:@"" forKey:key];
+                }
+            }];
+            [_dataArr replaceObjectAtIndex:i withObject:tempDic];
+        }
+    }
+    
+    [_mainTable reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 3;
+    if (_dataArr.count && _parent.count) {
+        
+        return 3;
+    }else if(!_dataArr.count && !_parent.count){
+        
+        return 1;
+    }else{
+        
+        return 2;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -42,10 +140,16 @@
         return 0;
     }else if (section == 1){
         
-        return 1;
+        if (_parent.count) {
+            
+            return 1;
+        }else{
+            
+            return _dataArr.count;
+        }
     }else{
         
-        return 3;
+        return _dataArr.count;
     }
 }
 
@@ -60,10 +164,15 @@
         }
         
         header.headImg.image = [UIImage imageNamed:@"def_head"];
-        header.nameL.text = @"张三";
-        header.levelL.text = @"等级：新秀";
-        header.recommendL.text = @"今日推荐：2人";
-        header.allL.text = @"所有成员：189人";
+        
+        header.nameL.text = _person[@"name"];
+        header.levelL.text = [NSString stringWithFormat:@"等级：%@",_person[@"grade"]];
+        [header.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_person[@"head_img"]]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+           
+            header.headImg.image = [UIImage imageNamed:@"def_head"];
+        }];
+        header.recommendL.text = [NSString stringWithFormat:@"今日推荐：%@人",_recommend[@"today"]];
+        header.allL.text = [NSString stringWithFormat:@"所有成员：%@人",_recommend[@"total"]];
         
         return header;
     }else{
@@ -73,7 +182,19 @@
             
             header = [[MyTeamTableHeader2 alloc] initWithReuseIdentifier:@"MyTeamTableHeader2"];
         }
-        header.titleL.text = @"我的推荐人";
+        if (section == 1) {
+            
+            if (_parent.count) {
+                
+                header.titleL.text = @"我的推荐人";
+            }else{
+                
+                header.titleL.text = @"我的团队";
+            }
+        }else{
+            
+            header.titleL.text = @"我的团队";
+        }
         
         return header;
     }
@@ -93,19 +214,66 @@
     
     if (indexPath.section == 1) {
         
-        MyTeamTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTeamTableCell"];
-        if (!cell) {
+        if (_parent.count) {
             
-            cell = [[MyTeamTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTeamTableCell"];
+            MyTeamTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTeamTableCell"];
+            if (!cell) {
+                
+                cell = [[MyTeamTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTeamTableCell"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_parent[@"head_img"]]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                
+                cell.headImg.image = [UIImage imageNamed:@"def_head"];
+            }];
+            
+            cell.nameL.text = _parent[@"name"];
+            cell.levelL.text = [NSString stringWithFormat:@"等级：%@",_parent[@"grade"]];
+            cell.timeL.text = _parent[@"create_time"];
+            if ([_parent[@"sex"] integerValue] == 1) {
+                
+                cell.genderImg.image = [UIImage imageNamed:@"man"];
+            }else if ([_parent[@"sex"] integerValue] == 2){
+                
+                cell.genderImg.image = [UIImage imageNamed:@"girl"];
+            }else{
+                
+                cell.genderImg.image = [UIImage imageNamed:@""];
+            }
+            
+            return cell;
+        }else{
+            
+            MyTeamTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTeamTableCell2"];
+            if (!cell) {
+                
+                cell = [[MyTeamTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyTeamTableCell2"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_dataArr[indexPath.row][@"head_img"]]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                
+                cell.headImg.image = [UIImage imageNamed:@"def_head"];
+            }];
+            
+            cell.nameL.text = _dataArr[indexPath.row][@"name"];
+            cell.levelL.text = [NSString stringWithFormat:@"等级：%@",_dataArr[indexPath.row][@"grade"]];
+            cell.timeL.text = _dataArr[indexPath.row][@"create_time"];
+            if ([_dataArr[indexPath.row][@"sex"] integerValue] == 1) {
+                
+                cell.genderImg.image = [UIImage imageNamed:@"man"];
+            }else if ([_dataArr[indexPath.row][@"sex"] integerValue] == 2){
+                
+                cell.genderImg.image = [UIImage imageNamed:@"girl"];
+            }else{
+                
+                cell.genderImg.image = [UIImage imageNamed:@""];
+            }
+            cell.commissionL.text = [NSString stringWithFormat:@"奖励金：%@",_dataArr[indexPath.row][@"produce_grade"]];
+            return cell;
+
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.headImg.image = [UIImage imageNamed:@"def_head"];
-        cell.nameL.text = @"张三";
-        cell.levelL.text = @"等级：新秀";
-        cell.timeL.text = @"2018.6.10";
-        
-        return cell;
     }else{
         
         MyTeamTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"MyTeamTableCell2"];
@@ -115,12 +283,25 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.headImg.image = [UIImage imageNamed:@"def_head"];
+        [cell.headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_dataArr[indexPath.row][@"head_img"]]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            cell.headImg.image = [UIImage imageNamed:@"def_head"];
+        }];
         
-        cell.nameL.text = @"张三";
-        cell.levelL.text = @"等级：新秀";
-        cell.timeL.text = @"2018.6.10";
-        cell.commissionL.text = @"奖励金：20";
+        cell.nameL.text = _dataArr[indexPath.row][@"name"];
+        cell.levelL.text = [NSString stringWithFormat:@"等级：%@",_dataArr[indexPath.row][@"grade"]];
+        cell.timeL.text = _dataArr[indexPath.row][@"create_time"];
+        if ([_dataArr[indexPath.row][@"sex"] integerValue] == 1) {
+            
+            cell.genderImg.image = [UIImage imageNamed:@"man"];
+        }else if ([_dataArr[indexPath.row][@"sex"] integerValue] == 2){
+            
+            cell.genderImg.image = [UIImage imageNamed:@"girl"];
+        }else{
+            
+            cell.genderImg.image = [UIImage imageNamed:@""];
+        }
+        cell.commissionL.text = [NSString stringWithFormat:@"奖励金：%@",_dataArr[indexPath.row][@"produce_grade"]];
         return cell;
     }
 }

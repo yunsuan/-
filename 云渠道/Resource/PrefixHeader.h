@@ -45,6 +45,7 @@
 #import "WaitAnimation.h"
 #import <UMShare/UMShare.h>
 #import "TransmitView.h"
+#import "SelectWorkerView.h"
 
 
 
@@ -196,5 +197,6 @@
 #define FyColor_ZhutiColor  COLOR(18, 183, 245, 1)
 
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#define SS(strongSelf)  __strong __typeof(&*self)strongSelf = self;
 
 #endif /* Header_h */
