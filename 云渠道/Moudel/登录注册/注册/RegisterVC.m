@@ -99,7 +99,7 @@
             return;
         }else{
             
-            [parameter setObject:self.recommendTF.text forKey:@"consultant_tel"];
+            [parameter setObject:self.recommendTF.text forKey:@"code"];
         }
     }
     

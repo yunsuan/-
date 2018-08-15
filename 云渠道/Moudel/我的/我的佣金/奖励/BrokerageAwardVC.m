@@ -39,7 +39,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 2;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -51,10 +51,10 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.nameL.text = @"张三";
-    cell.phoneL.text = @"15983804766";
-    cell.priceL.text = @"￥20";
-    cell.timeL.text = @"2018-02-10";
+//    cell.nameL.text = @"张三";
+//    cell.phoneL.text = @"15983804766";
+//    cell.priceL.text = @"￥20";
+//    cell.timeL.text = @"2018-02-10";
     
     return cell;
 }

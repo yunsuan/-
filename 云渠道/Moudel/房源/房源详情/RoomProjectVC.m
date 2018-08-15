@@ -314,6 +314,36 @@
     [_roomTable reloadData];
 }
 
+
+#pragma mark -- Method --
+
+- (void)RequestRecommend:(NSDictionary *)dic{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                
+                [self MatchRequest];
+            }];
+        }else if ([resposeObject[@"code"] integerValue] == 401){
+            
+            
+        }
+        else{
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
 - (void)ActionMoreBtn:(UIButton *)btn{
     
 //    NSLog(@"%ld",btn.tag);
@@ -773,19 +803,31 @@
                     
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
-                        weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
-                        [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([resposeObject[@"data"][@"rows"] count]) {
                             
-                            NSDictionary *dic = @{@"id":obj[@"RYDH"],
-                                                  @"param":obj[@"RYXM"]
-                                                  };
-                            [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
-                        }];
+                            weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                            [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                
+                                NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                                      @"param":obj[@"RYXM"]
+                                                      };
+                                [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                            }];
+                            [self.view addSubview:weakSelf.selectWorkerView];
+                        }else{
+                            
+                            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                            [weakSelf RequestRecommend:dic];
+                        }
+                    }else{
+                        
+                        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                        [weakSelf RequestRecommend:dic];
                     }
-                    [self.view addSubview:weakSelf.selectWorkerView];
                 } failure:^(NSError *error) {
                     
-                    [self.view addSubview:weakSelf.selectWorkerView];
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                    [weakSelf RequestRecommend:dic];
                 }];
             };
             return cell;

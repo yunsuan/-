@@ -42,6 +42,9 @@ static NSString *const Advicer_URL = @"user/yunsuan/advicer";
 //获取项目置业顾问
 static NSString *const ProjectAdvicer_URL = @"user/project/advicer";
 
+//加入团队地址
+static NSString *const PersonalJoinAgentTeam_URL = @"agent/personal/joinAgentTeam";
+
 #pragma mark ---  登录注册  ---
 //1登录
 static NSString *const Login_URL = @"agent/user/login";

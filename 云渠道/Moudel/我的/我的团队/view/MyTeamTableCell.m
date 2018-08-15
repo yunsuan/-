@@ -34,11 +34,15 @@
     _headImg.layer.cornerRadius = 20 *SIZE;
     _headImg.clipsToBounds = YES;
     [_backView addSubview:_headImg];
+
     
     _nameL = [[UILabel alloc] init];
     _nameL.textColor = YJTitleLabColor;
     _nameL.font = [UIFont systemFontOfSize:13 *SIZE];
     [_backView addSubview:_nameL];
+    
+    _genderImg = [[UIImageView alloc] init];
+    [_backView addSubview:_genderImg];
     
     _levelL = [[UILabel alloc] init];
     _levelL.textColor = YJContentLabColor;

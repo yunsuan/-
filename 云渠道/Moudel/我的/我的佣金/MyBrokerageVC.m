@@ -144,8 +144,16 @@
 
 - (void)ActionAwardBtn:(UIButton *)btn{
     
-    BrokerageAwardVC *nextVC = [[BrokerageAwardVC alloc] initWithTitle:@"邀请奖励"];
-    [self.navigationController pushViewController:nextVC animated:YES];
+    if (btn.tag == 0) {
+        
+        BrokerageAwardVC *nextVC = [[BrokerageAwardVC alloc] initWithTitle:@"邀请奖励"];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }else{
+        
+        BrokerageAwardVC *nextVC = [[BrokerageAwardVC alloc] initWithTitle:@"其他奖励"];
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    
 }
 
 #pragma mark -- tableview
@@ -180,14 +188,7 @@
     [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12 *SIZE] range:NSMakeRange(0, 2)];
     cell.numL.attributedText = attr;
     cell.priceL.text = [NSString stringWithFormat:@"%@",_brokerCount[indexPath.row][1]];
-//    if (indexPath.row == 0) {
-//        
-//        cell.backImg.image = [UIImage imageNamed:@"bg_1-1"];
-//        
-//    }else{
-//        
-//        cell.backImg.image = [UIImage imageNamed:@"bg_2-1"];
-//    }
+
     
     return cell;
 }
@@ -275,7 +276,7 @@
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 47 *SIZE, 167 *SIZE, 13 *SIZE)];
         label1.textColor = CH_COLOR_white;
         label1.font = [UIFont systemFontOfSize:13 *SIZE];
-        label1.text = @"￥20";
+        label1.text = @"￥0";
         label1.textAlignment = NSTextAlignmentCenter;
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

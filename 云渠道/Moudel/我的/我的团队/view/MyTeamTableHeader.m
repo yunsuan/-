@@ -41,6 +41,9 @@
     _nameL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_nameL];
     
+    _genderImg = [[UIImageView alloc] init];
+    [self.contentView addSubview:_genderImg];
+    
     _levelL = [[UILabel alloc] init];
     _levelL.textColor = YJ86Color;
     _levelL.font = [UIFont systemFontOfSize:12 *SIZE];
@@ -73,7 +76,7 @@
     
     [_nameL mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView).offset(210 *SIZE);
+        make.left.equalTo(self.contentView).offset(160 *SIZE);
         make.top.equalTo(self.contentView).offset(23 *SIZE);
         make.right.equalTo(self.contentView).offset(-97 *SIZE);
     }];
@@ -81,7 +84,7 @@
     [_genderImg mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_nameL.mas_right).offset(4 *SIZE);
-        make.top.equalTo(self.contentView).offset(16 *SIZE);
+        make.top.equalTo(self.contentView).offset(22 *SIZE);
         make.width.height.mas_equalTo(12 *SIZE);
     }];
     

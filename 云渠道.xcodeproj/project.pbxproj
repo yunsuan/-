@@ -106,6 +106,7 @@
 		0C6B63712122B68100ABB506 /* BrokerageAwardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63702122B68100ABB506 /* BrokerageAwardVC.m */; };
 		0C6B63752122B79900ABB506 /* BrokerageAwardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */; };
 		0C6B63792122DCD400ABB506 /* SelectWorkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63782122DCD400ABB506 /* SelectWorkerView.m */; };
+		0C6B637C2123C28300ABB506 /* TeamInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B637B2123C28300ABB506 /* TeamInfoView.m */; };
 		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0C921951209472FC00EFE75C /* RecommendedStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C921950209472FC00EFE75C /* RecommendedStatusVC.m */; };
 		0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219532094791E00EFE75C /* ReStatusTableCell.m */; };
@@ -536,6 +537,8 @@
 		0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageAwardCell.m; sourceTree = "<group>"; };
 		0C6B63772122DCD400ABB506 /* SelectWorkerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectWorkerView.h; sourceTree = "<group>"; };
 		0C6B63782122DCD400ABB506 /* SelectWorkerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectWorkerView.m; sourceTree = "<group>"; };
+		0C6B637A2123C28300ABB506 /* TeamInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeamInfoView.h; sourceTree = "<group>"; };
+		0C6B637B2123C28300ABB506 /* TeamInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeamInfoView.m; sourceTree = "<group>"; };
 		0C92194A2092ECFC00EFE75C /* CustomMatchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMatchModel.h; sourceTree = "<group>"; };
 		0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchModel.m; sourceTree = "<group>"; };
 		0C92194F209472FC00EFE75C /* RecommendedStatusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendedStatusVC.h; sourceTree = "<group>"; };
@@ -1524,6 +1527,8 @@
 				0C6B6369212270F900ABB506 /* MyTeamTableHeader.m */,
 				0C6B636B2122710200ABB506 /* MyTeamTableHeader2.h */,
 				0C6B636C2122710200ABB506 /* MyTeamTableHeader2.m */,
+				0C6B637A2123C28300ABB506 /* TeamInfoView.h */,
+				0C6B637B2123C28300ABB506 /* TeamInfoView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3185,6 +3190,7 @@
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
 				10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
+				0C6B637C2123C28300ABB506 /* TeamInfoView.m in Sources */,
 				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
 				0CBD857D2085C6EA00E7B183 /* BankCardListTableCell2.m in Sources */,

@@ -29,6 +29,7 @@
     NSInteger _btnNum;
     NSString *_projectId;
 }
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
 
@@ -419,6 +420,67 @@
         
         [dic setObject:str forKey:@"need_tags"];
     }
+    self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+    SS(strongSelf);
+    WS(weakSelf);
+    self.selectWorkerView.selectWorkerRecommendBlock = ^{
+        
+        [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
+            
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                    
+                    for (UIViewController *vc in weakSelf.navigationController.viewControllers) {
+                        
+                        if ([vc isKindOfClass:[RoomDetailVC1 class]]) {
+                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
+                            [weakSelf.navigationController popToViewController:vc animated:YES];
+                        }
+                    }
+                }];
+            }
+            else{
+                
+                [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            
+            [weakSelf showContent:@"网络错误"];
+        }];
+    };
+    
+    [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if ([resposeObject[@"data"][@"rows"] count]) {
+                weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                          @"param":obj[@"RYXM"]
+                                          };
+                    [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                }];
+            }else{
+                
+                [weakSelf RequestRecommend:dic];
+            }
+        }else{
+            
+            [weakSelf RequestRecommend:dic];
+        }
+    } failure:^(NSError *error) {
+        
+        [weakSelf RequestRecommend:dic];
+    }];
+}
+
+- (void)RequestRecommend:(NSDictionary *)dic{
+    
     [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
         
         if ([resposeObject[@"code"] integerValue] == 200) {

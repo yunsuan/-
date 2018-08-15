@@ -16,7 +16,7 @@
 
 
 
-@interface BaseViewController ()
+@interface BaseViewController ()<SKStoreProductViewControllerDelegate>
 
 @end
 
@@ -36,9 +36,59 @@
     
 }
 
+- (void)loadAppStoreController
+
+{
+    
+//    if (@available(iOS 10.3, *)) {
+//        [SKStoreReviewController requestReview];
+//    } else {
+//        // Fallback on earlier versions
+//        SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+//        
+//        // 设置代理请求为当前控制器本身
+//        
+//        storeProductViewContorller.delegate = self;
+//        
+//        [storeProductViewContorller loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"1371978352"}  completionBlock:^(BOOL result, NSError *error)   {
+//            
+//            if(error)
+//                
+//            {
+//                
+//                NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
+//                
+//            }  else
+//                
+//            {
+//                
+//                // 模态弹出appstore
+//                
+//                [self presentViewController:storeProductViewContorller animated:YES completion:^{
+//                    
+//                }];
+//                
+//            }
+//            
+//        }];
+//    }
+}
+
+//AppStore取消按钮监听
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+
+{
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+}
 
 #pragma mark - init
 - (void)initialBaseViewInterface {
+    
     
     self.view.backgroundColor = YJBackColor;
     [self.view addSubview:self.navBackgroundView];
@@ -108,6 +158,8 @@
         }
     }];
     [manager startMonitoring];
+    
+    [self loadAppStoreController];
 }
 
 - (UIView *)navBackgroundView {
@@ -168,7 +220,7 @@
 - (UIButton *)rightBtn {
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.center = CGPointMake(SCREEN_Width - 25 * SIZE, STATUS_BAR_HEIGHT+20);
+        _rightBtn.center = CGPointMake(SCREEN_Width - 40 * SIZE, STATUS_BAR_HEIGHT+20);
         _rightBtn.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
 //        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 //        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13 * SIZE];

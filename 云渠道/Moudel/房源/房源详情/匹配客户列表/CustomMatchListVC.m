@@ -49,6 +49,27 @@
     [self initUI];
 }
 
+- (void)RecommendRequest:(CustomMatchModel *)model{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else{
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return _tempArr.count;
@@ -99,19 +120,26 @@
             
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
-                [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([resposeObject[@"data"][@"rows"] count]) {
+                    weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                    [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                              @"param":obj[@"RYXM"]
+                                              };
+                        [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                    }];
+                }else{
                     
-                    NSDictionary *dic = @{@"id":obj[@"RYDH"],
-                                          @"param":obj[@"RYXM"]
-                                          };
-                    [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
-                }];
+                    [weakSelf RecommendRequest:model];
+                }
+            }else{
+                
+                [weakSelf RecommendRequest:model];
             }
-            [self.view addSubview:weakSelf.selectWorkerView];
         } failure:^(NSError *error) {
             
-            [self.view addSubview:weakSelf.selectWorkerView];
+            [weakSelf RecommendRequest:model];
         }];
     };
     return cell;

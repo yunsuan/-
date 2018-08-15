@@ -79,7 +79,6 @@
         [self showContent:@"分享失败"];
         NSLog(@"%@",error);
     }];
-    
 }
 
 - (void)initUI{

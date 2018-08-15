@@ -61,6 +61,7 @@
     [self addSubview:alphaView];
     
     _whiteView = [[UIView alloc] initWithFrame:CGRectMake(55 *SIZE, 206 *SIZE, 250 *SIZE, 227 *SIZE)];
+    
     _whiteView.backgroundColor = CH_COLOR_white;
     [self addSubview:_whiteView];
     
