@@ -12,6 +12,7 @@
 #import "RoomDetailTableCell5.h"
 #import "QuickAddCustomVC.h"
 
+
 @interface CustomListVC() <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>{
     
     NSMutableArray *_dataArr;
@@ -20,6 +21,7 @@
     NSInteger _page;
     BOOL _isSearch;
 }
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
 @property (nonatomic , strong) UITableView *customerTable;
 
@@ -53,6 +55,28 @@
     [self initUI];
     [self RequestMethod];
 }
+
+- (void)RecommendRequest:(CustomMatchModel *)model{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else{
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+    }];
+}
+
 
 - (void)RequestMethod{
     
@@ -349,23 +373,60 @@
     cell.recommendBtnBlock5 = ^(NSInteger index) {
         
         CustomMatchModel *model = _dataArr[index];
-        [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
-
+        self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+        SS(strongSelf);
+        WS(weakSelf);
+        self.selectWorkerView.selectWorkerRecommendBlock = ^{
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+            if (weakSelf.selectWorkerView.nameL.text) {
+                
+                [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+                [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
+            }
+            [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    }];
+                }
+                else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                }
+            } failure:^(NSError *error) {
+                
+                [weakSelf showContent:@"网络错误"];
+            }];
+        };
+        [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":strongSelf->_projectId} success:^(id resposeObject) {
+            
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
-                [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
-                   
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-            }
-            else{
+                if ([resposeObject[@"data"][@"rows"] count]) {
+                    weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                    [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                              @"param":obj[@"RYXM"]
+                                              };
+                        [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                    }];
+                }else{
+                    
+                    [weakSelf RecommendRequest:model];
+                }
+            }else{
                 
-                [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                [weakSelf RecommendRequest:model];
             }
         } failure:^(NSError *error) {
             
-            [self showContent:@"网络错误"];
+            [weakSelf RecommendRequest:model];
         }];
     };
     return cell;

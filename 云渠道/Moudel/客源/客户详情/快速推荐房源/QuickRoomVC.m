@@ -47,6 +47,8 @@
     BOOL _is4;
 }
 
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
+
 @property (nonatomic , strong) UITableView *MainTableView;
 
 @property (nonatomic , strong) UIView *headerView;
@@ -302,6 +304,35 @@
 }
 
 #pragma mark -- Method
+
+- (void)RequestRecommend:(NSDictionary *)dic{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+        
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                
+                for (UIViewController *vc in self.navigationController.viewControllers) {
+                    
+                    if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                        
+                        [self.navigationController popToViewController:vc animated:YES];
+                    }
+                }
+            }];
+        }
+        else{
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
 
 - (void)ActionTagBtn:(UIButton *)btn{
     
@@ -782,33 +813,73 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }else{
-            
             RoomListModel *model = _dataArr[indexPath.row];
-            [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":model.project_id,@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
-                
-//                NSLog(@"%@",resposeObject);
+            self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+            SS(strongSelf);
+            WS(weakSelf);
+            self.selectWorkerView.selectWorkerRecommendBlock = ^{
+              
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":model.project_id,@"client_need_id":strongSelf->_model.need_id,@"client_id":strongSelf->_model.client_id}];
+                if (weakSelf.selectWorkerView.nameL.text) {
+                    
+                    [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+                    [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
+                }
+                [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+
+                    
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                            
+                            for (UIViewController *vc in weakSelf.navigationController.viewControllers) {
+                                
+                                if ([vc isKindOfClass:[CustomDetailVC class]]) {
+                                    
+                                    [weakSelf.navigationController popToViewController:vc animated:YES];
+                                }
+                            }
+                        }];
+                    }
+                    else{
+                        
+                        [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                    [weakSelf showContent:@"网络错误"];
+                }];
+            };
+            [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":model.project_id} success:^(id resposeObject) {
                 
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
-                    [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                    if ([resposeObject[@"data"][@"rows"] count]) {
                         
-                        for (UIViewController *vc in self.navigationController.viewControllers) {
+                        weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                        [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                             
-                            if ([vc isKindOfClass:[CustomDetailVC class]]) {
-                                
-                                [self.navigationController popToViewController:vc animated:YES];
-                            }
-                        }
-                    }];
-                }
-                else{
+                            NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                                  @"param":obj[@"RYXM"]
+                                                  };
+                            [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                        }];
+                        [self.view addSubview:weakSelf.selectWorkerView];
+                    }else{
+                        
+                        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":model.project_id,@"client_need_id":strongSelf->_model.need_id,@"client_id":strongSelf->_model.client_id}];
+                        [self RequestRecommend:dic];
+                    }
+                }else{
                     
-                    [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":model.project_id,@"client_need_id":strongSelf->_model.need_id,@"client_id":strongSelf->_model.client_id}];
+                    [self RequestRecommend:dic];
                 }
             } failure:^(NSError *error) {
                 
-                NSLog(@"%@",error);
-                [self showContent:@"网络错误"];
+                NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":model.project_id,@"client_need_id":strongSelf->_model.need_id,@"client_id":strongSelf->_model.client_id}];
+                [self RequestRecommend:dic];
             }];
         }
     }else{

@@ -98,6 +98,15 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0C6B636021226DBB00ABB506 /* MyTeamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B635F21226DBB00ABB506 /* MyTeamVC.m */; };
+		0C6B636421226EB300ABB506 /* MyTeamTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B636321226EB300ABB506 /* MyTeamTableCell.m */; };
+		0C6B63672122706300ABB506 /* MyTeamTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63662122706300ABB506 /* MyTeamTableCell2.m */; };
+		0C6B636A212270F900ABB506 /* MyTeamTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B6369212270F900ABB506 /* MyTeamTableHeader.m */; };
+		0C6B636D2122710200ABB506 /* MyTeamTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B636C2122710200ABB506 /* MyTeamTableHeader2.m */; };
+		0C6B63712122B68100ABB506 /* BrokerageAwardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63702122B68100ABB506 /* BrokerageAwardVC.m */; };
+		0C6B63752122B79900ABB506 /* BrokerageAwardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */; };
+		0C6B63792122DCD400ABB506 /* SelectWorkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63782122DCD400ABB506 /* SelectWorkerView.m */; };
+		0C6B637C2123C28300ABB506 /* TeamInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B637B2123C28300ABB506 /* TeamInfoView.m */; };
 		0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */; };
 		0C921951209472FC00EFE75C /* RecommendedStatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C921950209472FC00EFE75C /* RecommendedStatusVC.m */; };
 		0C9219542094791E00EFE75C /* ReStatusTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9219532094791E00EFE75C /* ReStatusTableCell.m */; };
@@ -512,6 +521,24 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0C6B635E21226DBB00ABB506 /* MyTeamVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamVC.h; sourceTree = "<group>"; };
+		0C6B635F21226DBB00ABB506 /* MyTeamVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTeamVC.m; sourceTree = "<group>"; };
+		0C6B636221226EB300ABB506 /* MyTeamTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamTableCell.h; sourceTree = "<group>"; };
+		0C6B636321226EB300ABB506 /* MyTeamTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTeamTableCell.m; sourceTree = "<group>"; };
+		0C6B63652122706300ABB506 /* MyTeamTableCell2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamTableCell2.h; sourceTree = "<group>"; };
+		0C6B63662122706300ABB506 /* MyTeamTableCell2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTeamTableCell2.m; sourceTree = "<group>"; };
+		0C6B6368212270F900ABB506 /* MyTeamTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamTableHeader.h; sourceTree = "<group>"; };
+		0C6B6369212270F900ABB506 /* MyTeamTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTeamTableHeader.m; sourceTree = "<group>"; };
+		0C6B636B2122710200ABB506 /* MyTeamTableHeader2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamTableHeader2.h; sourceTree = "<group>"; };
+		0C6B636C2122710200ABB506 /* MyTeamTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTeamTableHeader2.m; sourceTree = "<group>"; };
+		0C6B636F2122B68100ABB506 /* BrokerageAwardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageAwardVC.h; sourceTree = "<group>"; };
+		0C6B63702122B68100ABB506 /* BrokerageAwardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageAwardVC.m; sourceTree = "<group>"; };
+		0C6B63732122B79900ABB506 /* BrokerageAwardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokerageAwardCell.h; sourceTree = "<group>"; };
+		0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrokerageAwardCell.m; sourceTree = "<group>"; };
+		0C6B63772122DCD400ABB506 /* SelectWorkerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectWorkerView.h; sourceTree = "<group>"; };
+		0C6B63782122DCD400ABB506 /* SelectWorkerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectWorkerView.m; sourceTree = "<group>"; };
+		0C6B637A2123C28300ABB506 /* TeamInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeamInfoView.h; sourceTree = "<group>"; };
+		0C6B637B2123C28300ABB506 /* TeamInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeamInfoView.m; sourceTree = "<group>"; };
 		0C92194A2092ECFC00EFE75C /* CustomMatchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMatchModel.h; sourceTree = "<group>"; };
 		0C92194B2092ECFC00EFE75C /* CustomMatchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMatchModel.m; sourceTree = "<group>"; };
 		0C92194F209472FC00EFE75C /* RecommendedStatusVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendedStatusVC.h; sourceTree = "<group>"; };
@@ -1479,6 +1506,61 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		0C6B635D21226D7D00ABB506 /* 我的团队 */ = {
+			isa = PBXGroup;
+			children = (
+				0C6B636121226EA000ABB506 /* view */,
+				0C6B635E21226DBB00ABB506 /* MyTeamVC.h */,
+				0C6B635F21226DBB00ABB506 /* MyTeamVC.m */,
+			);
+			path = "我的团队";
+			sourceTree = "<group>";
+		};
+		0C6B636121226EA000ABB506 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C6B636221226EB300ABB506 /* MyTeamTableCell.h */,
+				0C6B636321226EB300ABB506 /* MyTeamTableCell.m */,
+				0C6B63652122706300ABB506 /* MyTeamTableCell2.h */,
+				0C6B63662122706300ABB506 /* MyTeamTableCell2.m */,
+				0C6B6368212270F900ABB506 /* MyTeamTableHeader.h */,
+				0C6B6369212270F900ABB506 /* MyTeamTableHeader.m */,
+				0C6B636B2122710200ABB506 /* MyTeamTableHeader2.h */,
+				0C6B636C2122710200ABB506 /* MyTeamTableHeader2.m */,
+				0C6B637A2123C28300ABB506 /* TeamInfoView.h */,
+				0C6B637B2123C28300ABB506 /* TeamInfoView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0C6B636E2122B66D00ABB506 /* 奖励 */ = {
+			isa = PBXGroup;
+			children = (
+				0C6B63722122B78900ABB506 /* view */,
+				0C6B636F2122B68100ABB506 /* BrokerageAwardVC.h */,
+				0C6B63702122B68100ABB506 /* BrokerageAwardVC.m */,
+			);
+			path = "奖励";
+			sourceTree = "<group>";
+		};
+		0C6B63722122B78900ABB506 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C6B63732122B79900ABB506 /* BrokerageAwardCell.h */,
+				0C6B63742122B79900ABB506 /* BrokerageAwardCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0C6B63762122DC9900ABB506 /* 选择置业顾问 */ = {
+			isa = PBXGroup;
+			children = (
+				0C6B63772122DCD400ABB506 /* SelectWorkerView.h */,
+				0C6B63782122DCD400ABB506 /* SelectWorkerView.m */,
+			);
+			path = "选择置业顾问";
+			sourceTree = "<group>";
+		};
 		0C92194E209472B900EFE75C /* 已推荐项目状态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1985,6 +2067,7 @@
 		0CF7423F20622C9D001F926F /* 我的佣金 */ = {
 			isa = PBXGroup;
 			children = (
+				0C6B636E2122B66D00ABB506 /* 奖励 */,
 				0C08BF70206CD994005BB3B4 /* 身份证认证 */,
 				0C08BF54206C831C005BB3B4 /* view */,
 				105E18AF20637D310031558D /* 未结佣金 */,
@@ -2158,6 +2241,7 @@
 		102DF96D2057A0A200E1859C /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				0C6B635D21226D7D00ABB506 /* 我的团队 */,
 				1044B3EE2099C3C3002D9BAE /* webview */,
 				0C08BF74206CE901005BB3B4 /* 我的关注 */,
 				0C0B82552065018E00238D4F /* 意见反馈 */,
@@ -2551,6 +2635,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				0C6B63762122DC9900ABB506 /* 选择置业顾问 */,
 				0C0BED3720A2CF49005A16A1 /* 加载动画 */,
 				10B5097820931764004355C4 /* selectview */,
 				101624582088638B00AD53DE /* 自定义选择页面 */,
@@ -2972,9 +3057,11 @@
 				10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */,
 				10174C0B2072179300D00B9A /* LicenceCell.m in Sources */,
 				0CC19D05206E22EF0007CC5F /* ExperienceTableCell.m in Sources */,
+				0C6B636421226EB300ABB506 /* MyTeamTableCell.m in Sources */,
 				0C00FEBF20EA38F500B8F78A /* YBImageBrowserViewLayout.m in Sources */,
 				105E18EF206B6BE90031558D /* RecommendCell.m in Sources */,
 				0C00FEC220EA38F500B8F78A /* YBImageBrowserUtilities.m in Sources */,
+				0C6B63712122B68100ABB506 /* BrokerageAwardVC.m in Sources */,
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
 				0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */,
 				0C02360120BFC94C00B255AA /* DynamicDetailVC.m in Sources */,
@@ -2982,6 +3069,7 @@
 				0C96DA01209C6A6700B6A8B8 /* QuickAddCustomVC.m in Sources */,
 				0CEC62E2208DDE0C006EC0BD /* RuleView.m in Sources */,
 				0C96D9FD209C61CF00B6A8B8 /* PassCell.m in Sources */,
+				0C6B63752122B79900ABB506 /* BrokerageAwardCell.m in Sources */,
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
 				0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */,
 				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
@@ -3012,6 +3100,7 @@
 				0C0BED5B20AA7F6A005A16A1 /* ApplyProjectVC.m in Sources */,
 				0CBD85892085F8F200E7B183 /* RoomDetailVC1.m in Sources */,
 				105E18D32068BC650031558D /* InfoDetailVC.m in Sources */,
+				0C6B63792122DCD400ABB506 /* SelectWorkerView.m in Sources */,
 				105E18F6206B8FDB0031558D /* AddCustomerVC.m in Sources */,
 				0C0C1A2720EE16B00086E739 /* CompanyDetailCell.m in Sources */,
 				0CBD85A3208835F300E7B183 /* CustomDetailTableCell5.m in Sources */,
@@ -3068,7 +3157,9 @@
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
+				0C6B636A212270F900ABB506 /* MyTeamTableHeader.m in Sources */,
 				0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */,
+				0C6B636D2122710200ABB506 /* MyTeamTableHeader2.m in Sources */,
 				0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */,
 				0C9CD3FC20FDEF06004894A3 /* AlbumCollCell.m in Sources */,
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
@@ -3099,9 +3190,11 @@
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
 				10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
+				0C6B637C2123C28300ABB506 /* TeamInfoView.m in Sources */,
 				0CF04F9A207CBBCB00A45F4A /* AuthenedTableHeader.m in Sources */,
 				105E1902206CF0B10031558D /* BorderTF.m in Sources */,
 				0CBD857D2085C6EA00E7B183 /* BankCardListTableCell2.m in Sources */,
+				0C6B636021226DBB00ABB506 /* MyTeamVC.m in Sources */,
 				0CF04F90207CAFB000A45F4A /* PYSearchViewController.m in Sources */,
 				0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */,
 				0C07BFCB2060D94C007F31EC /* BaseRequest.m in Sources */,
@@ -3161,6 +3254,7 @@
 				10B2CAB0205A76FC00E814AC /* MineCell.m in Sources */,
 				0CF04F91207CAFB000A45F4A /* PYSearchSuggestionViewController.m in Sources */,
 				0C0BED2F20A197C4005A16A1 /* FailedDealVC.m in Sources */,
+				0C6B63672122706300ABB506 /* MyTeamTableCell2.m in Sources */,
 				0CBD859D2087365100E7B183 /* RoomMatchListVC.m in Sources */,
 				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,
 				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
