@@ -47,29 +47,29 @@
 //        SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
 //        
 //        // 设置代理请求为当前控制器本身
-//        
+//
 //        storeProductViewContorller.delegate = self;
 //        
 //        [storeProductViewContorller loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"1371978352"}  completionBlock:^(BOOL result, NSError *error)   {
-//            
+//
 //            if(error)
-//                
+//
 //            {
-//                
+//
 //                NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
-//                
+//
 //            }  else
-//                
+//
 //            {
-//                
+//
 //                // 模态弹出appstore
 //                
 //                [self presentViewController:storeProductViewContorller animated:YES completion:^{
 //                    
 //                }];
-//                
+//
 //            }
-//            
+//
 //        }];
 //    }
 }

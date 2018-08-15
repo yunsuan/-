@@ -97,6 +97,7 @@
             if (weakSelf.selectWorkerView.nameL.text) {
                 
                 [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+                [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
             }
             [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
                 

@@ -317,6 +317,7 @@
             if (weakSelf.selectWorkerView.nameL.text) {
                 
                 [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+                [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
             }
             [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
                 

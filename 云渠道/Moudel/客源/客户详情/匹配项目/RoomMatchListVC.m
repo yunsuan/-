@@ -125,7 +125,6 @@
 
             [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataArr[index][@"project_id"],@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
 
-//                NSLog(@"%@",resposeObject);
                 [self showContent:resposeObject[@"msg"]];
                 if ([resposeObject[@"code"] integerValue] == 200) {
 
@@ -133,7 +132,6 @@
                 }
             } failure:^(NSError *error) {
 
-//                NSLog(@"%@",error);
                 [self showContent:@"网络错误"];
             }];
         }

@@ -22,11 +22,11 @@
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
+    
     UIImagePickerController *_imagePickerController; /**< 相册拾取器 */
     NSArray *_namelist;
     NSArray *_imageList;
     NSArray *_contentList;
-    
 }
 @property (nonatomic, strong) UIImageView *headImg;
 
@@ -49,6 +49,32 @@
     [self InitDataSouce];
     [self InitUI];
     [self RequestMethod];
+    [self LoadRequest];
+}
+
+- (void)LoadRequest{
+    
+    if ([UserModel defaultModel].comment == 0) {
+        
+        if (@available(iOS 10.3, *)) {
+            
+            [SKStoreReviewController requestReview];
+        } else {
+            
+            
+        }
+    }else{
+        
+        if ([UserModel defaultModel].comment == 5) {
+            
+            [UserModel defaultModel].comment = 0;
+        }else{
+            
+            [UserModel defaultModel].comment += 1;
+        }
+        [UserModelArchiver archive];
+    }
+    
 }
 
 -(void)InitUI{
