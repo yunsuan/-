@@ -31,6 +31,7 @@
     _data = @[@[@"systemmessage",@"系统消息",@"未读消息0条"],@[@"worknews",@"工作消息",@"未读消息0条"]];
     
     [self initUI];
+    [self test];
 
 }
 
@@ -38,6 +39,15 @@
     
     [super viewWillAppear:animated];
     [self post];
+}
+
+
+-(void)test{
+    [BaseRequest GET:@"user/house/house/list" parameters:@{@"city":@"510700"} success:^(id resposeObject) {
+        NSLog(@"%@",resposeObject);
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
