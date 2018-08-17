@@ -16,7 +16,7 @@
     if (self) {
         
         [self initUI];
-        _type_id =@"0";
+        _type_id = @"";
     }
     return self;
 }
