@@ -115,9 +115,9 @@
 
     } else {
     
-        _window .alpha = 0;
-        _window = nil;
-        _window =[[UIWindow alloc]init];
+//        _window .alpha = 0;
+//        _window = nil;
+//        _window =[[UIWindow alloc]init];
         GuideVC *guideVC = [[GuideVC alloc] init];
         UINavigationController *guideNav = [[UINavigationController alloc] initWithRootViewController:guideVC];
         guideNav.navigationBarHidden = YES;
@@ -300,9 +300,9 @@
 
 - (void)comeBackLoginVC {
     //未登录
-    _window .alpha = 0;
-    _window = nil;
-    _window =[[UIWindow alloc]init];
+//    _window .alpha = 0;
+//    _window = nil;
+//    _window = [[UIWindow alloc]init];
     LoginVC *mainLogin_vc = [[LoginVC alloc] init];
     UINavigationController *mainLogin_nav = [[UINavigationController alloc] initWithRootViewController:mainLogin_vc];
     mainLogin_nav.navigationBarHidden = YES;

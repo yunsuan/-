@@ -130,6 +130,7 @@
                                               };
                         [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
                     }];
+                    [weakSelf.view addSubview:weakSelf.selectWorkerView];
                 }else{
                     
                     [weakSelf RecommendRequest:model];

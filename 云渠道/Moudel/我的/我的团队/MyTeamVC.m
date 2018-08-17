@@ -395,7 +395,7 @@
             
             _teamInfoView.nameL.text = _parent[@"name"];
             _teamInfoView.genderImg.image = [_parent[@"sex"] integerValue] == 2? [UIImage imageNamed:@"girl_2"]:[UIImage imageNamed:@"man_2"];
-            _teamInfoView.YSlable.text = [NSString stringWithFormat:@"运算编号:%@",_parent[@"account"]];
+            _teamInfoView.YSlable.text = [NSString stringWithFormat:@"云算号:%@",_parent[@"account"]];
             _teamInfoView.companyL.text = [NSString stringWithFormat:@"任职公司:%@",_parent[@"company_name"]];
             _teamInfoView.phoneL.text = [NSString stringWithFormat:@"电话号码:%@",_parent[@"tel"]];
             _teamInfoView.yearL.text = [NSString stringWithFormat:@"入职年限:%@",_parent[@"work_year"]];

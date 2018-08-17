@@ -1120,6 +1120,7 @@
         [_areaView.mainTable reloadData];
         
         WS(weakSelf);
+        SS(strongSelf);
         _areaView.boxAddressComfirmBlock = ^(NSString *ID, NSString *str, NSInteger index) {
             
             if ([str isEqualToString:@"不限"]) {
@@ -1144,23 +1145,23 @@
             weakSelf.areaBtn.selected = NO;
             [weakSelf.areaView removeFromSuperview];
 //            [weakSelf RequestMethod];
-            if (_city) {
+            if (strongSelf->_city) {
                 
                 [weakSelf RequestMethod];
             }else{
                 
-                [_MainTableView.mj_header endRefreshing];
+                [strongSelf->_MainTableView.mj_header endRefreshing];
                 [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
                     
                     CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
                     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
                         
-                        [_cityBtn setTitle:city forState:UIControlStateNormal];
-                        _city = [NSString stringWithFormat:@"%@",code];
-                        [self RequestMethod];
+                        [strongSelf->_cityBtn setTitle:city forState:UIControlStateNormal];
+                        strongSelf->_city = [NSString stringWithFormat:@"%@",code];
+                        [weakSelf RequestMethod];
                     };
                     nextVC.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:nextVC animated:YES];
+                    [weakSelf.navigationController pushViewController:nextVC animated:YES];
                 }];
             }
         };
@@ -1198,6 +1199,7 @@
         [_priceView.mainTable reloadData];
         
         WS(weakSelf);
+        SS(strongSelf);
         _priceView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
             
             if ([str isEqualToString:@"不限"]) {
@@ -1211,23 +1213,23 @@
             _price = [NSString stringWithFormat:@"%@",ID];
             weakSelf.priceBtn.selected = NO;
             [weakSelf.priceView removeFromSuperview];
-            if (_city) {
+            if (strongSelf->_city) {
                 
                 [weakSelf RequestMethod];
             }else{
                 
-                [_MainTableView.mj_header endRefreshing];
+                [strongSelf->_MainTableView.mj_header endRefreshing];
                 [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
                     
                     CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
                     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
                         
-                        [_cityBtn setTitle:city forState:UIControlStateNormal];
-                        _city = [NSString stringWithFormat:@"%@",code];
-                        [self RequestMethod];
+                        [strongSelf->_cityBtn setTitle:city forState:UIControlStateNormal];
+                        strongSelf->_city = [NSString stringWithFormat:@"%@",code];
+                        [weakSelf RequestMethod];
                     };
                     nextVC.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:nextVC animated:YES];
+                    [weakSelf.navigationController pushViewController:nextVC animated:YES];
                 }];
             }
         };
@@ -1263,6 +1265,7 @@
         [_typeView.mainTable reloadData];
         
         WS(weakSelf);
+        SS(strongSelf);
         _typeView.confirmBtnBlock = ^(NSString *ID, NSString *str) {
             
             if ([str isEqualToString:@"不限"]) {
@@ -1277,23 +1280,23 @@
             weakSelf.typeBtn.selected = NO;
             [weakSelf.typeView removeFromSuperview];
 //            [weakSelf RequestMethod];
-            if (_city) {
+            if (strongSelf->_city) {
                 
                 [weakSelf RequestMethod];
             }else{
                 
-                [_MainTableView.mj_header endRefreshing];
+                [strongSelf->_MainTableView.mj_header endRefreshing];
                 [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
                     
                     CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
                     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
                         
-                        [_cityBtn setTitle:city forState:UIControlStateNormal];
-                        _city = [NSString stringWithFormat:@"%@",code];
-                        [self RequestMethod];
+                        [strongSelf->_cityBtn setTitle:city forState:UIControlStateNormal];
+                        strongSelf->_city = [NSString stringWithFormat:@"%@",code];
+                        [weakSelf RequestMethod];
                     };
                     nextVC.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:nextVC animated:YES];
+                    [weakSelf.navigationController pushViewController:nextVC animated:YES];
                 }];
             }
         };
@@ -1314,6 +1317,7 @@
         _moreView = [[MoreView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + 103 *SIZE, SCREEN_Width, SCREEN_Height - 103 *SIZE - STATUS_BAR_HEIGHT - TAB_BAR_MORE)];
         
         WS(weakSelf);
+        SS(strongSelf);
         _moreView.moreBtnBlock = ^(NSString *tag, NSString *houseType, NSString *status) {
             
             _is4 = NO;
@@ -1335,23 +1339,23 @@
             }
 //
 //            [weakSelf RequestMethod];
-            if (_city) {
+            if (strongSelf->_city) {
 
                 [weakSelf RequestMethod];
             }else{
                 
-                [_MainTableView.mj_header endRefreshing];
+                [strongSelf->_MainTableView.mj_header endRefreshing];
                 [weakSelf alertControllerWithNsstring:@"温馨提示" And:@"请先选择城市" WithDefaultBlack:^{
                     
                     CityVC *nextVC = [[CityVC alloc] initWithLabel:@""];
                     nextVC.cityVCSaveBlock = ^(NSString *code, NSString *city) {
                         
-                        [_cityBtn setTitle:city forState:UIControlStateNormal];
-                        _city = [NSString stringWithFormat:@"%@",code];
-                        [self RequestMethod];
+                        [strongSelf->_cityBtn setTitle:city forState:UIControlStateNormal];
+                        strongSelf->_city = [NSString stringWithFormat:@"%@",code];
+                        [weakSelf RequestMethod];
                     };
                     nextVC.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:nextVC animated:YES];
+                    [weakSelf.navigationController pushViewController:nextVC animated:YES];
                 }];
             }
         };

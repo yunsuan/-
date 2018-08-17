@@ -113,7 +113,7 @@
                           [NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],
                           [NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],
                           adress,
-                          [NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel]];
+                          [NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"指定置业顾问：%@",_dataDic[@"consultant_advicer"]]]];
             [_invalidTable reloadData];
         }
         else{

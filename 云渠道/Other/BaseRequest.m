@@ -38,7 +38,7 @@ static AFHTTPSessionManager *updatemanager ;
                         [UserModel defaultModel].Token = @"";
                         [UserModelArchiver archive];
                         [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-                        return ;
+//                        return ;
                     }];
                     
                 }
@@ -61,7 +61,7 @@ static AFHTTPSessionManager *updatemanager ;
                         [UserModel defaultModel].Token = @"";
                         [UserModelArchiver archive];
                         [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-                        return ;
+//                        return ;
                     });
                     
                 }

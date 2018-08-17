@@ -38,6 +38,7 @@
         if (self.selectWorkerRecommendBlock) {
             
             self.selectWorkerRecommendBlock();
+            [self removeFromSuperview];
         }
     }
 }
@@ -79,6 +80,7 @@
     _nameL = [[UILabel alloc] initWithFrame:CGRectMake(8 *SIZE, 11 *SIZE, 160 *SIZE, 11 *SIZE)];
     _nameL.textColor = YJTitleLabColor;
     _nameL.font = [UIFont systemFontOfSize:12 *SIZE];
+//    _nameL.text = @""
     [_nameView addSubview:_nameL];
     
     _dropImg = [[UIImageView alloc] initWithFrame:CGRectMake(185 *SIZE, 15 *SIZE, 8 *SIZE,  8 *SIZE)];
@@ -94,6 +96,7 @@
     _phoneL = [[UILabel alloc] initWithFrame:CGRectMake(32 *SIZE, 112 *SIZE, 250 *SIZE, 11 *SIZE)];
     _phoneL.textColor = YJTitleLabColor;
     _phoneL.font = [UIFont systemFontOfSize:12 *SIZE];
+    _phoneL.text = @"联系电话:";
     [_whiteView addSubview:_phoneL];
     
     _recommendBtn = [UIButton buttonWithType:UIButtonTypeCustom];

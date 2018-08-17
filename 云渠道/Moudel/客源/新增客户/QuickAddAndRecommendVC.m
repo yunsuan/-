@@ -601,10 +601,15 @@
     [dic setObject:_projectBtn.str forKey:@"project_id"];
     
     self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
-    SS(strongSelf);
+//    SS(strongSelf);
     WS(weakSelf);
     self.selectWorkerView.selectWorkerRecommendBlock = ^{
         
+        if (weakSelf.selectWorkerView.nameL.text) {
+            
+            [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+            [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
+        }
         [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
             
             if ([resposeObject[@"code"] integerValue] == 200) {
@@ -640,6 +645,7 @@
                                           };
                     [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
                 }];
+                [weakSelf.view addSubview:weakSelf.selectWorkerView];
             }else{
                 
                 [weakSelf RequestRecommend:dic];
