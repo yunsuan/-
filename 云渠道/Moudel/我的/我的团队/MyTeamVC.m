@@ -525,7 +525,7 @@
     //创建网页内容对象
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithFormat:@"%@邀请你加入他的团队",[UserInfoModel defaultModel].name] descr:@"加入云渠道，享受便捷佣金赚取之道" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
-    shareObject.webpageUrl = [NSString stringWithFormat:@"%@%@",TestBase_Net,_url];
+    shareObject.webpageUrl = _url;
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
     

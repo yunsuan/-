@@ -331,7 +331,7 @@
             }];
         }else if ([resposeObject[@"code"] integerValue] == 401){
             
-            
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
         }
         else{
             
@@ -788,7 +788,7 @@
                             }];
                         }else if ([resposeObject[@"code"] integerValue] == 401){
                             
-                            
+                            [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
                         }
                         else{
                             
