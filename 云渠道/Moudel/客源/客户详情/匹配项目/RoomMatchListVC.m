@@ -22,6 +22,7 @@
     NSArray *_tagsArr;
     NSArray *_propertyArr;
 }
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
 @property (nonatomic , strong) UITableView *matchListTable;
 
@@ -71,6 +72,25 @@
     _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
 }
 
+- (void)RecommendRequest:(NSDictionary *)dic{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                
+                
+            }];
+        }
+        else{
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+    }];
+}
 
 #pragma mark -- tableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -123,17 +143,61 @@
         
         if (_dataArr.count) {
 
-            [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_dataArr[index][@"project_id"],@"client_need_id":_model.need_id,@"client_id":_model.client_id} success:^(id resposeObject) {
-
-                [self showContent:resposeObject[@"msg"]];
-                if ([resposeObject[@"code"] integerValue] == 200) {
-
+            self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+//            SS(strongSelf);
+            WS(weakSelf);
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":_dataArr[index][@"project_id"],@"client_need_id":_model.need_id,@"client_id":_model.client_id}];
+            self.selectWorkerView.selectWorkerRecommendBlock = ^{
+                
+                if (weakSelf.selectWorkerView.nameL.text) {
                     
+                    [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
+                    [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
+                }
+                [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+                    
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                            
+                        
+                        }];
+                    }else{
+                        
+                        [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                    }
+                } failure:^(NSError *error) {
+                    
+                    [weakSelf showContent:@"网络错误"];
+                }];
+            };
+            [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":_dataArr[index][@"project_id"]} success:^(id resposeObject) {
+                
+                if ([resposeObject[@"code"] integerValue] == 200) {
+                    
+                    if ([resposeObject[@"data"][@"rows"] count]) {
+                        weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                        [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                            
+                            NSDictionary *dic = @{@"id":obj[@"RYDH"],
+                                                  @"param":obj[@"RYXM"]
+                                                  };
+                            [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+                        }];
+                        [weakSelf.view addSubview:weakSelf.selectWorkerView];
+                    }else{
+                        
+                        [weakSelf RecommendRequest:dic];
+                    }
+                }else{
+                    
+                    [weakSelf RecommendRequest:dic];
                 }
             } failure:^(NSError *error) {
-
-                [self showContent:@"网络错误"];
+                
+                [weakSelf RecommendRequest:dic];
             }];
+            
         }
     };
     
