@@ -58,14 +58,16 @@
         
         if (@available(iOS 10.3, *)) {
             
+            [UserModel defaultModel].comment += 1;
             [SKStoreReviewController requestReview];
+            [UserModelArchiver archive];
         } else {
             
             
         }
     }else{
         
-        if ([UserModel defaultModel].comment == 5) {
+        if ([UserModel defaultModel].comment == 50) {
             
             [UserModel defaultModel].comment = 0;
         }else{
