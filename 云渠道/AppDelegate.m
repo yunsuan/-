@@ -303,12 +303,17 @@
 //    _window .alpha = 0;
 //    _window = nil;
 //    _window = [[UIWindow alloc]init];
+    NSSet *tags;
+    
+    [JPUSHService setAlias:@"exit" completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        
+        NSLog(@"rescode: %ld, \ntags: %@, \nalias: %@\n", (long)iResCode, tags , iAlias);
+    } seq:0];
     LoginVC *mainLogin_vc = [[LoginVC alloc] init];
     UINavigationController *mainLogin_nav = [[UINavigationController alloc] initWithRootViewController:mainLogin_vc];
     mainLogin_nav.navigationBarHidden = YES;
     _window.rootViewController = mainLogin_nav;
     [_window makeKeyAndVisible];
-    
 }
 
 - (void)goHome{

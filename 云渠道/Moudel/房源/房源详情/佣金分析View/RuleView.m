@@ -39,6 +39,8 @@
     _contentL = [[UILabel alloc] init];
     _contentL.textColor = YJ86Color;
     _contentL.numberOfLines = 0;
+    _contentL.lineBreakMode = NSLineBreakByCharWrapping;
+//    _contentL.adjustsLetterSpacingToFitWidth = YES;
     _contentL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self addSubview:_contentL];
     
@@ -48,6 +50,11 @@
         make.top.equalTo(self).offset(58 *SIZE);
         make.bottom.equalTo(self).offset(- 31 *SIZE);
         make.width.equalTo(@(304 *SIZE));
+//        if (@available(iOS 9.0, *)) {
+//            make.height.mas_equalTo(_contentL.heightAnchor);
+//        } else {
+//            // Fallback on earlier versions
+//        }
     }];
 }
 

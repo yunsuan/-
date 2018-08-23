@@ -32,6 +32,7 @@
     NSDate *_date;
     NSString *_agentname;
     NSString *_agentid;
+    NSString *_agentPhone;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -237,7 +238,7 @@
                      WS(weakself);
                      view.selectedBlock = ^(NSString *MC, NSString *ID) {
                          
-                         weakself.agentbtn.content.text = MC;
+                         weakself.agentbtn.content.text = [NSString stringWithFormat:@"%@,%@",MC,ID];
                          weakself.agentbtn.str = [NSString stringWithFormat:@"%@",ID];
                          _agentid = ID;
                          _agentname = MC;
@@ -373,7 +374,7 @@
     }
     
     if (_agentid) {
-        
+
         [_dic setObject:_agentid forKey:@"property_advicer_wish_id"];
     }
     
@@ -799,6 +800,12 @@
                 {
                     if (_datadic[@"yunsuan_id"]&&_datadic[@"yunsuan_url"]) {
                         _agentbtn = [[DropDownBtn alloc]initWithFrame:CGRectMake(80 *SIZE, 25 *SIZE + i * 55 *SIZE, 258 *SIZE, 33 *SIZE)];
+                        if ([self.datadic[@"consultant_advicer"] length]) {
+                            
+                            _agentbtn.content.text = [NSString stringWithFormat:@"%@-%@",self.datadic[@"consultant_advicer"],self.datadic[@""]];
+                            _agentname = self.datadic[@"consultant_advicer"];
+                            _agentPhone = self.datadic[@""];
+                        }
                         [_agentbtn addTarget:self action:@selector(action_agent) forControlEvents:UIControlEventTouchUpInside];
                         [_infoView addSubview:_agentbtn];
                     }

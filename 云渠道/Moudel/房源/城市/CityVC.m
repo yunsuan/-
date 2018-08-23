@@ -89,17 +89,17 @@
 #pragma mark -- 按键方法
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    if (self.cityVCSaveBlock) {
-        
-        if (_code) {
-            
-            self.cityVCSaveBlock(_code,_city);
-            [self.navigationController popViewControllerAnimated:YES];
-        }else{
-            
-            [self showContent:@"请选择城市"];
-        }
-    }
+//    if (self.cityVCSaveBlock) {
+//
+//        if (_code) {
+//
+//            self.cityVCSaveBlock(_code,_city);
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }else{
+//
+//            [self showContent:@"请选择城市"];
+//        }
+//    }
 }
 
 
@@ -148,7 +148,17 @@
     _code = _dataArr[indexPath.section][indexPath.row][@"city_code"];
     _city = _dataArr[indexPath.section][indexPath.row][@"city_name"];
     _cityLabel.text = [NSString stringWithFormat:@"当前选择：%@",_city];
-    
+    if (self.cityVCSaveBlock) {
+        
+        if (_code) {
+            
+            self.cityVCSaveBlock(_code,_city);
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            
+            [self showContent:@"请选择城市"];
+        }
+    }
 }
 
 
@@ -161,11 +171,11 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.rightBtn.hidden = NO;
-    [self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
-    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
-    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
-    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    self.rightBtn.hidden = NO;
+//    [self.rightBtn setTitle:@"确定" forState:UIControlStateNormal];
+//    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:15 *SIZE];
+//    [self.rightBtn setTitleColor:YJTitleLabColor forState:UIControlStateNormal];
+//    [self.rightBtn addTarget:self action:@selector(ActionRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     _cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(11 *SIZE, NAVIGATION_BAR_HEIGHT + 15 *SIZE, 200 *SIZE, 13 *SIZE)];
     _cityLabel.textColor = COLOR(51, 51, 51, 1);

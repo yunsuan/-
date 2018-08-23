@@ -687,8 +687,6 @@
                 [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
             }
         };
-        
-       
         return cell;
     }else if (_index == 1){
         
