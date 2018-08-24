@@ -773,8 +773,7 @@
                     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
                     if (weakSelf.selectWorkerView.nameL.text) {
                         
-                        [dic setObject:weakSelf.selectWorkerView.phone forKey:@"consultant_tel"];
-                        [dic setObject:weakSelf.selectWorkerView.nameL.text forKey:@"consultant_advicer"];
+                        [dic setObject:weakSelf.selectWorkerView.ID forKey:@"consultant_advicer_id"];
                     }
                     [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
                         
@@ -807,13 +806,13 @@
                         if ([resposeObject[@"data"][@"rows"] count]) {
                             
                             weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
-                            [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                
-                                NSDictionary *dic = @{@"id":obj[@"RYDH"],
-                                                      @"param":obj[@"RYXM"]
-                                                      };
-                                [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
-                            }];
+//                            [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                                
+//                                NSDictionary *dic = @{@"id":obj[@"RYDH"],
+//                                                      @"param":obj[@"RYXM"]
+//                                                      };
+//                                [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
+//                            }];
                             [self.view addSubview:weakSelf.selectWorkerView];
                         }else{
                             
