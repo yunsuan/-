@@ -289,6 +289,9 @@ static NSString *const AgentInfoCount_URL = @"agent/work/broker/count";
 
 static NSString *const Butterinfocount_URL = @"agent/work/butter/count";
 
+//确认所需字段
+static NSString *const ClientNeedInfo_URL = @"agent/client/needInfo";
+
 //更新数据
 static NSString *const FlushDate_URL = @"agent/work/flushDate";
 

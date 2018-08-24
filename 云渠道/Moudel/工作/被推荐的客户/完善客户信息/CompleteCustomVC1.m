@@ -188,14 +188,36 @@
         [dic setObject:_imgStr2 forKey:@"card_img_url"];
     }
 
-    CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
-    nextVC.datadic = _dataDic;
-    [self.navigationController pushViewController:nextVC animated:YES];
+    [BaseRequest GET:ClientNeedInfo_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
+            nextVC.consulDic = resposeObject[@"data"];
+            nextVC.datadic = _dataDic;
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }else{
+            
+            CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
+            
+            nextVC.datadic = _dataDic;
+            [self.navigationController pushViewController:nextVC animated:YES];
+        }
+    } failure:^(NSError *error) {
+        
+        CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
+        
+        nextVC.datadic = _dataDic;
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }];
+    
 }
 
 - (void)ActionSliderChange:(UISlider *)slider{
 
+    
 }
+
 - (void)ActionAddBtn:(UIButton *)btn{
     
     _num += 1;

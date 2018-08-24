@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SinglePickView.h"
+#import "WorkerPickView.h"
 
 typedef void(^SelectWorkerRecommendBlock)(void);
 
 @interface SelectWorkerView : UIView
 
-@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *ID;
 
-@property (nonatomic, strong) SinglePickView *pick;
+@property (nonatomic, strong) WorkerPickView *pick;
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
 

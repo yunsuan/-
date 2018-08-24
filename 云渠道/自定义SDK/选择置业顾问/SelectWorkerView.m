@@ -24,13 +24,13 @@
     
     if (btn.tag == 0) {
         
-        SinglePickView *view = [[SinglePickView alloc] initWithFrame:self.bounds WithData:self.dataArr];
+        WorkerPickView *view = [[WorkerPickView alloc] initWithFrame:self.bounds WithData:self.dataArr];
         WS(weakSelf);
-        view.selectedBlock = ^(NSString *MC, NSString *ID) {
-          
-            weakSelf.nameL.text = [NSString stringWithFormat:@"%@",MC];
-            weakSelf.phone = [NSString stringWithFormat:@"%@",ID];
-            weakSelf.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",ID];;
+        view.workerPickBlock = ^(NSString *GSMC, NSString *ID, NSString *RYBH, NSString *RYDH, NSString *RYXM, NSString *RYTP) {
+            
+            weakSelf.nameL.text = [NSString stringWithFormat:@"%@/%@/%@",GSMC,RYXM,RYDH];
+            weakSelf.phoneL.text = [NSString stringWithFormat:@"联系电话：%@",RYDH];
+            weakSelf.ID = [NSString stringWithFormat:@"%@",ID];
         };
         [self addSubview:view];
     }else{

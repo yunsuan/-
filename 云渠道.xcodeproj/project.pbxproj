@@ -98,6 +98,7 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0C6730792130079900DCF01B /* WorkerPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6730782130079900DCF01B /* WorkerPickView.m */; };
 		0C6B636021226DBB00ABB506 /* MyTeamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B635F21226DBB00ABB506 /* MyTeamVC.m */; };
 		0C6B636421226EB300ABB506 /* MyTeamTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B636321226EB300ABB506 /* MyTeamTableCell.m */; };
 		0C6B63672122706300ABB506 /* MyTeamTableCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B63662122706300ABB506 /* MyTeamTableCell2.m */; };
@@ -521,6 +522,8 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0C6730772130079900DCF01B /* WorkerPickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkerPickView.h; sourceTree = "<group>"; };
+		0C6730782130079900DCF01B /* WorkerPickView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkerPickView.m; sourceTree = "<group>"; };
 		0C6B635E21226DBB00ABB506 /* MyTeamVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamVC.h; sourceTree = "<group>"; };
 		0C6B635F21226DBB00ABB506 /* MyTeamVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTeamVC.m; sourceTree = "<group>"; };
 		0C6B636221226EB300ABB506 /* MyTeamTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamTableCell.h; sourceTree = "<group>"; };
@@ -1557,6 +1560,8 @@
 			children = (
 				0C6B63772122DCD400ABB506 /* SelectWorkerView.h */,
 				0C6B63782122DCD400ABB506 /* SelectWorkerView.m */,
+				0C6730772130079900DCF01B /* WorkerPickView.h */,
+				0C6730782130079900DCF01B /* WorkerPickView.m */,
 			);
 			path = "选择置业顾问";
 			sourceTree = "<group>";
@@ -3159,6 +3164,7 @@
 				105E18FE206CB5320031558D /* DropDownBtn.m in Sources */,
 				0C6B636A212270F900ABB506 /* MyTeamTableHeader.m in Sources */,
 				0C92194C2092ECFC00EFE75C /* CustomMatchModel.m in Sources */,
+				0C6730792130079900DCF01B /* WorkerPickView.m in Sources */,
 				0C6B636D2122710200ABB506 /* MyTeamTableHeader2.m in Sources */,
 				0CEC62EE208DED26006EC0BD /* AnalyzeTableCell.m in Sources */,
 				0C9CD3FC20FDEF06004894A3 /* AlbumCollCell.m in Sources */,

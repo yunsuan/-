@@ -10,6 +10,7 @@
 
 @interface CompleteCustomVC2 : BaseViewController
 @property (nonatomic , strong) NSDictionary *datadic;
+@property (nonatomic, strong) NSDictionary *consulDic;
 
 - (instancetype)initWithData:(NSDictionary *)dic;
 
