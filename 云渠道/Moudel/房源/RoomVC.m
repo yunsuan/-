@@ -512,7 +512,7 @@
                 [[UIApplication sharedApplication].keyWindow addSubview:self.priceView];
             }
             break;
-        }
+        }                       
         case 3:
         {
             _is1 = NO;

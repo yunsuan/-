@@ -39,12 +39,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 
-//    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
-//    NSMutableArray *arr = [[NSMutableArray alloc]initWithContentsOfFile:filePath];
-//    if (arr.count != 1) {
-//        NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
-//        [dataarr writeToFile:filePath atomically:YES];
-//    }
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
+    NSMutableArray *arr = [[NSMutableArray alloc]initWithContentsOfFile:filePath];
+    if (arr.count != 1) {
+        NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
+        [dataarr writeToFile:filePath atomically:YES];
+    }
     [self deleteWebCache];
     [Bugtags startWithAppKey:@"1560323d00d5dac86cd32d7b0d130787" invocationEvent:BTGInvocationEventNone];
     [self postVersion];
