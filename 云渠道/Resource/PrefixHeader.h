@@ -140,7 +140,7 @@
 /**
  *  第二部分,关于屏幕尺寸
  */
-#define SIZE [UIScreen mainScreen].bounds.size.width/360
+#define SIZE ([UIScreen mainScreen].bounds.size.width/360)
 #define CH_SCREEN_width [[UIScreen mainScreen] bounds].size.width
 #define CH_SCREEN_height [[UIScreen mainScreen] bounds].size.height
 #define CH_SCREEN_ipadWidth 1024
