@@ -60,6 +60,7 @@
             
             [UserModel defaultModel].comment += 1;
             [SKStoreReviewController requestReview];
+            [UserModelArchiver archive];
         } else {
             
             

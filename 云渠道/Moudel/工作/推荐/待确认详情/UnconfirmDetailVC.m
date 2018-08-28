@@ -87,6 +87,7 @@
                       
                       
                       _endtime = _dataDic[@"timeLimit"];
+                      
                       [_Maintableview reloadData];
                       
                   }
