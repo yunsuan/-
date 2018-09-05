@@ -194,12 +194,13 @@
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];
     [self addChildViewController:_roomBrokerageVC];
+    [self addChildViewController:_roomAnalyzeVC];
     _roomAnalyzeVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 2, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
-    [self.scrollView addSubview:_roomBrokerageVC.view];
     _roomProjectVC.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     _roomBrokerageVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     [self.scrollView addSubview:_roomProjectVC.view];
     [self.scrollView addSubview:_roomAnalyzeVC.view];
+    [self.scrollView addSubview:_roomBrokerageVC.view];
     
     // 设置scrollView的代理
     self.scrollView.delegate = self;

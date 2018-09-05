@@ -54,8 +54,6 @@
     _dataArr = [@[] mutableCopy];
     
     _selectArr = [NSMutableArray arrayWithArray:@[@1,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0,@0]];
-
-    
 }
 
 - (void)RequestMethod{
@@ -93,9 +91,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   
     if ([_brokerage isEqualToString:@"no"]) {
+        
         return _model.companyarr.count;
     }
     else{
+        
         return _model.dataarr.count;
     }
 
@@ -104,7 +104,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 51 *SIZE;
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -201,63 +200,52 @@
             cell = [[C_brokerageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"C_brokerageCell"];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
-        cell.ruleView.titleL.text = @"报备规则";
-        cell.ruleView.contentL.text = _model.companyarr[indexPath.row][@"basic"];
+        cell.ruleL.text = _model.companyarr[indexPath.row][@"basic"];
         return cell;
     }
     else{
-    if (indexPath.section == 0) {
         
-        RoomBrokerageTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomBrokerageTableCell"];
-        if (!cell) {
+        if (indexPath.section == 0) {
             
-            cell = [[RoomBrokerageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomBrokerageTableCell"];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (_roomModel.sort) {
-            cell.rankL.text = [NSString stringWithFormat:@"第%@名",_roomModel.sort];
-        }else
-        {
-            cell.rankL.text = @"无排名";
-        }
-        
-        [cell.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+            RoomBrokerageTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomBrokerageTableCell"];
+            if (!cell) {
+                
+                cell = [[RoomBrokerageTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomBrokerageTableCell"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (_roomModel.sort) {
+                cell.rankL.text = [NSString stringWithFormat:@"第%@名",_roomModel.sort];
+            }else
+            {
+                cell.rankL.text = @"无排名";
+            }
             
-            make.left.equalTo(cell.contentView).offset(114 *SIZE);
-            make.height.equalTo(@(13 *SIZE));
-            make.top.equalTo(cell.contentView).offset(50 *SIZE);
-            make.width.equalTo(@(cell.rankL.mj_textWith + 5 *SIZE));
-        }];
-        [cell SetLevel:[_roomModel.cycle integerValue]];
-        cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
-        cell.ruleView.titleL.text = @"报备规则";
-        cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
-        cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
-        cell.standView.titleL.text = @"结佣标准";
-        NSMutableArray *arr = _model.breakerinfo;
-        cell.standView.contentL.text = arr[indexPath.section];
-        
-
-        return cell;
-    }else{
-        
-        RoomBrokerageTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomBrokerageTableCell2"];
-        if (!cell) {
+            [cell.rankL mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(cell.contentView).offset(114 *SIZE);
+                make.height.equalTo(@(13 *SIZE));
+                make.top.equalTo(cell.contentView).offset(50 *SIZE);
+                make.width.equalTo(@(cell.rankL.mj_textWith + 5 *SIZE));
+            }];
+            [cell SetLevel:[_roomModel.cycle integerValue]];
+            cell.ruleL.text = _model.bsicarr[indexPath.section][@"basic"];
+            NSMutableArray *arr = _model.breakerinfo;
+            cell.standL.text = arr[indexPath.section];
             
-            cell = [[RoomBrokerageTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomBrokerageTableCell2"];
+            return cell;
+        }else{
+            
+            RoomBrokerageTableCell2 *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomBrokerageTableCell2"];
+            if (!cell) {
+                
+                cell = [[RoomBrokerageTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomBrokerageTableCell2"];
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.ruleL.text = _model.bsicarr[indexPath.section][@"basic"];
+            NSMutableArray *arr = _model.breakerinfo;
+            cell.standL.text = arr[indexPath.section];
+            return cell;
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.ruleView.titleImg.image = [UIImage imageNamed:@"rules"];
-        cell.ruleView.titleL.text = @"报备规则";
-        cell.ruleView.contentL.text = _model.bsicarr[indexPath.section][@"basic"];
-        cell.standView.titleImg.image = [UIImage imageNamed:@"commission4"];
-        cell.standView.titleL.text = @"结佣标准";
-        NSMutableArray *arr = _model.breakerinfo;
-        cell.standView.contentL.text = arr[indexPath.section];
-        
-        return cell;
-    }
     }
 }
 
@@ -265,7 +253,8 @@
     
     _brokerageTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, self.view.frame.size.height - NAVIGATION_BAR_HEIGHT - TAB_BAR_MORE) style:UITableViewStylePlain];
     _brokerageTable.rowHeight = UITableViewAutomaticDimension;
-    _brokerageTable.estimatedRowHeight = 214 *SIZE;
+    _brokerageTable.estimatedRowHeight = 300 *SIZE;
+    
     _brokerageTable.backgroundColor = CH_COLOR_white;;
     _brokerageTable.delegate = self;
     _brokerageTable.dataSource = self;
