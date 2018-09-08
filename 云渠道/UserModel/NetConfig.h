@@ -40,7 +40,10 @@ static NSString *const Config_URL = @"config";
 static NSString *const Advicer_URL = @"user/yunsuan/advicer";
 
 //获取项目置业顾问
-static NSString *const ProjectAdvicer_URL = @"user/project/advicer";
+static NSString *const ProjectAdvicer_URL = @"agent/project/advicer";
+
+//到访确认获取项目置业顾问
+static NSString *const ProjectGetAdvicer_URL = @"user/project/getAdvicer";
 
 //加入团队地址
 static NSString *const PersonalJoinAgentTeam_URL = @"agent/personal/joinAgentTeam";

@@ -195,7 +195,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.titleL.text = [NSString stringWithFormat:@"%@时间：%@",_Pace[indexPath.row][@"process_name"],_Pace[indexPath.row][@"time"]];
+        cell.titleL.text = [NSString stringWithFormat:@"%@：%@",_Pace[indexPath.row][@"process_name"],_Pace[indexPath.row][@"time"]];
         if (indexPath.row == 0) {
             
             cell.upLine.hidden = YES;

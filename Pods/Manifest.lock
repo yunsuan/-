@@ -43,6 +43,7 @@ PODS:
   - UMCShare/UI (6.9.2):
     - UMCCommon
     - UMCShare/Core
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - AFNetworking
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - UMCShare/Social/ReducedSina
   - UMCShare/Social/ReducedWeChat
   - UMCShare/UI
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -75,6 +77,7 @@ SPEC REPOS:
     - SDWebImage
     - UMCCommon
     - UMCShare
+    - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -90,7 +93,8 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   UMCCommon: 82d21f4bb9532a5472cc533bbd8ed48aff376a14
   UMCShare: 4d20cb77e085bcc9f8f2c81d24777d7dc6638b16
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 7a7cd09e916163d733119f99b42582937453f7f8
+PODFILE CHECKSUM: 5cc0217dfff0a47fec0307f1a1e2964e32be0073
 
 COCOAPODS: 1.5.2

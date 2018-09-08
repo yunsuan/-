@@ -125,6 +125,11 @@
     _imagePickerController.delegate = self;
     _agentname =@"";
     _agentid = @"0";
+    
+    [self.consulDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        [self.consulDic setObject:[NSString stringWithFormat:@"%@",obj] forKey:key];
+    }];
 }
 
 - (void)ActionAddBtn:(UIButton *)btn{
@@ -220,7 +225,7 @@
 -(void)action_agent
 {
     
-    [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":_datadic[@"project_id"]} success:^(id resposeObject) {
+    [BaseRequest GET:ProjectGetAdvicer_URL parameters:@{@"project_id":_datadic[@"project_id"]} success:^(id resposeObject) {
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             

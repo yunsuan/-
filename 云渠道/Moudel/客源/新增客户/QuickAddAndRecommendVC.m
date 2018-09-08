@@ -19,6 +19,7 @@
 {
     NSInteger _numAdd;
 //    CustomerModel *_model;
+    NSInteger _state;
 }
 
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
@@ -601,7 +602,7 @@
     [dic setObject:_projectBtn.str forKey:@"project_id"];
     
     self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
-//    SS(strongSelf);
+    SS(strongSelf);
     WS(weakSelf);
     self.selectWorkerView.selectWorkerRecommendBlock = ^{
         
@@ -609,53 +610,82 @@
             
             [dic setObject:weakSelf.selectWorkerView.ID forKey:@"consultant_advicer_id"];
         }
-        [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
+        
+        ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+        NSDictionary *tempDic = @{@"project":weakSelf.roomDetailModel.project_name,
+                                  @"sex":strongSelf->_Customerinfomodel.sex,
+                                  @"tel":strongSelf->_Customerinfomodel.tel,
+                                  @"name":strongSelf->_Customerinfomodel.name
+                                  };
+        reportCustomConfirmView.state = strongSelf->_state;
+        reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+        reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
             
-            if ([resposeObject[@"code"] integerValue] == 200) {
+            [BaseRequest POST:AddAndRecommend_URL parameters:dic success:^(id resposeObject) {
                 
-                [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                if ([resposeObject[@"code"] integerValue] == 200) {
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                }];
-            }
-            else{
+                    
+                    ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:weakSelf.view.frame];
+                    NSDictionary *tempDic = @{@"project":weakSelf.roomDetailModel.project_name,
+                                              @"sex":strongSelf->_Customerinfomodel.sex,
+                                              @"tel":strongSelf->_Customerinfomodel.tel,
+                                              @"name":strongSelf->_Customerinfomodel.name
+                                              };
+                    reportCustomSuccessView.state = strongSelf->_state;
+                    reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                    reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    };
+                    [weakSelf.view addSubview:reportCustomSuccessView];
+                }
+                else{
+                    
+                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                }
+            } failure:^(NSError *error) {
                 
-                [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
-            }
-        } failure:^(NSError *error) {
-            
-            [weakSelf showContent:@"网络错误"];
-        }];
+                [weakSelf showContent:@"网络错误"];
+            }];
+        };
+        [weakSelf.view addSubview:reportCustomConfirmView];
+        
     };
-    
     [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":_projectBtn.str} success:^(id resposeObject) {
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"][@"rows"] count]) {
                 weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
-//                [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                    
-//                    NSDictionary *dic = @{@"id":obj[@"RYDH"],
-//                                          @"param":obj[@"RYXM"]
-//                                          };
-//                    [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
-//                }];
+                _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
                 [weakSelf.view addSubview:weakSelf.selectWorkerView];
             }else{
                 
-                [weakSelf RequestRecommend:dic];
+                ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                NSDictionary *tempDic = @{@"project":weakSelf.roomDetailModel.project_name,
+                                          @"sex":strongSelf->_Customerinfomodel.sex,
+                                          @"tel":strongSelf->_Customerinfomodel.tel,
+                                          @"name":strongSelf->_Customerinfomodel.name
+                                          };
+                reportCustomConfirmView.state = strongSelf->_state;
+                reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
+                    
+                    [weakSelf RequestRecommend:dic];
+                };
+                [weakSelf.view addSubview:reportCustomConfirmView];
             }
         }else{
             
-            [weakSelf RequestRecommend:dic];
+            [self showContent:resposeObject[@"msg"]];
         }
     } failure:^(NSError *error) {
         
-        [weakSelf RequestRecommend:dic];
+        [self showContent:@"网络错误"];
     }];
 }
 
@@ -665,13 +695,22 @@
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+            ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:self.view.frame];
+            NSDictionary *tempDic = @{@"project":self.roomDetailModel.project_name,
+                                      @"sex":_Customerinfomodel.sex,
+                                      @"tel":_Customerinfomodel.tel,
+                                      @"name":_Customerinfomodel.name
+                                      };
+            reportCustomSuccessView.state = _state;
+            reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+            reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"matchReload" object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCustom" object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
                 [self.navigationController popViewControllerAnimated:YES];
-            }];
+            };
+            [self.view addSubview:reportCustomSuccessView];
         }
         else{
             

@@ -690,6 +690,12 @@
         if (![self isEmpty:_detailadress.text]) {
             
             _Customerinfomodel.address = _detailadress.text;
+        }else{
+            
+            if (_model.address && [self isEmpty:_detailadress.text]) {
+                
+                _Customerinfomodel.address = @" ";
+            }
         }
         
         

@@ -424,6 +424,7 @@
     CustomerTableModel *model = _dataArr[indexPath.row];
     CustomDetailVC *nextVC = [[CustomDetailVC alloc] initWithClientId:model.client_id];
     nextVC.hidesBottomBarWhenPushed = YES;
+    nextVC.model = model;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 

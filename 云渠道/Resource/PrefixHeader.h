@@ -46,6 +46,8 @@
 #import <UMShare/UMShare.h>
 #import "TransmitView.h"
 #import "SelectWorkerView.h"
+#import "ReportCustomConfirmView.h"
+#import "ReportCustomSuccessView.h"
 
 
 
@@ -70,7 +72,7 @@
 #define PLINEHEIGHT    0.5*SIZE
 
 #define JpushAppKey @"2dd909361c253b51e0cd05a9"
-#define YQDversion @"2.3"
+#define YQDversion @"2.7"
 #define ACCESSROLE @"agent"
 
 // 判断是否是iPhone X
