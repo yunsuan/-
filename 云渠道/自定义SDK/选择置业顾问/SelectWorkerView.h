@@ -14,6 +14,8 @@ typedef void(^SelectWorkerRecommendBlock)(void);
 
 @interface SelectWorkerView : UIView
 
+@property (nonatomic, assign) NSInteger advicerSelect;
+
 @property (nonatomic, strong) NSString *ID;
 
 @property (nonatomic, strong) WorkerPickView *pick;

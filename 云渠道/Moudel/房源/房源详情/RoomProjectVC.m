@@ -55,6 +55,7 @@
     NSString *_phone_url;
     NSString *_name;
     NSInteger _state;
+    NSInteger _selected;
 }
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
@@ -842,6 +843,8 @@
                             
                             weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
                             _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                            _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                            weakSelf.selectWorkerView.advicerSelect = _selected;
                             [self.view addSubview:weakSelf.selectWorkerView];
                         }else{
                             

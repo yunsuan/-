@@ -42,7 +42,7 @@
     _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project"]];
     _nameL.text = [NSString stringWithFormat:@"姓名：%@",dataDic[@"name"]];
     
-    _sexImg.image = [dataDic[@"sex"] integerValue] == 2?[UIImage imageNamed:@"man"]:[UIImage imageNamed:@"girl"];
+    _sexImg.image = [dataDic[@"sex"] integerValue] == 2?[UIImage imageNamed:@"girl"]:[UIImage imageNamed:@"man"];
     _phoneL.text = @"联系电话：";
     _phone1.text = [dataDic[@"tel"] substringWithRange:NSMakeRange(0, 1)];
     _phone2.text = [dataDic[@"tel"] substringWithRange:NSMakeRange(1, 1)];

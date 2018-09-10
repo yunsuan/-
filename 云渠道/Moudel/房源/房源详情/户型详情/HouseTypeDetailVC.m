@@ -31,6 +31,7 @@
     NSMutableArray *_matchList;
     NSString *_url;
     NSInteger _state;
+    NSInteger _selected;
 }
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
@@ -364,6 +365,7 @@
         header.houseTypeTableHeader2Block = ^{
             
             CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_matchList projectId:_projectId];
+            nextVC.model = _model;
             [self.navigationController pushViewController:nextVC animated:YES];
         };
         return header;
@@ -484,6 +486,8 @@
                             
                             weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
                             _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                            _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                            weakSelf.selectWorkerView.advicerSelect = _selected;
                             [self.view addSubview:weakSelf.selectWorkerView];
                         }else{
                             

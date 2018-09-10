@@ -21,6 +21,7 @@
     NSInteger _page;
     BOOL _isSearch;
     NSInteger _state;
+    NSInteger _selected;
 }
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
@@ -442,6 +443,8 @@
                 if ([resposeObject[@"data"][@"rows"] count]) {
                     weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
                     _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                    _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                    weakSelf.selectWorkerView.advicerSelect = _selected;
                     [weakSelf.view addSubview:weakSelf.selectWorkerView];
                 }else{
                     

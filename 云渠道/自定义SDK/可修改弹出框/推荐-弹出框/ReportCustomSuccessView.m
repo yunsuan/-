@@ -32,6 +32,8 @@
 
 - (void)setDataDic:(NSMutableDictionary *)dataDic{
     
+    _titleL.text = @"恭喜您推荐成功";
+    
     _projectL.text = [NSString stringWithFormat:@"推荐项目：%@",dataDic[@"project"]];
     _nameL.text = [NSString stringWithFormat:@"姓名：%@",dataDic[@"name"]];
     

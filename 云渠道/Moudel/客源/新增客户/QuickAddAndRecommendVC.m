@@ -20,6 +20,7 @@
     NSInteger _numAdd;
 //    CustomerModel *_model;
     NSInteger _state;
+    NSInteger _selected;
 }
 
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
@@ -516,10 +517,20 @@
     QuickRoomVC *nextVC = [[QuickRoomVC alloc] init];
     nextVC.ways = @"quickAdd";
     nextVC.quickRoomVCSelectBlock = ^(NSString *projectId, NSString *projectName) {
-      
+        
+        if (!self.roomDetailModel) {
+            
+            self.roomDetailModel = [[RoomDetailModel alloc] init];
+            self.roomDetailModel.project_name = projectName;
+        }
         _projectBtn.content.text = projectName;
         _projectBtn.str = [NSString stringWithFormat:@"%@",projectId];
     };
+    
+//    nextVC.quickRoomVCRoomBlock = ^(RoomListModel *model) {
+//
+//        self.roomDetailModel.project_name = model.project_name;
+//    };
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -589,6 +600,11 @@
             nextVC.ways = @"quickAdd";
             nextVC.quickRoomVCSelectBlock = ^(NSString *projectId, NSString *projectName) {
                 
+                if (!self.roomDetailModel) {
+                    
+                    self.roomDetailModel = [[RoomDetailModel alloc] init];
+                    self.roomDetailModel.project_name = projectName;
+                }
                 _projectBtn.content.text = projectName;
                 _projectBtn.str = [NSString stringWithFormat:@"%@",projectId];
             };
@@ -662,6 +678,8 @@
             if ([resposeObject[@"data"][@"rows"] count]) {
                 weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
                 _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                weakSelf.selectWorkerView.advicerSelect = _selected;
                 [weakSelf.view addSubview:weakSelf.selectWorkerView];
             }else{
                 

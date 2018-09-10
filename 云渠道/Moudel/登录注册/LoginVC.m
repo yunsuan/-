@@ -45,7 +45,7 @@
     [self.view addSubview:self.RegisterBtn];
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
-    [self.view addSubview:self.settingbtn];
+//    [self.view addSubview:self.settingbtn];
     
     if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession] && [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
 
@@ -515,13 +515,7 @@
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
         NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
         [dataarr writeToFile:filePath atomically:YES];
-//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@"1"];
-//        [data1 setObject:data atIndexedSubscript:0];
-//        NSArray *dataarr = [data1 copy];
-//        [dataarr writeToFile:filePath atomically:YES];
-//
-//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@"1"];
-//        [self.dic setValue:data forKey:QZONE_VIP_INFO];
+
 
     }];
         
@@ -532,7 +526,6 @@
         NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
         NSArray *dataarr  = @[@"http://47.106.39.169:2797/"];
         [dataarr writeToFile:filePath atomically:YES];
-     
     }];
     
     UIAlertAction *zs = [UIAlertAction actionWithTitle:@"正式服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

@@ -152,7 +152,9 @@
                             
                             if([area[k][@"code"] integerValue] == [[UserInfoModel defaultModel].district integerValue]){
                                 
-                                
+                                _provinceId = [UserInfoModel defaultModel].province;
+                                _cityId = [UserInfoModel defaultModel].city;
+                                _areaId = [UserInfoModel defaultModel].district;
                                 _addressL.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
                             }
                         }

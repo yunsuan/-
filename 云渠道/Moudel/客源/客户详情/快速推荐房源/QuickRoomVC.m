@@ -16,7 +16,6 @@
 #import "QuickSearchVC.h"
 #import "PYSearchViewController.h"
 #import "MoreView.h"
-#import "RoomListModel.h"
 #import "AdressChooseView.h"
 #import "CustomDetailVC.h"
 #import "CityVC.h"
@@ -46,6 +45,7 @@
     BOOL _is3;
     BOOL _is4;
     NSInteger _state;
+    NSInteger _selected;
 }
 
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
@@ -821,6 +821,7 @@
                 
                 RoomListModel *model = _dataArr[indexPath.row];
                 self.quickRoomVCSelectBlock(model.project_id, model.project_name);
+//                self.quickRoomVCRoomBlock(model);
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }else{
@@ -891,6 +892,8 @@
                         
                         weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
                         _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                        _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                        weakSelf.selectWorkerView.advicerSelect = _selected;
                         [self.view addSubview:weakSelf.selectWorkerView];
                     }else{
                         

@@ -42,27 +42,27 @@
 
 @property (nonatomic, strong) UILabel *phoneL;
 
-@property (nonatomic, strong) BorderTF *phoneTF1;
+@property (nonatomic, strong) UITextField *phoneTF1;
 
-@property (nonatomic, strong) BorderTF *phoneTF2;
+@property (nonatomic, strong) UITextField *phoneTF2;
 
-@property (nonatomic, strong) BorderTF *phoneTF3;
+@property (nonatomic, strong) UITextField *phoneTF3;
 
-@property (nonatomic, strong) BorderTF *phoneTF4;
+@property (nonatomic, strong) UITextField *phoneTF4;
 
-@property (nonatomic, strong) BorderTF *phoneTF5;
+@property (nonatomic, strong) UITextField *phoneTF5;
 
-@property (nonatomic, strong) BorderTF *phoneTF6;
+@property (nonatomic, strong) UITextField *phoneTF6;
 
-@property (nonatomic, strong) BorderTF *phoneTF7;
+@property (nonatomic, strong) UITextField *phoneTF7;
 
-@property (nonatomic, strong) BorderTF *phoneTF8;
+@property (nonatomic, strong) UITextField *phoneTF8;
 
-@property (nonatomic, strong) BorderTF *phoneTF9;
+@property (nonatomic, strong) UITextField *phoneTF9;
 
-@property (nonatomic, strong) BorderTF *phoneTF10;
+@property (nonatomic, strong) UITextField *phoneTF10;
 
-@property (nonatomic, strong) BorderTF *phoneTF11;
+@property (nonatomic, strong) UITextField *phoneTF11;
 
 @property (nonatomic, strong) UILabel *hideL;
 
@@ -127,49 +127,56 @@
 
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    textField.text = @"";
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    
     if (range.location > 0) {
-        
+    
         textField.text = [textField.text substringToIndex:1];
         
-        if (textField == _phoneTF1.textfield) {
+        if (textField == _phoneTF1) {
             
             [_phoneTF2 becomeFirstResponder];
-        }else if (textField == _phoneTF2.textfield) {
+        }else if (textField == _phoneTF2) {
             
             [_phoneTF3 becomeFirstResponder];
-        }else if (textField == _phoneTF3.textfield) {
+        }else if (textField == _phoneTF3) {
             
             [_phoneTF4 becomeFirstResponder];
         }
-        else if (textField == _phoneTF4.textfield) {
+        else if (textField == _phoneTF4) {
             
             [_phoneTF5 becomeFirstResponder];
         }
-        else if (textField == _phoneTF5.textfield) {
+        else if (textField == _phoneTF5) {
             
             [_phoneTF6 becomeFirstResponder];
         }
-        else if (textField == _phoneTF6.textfield) {
+        else if (textField == _phoneTF6) {
             
             [_phoneTF7 becomeFirstResponder];
         }
-        else if (textField == _phoneTF7.textfield) {
+        else if (textField == _phoneTF7) {
             
             [_phoneTF8 becomeFirstResponder];
         }
-        else if (textField == _phoneTF8.textfield) {
+        else if (textField == _phoneTF8) {
             
             [_phoneTF9 becomeFirstResponder];
         }
-        else if (textField == _phoneTF9.textfield) {
+        else if (textField == _phoneTF9) {
             
             [_phoneTF10 becomeFirstResponder];
         }
-        else if (textField == _phoneTF10.textfield) {
+        else if (textField == _phoneTF10) {
             
             [_phoneTF11 becomeFirstResponder];
-        }else if (textField == _phoneTF10.textfield) {
+        }else if (textField == _phoneTF11) {
             
             [_phoneTF11 endEditing:YES];
         }
@@ -200,6 +207,57 @@
 
     NSString *tel;
     
+    if ([_dataDic[@"tel_complete_state"] integerValue] == 2) {
+        
+        tel = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@",_phoneTF1.text,_phoneTF2.text,_phoneTF3.text,_phoneTF4.text,_phoneTF5.text,_phoneTF6.text,_phoneTF7.text,_phoneTF8.text,_phoneTF9.text,_phoneTF10.text,_phoneTF11.text];
+        if (![self checkTel:tel]) {
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:@"请填写正确的电话号码"];
+            return;
+        }
+    }else if ([_dataDic[@"tel_complete_state"] integerValue] == 0){
+        
+        tel = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@",_phoneTF1.text,_phoneTF2.text,_phoneTF3.text,_phoneTF4.text,_phoneTF5.text,_phoneTF6.text,_phoneTF7.text,_phoneTF8.text,_phoneTF9.text,_phoneTF10.text,_phoneTF11.text];
+        if (![self checkTel:tel]) {
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:@"请填写正确的电话号码"];
+            return;
+        }
+    }else{
+        
+        if (!_phoneTF1.text.length || !_phoneTF2.text.length || !_phoneTF3.text.length || !_phoneTF8.text.length || !_phoneTF9.text.length || !_phoneTF10.text.length || !_phoneTF11.text.length) {
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:@"电话号码不完整"];
+        }else{
+            
+            if (!_phoneTF4.text.length) {
+                
+                _phoneTF4.text = @"X";
+            }
+            if (!_phoneTF5.text.length){
+                
+                _phoneTF5.text = @"X";
+            }
+            if (!_phoneTF6.text.length){
+                
+                _phoneTF6.text = @"X";
+            }
+            if (!_phoneTF7.text.length){
+                
+                _phoneTF7.text = @"X";
+            }
+            
+            if ([_phoneTF4.text isEqualToString:@"X"] || [_phoneTF5.text isEqualToString:@"X"] || [_phoneTF6.text isEqualToString:@"X"] || [_phoneTF7.text isEqualToString:@"X"]) {
+                
+                _phoneTF4.text = @"X";
+                _phoneTF5.text = @"X";
+                _phoneTF6.text = @"X";
+                _phoneTF7.text = @"X";
+            }
+            
+            tel = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@",_phoneTF1.text,_phoneTF2.text,_phoneTF3.text,_phoneTF4.text,_phoneTF5.text,_phoneTF6.text,_phoneTF7.text,_phoneTF8.text,_phoneTF9.text,_phoneTF10.text,_phoneTF11.text];
+        }
+    }
 
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 
@@ -237,7 +295,6 @@
         }else{
             
             CompleteCustomVC2 *nextVC = [[CompleteCustomVC2 alloc] initWithData:dic];
-            
             nextVC.datadic = _dataDic;
             [self.navigationController pushViewController:nextVC animated:YES];
         }
@@ -603,30 +660,36 @@
     
     for (int i = 0; i < 11; i++) {
         
-        BorderTF *borderTF = [[BorderTF alloc] initWithFrame:CGRectMake(80 *SIZE, 75 *SIZE, 19 *SIZE, 24 *SIZE)];
-//        borderTF.textfield.text
-        borderTF.textfield.delegate = self;
-        borderTF.textfield.frame = CGRectMake(0, 0, 19 *SIZE, 24 *SIZE);
-        borderTF.textfield.textAlignment = NSTextAlignmentCenter;
+        UITextField *borderTF = [[UITextField alloc] initWithFrame:CGRectMake(80 *SIZE, 75 *SIZE, 19 *SIZE, 24 *SIZE)];
+        borderTF.textColor = YJContentLabColor;
+        borderTF.keyboardType = UIKeyboardTypePhonePad;
+        borderTF.font = [UIFont systemFontOfSize:13.3*SIZE];
+        borderTF.layer.cornerRadius = 5*SIZE;
+        borderTF.layer.borderColor = COLOR(219, 219, 219, 1).CGColor;
+        borderTF.layer.borderWidth = 1*SIZE;
+        borderTF.textAlignment = NSTextAlignmentCenter;
         switch (i) {
             case 0:
             {
                 _phoneTF1 = borderTF;
-                _phoneTF1.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(0, 1)];
+                _phoneTF1.delegate = self;
+                _phoneTF1.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(0, 1)];
                 [_infoView addSubview:_phoneTF1];
                 break;
             }
             case 1:
             {
                 _phoneTF2 = borderTF;
-                _phoneTF2.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(1, 1)];
+                _phoneTF2.delegate = self;
+                _phoneTF2.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(1, 1)];
                 [_infoView addSubview:_phoneTF2];
                 break;
             }
             case 2:
             {
                 _phoneTF3 = borderTF;
-                _phoneTF3.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(2, 1)];
+                _phoneTF3.delegate = self;
+                _phoneTF3.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(2, 1)];
                 [_infoView addSubview:_phoneTF3];
                 break;
             }
@@ -634,7 +697,8 @@
             {
                 borderTF.layer.borderColor = COLOR(169, 219, 255, 1).CGColor;
                 _phoneTF4 = borderTF;
-                _phoneTF4.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(3, 1)];
+                _phoneTF4.delegate = self;
+                _phoneTF4.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(3, 1)];
                 [_infoView addSubview:_phoneTF4];
                 break;
             }
@@ -642,7 +706,8 @@
             {
                 borderTF.layer.borderColor = COLOR(169, 219, 255, 1).CGColor;
                 _phoneTF5 = borderTF;
-                _phoneTF5.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(4, 1)];
+                _phoneTF5.delegate = self;
+                _phoneTF5.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(4, 1)];
                 [_infoView addSubview:_phoneTF5];
                 break;
             }
@@ -650,7 +715,8 @@
             {
                 borderTF.layer.borderColor = COLOR(169, 219, 255, 1).CGColor;
                 _phoneTF6 = borderTF;
-                _phoneTF6.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(5, 1)];
+                _phoneTF6.delegate = self;
+                _phoneTF6.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(5, 1)];
                 [_infoView addSubview:_phoneTF6];
                 break;
             }
@@ -658,41 +724,75 @@
             {
                 borderTF.layer.borderColor = COLOR(169, 219, 255, 1).CGColor;
                 _phoneTF7 = borderTF;
-                _phoneTF7.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(6, 1)];
+                _phoneTF7.delegate = self;
+                _phoneTF7.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(6, 1)];
                 [_infoView addSubview:_phoneTF7];
                 break;
             }
             case 7:
             {
                 _phoneTF8 = borderTF;
-                _phoneTF8.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(7, 1)];
+                _phoneTF8.delegate = self;
+                _phoneTF8.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(7, 1)];
                 [_infoView addSubview:_phoneTF8];
                 break;
             }
             case 8:
             {
                 _phoneTF9 = borderTF;
-                _phoneTF9.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(8, 1)];
+                _phoneTF9.delegate = self;
+                _phoneTF9.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(8, 1)];
                 [_infoView addSubview:_phoneTF9];
                 break;
             }
             case 9:
             {
                 _phoneTF10 = borderTF;
-                _phoneTF10.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(9, 1)];
+                _phoneTF10.delegate = self;
+                _phoneTF10.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(9, 1)];
                 [_infoView addSubview:_phoneTF10];
                 break;
             }
             case 10:
             {
                 _phoneTF11 = borderTF;
-                _phoneTF11.textfield.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(10, 1)];
+                _phoneTF11.delegate = self;
+                _phoneTF11.text = [[_dataDic[@"tel"] componentsSeparatedByString:@","][0] substringWithRange:NSMakeRange(10, 1)];
                 [_infoView addSubview:_phoneTF11];
                 break;
             }
             default:
                 break;
         }
+    }
+    
+    if ([_dataDic[@"tel_complete_state"] integerValue] == 2) {
+        
+        _phoneTF4.text = @"X";
+        _phoneTF5.text = @"X";
+        _phoneTF6.text = @"X";
+        _phoneTF7.text = @"X";
+        
+        _hideReportL.hidden = YES;
+        _hideL.hidden = YES;
+        _hideImg.hidden = YES;
+        
+    }else if ([_dataDic[@"tel_complete_state"] integerValue] == 5){
+        
+        _phoneTF4.text = @"X";
+        _phoneTF5.text = @"X";
+        _phoneTF6.text = @"X";
+        _phoneTF7.text = @"X";
+
+        _hideReportL.hidden = NO;
+        _hideL.hidden = NO;
+        _hideImg.hidden = NO;
+
+    }else{
+        
+        _hideReportL.hidden = YES;
+        _hideL.hidden = YES;
+        _hideImg.hidden = YES;
     }
     
     for (int i = 0; i < 2; i++) {

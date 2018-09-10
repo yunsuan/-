@@ -9,16 +9,21 @@
 #import "BaseViewController.h"
 #import "CustomRequireModel.h"
 #import "CustomerTableModel.h"
+#import "RoomListModel.h"
 
 @class QuickRoomVC;
 
 typedef void(^QuickRoomVCSelectBlock)(NSString *projectId,NSString *projectName);
 
+//typedef void(^QuickRoomVCRoomBlock)(RoomListModel *model);
+
 @interface QuickRoomVC : BaseViewController
 
-@property (nonatomic, strong) CustomerTableModel *customerTableModel;
+//@property (nonatomic, copy) QuickRoomVCRoomBlock quickRoomVCRoomBlock;
 
 @property (nonatomic, copy) QuickRoomVCSelectBlock quickRoomVCSelectBlock;
+
+@property (nonatomic, strong) CustomerTableModel *customerTableModel;
 
 @property (nonatomic, strong) NSString *ways;
 

@@ -40,6 +40,7 @@
     NSArray *_tagsArr;
     NSArray *_propertyArr;
     NSInteger _state;
+    NSInteger _selected;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
 
@@ -808,6 +809,8 @@
                             if ([resposeObject[@"data"][@"rows"] count]) {
                                 weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
                                 _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                                _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                                weakSelf.selectWorkerView.advicerSelect = _selected;
                                 [weakSelf.view addSubview:weakSelf.selectWorkerView];
                             }else{
                                 
