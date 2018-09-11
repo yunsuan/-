@@ -12,9 +12,9 @@
 
 
 #pragma mark ---  基础接口  ---
-//基础接口
-
-static NSString *const Base_Net = @"http://120.27.21.136:2798/";
+////基础接口
+//
+//static NSString *const Base_Net = @"http://120.27.21.136:2798/";
 
 
 ////演示接口
