@@ -98,6 +98,9 @@
 		0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD5672069DAE50059CE02 /* RoomDetailTableCell4.m */; };
 		0C3AD56B2069EF290059CE02 /* RoomCellCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */; };
 		0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */; };
+		0C581E11214271070048546C /* ReportCustomConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C581E10214271070048546C /* ReportCustomConfirmView.m */; };
+		0C581E142142711C0048546C /* ReportCustomSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C581E132142711C0048546C /* ReportCustomSuccessView.m */; };
+		0C581E17214279570048546C /* DashesLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C581E16214279570048546C /* DashesLineView.m */; };
 		0C6730792130079900DCF01B /* WorkerPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6730782130079900DCF01B /* WorkerPickView.m */; };
 		0C6B636021226DBB00ABB506 /* MyTeamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B635F21226DBB00ABB506 /* MyTeamVC.m */; };
 		0C6B636421226EB300ABB506 /* MyTeamTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6B636321226EB300ABB506 /* MyTeamTableCell.m */; };
@@ -521,6 +524,12 @@
 		0C3AD56A2069EF290059CE02 /* RoomCellCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomCellCollCell.m; sourceTree = "<group>"; };
 		0C3AD56C206A11830059CE02 /* RoomDetailTableCell5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableCell5.h; sourceTree = "<group>"; };
 		0C3AD56D206A11830059CE02 /* RoomDetailTableCell5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableCell5.m; sourceTree = "<group>"; };
+		0C581E0F214271070048546C /* ReportCustomConfirmView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportCustomConfirmView.h; sourceTree = "<group>"; };
+		0C581E10214271070048546C /* ReportCustomConfirmView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportCustomConfirmView.m; sourceTree = "<group>"; };
+		0C581E122142711C0048546C /* ReportCustomSuccessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportCustomSuccessView.h; sourceTree = "<group>"; };
+		0C581E132142711C0048546C /* ReportCustomSuccessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportCustomSuccessView.m; sourceTree = "<group>"; };
+		0C581E15214279560048546C /* DashesLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashesLineView.h; sourceTree = "<group>"; };
+		0C581E16214279570048546C /* DashesLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashesLineView.m; sourceTree = "<group>"; };
 		0C6730772130079900DCF01B /* WorkerPickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkerPickView.h; sourceTree = "<group>"; };
 		0C6730782130079900DCF01B /* WorkerPickView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkerPickView.m; sourceTree = "<group>"; };
 		0C6B635E21226DBB00ABB506 /* MyTeamVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTeamVC.h; sourceTree = "<group>"; };
@@ -1504,6 +1513,27 @@
 				0CF04F242079AD1000A45F4A /* RoomDetailTableCell8.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		0C581E0D214270F50048546C /* 可修改弹出框 */ = {
+			isa = PBXGroup;
+			children = (
+				0C581E0E214270F50048546C /* 推荐-弹出框 */,
+			);
+			path = "可修改弹出框";
+			sourceTree = "<group>";
+		};
+		0C581E0E214270F50048546C /* 推荐-弹出框 */ = {
+			isa = PBXGroup;
+			children = (
+				0C581E15214279560048546C /* DashesLineView.h */,
+				0C581E16214279570048546C /* DashesLineView.m */,
+				0C581E0F214271070048546C /* ReportCustomConfirmView.h */,
+				0C581E10214271070048546C /* ReportCustomConfirmView.m */,
+				0C581E122142711C0048546C /* ReportCustomSuccessView.h */,
+				0C581E132142711C0048546C /* ReportCustomSuccessView.m */,
+			);
+			path = "推荐-弹出框";
 			sourceTree = "<group>";
 		};
 		0C6B635D21226D7D00ABB506 /* 我的团队 */ = {
@@ -2635,6 +2665,7 @@
 		1069FFFB2057974100E11F52 /* 自定义SDK */ = {
 			isa = PBXGroup;
 			children = (
+				0C581E0D214270F50048546C /* 可修改弹出框 */,
 				0C6B63762122DC9900ABB506 /* 选择置业顾问 */,
 				0C0BED3720A2CF49005A16A1 /* 加载动画 */,
 				10B5097820931764004355C4 /* selectview */,
@@ -3110,6 +3141,7 @@
 				0C3AD56E206A11830059CE02 /* RoomDetailTableCell5.m in Sources */,
 				0CC19CF8206E21110007CC5F /* AuthenTableCell.m in Sources */,
 				0CA37B732088938C005609C7 /* AddTagViewCollCell.m in Sources */,
+				0C581E11214271070048546C /* ReportCustomConfirmView.m in Sources */,
 				0CEBDE3420AE6F7B004BAF7A /* AddressChooseView3.m in Sources */,
 				0CF7423B206229C4001F926F /* MessageTableCell.m in Sources */,
 				0CF04F77207C8C2800A45F4A /* MyCodeVC.m in Sources */,
@@ -3179,6 +3211,7 @@
 				0CF04FA7207CD1A100A45F4A /* MoreViewCollHeader.m in Sources */,
 				105E18E7206B662C0031558D /* RecommendVC.m in Sources */,
 				1069000D2057974200E11F52 /* BaseViewController.m in Sources */,
+				0C581E17214279570048546C /* DashesLineView.m in Sources */,
 				0CF7426120626756001F926F /* CustomerCollCell.m in Sources */,
 				0C08BF53206C820E005BB3B4 /* MyBrokerageVC.m in Sources */,
 				0CF89A6620C14BFA00454EDD /* JudgeView.m in Sources */,
@@ -3220,6 +3253,7 @@
 				0CF04FA4207CCDF000A45F4A /* MoreViewCollCell.m in Sources */,
 				0CF04F34207B00F900A45F4A /* RecommendCollCell.m in Sources */,
 				0CA37B802089C3C9005609C7 /* BoxViewCell.m in Sources */,
+				0C581E142142711C0048546C /* ReportCustomSuccessView.m in Sources */,
 				10174C04207214CA00D00B9A /* BuildingInfoVC.m in Sources */,
 				0C0BED4020A40E42005A16A1 /* GZQGifFooter.m in Sources */,
 				0C00FEBA20EA38F500B8F78A /* YBImageBrowserToolBar.m in Sources */,

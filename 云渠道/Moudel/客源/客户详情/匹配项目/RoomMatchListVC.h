@@ -8,8 +8,11 @@
 
 #import "BaseViewController.h"
 #import "CustomRequireModel.h"
+#import "CustomerTableModel.h"
 
 @interface RoomMatchListVC : BaseViewController
+
+@property (nonatomic, strong) CustomerTableModel *customerTableModel;
 
 - (instancetype)initWithClientId:(NSString *)clientId dataArr:(NSArray *)dataArr model:(CustomRequireModel *)model;
 

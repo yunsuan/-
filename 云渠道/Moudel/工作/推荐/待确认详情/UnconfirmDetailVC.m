@@ -85,7 +85,6 @@
                           _data = @[@[[NSString stringWithFormat:@"推荐编号：%@",_dataDic[@"client_id"]],[NSString stringWithFormat:@"推荐时间：%@",_dataDic[@"create_time"]],[NSString stringWithFormat:@"推荐类别：%@",_dataDic[@"recommend_type"]],[NSString stringWithFormat:@"推荐人：%@",_dataDic[@"broker_name"]],[NSString stringWithFormat:@"联系方式：%@",_dataDic[@"broker_tel"]],[NSString stringWithFormat:@"项目名称：%@",_dataDic[@"project_name"]],adress,[NSString stringWithFormat:@"客户姓名：%@",_dataDic[@"name"]],sex,tel,[NSString stringWithFormat:@"备注：%@",_dataDic[@"client_comment"]]]];
                       }
                       
-                      
                       _endtime = _dataDic[@"timeLimit"];
                       
                       [_Maintableview reloadData];
@@ -94,7 +93,7 @@
                                                          }
               failure:^(NSError *error) {
                                                              
-                  
+                  [self showContent:@"网络错误"];
               }];
 }
 

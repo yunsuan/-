@@ -260,7 +260,7 @@
     }
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(120 *SIZE, 47 *SIZE);
+    _flowLayout.itemSize = CGSizeMake(119 *SIZE, 47 *SIZE);
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
     

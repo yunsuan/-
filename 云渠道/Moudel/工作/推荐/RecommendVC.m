@@ -714,6 +714,7 @@
 {
 
     QuickAddAndRecommendVC *nextVC = [[QuickAddAndRecommendVC alloc] init];
+//    nextVC.roomDetailModel = self
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -958,17 +959,24 @@
             cell.tag = indexPath.row;
             cell.phoneBtnBlock = ^(NSInteger index) {
                 
-                NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
-                if (phone.length) {
+                if ([_validArr[index][@"tel_complete_state"] integerValue] <= 2) {
                     
-                    //获取目标号码字符串,转换成URL
-                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                    //调用系统方法拨号
-                    [[UIApplication sharedApplication] openURL:url];
+                    NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                    if (phone.length) {
+                        
+                        //获取目标号码字符串,转换成URL
+                        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                        //调用系统方法拨号
+                        [[UIApplication sharedApplication] openURL:url];
+                    }else{
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    }
                 }else{
                     
-                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    
                 }
+                
             };
         }else{
             
@@ -976,17 +984,24 @@
             cell.tag = indexPath.row;
             cell.phoneBtnBlock = ^(NSInteger index) {
                 
-                NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
-                if (phone.length) {
+                if ([_inValidArr[index][@"tel_complete_state"] integerValue] <= 2) {
                     
-                    //获取目标号码字符串,转换成URL
-                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                    //调用系统方法拨号
-                    [[UIApplication sharedApplication] openURL:url];
+                    NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                    if (phone.length) {
+                        
+                        //获取目标号码字符串,转换成URL
+                        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                        //调用系统方法拨号
+                        [[UIApplication sharedApplication] openURL:url];
+                    }else{
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    }
                 }else{
                     
-                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    
                 }
+                
             };
         }
         

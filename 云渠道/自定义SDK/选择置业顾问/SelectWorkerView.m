@@ -20,6 +20,16 @@
     return self;
 }
 
+- (void)setAdvicerSelect:(NSInteger)advicerSelect{
+    
+    if (advicerSelect == 1) {
+        
+        _nameL.text = [NSString stringWithFormat:@"%@/%@/%@",self.dataArr[0][@"GSMC"],self.dataArr[0][@"RYXM"],self.dataArr[0][@"RYDH"]];
+        _phoneL.text = [NSString stringWithFormat:@"联系电话：%@",self.dataArr[0][@"RYDH"]];
+        self.ID = [NSString stringWithFormat:@"%@",self.dataArr[0][@"ID"]];
+    }
+}
+
 - (void)ActionTagBtn:(UIButton *)btn{
     
     if (btn.tag == 0) {

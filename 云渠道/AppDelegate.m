@@ -217,7 +217,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
-    [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
+//    [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
 }
 
 - (void)confitUShareSettings

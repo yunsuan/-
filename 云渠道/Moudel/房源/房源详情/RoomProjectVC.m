@@ -54,6 +54,8 @@
     NSString *_phone;
     NSString *_phone_url;
     NSString *_name;
+    NSInteger _state;
+    NSInteger _selected;
 }
 @property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
@@ -317,7 +319,7 @@
 
 #pragma mark -- Method --
 
-- (void)RequestRecommend:(NSDictionary *)dic{
+- (void)RequestRecommend:(NSDictionary *)dic model:(CustomMatchModel *)model{
     
     [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
         
@@ -325,10 +327,19 @@
         
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+            ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:self.view.frame];
+            NSDictionary *tempDic = @{@"project":_model.project_name,
+                                      @"sex":model.sex,
+                                      @"tel":model.tel,
+                                      @"name":model.name
+                                      };
+            reportCustomSuccessView.state = _state;
+            reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+            reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
                 
                 [self MatchRequest];
-            }];
+            };
+            [self.view addSubview:reportCustomSuccessView];
         }else if ([resposeObject[@"code"] integerValue] == 401){
             
             [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
@@ -363,6 +374,7 @@
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
     CustomListVC *nextVC = [[CustomListVC alloc] initWithProjectId:_projectId];
+    nextVC.model = _model;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -609,6 +621,7 @@
             header.moreBtnBlock = ^{
                   
                 CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr projectId:_projectId];
+                nextVC.model = _model;
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             return header;
@@ -703,6 +716,7 @@
                 if (_houseArr.count) {
                     
                     HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:_houseArr projectId:_projectId];
+                    nextVC.model = _model;
                     [self.navigationController pushViewController:nextVC animated:YES];
                 }
             };
@@ -775,29 +789,51 @@
                         
                         [dic setObject:weakSelf.selectWorkerView.ID forKey:@"consultant_advicer_id"];
                     }
-                    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+                    
+                    ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                    NSDictionary *tempDic = @{@"project":strongSelf->_model.project_name,
+                                              @"sex":model.sex,
+                                              @"tel":model.tel,
+                                              @"name":model.name
+                                              };
+                    reportCustomConfirmView.state = strongSelf->_state;
+                    reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                    reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
                         
-                        NSLog(@"%@",resposeObject);
-                        
-                        if ([resposeObject[@"code"] integerValue] == 200) {
+                        [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
                             
-                            [weakSelf alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                            NSLog(@"%@",resposeObject);
+                            
+                            if ([resposeObject[@"code"] integerValue] == 200) {
                                 
-                                [weakSelf MatchRequest];
-                            }];
-                        }else if ([resposeObject[@"code"] integerValue] == 401){
+                                ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:weakSelf.view.frame];
+                                NSDictionary *tempDic = @{@"project":strongSelf->_model.project_name,
+                                                          @"sex":model.sex,
+                                                          @"tel":model.tel,
+                                                          @"name":model.name
+                                                          };
+                                reportCustomSuccessView.state = strongSelf->_state;
+                                reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                                reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
+                                    
+                                    [weakSelf MatchRequest];
+                                };
+                                [weakSelf.view addSubview:reportCustomSuccessView];
+                            }else if ([resposeObject[@"code"] integerValue] == 401){
+                                
+                                [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                            }
+                            else{
+                                
+                                [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                            }
+                        } failure:^(NSError *error) {
                             
-                            [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
-                        }
-                        else{
-                            
-                            [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
-                        }
-                    } failure:^(NSError *error) {
-                        
-                        NSLog(@"%@",error);
-                        [weakSelf showContent:@"网络错误"];
-                    }];
+                            NSLog(@"%@",error);
+                            [weakSelf showContent:@"网络错误"];
+                        }];
+                    };
+                    [weakSelf.view addSubview:reportCustomConfirmView];
                 };
                 [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":strongSelf->_model.project_id} success:^(id resposeObject) {
                     
@@ -806,28 +842,35 @@
                         if ([resposeObject[@"data"][@"rows"] count]) {
                             
                             weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
-//                            [weakSelf.selectWorkerView.dataArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                                
-//                                NSDictionary *dic = @{@"id":obj[@"RYDH"],
-//                                                      @"param":obj[@"RYXM"]
-//                                                      };
-//                                [weakSelf.selectWorkerView.dataArr replaceObjectAtIndex:idx withObject:dic];
-//                            }];
+                            _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                            _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                            weakSelf.selectWorkerView.advicerSelect = _selected;
                             [self.view addSubview:weakSelf.selectWorkerView];
                         }else{
                             
                             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
-                            [weakSelf RequestRecommend:dic];
+                            
+                            ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                            NSDictionary *tempDic = @{@"project":_model.project_name,
+                                                      @"sex":model.sex,
+                                                      @"tel":model.tel,
+                                                      @"name":model.name
+                                                      };
+                            reportCustomConfirmView.state = strongSelf->_state;
+                            reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                            reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
+                                
+                                [weakSelf RequestRecommend:dic model:model];
+                            };
+                            [weakSelf.view addSubview:reportCustomConfirmView];
                         }
                     }else{
                         
-                        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
-                        [weakSelf RequestRecommend:dic];
+                        [self showContent:resposeObject[@"msg"]];
                     }
                 } failure:^(NSError *error) {
                     
-                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
-                    [weakSelf RequestRecommend:dic];
+                    [self showContent:@"网络错误"];
                 }];
             };
             return cell;

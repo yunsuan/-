@@ -475,6 +475,7 @@
     
     QuickAddRequireVC *nextVC = [[QuickAddRequireVC alloc] initWithProjectId:_projectId];
     nextVC.status = @"addCustom";
+    nextVC.projectName = self.projectName;
     nextVC.infoModel = _Customerinfomodel;
     [self.navigationController pushViewController:nextVC animated:YES];
 }

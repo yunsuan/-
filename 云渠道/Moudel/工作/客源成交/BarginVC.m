@@ -608,17 +608,24 @@
         cell.tag = indexPath.row;
         cell.unDealCellPhoneBtnBlock = ^(NSInteger index) {
             
-            NSString *phone = [_unComfirmArr[index][@"tel"] componentsSeparatedByString:@","][0];
-            if (phone.length) {
+            if ([_unComfirmArr[index][@"tel_complete_state"] integerValue] <= 2) {
                 
-                //获取目标号码字符串,转换成URL
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                //调用系统方法拨号
-                [[UIApplication sharedApplication] openURL:url];
+                NSString *phone = [_unComfirmArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                if (phone.length) {
+                    
+                    //获取目标号码字符串,转换成URL
+                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                    //调用系统方法拨号
+                    [[UIApplication sharedApplication] openURL:url];
+                }else{
+                    
+                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                }
             }else{
                 
-                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                
             }
+            
         };
         
         

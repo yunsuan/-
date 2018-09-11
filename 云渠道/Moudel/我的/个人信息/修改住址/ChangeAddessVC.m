@@ -49,9 +49,12 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    if (!_provinceId && !_cityId && !_areaId && [self isEmpty:_detailTV.text]) {
+    if (!_provinceId && !_cityId && !_areaId) {
         
-        [self showContent:@"请选择地址"];
+        [self alertControllerWithNsstring:@"温馨提示" And:@"请选择地址"];
+    }else if ([self isEmpty:_detailTV.text]){
+     
+        [self alertControllerWithNsstring:@"温馨提示" And:@"请填写详细地址"];
     }else{
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] init];
@@ -149,7 +152,9 @@
                             
                             if([area[k][@"code"] integerValue] == [[UserInfoModel defaultModel].district integerValue]){
                                 
-                                
+                                _provinceId = [UserInfoModel defaultModel].province;
+                                _cityId = [UserInfoModel defaultModel].city;
+                                _areaId = [UserInfoModel defaultModel].district;
                                 _addressL.text = [NSString stringWithFormat:@"%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"]];
                             }
                         }

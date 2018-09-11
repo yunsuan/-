@@ -8,7 +8,11 @@
 
 #import "BaseViewController.h"
 
+#import "CustomerTableModel.h"
+
 @interface CustomDetailVC : BaseViewController
+
+@property (nonatomic, strong) CustomerTableModel *model;
 
 - (instancetype)initWithClientId:(NSString *)clientId;
 
