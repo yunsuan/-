@@ -60,7 +60,7 @@
 
 
 
-#define TestBase_Net  [[[NSMutableArray alloc]initWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"]] objectAtIndex:0]
+//#define TestBase_Net  [[[NSMutableArray alloc]initWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"]] objectAtIndex:0]
 
 
 #define COLOR_RGB(_R,_G,_B,_A)[UIColor colorWithRed:_R/255.0 green:_G/255.0 blue:_B/255.0 alpha:_A]
@@ -70,7 +70,7 @@
 #define PLINEHEIGHT    0.5*SIZE
 
 #define JpushAppKey @"2dd909361c253b51e0cd05a9"
-#define YQDversion @"2.4"
+#define YQDversion @"2.5"
 #define ACCESSROLE @"agent"
 
 // 判断是否是iPhone X
