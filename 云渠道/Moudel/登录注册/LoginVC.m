@@ -46,7 +46,7 @@
     [self.view addSubview:self.Account];
     [self.view addSubview:self.PassWord];
     [self.view addSubview:self.settingbtn];
-    
+
     if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession] && [[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
 
         for (int i = 0; i<2; i++) {

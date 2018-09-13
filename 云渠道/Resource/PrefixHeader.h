@@ -72,6 +72,7 @@
 #define PLINEHEIGHT    0.5*SIZE
 
 #define JpushAppKey @"2dd909361c253b51e0cd05a9"
+
 #define YQDversion @"2.6"
 
 #define ACCESSROLE @"agent"
