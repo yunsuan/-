@@ -10,6 +10,7 @@
 #import "DropDownBtn.h"
 #import "BorderTF.h"
 #import "AdressChooseView.h"
+#import "AddressChooseView3.h"
 #import "CustomerVC.h"
 #import "SinglePickView.h"
 #import "CustomDetailTableCell4.h"
@@ -181,25 +182,82 @@
         default:
             break;
     }
-    AdressChooseView *addressChooseView= [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+//    AdressChooseView *addressChooseView= [[AdressChooseView alloc]initWithFrame:self.view.frame withdata:@[]];
+//    WS(weakself);
+//    addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+//
+//        if (_btnNum == 1) {
+//
+//            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//        }else if (_btnNum == 2){
+//
+//            weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//        }else{
+//
+//            weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
+//            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+//        }
+//    };
+//
+//    [self.view addSubview:addressChooseView];
+    
+    AddressChooseView3 *addressChooseView = [[AddressChooseView3 alloc] initWithFrame:self.view.frame withdata:@[]];
     WS(weakself);
-    addressChooseView.selectedBlock = ^(NSString *province, NSString *city, NSString *area, NSString *proviceid, NSString *cityid, NSString *areaid) {
+    addressChooseView.addressChooseView3ConfirmBlock = ^(NSString *city, NSString *area, NSString *cityid, NSString *areaid) {
+        
+        NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+        
+        NSError *err;
+        NSArray *proArr = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                          options:NSJSONReadingMutableContainers
+                                                            error:&err];
+        NSString *pro = [cityid substringToIndex:2];
+        pro = [NSString stringWithFormat:@"%@0000",pro];
+        NSString *proName;
+        for (NSDictionary *dic in proArr) {
+            
+            if([dic[@"code"] isEqualToString:pro]){
+                
+                proName = dic[@"name"];
+                break;
+            }
+        }
         
         if (_btnNum == 1) {
             
-            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",proName,city,area];
+            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid];
+            _addBtn.hidden = NO;
         }else if (_btnNum == 2){
             
-            weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid]]) {
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
+                    
+                }];
+            }else{
+                
+                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",proName,city,area];
+                weakself.addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid];
+                _addBtn.hidden = NO;
+            }
         }else{
             
-            weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",province,city,area];
-            weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid]] || [weakself.addressBtn2.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid]]) {
+                
+                [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
+                    
+                }];
+            }else{
+                
+                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",proName,city,area];
+                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid];
+                _addBtn.hidden = NO;
+            }
         }
     };
-    
     [self.view addSubview:addressChooseView];
 }
 

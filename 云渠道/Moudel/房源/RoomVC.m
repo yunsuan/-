@@ -146,7 +146,18 @@
         
         if (!_isLocation) {
             
-            [self startLocation];
+            if ([LocalModel defaultModel].cityCode) {
+                
+                _cityName = [LocalModel defaultModel].cityName;
+                _city = [LocalModel defaultModel].cityCode;
+                _isLocation = YES;
+                [_cityBtn setTitle:_cityName forState:UIControlStateNormal];
+                [self RequestMethod];
+            }else{
+                
+                [self startLocation];
+            }
+            
         }else{
             
             
@@ -675,6 +686,8 @@
         if ([citycode containsObject:[NSString stringWithFormat:@"%ld",cityInteger]]) {
             _city = [NSString stringWithFormat:@"%ld",cityInteger];
             _cityName = result.addressDetail.city;
+            [LocalModel defaultModel].cityName = _cityName;
+            [LocalModel defaultModel].cityCode = _city;
             [self RequestMethod];
         }
         else
@@ -946,7 +959,14 @@
     _cityBtn.titleLabel.font = [UIFont systemFontOfSize:12 *sIZE];
     [_cityBtn addTarget:self action:@selector(ActionCityBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_cityBtn setTitleColor:YJ86Color forState:UIControlStateNormal];
-    [_cityBtn setTitle:@"定位中" forState:UIControlStateNormal];
+    if ([LocalModel defaultModel].cityCode) {
+        
+        [_cityBtn setTitle:[LocalModel defaultModel].cityName forState:UIControlStateNormal];
+    }else{
+        
+        [_cityBtn setTitle:@"定位中" forState:UIControlStateNormal];
+    }
+    
     [self.headerView addSubview:_cityBtn];
     
     _searchBar = [[UIView alloc] initWithFrame:CGRectMake(58 *SIZE, 13 *SIZE, 283 *SIZE, 33 *SIZE)];

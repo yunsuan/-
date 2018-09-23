@@ -32,29 +32,29 @@
     
     _nameL.text = model.company_name;
     _addressL.text = model.absolute_address;
-    _phoneL.text = [NSString stringWithFormat:@"联系方式：%@",model.contact_tel];
-    _contactL.text = [NSString stringWithFormat:@"负责人：%@",model.contact];
-    if (model.absolute_address.length) {
-        
-        [_line mas_remakeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.equalTo(self.contentView).offset(0 *SIZE);
-            make.top.equalTo(_phoneL.mas_bottom).offset(15 *SIZE);
-            make.width.mas_equalTo(SCREEN_Width);
-            make.height.mas_equalTo(SIZE);
-            make.bottom.equalTo(self.contentView).offset(0 *SIZE);
-        }];
-    }else{
-        
-        [_line mas_remakeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.equalTo(self.contentView).offset(0 *SIZE);
-            make.top.equalTo(_headImg.mas_bottom).offset(18 *SIZE);
-            make.width.mas_equalTo(SCREEN_Width);
-            make.height.mas_equalTo(SIZE);
-            make.bottom.equalTo(self.contentView).offset(0 *SIZE);
-        }];
-    }
+//    _phoneL.text = [NSString stringWithFormat:@"联系方式：%@",model.contact_tel];
+//    _contactL.text = [NSString stringWithFormat:@"负责人：%@",model.contact];
+//    if (model.absolute_address.length) {
+//        
+//        [_line mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            
+//            make.left.equalTo(self.contentView).offset(0 *SIZE);
+//            make.top.equalTo(_phoneL.mas_bottom).offset(15 *SIZE);
+//            make.width.mas_equalTo(SCREEN_Width);
+//            make.height.mas_equalTo(SIZE);
+//            make.bottom.equalTo(self.contentView).offset(0 *SIZE);
+//        }];
+//    }else{
+//        
+//        [_line mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            
+//            make.left.equalTo(self.contentView).offset(0 *SIZE);
+//            make.top.equalTo(_headImg.mas_bottom).offset(18 *SIZE);
+//            make.width.mas_equalTo(SCREEN_Width);
+//            make.height.mas_equalTo(SIZE);
+//            make.bottom.equalTo(self.contentView).offset(0 *SIZE);
+//        }];
+//    }
 }
 
 - (void)initUI{
@@ -149,7 +149,7 @@
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(0 *SIZE);
-        make.top.equalTo(_phoneL.mas_bottom).offset(15 *SIZE);
+        make.top.equalTo(self.contentView).offset(100 *SIZE);
         make.width.mas_equalTo(SCREEN_Width);
         make.height.mas_equalTo(SIZE);
         make.bottom.equalTo(self.contentView).offset(0 *SIZE);

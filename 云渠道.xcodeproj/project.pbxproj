@@ -81,6 +81,7 @@
 		0C1A013D20AC3F7700665BB9 /* ComfirmInValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013C20AC3F7700665BB9 /* ComfirmInValidVC.m */; };
 		0C1A014020AC566100665BB9 /* DealValidVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1A013F20AC566100665BB9 /* DealValidVC.m */; };
 		0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */; };
+		0C252236215749750031CC44 /* LocalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C252235215749750031CC44 /* LocalModel.m */; };
 		0C2D02AE20AD51A7002F1B4E /* AppealComplaintingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D02AD20AD51A7002F1B4E /* AppealComplaintingVC.m */; };
 		0C2D02B120AD51BA002F1B4E /* AppealComplaintedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D02B020AD51BA002F1B4E /* AppealComplaintedVC.m */; };
 		0C342FB7207DEB540058406D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C342FB6207DEB540058406D /* BaseModel.m */; };
@@ -490,6 +491,8 @@
 		0C23F61C2068BCB400B4D573 /* CustomTableHeader2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader2.m; sourceTree = "<group>"; };
 		0C23F61E2068BE1E00B4D573 /* CustomTableHeader3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableHeader3.h; sourceTree = "<group>"; };
 		0C23F61F2068BE1E00B4D573 /* CustomTableHeader3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableHeader3.m; sourceTree = "<group>"; };
+		0C252234215749750031CC44 /* LocalModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalModel.h; sourceTree = "<group>"; };
+		0C252235215749750031CC44 /* LocalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalModel.m; sourceTree = "<group>"; };
 		0C2D02AC20AD51A7002F1B4E /* AppealComplaintingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppealComplaintingVC.h; sourceTree = "<group>"; };
 		0C2D02AD20AD51A7002F1B4E /* AppealComplaintingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppealComplaintingVC.m; sourceTree = "<group>"; };
 		0C2D02AF20AD51BA002F1B4E /* AppealComplaintedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppealComplaintedVC.h; sourceTree = "<group>"; };
@@ -2525,6 +2528,8 @@
 				10174C1220747A6600D00B9A /* NetConfig.h */,
 				0C342FCE2080ACD50058406D /* UserInfoModel.h */,
 				0C342FCF2080ACD50058406D /* UserInfoModel.m */,
+				0C252234215749750031CC44 /* LocalModel.h */,
+				0C252235215749750031CC44 /* LocalModel.m */,
 			);
 			path = UserModel;
 			sourceTree = "<group>";
@@ -3080,6 +3085,7 @@
 				105E188E2060E21C0031558D /* PeopleCell.m in Sources */,
 				0C0C19A120EB14780086E739 /* XGToolBar.m in Sources */,
 				0CF04F58207B4CDA00A45F4A /* NomineeCollCell.m in Sources */,
+				0C252236215749750031CC44 /* LocalModel.m in Sources */,
 				0C3AD5682069DAE50059CE02 /* RoomDetailTableCell4.m in Sources */,
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */,
