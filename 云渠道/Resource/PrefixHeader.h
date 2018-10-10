@@ -37,6 +37,7 @@
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 #import "UserModel.h"
+#import "LocalModel.h"
 #import "UserInfoModel.h"
 #import "UserModelArchiver.h"
 #import "BaseRequest.h"
@@ -62,7 +63,7 @@
 
 
 
-#define TestBase_Net  [[[NSMutableArray alloc]initWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"]] objectAtIndex:0]
+//#define TestBase_Net  [[[NSMutableArray alloc]initWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"]] objectAtIndex:0]
 
 
 #define COLOR_RGB(_R,_G,_B,_A)[UIColor colorWithRed:_R/255.0 green:_G/255.0 blue:_B/255.0 alpha:_A]
@@ -73,7 +74,7 @@
 
 #define JpushAppKey @"2dd909361c253b51e0cd05a9"
 
-#define YQDversion @"2.6"
+#define YQDversion @"2.7"
 
 #define ACCESSROLE @"agent"
 

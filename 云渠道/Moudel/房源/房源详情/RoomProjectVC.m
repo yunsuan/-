@@ -500,12 +500,31 @@
             
             NSMutableArray *tempArr = [NSMutableArray array];
             [imgArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
+
                 YBImageBrowserModel *model = [YBImageBrowserModel new];
                 model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
                 [tempArr addObject:model];
             }];
             if (_albumArr.count) {
+//
+//                NSMutableArray *tempArr = [NSMutableArray array];
+//                for (int i = 0; i < _albumArr.count; i++) {
+//
+//                    NSArray *arr = _albumArr[i][@"data"];
+//                    for (int j = 0; j < arr.count; j++) {
+//
+//                        YBImageBrowserModel *model = [YBImageBrowserModel new];
+//                        model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,arr[j][@"img_url"]]];
+//                        [tempArr addObject:model];
+//                    }
+//                }
+            
+//                [_albumArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    YBImageBrowserModel *model = [YBImageBrowserModel new];
+//                    model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
+//                    [tempArr addObject:model];
+//                }];
                 
                 YBImageBrowser *browser = [YBImageBrowser new];
                 browser.delegate = self;
@@ -530,6 +549,19 @@
                                     NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:resposeObject[@"data"][i]];
                                     
                                     [_albumArr addObject:tempDic];
+                                    
+//                                    NSMutableArray *tempArr = [NSMutableArray array];
+//                                    for (int i = 0; i < _albumArr.count; i++) {
+//
+//                                        NSArray *arr = _albumArr[i][@"data"];
+//                                        for (int j = 0; j < arr.count; j++) {
+//
+//                                            YBImageBrowserModel *model = [YBImageBrowserModel new];
+//                                            model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,arr[j][@"img_url"]]];
+//                                            [tempArr addObject:model];
+//                                        }
+//                                    }
+                                    
                                     YBImageBrowser *browser = [YBImageBrowser new];
                                     browser.delegate = self;
                                     browser.albumArr = _albumArr;

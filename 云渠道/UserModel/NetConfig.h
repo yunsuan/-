@@ -21,9 +21,10 @@
 //
 //static NSString *const TestBase_Net = @"http://47.106.39.169:2797/";
 
+
 ////基础接口正式
 //
-//static NSString *const TestBase_Net = @"http://120.78.69.178:2902/";
+static NSString *const TestBase_Net = @"http://120.78.69.178:2902/";
 
 //基础接口测试
 
@@ -250,6 +251,8 @@ static NSString *const FastRecommendList_URL = @"agent/matching/fastRecommendLis
 
 //获取消息未读数量
 static NSString *const InfoList_URL = @"agent/message/getUnread";
+
+static NSString *const InfoListCount_URL = @"agent/message/getUnreadCount";
 
 //系统消息列表
 static NSString *const SystemInfoList_URL = @"agent/message/system";
