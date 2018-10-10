@@ -38,13 +38,13 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    if (_nameTF.text.length > 5) {
-        
-        [self alertControllerWithNsstring:@"温馨提示" And:@"姓名不能超过5个字" WithDefaultBlack:^{
-            
-            return ;
-        }];
-    }
+//    if (_nameTF.text.length > 5) {
+//
+//        [self alertControllerWithNsstring:@"温馨提示" And:@"姓名不能超过5个字" WithDefaultBlack:^{
+//
+//            return ;
+//        }];
+//    }
     
     if (_nameTF.text.length && ![self isEmpty:_nameTF.text]) {
         
