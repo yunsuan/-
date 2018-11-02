@@ -5,7 +5,7 @@
 //  Created by 谷治墙 on 2018/3/20.
 //  Copyright © 2018年 xiaoq. All rights reserved.
 //
-
+#import "LoginVC.h"
 #import "BaseRequest.h"
 static AFHTTPSessionManager *manager ;
 static AFHTTPSessionManager *updatemanager ;
@@ -105,26 +105,29 @@ static AFHTTPSessionManager *updatemanager ;
                     
                 }
                 else if ([responseObject[@"code"] integerValue] == 401) {
+                    if (![[UIApplication sharedApplication].keyWindow.rootViewController isKindOfClass:[LoginVC class]]) {
+                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                        hud.mode = MBProgressHUDModeText;
+                        hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+                        hud.bezelView.color = [UIColor colorWithWhite:0.f alpha:0.7f];
+                        hud.label.text= @"账号在其他地点登录，请重新登录！";
+                        hud.label.textColor = [UIColor whiteColor];
+                        hud.margin = 10.f;
+                        [hud setOffset:CGPointMake(0, 10.f*SIZE)];
+                        //    hud.yOffset = 10.f * sIZE;
+                        hud.removeFromSuperViewOnHide = YES;
+                        //    [hud hide:YES afterDelay:1.5];
+                        [hud hideAnimated:YES afterDelay:1.5];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
+                            [UserModel defaultModel].Token = @"";
+                            [UserModelArchiver archive];
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
+                            return ;
+                        });
+                    }
+ 
                     
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-                    hud.mode = MBProgressHUDModeText;
-                    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-                    hud.bezelView.color = [UIColor colorWithWhite:0.f alpha:0.7f];
-                    hud.label.text= @"账号在其他地点登录，请重新登录！";
-                    hud.label.textColor = [UIColor whiteColor];
-                    hud.margin = 10.f;
-                    [hud setOffset:CGPointMake(0, 10.f*SIZE)];
-                    //    hud.yOffset = 10.f * sIZE;
-                    hud.removeFromSuperViewOnHide = YES;
-                    //    [hud hide:YES afterDelay:1.5];
-                    [hud hideAnimated:YES afterDelay:1.5];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-                        [UserModel defaultModel].Token = @"";
-                        [UserModelArchiver archive];
-                        [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-                        return ;
-                    });
                     
                 }
                 
