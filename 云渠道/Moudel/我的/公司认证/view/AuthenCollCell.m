@@ -25,6 +25,7 @@
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 *SIZE, 3 *SIZE, 100 *SIZE, 83 *SIZE)];
     _imageView.image =[UIImage imageNamed:@"add_3"];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.clipsToBounds = YES;
     [self.contentView addSubview:_imageView];
     
     _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];

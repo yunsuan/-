@@ -13,6 +13,7 @@
 #import "AuditStatusVC.h"
 #import "ApplyProjectVC.h"
 #import "DateChooseView.h"
+#import "MineVC.h"
 
 @interface AuthenticationVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
@@ -85,7 +86,7 @@
 
 
 - (void)ActionCancelBtn:(UIButton *)btn{
-//    [_imgArr removeObjectAtIndex:btn.tag];
+
     [self.authenColl reloadData];
 }
 
@@ -104,15 +105,15 @@
         return;
     }
     
-    if (!_role) {
-        
-        [self showContent:@"请选择角色"];
-        return;
-    }
+//    if (!_role) {
+//
+//        [self showContent:@"请选择角色"];
+//        return;
+//    }
     
-    if ([_role isEqualToString:@"到访确认人"]) {
+    if ([_roleL.text isEqualToString:@"到访确认人"]) {
         
-        if (!_projectId) {
+        if ([_projectId isEqual:@""]) {
             
             [self showContent:@"请选择申请项目"];
             return;
@@ -126,53 +127,91 @@
     }
     
     if (!_positionTextField.text) {
-        
+
         [self showContent:@"请输入职位"];
         return;
     }
     
-    if (!_timeL.text) {
-        
-        [self showContent:@"请选择入职时间"];
-        return;
-    }
-    
-    if (!_imgUrl) {
-        
-        [self showContent:@"请选择工牌照片"];
-        return;
-    }
+//    if (!_timeL.text) {
+//
+//        [self showContent:@"请选择入职时间"];
+//        return;
+//    }
+//
+//    if (!_imgUrl) {
+//
+//        [self showContent:@"请选择工牌照片"];
+//        return;
+//    }
     
     [dic setObject:_companyId forKey:@"company_id"];
     [dic setObject:_role forKey:@"role"];
     [dic setObject:_numTextField.text forKey:@"work_code"];
-    if ([_role isEqualToString:@"到访确认人"]) {
+    if ([_roleL.text isEqualToString:@"到访确认人"]) {
         
         [dic setObject:_projectId forKey:@"project_id"];
     }
     [dic setObject:_departTextField.text forKey:@"department"];
     [dic setObject:_positionTextField.text forKey:@"position"];
-    [dic setObject:_timeL.text forKey:@"entry_time"];
+    if (_timeL.text.length==0) {
+        [dic setObject:@"2018-06-29" forKey:@"entry_time"];
+    }
+    else
+    {
+        [dic setObject:_timeL.text forKey:@"entry_time"];
+    }
+    if (_imgUrl.length==0) {
+        
+    }
+    else{
     [dic setObject:_imgUrl forKey:@"img_url"];
+    }
 
-    [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
+    if ([self.status isEqualToString:@"重新认证"]) {
         
-        NSLog(@"%@",resposeObject);
-
-        if ([resposeObject[@"code"] integerValue] == 200) {
+        [dic setObject:self.beforeId forKey:@"before_id"];
+        [BaseRequest POST:@"agent/personal/reAuth" parameters:dic success:^(id resposeObject) {
             
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else{
-            [self showContent:resposeObject[@"msg"]];
-        }
-    } failure:^(NSError *error) {
+            
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self alertControllerWithNsstring:@"提交成功" And:@"请等待审核" WithDefaultBlack:^{
+                    
+                    for (UIViewController *vc in self.navigationController.viewControllers) {
+                        
+                        if ([vc isKindOfClass:[MineVC class]]) {
+                            
+                            [self.navigationController popToViewController:vc animated:YES];
+                        }
+                    }
+                }];
+            }else{
+                
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+           
+            [self showContent:@"网络错误"];
+        }];
+    }else{
         
-        [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
-    }];
-//    AuditStatusVC *nextVC = [[AuditStatusVC alloc] init];
-//    [self.navigationController pushViewController:nextVC animated:YES];
+        [BaseRequest POST:AddAuthInfo_URL parameters:dic success:^(id resposeObject) {
+            
+            if ([resposeObject[@"code"] integerValue] == 200) {
+                
+                [self alertControllerWithNsstring:@"提交成功" And:@"请等待审核" WithDefaultBlack:^{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }
+            else{
+                [self showContent:resposeObject[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            
+            [self showContent:@"网络错误"];
+        }];
+    }
 }
 
 - (void)ActionTagBtn:(UIButton *)btn{
@@ -184,8 +223,10 @@
             SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
             nextVC.selectCompanyVCBlock = ^(NSString *companyId, NSString *name) {
                 
-                _companyId = companyId;
-                _companyL.text = name;
+                self->_companyId = companyId;
+                self->_companyL.text = name;
+                self->_projectL.text = @"";
+                self->_projectId = @"";
             };
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
@@ -202,14 +243,16 @@
             
             UIAlertAction *agent = [UIAlertAction actionWithTitle:@"经纪人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                
-                _role = @"1";
-                _roleL.text = @"经纪人";
+                self->_role = @"1";
+                self->_roleL.text = @"经纪人";
+                self->_projectL.text = @"";
+                self->_projectId = @"";
             }];
             
             UIAlertAction *comfirm = [UIAlertAction actionWithTitle:@"到访确认人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
-                _role = @"2";
-                _roleL.text = @"到访确认人";
+                self->_role = @"2";
+                self->_roleL.text = @"到访确认人";
             }];
             
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -233,8 +276,8 @@
                     ApplyProjectVC *nextVC = [[ApplyProjectVC alloc] initWithCompanyId:_companyId];
                     nextVC.applyProjectVCBlock = ^(NSString *projectId, NSString *name) {
                       
-                        _projectL.text = name;
-                        _projectId = projectId;
+                        self->_projectL.text = name;
+                        self->_projectId = [NSString stringWithFormat:@"%@",projectId];
                     };
                     [self.navigationController pushViewController:nextVC animated:YES];
                 }else{
@@ -365,14 +408,14 @@
         [self presentViewController:_imagePickerController animated:YES completion:nil];
         
     } else {
-        NSLog(@"当前设备不支持拍照");
+//        NSLog(@"当前设备不支持拍照");
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                   message:@"当前设备不支持拍照"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              //                                                              _uploadButton.hidden = NO;
+                                                              //                                                       _uploadButton.hidden = NO;
                                                           }]];
         [self presentViewController:alertController
                            animated:YES
@@ -393,18 +436,18 @@
                   constructionBody:^(id<AFMultipartFormData> formData) {
                       [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
                   } success:^(id resposeObject) {
-                      NSLog(@"%@",resposeObject);
+//                      NSLog(@"%@",resposeObject);
                       
                       if ([resposeObject[@"code"] integerValue] == 200) {
                           
-                          _imgUrl = resposeObject[@"data"];
+                          self->_imgUrl = resposeObject[@"data"];
                       }else{
                           
                           [self showContent:resposeObject[@"msg"]];
                       }
                       [self.authenColl reloadData];
                   } failure:^(NSError *error) {
-                      NSLog(@"%@",error);
+//                      NSLog(@"%@",error);
                       [self showContent:@"网络错误"];
             }];
 
@@ -419,18 +462,18 @@
               constructionBody:^(id<AFMultipartFormData> formData) {
                   [formData appendPartWithFileData:data name:@"id_card" fileName:@"id_card.jpg" mimeType:@"image/jpg"];
               } success:^(id resposeObject) {
-                  NSLog(@"%@",resposeObject);
+//                  NSLog(@"%@",resposeObject);
                   
                   if ([resposeObject[@"code"] integerValue] == 200) {
                       
-                      _imgUrl = resposeObject[@"data"];
+                      self->_imgUrl = resposeObject[@"data"];
                   }else{
                       
                       [self showContent:resposeObject[@"msg"]];
                   }
                   [self.authenColl reloadData];
               } failure:^(NSError *error) {
-                  NSLog(@"%@",error);
+//                  NSLog(@"%@",error);
                   [self showContent:@"网络错误"];
               }];
     }
@@ -519,6 +562,8 @@
                 {
                     _roleL = label;
                     [whiteView11 addSubview:_roleL];
+                    _role = @"1";
+                    _roleL.text = @"经纪人";
                     break;
                 }
                 case 3:

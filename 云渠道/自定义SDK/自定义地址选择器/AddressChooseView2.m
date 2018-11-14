@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) UITableView *districtTable;
 
-@property(nonatomic, strong) NSArray * provinceArray;
+@property(nonatomic, strong) NSMutableArray * provinceArray;
 
 @property(nonatomic, strong) NSMutableArray * cityArray;
 
@@ -390,7 +390,7 @@
             }
             case 1:
             {
-                table.backgroundColor = YJBackColor;
+                table.backgroundColor = CH_COLOR_white;
                 _cityTable = table;
                 [self addSubview:_cityTable];
                 break;
@@ -440,7 +440,17 @@
 
 -(void)getprovincearray
 {
-    _provinceArray = _dataSource;
+    _provinceArray = [NSMutableArray arrayWithArray:_dataSource];
+    
+    NSDictionary *dic = @{@"code":@"",
+                          @"name":@"不限",
+                          @"city":@[@{@"code":@"",
+                                      @"name":@"不限",
+                                      @"district":@[@{@"code":@"",
+                                                      @"name":@"不限"
+                                                      }]
+                                      }]};
+    [_provinceArray insertObject:dic atIndex:0];
 }
 
 -(void)getCityArrayByprovince:(NSInteger)num

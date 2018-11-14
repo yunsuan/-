@@ -17,7 +17,7 @@
 @interface MyAttentionVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *_dataArr;
-    NSArray *_arr;
+//    NSArray *_arr;
 }
 @property (nonatomic, strong) UITableView *attentionTable;
 
@@ -30,12 +30,18 @@
     
     [self initDataShource];
     [self initUI];
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self RequestMethod];
 }
 
 - (void)initDataShource{
     
-    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
+//    _arr = @[@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区dd房",@"投资房"]],@[@[@"住宅",@"写字楼",@"商铺",@"别墅",@"公寓"],@[@"学区房",@"投资房的"]]];
     _dataArr = [@[] mutableCopy];
     [self RequestMethod];
 }
@@ -43,9 +49,8 @@
 - (void)RequestMethod{
     
     [BaseRequest GET:GetFocusProjectList_URL parameters:nil success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
 
+        [_attentionTable.mj_header endRefreshing];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetData:resposeObject[@"data"]];
@@ -55,13 +60,13 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
-        NSLog(@"%@",error.localizedDescription);
+        [self showContent:@"网络错误"];
     }];
 }
 
 - (void)SetData:(NSArray *)data{
     
+    [_dataArr removeAllObjects];
     for (int i = 0; i < data.count; i++) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
@@ -120,13 +125,22 @@
         }
         [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
         
-        if ([model.guarantee_brokerage integerValue] == 1) {
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
             
-            cell.surelab.hidden = NO;
+            cell.statusImg.hidden = YES;
+            cell.surelab.hidden = YES;
         }else{
             
-            cell.surelab.hidden = YES;
+            cell.statusImg.hidden = NO;
+            if ([model.guarantee_brokerage integerValue] == 1) {
+                
+                cell.surelab.hidden = NO;
+            }else{
+                
+                cell.surelab.hidden = YES;
+            }
         }
+        
         NSArray *tempArr3 = @[model.property_tags,model.project_tags_name.count? model.project_tags_name:@[]];
         [cell settagviewWithdata:tempArr3];
         
@@ -163,7 +177,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -198,6 +212,11 @@
     _attentionTable.delegate = self;
     _attentionTable.dataSource = self;
     _attentionTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _attentionTable.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+       
+        [self RequestMethod];
+    }];
     [self.view addSubview:_attentionTable];
 }
 @end

@@ -17,6 +17,9 @@
 @property (nonatomic , strong) NSString *province;
 @property (nonatomic , strong) NSString *city;
 @property (nonatomic , strong) NSString *district;
+@property (nonatomic , strong) NSString *province_name;
+@property (nonatomic , strong) NSString *city_name;
+@property (nonatomic , strong) NSString *district_name;
 @property (nonatomic , strong) NSString *address;
 @property (nonatomic , strong) NSString *birth;
 

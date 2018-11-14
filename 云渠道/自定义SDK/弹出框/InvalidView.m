@@ -16,39 +16,55 @@
     if (self) {
         
         [self initUI];
+        _type_id = @"";
     }
     return self;
 }
 
 - (void)ActionConfirmBtn:(UIButton *)btn{
 
-    NSDictionary *param = @{
-                            @"client_id":_client_id,
-                            @"visit_time":_timeBtn.content.text,
-                            @"disabled_state":_type_id,
-                            @"comment":_reasonTV.text
-                            };
-    [BaseRequest POST:ConfirmDisabled_URL parameters:param success:^(id resposeObject) {
-
-        if ([resposeObject[@"code"] integerValue] == 200) {
+    
+    if (!_type_id.length) {
+    
+        if (self.invalidViewBlockFail) {
             
             [self removeFromSuperview];
-            if (self.invalidViewBlock) {
-                
-                self.invalidViewBlock();
-            }
-        }else{
-            
-            if (self.invalidViewBlockFail) {
-                
-                self.invalidViewBlockFail(resposeObject[@"msg"]);
-            }
+            self.invalidViewBlockFail(@"请选择无效类型");
         }
-    } failure:^(NSError *error) {
-
-    }];
+        return;
+    }
     
+//    if (_timeBtn.content.text) {
+//
+////        if (self.invalidViewBlockFail) {
+////
+////            [self removeFromSuperview];
+////            self.invalidViewBlockFail(@"请选择到访时间");
+////        }
+////        return;
+//    }
+    
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithDictionary:@{
+//                                                                                   @"visit_time":_timeBtn.content.text,
+                                                                                   @"client_id":_client_id,
+                                                                                   @"disabled_state":_type_id
+                                                                                   
+                                                                                   }];
 
+    
+    if (_timeBtn.content.text) {
+        
+        [param setObject:_timeBtn.content.text forKey:@"visit_time"];
+    }
+    if (_reasonTV.text) {
+        
+        [param setObject:_reasonTV.text forKey:@"comment"];
+    }
+    if (self.invalidViewBlock) {
+        
+        self.invalidViewBlock(param);
+        [self removeFromSuperview];
+    }
 }
 
 
@@ -66,10 +82,11 @@
 
 -(void)action_type
 {
+    
     SinglePickView *view = [[SinglePickView alloc]initWithFrame:self.frame WithData:[UserModelArchiver unarchive].Configdic[@"18"][@"param"]];
     view.selectedBlock = ^(NSString *MC, NSString *ID) {
         _typeBtn.content.text = MC;
-        _type_id = ID;
+        _type_id = [NSString stringWithFormat:@"%@",ID];
     };
     [self addSubview:view];
 }

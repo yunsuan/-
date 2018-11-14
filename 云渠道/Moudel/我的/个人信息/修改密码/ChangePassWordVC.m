@@ -78,12 +78,18 @@
                                 };
     
     [BaseRequest POST:ChangePassword_URL parameters:parameter success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
     
         if ([resposeObject[@"code"] integerValue] == 200) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.navigationController popViewControllerAnimated:YES];
-            });
+            [UserModel defaultModel].Password = _PassWord.text;
+            [UserModelArchiver archive];
+
+//            [self alertControllerWithNsstring:@"系统提示" And:[NSString stringWithFormat:@"修改密码成功，你的新密码为：%@，请妥善保管",_PassWord.text]];
+            [self alertControllerWithNsstring:@"系统提示" And:[NSString stringWithFormat:@"修改密码成功，你的新密码为：%@，请妥善保管",_PassWord.text] WithDefaultBlack:^{
+                            [self.navigationController popViewControllerAnimated:YES];
+            }];
+       
+        
         }
         else{
             [self showContent:resposeObject[@"msg"]];
@@ -148,6 +154,7 @@
     if (!_PassWord) {
         _PassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+166*SIZE, 200*SIZE, 25*SIZE)];
         _PassWord.placeholder = @"请输入新密码";
+        _PassWord.secureTextEntry = YES;
         _PassWord.keyboardType = UIKeyboardTypeDefault;
         _PassWord.font = [UIFont systemFontOfSize:14*SIZE];
         
@@ -160,6 +167,7 @@
     if (!_SurePassWord) {
         _SurePassWord = [[UITextField alloc]initWithFrame:CGRectMake(22*SIZE, STATUS_BAR_HEIGHT+213*SIZE, 200*SIZE, 25*SIZE)];
         _SurePassWord.placeholder = @"再次输入新密码";
+        _SurePassWord.secureTextEntry = YES;
         _SurePassWord.keyboardType = UIKeyboardTypeDefault;
         _SurePassWord.font = [UIFont systemFontOfSize:14*SIZE];
     }

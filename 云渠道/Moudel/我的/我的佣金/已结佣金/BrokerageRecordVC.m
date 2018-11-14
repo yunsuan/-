@@ -29,6 +29,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    page =1;
     [self postWithPage:@"1"];
 }
 
@@ -130,7 +131,15 @@
     cell.codeL.text = [NSString stringWithFormat:@"推荐编号：%@",_data[indexPath.row][@"client_id"]];
     cell.typeL.text =  [NSString stringWithFormat:@"类型：%@",_data[indexPath.row][@"broker_type"]];
     cell.timeL.text = [NSString stringWithFormat:@"推荐时间：%@",_data[indexPath.row][@"create_time"]];
-    cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"pay_num"]];
+    if ([_data[indexPath.row][@"type"] integerValue]==1) {
+        cell.priceL.text = @"";
+       
+    }
+    else{
+        cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"pay_num"]];
+    }
+    
+//    cell.priceL.text = [NSString stringWithFormat:@"%@",_data[indexPath.row][@"pay_num"]];
     cell.endTimeL.text = [NSString stringWithFormat:@"结佣时间：%@",_data[indexPath.row][@"pay_time"]];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -143,6 +152,7 @@
     BrokerageDetailVC *nextVC = [[BrokerageDetailVC alloc] init];
     nextVC.broker_id = _data[indexPath.row][@"broker_id"];
     nextVC.type = @"1";
+    nextVC.iscompany = _data[indexPath.row][@"type"];
     [self.navigationController pushViewController:nextVC animated:YES];
     
 }
@@ -159,6 +169,7 @@
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         _MainTableView.mj_header = [GZQGifHeader headerWithRefreshingBlock:^{
+            page = 1;
             [self postWithPage:@"1"];
         }];
         _MainTableView.mj_footer = [GZQGifFooter footerWithRefreshingBlock:^{

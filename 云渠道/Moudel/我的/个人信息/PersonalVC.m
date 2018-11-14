@@ -126,10 +126,10 @@
         
         [BaseRequest GET:@"agent/user/logOut" parameters:nil success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
         [UserModel defaultModel].Token = @"";
@@ -166,7 +166,7 @@
     cell.contentL.hidden = NO;
     cell.headImg.hidden = YES;
     
-    if (indexPath.row == 0 || indexPath.row == 4) {
+    if (indexPath.row == 0 || indexPath.row == 3) {
         
         cell.rightView.hidden = YES;
     }else{
@@ -307,7 +307,7 @@
         }
         case 2:
         {
-            ChangeNameVC *nextVC = [[ChangeNameVC alloc] init];
+            ChangeNameVC *nextVC = [[ChangeNameVC alloc] initWithName:[UserInfoModel defaultModel].name];
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }
@@ -325,7 +325,7 @@
                 NSDictionary *dic = @{@"sex":@1};
                 [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                     
-                    NSLog(@"%@",resposeObject);
+//                    NSLog(@"%@",resposeObject);
                   
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
@@ -337,7 +337,7 @@
                     }
                 } failure:^(NSError *error) {
                    
-                    NSLog(@"%@",error);
+//                    NSLog(@"%@",error);
                     [self showContent:@"网络错误"];
                 }];
             }];
@@ -347,7 +347,7 @@
                 NSDictionary *dic = @{@"sex":@2};
                 [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                     
-                    NSLog(@"%@",resposeObject);
+//                    NSLog(@"%@",resposeObject);
                   
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
@@ -360,7 +360,7 @@
                     }
                 } failure:^(NSError *error) {
                     
-                    NSLog(@"%@",error);
+//                    NSLog(@"%@",error);
                     [self showContent:@"网络错误"];
                 }];
             }];
@@ -379,7 +379,7 @@
         }
         case 5:
         {
-            BirthVC *nextVC = [[BirthVC alloc] init];
+            BirthVC *nextVC = [[BirthVC alloc] initWithTime:[UserInfoModel defaultModel].birth];
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
         }

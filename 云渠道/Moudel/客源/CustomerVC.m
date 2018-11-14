@@ -27,6 +27,7 @@
     NSString *_district;
     NSString *_sortType;
     NSString *_asc;
+    NSArray *_propertyArr;
     BOOL _is1;
     BOOL _is2;
 }
@@ -71,6 +72,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RequestMethod) name:@"reloadCustom" object:nil];
     _page = 1;
     _dataArr = [@[] mutableCopy];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
 }
 
 - (void)RequestMethod{
@@ -93,7 +95,7 @@
 
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         [_customerTable.mj_header endRefreshing];
       
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -135,7 +137,7 @@
     } failure:^(NSError *error) {
         
         [_customerTable.mj_header endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
         [self showContent:@"网络错误"];
     }];
 }
@@ -161,7 +163,7 @@
     }
     [BaseRequest GET:ListClient_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
 
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -200,7 +202,7 @@
     } failure:^(NSError *error) {
         
         [_customerTable.mj_footer endRefreshing];
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
         [self showContent:@"网络错误"];
     }];
 }
@@ -263,23 +265,24 @@
                 
                 _is1 = YES;
                 _type = @"0";
-                NSArray *array = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
-                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:array];
-                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
-                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
-                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (idx == 0) {
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
-                    }else{
-                        
-                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
-                    }
-                }];
-                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
-                [self.boxView.mainTable reloadData];
-                [self.view addSubview:self.boxView];
+                
+//                NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
+//                [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+//                self.boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+//                [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    if (idx == 0) {
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+//                    }else{
+//
+//                        [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+//                    }
+//                }];
+//                self.boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+//                [self.boxView.mainTable reloadData];
+//                [self.view addSubview:self.boxView];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.boxView];
             }
         }else{
             
@@ -293,15 +296,19 @@
             }else{
                 
                 _is2 = YES;
-                [self.view addSubview:self.adressView];
+//                [self.view addSubview:self.adressView];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.adressView];
             }
         }
     }else{
         
         _page = 1;
         _is1 = NO;
+        _is2 = NO;
         _typeBtn.selected = NO;
         _areaBtn.selected = NO;
+        [self.boxView removeFromSuperview];
+        [self.adressView removeFromSuperview];
         if (btn.tag == 3) {
             
             _urgencyBtn.selected = NO;
@@ -338,9 +345,12 @@
             }
             _sortType = @"urgency";
         }
-        [self.boxView removeFromSuperview];
+//        [self.boxView removeFromSuperview];
         [self RequestMethod];
-        [_customerTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        if (_dataArr.count) {
+            
+            [_customerTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }
     }
 }
 
@@ -348,10 +358,17 @@
 
 - (void)ActionSearchBtn:(UIButton *)btn{
     
+    _is2 = NO;
+    _is1 = NO;
+    _typeBtn.selected = NO;
+    _areaBtn.selected = NO;
+    [self.boxView removeFromSuperview];
+    [self.adressView removeFromSuperview];
+    
     // 1.创建热门搜索
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    NSArray *hotSeaches = @[];
     // 2. 创建控制器
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入楼盘名或地址" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"请输入姓名或电话" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
         // 开始搜索执行以下代码
         // 如：跳转到指定控制器
         [searchViewController.navigationController pushViewController:[[CustomSearchVC alloc] initWithTitle:searchText] animated:YES];
@@ -407,6 +424,7 @@
     CustomerTableModel *model = _dataArr[indexPath.row];
     CustomDetailVC *nextVC = [[CustomDetailVC alloc] initWithClientId:model.client_id];
     nextVC.hidesBottomBarWhenPushed = YES;
+    nextVC.model = model;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -531,6 +549,14 @@
 
 -(void)action_add
 {
+    
+    _is2 = NO;
+    _is1 = NO;
+    _typeBtn.selected = NO;
+    _areaBtn.selected = NO;
+    [self.boxView removeFromSuperview];
+    [self.adressView removeFromSuperview];
+    
     AddCustomerVC *next_vc = [[AddCustomerVC alloc]init];
     [self.navigationController pushViewController:next_vc animated:YES];
 
@@ -546,16 +572,39 @@
           
             if (area.length) {
                 
-                _district = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
-                [weakSelf.areaBtn setTitle:area forState:UIControlStateNormal];
+                if ([area isEqualToString:@"不限"]) {
+                    
+                    _district = @"";
+                    [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+                }else{
+                    
+                    _district = [NSString stringWithFormat:@"%@-%@-%@",proviceid,cityid,areaid];
+                    [weakSelf.areaBtn setTitle:area forState:UIControlStateNormal];
+                }
+                
             }else if(city.length){
                 
-                _district = [NSString stringWithFormat:@"%@-%@",proviceid,cityid];
-                [weakSelf.areaBtn setTitle:city forState:UIControlStateNormal];
+                if ([city isEqualToString:@"不限"]) {
+                    
+                    _district = @"";
+                    [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+                }else{
+                    
+                    _district = [NSString stringWithFormat:@"%@-%@",proviceid,cityid];
+                    [weakSelf.areaBtn setTitle:city forState:UIControlStateNormal];
+                }
+                
             }else if (pro.length){
                 
-                _district = [NSString stringWithFormat:@"%@",proviceid];
-                [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
+                if ([pro isEqualToString:@"不限"]) {
+                    
+                    _district = @"";
+                    [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
+                }else{
+                    
+                    _district = [NSString stringWithFormat:@"%@",proviceid];
+                    [weakSelf.areaBtn setTitle:pro forState:UIControlStateNormal];
+                }
             }else{
                 
                 [weakSelf.areaBtn setTitle:@"意向区域" forState:UIControlStateNormal];
@@ -578,6 +627,23 @@
 - (BoxView *)boxView{
     if (!_boxView) {
         _boxView = [[BoxView alloc] initWithFrame:CGRectMake(0, 41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE, SCREEN_Width, SCREEN_Height - (41 *SIZE + NAVIGATION_BAR_HEIGHT + 56 *SIZE))];
+        
+        NSMutableArray * tempArr = [NSMutableArray arrayWithArray:_propertyArr];
+        [tempArr insertObject:@{@"id":@"0",@"param":@"不限"} atIndex:0];
+        _boxView.dataArr = [NSMutableArray arrayWithArray:tempArr];
+        [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (idx == 0) {
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(1)];
+            }else{
+                
+                [tempArr replaceObjectAtIndex:idx withObject:@(0)];
+            }
+        }];
+        _boxView.selectArr = [NSMutableArray arrayWithArray:tempArr];
+        [_boxView.mainTable reloadData];
+        
         WS(weakSelf);
         _boxView.confirmBtnBlock = ^(NSString *ID,NSString *str) {
           
@@ -589,7 +655,7 @@
                 [weakSelf.typeBtn setTitle:str forState:UIControlStateNormal];
             }
             _is1 = NO;
-            _type = [NSString stringWithFormat:@"ID"];
+            _type = [NSString stringWithFormat:@"%@",ID];
             weakSelf.typeBtn.selected = NO;
             [weakSelf.boxView removeFromSuperview];
             [weakSelf RequestMethod];

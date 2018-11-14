@@ -11,6 +11,7 @@
 #import "GuideVC.h"
 #import "SystemMessageVC.h"
 #import "WorkMessageVC.h"
+#import <WebKit/WebKit.h>
 
 // 引入JPush功能所需头文件
 #import "JPUSHService.h"
@@ -23,6 +24,8 @@
 
 #import <UMShare/UMShare.h>
 
+#import <Bugtags/Bugtags.h>
+
 @interface AppDelegate ()<JPUSHRegisterDelegate,BMKMapViewDelegate>
 {
     
@@ -34,6 +37,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+
+//    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"ServerControl.plist"];
+//    NSMutableArray *arr = [[NSMutableArray alloc]initWithContentsOfFile:filePath];
+//    if (arr.count != 1) {
+//        NSArray *dataarr  = @[@"http://120.27.21.136:2798/"];
+//        [dataarr writeToFile:filePath atomically:YES];
+//    }
+    [self deleteWebCache];
+//    [Bugtags startWithAppKey:@"1560323d00d5dac86cd32d7b0d130787" invocationEvent:BTGInvocationEventNone];
     [self postVersion];
     dispatch_queue_t queue1 = dispatch_queue_create("com.test.gcg.group", DISPATCH_QUEUE_CONCURRENT);
     
@@ -55,7 +68,7 @@
         
         [BaseRequest GET:OpenCity_URL parameters:nil success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [UserModel defaultModel].cityArr = [NSMutableArray arrayWithArray:resposeObject[@"data"]];
@@ -100,15 +113,11 @@
             _window.rootViewController = mainLogin_nav;
         }
 
-//        CYLTabBarControllerConfig *tabBarControllerConfig = [[CYLTabBarControllerConfig alloc] init];
-//        _window.rootViewController = tabBarControllerConfig.tabBarController;
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Guided"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
     
-        _window .alpha = 0;
-        _window = nil;
-        _window =[[UIWindow alloc]init];
+//        _window .alpha = 0;
+//        _window = nil;
+//        _window =[[UIWindow alloc]init];
         GuideVC *guideVC = [[GuideVC alloc] init];
         UINavigationController *guideNav = [[UINavigationController alloc] initWithRootViewController:guideVC];
         guideNav.navigationBarHidden = YES;
@@ -128,8 +137,7 @@
         // NSSet<UNNotificationCategory *> *categories for iOS10 or later
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
         [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
-        
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
+
     }else{
         
         [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
@@ -160,8 +168,7 @@
         NSDictionary *remote = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         
         if (remote) {
-            
-//            [self GotoMessVC];
+
             [self GotoHome];
         }else{
             
@@ -210,7 +217,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
-    [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
+//    [UIApplication sharedApplication].keyWindow.cyl_tabBarController.selectedIndex = 0;
 }
 
 - (void)confitUShareSettings
@@ -257,18 +264,18 @@
         if ([resposeObject[@"code"] integerValue] ==200) {
             
         
-        if ([resposeObject[@"data"] floatValue]<=[version floatValue]) {
+        if ([resposeObject[@"data"] floatValue]<=[YQDversion floatValue]) {
             
         }
         else
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去APPStore下载最新版本的APP" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请去APPStore下载最新版本" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"去下载" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 [ [UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id1371978352?mt=8"]];
             }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
-            }]];
+//            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//            }]];
             [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:^{
                 
             }];
@@ -292,16 +299,17 @@
 }
 
 - (void)comeBackLoginVC {
-    //未登录
-    _window .alpha = 0;
-    _window = nil;
-    _window =[[UIWindow alloc]init];
+    NSSet *tags;
+    
+    [JPUSHService setAlias:@"exit" completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        
+        NSLog(@"rescode: %ld, \ntags: %@, \nalias: %@\n", (long)iResCode, tags , iAlias);
+    } seq:0];
     LoginVC *mainLogin_vc = [[LoginVC alloc] init];
     UINavigationController *mainLogin_nav = [[UINavigationController alloc] initWithRootViewController:mainLogin_vc];
     mainLogin_nav.navigationBarHidden = YES;
     _window.rootViewController = mainLogin_nav;
     [_window makeKeyAndVisible];
-    
 }
 
 - (void)goHome{
@@ -388,7 +396,34 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *title = content.title;  // 推送消息的标题
     NSLog(@"22222222%@",userInfo);
     
-    
+    if (userInfo[@"agent_type"]) {
+        
+        switch ([userInfo[@"agent_type"] integerValue]) {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 2:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 3:
+            {
+                [UserModel defaultModel].agent_identity = @"2";
+                break;
+            }
+            default:
+                break;
+        }
+        [UserModelArchiver archive];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+    }
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
@@ -415,6 +450,34 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
     NSLog(@"1111111%@",userInfo);
+    if (userInfo[@"agent_type"]) {
+        
+        switch ([userInfo[@"agent_type"] integerValue]) {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 2:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 3:
+            {
+                [UserModel defaultModel].agent_identity = @"2";
+                break;
+            }
+            default:
+                break;
+        }
+        [UserModelArchiver archive];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+    }
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         
@@ -458,6 +521,35 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"%@",userInfo);
+    if (userInfo[@"agent_type"]) {
+        
+        switch ([userInfo[@"agent_type"] integerValue]) {
+            case 0:
+            {
+                break;
+            }
+            case 1:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 2:
+            {
+                [UserModel defaultModel].agent_identity = @"1";
+                break;
+            }
+            case 3:
+            {
+                [UserModel defaultModel].agent_identity = @"2";
+                break;
+            }
+            default:
+                break;
+        }
+        
+        [UserModelArchiver archive];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+    }
     application.applicationIconBadgeNumber += 1;
     
     if (application.applicationState == UIApplicationStateActive) {
@@ -480,12 +572,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
-    if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
-    }
+//    NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
+//    if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
+//
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+//    }
 }
 
 
@@ -494,12 +586,34 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     NSString *logIndentifier = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINENTIFIER];
     if ([logIndentifier isEqualToString:@"logInSuccessdentifier"]) {
-        
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMessList" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
     }
 }
 
+
+- (void)deleteWebCache {
+    
+    //    if([UIDevice currentDevice])
+    if(@available(iOS 9.0, *)) {
+        NSSet * websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        NSDate * dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore]removeDataOfTypes: websiteDataTypes
+                                                  modifiedSince:dateFrom completionHandler:^{
+                                                      
+                                                  }];
+        
+    }else{
+        
+        NSString*libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask,YES)objectAtIndex:0];
+        NSString* cookiesFolderPath = [libraryPath stringByAppendingString:@"/Cookies"];
+        NSError * errors;
+        [[NSFileManager defaultManager]removeItemAtPath:cookiesFolderPath error:&errors];
+        
+    }
+    
+}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.

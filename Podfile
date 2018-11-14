@@ -18,5 +18,7 @@ target '云渠道' do
   pod 'UMCShare/Social/ReducedSina'
   # pod 'WechatOpenSDK'
   pod 'BaiduMapKit' #百度地图SDK
+  pod 'FLAnimatedImage'
+  pod 'YYText'
   # pod 'TencentOpenApiSDK'
 end

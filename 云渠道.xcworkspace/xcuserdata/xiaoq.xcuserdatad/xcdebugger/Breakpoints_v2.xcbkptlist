@@ -581,7 +581,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "754"
             endingLineNumber = "754"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkName = "-ActionCityBtn:"
             landmarkType = "7">
             <Locations>
                <Location

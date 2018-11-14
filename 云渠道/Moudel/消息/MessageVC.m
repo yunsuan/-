@@ -31,6 +31,7 @@
     _data = @[@[@"systemmessage",@"系统消息",@"未读消息0条"],@[@"worknews",@"工作消息",@"未读消息0条"]];
     
     [self initUI];
+   
 
 }
 
@@ -40,9 +41,12 @@
     [self post];
 }
 
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return 2;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -95,13 +99,13 @@
 }
 
 -(void)post{
-    [BaseRequest GET:InfoList_URL parameters:nil success:^(id resposeObject) {
+    [BaseRequest GET:InfoListCount_URL parameters:nil success:^(id resposeObject) {
         if ([resposeObject[@"code"] integerValue]==200) {
-            NSInteger system = [resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue];
-            if (system <0) {
-                system = 0;
-            }
-            NSInteger working = [resposeObject[@"data"][@"work"][@"total"] integerValue]-[resposeObject[@"data"][@"work"][@"read"] integerValue];
+           NSInteger system = 0; //= [resposeObject[@"data"][@"system"][@"total"] integerValue]-[resposeObject[@"data"][@"system"][@"read"] integerValue];
+//            if (system <0) {
+//                system = 0;
+//            }
+            NSInteger working = [resposeObject[@"data"][@"work"][@"unread"] integerValue];
             if (working<0) {
                 working = 0;
             }

@@ -14,6 +14,7 @@
 @property (nonatomic , strong) UIImageView *imageview;
 @property (nonatomic , strong) UILabel *contentlab;
 @property (nonatomic , strong) UILabel *statulab;
+@property (nonatomic, strong) UIImageView *statusImg;
 @property (nonatomic , strong) TagView *tagview;
 @property (nonatomic , strong) TagView *wuyeview;
 

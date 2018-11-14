@@ -9,7 +9,10 @@
 #import "MyCodeVC.h"
 
 @interface MyCodeVC ()
-
+{
+    
+    NSString *_url;
+}
 @property (nonatomic, strong) UIImageView *headImg;
 
 @property (nonatomic, strong) UIImageView *tagImg;
@@ -60,7 +63,22 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+    [BaseRequest GET:@"user/project/shareAgent" parameters:@{@"agent_id":[UserModel defaultModel].agent_id} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            _url = resposeObject[@"data"][@"url"];
+            [[UIApplication sharedApplication].keyWindow addSubview:self.transmitView];
+        }else{
+            
+            [self showContent:@"分享失败"];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"分享失败"];
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)initUI{
@@ -84,7 +102,7 @@
     _headImg.layer.cornerRadius = 33.5 *SIZE;
     _headImg.clipsToBounds = YES;
     _headImg.contentMode = UIViewContentModeScaleAspectFill;
-    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
 
         if (error) {
 
@@ -193,13 +211,19 @@
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
+//    //创建网页内容对象
+//    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:_nameL.text descr:@"" thumImage:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]];
+//    //设置网页地址
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:_nameL.text descr:@"" thumImage:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:[NSString stringWithFormat:@"%@的名片",[UserInfoModel defaultModel].name] thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
-    shareObject.webpageUrl =@"http://mobile.umeng.com/social";
-    
+    shareObject.webpageUrl = _url;
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
+    
+    if (platformType == UMSocialPlatformType_WechatTimeLine) {
+        shareObject.title = [NSString stringWithFormat:@"【云渠道】%@的名片",[UserInfoModel defaultModel].name];
+    }
     
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {

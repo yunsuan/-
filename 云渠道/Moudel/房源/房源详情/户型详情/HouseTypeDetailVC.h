@@ -8,7 +8,11 @@
 
 #import "BaseViewController.h"
 
+#import "RoomDetailModel.h"
+
 @interface HouseTypeDetailVC : BaseViewController
+
+@property (nonatomic, strong) RoomDetailModel *model;
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
 

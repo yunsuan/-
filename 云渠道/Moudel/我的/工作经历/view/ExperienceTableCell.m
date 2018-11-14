@@ -37,10 +37,10 @@
     _companyL = [[UILabel alloc] initWithFrame:CGRectMake(210 *SIZE, 15 *SIZE, 140 *SIZE, 14 *SIZE)];
     _companyL.textColor = YJTitleLabColor;
     _companyL.font = [UIFont systemFontOfSize:15 *SIZE];
-    _companyL.textAlignment = NSTextAlignmentCenter;
+    _companyL.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_companyL];
     
-    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(38 *SIZE, 16 *SIZE, 150 *SIZE, 12 *SIZE)];
+    _timeL = [[UILabel alloc] initWithFrame:CGRectMake(38 *SIZE, 16 *SIZE, 200 *SIZE, 12 *SIZE)];
     _timeL.textColor = YJTitleLabColor;
     _timeL.font = [UIFont systemFontOfSize:13 *SIZE];
     [self.contentView addSubview:_timeL];

@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - BaiduMapKit (4.0.0)
+  - FLAnimatedImage (1.0.12)
   - IQKeyboardManager (6.0.3)
   - JCore (1.1.9)
   - JPush (3.0.9):
@@ -42,10 +43,12 @@ PODS:
   - UMCShare/UI (6.9.2):
     - UMCCommon
     - UMCShare/Core
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - AFNetworking
   - BaiduMapKit
+  - FLAnimatedImage
   - IQKeyboardManager
   - JPush
   - Masonry
@@ -57,11 +60,13 @@ DEPENDENCIES:
   - UMCShare/Social/ReducedSina
   - UMCShare/Social/ReducedWeChat
   - UMCShare/UI
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - BaiduMapKit
+    - FLAnimatedImage
     - IQKeyboardManager
     - JCore
     - JPush
@@ -72,10 +77,12 @@ SPEC REPOS:
     - SDWebImage
     - UMCCommon
     - UMCShare
+    - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   BaiduMapKit: 8fa2eb2ca81b92b740b19d9ff3b59d751d3e92e1
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
   JCore: 27598485098d0db99d2812cba048003457d08cfb
   JPush: 003d9eaef8ba2df76de32573d0c8aa62b92b3c82
@@ -86,7 +93,8 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   UMCCommon: 82d21f4bb9532a5472cc533bbd8ed48aff376a14
   UMCShare: 4d20cb77e085bcc9f8f2c81d24777d7dc6638b16
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c785772d025c6f38e61a3b3f5415c6275ec1efeb
+PODFILE CHECKSUM: 5cc0217dfff0a47fec0307f1a1e2964e32be0073
 
 COCOAPODS: 1.5.2

@@ -120,8 +120,14 @@
             [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
             if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast1 = YES;
+                if (_index == 0) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast1 = YES;
+                    });
+                }
             }
         }
         else{
@@ -147,8 +153,14 @@
             [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
             if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast1 = YES;
+                if (_index == 0) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast1 = YES;
+                    });
+                }
             }else{
             
                 [_MainTableView.mj_footer endRefreshing];
@@ -199,8 +211,14 @@
             [self SetValidArr:resposeObject[@"data"][@"data"]];
             if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast2 = YES;
+                if (_index == 1) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast2 = YES;
+                    });
+                }
             }
         }
         else{
@@ -225,8 +243,14 @@
             [self SetValidArr:resposeObject[@"data"][@"data"]];
             if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast2 = YES;
+                if (_index == 1) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast2 = YES;
+                    });
+                }
             }else{
               
               [_MainTableView.mj_footer endRefreshing];
@@ -277,8 +301,14 @@
             [self SetInValidArr:resposeObject[@"data"][@"data"]];
             if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast3 = YES;
+                if (_index == 2) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast3 = YES;
+                    });
+                }
             }
         }
         else{
@@ -304,8 +334,14 @@
             [self SetInValidArr:resposeObject[@"data"][@"data"]];
             if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast3 = YES;
+                if (_index == 2) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast3 = YES;
+                    });
+                }
             }else{
               
                 [self showContent:resposeObject[@"msg"]];               
@@ -354,8 +390,14 @@
             [self SetApealArr:resposeObject[@"data"][@"data"]];
             if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast4 = YES;
+                if (_index == 3) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast4 = YES;
+                    });
+                }
             }
         }
         else{
@@ -380,8 +422,14 @@
             [self SetApealArr:resposeObject[@"data"][@"data"]];
             if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
                 
-                _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                _isLast4 = YES;
+                if (_index == 3) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                        _isLast4 = YES;
+                    });
+                }
             }else{
                 
                 [_MainTableView.mj_footer endRefreshing];
@@ -439,6 +487,8 @@
     [_nomineeColl selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:0];
     
     _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
+    _MainTableView.rowHeight = UITableViewAutomaticDimension;
+    _MainTableView.estimatedRowHeight = 130 *SIZE;
     _MainTableView.backgroundColor = YJBackColor;
     _MainTableView.delegate = self;
     _MainTableView.dataSource = self;
@@ -596,17 +646,17 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (_index == 2) {
-        
-        return 133 *SIZE;
-    }else if (_index == 3){
-        
-        return 103 *SIZE;
-    }
-    return 128 *SIZE;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    if (_index == 2) {
+//
+//        return 133 *SIZE;
+//    }else if (_index == 3){
+//
+//        return 103 *SIZE;
+//    }
+//    return 128 *SIZE;
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -625,20 +675,25 @@
         cell.tag = indexPath.row;
         cell.phoneBtnBlock = ^(NSInteger index) {
             
-            NSString *phone = [_unComfirmArr[index][@"tel"] componentsSeparatedByString:@","][0];
-            if (phone.length) {
+            if ([_unComfirmArr[index][@"tel_complete_state"] integerValue] <= 2) {
                 
-                //获取目标号码字符串,转换成URL
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                //调用系统方法拨号
-                [[UIApplication sharedApplication] openURL:url];
+                NSString *phone = [_unComfirmArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                if (phone.length) {
+                    
+                    //获取目标号码字符串,转换成URL
+                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                    //调用系统方法拨号
+                    [[UIApplication sharedApplication] openURL:url];
+                }else{
+                    
+                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                }
             }else{
                 
-                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                
             }
+            
         };
-        
-       
         return cell;
     }else if (_index == 1){
         
@@ -654,17 +709,24 @@
         cell.tag = indexPath.row;
         cell.phoneBtnBlock = ^(NSInteger index) {
             
-            NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
-            if (phone.length) {
+            if ([_validArr[index][@"tel_complete_state"] integerValue] <= 2) {
                 
-                //获取目标号码字符串,转换成URL
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                //调用系统方法拨号
-                [[UIApplication sharedApplication] openURL:url];
+                NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                if (phone.length) {
+                    
+                    //获取目标号码字符串,转换成URL
+                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                    //调用系统方法拨号
+                    [[UIApplication sharedApplication] openURL:url];
+                }else{
+                    
+                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                }
             }else{
                 
-                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                
             }
+            
         };
         
         return cell;
@@ -682,17 +744,24 @@
         cell.tag = indexPath.row;
         cell.phoneBtnBlock = ^(NSInteger index) {
             
-            NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
-            if (phone.length) {
+            if ([_inValidArr[index][@"tel_complete_state"] integerValue] <= 2) {
                 
-                //获取目标号码字符串,转换成URL
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                //调用系统方法拨号
-                [[UIApplication sharedApplication] openURL:url];
+                NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                if (phone.length) {
+                    
+                    //获取目标号码字符串,转换成URL
+                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                    //调用系统方法拨号
+                    [[UIApplication sharedApplication] openURL:url];
+                }else{
+                    
+                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                }
             }else{
                 
-                [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                
             }
+            
         };
         return cell;
     }else{

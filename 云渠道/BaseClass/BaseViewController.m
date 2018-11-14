@@ -10,10 +10,13 @@
 #import "BaseViewController.h"
 //#import "LogoinViewController.h"
 #import <CommonCrypto/CommonDigest.h>
+//#import <AFNetworkReachabilityManager.h>
+#import <CoreTelephony/CTCellularData.h>
 
 
 
-@interface BaseViewController ()
+
+@interface BaseViewController ()<SKStoreProductViewControllerDelegate>
 
 @end
 
@@ -32,8 +35,60 @@
     _leftviewBtn.selected = NO;
     
 }
+
+- (void)loadAppStoreController
+
+{
+    
+//    if (@available(iOS 10.3, *)) {
+//        [SKStoreReviewController requestReview];
+//    } else {
+//        // Fallback on earlier versions
+//        SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+//        
+//        // 设置代理请求为当前控制器本身
+//
+//        storeProductViewContorller.delegate = self;
+//        
+//        [storeProductViewContorller loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"1371978352"}  completionBlock:^(BOOL result, NSError *error)   {
+//
+//            if(error)
+//
+//            {
+//
+//                NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
+//
+//            }  else
+//
+//            {
+//
+//                // 模态弹出appstore
+//                
+//                [self presentViewController:storeProductViewContorller animated:YES completion:^{
+//                    
+//                }];
+//
+//            }
+//
+//        }];
+//    }
+}
+
+//AppStore取消按钮监听
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
+
+{
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
+}
+
 #pragma mark - init
 - (void)initialBaseViewInterface {
+    
     
     self.view.backgroundColor = YJBackColor;
     [self.view addSubview:self.navBackgroundView];
@@ -45,7 +100,66 @@
     [self.navBackgroundView addSubview:self.rightBtn];
     //    [self.tabBarController.tabBar addSubview:self.leftviewBtn];
     
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        // 当网络状态改变时调用
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                NSLog(@"未知网络");
+                break;
+            case AFNetworkReachabilityStatusNotReachable:{
+                NSLog(@"没有网络");
+                [self alertControllerWithNsstring:@"打开[无线数据权限]来允许[云渠道]使用网络" And:@"请在系统设置中开启网络服务(设置>云渠道>无线数据>WLAN与蜂窝移动网)" WithCancelBlack:^{
+                    
+                    
+                } WithDefaultBlack:^{
+                    
+                    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                    if( [[UIApplication sharedApplication]canOpenURL:url] ) {
+                        [[UIApplication sharedApplication] openURL:url];
+                    }
+                }];
+//                if (restrictedState == kCTCellularDataRestricted || re kCTCellularDataRestrictedStateUnknown) {
+//
+//                    [self alertControllerWithNsstring:@"打开[蜂窝移动网络]来允许[云渠道]使用网络" And:@"请在系统设置中开启蜂窝移动服务(设置>蜂窝移动网络)" WithCancelBlack:^{
+//
+//
+//                    } WithDefaultBlack:^{
+//
+//                        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//                        if( [[UIApplication sharedApplication]canOpenURL:url] ) {
+//                            [[UIApplication sharedApplication] openURL:url];
+//                        }
+//                    }];
+//                }else{
+//
+//                    [self alertControllerWithNsstring:@"打开[无线数据权限]来允许[云渠道]使用网络" And:@"请在系统设置中开启网络服务(设置>云渠道>无线数据>WLAN与蜂窝移动网)" WithCancelBlack:^{
+//
+//
+//                    } WithDefaultBlack:^{
+//
+//                        NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+//                        if( [[UIApplication sharedApplication]canOpenURL:url] ) {
+//                            [[UIApplication sharedApplication] openURL:url];
+//                        }
+//                    }];
+//                }
+            }
+
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                NSLog(@"手机自带网络");
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                NSLog(@"WIFI");
+                break;
+        }
+    }];
+    [manager startMonitoring];
+    
+    [self loadAppStoreController];
 }
 
 - (UIView *)navBackgroundView {
@@ -62,7 +176,7 @@
         _line = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT - SIZE, SCREEN_Width, SIZE)];
         _line.backgroundColor = YJBackColor;
         [_navBackgroundView addSubview:_line];
-        
+//
         _navBackgroundView.hidden = YES;
     }
     return _navBackgroundView;
@@ -71,11 +185,11 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.center = CGPointMake(SCREEN_Width / 2, STATUS_BAR_HEIGHT+20 );
-        _titleLabel.bounds = CGRectMake(0, 0, 180 * sIZE, 30 * sIZE);
+        _titleLabel.center = CGPointMake(SCREEN_Width / 2, STATUS_BAR_HEIGHT+22 );
+        _titleLabel.bounds = CGRectMake(0, 0, 180 * SIZE, 44);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = [UIColor blackColor];
-        _titleLabel.font = [UIFont systemFontOfSize:17 * sIZE];
+        _titleLabel.font = [UIFont systemFontOfSize:17 * SIZE];
     }
     return _titleLabel;
 }
@@ -83,8 +197,8 @@
 - (UIButton *)leftButton {
     if (!_leftButton) {
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _leftButton.center = CGPointMake(25 * SIZE, 20 + 22);
-        _leftButton.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
+//        _leftButton.center = CGPointMake(25 * SIZE, 20 + 22);
+//        _leftButton.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
         _leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 20);
         _leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
         [_leftButton setImage:IMAGE_WITH_NAME(@"leftarrow.png") forState:UIControlStateNormal];
@@ -106,7 +220,7 @@
 - (UIButton *)rightBtn {
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.center = CGPointMake(SCREEN_Width - 25 * SIZE, STATUS_BAR_HEIGHT+20);
+        _rightBtn.center = CGPointMake(SCREEN_Width - 40 * SIZE, STATUS_BAR_HEIGHT+20);
         _rightBtn.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
 //        [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 //        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13 * SIZE];
@@ -140,6 +254,7 @@
 
 - (void)ActionMaskBtn:(UIButton *)btn{
     
+    [WaitAnimation stopAnimation];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -234,7 +349,8 @@
  *  检查输入的手机号正确与否
  */
 - (BOOL)checkTel:(NSString *)str {
-    NSString *regex = @"^((13[0-9])|(17[0-9])|(14[0-9])|(15[0-9])|(18[0-9]))\\d{8}$";
+
+    NSString *regex = @"^((13[0-9])|(17[0-9])|(14[0-9])|(15[0-9])|(18[0-9])|(19[8-9])|166)\\d{8}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isMatch = [pred evaluateWithObject:str];
     return isMatch;
@@ -250,7 +366,7 @@
 - (NSString *)isSplitHTTP:(NSString *)string {
     if (![string isEqual:@""]) {
         if (![[string substringToIndex:4] isEqualToString:@"http"]) {
-            string = [NSString stringWithFormat:@"%@%@",Base_Net,string];
+            string = [NSString stringWithFormat:@"%@%@",TestBase_Net,string];
         }
     }
     return string;

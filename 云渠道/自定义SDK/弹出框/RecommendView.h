@@ -30,9 +30,9 @@ typedef void(^RecommendViewConfirmBlock)(void);
 
 @property (nonatomic, strong) UILabel *addressL;
 
-@property (nonatomic, strong) UILabel *contactL;
-
-@property (nonatomic, strong) UILabel *phoneL;
+//@property (nonatomic, strong) UILabel *contactL;
+//
+//@property (nonatomic, strong) UILabel *phoneL;
 
 @property (nonatomic, strong) UILabel *timeL;
 

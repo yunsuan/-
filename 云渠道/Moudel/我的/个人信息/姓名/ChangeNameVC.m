@@ -9,13 +9,26 @@
 #import "ChangeNameVC.h"
 
 @interface ChangeNameVC ()
-
+{
+    
+    NSString *_name;
+}
 @property (nonatomic, strong) UIView *whiteView;
 
 @property (nonatomic, strong) UITextField *nameTF;
 @end
 
 @implementation ChangeNameVC
+
+- (instancetype)initWithName:(NSString *)name
+{
+    self = [super init];
+    if (self) {
+     
+        _name = name;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,12 +38,20 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
+//    if (_nameTF.text.length > 5) {
+//
+//        [self alertControllerWithNsstring:@"温馨提示" And:@"姓名不能超过5个字" WithDefaultBlack:^{
+//
+//            return ;
+//        }];
+//    }
+    
     if (_nameTF.text.length && ![self isEmpty:_nameTF.text]) {
         
         NSDictionary *dic = @{@"name":_nameTF.text};
         [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
          
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -43,7 +64,7 @@
         } failure:^(NSError *error) {
             
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
     }
 }
@@ -70,6 +91,7 @@
         _nameTF = [[UITextField alloc] initWithFrame:CGRectMake(10 *SIZE, 0, 340 *SIZE, 50 *SIZE)];
         _nameTF.font = [UIFont systemFontOfSize:13 *SIZE];
         _nameTF.placeholder = @"请输入姓名";
+        _nameTF.text = _name;
     }
     return _nameTF;
 }

@@ -120,35 +120,41 @@
         self.numL.text = @"证件号码：";
     }
     
-    self.addressL.text = @"地址：";
-    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
-    
-    NSError *err;
-    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
-                                                       options:NSJSONReadingMutableContainers
-                                                         error:&err];
-    for (int i = 0; i < provice.count; i++) {
-        
-        if([provice[i][@"code"] integerValue] == [model.province integerValue]){
-            
-            NSArray *city = provice[i][@"city"];
-            for (int j = 0; j < city.count; j++) {
-                
-                if([city[j][@"code"] integerValue] == [model.city integerValue]){
-                    
-                    NSArray *area = city[j][@"district"];
-                    
-                    for (int k = 0; k < area.count; k++) {
-                        
-                        if([area[k][@"code"] integerValue] == [model.district integerValue]){
-                            
-                            self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],model.address];
-                        }
-                    }
-                }
-            }
-        }
+//    self.addressL.text = @"地址：";
+    if (model.province_name&&model.city_name&&model.district_name) {
+        self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",model.province_name,model.city_name,model.district_name,model.address];
     }
+    else{
+        self.addressL.text = @"地址：";
+    }
+//    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+//
+//    NSError *err;
+//    NSArray *provice = [NSJSONSerialization JSONObjectWithData:JSONData
+//                                                       options:NSJSONReadingMutableContainers
+//                                                         error:&err];
+//    for (int i = 0; i < provice.count; i++) {
+//
+//        if([provice[i][@"code"] integerValue] == [model.province integerValue]){
+//
+//            NSArray *city = provice[i][@"city"];
+//            for (int j = 0; j < city.count; j++) {
+//
+//                if([city[j][@"code"] integerValue] == [model.city integerValue]){
+//
+//                    NSArray *area = city[j][@"district"];
+//
+//                    for (int k = 0; k < area.count; k++) {
+//
+//                        if([area[k][@"code"] integerValue] == [model.district integerValue]){
+//
+//                            self.addressL.text = [NSString stringWithFormat:@"地址：%@-%@-%@-%@",provice[i][@"name"],city[0][@"name"],area[k][@"name"],model.address];
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 
@@ -258,7 +264,7 @@
     }
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    _flowLayout.itemSize = CGSizeMake(120 *SIZE, 47 *SIZE);
+    _flowLayout.itemSize = CGSizeMake(119 *SIZE, 47 *SIZE);
     _flowLayout.minimumLineSpacing = 0;
     _flowLayout.minimumInteritemSpacing = 0;
     

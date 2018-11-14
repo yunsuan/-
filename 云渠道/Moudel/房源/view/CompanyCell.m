@@ -29,7 +29,12 @@
         _statulab = [[UILabel alloc]initWithFrame:CGRectMake(327.7*SIZE, 15.7*SIZE, 30*SIZE, 13*SIZE)];
         _statulab.textColor = COLOR(27, 152, 255, 1);
         _statulab.font = [UIFont systemFontOfSize:12*SIZE];
-        [self.contentView addSubview:_statulab];
+//        [self.contentView addSubview:_statulab];
+        
+        _statusImg = [[UIImageView alloc] initWithFrame:CGRectMake(333 *SIZE, 11 *SIZE, 17 *SIZE, 17 *SIZE)];
+        _statusImg.image = [UIImage imageNamed:@"tui"];
+        [self.contentView addSubview:_statusImg];
+        
         _wuyeview = [[TagView alloc]initWithFrame:CGRectMake(124.7*SIZE, 56.3*SIZE, 200*SIZE, 16.7*SIZE) type:@"0"];
         [self.contentView addSubview:_wuyeview];
         
@@ -45,7 +50,7 @@
 
 -(void)SetTitle:(NSString *)title image:(NSString *)imagename contentlab:(NSString *)content statu:(NSString *)statu
 {
-    [_imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,imagename]] placeholderImage:[UIImage imageNamed:@"default_1"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [_imageview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,imagename]] placeholderImage:[UIImage imageNamed:@"default_1"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
         if (error) {
             

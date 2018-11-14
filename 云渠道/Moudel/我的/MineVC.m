@@ -17,15 +17,16 @@
 #import "WebViewVC.h"
 #import "AuditStatusVC.h"
 #import "AuthenedVC.h"
+#import "MyTeamVC.h"
 
 
 @interface MineVC ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
+    
     UIImagePickerController *_imagePickerController; /**< 相册拾取器 */
     NSArray *_namelist;
     NSArray *_imageList;
     NSArray *_contentList;
-    
 }
 @property (nonatomic, strong) UIImageView *headImg;
 
@@ -48,6 +49,36 @@
     [self InitDataSouce];
     [self InitUI];
     [self RequestMethod];
+    [self LoadRequest];
+}
+
+- (void)LoadRequest{
+
+    if (![UserModel defaultModel].comment) {
+        [UserModel defaultModel].comment = 0;
+        [UserModelArchiver archive];
+    }
+    else{
+            [UserModel defaultModel].comment += 1;
+            [UserModelArchiver archive];
+        if ([UserModel defaultModel].comment%50==0) {
+            if (@available(iOS 10.3, *)) {
+            [SKStoreReviewController requestReview];
+            }
+            else{
+                [self alertControllerWithNsstring:@"温馨提示" And:@"是否去APPStore进行评分？" WithCancelBlack:^{
+                    
+                } WithDefaultBlack:^{
+                    NSString *str = @"itms-apps://itunes.apple.com/app/id1371978352?mt=8";
+                    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
+                    
+                }];
+            }
+               
+        }
+    }
+    
+
 }
 
 -(void)InitUI{
@@ -62,7 +93,7 @@
     _headImg.layer.cornerRadius = 30 *SIZE;
     if ([UserInfoModel defaultModel].head_img) {
         
-        [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
             if (error) {
                 
@@ -100,11 +131,17 @@
 -(void)InitDataSouce
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家"]];
 =======
     _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于云算",@"操作指南"]];
     _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
     _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
+=======
+    _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注",@"我的团队"],@[@"意见反馈",@"关于云算",@"操作指南"]];
+    _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus",@"team"],@[@"opinion",@"about",@"operation"]];
+    _contentList= @[@[@"",@"",@""],@[@"",@"",@""],@[@" ",YQDversion,@""]];
+>>>>>>> 784feb5fcb8d8f20f3a49df9522942ec5eae12ff
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 
@@ -115,7 +152,7 @@
     [BaseRequest POST:GetPersonalBaseInfo_URL parameters:nil success:^(id resposeObject) {
         
         [self.Mytableview.mj_header endRefreshing];
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
 
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -134,8 +171,9 @@
     } failure:^(NSError *error) {
         
         [self.Mytableview.mj_header endRefreshing];
+        
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 >>>>>>> devolop
 }
@@ -164,7 +202,7 @@
     
     if ([UserInfoModel defaultModel].head_img) {
         
-        [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [_headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,[UserInfoModel defaultModel].head_img]] placeholderImage:[UIImage imageNamed:@"def_head"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
             if (error) {
                 
@@ -245,7 +283,7 @@
         [self presentViewController:_imagePickerController animated:YES completion:nil];
         
     } else {
-        NSLog(@"当前设备不支持拍照");
+//        NSLog(@"当前设备不支持拍照");
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                   message:@"当前设备不支持拍照"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -284,7 +322,7 @@
           constructionBody:^(id<AFMultipartFormData> formData) {
               [formData appendPartWithFileData:data name:@"headimg" fileName:@"headimg.jpg" mimeType:@"image/jpg"];
     } success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         
 //        [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -292,7 +330,7 @@
             NSDictionary *dic = @{@"head_img":resposeObject[@"data"]};
             [BaseRequest POST:UpdatePersonal_URL parameters:dic success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
    
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
@@ -305,7 +343,7 @@
                 }
             } failure:^(NSError *error) {
                
-                NSLog(@"%@",error);
+//                NSLog(@"%@",error);
                 [self showContent:@"网络错误"];
             }];
         }else{
@@ -314,7 +352,7 @@
         }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -328,6 +366,7 @@
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+<<<<<<< HEAD
     if (section == 1) {
 <<<<<<< HEAD
         return 3;
@@ -337,6 +376,10 @@
     }
     else
         return 2;
+=======
+    
+    return _namelist.count;
+>>>>>>> 784feb5fcb8d8f20f3a49df9522942ec5eae12ff
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -377,19 +420,6 @@
         cell = [[MineCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     [cell SetTitle:_namelist[indexPath.section][indexPath.row] icon:_imageList[indexPath.section][indexPath.row] contentlab:_contentList[indexPath.section][indexPath.row]];
-//    if (indexPath.section == 0) {
-//
-//        [cell SetTitle:_namelist[indexPath.row] icon:_imageList[indexPath.row] contentlab:_contentList[indexPath.row]];
-//    }else{
-//
-//        if (indexPath.section == 1) {
-//
-//            [cell SetTitle:_namelist[indexPath.row + 3] icon:_imageList[indexPath.row + 3] contentlab:_contentList[indexPath.row + 3]];
-//        }else{
-//
-//            [cell SetTitle:_namelist[indexPath.row + 5] icon:_imageList[indexPath.row + 5] contentlab:_contentList[indexPath.row + 5]];
-//        }
-//    }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -409,7 +439,7 @@
             
             [BaseRequest GET:GetAuthInfo_URL parameters:nil success:^(id resposeObject) {
                 
-                NSLog(@"%@",resposeObject);
+//                NSLog(@"%@",resposeObject);
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
                     if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -448,7 +478,7 @@
                 AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
                 nextVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nextVC animated:YES];
-                NSLog(@"%@",error);
+//                NSLog(@"%@",error);
             }];
             
         }else{
@@ -473,12 +503,16 @@
                 MyAttentionVC *nextVC = [[MyAttentionVC alloc] init];
                 nextVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:nextVC animated:YES];
+            }else{
+                
+                MyTeamVC *nextVC = [[MyTeamVC alloc] init];
+                nextVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nextVC animated:YES];
             }
         }
     }else
     {
         if (indexPath.row == 0) {
-            
             FeedbackVC *nextVC = [[FeedbackVC alloc] init];
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
@@ -499,6 +533,7 @@
         }else{
             
             WebViewVC *next_vc = [[WebViewVC alloc]init];
+            next_vc.weburl = @"http://www.ccsoft.com.cn";
             [self.navigationController pushViewController:next_vc animated:YES];
 >>>>>>> devolop
         }

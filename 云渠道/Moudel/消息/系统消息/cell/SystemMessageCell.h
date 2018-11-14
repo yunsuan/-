@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SystemMessageCell : UITableViewCell
+
+@property (nonatomic , strong) UIView *whiteView;
 @property (nonatomic , strong) UILabel *titlelab;
 @property (nonatomic , strong) UILabel *contentlab;
 @property (nonatomic , strong) UILabel *timelab;

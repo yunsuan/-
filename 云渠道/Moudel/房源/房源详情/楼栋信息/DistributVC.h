@@ -10,5 +10,6 @@
 
 @interface DistributVC : BaseViewController
 @property (nonatomic , strong) NSString *img_name;
+@property (nonatomic , strong) NSString *urlfor3d;
 @property (nonatomic , strong) NSString *projiect_id;
 @end

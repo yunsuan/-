@@ -35,19 +35,22 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _page = 1;
-    [self postWithpage:@"1"];
+//    _page = 1;
+//    [self postWithpage:@"1"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(post) name:@"reloadMessList" object:nil];
+    
     self.view.backgroundColor = YJBackColor;
     self.navBackgroundView.hidden = NO;
-    self.titleLabel.text = @"推荐成功";
+    self.titleLabel.text = @"工作消息";
     
     [self initDateSouce];
     [self initUI];
-
+    [self postWithpage:@"1"];
 }
 
 - (void)ActionDismiss{
@@ -55,6 +58,50 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         
     }];
+}
+
+- (void)post{
+    
+    NSString *page = @"1";
+    [BaseRequest GET:WorkingInfoList_URL parameters:@{
+                                                      @"page":page
+                                                      }
+             success:^(id resposeObject) {
+                 if ([resposeObject[@"code"] integerValue]==200) {
+                     if ([page isEqualToString:@"1"]) {
+                         
+                         [_systemmsgtable.mj_footer endRefreshing];
+                         _data = [resposeObject[@"data"][@"data"] mutableCopy];
+                         if (_data.count < 15) {
+                             
+                             _systemmsgtable.mj_footer.state = MJRefreshStateNoMoreData;
+                         }
+                         [_systemmsgtable reloadData];
+                     }
+                     else{
+                         NSArray *arr =resposeObject[@"data"][@"data"];
+                         if (arr.count == 0) {
+                             
+                             [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
+                         }
+                         else{
+                             [_data addObjectsFromArray:[arr mutableCopy]];
+                             [_systemmsgtable reloadData];
+                             [_systemmsgtable.mj_footer endRefreshing];
+                         }
+                     }
+                     [_systemmsgtable.mj_header endRefreshing];
+                 }else{
+                     
+                     _page -= 1;
+                 }
+             } failure:^(NSError *error) {
+                 
+                 _page -= 1;
+                 [self showContent:@"网络错误"];
+                 [_systemmsgtable.mj_footer endRefreshing];
+                 [_systemmsgtable.mj_header endRefreshing];
+             }];
 }
 
 -(void)postWithpage:(NSString *)page{
@@ -67,7 +114,7 @@
             if ([page isEqualToString:@"1"]) {
           
                 [_systemmsgtable.mj_footer endRefreshing];
-                _data = [resposeObject[@"data"][@"data"] mutableCopy];
+                _data = [resposeObject[@"data"] mutableCopy];
                 if (_data.count < 15) {
                     
                     _systemmsgtable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -75,7 +122,7 @@
                 [_systemmsgtable reloadData];
             }
             else{
-                NSArray *arr =resposeObject[@"data"][@"data"];
+                NSArray *arr =resposeObject[@"data"];
                 if (arr.count == 0) {
                     
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
@@ -102,6 +149,7 @@
 
 -(void)initDateSouce
 {
+    _page = 1;
     _data = [NSMutableArray arrayWithArray:@[]];
 }
 
@@ -150,9 +198,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger i = [_data[indexPath.row][@"message_type"] integerValue];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:_data[indexPath.row]];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:dic[@"attribute"]];
+    [tempDic setObject:@"1" forKey:@"is_read"];
+    [dic setObject:tempDic forKey:@"attribute"];
+    [_data replaceObjectAtIndex:indexPath.row withObject:dic];
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
     switch (i) {
         case 0:
         {
+            
             TypeZeroVC *next_vc = [[TypeZeroVC alloc]init];
             next_vc.client_id = _data[indexPath.row][@"client_id"];
             next_vc.message_id = _data[indexPath.row][@"message_id"];

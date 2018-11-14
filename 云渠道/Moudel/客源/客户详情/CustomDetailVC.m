@@ -37,8 +37,14 @@
     NSMutableArray *_FollowArr;
     NSMutableArray *_projectArr;
     NSMutableArray *_statusArr;
+    NSArray *_tagsArr;
+    NSArray *_propertyArr;
+    NSInteger _state;
+    NSInteger _selected;
 }
 @property (nonatomic, strong) UITableView *customDetailTable;
+
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
 @end
 
@@ -79,6 +85,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES]; //设置隐藏
 }
 
+
+
 - (void)ActionMaskBtn:(UIButton *)btn{
     
     for (UIViewController *vc in self.navigationController.viewControllers) {
@@ -116,15 +124,46 @@
     _FollowArr = [@[] mutableCopy];
     _projectArr = [@[] mutableCopy];
     _statusArr = [@[] mutableCopy];
-    
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
 }
+
+- (void)RecommendRequest:(NSDictionary *)dic projectName:(NSString *)projectName{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:self.view.frame];
+            NSDictionary *tempDic = @{@"project":projectName,
+                                      @"sex":self.model.sex,
+                                      @"tel":self.model.tel,
+                                      @"name":self.model.name
+                                      };
+            reportCustomSuccessView.state = _state;
+            reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+            reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
+                
+                
+            };
+            [self.view addSubview:reportCustomSuccessView];
+        }
+        else{
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+    }];
+}
+
 
 - (void)MatchRequest{
     
     [BaseRequest GET:ClientMatching_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
        
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
     
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -139,7 +178,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 
@@ -176,10 +215,10 @@
     
     [BaseRequest GET:GetStateList_URL parameters:@{@"client_id":[UserModelArchiver unarchive].agent_id} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 
 }
@@ -188,7 +227,7 @@
     
     [BaseRequest GET:GetRecord_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -199,7 +238,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -208,7 +247,7 @@
     
     [BaseRequest GET:GetCliendInfo_URL parameters:@{@"client_id":_clientId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
       
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -232,7 +271,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -311,7 +350,7 @@
             [self MatchRequest];
         }
     }
-    NSLog(@"%@",indexPath);
+//    NSLog(@"%@",indexPath);
 }
 
 - (void)head2collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -341,7 +380,7 @@
         }
     }
     
-    NSLog(@"%@",indexPath);
+//    NSLog(@"%@",indexPath);
 }
 
 - (void)DGActionAddBtn:(UIButton *)btn{
@@ -364,7 +403,7 @@
 
 - (void)DGActionEditBtn:(UIButton *)btn{
     
-    NSLog(@"%ld",_item);
+//    NSLog(@"%ld",_item);
 
     AddCustomerVC *nextVC = [[AddCustomerVC alloc] initWithModel:_customModel];
     [self.navigationController pushViewController:nextVC animated:YES];
@@ -372,9 +411,9 @@
 
 - (void)ActionRightBtn:(UIButton *)btn{
     
-    if (_dataArr[0]) {
-        
+    if (_dataArr.count) {
         QuickRoomVC  *nextVC = [[QuickRoomVC alloc] initWithModel:_dataArr[0]];
+        nextVC.customerTableModel = self.model;
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }
@@ -542,6 +581,7 @@
 //                RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId];
                 CustomRequireModel *model = _dataArr[0];
                 RoomMatchListVC *nextVC = [[RoomMatchListVC alloc] initWithClientId:_clientId dataArr:_projectArr model:model];
+                nextVC.customerTableModel = self.model;
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             
@@ -608,10 +648,10 @@
                 layout.sectionInset = UIEdgeInsetsMake(0, 28 *SIZE, 0, 0);
                 layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
-                NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+            
                 NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
                 for (int i = 0; i < arr.count; i++) {
-                    [tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         if ([obj[@"id"] integerValue] == [arr[i] integerValue]) {
                             [tagArr1 addObject:obj[@"param"]];
                             *stop = YES;
@@ -682,7 +722,7 @@
             NSMutableArray *tempArr = [@[] mutableCopy];
             for (int i = 0; i < [_projectArr[indexPath.row][@"property_tags"] count]; i++) {
                 
-                [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if ([obj[@"id"] integerValue] == [_projectArr[indexPath.row][@"property_tags"][i] integerValue]) {
                         
@@ -696,7 +736,7 @@
             NSMutableArray *tempArr2 = [@[] mutableCopy];
             for (int i = 0; i < tempArr1.count; i++) {
                 
-                [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                         
@@ -712,27 +752,91 @@
                 
                 if (_dataArr.count) {
                     
+                    self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+                    SS(strongSelf);
+                    WS(weakSelf);
                     CustomRequireModel *model = _dataArr[0];
-//                    self.customDetailTable.userInteractionEnabled = NO;
-                    [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectArr[index][@"project_id"],@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":_projectArr[index][@"project_id"],@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                    self.selectWorkerView.selectWorkerRecommendBlock = ^{
                         
-//                        self.customDetailTable.userInteractionEnabled = YES;
-                        NSLog(@"%@",resposeObject);
+                        if (weakSelf.selectWorkerView.nameL.text) {
+                            
+                            [dic setObject:weakSelf.selectWorkerView.ID forKey:@"consultant_advicer_id"];
+                        }
+                        
+                        ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                        NSDictionary *tempDic = @{@"project":strongSelf->_projectArr[index][@"project_name"],
+                                                  @"sex":weakSelf.model.sex,
+                                                  @"tel":weakSelf.model.tel,
+                                                  @"name":weakSelf.model.name
+                                                  };
+                        reportCustomConfirmView.state = strongSelf->_state;
+                        reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                        reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
+                            
+                            [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+                                
+                                if ([resposeObject[@"code"] integerValue] == 200) {
+                                    
+                                    ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:weakSelf.view.frame];
+                                    NSDictionary *tempDic = @{@"project":strongSelf->_projectArr[index][@"project_name"],
+                                                              @"sex":weakSelf.model.sex,
+                                                              @"tel":weakSelf.model.tel,
+                                                              @"name":weakSelf.model.name
+                                                              };
+                                    reportCustomSuccessView.state = strongSelf->_state;
+                                    reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                                    reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
+                                        
+                                        
+                                    };
+                                    [weakSelf.view addSubview:reportCustomSuccessView];
+                                }else{
+                                    
+                                    [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                                }
+                            } failure:^(NSError *error) {
+                                
+                                [weakSelf showContent:@"网络错误"];
+                            }];
+                        };
+                        [weakSelf.view addSubview:reportCustomConfirmView];
+                    };
+                    [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":_projectArr[index][@"project_id"]} success:^(id resposeObject) {
+                        
                         if ([resposeObject[@"code"] integerValue] == 200) {
                             
-                            [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                            if ([resposeObject[@"data"][@"rows"] count]) {
+                                weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                                _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                                _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                                weakSelf.selectWorkerView.advicerSelect = _selected;
+                                [weakSelf.view addSubview:weakSelf.selectWorkerView];
+                            }else{
                                 
-                                [self MatchRequest];
-                            }];
+                                ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                                NSDictionary *tempDic = @{@"project":_projectArr[index][@"project_name"],
+                                                          @"sex":self.model.sex,
+                                                          @"tel":self.model.tel,
+                                                          @"name":self.model.name
+                                                          };
+                                reportCustomConfirmView.state = strongSelf->_state;
+                                reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                                reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
+                                    
+                                    [weakSelf RecommendRequest:dic projectName:_projectArr[index][@"project_name"]];
+                                };
+                                [weakSelf.view addSubview:reportCustomConfirmView];
+                            }
                         }else{
                             
-                            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                            [self showContent:resposeObject[@"msg"]];
                         }
                     } failure:^(NSError *error) {
                         
-                        NSLog(@"%@",error);
                         [self showContent:@"网络错误"];
                     }];
+                    
                 }
             };
             

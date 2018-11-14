@@ -28,8 +28,8 @@
     NSArray *_contentarr;
 }
 
-@property (nonatomic , strong)NSMutableArray *datasouce;
-@property (nonatomic , strong)NSDictionary *fjxx;
+@property (nonatomic, strong)  NSMutableArray *datasouce;
+@property (nonatomic, strong)  NSDictionary *fjxx;
 @property (nonatomic, assign)  NSUInteger row;
 @property (nonatomic, assign)  NSUInteger column;
 @property (nonatomic, assign)  CGSize seatSize;
@@ -53,18 +53,18 @@
 @property (strong, nonatomic)  UIColor *rowIndexViewColor;
 @property (assign, nonatomic)  NSInteger rowIndexType; //座位左边行号提示样式
 @property (strong, nonatomic)  NSMutableArray *arrayRowIndex; //座位号左边行号提示（用它则忽略
-@property (strong, nonatomic) UIView *contentView;
-@property (strong, nonatomic) KyoRowIndexView *rowIndexView;
-@property (strong, nonatomic) KyoCenterLineView *centerLineView;
-@property (strong, nonatomic) NSMutableDictionary *dictSeat;
-@property (retain, nonatomic) SMScrollView *myScrollView;
-@property (strong, nonatomic) NSMutableDictionary *dictSeatState;
-@property ( nonatomic , strong ) UIView *maskView;
-@property ( nonatomic , strong ) UIView *maskView1;
-@property ( nonatomic , strong ) UIView *tanchuanView;
-@property ( nonatomic , strong ) UIView *detailView;
-@property ( nonatomic , strong ) UIButton *dropbtn;
-@property ( nonatomic , strong ) UITableView *tableview;
+@property (strong, nonatomic)  UIView *contentView;
+@property (strong, nonatomic)  KyoRowIndexView *rowIndexView;
+@property (strong, nonatomic)  KyoCenterLineView *centerLineView;
+@property (strong, nonatomic)  NSMutableDictionary *dictSeat;
+@property (retain, nonatomic)  SMScrollView *myScrollView;
+@property (strong, nonatomic)  NSMutableDictionary *dictSeatState;
+@property (nonatomic, strong)  UIView *maskView;
+@property (nonatomic, strong)  UIView *maskView1;
+@property (nonatomic, strong)  UIView *tanchuanView;
+@property (nonatomic, strong)  UIView *detailView;
+@property (nonatomic, strong)  UIButton *dropbtn;
+@property (nonatomic, strong)  UITableView *tableview;
 
 
 -(void)initDataSouce;
@@ -80,7 +80,6 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = _titleinfo;
     [self post];
-    
     
 }
 
@@ -236,7 +235,7 @@
         
         self.rowIndexView.frame = CGRectMake((kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) / _myScrollView.zoomScale, self.seatTop, kRowIndexWith, self.row * self.seatSize.height);
         
-        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
+//        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
         self.rowIndexView.rowIndexType = self.rowIndexType;
         //        self.rowIndexView.arrayRowIndex = self.arrayRowIndex;
         self.rowIndexView.hidden = NO;
@@ -506,8 +505,8 @@
         self.rowIndexView.frame = CGRectMake((kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) < 2 ? 2:(kRowIndexSpace + (self.rowIndexStick ? _myScrollView.contentOffset.x : 0)) / _myScrollView.zoomScale, self.seatTop,
                                              kRowIndexWith,
                                              self.row * self.seatSize.height);
-        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
-        NSLog(@"self.myScrollView.contentSize = %@",NSStringFromCGSize( _myScrollView.contentSize));
+//        NSLog(@"self.rowIndexView.frame = %@",NSStringFromCGRect(self.rowIndexView.frame));
+//        NSLog(@"self.myScrollView.contentSize = %@",NSStringFromCGSize( _myScrollView.contentSize));
         self.rowIndexView.rowIndexType = self.rowIndexType;
         self.rowIndexView.arrayRowIndex = self.arrayRowIndex;
         self.rowIndexView.hidden = NO;

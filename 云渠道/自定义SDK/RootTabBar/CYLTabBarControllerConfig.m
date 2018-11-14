@@ -64,12 +64,16 @@
     message_nav.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -4);
     
     
-    
     RoomVC *room_vc = [[RoomVC alloc] init];
     UIViewController *room_nav = [[CYLBaseNavigationController alloc]
-                                     initWithRootViewController:room_vc];
+                                  initWithRootViewController:room_vc];
     room_vc.navigationController.navigationBar.hidden = YES;
     room_nav.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -4);
+//    RoomVC1 *room_vc = [[RoomVC1 alloc] init];
+//    UIViewController *room_nav = [[CYLBaseNavigationController alloc]
+//                                     initWithRootViewController:room_vc];
+//    room_vc.navigationController.navigationBar.hidden = YES;
+//    room_nav.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -4);
     
     CustomerVC *customer_vc = [[CustomerVC alloc] init];
     UIViewController *customer_nav = [[CYLBaseNavigationController alloc]
@@ -140,7 +144,8 @@
                             CYLTabBarItemSelectedImage : @"me_selected",
                             };
 
-    NSArray *tabBarItemsAttributes = @[
+    NSArray *tabBarItemsAttributes;
+    tabBarItemsAttributes = @[
                                        dict1,
                                        dict2,
                                        dict3,
@@ -219,7 +224,7 @@
 
 - (void)customizeTabBarSelectionIndicatorImage {
     ///Get initialized TabBar Height if exists, otherwise get Default TabBar Height.
-    UITabBarController *tabBarController = [self cyl_tabBarController] ?: [[UITabBarController alloc] init];
+    UITabBarController *tabBarController = [self cyl_tabBarController] ?: (CYLTabBarController *) [[UITabBarController alloc] init];
     CGFloat tabBarHeight = tabBarController.tabBar.frame.size.height;
     CGSize selectionIndicatorImageSize = CGSizeMake(CYLTabBarItemWidth, tabBarHeight);
     //Get initialized TabBar if exists.

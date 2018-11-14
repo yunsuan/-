@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/&#x7b2c;&#x4e09;&#x65b9;SDK/SCREENING/PopView/PopView.m"
-            timestampString = "543318584.912654"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/&#x76f8;&#x518c;/&#x76f8;&#x518c;/YBImageBrowser/CoreStructure/YBImageBrowserCell.m"
+            timestampString = "558254316.6185499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-popupViewFromSourceFrame:completion:"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-loadImageWithModel:isPreview:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,45 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/&#x7b2c;&#x4e09;&#x65b9;SDK/SCREENING/PopView/PopView.m"
-            timestampString = "543318584.913205"
+            filePath = "&#x4e91;&#x6e20;&#x9053;/Moudel/&#x623f;&#x6e90;/&#x623f;&#x6e90;&#x8be6;&#x60c5;/RoomProjectVC.m"
+            timestampString = "561628453.464546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "+getSubPopupView:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/&#x7b2c;&#x4e09;&#x65b9;SDK/SCREENING/BoxView/BoxView.m"
-            timestampString = "543318584.9134361"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-didTapDropDownBox:atIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x4e91;&#x6e20;&#x9053;/&#x7b2c;&#x4e09;&#x65b9;SDK/SCREENING/BoxView/BoxView.m"
-            timestampString = "543318584.913646"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-didTapDropDownBox:atIndex:"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-ActionRecommendBtn:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

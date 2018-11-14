@@ -10,5 +10,6 @@
 
 @interface ChangeAddessVC : BaseViewController
 
+- (instancetype)initWithAddress:(NSString *)address;
 
 @end

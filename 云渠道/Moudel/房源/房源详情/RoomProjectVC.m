@@ -7,6 +7,15 @@
 //
 
 #import "RoomProjectVC.h"
+#import "BuildingAlbumVC.h"
+#import "BuildingInfoVC.h"
+#import "HouseTypeDetailVC.h"
+#import "DynamicListVC.h"
+#import "CustomMatchListVC.h"
+#import "DistributVC.h"
+#import "DynamicDetailVC.h"
+#import "CustomListVC.h"
+
 #import "RoomDetailTableHeader.h"
 #import "RoomDetailTableHeader5.h"
 #import "RoomDetailTableHeader6.h"
@@ -16,21 +25,18 @@
 #import "RoomDetailTableCell3.h"
 #import "RoomDetailTableCell4.h"
 #import "RoomDetailTableCell5.h"
-#import "BuildingInfoVC.h"
-#import "HouseTypeDetailVC.h"
-#import "DynamicListVC.h"
-#import "CustomMatchListVC.h"
+
 #import "CustomMatchModel.h"
-#import "DistributVC.h"
 #import "RoomDetailModel.h"
-#import "BuildingAlbumVC.h"
-//#import "QuickAddCustomVC.h"
-#import "CustomListVC.h"
+
+
+#import "YBImageBrowser.h"
+
 #import <BaiduMapAPI_Search/BMKPoiSearchType.h>
 #import <BaiduMapAPI_Search/BMKPoiSearchOption.h>
 #import <BaiduMapAPI_Search/BMKPoiSearch.h>
 
-@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate,UIGestureRecognizerDelegate>
+@interface RoomProjectVC ()<UITableViewDelegate,UITableViewDataSource,BMKMapViewDelegate,RoomDetailTableCell4Delegate,BMKPoiSearchDelegate,UIGestureRecognizerDelegate,YBImageBrowserDelegate>
 {
     CLLocationCoordinate2D _leftBottomPoint;
     CLLocationCoordinate2D _rightBottomPoint;//地图矩形的顶点
@@ -40,6 +46,7 @@
     NSMutableDictionary *_focusDic;
     NSString *_dynamicNum;
     NSMutableArray *_imgArr;
+    NSMutableArray *_albumArr;
     NSString *_focusId;
     NSMutableArray *_houseArr;
     NSMutableArray *_peopleArr;
@@ -47,7 +54,10 @@
     NSString *_phone;
     NSString *_phone_url;
     NSString *_name;
+    NSInteger _state;
+    NSInteger _selected;
 }
+@property (nonatomic, strong) SelectWorkerView *selectWorkerView;
 
 @property (nonatomic, strong) UITableView *roomTable;
 
@@ -96,6 +106,7 @@
     
     _dynamicNum = @"";
     _imgArr = [@[] mutableCopy];
+    _albumArr = [@[] mutableCopy];
     _focusDic = [@{} mutableCopy];
     _dynamicDic = [@{} mutableCopy];
     _model = [[RoomDetailModel alloc] init];
@@ -118,26 +129,33 @@
         
     });
     
+    dispatch_group_async(group, queue1, ^{
+        
+        [self ImgRequest];
+        
+    });
+    
 }
 
 - (void)MatchRequest{
     
     [BaseRequest GET:ProjectMatching_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [self SetMatchPeople:resposeObject[@"data"]];
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
 
 - (void)SetMatchPeople:(NSArray *)data{
     
+    [_peopleArr removeAllObjects];
     for (int i = 0 ; i < data.count; i++) {
         
         NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
@@ -156,13 +174,46 @@
     [_roomTable reloadData];
 }
 
+- (void)ImgRequest{
+    
+    [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                
+                [self SetImg:resposeObject[@"data"]];
+            }else{
+                
+            }
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)SetImg:(NSArray *)data{
+    
+    [_albumArr removeAllObjects];
+    for ( int i = 0; i < data.count; i++) {
+        
+        if ([data[i] isKindOfClass:[NSDictionary class]]) {
+            
+            NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:data[i]];
+            
+            [_albumArr addObject:tempDic];
+        }
+    }
+}
+
 - (void)RequestMethod{
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:_projectId forKey:@"project_id"];
      [dic setObject:[UserModelArchiver unarchive].agent_id forKey:@"agent_id"];
 //    [dic setObject:@"1" forKey:@"agent_id"];
     [BaseRequest GET:ProjectDetail_URL parameters:dic success:^(id resposeObject) {
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -176,7 +227,7 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -265,9 +316,48 @@
     [_roomTable reloadData];
 }
 
+
+#pragma mark -- Method --
+
+- (void)RequestRecommend:(NSDictionary *)dic model:(CustomMatchModel *)model{
+    
+    [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:self.view.frame];
+            NSDictionary *tempDic = @{@"project":_model.project_name,
+                                      @"sex":model.sex,
+                                      @"tel":model.tel,
+                                      @"name":model.name
+                                      };
+            reportCustomSuccessView.state = _state;
+            reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+            reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
+                
+                [self MatchRequest];
+            };
+            [self.view addSubview:reportCustomSuccessView];
+        }else if ([resposeObject[@"code"] integerValue] == 401){
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+        else{
+            
+            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+        [self showContent:@"网络错误"];
+    }];
+}
+
 - (void)ActionMoreBtn:(UIButton *)btn{
     
-    NSLog(@"%ld",btn.tag);
+//    NSLog(@"%ld",btn.tag);
     if (btn.tag == 1) {
         BuildingInfoVC *next_vc = [[BuildingInfoVC alloc]initWithProjectId:_projectId];
         [self.navigationController pushViewController:next_vc animated:YES];
@@ -284,6 +374,7 @@
 - (void)ActionRecommendBtn:(UIButton *)btn{
     
     CustomListVC *nextVC = [[CustomListVC alloc] initWithProjectId:_projectId];
+    nextVC.model = _model;
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -332,7 +423,7 @@
         return _peopleArr.count > 2? 2:_peopleArr.count;
     }else{
         
-        if (section == 0) {
+        if (section == 0 || section == 1) {
             
             return 0;
         }else{
@@ -388,13 +479,8 @@
         
         header.model = _model;
         header.imgArr = _imgArr;
-        if (_buildDic[@"handing_room_time"]) {
-            
-            header.payL.text = [NSString stringWithFormat:@"交房时间：%@",_buildDic[@"handing_room_time"]];
-        }else{
-            
-            header.payL.text = [NSString stringWithFormat:@"交房时间：暂无数据"];
-        }
+        header.moreBtn.tag = 1;
+        [header.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
         
         if (_focusDic.count) {
             
@@ -412,8 +498,88 @@
         }
         header.imgBtnBlock = ^(NSInteger num, NSArray *imgArr) {
             
-            BuildingAlbumVC *nextVC = [[BuildingAlbumVC alloc] initWithNum:num projectId:_projectId];
-            [self.navigationController pushViewController:nextVC animated:YES];
+            NSMutableArray *tempArr = [NSMutableArray array];
+            [imgArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+                YBImageBrowserModel *model = [YBImageBrowserModel new];
+                model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
+                [tempArr addObject:model];
+            }];
+            if (_albumArr.count) {
+//
+//                NSMutableArray *tempArr = [NSMutableArray array];
+//                for (int i = 0; i < _albumArr.count; i++) {
+//
+//                    NSArray *arr = _albumArr[i][@"data"];
+//                    for (int j = 0; j < arr.count; j++) {
+//
+//                        YBImageBrowserModel *model = [YBImageBrowserModel new];
+//                        model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,arr[j][@"img_url"]]];
+//                        [tempArr addObject:model];
+//                    }
+//                }
+            
+//                [_albumArr enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                    YBImageBrowserModel *model = [YBImageBrowserModel new];
+//                    model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,obj[@"img_url"]]];
+//                    [tempArr addObject:model];
+//                }];
+                
+                YBImageBrowser *browser = [YBImageBrowser new];
+                browser.delegate = self;
+                browser.dataArray = tempArr;
+                browser.albumArr = _albumArr;
+                browser.projectId = _projectId;
+                browser.currentIndex = num;
+                [browser show];
+            }else{
+                
+                [BaseRequest GET:GetImg_URL parameters:@{@"project_id":_projectId} success:^(id resposeObject) {
+                    
+                    if ([resposeObject[@"code"] integerValue] == 200) {
+                        
+                        if (![resposeObject[@"data"] isKindOfClass:[NSNull class]]) {
+                            
+                            [_albumArr removeAllObjects];
+                            for ( int i = 0; i < [resposeObject[@"data"] count]; i++) {
+                                
+                                if ([resposeObject[@"data"][i] isKindOfClass:[NSDictionary class]]) {
+                                    
+                                    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithDictionary:resposeObject[@"data"][i]];
+                                    
+                                    [_albumArr addObject:tempDic];
+                                    
+//                                    NSMutableArray *tempArr = [NSMutableArray array];
+//                                    for (int i = 0; i < _albumArr.count; i++) {
+//
+//                                        NSArray *arr = _albumArr[i][@"data"];
+//                                        for (int j = 0; j < arr.count; j++) {
+//
+//                                            YBImageBrowserModel *model = [YBImageBrowserModel new];
+//                                            model.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,arr[j][@"img_url"]]];
+//                                            [tempArr addObject:model];
+//                                        }
+//                                    }
+                                    
+                                    YBImageBrowser *browser = [YBImageBrowser new];
+                                    browser.delegate = self;
+                                    browser.albumArr = _albumArr;
+                                    browser.dataArray = tempArr;
+                                    browser.projectId = _projectId;
+                                    browser.currentIndex = num;
+                                    [browser show];
+                                }
+                            }
+                        }else{
+                            
+                        }
+                    }
+                } failure:^(NSError *error) {
+                    
+                    NSLog(@"%@",error);
+                }];
+            }
         };
         
         header.attentBtnBlock = ^{
@@ -431,7 +597,6 @@
                             [self RequestMethod];
                         }else if([resposeObject[@"code"] integerValue] == 400){
                             
-//                            [self showContent:resposeObject[@"msg"]];
                         }
                         else{
                             [self showContent:resposeObject[@"msg"]];
@@ -452,7 +617,6 @@
                             [self RequestMethod];
                         }else if([resposeObject[@"code"] integerValue] == 400){
                             
-//                            [self showContent:resposeObject[@"msg"]];
                         }
                         else{
                             [self showContent:resposeObject[@"msg"]];
@@ -489,6 +653,7 @@
             header.moreBtnBlock = ^{
                   
                 CustomMatchListVC *nextVC = [[CustomMatchListVC alloc] initWithDataArr:_peopleArr projectId:_projectId];
+                nextVC.model = _model;
                 [self.navigationController pushViewController:nextVC animated:YES];
             };
             return header;
@@ -510,30 +675,6 @@
     switch (indexPath.section) {
         case 0:
         case 1:
-        {
-            
-            RoomDetailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoomDetailTableCell"];
-            if (!cell) {
-                
-                cell = [[RoomDetailTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell"];
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.developL.text = @"阳光物业公司";
-//            cell.openL.text = @"2017年02月20日";
-//            cell.payL.text = @"2019年02月";
-//            cell.timeL.text = @"70年";
-            if (_model.developer_name) {
-
-                cell.developL.text = _model.developer_name;
-            }
-            cell.openL.text = _buildDic[@"open_time"];
-            cell.payL.text = _buildDic[@"handing_room_time"];
-            
-            cell.moreBtn.tag = indexPath.section;
-            [cell.moreBtn addTarget:self action:@selector(ActionMoreBtn:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-            break;
-        }
         case 2:
         {
 
@@ -549,7 +690,7 @@
                 cell.numL.text = [NSString stringWithFormat: @"（共%@条）",_dynamicNum];
                 cell.titleL.text = _dynamicDic[@"title"];
                 cell.timeL.text = _dynamicDic[@"update_time"];
-                cell.contentL.text = _dynamicDic[@"content"];
+                cell.contentL.text = _dynamicDic[@"abstract"];
             }
             
             cell.moreBtn.tag = indexPath.section;
@@ -566,7 +707,7 @@
                 cell = [[RoomDetailTableCell2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RoomDetailTableCell2"];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell.bigImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_model.total_float_url]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            [cell.bigImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_model.total_float_url]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                
                 if (error) {
                     
@@ -607,6 +748,7 @@
                 if (_houseArr.count) {
                     
                     HouseTypeDetailVC *nextVC = [[HouseTypeDetailVC alloc] initWithHouseTypeId:[NSString stringWithFormat:@"%@",_houseArr[index][@"id"]] index:index dataArr:_houseArr projectId:_projectId];
+                    nextVC.model = _model;
                     [self.navigationController pushViewController:nextVC animated:YES];
                 }
             };
@@ -669,27 +811,97 @@
             cell.recommendBtnBlock5 = ^(NSInteger index) {
                 
                 CustomMatchModel *model = _peopleArr[index];
-                [BaseRequest POST:RecommendClient_URL parameters:@{@"project_id":_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id} success:^(id resposeObject) {
+                self.selectWorkerView = [[SelectWorkerView alloc] initWithFrame:self.view.bounds];
+                SS(strongSelf);
+                WS(weakSelf);
+                self.selectWorkerView.selectWorkerRecommendBlock = ^{
                     
-                    NSLog(@"%@",resposeObject);
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                    if (weakSelf.selectWorkerView.nameL.text) {
+                        
+                        [dic setObject:weakSelf.selectWorkerView.ID forKey:@"consultant_advicer_id"];
+                    }
+                    
+                    ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                    NSDictionary *tempDic = @{@"project":strongSelf->_model.project_name,
+                                              @"sex":model.sex,
+                                              @"tel":model.tel,
+                                              @"name":model.name
+                                              };
+                    reportCustomConfirmView.state = strongSelf->_state;
+                    reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                    reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
+                        
+                        [BaseRequest POST:RecommendClient_URL parameters:dic success:^(id resposeObject) {
+                            
+                            NSLog(@"%@",resposeObject);
+                            
+                            if ([resposeObject[@"code"] integerValue] == 200) {
+                                
+                                ReportCustomSuccessView *reportCustomSuccessView = [[ReportCustomSuccessView alloc] initWithFrame:weakSelf.view.frame];
+                                NSDictionary *tempDic = @{@"project":strongSelf->_model.project_name,
+                                                          @"sex":model.sex,
+                                                          @"tel":model.tel,
+                                                          @"name":model.name
+                                                          };
+                                reportCustomSuccessView.state = strongSelf->_state;
+                                reportCustomSuccessView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                                reportCustomSuccessView.reportCustomSuccessViewBlock = ^{
+                                    
+                                    [weakSelf MatchRequest];
+                                };
+                                [weakSelf.view addSubview:reportCustomSuccessView];
+                            }else if ([resposeObject[@"code"] integerValue] == 401){
+                                
+                                [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                            }
+                            else{
+                                
+                                [weakSelf alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                            }
+                        } failure:^(NSError *error) {
+                            
+                            NSLog(@"%@",error);
+                            [weakSelf showContent:@"网络错误"];
+                        }];
+                    };
+                    [weakSelf.view addSubview:reportCustomConfirmView];
+                };
+                [BaseRequest GET:ProjectAdvicer_URL parameters:@{@"project_id":strongSelf->_model.project_id} success:^(id resposeObject) {
                     
                     if ([resposeObject[@"code"] integerValue] == 200) {
                         
-                        [self alertControllerWithNsstring:@"推荐成功" And:nil WithDefaultBlack:^{
+                        if ([resposeObject[@"data"][@"rows"] count]) {
                             
-                            [self MatchRequest];
-                        }];
-                    }else if ([resposeObject[@"code"] integerValue] == 400){
+                            weakSelf.selectWorkerView.dataArr = [NSMutableArray arrayWithArray:resposeObject[@"data"][@"rows"]];
+                            _state = [resposeObject[@"data"][@"tel_complete_state"] integerValue];
+                            _selected = [resposeObject[@"data"][@"advicer_selected"] integerValue];
+                            weakSelf.selectWorkerView.advicerSelect = _selected;
+                            [self.view addSubview:weakSelf.selectWorkerView];
+                        }else{
+                            
+                            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"project_id":strongSelf->_projectId,@"client_need_id":model.need_id,@"client_id":model.client_id}];
+                            
+                            ReportCustomConfirmView *reportCustomConfirmView = [[ReportCustomConfirmView alloc] initWithFrame:weakSelf.view.frame];
+                            NSDictionary *tempDic = @{@"project":_model.project_name,
+                                                      @"sex":model.sex,
+                                                      @"tel":model.tel,
+                                                      @"name":model.name
+                                                      };
+                            reportCustomConfirmView.state = strongSelf->_state;
+                            reportCustomConfirmView.dataDic = [NSMutableDictionary dictionaryWithDictionary:tempDic];
+                            reportCustomConfirmView.reportCustomConfirmViewBlock = ^{
+                                
+                                [weakSelf RequestRecommend:dic model:model];
+                            };
+                            [weakSelf.view addSubview:reportCustomConfirmView];
+                        }
+                    }else{
                         
-                        
-                    }
-                    else{
-                        
-                        [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                        [self showContent:resposeObject[@"msg"]];
                     }
                 } failure:^(NSError *error) {
                     
-                    NSLog(@"%@",error);
                     [self showContent:@"网络错误"];
                 }];
             };
@@ -714,8 +926,14 @@
     if (indexPath.section == 3) {
         
         DistributVC *nextVC = [[DistributVC alloc] init];
+        nextVC.urlfor3d = _model.total_float_url_panorama;
         nextVC.img_name = _model.total_float_url_phone;
         nextVC.projiect_id = _projectId;
+        [self.navigationController pushViewController:nextVC animated:YES];
+    }
+    if (indexPath.section == 2) {
+        
+        DynamicDetailVC *nextVC = [[DynamicDetailVC alloc] initWithStr:_dynamicDic[@"url"] titleStr:@"动态详情"];
         [self.navigationController pushViewController:nextVC animated:YES];
     }
 }
@@ -733,7 +951,6 @@
     
     return NO;
 }
-
 
 
 - (void)initUI{

@@ -51,16 +51,19 @@
     
     [BaseRequest GET:CancelAuth_URL parameters:@{@"id":_dataDic[@"id"]} success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         [self showContent:resposeObject[@"msg"]];
         if ([resposeObject[@"code"] integerValue] == 200) {
             
-            
+            [self alertControllerWithNsstring:@"取消认证成功" And:nil WithDefaultBlack:^{
+               
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }
     } failure:^(NSError *error) {
         
         [self showContent:@"网络错误"];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 

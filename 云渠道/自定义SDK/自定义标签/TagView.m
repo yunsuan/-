@@ -32,7 +32,7 @@
 -(void)setData:(NSArray *)datasouse
 {
     _data = datasouse;
-    [_collectionview reloadData];
+    [self.collectionview reloadData];
     
 
 }
@@ -73,9 +73,9 @@
     if (!_layout) {
         _layout = [[UICollectionViewFlowLayout alloc]init];
         //设置item的大小
-        _layout.minimumLineSpacing =0;
-        _layout.minimumInteritemSpacing = 5*SIZE;
-        _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _layout.minimumLineSpacing = 5 *SIZE;
+        _layout.minimumInteritemSpacing = 7 *SIZE;
+        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //        _layout.sectionHeadersPinToVisibleBounds = YES;
     }
     return _layout;

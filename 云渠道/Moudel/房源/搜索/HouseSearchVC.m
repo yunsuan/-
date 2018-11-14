@@ -19,6 +19,8 @@
     NSArray *_arr;
     NSMutableArray *_dataArr;
     NSString *_city;
+    NSArray *_tagsArr;
+    NSArray *_propertyArr;
 }
 @property (nonatomic , strong) UITableView *searchTable;
 
@@ -40,6 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    _propertyArr = [self getDetailConfigArrByConfigState:PROPERTY_TYPE];
     _page = 1;
     _dataArr = [@[] mutableCopy];
     [self initUI];
@@ -65,8 +69,6 @@
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
         [self.searchTable.mj_header endRefreshing];
-
-        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             [_dataArr removeAllObjects];
@@ -77,7 +79,7 @@
         }
     } failure:^(NSError *error) {
         
-        NSLog(@"%@",error);
+ 
         [self.searchTable.mj_header endRefreshing];
         [self.searchTable.mj_footer endRefreshing];
     }];
@@ -96,7 +98,7 @@
     
     [BaseRequest GET:ProjectList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] count]) {
@@ -116,7 +118,7 @@
     } failure:^(NSError *error) {
         
         _page -= 1;
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self.searchTable.mj_footer endRefreshing];
     }];
 }
@@ -176,7 +178,7 @@
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
@@ -186,12 +188,11 @@
             }];
         }
         
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSArray *tempArr1 = model.project_tags;
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            NSArray *arr2 = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
-            [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     
@@ -216,11 +217,26 @@
 //        RoomListModel *model = _dataArr[indexPath.row];
         [cell SetTitle:model.project_name image:model.img_url contentlab:@"高新区——天府三街" statu:model.sale_state];
         
+        if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
+            
+            cell.statusImg.hidden = YES;
+            cell.surelab.hidden = YES;
+        }else{
+            
+            cell.statusImg.hidden = NO;
+            if ([model.guarantee_brokerage integerValue] == 1) {
+                
+                cell.surelab.hidden = NO;
+            }else{
+                
+                cell.surelab.hidden = YES;
+            }
+        }
         
         NSMutableArray *tempArr = [@[] mutableCopy];
         for (int i = 0; i < model.property_tags.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROPERTY_TYPE] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_propertyArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [model.property_tags[i] integerValue]) {
                     
@@ -230,11 +246,11 @@
             }];
         }
         
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSArray *tempArr1 = model.project_tags;
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
-            [[self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ([obj[@"id"] integerValue] == [tempArr1[i] integerValue]) {
                     
@@ -245,7 +261,7 @@
         }
         NSArray *tempArr3 = @[tempArr,tempArr2.count == 0 ? @[]:tempArr2];
         [cell settagviewWithdata:tempArr3];
-        [cell.tagview reloadInputViews];
+//        [cell.tagview reloadInputViews];
         [cell.getLevel SetImage:[UIImage imageNamed:@"lightning_1"] selectImg:[UIImage imageNamed:@"lightning"] num:3];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

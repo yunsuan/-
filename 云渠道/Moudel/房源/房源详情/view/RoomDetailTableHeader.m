@@ -55,7 +55,8 @@
             
             UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_Width * i, 0, SCREEN_Width, 183 *SIZE)];
             img.contentMode = UIViewContentModeScaleAspectFill;
-            [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,imgArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            img.clipsToBounds = YES;
+            [img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,imgArr[i][@"img_url"]]] placeholderImage:[UIImage imageNamed:@"banner_default_2"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 
                 if (error) {
                     
@@ -71,12 +72,18 @@
     
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, 183 *SIZE)];
         img.contentMode = UIViewContentModeScaleAspectFill;
+        img.clipsToBounds = YES;
         img.image = [UIImage imageNamed:@"banner_default_2"];
         [_imgScroll addSubview:img];
     }
 }
 
 - (void)setModel:(RoomDetailModel *)model{
+    
+    if (model.developer_name) {
+        
+        _payL.text = [NSString stringWithFormat:@"开发商：%@",model.developer_name];
+    }
     
     if (model.latitude) {
         _latitude = [model.latitude floatValue];
@@ -105,7 +112,7 @@
     NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",15]];
     NSArray *tempArr = dic[@"param"];
     NSMutableArray * arr = [[NSMutableArray alloc] init];
-    NSArray *subArr = [model.project_tags componentsSeparatedByString:@","];
+    NSArray *subArr = model.project_tags;
     for (int i = 0; i < subArr.count; i++) {
         
         [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -129,11 +136,20 @@
     
     if (model.average_price) {
         
-        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 ￥%@/㎡",model.average_price]];
-        [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10 *SIZE] range:NSMakeRange(0, 3)];
-        [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13 *SIZE] range:NSMakeRange(3, 1)];
-        [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, 3)];
-        _priceL.attributedText = attr;
+        if (![model.average_price integerValue]) {
+            
+            NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 暂无数据"]];
+            [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10 *SIZE] range:NSMakeRange(0, attr.length)];
+            [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, attr.length)];
+            _priceL.attributedText = attr;
+        }else{
+         
+            NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 ￥%@/㎡",model.average_price]];
+            [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10 *SIZE] range:NSMakeRange(0, 3)];
+            [attr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13 *SIZE] range:NSMakeRange(3, 1)];
+            [attr addAttribute:NSForegroundColorAttributeName value:YJContentLabColor range:NSMakeRange(0, 3)];
+            _priceL.attributedText = attr;
+        }
     }else{
         
         NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"均价 "]];
@@ -223,6 +239,7 @@
     _payL = [[UILabel alloc] initWithFrame:CGRectMake(10 *SIZE, 100 *SIZE + CGRectGetMaxY(_imgScroll.frame), 300 *SIZE, 12 *SIZE)];
     _payL.textColor = YJContentLabColor;
     _payL.font = [UIFont systemFontOfSize:12 *SIZE];
+    _payL.text = [NSString stringWithFormat:@"开发商："];
     [self.contentView addSubview:_payL];
     
     
@@ -235,13 +252,20 @@
     addressImg.image = [UIImage imageNamed:@"map"];
     [self.contentView addSubview:addressImg];
     
-    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(31 *SIZE, 155 *SIZE + CGRectGetMaxY(_imgScroll.frame), 300 *SIZE, 11 *SIZE)];
+    _addressL = [[UILabel alloc] initWithFrame:CGRectMake(31 *SIZE, 155 *SIZE + CGRectGetMaxY(_imgScroll.frame), 250 *SIZE, 11 *SIZE)];
     _addressL.textColor = YJContentLabColor;
     _addressL.font = [UIFont systemFontOfSize:12 *SIZE];
     [self.contentView addSubview:_addressL];
     _addressL.userInteractionEnabled = YES;
     [_addressL addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(action_map)]];
     
+    
+    _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _moreBtn.frame = CGRectMake(287 *SIZE, 155 *SIZE + CGRectGetMaxY(_imgScroll.frame), 65 *SIZE, 20 *SIZE);
+    _moreBtn.titleLabel.font = [UIFont systemFontOfSize:11 *sIZE];
+    [_moreBtn setTitle:@"查看更多 >>" forState:UIControlStateNormal];
+    [_moreBtn setTitleColor:YJContentLabColor forState:UIControlStateNormal];
+    [self.contentView addSubview:_moreBtn];
 }
 
 -(void)action_map

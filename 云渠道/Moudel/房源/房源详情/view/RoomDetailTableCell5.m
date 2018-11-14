@@ -328,13 +328,17 @@
         make.height.equalTo(@(10 *SIZE));
     }];
     
-    [_recommendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.equalTo(self.contentView).offset(- 10 *SIZE);
-        make.top.equalTo(self.contentView).offset(58 *SIZE);
-        make.width.equalTo(@(77 *SIZE));
-        make.height.equalTo(@(30 *SIZE));
-    }];
+    
+    if ([[UserModel defaultModel].agent_identity integerValue] == 1) {
+        
+        [_recommendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.contentView).offset(- 10 *SIZE);
+            make.top.equalTo(self.contentView).offset(58 *SIZE);
+            make.width.equalTo(@(77 *SIZE));
+            make.height.equalTo(@(30 *SIZE));
+        }];
+    }
+
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
        

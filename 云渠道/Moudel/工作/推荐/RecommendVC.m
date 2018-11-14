@@ -127,10 +127,16 @@
                 
                 [_unComfirmArr removeAllObjects];
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast1 = YES;
+                    if (_index == 0) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast1 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -155,10 +161,16 @@
                 
                 [_unComfirmArr removeAllObjects];
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast1 = YES;
+                    if (_index == 0) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast1 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -185,10 +197,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast1 = YES;
+                    if (_index == 0) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast1 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -213,10 +231,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetUnComfirmArr:resposeObject[@"data"][@"data"]];
-                if (_page1 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page1 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast1 = YES;
+                    if (_index == 0) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast1 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -268,10 +292,16 @@
                 
                 [_validArr removeAllObjects];
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast2 = YES;
+                    if (_index == 1) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast2 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -295,10 +325,16 @@
                 
                 [_validArr removeAllObjects];
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast2 = YES;
+                    if (_index == 1) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast2 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -325,10 +361,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast2 = YES;
+                    if (_index == 1) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast2 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -353,10 +395,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetValidArr:resposeObject[@"data"][@"data"]];
-                if (_page2 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page2 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast2 = YES;
+                    if (_index == 1) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast2 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -407,10 +455,16 @@
                 
                 [_inValidArr removeAllObjects];
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast3 = YES;
+                    if (_index == 2) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast3 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -434,10 +488,16 @@
                 
                 [_inValidArr removeAllObjects];
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast3 = YES;
+                    if (_index == 2) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast3 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -464,10 +524,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast3 = YES;
+                    if (_index == 2) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast3 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -492,10 +558,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetInValidArr:resposeObject[@"data"][@"data"]];
-                if (_page3 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page3 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast3 = YES;
+                    if (_index == 2) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast3 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -546,10 +618,16 @@
                 
                 [_appealArr removeAllObjects];
                 [self SetApealArr:resposeObject[@"data"][@"data"]];
-                if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page4 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast4 = YES;
+                    if (_index == 3) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast4 = YES;
+                        });
+                    }
                 }
             }
             else{
@@ -581,10 +659,16 @@
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
                 [self SetApealArr:resposeObject[@"data"][@"data"]];
-                if (_page4 == [resposeObject[@"data"][@"last_page"] integerValue]) {
+                if (_page4 >= [resposeObject[@"data"][@"last_page"] integerValue]) {
                     
-                    _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
-                    _isLast4 = YES;
+                    if (_index == 3) {
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            _MainTableView.mj_footer.state = MJRefreshStateNoMoreData;
+                            _isLast4 = YES;
+                        });
+                    }
                 }else{
                     
                     [_MainTableView.mj_footer endRefreshing];
@@ -630,6 +714,7 @@
 {
 
     QuickAddAndRecommendVC *nextVC = [[QuickAddAndRecommendVC alloc] init];
+//    nextVC.roomDetailModel = self
     [self.navigationController pushViewController:nextVC animated:YES];
 }
 
@@ -771,20 +856,20 @@
     }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (_index == 0) {
-        
-        return 132 *SIZE;
-        
-    }else if (_index < 3){
-        
-        return 107 *SIZE;
-    }else{
-        
-        return 103 *SIZE;
-    }
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    if (_index == 0) {
+//        
+//        return 132 *SIZE;
+//        
+//    }else if (_index < 3){
+//        
+//        return 107 *SIZE;
+//    }else{
+//        
+//        return 103 *SIZE;
+//    }
+//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -794,6 +879,7 @@
         
         RecommendCell *cell  = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
+            
             cell = [[RecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -810,16 +896,41 @@
                 
             }];
             
-            UIAlertAction *valid = [UIAlertAction actionWithTitle:@"有效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *valid = [UIAlertAction actionWithTitle:@"已到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
                 NSDictionary *dic = _unComfirmArr[index];
                 CompleteCustomVC1 *nextVC = [[CompleteCustomVC1 alloc] initWithClientID:dic[@"client_id"] name:dic[@"name"] dataDic:dic];
                 [self.navigationController pushViewController:nextVC animated:YES];
             }];
             
-            UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"无效到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *invalid = [UIAlertAction actionWithTitle:@"未到访" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 InvalidView * invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
                 invalidView.client_id = _unComfirmArr[indexPath.row][@"client_id"];
+                invalidView.invalidViewBlock = ^(NSDictionary *dic) {
+                    
+                    [BaseRequest POST:ConfirmDisabled_URL parameters:dic success:^(id resposeObject) {
+                        
+                        if ([resposeObject[@"code"] integerValue] == 200) {
+                            
+                            [self alertControllerWithNsstring:@"失效确认成功" And:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"recommendReload" object:nil];
+                            
+                        }else{
+                            
+                            [self alertControllerWithNsstring:@"温馨提示" And:resposeObject[@"msg"]];
+                        }
+                    } failure:^(NSError *error) {
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:@"操作失败" WithDefaultBlack:^{
+                            
+                        }];
+                    }];
+                };
+                
+                invalidView.invalidViewBlockFail = ^(NSString *str) {
+                    
+                    [self alertControllerWithNsstring:@"温馨提示" And:str];
+                };
                 [[UIApplication sharedApplication].keyWindow addSubview:invalidView];
             }];
             
@@ -848,17 +959,24 @@
             cell.tag = indexPath.row;
             cell.phoneBtnBlock = ^(NSInteger index) {
                 
-                NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
-                if (phone.length) {
+                if ([_validArr[index][@"tel_complete_state"] integerValue] <= 2) {
                     
-                    //获取目标号码字符串,转换成URL
-                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                    //调用系统方法拨号
-                    [[UIApplication sharedApplication] openURL:url];
+                    NSString *phone = [_validArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                    if (phone.length) {
+                        
+                        //获取目标号码字符串,转换成URL
+                        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                        //调用系统方法拨号
+                        [[UIApplication sharedApplication] openURL:url];
+                    }else{
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    }
                 }else{
                     
-                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    
                 }
+                
             };
         }else{
             
@@ -866,17 +984,24 @@
             cell.tag = indexPath.row;
             cell.phoneBtnBlock = ^(NSInteger index) {
                 
-                NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
-                if (phone.length) {
+                if ([_inValidArr[index][@"tel_complete_state"] integerValue] <= 2) {
                     
-                    //获取目标号码字符串,转换成URL
-                    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
-                    //调用系统方法拨号
-                    [[UIApplication sharedApplication] openURL:url];
+                    NSString *phone = [_inValidArr[index][@"tel"] componentsSeparatedByString:@","][0];
+                    if (phone.length) {
+                        
+                        //获取目标号码字符串,转换成URL
+                        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phone]];
+                        //调用系统方法拨号
+                        [[UIApplication sharedApplication] openURL:url];
+                    }else{
+                        
+                        [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    }
                 }else{
                     
-                    [self alertControllerWithNsstring:@"温馨提示" And:@"暂时未获取到联系电话"];
+                    
                 }
+                
             };
         }
         
@@ -943,6 +1068,8 @@
     {
         _MainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 41 *SIZE, 360*SIZE, SCREEN_Height-NAVIGATION_BAR_HEIGHT - 41 *SIZE) style:UITableViewStylePlain];
         _MainTableView.backgroundColor = YJBackColor;
+        _MainTableView.rowHeight = UITableViewAutomaticDimension;
+        _MainTableView.estimatedRowHeight = 130 *SIZE;
         _MainTableView.delegate = self;
         _MainTableView.dataSource = self;
         [_MainTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -988,15 +1115,6 @@
     return _MainTableView;
 }
 
-
-//- (InvalidView *)invalidView{
-//
-//    if (!_invalidView) {
-//
-//        _invalidView = [[InvalidView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_Width, SCREEN_Height)];
-//    }
-//    return _invalidView;
-//}
 
 
 @end

@@ -25,6 +25,7 @@
     NSInteger _num;
     CustomRequireModel *_model;
     NSInteger _btnNum;
+    NSArray *_tagsArr;
 }
 
 @property (nonatomic, strong) UIScrollView *scrolleView;
@@ -154,6 +155,7 @@
 
 - (void)initDataSource{
     
+    _tagsArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
     _stairArr = [[NSMutableArray alloc] init];
     for (int i = 1; i < 50; i++) {
         
@@ -267,35 +269,53 @@
     WS(weakself);
     addressChooseView.addressChooseView3ConfirmBlock = ^(NSString *city, NSString *area, NSString *cityid, NSString *areaid) {
         
+        NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"region" ofType:@"json"]];
+        
+        NSError *err;
+        NSArray *proArr = [NSJSONSerialization JSONObjectWithData:JSONData
+                                                      options:NSJSONReadingMutableContainers
+                                                        error:&err];
+        NSString *pro = [cityid substringToIndex:2];
+        pro = [NSString stringWithFormat:@"%@0000",pro];
+        NSString *proName;
+        for (NSDictionary *dic in proArr) {
+            
+            if([dic[@"code"] isEqualToString:pro]){
+                
+                proName = dic[@"name"];
+                break;
+            }
+        }
+        
         if (_btnNum == 1) {
             
-            weakself.addressBtn.content.text = [NSString stringWithFormat:@"四川省/%@/%@",city,area];
-            weakself.addressBtn.str = [NSString stringWithFormat:@"510000-%@-%@",cityid,areaid];
+            weakself.addressBtn.content.text = [NSString stringWithFormat:@"%@/%@/%@",proName,city,area];
+            weakself.addressBtn.str = [NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid];
             _addBtn.hidden = NO;
         }else if (_btnNum == 2){
             
-            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"510000-%@-%@",cityid,areaid]]) {
+            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid]]) {
                 
                 [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
                     
                 }];
             }else{
                 
-                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"四川省/%@/%@",city,area];
-                weakself.addressBtn2.str = [NSString stringWithFormat:@"510000-%@-%@",cityid,areaid];
+                weakself.addressBtn2.content.text = [NSString stringWithFormat:@"%@/%@/%@",proName,city,area];
+                weakself.addressBtn2.str = [NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid];
                 _addBtn.hidden = NO;
             }
         }else{
             
-            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"510000-%@-%@",cityid,areaid]] || [weakself.addressBtn2.str isEqualToString:[NSString stringWithFormat:@"510000-%@-%@",cityid,areaid]]) {
+            if ([weakself.addressBtn.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid]] || [weakself.addressBtn2.str isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid]]) {
                 
                 [self alertControllerWithNsstring:@"温馨提示" And:@"请不要选择相同区域" WithDefaultBlack:^{
                     
                 }];
             }else{
                 
-                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"四川省/%@/%@",city,area];
-                weakself.addressBtn3.str = [NSString stringWithFormat:@"510000-%@-%@",cityid,areaid];
+                weakself.addressBtn3.content.text = [NSString stringWithFormat:@"%@/%@/%@",proName,city,area];
+                weakself.addressBtn3.str = [NSString stringWithFormat:@"%@-%@-%@",pro,cityid,areaid];
                 _addBtn.hidden = NO;
             }
         }
@@ -530,7 +550,7 @@
         _nextBtn.userInteractionEnabled = NO;
         [BaseRequest POST:AddCustomer_URL parameters:dic success:^(id resposeObject) {
            
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
  
             _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
@@ -551,7 +571,7 @@
         } failure:^(NSError *error) {
             _nextBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
     }else{
     
@@ -645,7 +665,7 @@
         _nextBtn.userInteractionEnabled = NO;
         [BaseRequest POST:UpdateNeed_URL parameters:dic success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
             _nextBtn.userInteractionEnabled = YES;
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -662,7 +682,7 @@
         } failure:^(NSError *error) {
             _nextBtn.userInteractionEnabled = YES;
             [self showContent:@"网络错误"];
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
     }
 }
@@ -1072,11 +1092,11 @@
     NSArray *arr =  [_model.need_tags componentsSeparatedByString:@","];
         
     _tagView = [[AddTagView alloc] initWithFrame:CGRectMake(0, 757 *SIZE, SCREEN_Width, 127 *SIZE)];
-    NSArray *tagArr = [self getDetailConfigArrByConfigState:PROJECT_TAGS_DEFAULT];
+    
     NSMutableArray *tagArr1 = [[NSMutableArray alloc] init];
     for (int i = 0; i < arr.count; i++) {
         
-        [tagArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_tagsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             if ([obj[@"id"] integerValue] == [arr[i] integerValue]) {
                 
@@ -1184,8 +1204,8 @@
             
             if ([typeArr[i][@"id"] integerValue] == [_model.property_type integerValue]) {
                 
-                _typeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
-                _typeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+                _houseTypeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+                _houseTypeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
                 break;
             }
         }
@@ -1232,8 +1252,8 @@
             
             if ([typeArr[i][@"id"] integerValue] == [_model.house_type integerValue]) {
                 
-                _houseTypeBtn.content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
-                _houseTypeBtn.str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
+               _typeBtn .content.text = [NSString stringWithFormat:@"%@",typeArr[i][@"param"]];
+               _typeBtn .str = [NSString stringWithFormat:@"%@",typeArr[i][@"id"]];
                 break;
             }
         }

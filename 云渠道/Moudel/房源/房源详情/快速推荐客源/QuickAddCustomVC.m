@@ -223,7 +223,7 @@
     _addBtn.frame = CGRectMake(313 *SIZE, 162 *SIZE, 25 *SIZE, 25 *SIZE);
     [_addBtn addTarget:self action:@selector(ActionAddBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_addBtn setImage:[UIImage imageNamed:@"add_2"] forState:UIControlStateNormal];
-    [_scrollview addSubview:_addBtn];
+//    [_scrollview addSubview:_addBtn];
     
     _tel2 = [[BorderTF alloc]initWithFrame:CGRectMake(80.3*SIZE, 196*SIZE, 257.7*SIZE, 33.3*SIZE)];
     _tel2.textfield.placeholder = @"选填";
@@ -475,6 +475,7 @@
     
     QuickAddRequireVC *nextVC = [[QuickAddRequireVC alloc] initWithProjectId:_projectId];
     nextVC.status = @"addCustom";
+    nextVC.projectName = self.projectName;
     nextVC.infoModel = _Customerinfomodel;
     [self.navigationController pushViewController:nextVC animated:YES];
 }

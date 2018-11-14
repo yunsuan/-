@@ -60,7 +60,7 @@
         [_delegate Cell4collectionView:_POIColl didSelectItemAtIndexPath:indexPath];
     }else{
         
-        NSLog(@"没有代理人");
+//        NSLog(@"没有代理人");
     }
 }
 

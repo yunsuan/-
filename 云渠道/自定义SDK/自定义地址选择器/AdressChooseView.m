@@ -215,8 +215,14 @@
     self.provinceid = self.provinceArray[0][@"code"];
     self.cityStr = self.cityArray[0][@"name"];
     self.cityid = self.cityArray[0][@"code"];
+    
+    if ([self.areaArray isKindOfClass:[NSNull class]]) {
+        self.areaStr = self.cityStr;
+        self.areaid = self.cityid;
+    }else{
     self.areaStr = self.areaArray[0][@"name"];
     self.areaid = self.areaArray[0][@"code"];
+    }
 }
 
 -(void)getprovincearray
@@ -279,7 +285,15 @@
     }else if (component == 1){
         return self.cityArray.count;
     }else if (component == 2){
-        return self.areaArray.count;
+        if (![self.areaArray isKindOfClass:[NSNull class]]) {
+            return self.areaArray.count;
+        }
+        else
+        {
+            return 0;
+        }
+        
+        
     }
     return 0;
 }
@@ -317,8 +331,15 @@
 
         self.cityStr = self.cityArray[0][@"name"];
         self.cityid = self.cityArray[0][@"code"];
-        self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"code"];
+        
+        if ([self.areaArray isKindOfClass:[NSNull class]]) {
+            self.areaStr = self.cityStr;
+            self.areaid = self.cityid;
+        }else{
+            self.areaStr = self.areaArray[0][@"name"];
+            self.areaid = self.areaArray[0][@"code"];
+        }
+
         
     }else if (component == 1){//选择市
         [self getAreaArrayBycity:row];
@@ -326,8 +347,14 @@
         [self.pickerView selectRow:0 inComponent:2 animated:YES];
         self.cityStr = self.cityArray[row][@"name"];
         self.cityid =  self.cityArray[row][@"code"];
-        self.areaStr = self.areaArray[0][@"name"];
-        self.areaid = self.areaArray[0][@"code"];
+        if ([self.areaArray isKindOfClass:[NSNull class]]) {
+        self.areaStr = self.cityStr;
+        self.areaid = self.cityid;
+        }
+        else{
+            self.areaStr = self.areaArray[0][@"name"];
+            self.areaid = self.areaArray[0][@"code"];
+        }
         
     }else if (component == 2){//选择区
         self.areaStr = self.areaArray[row][@"name"];

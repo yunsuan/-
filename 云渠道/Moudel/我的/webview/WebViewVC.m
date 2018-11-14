@@ -21,7 +21,9 @@
     self.navBackgroundView.hidden = NO;
     self.titleLabel.text = @"操作指南";
     //2.创建URL
-    NSURL *URL = [NSURL URLWithString:@"http://www.ccsoft.com.cn"];
+//    NSURL *URL = [NSURL URLWithString:@"http://120.27.21.136:2798/360/index.html"];
+    NSURL *URL = [NSURL URLWithString:_weburl];
+
     //3.创建Request
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     //4.加载Request
@@ -54,7 +56,7 @@
 -(WKWebView *)webwivw
 {
     if (!_webwivw) {
-        _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
+        _webwivw = [[WKWebView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - NAVIGATION_BAR_HEIGHT)];
         _webwivw.navigationDelegate = self;
         self.view.backgroundColor = [UIColor whiteColor];
     }

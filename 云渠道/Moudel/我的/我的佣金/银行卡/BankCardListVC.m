@@ -39,9 +39,7 @@
 - (void)RequestMethod{
     
     [BaseRequest POST:BankCardInfo_URL parameters:nil success:^(id resposeObject) {
-        
-        NSLog(@"%@",resposeObject);
-  
+
         if ([resposeObject[@"code"] integerValue] == 200) {
             
             if ([resposeObject[@"data"] isKindOfClass:[NSDictionary class]]) {
@@ -54,7 +52,6 @@
         }
     } failure:^(NSError *error) {
        
-        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -84,12 +81,12 @@
         UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"解除绑定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             [BaseRequest POST:DeleteBankCard_URL parameters:nil success:^(id resposeObject) {
-                
-                NSLog(@"%@",resposeObject);
             
                 if ([resposeObject[@"code"] integerValue] == 200) {
                     
                     [_dataArr removeAllObjects];
+                    NSDictionary *dic = @{};
+                    [_dataArr addObject:dic];
                     [_bankTable reloadData];
                 }
                 else{
@@ -98,7 +95,7 @@
             } failure:^(NSError *error) {
                 
                 [self showContent:@"网络错误"];
-                NSLog(@"%@",error);
+
             } ];
         }];
         
@@ -117,7 +114,7 @@
     NSString *replaceStr = str;
     for (NSInteger i = 0; i < length - 4; i++) {
         NSRange range = NSMakeRange(startLocation, 1);
-        replaceStr = [replaceStr stringByReplacingCharactersInRange:range withString:@"*"];
+        replaceStr = [replaceStr stringByReplacingCharactersInRange:range withString:@"＊"];
         startLocation ++;
     }
     return replaceStr;
@@ -126,7 +123,9 @@
 - (NSString *)substring:(NSString *)str{
     
     NSMutableArray *arr = [[NSMutableArray alloc] init];
-    for (int i = 0; i < str.length; i++) {
+    
+    NSInteger remaining = str.length % 4;
+    for (int i = 0; i < str.length - remaining; i++) {
         
         if (i % 4 == 0) {
             
@@ -134,6 +133,7 @@
             [arr addObject:subStr];
         }
     }
+    [arr addObject:[str substringWithRange:NSMakeRange(str.length - remaining, remaining)]];
     NSString *resultStr;
     for (int i = 0; i < arr.count; i++) {
         
@@ -149,7 +149,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
+
     if (_dataArr.count) {
         
         return 1;
@@ -192,12 +192,11 @@
                 cell.bankL.text = dic[@"param"];
             }
         }
-//        cell.bankL.text = _dataArr[indexPath.section][@"bank"];
         NSString *str = [self replaceStringWithAsterisk:0 length:[_dataArr[indexPath.section][@"bank_card"] length] str:_dataArr[indexPath.section][@"bank_card"]];
         NSString *subStr = [self substring:str];
-        NSMutableAttributedString *atti = [[NSMutableAttributedString alloc] initWithString:subStr];
-//        atti addAttribute:<#(nonnull NSAttributedStringKey)#> value:<#(nonnull id)#> range:<#(NSRange)#>
-        cell.accL.attributedText = atti;
+        cell.accL.text = subStr;
+//        NSMutableAttributedString *atti = [[NSMutableAttributedString alloc] initWithString:subStr];
+//        cell.accL.attributedText = atti;
         
         return cell;
     }else{
@@ -227,6 +226,10 @@
     if (![_dataArr[indexPath.section][@"bank_card"] length]) {
         
         AddBankCardVC *nextVC = [[AddBankCardVC alloc] init];
+        nextVC.addBankCardBlock = ^{
+            
+            [self RequestMethod];
+        };
         [self.navigationController pushViewController:nextVC animated:YES];
     }else{
         

@@ -146,9 +146,12 @@
             cell.titleL.text = @"佣金信息";
             
             cell.typeL.text = [NSString stringWithFormat:@"佣金类型：%@",_data[@"broker_type"]];
-            
+            if ([self.iscompany integerValue] ==1) {
+                cell.moneyL.text = @"";
+            }
+            else{
             cell.moneyL.text = [NSString stringWithFormat:@"佣金金额：%@",_data[@"broker_num"]];
-            
+            }
             if ([_data[@"broker_type"] isEqualToString:@"成交佣金"]) {
                 cell.propertyL.text =[NSString stringWithFormat:@"物业类型：%@",_data[@"deal_info"][@"property"]];
                 cell.numL.text = [NSString stringWithFormat:@"房号：%@",_data[@"deal_info"][@"house_info"]];
@@ -158,11 +161,11 @@
                 cell.timeL.text = [NSString stringWithFormat:@"成交时间：%@",_data[@"deal_info"][@"update_time"]];
             }
             else if ([_data[@"broker_type"] isEqualToString:@"到访佣金"]){
-                cell.propertyL.text = [NSString stringWithFormat:@"有效到访时间：%@",_data[@"allot_time"]];;
+                cell.propertyL.text = [NSString stringWithFormat:@"到访时间：%@",_data[@"allot_time"]];;
             }
             else{
                 
-                cell.propertyL.text = [NSString stringWithFormat:@"有效到访时间：%@",_data[@"visit_time"]];;;
+                cell.propertyL.text = [NSString stringWithFormat:@"确认有效时间：%@",_data[@"visit_time"]];;;
             }
 
             [cell.ruleBtn addTarget:self action:@selector(action_rule) forControlEvents:UIControlEventTouchUpInside];
@@ -277,7 +280,7 @@
                                             @"broker_id":_broker_id
                                             }
               success:^(id resposeObject) {
-                  NSLog(@"%@",resposeObject);
+//                  NSLog(@"%@",resposeObject);
                   if ([resposeObject[@"code"] integerValue]==200) {
                       [_moneybtn setTitle:@"已催佣" forState:UIControlStateNormal];
                       _moneybtn.userInteractionEnabled = NO;
@@ -288,7 +291,7 @@
                   }
               }
               failure:^(NSError *error) {
-                  NSLog(@"%@",error.description);
+//                  NSLog(@"%@",error.description);
               }];
 }
 

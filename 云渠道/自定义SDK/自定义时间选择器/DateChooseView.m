@@ -17,7 +17,7 @@
     
     NSDate *_date;
 }
-@property(nonatomic, strong) UIDatePicker * pickerView;
+//@property(nonatomic, strong) UIDatePicker * pickerView;
 /**
  bgView
  */
@@ -157,10 +157,11 @@
 - (void)hidePickerView
 {
     [UIView animateWithDuration:0.3 animations:^{
-        _bgView.frame = CGRectMake(0, self.frame.size.height , self.frame.size.width, BGHEIGHT);
+        _bgView.frame = CGRectMake(0, self.frame.size.height - BGHEIGHT , self.frame.size.width, BGHEIGHT);
         
         self.alpha = 1;
     } completion:^(BOOL finished) {
+        
         [self removeFromSuperview];
     }];
 }
@@ -196,6 +197,7 @@
     
 - (void)ActionTap{
     
+//    [self hidePickerView];
     [self removeFromSuperview];
 }
 

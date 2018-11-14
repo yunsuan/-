@@ -84,7 +84,7 @@
     [_dataArr removeAllObjects];
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
      
         [_selecTable.mj_header endRefreshing];
         if ([resposeObject[@"code"] integerValue] == 200) {
@@ -114,7 +114,7 @@
     } failure:^(NSError *error) {
         
         [_selecTable.mj_header endRefreshing];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -142,7 +142,7 @@
     
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -176,7 +176,7 @@
         
         _page -= 1;
         [_selecTable.mj_footer endRefreshing];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -194,7 +194,7 @@
     
     [BaseRequest GET:GetCompanyList_URL parameters:dic success:^(id resposeObject) {
         
-        NSLog(@"%@",resposeObject);
+//        NSLog(@"%@",resposeObject);
      
         if ([resposeObject[@"code"] integerValue] == 200) {
             
@@ -227,7 +227,7 @@
         
         _page -= 1;
         [_selecTable.mj_footer endRefreshing];
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self showContent:@"网络错误"];
     }];
 }
@@ -258,7 +258,7 @@
         _isSearch = YES;
         [BaseRequest GET:GetCompanyList_URL parameters:@{@"company_name":textField.text} success:^(id resposeObject) {
             
-            NSLog(@"%@",resposeObject);
+//            NSLog(@"%@",resposeObject);
         
             if ([resposeObject[@"code"] integerValue] == 200) {
                 
@@ -281,7 +281,7 @@
             }
         } failure:^(NSError *error) {
             
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
             [self showContent:@"网络错误"];
         }];
     }else{
@@ -467,10 +467,10 @@
     return _dataArr.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 100 *SIZE;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    return 100 *SIZE;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -554,6 +554,8 @@
     [whiteView addSubview:_selectColl];
     
     _selecTable = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_selectColl.frame) + SIZE, SCREEN_Width, SCREEN_Height - CGRectGetMaxY(_selectColl.frame) - SIZE) style:UITableViewStylePlain];
+    _selecTable.rowHeight = UITableViewAutomaticDimension;
+    _selecTable.estimatedRowHeight = 100 *SIZE;
     _selecTable.backgroundColor = self.view.backgroundColor;
     _selecTable.delegate = self;
     _selecTable.dataSource = self;

@@ -32,6 +32,8 @@
 
 @property (nonatomic, strong) UIButton *commitBtn;
 
+@property (nonatomic, strong) UIButton *dimissionBtn;
+
 @end
 
 @implementation AuthenedVC
@@ -74,7 +76,32 @@
 - (void)ActionConfirmBtn:(UIButton *)btn{
     
     AuthenticationVC *nextVC = [[AuthenticationVC alloc] init];
+    nextVC.status = @"重新认证";
+    nextVC.beforeId = _dataDic[@"id"];
     [self.navigationController pushViewController:nextVC animated:YES];
+}
+
+- (void)ActionCancelBtn:(UIButton *)btn{
+    
+    [BaseRequest GET:QuitAuth_URL parameters:@{@"id":_dataDic[@"id"]} success:^(id resposeObject) {
+        
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+            [self alertControllerWithNsstring:@"离职成功" And:nil WithDefaultBlack:^{
+                
+                [UserModel defaultModel].agent_identity = @"1";
+                [UserModelArchiver archive];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadType" object:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }else{
+            
+            [self showContent:resposeObject[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        
+        [self showContent:@"网络错误"];
+    }];
 }
 
 #pragma mark --table代理
@@ -136,7 +163,7 @@
     }
     cell.cancelBtn.tag = indexPath.item;
     cell.cancelBtn.hidden = YES;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Base_Net,_dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",TestBase_Net,_dataDic[@"img_url"]]] placeholderImage:[UIImage imageNamed:@"default_3"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
        
         if (error) {
             
@@ -155,7 +182,7 @@
     
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREEN_Width, SCREEN_Height - NAVIGATION_BAR_HEIGHT)];
     _scrollView.backgroundColor = self.view.backgroundColor;
-    _scrollView.contentSize = CGSizeMake(SCREEN_Width, 766 *SIZE);
+    _scrollView.contentSize = CGSizeMake(SCREEN_Width, 806 *SIZE);
     _scrollView.bounces = NO;
     [self.view addSubview:_scrollView];
     
@@ -201,6 +228,17 @@
     _commitBtn.titleLabel.font = [UIFont systemFontOfSize:16 *SIZE];
     [_commitBtn addTarget:self action:@selector(ActionConfirmBtn:) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_commitBtn];
+    
+    _dimissionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _dimissionBtn.frame = CGRectMake(21 *SIZE, 87 *SIZE + CGRectGetMaxY(whiteView.frame), 317 *SIZE, 40 *SIZE);
+    _dimissionBtn.layer.masksToBounds = YES;
+    _dimissionBtn.layer.cornerRadius = 2 *SIZE;
+    _dimissionBtn.backgroundColor = YJLoginBtnColor;
+    [_dimissionBtn setTitle:@"离职" forState:UIControlStateNormal];
+    [_dimissionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _dimissionBtn.titleLabel.font = [UIFont systemFontOfSize:16 *SIZE];
+    [_dimissionBtn addTarget:self action:@selector(ActionCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:_dimissionBtn];
 }
 
 @end

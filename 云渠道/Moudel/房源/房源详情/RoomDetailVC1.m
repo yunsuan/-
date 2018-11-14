@@ -188,16 +188,19 @@
     _roomProjectVC = [[RoomProjectVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
    
     _roomBrokerageVC = [[RoomBrokerageVC alloc] initWithModel:_model];
+    _roomBrokerageVC.brokerage = _brokerage;
+    
     _roomAnalyzeVC = [[RoomAnalyzeVC alloc] initWithProjectId:[NSString stringWithFormat:@"%@",_model.project_id]];
     // 添加为self的子控制器
     [self addChildViewController:_roomProjectVC];
     [self addChildViewController:_roomBrokerageVC];
+    [self addChildViewController:_roomAnalyzeVC];
     _roomAnalyzeVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 2, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
-    [self.scrollView addSubview:_roomBrokerageVC.view];
     _roomProjectVC.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     _roomBrokerageVC.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, self.scrollView.frame.size.width, CGRectGetHeight(self.scrollView.frame));
     [self.scrollView addSubview:_roomProjectVC.view];
     [self.scrollView addSubview:_roomAnalyzeVC.view];
+    [self.scrollView addSubview:_roomBrokerageVC.view];
     
     // 设置scrollView的代理
     self.scrollView.delegate = self;
@@ -260,24 +263,50 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:_model.project_name descr:_model.district_name thumImage:[NSString stringWithFormat:@"%@%@",Base_Net,_model.img_url]];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:[NSString stringWithFormat:@"【云渠道】%@(%@)邀请您参观【%@】",[UserInfoModel defaultModel].name,[UserInfoModel defaultModel].tel,_model.project_name] thumImage:[UIImage imageNamed:@"shareimg"]];
+//    //设置网页地址
+    
+    
+    //创建网页内容对象
+//    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"云渠道" descr:@"房产渠道专业平台" thumImage:[UIImage imageNamed:@"shareimg"]];
     //设置网页地址
-    shareObject.webpageUrl =@"http://mobile.umeng.com/social";
     
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
     
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-        if (error) {
-            NSLog(@"************Share fail with error %@*********",error);
-            [self alertControllerWithNsstring:@"分享失败" And:nil];
+    
+    [BaseRequest GET:@"user/project/getShare" parameters:@{@"project_id":_model.project_id} success:^(id resposeObject) {
+        
+        NSLog(@"%@",resposeObject);
+        if ([resposeObject[@"code"] integerValue] == 200) {
+            
+//             shareObject.webpageUrl =@"http://itunes.apple.com/app/id1371978352?mt=8";
+            shareObject.webpageUrl = resposeObject[@"data"];
+            //分享消息对象设置分享内容对象
+            messageObject.shareObject = shareObject;
+            if (platformType == UMSocialPlatformType_WechatTimeLine) {
+                shareObject.title =
+                [NSString stringWithFormat:@"【云渠道】%@(%@)邀请您参观【%@】",[UserInfoModel defaultModel].name,[UserInfoModel defaultModel].tel,_model.project_name];
+            }
+            
+            //调用分享接口
+            [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+                if (error) {
+                   
+                    [self alertControllerWithNsstring:@"分享失败" And:nil];
+                }else{
+
+                    [self showContent:@"分享成功"];
+                    [self.transmitView removeFromSuperview];
+                }
+            }];
         }else{
-            NSLog(@"response data is %@",data);
-            [self showContent:@"分享成功"];
-            [self.transmitView removeFromSuperview];
+            [self alertControllerWithNsstring:@"温馨提示" And:@"获取分享链接失败"];
         }
+    } failure:^(NSError *error) {
+        [self alertControllerWithNsstring:@"温馨提示" And:@"获取分享链接失败"];
+        NSLog(@"%@",error);
     }];
+    
+    
 }
 
 @end
