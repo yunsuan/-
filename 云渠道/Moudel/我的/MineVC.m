@@ -130,18 +130,11 @@
 
 -(void)InitDataSouce
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    _namelist = @[@[@"公司认证",@"工作经历"],@[@"我的佣金",@"我的订阅",@"我的关注"],@[@"意见反馈",@"关于易家"]];
-=======
-    _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注"],@[@"意见反馈",@"关于云算",@"操作指南"]];
-    _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus"],@[@"opinion",@"about",@"operation"]];
-    _contentList= @[@[@"",@"",@""],@[@"",@""],@[@" ",@"V1.0",@""]];
-=======
+
     _namelist = @[@[@"个人资料",@"公司认证",@"工作经历"],@[@"我的佣金",@"我的关注",@"我的团队"],@[@"意见反馈",@"关于云算",@"操作指南"]];
     _imageList = @[@[@"personaldata",@"certification",@"work"],@[@"commission",@"focus",@"team"],@[@"opinion",@"about",@"operation"]];
     _contentList= @[@[@"",@"",@""],@[@"",@"",@""],@[@" ",YQDversion,@""]];
->>>>>>> 784feb5fcb8d8f20f3a49df9522942ec5eae12ff
+
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
 
@@ -175,7 +168,7 @@
         [self showContent:@"网络错误"];
 //        NSLog(@"%@",error);
     }];
->>>>>>> devolop
+
 }
 
 - (void)SetData:(NSDictionary *)data{
@@ -366,20 +359,9 @@
 #pragma mark  ---  delegate  ---
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-<<<<<<< HEAD
-    if (section == 1) {
-<<<<<<< HEAD
-        return 3;
-=======
-        return 2;
->>>>>>> devolop
-    }
-    else
-        return 2;
-=======
-    
+
     return _namelist.count;
->>>>>>> 784feb5fcb8d8f20f3a49df9522942ec5eae12ff
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -517,25 +499,14 @@
             nextVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:nextVC animated:YES];
         }
-<<<<<<< HEAD
+
+       
         else{
-            [self alertControllerWithNsstring:@"温馨提示" And:@"你确定要退出当前账号吗？" WithCancelBlack:^{
-                
-            } WithDefaultBlack:^{
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINENTIFIER];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"goLoginVC" object:nil];
-                
-            }];
-=======
-        else if(indexPath.row ==1)
-        {
-            
-        }else{
             
             WebViewVC *next_vc = [[WebViewVC alloc]init];
             next_vc.weburl = @"http://www.ccsoft.com.cn";
             [self.navigationController pushViewController:next_vc animated:YES];
->>>>>>> devolop
+
         }
         
     }
