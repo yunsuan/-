@@ -26,7 +26,7 @@
 
 @property (nonatomic, strong) NSString *project_name;
 
-@property (nonatomic, strong) NSString *project_tags;
+@property (nonatomic, strong) NSArray *project_tags;
 
 @property (nonatomic, strong) NSString *sale_state;
 
@@ -41,5 +41,6 @@
 @property (nonatomic, strong) NSString *yunsuan_url;
 
 @property (nonatomic , strong) NSString *total_float_url_panorama;
+//@property (nonatomic , strong) NSString *project_hold_phone;
 
 @end

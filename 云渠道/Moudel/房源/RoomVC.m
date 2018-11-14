@@ -828,7 +828,7 @@
             }];
         }
         
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSArray *tempArr1 = model.project_tags;
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
@@ -857,7 +857,6 @@
         }
         [cell SetTitle:model.project_name image:model.img_url contentlab:model.absolute_address statu:model.sale_state];
         if ([model.sort integerValue] == 0 && [model.cycle integerValue] == 0) {
-            
             cell.statusImg.hidden = YES;
             cell.surelab.hidden = YES;
         }else{
@@ -885,7 +884,7 @@
             }];
         }
         
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSArray *tempArr1 = model.project_tags;
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             

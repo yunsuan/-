@@ -223,10 +223,10 @@
             SelectCompanyVC *nextVC = [[SelectCompanyVC alloc] init];
             nextVC.selectCompanyVCBlock = ^(NSString *companyId, NSString *name) {
                 
-                _companyId = companyId;
-                _companyL.text = name;
-                _projectL.text = @"";
-                _projectId = @"";
+                self->_companyId = companyId;
+                self->_companyL.text = name;
+                self->_projectL.text = @"";
+                self->_projectId = @"";
             };
             [self.navigationController pushViewController:nextVC animated:YES];
             break;
@@ -243,16 +243,16 @@
             
             UIAlertAction *agent = [UIAlertAction actionWithTitle:@"经纪人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                
-                _role = @"1";
-                _roleL.text = @"经纪人";
-                _projectL.text = @"";
-                _projectId = @"";
+                self->_role = @"1";
+                self->_roleL.text = @"经纪人";
+                self->_projectL.text = @"";
+                self->_projectId = @"";
             }];
             
             UIAlertAction *comfirm = [UIAlertAction actionWithTitle:@"到访确认人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
-                _role = @"2";
-                _roleL.text = @"到访确认人";
+                self->_role = @"2";
+                self->_roleL.text = @"到访确认人";
             }];
             
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -276,8 +276,8 @@
                     ApplyProjectVC *nextVC = [[ApplyProjectVC alloc] initWithCompanyId:_companyId];
                     nextVC.applyProjectVCBlock = ^(NSString *projectId, NSString *name) {
                       
-                        _projectL.text = name;
-                        _projectId = [NSString stringWithFormat:@"%@",projectId];
+                        self->_projectL.text = name;
+                        self->_projectId = [NSString stringWithFormat:@"%@",projectId];
                     };
                     [self.navigationController pushViewController:nextVC animated:YES];
                 }else{
@@ -415,7 +415,7 @@
         [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              //                                                              _uploadButton.hidden = NO;
+                                                              //                                                       _uploadButton.hidden = NO;
                                                           }]];
         [self presentViewController:alertController
                            animated:YES
@@ -440,7 +440,7 @@
                       
                       if ([resposeObject[@"code"] integerValue] == 200) {
                           
-                          _imgUrl = resposeObject[@"data"];
+                          self->_imgUrl = resposeObject[@"data"];
                       }else{
                           
                           [self showContent:resposeObject[@"msg"]];
@@ -466,7 +466,7 @@
                   
                   if ([resposeObject[@"code"] integerValue] == 200) {
                       
-                      _imgUrl = resposeObject[@"data"];
+                      self->_imgUrl = resposeObject[@"data"];
                   }else{
                       
                       [self showContent:resposeObject[@"msg"]];

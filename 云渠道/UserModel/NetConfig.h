@@ -17,17 +17,17 @@
 //static NSString *const Base_Net = @"http://120.27.21.136:2798/";
 
 
-////演示接口
-//
-//static NSString *const TestBase_Net = @"http://47.106.39.169:2797/";
+//演示接口
+
+static NSString *const TestBase_Net = @"http://47.106.39.169:2797/";
 
 
 ////基础接口正式
 //
 //static NSString *const TestBase_Net = @"http://120.78.69.178:2902/";
 
-//基础接口测试
-
+////基础接口测试
+//
 //static NSString *const TestBase_Net = @"http://120.27.21.136:2798/";
 
 //获取版本
@@ -159,7 +159,8 @@ static NSString *const PersonalMyTeamList_URL = @"agent/personal/myTeamList";
 
 
 //1客户列表
-static NSString *const ListClient_URL = @"agent/client/list";
+//static NSString *const ListClient_URL = @"agent/client/list";
+static NSString *const ListClient_URL = @"agent/client/list/v2.7";
 
 //新增客户和需求
 static NSString *const AddCustomer_URL = @"agent/client/addClientAndNeed";
@@ -179,7 +180,9 @@ static NSString *const UpdateNeed_URL = @"agent/client/updateNeed";
 static NSString *const DeleteNeed_URL = @"agent/client/deleteNeed";
 
 //获取客户信息
-static NSString *const GetCliendInfo_URL = @"agent/client/getInfo";
+//static NSString *const GetCliendInfo_URL = @"agent/client/getInfo";
+static NSString *const GetCliendInfo_URL = @"agent/client/getInfo/v2.7";
+
 
 //新增跟进记录
 static NSString *const AddRecord_URL = @"agent/client/addFollow";
@@ -200,11 +203,13 @@ static NSString *const ClientMatching_URL = @"agent/matching/client";
 //获取开放区域
 static NSString *const OpenCity_URL = @"user/project/openCity";
 
-//获取项目列表
-static NSString *const ProjectList_URL = @"user/project/list";
+////获取项目列表
+//static NSString *const ProjectList_URL = @"user/project/list";
+static NSString *const ProjectList_URL = @"user/project/list/v2.7";
 
 //获取项目信息，动态，户型等信息
-static NSString *const ProjectDetail_URL = @"user/project/detail";
+//static NSString *const ProjectDetail_URL = @"user/project/detail";
+static NSString *const ProjectDetail_URL = @"user/project/detail/v2.7";
 
 //获取项目的具体信息
 static NSString *const ProjectBuildInfo_URL = @"user/project/buildInfo";
@@ -212,7 +217,7 @@ static NSString *const ProjectBuildInfo_URL = @"user/project/buildInfo";
 //关注项目
 static NSString *const FocusProject_URL = @"agent/personal/focusProject";
 
-//获取动态列表
+//获取动态列
 static NSString *const DynamicList_URL = @"user/dynamic/list";
 
 //获取项目图片
@@ -267,8 +272,8 @@ static NSString *const GetMessage_URL = @"admin/message/getMessage";
 static NSString *const SystemRead_URL = @"agent/message/agentMessageRead";
 
 //工作消息列表
-static NSString *const WorkingInfoList_URL = @"agent/message/work/list";
-
+//static NSString *const WorkingInfoList_URL = @"agent/message/work/list";
+static NSString *const WorkingInfoList_URL = @"agent/message/work/list/v2.7";
 //经纪人待确认客户消息
 static NSString *const WaitConfirminfo_URL = @"agent/message/work/waitConfirmDetail";
 

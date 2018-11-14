@@ -53,30 +53,32 @@
 }
 
 - (void)LoadRequest{
-    
-    if ([UserModel defaultModel].comment == 0) {
-        
-        if (@available(iOS 10.3, *)) {
-            
-            [UserModel defaultModel].comment += 1;
-            [SKStoreReviewController requestReview];
-            [UserModelArchiver archive];
-        } else {
-            
-            
-        }
-    }else{
-        
-        if ([UserModel defaultModel].comment == 50) {
-            
-            [UserModel defaultModel].comment = 0;
-        }else{
-            
-            [UserModel defaultModel].comment += 1;
-        }
+
+    if (![UserModel defaultModel].comment) {
+        [UserModel defaultModel].comment = 0;
         [UserModelArchiver archive];
     }
+    else{
+            [UserModel defaultModel].comment += 1;
+            [UserModelArchiver archive];
+        if ([UserModel defaultModel].comment%50==0) {
+            if (@available(iOS 10.3, *)) {
+            [SKStoreReviewController requestReview];
+            }
+            else{
+                [self alertControllerWithNsstring:@"温馨提示" And:@"是否去APPStore进行评分？" WithCancelBlack:^{
+                    
+                } WithDefaultBlack:^{
+                    NSString *str = @"itms-apps://itunes.apple.com/app/id1371978352?mt=8";
+                    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str]];
+                    
+                }];
+            }
+               
+        }
+    }
     
+
 }
 
 -(void)InitUI{

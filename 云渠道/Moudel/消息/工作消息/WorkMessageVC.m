@@ -114,7 +114,7 @@
             if ([page isEqualToString:@"1"]) {
           
                 [_systemmsgtable.mj_footer endRefreshing];
-                _data = [resposeObject[@"data"][@"data"] mutableCopy];
+                _data = [resposeObject[@"data"] mutableCopy];
                 if (_data.count < 15) {
                     
                     _systemmsgtable.mj_footer.state = MJRefreshStateNoMoreData;
@@ -122,7 +122,7 @@
                 [_systemmsgtable reloadData];
             }
             else{
-                NSArray *arr =resposeObject[@"data"][@"data"];
+                NSArray *arr =resposeObject[@"data"];
                 if (arr.count == 0) {
                     
                     [_systemmsgtable.mj_footer setState:MJRefreshStateNoMoreData];
