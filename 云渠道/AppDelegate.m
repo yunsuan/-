@@ -299,10 +299,6 @@
 }
 
 - (void)comeBackLoginVC {
-    //未登录
-//    _window .alpha = 0;
-//    _window = nil;
-//    _window = [[UIWindow alloc]init];
     NSSet *tags;
     
     [JPUSHService setAlias:@"exit" completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
