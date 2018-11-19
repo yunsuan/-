@@ -862,7 +862,7 @@
             }];
         }
         
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSArray *tempArr1 = model.project_tags;
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             
@@ -921,7 +921,7 @@
             }];
         }
         
-        NSArray *tempArr1 = [model.project_tags componentsSeparatedByString:@","];
+        NSArray *tempArr1 = model.project_tags;
         NSMutableArray *tempArr2 = [@[] mutableCopy];
         for (int i = 0; i < tempArr1.count; i++) {
             

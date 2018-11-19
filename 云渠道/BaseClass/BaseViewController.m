@@ -176,7 +176,7 @@
         _line = [[UIView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT - SIZE, SCREEN_Width, SIZE)];
         _line.backgroundColor = YJBackColor;
         [_navBackgroundView addSubview:_line];
-        
+//
         _navBackgroundView.hidden = YES;
     }
     return _navBackgroundView;
@@ -185,11 +185,11 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.center = CGPointMake(SCREEN_Width / 2, STATUS_BAR_HEIGHT+20 );
-        _titleLabel.bounds = CGRectMake(0, 0, 180 * sIZE, 30 * sIZE);
+        _titleLabel.center = CGPointMake(SCREEN_Width / 2, STATUS_BAR_HEIGHT+22 );
+        _titleLabel.bounds = CGRectMake(0, 0, 180 * SIZE, 44);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = [UIColor blackColor];
-        _titleLabel.font = [UIFont systemFontOfSize:17 * sIZE];
+        _titleLabel.font = [UIFont systemFontOfSize:17 * SIZE];
     }
     return _titleLabel;
 }
@@ -197,8 +197,8 @@
 - (UIButton *)leftButton {
     if (!_leftButton) {
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _leftButton.center = CGPointMake(25 * SIZE, 20 + 22);
-        _leftButton.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
+//        _leftButton.center = CGPointMake(25 * SIZE, 20 + 22);
+//        _leftButton.bounds = CGRectMake(0, 0, 80 * SIZE, 33 * SIZE);
         _leftButton.center = CGPointMake(25 * sIZE, STATUS_BAR_HEIGHT + 20);
         _leftButton.bounds = CGRectMake(0, 0, 80 * sIZE, 33 * sIZE);
         [_leftButton setImage:IMAGE_WITH_NAME(@"leftarrow.png") forState:UIControlStateNormal];

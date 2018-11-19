@@ -112,7 +112,7 @@
     NSDictionary *dic =  [configdic valueForKey:[NSString stringWithFormat:@"%d",15]];
     NSArray *tempArr = dic[@"param"];
     NSMutableArray * arr = [[NSMutableArray alloc] init];
-    NSArray *subArr = [model.project_tags componentsSeparatedByString:@","];
+    NSArray *subArr = model.project_tags;
     for (int i = 0; i < subArr.count; i++) {
         
         [tempArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

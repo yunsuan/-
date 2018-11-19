@@ -294,11 +294,6 @@
 		105E18FE206CB5320031558D /* DropDownBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E18FD206CB5320031558D /* DropDownBtn.m */; };
 		105E1902206CF0B10031558D /* BorderTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E1901206CF0B10031558D /* BorderTF.m */; };
 		1069000D2057974200E11F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFF72057974100E11F52 /* BaseViewController.m */; };
-		1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */; };
-		1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900072057974200E11F52 /* CYLTabBarController.m */; };
-		106900102057974200E11F52 /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 106900092057974200E11F52 /* CYLTabBar.m */; };
-		106900112057974200E11F52 /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069000A2057974200E11F52 /* CYLPlusButton.m */; };
-		106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069000B2057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m */; };
 		1069FFC6205795BE00E11F52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFC5205795BE00E11F52 /* AppDelegate.m */; };
 		1069FFC9205795BE00E11F52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1069FFC8205795BE00E11F52 /* ViewController.m */; };
 		1069FFCC205795BE00E11F52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1069FFCA205795BE00E11F52 /* Main.storyboard */; };
@@ -319,6 +314,14 @@
 		10DBB1F5207CCACE00CFE59D /* KyoCenterLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1ED207CCACE00CFE59D /* KyoCenterLineView.m */; };
 		10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1EE207CCACE00CFE59D /* KyoRowIndexView.m */; };
 		10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBB1F2207CCACE00CFE59D /* SMScrollView.m */; };
+		10F41DB0218C1DE2009877C4 /* UIViewController+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DA1218C1DE0009877C4 /* UIViewController+CYLTabBarControllerExtention.m */; };
+		10F41DB1218C1DE2009877C4 /* UITabBarItem+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DA3218C1DE1009877C4 /* UITabBarItem+CYLTabBarControllerExtention.m */; };
+		10F41DB2218C1DE2009877C4 /* CYLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DA4218C1DE1009877C4 /* CYLTabBarController.m */; };
+		10F41DB3218C1DE2009877C4 /* CYLPlusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DA8218C1DE1009877C4 /* CYLPlusButton.m */; };
+		10F41DB4218C1DE2009877C4 /* UIControl+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DAA218C1DE1009877C4 /* UIControl+CYLTabBarControllerExtention.m */; };
+		10F41DB5218C1DE2009877C4 /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DAE218C1DE2009877C4 /* CYLTabBar.m */; };
+		10F41DB6218C1DE2009877C4 /* UIView+CYLTabBarControllerExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DAF218C1DE2009877C4 /* UIView+CYLTabBarControllerExtention.m */; };
+		10F41DB8218C1E6D009877C4 /* CYLTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F41DB7218C1E6D009877C4 /* CYLTabBarControllerConfig.m */; };
 		BF3D5C8D28ABC2D033EBFE3F /* libPods-云渠道.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F61246EF35319F3323AE5C /* libPods-云渠道.a */; };
 /* End PBXBuildFile section */
 
@@ -895,14 +898,6 @@
 		105E1900206CF0B10031558D /* BorderTF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorderTF.h; sourceTree = "<group>"; };
 		105E1901206CF0B10031558D /* BorderTF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorderTF.m; sourceTree = "<group>"; };
 		106900002057974200E11F52 /* PrefixHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
-		106900052057974200E11F52 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
-		106900062057974200E11F52 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
-		106900072057974200E11F52 /* CYLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarController.m; sourceTree = "<group>"; };
-		106900082057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
-		106900092057974200E11F52 /* CYLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBar.m; sourceTree = "<group>"; };
-		1069000A2057974200E11F52 /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
-		1069000B2057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
-		1069000C2057974200E11F52 /* CYLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarController.h; sourceTree = "<group>"; };
 		1069FFC1205795BD00E11F52 /* 云渠道.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "云渠道.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1069FFC4205795BE00E11F52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1069FFC5205795BE00E11F52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -922,7 +917,6 @@
 		1069FFF72057974100E11F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1069FFF82057974100E11F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		1069FFFD2057974100E11F52 /* CYLTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarControllerConfig.h; sourceTree = "<group>"; };
-		1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarControllerConfig.m; sourceTree = "<group>"; };
 		10B2CAA3205A0D0900E814AC /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		10B2CAA4205A0D0900E814AC /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		10B2CAA6205A0D1300E814AC /* FindPassWordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassWordVC.m; sourceTree = "<group>"; };
@@ -947,6 +941,22 @@
 		10DBB1F0207CCACE00CFE59D /* KyoCinameSeatScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyoCinameSeatScrollView.h; sourceTree = "<group>"; };
 		10DBB1F2207CCACE00CFE59D /* SMScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMScrollView.m; sourceTree = "<group>"; };
 		10DBB1F3207CCACE00CFE59D /* SMScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMScrollView.h; sourceTree = "<group>"; };
+		10F41DA1218C1DE0009877C4 /* UIViewController+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
+		10F41DA2218C1DE0009877C4 /* CYLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBarController.h; sourceTree = "<group>"; };
+		10F41DA3218C1DE1009877C4 /* UITabBarItem+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
+		10F41DA4218C1DE1009877C4 /* CYLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarController.m; sourceTree = "<group>"; };
+		10F41DA5218C1DE1009877C4 /* CYLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLConstants.h; sourceTree = "<group>"; };
+		10F41DA6218C1DE1009877C4 /* UITabBarItem+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
+		10F41DA7218C1DE1009877C4 /* UIControl+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
+		10F41DA8218C1DE1009877C4 /* CYLPlusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLPlusButton.m; sourceTree = "<group>"; };
+		10F41DA9218C1DE1009877C4 /* UIViewController+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
+		10F41DAA218C1DE1009877C4 /* UIControl+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
+		10F41DAB218C1DE1009877C4 /* CYLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
+		10F41DAC218C1DE1009877C4 /* UIView+CYLTabBarControllerExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CYLTabBarControllerExtention.h"; sourceTree = "<group>"; };
+		10F41DAD218C1DE2009877C4 /* CYLPlusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYLPlusButton.h; sourceTree = "<group>"; };
+		10F41DAE218C1DE2009877C4 /* CYLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBar.m; sourceTree = "<group>"; };
+		10F41DAF218C1DE2009877C4 /* UIView+CYLTabBarControllerExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CYLTabBarControllerExtention.m"; sourceTree = "<group>"; };
+		10F41DB7218C1E6D009877C4 /* CYLTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYLTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B040976ECCBAE7E833CAD51A /* Pods-云渠道.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-云渠道.debug.xcconfig"; path = "Pods/Target Support Files/Pods-云渠道/Pods-云渠道.debug.xcconfig"; sourceTree = "<group>"; };
 		B4E233417D126BDD0E0282A9 /* Pods-云渠道.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-云渠道.release.xcconfig"; path = "Pods/Target Support Files/Pods-云渠道/Pods-云渠道.release.xcconfig"; sourceTree = "<group>"; };
 		F9F61246EF35319F3323AE5C /* libPods-云渠道.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-云渠道.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2556,14 +2566,21 @@
 		106900042057974200E11F52 /* CYLTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				106900052057974200E11F52 /* CYLPlusButton.h */,
-				106900062057974200E11F52 /* CYLTabBar.h */,
-				106900072057974200E11F52 /* CYLTabBarController.m */,
-				106900082057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.h */,
-				106900092057974200E11F52 /* CYLTabBar.m */,
-				1069000A2057974200E11F52 /* CYLPlusButton.m */,
-				1069000B2057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m */,
-				1069000C2057974200E11F52 /* CYLTabBarController.h */,
+				10F41DA5218C1DE1009877C4 /* CYLConstants.h */,
+				10F41DAD218C1DE2009877C4 /* CYLPlusButton.h */,
+				10F41DA8218C1DE1009877C4 /* CYLPlusButton.m */,
+				10F41DAB218C1DE1009877C4 /* CYLTabBar.h */,
+				10F41DAE218C1DE2009877C4 /* CYLTabBar.m */,
+				10F41DA2218C1DE0009877C4 /* CYLTabBarController.h */,
+				10F41DA4218C1DE1009877C4 /* CYLTabBarController.m */,
+				10F41DA7218C1DE1009877C4 /* UIControl+CYLTabBarControllerExtention.h */,
+				10F41DAA218C1DE1009877C4 /* UIControl+CYLTabBarControllerExtention.m */,
+				10F41DA6218C1DE1009877C4 /* UITabBarItem+CYLTabBarControllerExtention.h */,
+				10F41DA3218C1DE1009877C4 /* UITabBarItem+CYLTabBarControllerExtention.m */,
+				10F41DAC218C1DE1009877C4 /* UIView+CYLTabBarControllerExtention.h */,
+				10F41DAF218C1DE2009877C4 /* UIView+CYLTabBarControllerExtention.m */,
+				10F41DA9218C1DE1009877C4 /* UIViewController+CYLTabBarControllerExtention.h */,
+				10F41DA1218C1DE0009877C4 /* UIViewController+CYLTabBarControllerExtention.m */,
 			);
 			path = CYLTabBarController;
 			sourceTree = "<group>";
@@ -2692,7 +2709,7 @@
 			isa = PBXGroup;
 			children = (
 				1069FFFD2057974100E11F52 /* CYLTabBarControllerConfig.h */,
-				1069FFFE2057974100E11F52 /* CYLTabBarControllerConfig.m */,
+				10F41DB7218C1E6D009877C4 /* CYLTabBarControllerConfig.m */,
 			);
 			path = RootTabBar;
 			sourceTree = "<group>";
@@ -2885,7 +2902,7 @@
 		1069FFB9205795BD00E11F52 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = xiaoq;
 				TargetAttributes = {
 					1069FFC0205795BD00E11F52 = {
@@ -3026,6 +3043,7 @@
 				0CF04F47207B367100A45F4A /* ComplaintVC.m in Sources */,
 				0C2D02B120AD51BA002F1B4E /* AppealComplaintedVC.m in Sources */,
 				0CB6BAED20735A9E00921C75 /* AddRequireMentVC.m in Sources */,
+				10F41DB5218C1DE2009877C4 /* CYLTabBar.m in Sources */,
 				0C08BF6C206CCF55005BB3B4 /* BrokerDetailHeader.m in Sources */,
 				100FD892209960CC00D02EAC /* MapVC.m in Sources */,
 				0CC19D19207202E80007CC5F /* ChangeNameVC.m in Sources */,
@@ -3042,6 +3060,7 @@
 				0CA37B8F2089D7B9005609C7 /* AddressChooseView2.m in Sources */,
 				105E18B520637D310031558D /* BrokerageRecordVC.m in Sources */,
 				0CF04F94207CAFB000A45F4A /* UIView+PYSearchExtension.m in Sources */,
+				10F41DB1218C1DE2009877C4 /* UITabBarItem+CYLTabBarControllerExtention.m in Sources */,
 				0C0BED5320A98841005A16A1 /* CityVC.m in Sources */,
 				0C342FD02080ACD50058406D /* UserInfoModel.m in Sources */,
 				0C06B1F7209D7DBB00F11993 /* CustomListVC.m in Sources */,
@@ -3053,7 +3072,6 @@
 				10B2CAA5205A0D0900E814AC /* RegisterVC.m in Sources */,
 				0C23F61D2068BCB400B4D573 /* CustomTableHeader2.m in Sources */,
 				0C00FEC520EA38F500B8F78A /* YBImageBrowserProgressBar.m in Sources */,
-				106900102057974200E11F52 /* CYLTabBar.m in Sources */,
 				0CB6BB0C2074D2BE00921C75 /* BuildingAlbumVC.m in Sources */,
 				0CF04F3A207B074500A45F4A /* RecommendCell3.m in Sources */,
 				1044B40720A56857002D9BAE /* WaitAnimation.m in Sources */,
@@ -3077,6 +3095,7 @@
 				0CF04F51207B39AA00A45F4A /* ComplaintUnCompleteVC.m in Sources */,
 				0C0B821A2063AB2900238D4F /* AddBankCardVC.m in Sources */,
 				0CF89A6320C14BE600454EDD /* BingdingAccountVC.m in Sources */,
+				10F41DB4218C1DE2009877C4 /* UIControl+CYLTabBarControllerExtention.m in Sources */,
 				0C00FEC320EA38F500B8F78A /* YBImageBrowserDownloader.m in Sources */,
 				0CF04F8F207CAFB000A45F4A /* UIColor+PYSearchExtension.m in Sources */,
 				0C382E7020A03A01005472CD /* IdentifyTableCell.m in Sources */,
@@ -3090,6 +3109,7 @@
 				0CC19CF7206E21110007CC5F /* AuthenCollCell.m in Sources */,
 				0C0606A5207DAEC00045E3C1 /* CustomerModel.m in Sources */,
 				0CC19CFD206E21110007CC5F /* SelectCompanyTableCell.m in Sources */,
+				10F41DB6218C1DE2009877C4 /* UIView+CYLTabBarControllerExtention.m in Sources */,
 				10B2CAA8205A0D1300E814AC /* FindPassWordVC.m in Sources */,
 				10DBB1F6207CCACE00CFE59D /* KyoRowIndexView.m in Sources */,
 				10174C0B2072179300D00B9A /* LicenceCell.m in Sources */,
@@ -3100,6 +3120,7 @@
 				0C00FEC220EA38F500B8F78A /* YBImageBrowserUtilities.m in Sources */,
 				0C6B63712122B68100ABB506 /* BrokerageAwardVC.m in Sources */,
 				0CB6BAF52074982000921C75 /* HouseTypeDetailVC.m in Sources */,
+				10F41DB3218C1DE2009877C4 /* CYLPlusButton.m in Sources */,
 				0C96D9FA209C5DB900B6A8B8 /* NoPassCell.m in Sources */,
 				0C02360120BFC94C00B255AA /* DynamicDetailVC.m in Sources */,
 				0C0B820B20638A2A00238D4F /* CustomDetailTableCell.m in Sources */,
@@ -3108,7 +3129,6 @@
 				0C6B63752122B79900ABB506 /* BrokerageAwardCell.m in Sources */,
 				0C0B82112063964500238D4F /* CustomHeaderCollCell.m in Sources */,
 				0CB6BB052074AA8100921C75 /* HouseTypeTableHeader2.m in Sources */,
-				106900122057974200E11F52 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				0CA37B892089D511005609C7 /* BDDynamicTreeNode.m in Sources */,
 				105E18D72068C6000031558D /* InfoDetailCell.m in Sources */,
 				0C0B82032063467C00238D4F /* RoomCollCell.m in Sources */,
@@ -3154,6 +3174,7 @@
 				0CF04F7D207C929300A45F4A /* TransmitView.m in Sources */,
 				0C0B8258206501B700238D4F /* FeedbackVC.m in Sources */,
 				105E18FA206C829A0031558D /* SinglePickView.m in Sources */,
+				10F41DB2218C1DE2009877C4 /* CYLTabBarController.m in Sources */,
 				0C0C1A2A20EE1C6F0086E739 /* CompanyDetailHeaderCell.m in Sources */,
 				0CEC62F420917668006EC0BD /* RankView.m in Sources */,
 				1044B3FB20A03654002D9BAE /* TypeOneVC.m in Sources */,
@@ -3190,6 +3211,7 @@
 				0CBD858C2085F90500E7B183 /* RoomProjectVC.m in Sources */,
 				102DF9732057A14300E1859C /* WorkingVC.m in Sources */,
 				1016245B208863BB00AD53DE /* YJChooseView.m in Sources */,
+				10F41DB8218C1E6D009877C4 /* CYLTabBarControllerConfig.m in Sources */,
 				0CF04F66207C555F00A45F4A /* FailView.m in Sources */,
 				105E188B2060E1F50031558D /* CompanyCell.m in Sources */,
 				0CF04F29207A0AF500A45F4A /* DynamicListVC.m in Sources */,
@@ -3203,7 +3225,6 @@
 				0C0B82072063514500238D4F /* CustomDetailVC.m in Sources */,
 				0CF04F55207B3CFE00A45F4A /* confirmDetailVC.m in Sources */,
 				0C08BF6F206CD72E005BB3B4 /* BrokerageDetailTableCell4.m in Sources */,
-				106900112057974200E11F52 /* CYLPlusButton.m in Sources */,
 				0CA37B8B2089D511005609C7 /* BDDynamicTree.m in Sources */,
 				0CF7424720622DCD001F926F /* BankCardListTableCell.m in Sources */,
 				0CC19CFB206E21110007CC5F /* CompanyModel.m in Sources */,
@@ -3225,7 +3246,6 @@
 				10B5097B209317C7004355C4 /* SelectView.m in Sources */,
 				0C1A014020AC566100665BB9 /* DealValidVC.m in Sources */,
 				0CF04F70207C830C00A45F4A /* NoInvalidVC.m in Sources */,
-				1069000F2057974200E11F52 /* CYLTabBarController.m in Sources */,
 				0CF04FA1207CCC8E00A45F4A /* MoreView.m in Sources */,
 				10DBB1F7207CCACE00CFE59D /* SMScrollView.m in Sources */,
 				105E18E2206B41980031558D /* WorkMessageCell.m in Sources */,
@@ -3281,6 +3301,7 @@
 				10DBB1F4207CCACE00CFE59D /* KyoCinameSeatScrollView.m in Sources */,
 				0CF04F4B207B36C100A45F4A /* ValidVC.m in Sources */,
 				0CC19D0B206E3E9C0007CC5F /* CustomDetailTableCell3.m in Sources */,
+				10F41DB0218C1DE2009877C4 /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
 				102DF97C2057A20100E1859C /* LoginVC.m in Sources */,
 				0C3AD5652069DADC0059CE02 /* RoomDetailTableCell3.m in Sources */,
 				0C08BF66206CBC0B005BB3B4 /* BrokerageDetailTableCell2.m in Sources */,
@@ -3297,7 +3318,6 @@
 				0C6B63672122706300ABB506 /* MyTeamTableCell2.m in Sources */,
 				0CBD859D2087365100E7B183 /* RoomMatchListVC.m in Sources */,
 				0CF04F37207B051500A45F4A /* RecommendCell5.m in Sources */,
-				1069000E2057974200E11F52 /* CYLTabBarControllerConfig.m in Sources */,
 				0C07BFD02060E7EE007F31EC /* CustomerTableCell.m in Sources */,
 				105E18DA2069E3AB0031558D /* CountDownCell.m in Sources */,
 				0C00FEC020EA38F500B8F78A /* YBImageBrowserCopywriter.m in Sources */,
@@ -3377,6 +3397,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3384,6 +3405,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -3432,6 +3454,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3439,6 +3462,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -3474,6 +3498,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = "云渠道/云渠道.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
@@ -3505,6 +3530,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = "云渠道/云渠道.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 73DTNFMD65;
